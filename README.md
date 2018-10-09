@@ -1,6 +1,6 @@
 # Спецкурс "Agile Development"
 
-[![Join the chat at https://gitter.im/agile-course-practice-2017/Lobby](gitter-badge)](https://gitter.im/agile-course-practice-2017/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/agile-course-practice-2017/Lobby](gitter-badge)](gitter)
 [![Build Status](travis-badge)][travis]
 [![Coverage Status](coveralls-badge)](coveralls)
 
@@ -26,9 +26,10 @@
 
 [travis]:           https://travis-ci.org/UNN-VMK-Software/agile-course-practice
 [travis-badge]:     https://travis-ci.org/UNN-VMK-Software/agile-course-practice.svg
-[gitter-badge]:     https://badges.gitter.im/agile-course-practice-2017/Lobby.svg
-[coveralls-badge]:  https://coveralls.io/repos/github/UNN-VMK-Software/agile-course-practice/badge.svg?branch=master
+[gitter]:           https://gitter.im/agile-course-practice-2018/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+[gitter-badge]:     https://badges.gitter.im/agile-course-practice-2018/Lobby.svg
 [coveralls]:        https://coveralls.io/github/UNN-VMK-Software/agile-course-practice?branch=master
+[coveralls-badge]:  https://coveralls.io/repos/github/UNN-VMK-Software/agile-course-practice/badge.svg?branch=master
 
 [hall-of-fame]:         https://docs.google.com/spreadsheets/d/1JXyJBOlLZ8yvMGVVAJ6U3uiH10mMzcm-6n77SWg3p9Q/edit#gid=1556468627
 [lab-topics]:           https://docs.google.com/spreadsheets/d/1JXyJBOlLZ8yvMGVVAJ6U3uiH10mMzcm-6n77SWg3p9Q/edit#gid=154282983
