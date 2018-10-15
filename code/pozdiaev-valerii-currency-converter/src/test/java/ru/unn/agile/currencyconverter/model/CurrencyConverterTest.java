@@ -3,6 +3,7 @@ package ru.unn.agile.currencyconverter.model;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class CurrencyConverterTest {
     private final double delta = 0.001;
@@ -49,5 +50,19 @@ public class CurrencyConverterTest {
 
         // Assert
         assertEquals(rubToUsdRate, currencyPair.getRate(), delta);
+    }
+
+    @Test
+    public void canAddCurrencyPairToConverter() {
+        // Arrange
+        double rubToUsdRate = 0.013;
+        CurrencyPair currencyPair = new CurrencyPair(RUB_CODE, USD_CODE, rubToUsdRate);
+        CurrencyConverter currencyConverter = new CurrencyConverter();
+
+        // Act
+        currencyConverter.addCurrencyPair(currencyPair);
+
+        // Assert
+        assertNotNull(currencyConverter.getCurrencyPair());
     }
 }

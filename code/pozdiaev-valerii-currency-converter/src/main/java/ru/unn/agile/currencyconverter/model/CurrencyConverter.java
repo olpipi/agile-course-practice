@@ -8,6 +8,8 @@ public class CurrencyConverter {
     private static final String USD_CODE = "USD";
     private static final String EURO_CODE = "EUR";
 
+    private CurrencyPair currencyPair;
+
     public double convert(final String sourceCurrencyCode, final String targetCurrencyCode,
                           final double amount) {
         if (RUB_CODE.equals(sourceCurrencyCode) && EURO_CODE.equals(targetCurrencyCode)) {
@@ -16,5 +18,13 @@ public class CurrencyConverter {
             return amount * RUB_TO_USD_RATE;
         }
         return 0;
+    }
+
+    public void addCurrencyPair(CurrencyPair currencyPair) {
+        this.currencyPair = currencyPair;
+    }
+
+    public Object getCurrencyPair() {
+        return currencyPair;
     }
 }
