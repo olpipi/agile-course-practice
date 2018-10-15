@@ -5,7 +5,7 @@ public class CurrencyPair {
     private String quoteCurrency;
     private double rate;
 
-    public CurrencyPair(String baseCurrency, String quoteCurrency, double rate) {
+    public CurrencyPair(final String baseCurrency, final String quoteCurrency, final double rate) {
         this.baseCurrency = baseCurrency;
         this.quoteCurrency = quoteCurrency;
         this.rate = rate;

@@ -7,16 +7,18 @@ import static org.junit.Assert.assertEquals;
 public class CurrencyConverterTest {
     private final double delta = 0.001;
 
+    private static final String RUB_CODE = "RUB";
+    private static final String USD_CODE = "USD";
+    private static final String EURO_CODE = "EUR";
+
     @Test
     public void canConvertRubToUsd() {
         // Arrange
         CurrencyConverter currencyConverter = new CurrencyConverter();
         double rublesAmount = 100;
-        String RUBLES_CURRENCY_CODE = "RUB";
-        String DOLLARS_CURRENCY_CODE = "USD";
 
         // Act
-        double dollarsAmount = currencyConverter.convert(RUBLES_CURRENCY_CODE, DOLLARS_CURRENCY_CODE, rublesAmount);
+        double dollarsAmount = currencyConverter.convert(RUB_CODE, USD_CODE, rublesAmount);
 
         // Assert
         double expectedDollarsAmount = 1.5;
@@ -28,11 +30,9 @@ public class CurrencyConverterTest {
         // Arrange
         CurrencyConverter currencyConverter = new CurrencyConverter();
         double rublesAmount = 100;
-        String RUBLES_CURRENCY_CODE = "RUB";
-        String EURO_CURRENCY_CODE = "EUR";
 
         // Act
-        double euroAmount = currencyConverter.convert(RUBLES_CURRENCY_CODE, EURO_CURRENCY_CODE, rublesAmount);
+        double euroAmount = currencyConverter.convert(RUB_CODE, EURO_CODE, rublesAmount);
 
         // Assert
         double expectedEuroAmount = 1.3;
@@ -42,12 +42,10 @@ public class CurrencyConverterTest {
     @Test
     public void canCreateCurrencyPair() {
         // Arrange
-        String RUBLES_CURRENCY_CODE = "RUB";
-        String DOLLARS_CURRENCY_CODE = "USD";
         double rubToUsdRate = 0.013;
 
         // Act
-        CurrencyPair currencyPair = new CurrencyPair(RUBLES_CURRENCY_CODE, DOLLARS_CURRENCY_CODE, rubToUsdRate);
+        CurrencyPair currencyPair = new CurrencyPair(RUB_CODE, USD_CODE, rubToUsdRate);
 
         // Assert
         assertEquals(rubToUsdRate, currencyPair.getRate(), delta);

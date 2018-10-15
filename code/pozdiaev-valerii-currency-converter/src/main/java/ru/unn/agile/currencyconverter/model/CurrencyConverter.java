@@ -4,10 +4,15 @@ public class CurrencyConverter {
     private static final double RUB_TO_USD_RATE = 0.015;
     private static final double RUB_TO_EUR_RATE = 0.013;
 
-    public double convert(String sourceCurrencyCode, String targetCurrencyCode, double amount) {
-        if (sourceCurrencyCode == "RUB" && targetCurrencyCode == "EUR") {
+    private static final String RUB_CODE = "RUB";
+    private static final String USD_CODE = "USD";
+    private static final String EURO_CODE = "EUR";
+
+    public double convert(final String sourceCurrencyCode, final String targetCurrencyCode,
+                          final double amount) {
+        if (RUB_CODE.equals(sourceCurrencyCode) && EURO_CODE.equals(targetCurrencyCode)) {
             return amount * RUB_TO_EUR_RATE;
-        } else if (sourceCurrencyCode == "RUB" && targetCurrencyCode == "USD") {
+        } else if (RUB_CODE.equals(sourceCurrencyCode) && USD_CODE.equals(targetCurrencyCode)) {
             return amount * RUB_TO_USD_RATE;
         }
         return 0;
