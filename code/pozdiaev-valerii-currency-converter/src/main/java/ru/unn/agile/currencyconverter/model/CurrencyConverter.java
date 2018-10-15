@@ -1,30 +1,38 @@
 package ru.unn.agile.currencyconverter.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CurrencyConverter {
-    private static final double RUB_TO_USD_RATE = 0.015;
-    private static final double RUB_TO_EUR_RATE = 0.013;
+    private List<CurrencyPair> currencyPairs;
 
-    private static final String RUB_CODE = "RUB";
-    private static final String USD_CODE = "USD";
-    private static final String EURO_CODE = "EUR";
-
-    private CurrencyPair currencyPair;
+    public CurrencyConverter() {
+        this.currencyPairs = new ArrayList<>();
+    }
 
     public double convert(final String sourceCurrencyCode, final String targetCurrencyCode,
                           final double amount) {
-        if (RUB_CODE.equals(sourceCurrencyCode) && EURO_CODE.equals(targetCurrencyCode)) {
-            return amount * RUB_TO_EUR_RATE;
-        } else if (RUB_CODE.equals(sourceCurrencyCode) && USD_CODE.equals(targetCurrencyCode)) {
-            return amount * RUB_TO_USD_RATE;
+        CurrencyPair currencyPair = getCurrencyPairByCodes(sourceCurrencyCode, targetCurrencyCode);
+
+        if (currencyPair != null) {
+            return amount * currencyPair.getRate();
         }
+
         return 0;
     }
 
-    public void addCurrencyPair(CurrencyPair currencyPair) {
-        this.currencyPair = currencyPair;
+    public void addCurrencyPair(final CurrencyPair currencyPair) {
+        this.currencyPairs.add(currencyPair);
     }
 
-    public Object getCurrencyPair() {
-        return currencyPair;
+    public List<CurrencyPair> getCurrencyPairs() {
+        return currencyPairs;
+    }
+
+    private CurrencyPair getCurrencyPairByCodes(final String sourceCode, final String targetCode) {
+        return currencyPairs.stream()
+                .filter(currencyPair -> currencyPair.getBaseCurrency().equals(sourceCode))
+                .filter(currencyPair -> currencyPair.getQuoteCurrency().equals(targetCode))
+                .findFirst().orElse(null);
     }
 }
