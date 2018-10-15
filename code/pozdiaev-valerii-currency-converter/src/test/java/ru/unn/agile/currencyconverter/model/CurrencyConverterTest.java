@@ -12,9 +12,11 @@ public class CurrencyConverterTest {
         // Arrange
         CurrencyConverter currencyConverter = new CurrencyConverter();
         double rublesAmount = 100;
+        String RUBLES_CURRENCY_CODE = "RUB";
+        String DOLLARS_CURRENCY_CODE = "USD";
 
         // Act
-        double dollarsAmount = currencyConverter.convertRubToUsd(rublesAmount);
+        double dollarsAmount = currencyConverter.convert(RUBLES_CURRENCY_CODE, DOLLARS_CURRENCY_CODE, rublesAmount);
 
         // Assert
         double expectedDollarsAmount = 1.5;
