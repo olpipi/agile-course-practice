@@ -105,4 +105,21 @@ public class CurrencyConverterTest {
         int expectedSize = 1;
         assertEquals(expectedSize, currencyPairs.size());
     }
+
+    @Test
+    public void canUpdateExistedCurrencyPairWithInversePair() {
+        // Arrange
+        double oldRubToUsdRate = 0.013;
+        CurrencyConverter currencyConverter = new CurrencyConverter();
+        currencyConverter.addCurrencyPair(new CurrencyPair(RUB_CODE, USD_CODE, oldRubToUsdRate));
+        double newRubToUsdRate = 0.014;
+
+        // Act
+        currencyConverter.addCurrencyPair(new CurrencyPair(USD_CODE, RUB_CODE, newRubToUsdRate));
+
+        // Assert
+        List<CurrencyPair> currencyPairs = currencyConverter.getCurrencyPairs();
+        int expectedSize = 1;
+        assertEquals(expectedSize, currencyPairs.size());
+    }
 }

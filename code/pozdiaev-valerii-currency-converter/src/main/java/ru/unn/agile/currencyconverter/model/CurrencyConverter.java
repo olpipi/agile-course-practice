@@ -29,7 +29,7 @@ public class CurrencyConverter {
     public void addCurrencyPair(final CurrencyPair currencyPair) {
         String sourceCode = currencyPair.getBaseCurrency();
         String targetCode = currencyPair.getQuoteCurrency();
-        CurrencyPair existedCurrencyPair = getCurrencyPairByCodes(sourceCode, targetCode);
+        CurrencyPair existedCurrencyPair = findExistedPair(sourceCode, targetCode);
 
         if (existedCurrencyPair != null) {
             int existedCurrencyPairIndex = currencyPairs.indexOf(existedCurrencyPair);
@@ -42,6 +42,20 @@ public class CurrencyConverter {
 
     public List<CurrencyPair> getCurrencyPairs() {
         return currencyPairs;
+    }
+
+    private CurrencyPair findExistedPair(final String sourceCode, final String targetCode) {
+        CurrencyPair foundPair = getCurrencyPairByCodes(sourceCode, targetCode);
+        if (foundPair != null) {
+            return foundPair;
+        }
+
+        CurrencyPair foundInversePair = getCurrencyPairByCodes(targetCode, sourceCode);
+        if (foundInversePair != null) {
+            return foundInversePair;
+        }
+
+        return null;
     }
 
     private CurrencyPair getCurrencyPairByCodes(final String sourceCode, final String targetCode) {
