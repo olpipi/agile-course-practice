@@ -6,6 +6,7 @@ import ru.unn.agile.currencyconverter.model.errorhandling.CurrencyConverterExcep
 public class CurrencyPairTest {
     private static final String RUB_CODE = "RUB";
     private static final String USD_CODE = "USD";
+    private static final double RUB_TO_USD_RATE = 0.015;
 
     @Test(expected = CurrencyConverterException.class)
     public void cannotCreatePairWithNegativeRate() {
@@ -14,5 +15,14 @@ public class CurrencyPairTest {
 
         // Act & Assert
         new CurrencyPair(RUB_CODE, USD_CODE, negativeRate);
+    }
+
+    @Test(expected = CurrencyConverterException.class)
+    public void cannotCreatePairWithIncorrectCode() {
+        // Arrange
+        String incorrectCode = "asdadasd";
+
+        // Act & Assert
+        new CurrencyPair(RUB_CODE, incorrectCode, RUB_TO_USD_RATE);
     }
 }
