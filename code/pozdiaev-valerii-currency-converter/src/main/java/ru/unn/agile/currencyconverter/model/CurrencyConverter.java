@@ -28,6 +28,14 @@ public class CurrencyConverter {
     }
 
     public void addCurrencyPair(final CurrencyPair currencyPair) {
+        CurrencyPair existedCurrencyPair = getCurrencyPairByCodes(currencyPair.getBaseCurrency(), currencyPair.getQuoteCurrency());
+
+        if (existedCurrencyPair != null) {
+            int existedCurrencyPairIndex = currencyPairs.indexOf(existedCurrencyPair);
+            this.currencyPairs.set(existedCurrencyPairIndex, currencyPair);
+            return;
+        }
+
         this.currencyPairs.add(currencyPair);
     }
 
