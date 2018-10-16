@@ -27,7 +27,7 @@ public class CurrencyPair {
         return rate;
     }
 
-    private void validateRate(double rate) {
+    private void validateRate(final double rate) {
         if (rate <= 0) {
             throw new CurrencyConverterException("Currency Rate should be positive");
         }
