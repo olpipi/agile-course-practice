@@ -37,6 +37,11 @@ public class CurrencyPair {
     }
 
     private void validateCodes(final String baseCurrency, final String quoteCurrency) {
+        if (baseCurrency == null
+                || quoteCurrency == null) {
+            throw new CurrencyConverterException("Currency Codes can't be null");
+        }
+
         if (!baseCurrency.matches(CURRENCY_CODE_PATTERN)
                 || !quoteCurrency.matches(CURRENCY_CODE_PATTERN)) {
             throw new CurrencyConverterException("Currency Codes don't meet the pattern");

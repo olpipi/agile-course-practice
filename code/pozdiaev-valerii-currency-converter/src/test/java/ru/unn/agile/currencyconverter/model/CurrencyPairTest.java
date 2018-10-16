@@ -25,4 +25,13 @@ public class CurrencyPairTest {
         // Act & Assert
         new CurrencyPair(RUB_CODE, incorrectCode, RUB_TO_USD_RATE);
     }
+
+    @Test(expected = CurrencyConverterException.class)
+    public void cannotCreatePairWithNullCode() {
+        // Arrange
+        String incorrectCode = null;
+
+        // Act & Assert
+        new CurrencyPair(RUB_CODE, incorrectCode, RUB_TO_USD_RATE);
+    }
 }
