@@ -18,6 +18,12 @@ public class CurrencyConverter {
             return amount * currencyPair.getRate();
         }
 
+        CurrencyPair inverseCurrencyPair = getCurrencyPairByCodes(targetCurrencyCode, sourceCurrencyCode);
+
+        if (inverseCurrencyPair != null) {
+            return amount / inverseCurrencyPair.getRate();
+        }
+
         return 0;
     }
 

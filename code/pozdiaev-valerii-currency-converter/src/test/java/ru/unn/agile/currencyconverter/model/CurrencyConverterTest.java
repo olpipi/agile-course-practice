@@ -73,4 +73,19 @@ public class CurrencyConverterTest {
         int expectedSize = 1;
         assertEquals(expectedSize, currencyPairs.size());
     }
+
+    @Test
+    public void canConvertByInversePair() {
+        // Arrange
+        CurrencyConverter currencyConverter = new CurrencyConverter();
+        double euroAmount = 1.3;
+        currencyConverter.addCurrencyPair(new CurrencyPair(RUB_CODE, EURO_CODE, RUB_TO_EUR_RATE));
+
+        // Act
+        double rublesAmount = currencyConverter.convert(EURO_CODE, RUB_CODE, euroAmount);
+
+        // Assert
+        double expectedRublesAmount = 100;
+        assertEquals(expectedRublesAmount, rublesAmount, delta);
+    }
 }
