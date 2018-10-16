@@ -10,15 +10,14 @@ public class CurrencyConverter {
         this.currencyPairs = new ArrayList<>();
     }
 
-    public double convert(final String sourceCurrencyCode, final String targetCurrencyCode,
-                          final double amount) {
-        CurrencyPair currencyPair = getCurrencyPairByCodes(sourceCurrencyCode, targetCurrencyCode);
+    public double convert(final String sourceCode, final String targetCode, final double amount) {
+        CurrencyPair currencyPair = getCurrencyPairByCodes(sourceCode, targetCode);
 
         if (currencyPair != null) {
             return amount * currencyPair.getRate();
         }
 
-        CurrencyPair inverseCurrencyPair = getCurrencyPairByCodes(targetCurrencyCode, sourceCurrencyCode);
+        CurrencyPair inverseCurrencyPair = getCurrencyPairByCodes(targetCode, sourceCode);
 
         if (inverseCurrencyPair != null) {
             return amount / inverseCurrencyPair.getRate();
@@ -28,7 +27,9 @@ public class CurrencyConverter {
     }
 
     public void addCurrencyPair(final CurrencyPair currencyPair) {
-        CurrencyPair existedCurrencyPair = getCurrencyPairByCodes(currencyPair.getBaseCurrency(), currencyPair.getQuoteCurrency());
+        String sourceCode = currencyPair.getBaseCurrency();
+        String targetCode = currencyPair.getQuoteCurrency();
+        CurrencyPair existedCurrencyPair = getCurrencyPairByCodes(sourceCode, targetCode);
 
         if (existedCurrencyPair != null) {
             int existedCurrencyPairIndex = currencyPairs.indexOf(existedCurrencyPair);
