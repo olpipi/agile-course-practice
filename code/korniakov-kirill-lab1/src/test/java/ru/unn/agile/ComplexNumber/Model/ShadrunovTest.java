@@ -3,7 +3,7 @@ package ru.unn.agile.complexnumber.model;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class ShadrunovTests {
+public class ShadrunovTest {
     private final double delta = 0;
 
     @Test
@@ -27,10 +27,12 @@ public class ShadrunovTests {
     }
 
     @Test
-    public void canInitializeWithZeros() {
-        ComplexNumber number = new ComplexNumber(0, 0);
+    public void canMultiplyOnZero() {
+        ComplexNumber number = new ComplexNumber(4, 3);
+        ComplexNumber zero = new ComplexNumber(0, 0);
 
-        assertEquals(0, number.getReal(), delta);
-        assertEquals(0, number.getImaginary(), delta);
+        ComplexNumber multyplyResult = number.multiply(zero);
+
+        assertTrue(zero.equals(multyplyResult));
     }
 }
