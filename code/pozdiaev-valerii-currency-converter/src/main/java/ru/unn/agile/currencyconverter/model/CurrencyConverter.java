@@ -1,5 +1,7 @@
 package ru.unn.agile.currencyconverter.model;
 
+import ru.unn.agile.currencyconverter.model.errorhandling.CurrencyConverterException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,8 @@ public class CurrencyConverter {
     }
 
     public double convert(final String sourceCode, final String targetCode, final double amount) {
+        validateAmount(amount);
+
         CurrencyPair currencyPair = getCurrencyPairByCodes(sourceCode, targetCode);
 
         if (currencyPair != null) {
@@ -25,6 +29,7 @@ public class CurrencyConverter {
 
         return 0;
     }
+
 
     public void addCurrencyPair(final CurrencyPair currencyPair) {
         String sourceCode = currencyPair.getBaseCurrency();
@@ -63,5 +68,12 @@ public class CurrencyConverter {
                 .filter(currencyPair -> currencyPair.getBaseCurrency().equals(sourceCode))
                 .filter(currencyPair -> currencyPair.getQuoteCurrency().equals(targetCode))
                 .findFirst().orElse(null);
+    }
+
+
+    private void validateAmount(double amount) {
+        if (amount < 0) {
+            throw new CurrencyConverterException("Can't covert negative number");
+        }
     }
 }

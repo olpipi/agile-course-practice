@@ -1,6 +1,7 @@
 package ru.unn.agile.currencyconverter.model;
 
 import org.junit.Test;
+import ru.unn.agile.currencyconverter.model.errorhandling.CurrencyConverterException;
 
 import java.util.List;
 
@@ -121,5 +122,16 @@ public class CurrencyConverterTest {
         List<CurrencyPair> currencyPairs = currencyConverter.getCurrencyPairs();
         int expectedSize = 1;
         assertEquals(expectedSize, currencyPairs.size());
+    }
+
+    @Test(expected = CurrencyConverterException.class)
+    public void cannotConvertNegativeAmount() {
+        // Arrange
+        CurrencyConverter currencyConverter = new CurrencyConverter();
+        currencyConverter.addCurrencyPair(new CurrencyPair(RUB_CODE, USD_CODE, RUB_TO_USD_RATE));
+        double negativeAmount = -100;
+
+        // Act & Assert
+        currencyConverter.convert(RUB_CODE, USD_CODE, negativeAmount);
     }
 }
