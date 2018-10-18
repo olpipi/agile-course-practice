@@ -27,7 +27,7 @@ public class CurrencyConverter {
             return amount / inverseCurrencyPair.getRate();
         }
 
-        throw new CurrencyConverterException("Currency rate is not found");
+        throw new CurrencyConverterException("Can't convert currency");
     }
 
 

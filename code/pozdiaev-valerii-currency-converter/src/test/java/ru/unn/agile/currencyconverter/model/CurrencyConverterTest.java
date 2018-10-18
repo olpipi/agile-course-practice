@@ -146,4 +146,24 @@ public class CurrencyConverterTest {
         // Act & Assert
         currencyConverter.addCurrencyPair(RUB_CODE, incorrectCode, RUB_TO_USD_RATE);
     }
+
+    @Test(expected = CurrencyConverterException.class)
+    public void cannotConvertWithIncorrectCode() {
+        // Arrange
+        String incorrectCode = "asdadasd";
+        CurrencyConverter currencyConverter = new CurrencyConverter();
+
+        // Act & Assert
+        currencyConverter.convert(RUB_CODE, incorrectCode, RUB_TO_USD_RATE);
+    }
+
+    @Test(expected = CurrencyConverterException.class)
+    public void cannotConvertWithNullCode() {
+        // Arrange
+        String incorrectCode = null;
+        CurrencyConverter currencyConverter = new CurrencyConverter();
+
+        // Act & Assert
+        currencyConverter.convert(RUB_CODE, incorrectCode, RUB_TO_USD_RATE);
+    }
 }
