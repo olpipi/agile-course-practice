@@ -134,4 +134,19 @@ public class CurrencyConverterTest {
         // Act & Assert
         currencyConverter.convert(RUB_CODE, USD_CODE, negativeAmount);
     }
+
+    @Test
+    public void canCovertZeroAmount() {
+        // Arrange
+        CurrencyConverter currencyConverter = new CurrencyConverter();
+        double rublesAmount = 0;
+        currencyConverter.addCurrencyPair(new CurrencyPair(RUB_CODE, USD_CODE, RUB_TO_USD_RATE));
+
+        // Act
+        double dollarsAmount = currencyConverter.convert(RUB_CODE, USD_CODE, rublesAmount);
+
+        // Assert
+        double expectedDollarsAmount = 0;
+        assertEquals(expectedDollarsAmount, dollarsAmount, delta);
+    }
 }
