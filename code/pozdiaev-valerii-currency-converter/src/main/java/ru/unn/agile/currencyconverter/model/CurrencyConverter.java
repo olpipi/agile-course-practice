@@ -31,40 +31,28 @@ public class CurrencyConverter {
     }
 
 
-    public void addCurrencyPair(final String sourceCode, final String targetCode, final double rate) {
-        CurrencyPair existedCurrencyPair = getCurrencyPairByCodes(sourceCode, targetCode);
-        CurrencyPair newCurrencyPair = new CurrencyPair(sourceCode, targetCode, rate);
-
+    public void addCurrencyPair(final String srcCode, final String tgtCode, final double rate) {
+        CurrencyPair existedCurrencyPair = getCurrencyPairByCodes(srcCode, tgtCode);
         if (existedCurrencyPair != null) {
-            int existedCurrencyPairIndex = currencyPairs.indexOf(existedCurrencyPair);
-            this.currencyPairs.set(existedCurrencyPairIndex, newCurrencyPair);
-            return;
+            updatePair(srcCode, tgtCode, rate);
         }
 
-        existedCurrencyPair = getCurrencyPairByCodes(targetCode, sourceCode);
-
-        if (existedCurrencyPair != null) {
-            int existedCurrencyPairIndex = currencyPairs.indexOf(existedCurrencyPair);
-            CurrencyPair newInverseCurrencyPair = new CurrencyPair(targetCode, sourceCode, rate);
-            this.currencyPairs.set(existedCurrencyPairIndex, newInverseCurrencyPair);
-            return;
+        CurrencyPair existedInversePair = getCurrencyPairByCodes(tgtCode, srcCode);
+        if (existedInversePair != null) {
+            updatePair(tgtCode, srcCode, rate);
         }
 
+        CurrencyPair newCurrencyPair = new CurrencyPair(srcCode, tgtCode, rate);
         this.currencyPairs.add(newCurrencyPair);
     }
 
-    private CurrencyPair findExistedPair(final String sourceCode, final String targetCode) {
+    private void updatePair(final String sourceCode, final String targetCode, final double rate) {
         CurrencyPair foundPair = getCurrencyPairByCodes(sourceCode, targetCode);
         if (foundPair != null) {
-            return foundPair;
+            int existedCurrencyPairIndex = currencyPairs.indexOf(foundPair);
+            CurrencyPair newCurrencyPair = new CurrencyPair(sourceCode, targetCode, rate);
+            this.currencyPairs.set(existedCurrencyPairIndex, newCurrencyPair);
         }
-
-        CurrencyPair foundInversePair = getCurrencyPairByCodes(targetCode, sourceCode);
-        if (foundInversePair != null) {
-            return foundInversePair;
-        }
-
-        return null;
     }
 
     private CurrencyPair getCurrencyPairByCodes(final String sourceCode, final String targetCode) {
@@ -74,7 +62,7 @@ public class CurrencyConverter {
                 .findFirst().orElse(null);
     }
 
-    private void validateAmount(double amount) {
+    private void validateAmount(final double amount) {
         if (amount < 0) {
             throw new CurrencyConverterException("Can't covert negative number");
         }
@@ -87,7 +75,7 @@ public class CurrencyConverter {
 
         private static final String CURRENCY_CODE_PATTERN = "[A-Z]{3}";
 
-        public CurrencyPair(final String baseCurrency, final String quoteCurrency, final double rate) {
+        CurrencyPair(final String baseCurrency, final String quoteCurrency, final double rate) {
             validateRate(rate);
             validateCodes(baseCurrency, quoteCurrency);
 
