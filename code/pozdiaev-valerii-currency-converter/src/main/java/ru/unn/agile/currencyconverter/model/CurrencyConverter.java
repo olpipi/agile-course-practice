@@ -27,26 +27,30 @@ public class CurrencyConverter {
             return amount / inverseCurrencyPair.getRate();
         }
 
-        return 0;
+        throw new CurrencyConverterException("Currency rate is not found");
     }
 
 
-    public void addCurrencyPair(final CurrencyPair currencyPair) {
-        String sourceCode = currencyPair.getBaseCurrency();
-        String targetCode = currencyPair.getQuoteCurrency();
-        CurrencyPair existedCurrencyPair = findExistedPair(sourceCode, targetCode);
+    public void addCurrencyPair(final String sourceCode, final String targetCode, final double rate) {
+        CurrencyPair existedCurrencyPair = getCurrencyPairByCodes(sourceCode, targetCode);
+        CurrencyPair newCurrencyPair = new CurrencyPair(sourceCode, targetCode, rate);
 
         if (existedCurrencyPair != null) {
             int existedCurrencyPairIndex = currencyPairs.indexOf(existedCurrencyPair);
-            this.currencyPairs.set(existedCurrencyPairIndex, currencyPair);
+            this.currencyPairs.set(existedCurrencyPairIndex, newCurrencyPair);
             return;
         }
 
-        this.currencyPairs.add(currencyPair);
-    }
+        existedCurrencyPair = getCurrencyPairByCodes(targetCode, sourceCode);
 
-    public List<CurrencyPair> getCurrencyPairs() {
-        return currencyPairs;
+        if (existedCurrencyPair != null) {
+            int existedCurrencyPairIndex = currencyPairs.indexOf(existedCurrencyPair);
+            CurrencyPair newInverseCurrencyPair = new CurrencyPair(targetCode, sourceCode, rate);
+            this.currencyPairs.set(existedCurrencyPairIndex, newInverseCurrencyPair);
+            return;
+        }
+
+        this.currencyPairs.add(newCurrencyPair);
     }
 
     private CurrencyPair findExistedPair(final String sourceCode, final String targetCode) {
@@ -70,10 +74,56 @@ public class CurrencyConverter {
                 .findFirst().orElse(null);
     }
 
-
     private void validateAmount(double amount) {
         if (amount < 0) {
             throw new CurrencyConverterException("Can't covert negative number");
+        }
+    }
+
+    class CurrencyPair {
+        private String baseCurrency;
+        private String quoteCurrency;
+        private double rate;
+
+        private static final String CURRENCY_CODE_PATTERN = "[A-Z]{3}";
+
+        public CurrencyPair(final String baseCurrency, final String quoteCurrency, final double rate) {
+            validateRate(rate);
+            validateCodes(baseCurrency, quoteCurrency);
+
+            this.baseCurrency = baseCurrency;
+            this.quoteCurrency = quoteCurrency;
+            this.rate = rate;
+        }
+
+        public String getBaseCurrency() {
+            return baseCurrency;
+        }
+
+        public String getQuoteCurrency() {
+            return quoteCurrency;
+        }
+
+        public double getRate() {
+            return rate;
+        }
+
+        private void validateRate(final double rate) {
+            if (rate <= 0) {
+                throw new CurrencyConverterException("Currency Rate should be positive");
+            }
+        }
+
+        private void validateCodes(final String baseCurrency, final String quoteCurrency) {
+            if (baseCurrency == null
+                    || quoteCurrency == null) {
+                throw new CurrencyConverterException("Currency Codes can't be null");
+            }
+
+            if (!baseCurrency.matches(CURRENCY_CODE_PATTERN)
+                    || !quoteCurrency.matches(CURRENCY_CODE_PATTERN)) {
+                throw new CurrencyConverterException("Currency Codes don't meet the pattern");
+            }
         }
     }
 }
