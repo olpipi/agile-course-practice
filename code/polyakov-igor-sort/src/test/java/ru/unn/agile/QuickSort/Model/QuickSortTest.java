@@ -16,7 +16,25 @@ public class QuickSortTest {
 
     @Test
     public void canSortOneInteger() {
-        int[] array =  {1};
+        int[] array = {1};
+
+        QuickSort.quickSort(array);
+
+        assertTrue(isArraySorted(array));
+    }
+
+    @Test
+    public void canSortTwoSortedIntegers() {
+        int[] array = {1, 2};
+
+        QuickSort.quickSort(array);
+
+        assertTrue(isArraySorted(array));
+    }
+
+    @Test
+    public void canSortTwoNonsortedIntegers() {
+        int[] array = {2, 1};
 
         QuickSort.quickSort(array);
 
