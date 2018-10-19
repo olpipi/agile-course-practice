@@ -5,4 +5,21 @@ import static org.junit.Assert.*;
 
 public class QuickSortTest {
 
+    private boolean isArraySorted(int[] array)
+    {
+        for (int i = 0; i < array.length - 1; ++i)
+            if (array[i] > array[i+1])
+                return false;
+
+        return true;
+    }
+
+    @Test
+    public void canSortOneInteger() {
+        int[] array =  {1};
+
+        QuickSort.quickSort(array);
+
+        assertTrue(isArraySorted(array));
+    }
 }
