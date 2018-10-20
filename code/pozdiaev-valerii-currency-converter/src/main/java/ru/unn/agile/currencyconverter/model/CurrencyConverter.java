@@ -16,8 +16,7 @@ public class CurrencyConverter {
     }
 
     public double convert(final String srcCode, final String tgtCode, final double amount) {
-        validateCode(srcCode);
-        validateCode(tgtCode);
+        validateCodes(srcCode, tgtCode);
         validateAmount(amount);
 
         double currencyRate = getCurrencyRateByCodes(srcCode, tgtCode);
@@ -35,8 +34,7 @@ public class CurrencyConverter {
 
 
     public void addCurrencyPair(final String srcCode, final String tgtCode, final double rate) {
-        validateCode(srcCode);
-        validateCode(tgtCode);
+        validateCodes(srcCode, tgtCode);
         validateRate(rate);
 
         double inverseCurrencyRate = getCurrencyRateByCodes(tgtCode, srcCode);
@@ -73,6 +71,11 @@ public class CurrencyConverter {
         if (rate <= 0) {
             throw new CurrencyConverterException("Currency Rate should be positive");
         }
+    }
+
+    private void validateCodes(final String srcCode, final String tgtCode) {
+        validateCode(srcCode);
+        validateCode(tgtCode);
     }
 
     private void validateCode(final String currencyCode) {
