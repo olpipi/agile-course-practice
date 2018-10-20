@@ -2,29 +2,34 @@ package ru.unn.agile.currencyconverter.model;
 
 import ru.unn.agile.currencyconverter.model.errorhandling.CurrencyConverterException;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CurrencyConverter {
-    private List<CurrencyPair> currencyPairs;
+    private Map<String, Double> currencyPairs;
+
+    private static final String CURRENCY_CODE_PATTERN = "[A-Z]{3}";
+    private static final String CURRENCY_CODE_DELIMITER = "/";
 
     public CurrencyConverter() {
-        this.currencyPairs = new ArrayList<>();
+        this.currencyPairs = new HashMap<>();
     }
 
-    public double convert(final String sourceCode, final String targetCode, final double amount) {
+    public double convert(final String srcCode, final String tgtCode, final double amount) {
+        validateCode(srcCode);
+        validateCode(tgtCode);
         validateAmount(amount);
 
-        CurrencyPair currencyPair = getCurrencyPairByCodes(sourceCode, targetCode);
+        double currencyRate = getCurrencyRateByCodes(srcCode, tgtCode);
 
-        if (currencyPair != null) {
-            return amount * currencyPair.getRate();
+        if (currencyRate != 0) {
+            return amount * currencyRate;
         }
 
-        CurrencyPair inverseCurrencyPair = getCurrencyPairByCodes(targetCode, sourceCode);
+        double inverseCurrencyRate = getCurrencyRateByCodes(tgtCode, srcCode);
 
-        if (inverseCurrencyPair != null) {
-            return amount / inverseCurrencyPair.getRate();
+        if (inverseCurrencyRate != 0) {
+            return amount / inverseCurrencyRate;
         }
 
         throw new CurrencyConverterException("Can't convert currency");
@@ -32,34 +37,30 @@ public class CurrencyConverter {
 
 
     public void addCurrencyPair(final String srcCode, final String tgtCode, final double rate) {
-        CurrencyPair existedCurrencyPair = getCurrencyPairByCodes(srcCode, tgtCode);
-        if (existedCurrencyPair != null) {
-            updatePair(srcCode, tgtCode, rate);
+        validateCode(srcCode);
+        validateCode(tgtCode);
+        validateRate(rate);
+
+        double inverseCurrencyRate = getCurrencyRateByCodes(tgtCode, srcCode);
+
+        if (inverseCurrencyRate != 0) {
+            String inversePair = tgtCode + CURRENCY_CODE_DELIMITER + srcCode;
+            currencyPairs.put(inversePair, rate);
+            return;
         }
 
-        CurrencyPair existedInversePair = getCurrencyPairByCodes(tgtCode, srcCode);
-        if (existedInversePair != null) {
-            updatePair(tgtCode, srcCode, rate);
-        }
-
-        CurrencyPair newCurrencyPair = new CurrencyPair(srcCode, tgtCode, rate);
-        this.currencyPairs.add(newCurrencyPair);
+        String currencyPair = srcCode + CURRENCY_CODE_DELIMITER + tgtCode;
+        currencyPairs.put(currencyPair, rate);
     }
 
-    private void updatePair(final String sourceCode, final String targetCode, final double rate) {
-        CurrencyPair foundPair = getCurrencyPairByCodes(sourceCode, targetCode);
-        if (foundPair != null) {
-            int existedCurrencyPairIndex = currencyPairs.indexOf(foundPair);
-            CurrencyPair newCurrencyPair = new CurrencyPair(sourceCode, targetCode, rate);
-            this.currencyPairs.set(existedCurrencyPairIndex, newCurrencyPair);
-        }
-    }
+    private double getCurrencyRateByCodes(final String srcCode, final String tgtCode) {
+        String codesPair = srcCode + CURRENCY_CODE_DELIMITER + tgtCode;
 
-    private CurrencyPair getCurrencyPairByCodes(final String sourceCode, final String targetCode) {
-        return currencyPairs.stream()
-                .filter(currencyPair -> currencyPair.getBaseCurrency().equals(sourceCode))
-                .filter(currencyPair -> currencyPair.getQuoteCurrency().equals(targetCode))
-                .findFirst().orElse(null);
+        if (currencyPairs.containsKey(codesPair)) {
+            return currencyPairs.get(codesPair);
+        }
+
+        return 0;
     }
 
     private void validateAmount(final double amount) {
@@ -68,50 +69,19 @@ public class CurrencyConverter {
         }
     }
 
-    class CurrencyPair {
-        private String baseCurrency;
-        private String quoteCurrency;
-        private double rate;
+    private void validateRate(final double rate) {
+        if (rate <= 0) {
+            throw new CurrencyConverterException("Currency Rate should be positive");
+        }
+    }
 
-        private static final String CURRENCY_CODE_PATTERN = "[A-Z]{3}";
-
-        CurrencyPair(final String baseCurrency, final String quoteCurrency, final double rate) {
-            validateRate(rate);
-            validateCodes(baseCurrency, quoteCurrency);
-
-            this.baseCurrency = baseCurrency;
-            this.quoteCurrency = quoteCurrency;
-            this.rate = rate;
+    private void validateCode(final String currencyCode) {
+        if (currencyCode == null) {
+            throw new CurrencyConverterException("Currency Codes can't be null");
         }
 
-        public String getBaseCurrency() {
-            return baseCurrency;
-        }
-
-        public String getQuoteCurrency() {
-            return quoteCurrency;
-        }
-
-        public double getRate() {
-            return rate;
-        }
-
-        private void validateRate(final double rate) {
-            if (rate <= 0) {
-                throw new CurrencyConverterException("Currency Rate should be positive");
-            }
-        }
-
-        private void validateCodes(final String baseCurrency, final String quoteCurrency) {
-            if (baseCurrency == null
-                    || quoteCurrency == null) {
-                throw new CurrencyConverterException("Currency Codes can't be null");
-            }
-
-            if (!baseCurrency.matches(CURRENCY_CODE_PATTERN)
-                    || !quoteCurrency.matches(CURRENCY_CODE_PATTERN)) {
-                throw new CurrencyConverterException("Currency Codes don't meet the pattern");
-            }
+        if (!currencyCode.matches(CURRENCY_CODE_PATTERN)) {
+            throw new CurrencyConverterException("Currency Codes don't meet the pattern");
         }
     }
 }
