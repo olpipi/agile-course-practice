@@ -21,13 +21,11 @@ public class CurrencyConverter {
         validateAmount(amount);
 
         double currencyRate = getCurrencyRateByCodes(srcCode, tgtCode);
-
         if (currencyRate != 0) {
             return amount * currencyRate;
         }
 
         double inverseCurrencyRate = getCurrencyRateByCodes(tgtCode, srcCode);
-
         if (inverseCurrencyRate != 0) {
             return amount / inverseCurrencyRate;
         }
@@ -42,7 +40,6 @@ public class CurrencyConverter {
         validateRate(rate);
 
         double inverseCurrencyRate = getCurrencyRateByCodes(tgtCode, srcCode);
-
         if (inverseCurrencyRate != 0) {
             String inversePair = tgtCode + CURRENCY_CODE_DELIMITER + srcCode;
             currencyPairs.put(inversePair, rate);
@@ -59,7 +56,6 @@ public class CurrencyConverter {
 
     private double getCurrencyRateByCodes(final String srcCode, final String tgtCode) {
         String codesPair = srcCode + CURRENCY_CODE_DELIMITER + tgtCode;
-
         if (currencyPairs.containsKey(codesPair)) {
             return currencyPairs.get(codesPair);
         }
