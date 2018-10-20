@@ -33,7 +33,7 @@ public class QuickSortTest {
     }
 
     @Test
-    public void canSortTwoNonsortedIntegers() {
+    public void canSortTwoNonSortedIntegers() {
         int[] array = {2, 1};
 
         QuickSort.quickSort(array);

@@ -9,10 +9,10 @@ public class QuickSort {
         }
     }
 
-    private static void swapTwoElementsInArray(final int[] array, int pos_element_1, int pos_element_2) {
-        int tmp = array[pos_element_1];
-        array[pos_element_1] = array[pos_element_2];
-        array[pos_element_2] = tmp;
+    private static void swapTwoElementsInArray(final int[] array, final int firstElement, final int secondElement) {
+        int tmp = array[firstElement];
+        array[firstElement] = array[secondElement];
+        array[secondElement] = tmp;
     }
 
     private QuickSort() {
