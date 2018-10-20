@@ -1,10 +1,23 @@
 package ru.unn.agile.QuickSort.Model;
 
 public class QuickSort {
-    public static void quickSort(final int[] array, int startElementIndex, int endElementIndex) {
+    public static int MIN_ARRAY_ELEMENTS_COUNT = 1;
+
+    public static void quickSort(final int[] array) {
+        if (array.length < MIN_ARRAY_ELEMENTS_COUNT) {
+            throw new IllegalArgumentException("Array elements count should be positive");
+        }
+
+        int startElementIndex = 0;
+        int endElementIndex = array.length - 1;
+        quickSortImpl(array, startElementIndex, endElementIndex);
+    }
+
+    private static void quickSortImpl(final int[] array, int startElementIndex, int endElementIndex) {
+        int bearingElement = calculateBearingElement(array, startElementIndex, endElementIndex);
+
         int i = startElementIndex;
         int j = endElementIndex;
-        int bearingElement = array[startElementIndex];
         while (i <= j) {
             while (array[i] < bearingElement) {
                 ++i;
@@ -22,11 +35,17 @@ public class QuickSort {
         }
 
         if (j > startElementIndex) {
-            quickSort(array, startElementIndex, j);
+            quickSortImpl(array, startElementIndex, j);
         }
         if (i < endElementIndex) {
-            quickSort(array, i, endElementIndex);
+            quickSortImpl(array, i, endElementIndex);
         }
+    }
+
+    private static int calculateBearingElement(final int[] array,
+                                               final int firstElementIndex,
+                                               final int secondElementIndex) {
+        return array[(firstElementIndex + secondElementIndex) / 2];
     }
 
     private static void swapTwoElementsInArray(final int[] array,
