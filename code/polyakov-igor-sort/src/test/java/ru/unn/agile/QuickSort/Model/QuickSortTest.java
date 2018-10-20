@@ -5,9 +5,9 @@ import static org.junit.Assert.*;
 
 public class QuickSortTest {
 
-    private boolean isArraySorted(final int[] array) {
+    private <T extends Comparable<T>> boolean isArraySorted(final T[] array) {
         for (int i = 0; i < array.length - 1; ++i) {
-            if (array[i] > array[i + 1]) {
+            if (array[i].compareTo(array[i + 1]) > 0 ) {
                 return false;
             }
         }
@@ -17,7 +17,7 @@ public class QuickSortTest {
 
     @Test
     public void canSortingOfArrayWithOneInteger() {
-        int[] array = {1};
+        Integer[] array = {1};
 
         QuickSort.quickSort(array);
 
@@ -26,7 +26,7 @@ public class QuickSortTest {
 
     @Test
     public void canSortingOfSortedArrayWithTwoIntegers() {
-        int[] array = {1, 2};
+        Integer[] array = {1, 2};
 
         QuickSort.quickSort(array);
 
@@ -35,7 +35,7 @@ public class QuickSortTest {
 
     @Test
     public void canSortingOfNonsortedArrayWithTwoIntegers() {
-        int[] array = {2, 1};
+        Integer[] array = {2, 1};
 
         QuickSort.quickSort(array);
 
@@ -44,7 +44,7 @@ public class QuickSortTest {
 
     @Test
     public void canSortingOfNonsortedArrayWithThreeIntegers() {
-        int[] array = {2, 0, 1};
+        Integer[] array = {2, 0, 1};
 
         QuickSort.quickSort(array);
 
@@ -53,7 +53,7 @@ public class QuickSortTest {
 
     @Test
     public void canSortingOfSortedArrayWithThreeIntegers() {
-        int[] array = {0, 1, 2};
+        Integer[] array = {0, 1, 2};
 
         QuickSort.quickSort(array);
 
@@ -62,7 +62,7 @@ public class QuickSortTest {
 
     @Test
     public void canSortingOfNonsortedBigArrayOfIntegers() {
-        int[] array = {1, 4, 3, -1, 5, 8, 8, -100, 9, 4, 1, 0};
+        Integer[] array = {1, 4, 3, -1, 5, 8, 8, -100, 9, 4, 1, 0};
 
         QuickSort.quickSort(array);
 
@@ -71,8 +71,17 @@ public class QuickSortTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenSortingOfEmptyArrayOfIntegers() {
-        int[] array = {};
+        Integer[] array = {};
 
         QuickSort.quickSort(array);
+    }
+
+    @Test
+    public void canSortingOfBigArrayOfDoubles() {
+        Double[] array = {1.4, 4.3, 3.3, -1.9, 5.1, 8.5, 8.0, -100.0, 9.7, 4.1, 1.6, 0.0};
+
+        QuickSort.quickSort(array);
+
+        assertTrue(isArraySorted(array));
     }
 }

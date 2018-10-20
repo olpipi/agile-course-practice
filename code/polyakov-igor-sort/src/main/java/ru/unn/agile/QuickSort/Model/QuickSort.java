@@ -3,7 +3,7 @@ package ru.unn.agile.QuickSort.Model;
 public final class QuickSort {
     public static final int MIN_ARRAY_ELEMENTS_COUNT = 1;
 
-    public static void quickSort(final int[] array) {
+    public static <T extends Comparable<T>> void quickSort(final T[] array) {
         if (array.length < MIN_ARRAY_ELEMENTS_COUNT) {
             throw new IllegalArgumentException("Array elements count should be positive");
         }
@@ -13,19 +13,19 @@ public final class QuickSort {
         quickSortImpl(array, startElementIndex, endElementIndex);
     }
 
-    private static void quickSortImpl(final int[] array,
-                                      final int startElementIndex,
-                                      final int endElementIndex) {
-        int bearingElement = calculateBearingElement(array, startElementIndex, endElementIndex);
+    private static <T extends Comparable<T>> void quickSortImpl(final T[] array,
+                                                                final int startElementIndex,
+                                                                final int endElementIndex) {
+        T bearingElement = calculateBearingElement(array, startElementIndex, endElementIndex);
 
         int i = startElementIndex;
         int j = endElementIndex;
         while (i <= j) {
-            while (array[i] < bearingElement) {
+            while (array[i].compareTo(bearingElement) < 0) {
                 ++i;
             }
 
-            while (array[j] > bearingElement) {
+            while (array[j].compareTo(bearingElement) > 0) {
                 --j;
             }
 
@@ -44,21 +44,20 @@ public final class QuickSort {
         }
     }
 
-    private static int calculateBearingElement(final int[] array,
-                                               final int firstElementIndex,
-                                               final int secondElementIndex) {
+    private static <T extends Comparable<T>> T calculateBearingElement(final T[] array,
+                                                                       final int firstElementIndex,
+                                                                       final int secondElementIndex) {
         return array[(firstElementIndex + secondElementIndex) / 2];
     }
 
-    private static void swapTwoElementsInArray(final int[] array,
-                                               final int firstElementIndex,
-                                               final int secondElementIndex) {
-        int tmp = array[firstElementIndex];
+    private static <T extends Comparable<T>> void swapTwoElementsInArray(final T[] array,
+                                                                         final int firstElementIndex,
+                                                                         final int secondElementIndex) {
+        T tmp = array[firstElementIndex];
         array[firstElementIndex] = array[secondElementIndex];
         array[secondElementIndex] = tmp;
     }
 
     private QuickSort() {
-
     }
 }
