@@ -5,21 +5,21 @@ public class Point {
     private double x;
     private double y;
 
-    public Point(double x, double y) {
+    public Point(final double x, final double y) {
          this.x = x;
          this.y = y;
     }
 
-    public Point(Point point2D) {
-        this.x = point2D.getX();
-        this.y = point2D.getY();
+    public Point(final Point point) {
+        this.x = point.getX();
+        this.y = point.getY();
     }
 
     public double getX() {
         return x;
     }
 
-    public void setX(double x) {
+    public void setX(final double x) {
         this.x = x;
     }
 
@@ -27,11 +27,11 @@ public class Point {
         return y;
     }
 
-    public void setB(double b) {
+    public void setB(final double b) {
         this.y = y;
     }
 
-    public Point minus(Point point){
+    public Point minus(final Point point) {
         Point result = new Point(this);
 
         result.setX(point.getX() - result.getX());
