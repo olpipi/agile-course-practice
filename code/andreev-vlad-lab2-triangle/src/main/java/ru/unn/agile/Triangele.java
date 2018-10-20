@@ -6,7 +6,7 @@ public class Triangele {
     private Vector c;
 
     public Triangele(final Point point1, final Point point2, final Point point3) {
-        if (!validate(point1,point2,point3)) {
+        if (!validate(point1, point2, point3)) {
             throw new IllegalArgumentException();
         }
         this.a = new Vector(point1, point2);
