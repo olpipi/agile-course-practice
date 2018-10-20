@@ -15,7 +15,7 @@ public class QuickSortTest {
     }
 
     @Test
-    public void canSortOneInteger() {
+    public void canSortingOfArrayWithOneInteger() {
         int[] array = {1};
 
         QuickSort.quickSort(array);
@@ -24,7 +24,7 @@ public class QuickSortTest {
     }
 
     @Test
-    public void canSortTwoSortedIntegers() {
+    public void canSortingOfSortedArrayWithTwoIntegers() {
         int[] array = {1, 2};
 
         QuickSort.quickSort(array);
@@ -33,7 +33,7 @@ public class QuickSortTest {
     }
 
     @Test
-    public void canSortTwoNonSortedIntegers() {
+    public void canSortingOfNonsortedArrayWithTwoIntegers() {
         int[] array = {2, 1};
 
         QuickSort.quickSort(array);
@@ -42,11 +42,36 @@ public class QuickSortTest {
     }
 
     @Test
-    public void canSortThreeNonSortedIntegers() {
+    public void canSortingOfNonsortedArrayWithThreeIntegers() {
         int[] array = {2, 0, 1};
 
         QuickSort.quickSort(array);
 
         assertTrue(isArraySorted(array));
+    }
+
+    @Test
+    public void canSortingOfSortedArrayWithThreeIntegers() {
+        int[] array = {0, 1, 2};
+
+        QuickSort.quickSort(array);
+
+        assertTrue(isArraySorted(array));
+    }
+
+    @Test
+    public void canSortingOfNonsortedBigArrayOfIntegers() {
+        int[] array = {1, 4, 3, -1, 5, 8, 8, -100, 9, 4, 1, 0};
+
+        QuickSort.quickSort(array);
+
+        assertTrue(isArraySorted(array));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsWhenSortingOfEmptyArrayOfIntegers() {
+        int[] array = {};
+
+        QuickSort.quickSort(array);
     }
 }
