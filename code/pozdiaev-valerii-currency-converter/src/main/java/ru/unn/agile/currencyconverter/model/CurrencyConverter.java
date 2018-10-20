@@ -32,7 +32,7 @@ public class CurrencyConverter {
             return amount / inverseCurrencyRate;
         }
 
-        throw new CurrencyConverterException("Can't convert currency");
+        throw new CurrencyConverterException("Can't convert currency. Rate is not found");
     }
 
 
@@ -51,6 +51,10 @@ public class CurrencyConverter {
 
         String currencyPair = srcCode + CURRENCY_CODE_DELIMITER + tgtCode;
         currencyPairs.put(currencyPair, rate);
+    }
+
+    public Map getCurrencyPairs() {
+        return this.currencyPairs;
     }
 
     private double getCurrencyRateByCodes(final String srcCode, final String tgtCode) {
