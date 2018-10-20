@@ -18,7 +18,7 @@ public class QuickSortTest {
     public void canSortOneInteger() {
         int[] array = {1};
 
-        QuickSort.quickSort(array);
+        QuickSort.quickSort(array, 0, array.length - 1);
 
         assertTrue(isArraySorted(array));
     }
@@ -27,7 +27,7 @@ public class QuickSortTest {
     public void canSortTwoSortedIntegers() {
         int[] array = {1, 2};
 
-        QuickSort.quickSort(array);
+        QuickSort.quickSort(array, 0, array.length - 1);
 
         assertTrue(isArraySorted(array));
     }
@@ -36,7 +36,16 @@ public class QuickSortTest {
     public void canSortTwoNonSortedIntegers() {
         int[] array = {2, 1};
 
-        QuickSort.quickSort(array);
+        QuickSort.quickSort(array, 0, array.length - 1);
+
+        assertTrue(isArraySorted(array));
+    }
+
+    @Test
+    public void canSortThreeNonSortedIntegers() {
+        int[] array = {2, 0, 1};
+
+        QuickSort.quickSort(array, 0, array.length - 1);
 
         assertTrue(isArraySorted(array));
     }
