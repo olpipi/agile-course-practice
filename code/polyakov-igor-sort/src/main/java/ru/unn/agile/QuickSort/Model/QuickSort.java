@@ -1,7 +1,7 @@
 package ru.unn.agile.QuickSort.Model;
 
-public class QuickSort {
-    public static int MIN_ARRAY_ELEMENTS_COUNT = 1;
+public final class QuickSort {
+    public static final int MIN_ARRAY_ELEMENTS_COUNT = 1;
 
     public static void quickSort(final int[] array) {
         if (array.length < MIN_ARRAY_ELEMENTS_COUNT) {
@@ -13,7 +13,9 @@ public class QuickSort {
         quickSortImpl(array, startElementIndex, endElementIndex);
     }
 
-    private static void quickSortImpl(final int[] array, int startElementIndex, int endElementIndex) {
+    private static void quickSortImpl(final int[] array,
+                                      final int startElementIndex,
+                                      final int endElementIndex) {
         int bearingElement = calculateBearingElement(array, startElementIndex, endElementIndex);
 
         int i = startElementIndex;

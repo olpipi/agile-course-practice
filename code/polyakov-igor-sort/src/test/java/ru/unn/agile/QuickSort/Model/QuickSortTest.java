@@ -5,11 +5,12 @@ import static org.junit.Assert.*;
 
 public class QuickSortTest {
 
-    private boolean isArraySorted(int[] array)
-    {
-        for (int i = 0; i < array.length - 1; ++i)
-            if (array[i] > array[i+1])
+    private boolean isArraySorted(final int[] array) {
+        for (int i = 0; i < array.length - 1; ++i) {
+            if (array[i] > array[i + 1]) {
                 return false;
+            }
+        }
 
         return true;
     }
