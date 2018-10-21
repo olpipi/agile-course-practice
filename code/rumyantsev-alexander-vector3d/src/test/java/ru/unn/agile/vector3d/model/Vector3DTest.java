@@ -6,7 +6,7 @@ import ru.unn.agile.vector3d.model.errorhandling.NullVectorNormalizing;
 import static org.junit.Assert.*;
 
 public class Vector3DTest {
-    public final static double EPSILON = Vector3D.EPSILON;
+    public static final double EPSILON = Vector3D.EPSILON;
 
     @Test
     public void canGetXPositiveDouble() {
