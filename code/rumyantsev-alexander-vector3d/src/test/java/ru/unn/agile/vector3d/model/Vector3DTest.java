@@ -1,6 +1,7 @@
 package ru.unn.agile.vector3d.model;
 
 import org.junit.Test;
+import ru.unn.agile.vector3d.model.errorhandling.NullVectorNormalizing;
 
 import static org.junit.Assert.*;
 
@@ -296,5 +297,32 @@ public class Vector3DTest {
         double mgn = v.magnitude();
 
         assertEquals(0.0, mgn, Vector3DTest.EPSILON);
+    }
+
+    @Test
+    public void canNormalizeVector1() {
+        Vector3D v = new Vector3D(7.2, -9.6, 0);
+        Vector3D expectedRes = new Vector3D(0.6, -0.8, 0);
+
+        Vector3D res = v.normalize();
+
+        assertEquals(expectedRes, res);
+    }
+
+    @Test
+    public void canNormalizeVector2() {
+        Vector3D v = new Vector3D(-80, 0, -60);
+        Vector3D expectedRes = new Vector3D(-0.8, 0, -0.6);
+
+        Vector3D res = v.normalize();
+
+        assertEquals(expectedRes, res);
+    }
+
+    @Test(expected = NullVectorNormalizing.class)
+    public void normalizeZeroVectorThrowsException() {
+        Vector3D v = new Vector3D(0, 0, 0);
+
+        v.normalize();
     }
 }

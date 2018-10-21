@@ -1,5 +1,7 @@
 package ru.unn.agile.vector3d.model;
 
+import ru.unn.agile.vector3d.model.errorhandling.NullVectorNormalizing;
+
 public class Vector3D {
     public final static double EPSILON = 0.000001;
 
@@ -68,5 +70,15 @@ public class Vector3D {
 
     public double magnitude() {
         return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+    }
+
+    public Vector3D normalize() {
+        double mgn = magnitude();
+
+        if (Math.abs(mgn) < Vector3D.EPSILON) {
+            throw new NullVectorNormalizing();
+        }
+
+        return multiply(1.0 / magnitude());
     }
 }
