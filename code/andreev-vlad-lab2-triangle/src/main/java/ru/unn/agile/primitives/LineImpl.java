@@ -12,7 +12,17 @@ public class LineImpl implements Line {
 
     @Override
     public double getLength() {
-        return Math.sqrt(Math.abs(Math.pow(point2.minus(point1).getY(), 2)
-                + Math.pow(point2.minus(point1).getX(), 2)));
+        Point point = point2.minus(point1);
+        return Math.sqrt(Math.pow(point.getY(), 2)
+                + Math.pow(point.getX(), 2));
+    }
+
+    @Override
+    public String toString() {
+        return "LineImpl{"
+                + "point1=" + point1
+                + ", point2=" + point2
+                + ", length=" + getLength()
+                + '}';
     }
 }

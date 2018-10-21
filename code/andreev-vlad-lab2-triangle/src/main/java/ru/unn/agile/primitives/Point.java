@@ -10,9 +10,7 @@ public class Point {
          this.y = y;
     }
 
-    public Point(final Point point) {
-        this.x = point.getX();
-        this.y = point.getY();
+    private Point() {
     }
 
     public double getX() {
@@ -27,16 +25,24 @@ public class Point {
         return y;
     }
 
-    public void setB(final double b) {
+    public void setY(final double y) {
         this.y = y;
     }
 
     public Point minus(final Point point) {
-        Point result = new Point(this);
+        Point result = new Point();
 
-        result.setX(point.getX() - result.getX());
-        result.setB(point.getY() - result.getY());
+        result.setX(this.getX() - point.getX());
+        result.setY(this.getY() - point.getY());
 
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Point{"
+                + "x=" + x
+                + ", y=" + y
+                + '}';
     }
 }

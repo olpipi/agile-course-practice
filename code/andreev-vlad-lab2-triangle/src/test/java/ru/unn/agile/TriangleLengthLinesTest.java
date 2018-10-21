@@ -5,7 +5,7 @@ import ru.unn.agile.primitives.Point;
 
 import static org.junit.Assert.*;
 
-public class TriangleTest {
+public class TriangleLengthLinesTest {
     private final double delta = 0.001;
 
     @Test
@@ -99,6 +99,9 @@ public class TriangleTest {
         Point point3 = new Point(3.0, 4.0);
         Triangele triangle = new Triangele(point1, point2, point3);
 
-        assertEquals(3.0, triangle.getLengthC(), delta);
+        assertEquals(5.0, triangle.getLengthC(), delta);
     }
+
+
+
 }
