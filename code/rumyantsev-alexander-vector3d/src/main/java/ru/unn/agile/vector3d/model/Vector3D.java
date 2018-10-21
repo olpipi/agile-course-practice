@@ -65,4 +65,8 @@ public class Vector3D {
     public Vector3D multiply(double coef) {
         return new Vector3D(this.x * coef, this.y * coef, this.z * coef);
     }
+
+    public double magnitude() {
+        return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+    }
 }

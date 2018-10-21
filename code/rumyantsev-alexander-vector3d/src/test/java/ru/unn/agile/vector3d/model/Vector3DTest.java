@@ -5,6 +5,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class Vector3DTest {
+    public final static double EPSILON = Vector3D.EPSILON;
+
     @Test
     public void canGetXPositiveDouble() {
         Vector3D v = new Vector3D(1.0, 2, 3);
@@ -267,5 +269,32 @@ public class Vector3DTest {
         Vector3D res = v.multiply(0);
 
         assertEquals(expectedRes, res);
+    }
+
+    @Test
+    public void canCalculateMagnitude1() {
+        Vector3D v = new Vector3D(2.0, 6.0, 9.0);
+
+        double mgn = v.magnitude();
+
+        assertEquals(11.0, mgn, Vector3DTest.EPSILON);
+    }
+
+    @Test
+    public void canCalculateMagnitude2() {
+        Vector3D v = new Vector3D(-1.1, 1.2, -2.4);
+
+        double mgn = v.magnitude();
+
+        assertEquals(2.9, mgn, Vector3DTest.EPSILON);
+    }
+
+    @Test
+    public void canCalculateMagnitudeOfZeroVector() {
+        Vector3D v = new Vector3D(0, 0, 0);
+
+        double mgn = v.magnitude();
+
+        assertEquals(0.0, mgn, Vector3DTest.EPSILON);
     }
 }
