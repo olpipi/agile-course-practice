@@ -1,13 +1,13 @@
-package ru.unn.agile.QuickSort.Model;
+package ru.unn.agile.ArraySorter.Model;
 
-public final class QuickSort {
+public final class ArraySorter {
     public static <T extends Comparable<T>>
     void sort(final T[] array) {
         QuickSorter<T> sorter = new QuickSorter<T>();
         sorter.sort(array);
     }
 
-    private QuickSort() {
+    private ArraySorter() {
     }
 
     private static final class QuickSorter<T extends Comparable<T>> {

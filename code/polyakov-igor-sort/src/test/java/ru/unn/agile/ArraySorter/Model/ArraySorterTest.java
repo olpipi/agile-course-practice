@@ -1,18 +1,18 @@
-package ru.unn.agile.QuickSort.Model;
+package ru.unn.agile.ArraySorter.Model;
 
 import java.util.Arrays;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class QuickSortTest {
+public class ArraySorterTest {
     @Test
     public void canSortOfArrayWithOneInteger() {
         Integer[] actualArray = {1};
         Integer[] expectedArray = actualArray.clone();
         Arrays.sort(expectedArray);
 
-        QuickSort.sort(actualArray);
+        ArraySorter.sort(actualArray);
 
         assertArrayEquals(expectedArray, actualArray);
     }
@@ -23,7 +23,7 @@ public class QuickSortTest {
         Integer[] expectedArray = actualArray.clone();
         Arrays.sort(expectedArray);
 
-        QuickSort.sort(actualArray);
+        ArraySorter.sort(actualArray);
 
         assertArrayEquals(expectedArray, actualArray);
     }
@@ -34,7 +34,7 @@ public class QuickSortTest {
         Integer[] expectedArray = actualArray.clone();
         Arrays.sort(expectedArray);
 
-        QuickSort.sort(actualArray);
+        ArraySorter.sort(actualArray);
 
         assertArrayEquals(expectedArray, actualArray);
     }
@@ -45,7 +45,7 @@ public class QuickSortTest {
         Integer[] expectedArray = actualArray.clone();
         Arrays.sort(expectedArray);
 
-        QuickSort.sort(actualArray);
+        ArraySorter.sort(actualArray);
 
         assertArrayEquals(expectedArray, actualArray);
     }
@@ -56,7 +56,7 @@ public class QuickSortTest {
         Integer[] expectedArray = actualArray.clone();
         Arrays.sort(expectedArray);
 
-        QuickSort.sort(actualArray);
+        ArraySorter.sort(actualArray);
 
         assertArrayEquals(expectedArray, actualArray);
     }
@@ -67,7 +67,7 @@ public class QuickSortTest {
         Integer[] expectedArray = actualArray.clone();
         Arrays.sort(expectedArray);
 
-        QuickSort.sort(actualArray);
+        ArraySorter.sort(actualArray);
 
         assertArrayEquals(expectedArray, actualArray);
     }
@@ -76,7 +76,7 @@ public class QuickSortTest {
     public void throwsWhenSortOfEmptyArrayOfIntegers() {
         Integer[] array = {};
 
-        QuickSort.sort(array);
+        ArraySorter.sort(array);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class QuickSortTest {
         Double[] expectedArray = actualArray.clone();
         Arrays.sort(expectedArray);
 
-        QuickSort.sort(actualArray);
+        ArraySorter.sort(actualArray);
 
         assertArrayEquals(expectedArray, actualArray);
     }
@@ -94,13 +94,13 @@ public class QuickSortTest {
     public void throwsWhenSortOfNullArray() {
         Integer[] actualArray = null;
 
-        QuickSort.sort(actualArray);
+        ArraySorter.sort(actualArray);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenSortOfArrayWithNullElement() {
         Integer[] actualArray = {0, null, -1};
 
-        QuickSort.sort(actualArray);
+        ArraySorter.sort(actualArray);
     }
 }
