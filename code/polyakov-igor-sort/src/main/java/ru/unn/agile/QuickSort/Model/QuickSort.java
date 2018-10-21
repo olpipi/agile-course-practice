@@ -4,20 +4,20 @@ public final class QuickSort {
     public static final int MIN_ARRAY_ELEMENTS_COUNT = 1;
 
     public static <T extends Comparable<T>>
-    void quickSort(final T[] array) {
+    void sort(final T[] array) {
         if (array.length < MIN_ARRAY_ELEMENTS_COUNT) {
             throw new IllegalArgumentException("Array elements count should be positive");
         }
 
         int startElementIndex = 0;
         int endElementIndex = array.length - 1;
-        quickSortImpl(array, startElementIndex, endElementIndex);
+        sortSubArray(array, startElementIndex, endElementIndex);
     }
 
     private static <T extends Comparable<T>>
-    void quickSortImpl(final T[] array,
-                       final int startSubArrayIndex,
-                       final int endSubArrayIndex) {
+    void sortSubArray(final T[] array,
+                      final int startSubArrayIndex,
+                      final int endSubArrayIndex) {
         T bearingElement = calculateBearingElement(array, startSubArrayIndex, endSubArrayIndex);
 
         int currentLeftBound = startSubArrayIndex;
@@ -39,10 +39,10 @@ public final class QuickSort {
         }
 
         if (currentRightBound > startSubArrayIndex) {
-            quickSortImpl(array, startSubArrayIndex, currentRightBound);
+            sortSubArray(array, startSubArrayIndex, currentRightBound);
         }
         if (currentLeftBound < endSubArrayIndex) {
-            quickSortImpl(array, currentLeftBound, endSubArrayIndex);
+            sortSubArray(array, currentLeftBound, endSubArrayIndex);
         }
     }
 

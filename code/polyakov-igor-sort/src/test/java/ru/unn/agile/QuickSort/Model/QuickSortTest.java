@@ -1,88 +1,92 @@
 package ru.unn.agile.QuickSort.Model;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class QuickSortTest {
-
-    private <T extends Comparable<T>>
-    boolean isArraySorted(final T[] array) {
-        for (int i = 0; i < array.length - 1; ++i) {
-            if (array[i].compareTo(array[i + 1]) > 0) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     @Test
     public void canSortingOfArrayWithOneInteger() {
-        Integer[] array = {1};
+        Integer[] actualArray = {1};
+        Integer[] expectedArray = actualArray.clone();
+        Arrays.sort(expectedArray);
 
-        QuickSort.quickSort(array);
+        QuickSort.sort(actualArray);
 
-        assertTrue(isArraySorted(array));
+        assertArrayEquals(expectedArray, actualArray);
     }
 
     @Test
     public void canSortingOfSortedArrayWithTwoIntegers() {
-        Integer[] array = {1, 2};
+        Integer[] actualArray = {1, 2};
+        Integer[] expectedArray = actualArray.clone();
+        Arrays.sort(expectedArray);
 
-        QuickSort.quickSort(array);
+        QuickSort.sort(actualArray);
 
-        assertTrue(isArraySorted(array));
+        assertArrayEquals(expectedArray, actualArray);
     }
 
     @Test
     public void canSortingOfNonSortedArrayWithTwoIntegers() {
-        Integer[] array = {2, 1};
+        Integer[] actualArray = {2, 1};
+        Integer[] expectedArray = actualArray.clone();
+        Arrays.sort(expectedArray);
 
-        QuickSort.quickSort(array);
+        QuickSort.sort(actualArray);
 
-        assertTrue(isArraySorted(array));
+        assertArrayEquals(expectedArray, actualArray);
     }
 
     @Test
     public void canSortingOfNonSortedArrayWithThreeIntegers() {
-        Integer[] array = {2, 0, 1};
+        Integer[] actualArray = {2, 0, 1};
+        Integer[] expectedArray = actualArray.clone();
+        Arrays.sort(expectedArray);
 
-        QuickSort.quickSort(array);
+        QuickSort.sort(actualArray);
 
-        assertTrue(isArraySorted(array));
+        assertArrayEquals(expectedArray, actualArray);
     }
 
     @Test
     public void canSortingOfSortedArrayWithThreeIntegers() {
-        Integer[] array = {0, 1, 2};
+        Integer[] actualArray = {0, 1, 2};
+        Integer[] expectedArray = actualArray.clone();
+        Arrays.sort(expectedArray);
 
-        QuickSort.quickSort(array);
+        QuickSort.sort(actualArray);
 
-        assertTrue(isArraySorted(array));
+        assertArrayEquals(expectedArray, actualArray);
     }
 
     @Test
     public void canSortingOfNonSortedBigArrayOfIntegers() {
-        Integer[] array = {1, 4, 3, -1, 5, 8, 8, -100, 9, 4, 1, 0};
+        Integer[] actualArray = {1, 4, 3, -1, 5, 8, 8, -100, 9, 4, 1, 0};
+        Integer[] expectedArray = actualArray.clone();
+        Arrays.sort(expectedArray);
 
-        QuickSort.quickSort(array);
+        QuickSort.sort(actualArray);
 
-        assertTrue(isArraySorted(array));
+        assertArrayEquals(expectedArray, actualArray);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenSortingOfEmptyArrayOfIntegers() {
         Integer[] array = {};
 
-        QuickSort.quickSort(array);
+        QuickSort.sort(array);
     }
 
     @Test
     public void canSortingOfNonSortedBigArrayOfDoubles() {
-        Double[] array = {1.4, 4.3, 3.3, -1.9, 5.1, 8.5, 8.0, -100.0, 9.7, 4.1, 1.6, 0.0};
+        Double[] actualArray = {1.4, 4.3, 3.3, -1.9, 5.1, 8.5, 8.0, -100.0, 9.7, 4.1, 1.6, 0.0};
+        Double[] expectedArray = actualArray.clone();
+        Arrays.sort(expectedArray);
 
-        QuickSort.quickSort(array);
+        QuickSort.sort(actualArray);
 
-        assertTrue(isArraySorted(array));
+        assertArrayEquals(expectedArray, actualArray);
     }
 }
