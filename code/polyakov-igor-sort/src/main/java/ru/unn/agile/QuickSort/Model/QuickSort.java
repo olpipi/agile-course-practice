@@ -3,14 +3,14 @@ package ru.unn.agile.QuickSort.Model;
 public final class QuickSort {
     public static <T extends Comparable<T>>
     void sort(final T[] array) {
-        QuickSortImpl<T> sorter = new QuickSortImpl<T>();
+        QuickSorter<T> sorter = new QuickSorter<T>();
         sorter.sort(array);
     }
 
     private QuickSort() {
     }
 
-    private static final class QuickSortImpl<T extends Comparable<T>> {
+    private static final class QuickSorter<T extends Comparable<T>> {
         public static final int MIN_ARRAY_ELEMENTS_COUNT = 1;
 
         void sort(final T[] array) {
