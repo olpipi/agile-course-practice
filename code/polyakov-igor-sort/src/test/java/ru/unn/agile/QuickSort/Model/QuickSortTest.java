@@ -81,7 +81,7 @@ public class QuickSortTest {
 
     @Test
     public void canSortOfNonSortedBigArrayOfDoubles() {
-        Double[] actualArray = {1.4, 4.3, 3.3, -1.9, 5.1, 8.5, 8.0, -100.0, 9.7, 4.1, 1.6, 0.0};
+        Double[] actualArray = {1.4, 4.3, 3.3, -1.8, 5.1, 8.5, 8.0, -100.0, 9.7, 4.1, 1.6, 0.0};
         Double[] expectedArray = actualArray.clone();
         Arrays.sort(expectedArray);
 
