@@ -36,4 +36,21 @@ public class Vector3D {
     public void setZ(double z) {
         this.z = z;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj instanceof Vector3D) {
+            Vector3D otherVector = (Vector3D) obj;
+
+            return Math.abs(this.x - otherVector.x) < Vector3D.EPSILON &&
+                    Math.abs(this.y - otherVector.y) < Vector3D.EPSILON &&
+                    Math.abs(this.z - otherVector.z) < Vector3D.EPSILON;
+        }
+
+        return false;
+    }
 }

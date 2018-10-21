@@ -99,4 +99,74 @@ public class Vector3DTest {
 
         assertEquals(-25.4, v.getZ(), Vector3D.EPSILON);
     }
+
+    @Test
+    public void canCompareVectors() {
+        Vector3D v1 = new Vector3D(1.1, 2.2, 3.3);
+        Vector3D v2 = new Vector3D(1.1, 2.2, 3.3);
+
+        assertEquals(v2, v1);
+    }
+
+    @Test
+    public void canCompareToItself() {
+        Vector3D v = new Vector3D(7, 32, 5);
+
+        assertEquals(v, v);
+    }
+
+    @Test
+    public void cantCompareToNonVector() {
+        Vector3D v = new Vector3D(4.3, 45.1, -5.1);
+
+        assertNotEquals("Vector3D", v);
+    }
+
+    @Test
+    public void compareVectorsDifferentX() {
+        Vector3D v1 = new Vector3D(7.4, -4.5, 1.2);
+        Vector3D v2 = new Vector3D(10.2, -4.5, 1.2);
+
+        assertNotEquals(v2, v1);
+    }
+
+    @Test
+    public void compareVectorsDifferentY() {
+        Vector3D v1 = new Vector3D(1, 3, 1);
+        Vector3D v2 = new Vector3D(1, -3, 1);
+
+        assertNotEquals(v2, v1);
+    }
+
+    @Test
+    public void compareVectorsDifferentZ() {
+        Vector3D v1 = new Vector3D(0, 0, -1);
+        Vector3D v2 = new Vector3D(0, 0, -2);
+
+        assertNotEquals(v2, v1);
+    }
+
+    @Test
+    public void compareVectorsDifferentXLessEps() {
+        Vector3D v1 = new Vector3D(3, 3, 3);
+        Vector3D v2 = new Vector3D(3 + Vector3D.EPSILON * 10.0, 3, 3);
+
+        assertNotEquals(v2, v1);
+    }
+
+    @Test
+    public void compareVectorsDifferentYLessEps() {
+        Vector3D v1 = new Vector3D(-1.2, 0.0, 6.7);
+        Vector3D v2 = new Vector3D(-1.2, -Vector3D.EPSILON * 2, 6.7);
+
+        assertNotEquals(v2, v1);
+    }
+
+    @Test
+    public void compareVectorsDifferentZLessEps() {
+        Vector3D v1 = new Vector3D(0, 0, 1000000);
+        Vector3D v2 = new Vector3D(0, 0, 1000000 -Vector3D.EPSILON * 1.1);
+
+        assertNotEquals(v2, v1);
+    }
 }
