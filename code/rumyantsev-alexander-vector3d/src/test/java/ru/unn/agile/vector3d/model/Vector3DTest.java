@@ -325,4 +325,24 @@ public class Vector3DTest {
 
         v.normalize();
     }
+
+    @Test
+    public void canCalculateDotProduct() {
+        Vector3D v1 = new Vector3D(-1.0, 4.0, -2.0);
+        Vector3D v2 = new Vector3D(7.0, 3.0, -0.5);
+
+        double dot = v1.dot(v2);
+
+        assertEquals(6.0, dot, Vector3DTest.EPSILON);
+    }
+
+    @Test
+    public void dotProductOfOrthogonalVectorsIsZero() {
+        Vector3D v1 = new Vector3D(10.0, 0.0, 0.0);
+        Vector3D v2 = new Vector3D(0.0, -2.0, 0.0);
+
+        double dot = v1.dot(v2);
+
+        assertEquals(0.0, dot, Vector3DTest.EPSILON);
+    }
 }

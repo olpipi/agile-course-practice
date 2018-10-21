@@ -81,4 +81,8 @@ public class Vector3D {
 
         return multiply(1.0 / magnitude());
     }
+
+    public double dot(Vector3D other) {
+        return this.x * other.x + this.y * other.y + this.z * other.z;
+    }
 }
