@@ -31,4 +31,18 @@ public class Vector3DTest {
 
         assertEquals(-10.0, v.getY(), Vector3D.EPSILON);
     }
+
+    @Test
+    public void canGetZPositiveDouble() {
+        Vector3D v = new Vector3D(0, 0, 100.3);
+
+        assertEquals(100.3, v.getZ(), Vector3D.EPSILON);
+    }
+
+    @Test
+    public void canGetZNegativeDouble() {
+        Vector3D v = new Vector3D(2, 2, -1337.228);
+
+        assertEquals(-1337.228, v.getZ(), Vector3D.EPSILON);
+    }
 }
