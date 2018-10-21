@@ -6,7 +6,7 @@ public final class QuickSort {
     public static <T extends Comparable<T>>
     void sort(final T[] array) {
         validateArray(array);
-        
+
         int startElementIndex = 0;
         int endElementIndex = array.length - 1;
         sortSubArray(array, startElementIndex, endElementIndex);
@@ -20,6 +20,11 @@ public final class QuickSort {
 
         if (array.length < MIN_ARRAY_ELEMENTS_COUNT) {
             throw new IllegalArgumentException("Array elements count should be positive");
+        }
+
+        for (int i = 0; i < array.length; ++i) {
+            if (array[i] == null)
+                throw new IllegalArgumentException("Array shouldn't contain null elements");
         }
     }
 

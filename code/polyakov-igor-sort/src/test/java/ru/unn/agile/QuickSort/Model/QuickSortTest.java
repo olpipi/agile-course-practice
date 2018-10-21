@@ -92,7 +92,14 @@ public class QuickSortTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenSortOfNullArray() {
-        Double[] actualArray = null;
+        Integer[] actualArray = null;
+
+        QuickSort.sort(actualArray);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsWhenSortOfArrayWithNullElement() {
+        Integer[] actualArray = {0, null, -1};
 
         QuickSort.sort(actualArray);
     }
