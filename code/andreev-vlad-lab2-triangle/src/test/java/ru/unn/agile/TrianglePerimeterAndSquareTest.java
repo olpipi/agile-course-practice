@@ -52,4 +52,15 @@ public class TrianglePerimeterAndSquareTest {
 
         assertEquals(60, triangle.getSquare(), delta);
     }
+
+    @Test
+    public void getSquareFromRectangularTriangleWithAIsHypotenuse() {
+        Point point1 = new Point(4.0, 3.0);
+        Point point2 = new Point(0.0, 0.0);
+        Point point3 = new Point(4.0, 0.0);
+
+        Triangele triangle = new Triangele(point1, point2, point3);
+
+        assertEquals(6, triangle.getSquare(), delta);
+    }
 }

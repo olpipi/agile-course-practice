@@ -74,7 +74,7 @@ public class Triangele {
     }
 
     public double getSquare() {
-        return (a.getLength() * b.getLength()) / 2;
+        return (a.getLength() * b.getLength() * sin(getAngleAB())) / 2;
     }
 
     @Override

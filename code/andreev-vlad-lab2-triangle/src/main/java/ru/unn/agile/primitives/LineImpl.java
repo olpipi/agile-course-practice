@@ -1,5 +1,7 @@
 package ru.unn.agile.primitives;
 
+import static java.lang.Math.*;
+
 public class LineImpl implements Line {
     private Point point1;
     private Point point2;
@@ -13,8 +15,8 @@ public class LineImpl implements Line {
     @Override
     public double getLength() {
         Point point = point2.minus(point1);
-        return Math.sqrt(Math.pow(point.getY(), 2)
-                + Math.pow(point.getX(), 2));
+        return sqrt(pow(point.getY(), 2)
+                + pow(point.getX(), 2));
     }
 
     @Override
