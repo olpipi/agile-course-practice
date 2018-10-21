@@ -45,11 +45,11 @@ public class TrianglePerimeterAndSquareTest {
     @Test
     public void getSquareFromRectangularTriangle() {
         Point point1 = new Point(0.0, 0.0);
-        Point point2 = new Point(5.0, 0.0);
-        Point point3 = new Point(5.0, 12.0);
+        Point point2 = new Point(8.0, 0.0);
+        Point point3 = new Point(8.0, 15.0);
 
         Triangele triangle = new Triangele(point1, point2, point3);
 
-        assertEquals(30, triangle.getSquare(), delta);
+        assertEquals(60, triangle.getSquare(), delta);
     }
 }
