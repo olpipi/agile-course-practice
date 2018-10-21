@@ -45,4 +45,58 @@ public class Vector3DTest {
 
         assertEquals(-1337.228, v.getZ(), Vector3D.EPSILON);
     }
+
+    @Test
+    public void canSetXPositiveDouble() {
+        Vector3D v = new Vector3D(0,0, 0);
+
+        v.setX(0.5);
+
+        assertEquals(0.5, v.getX(), Vector3D.EPSILON);
+    }
+
+    @Test
+    public void canSetXNegativeDouble() {
+        Vector3D v = new Vector3D(0,0, 0);
+
+        v.setX(-3.3);
+
+        assertEquals(-3.3, v.getX(), Vector3D.EPSILON);
+    }
+
+    @Test
+    public void canSetYPositiveDouble() {
+        Vector3D v = new Vector3D(0,0, 0);
+
+        v.setY(0.144);
+
+        assertEquals(0.144, v.getY(), Vector3D.EPSILON);
+    }
+
+    @Test
+    public void canSetYNegativeDouble() {
+        Vector3D v = new Vector3D(0,0, 0);
+
+        v.setY(-3.1415);
+
+        assertEquals(-3.1415, v.getY(), Vector3D.EPSILON);
+    }
+
+    @Test
+    public void canSetZPositiveDouble() {
+        Vector3D v = new Vector3D(0,0, 0);
+
+        v.setZ(43.5);
+
+        assertEquals(43.5, v.getZ(), Vector3D.EPSILON);
+    }
+
+    @Test
+    public void canSetZNegativeDouble() {
+        Vector3D v = new Vector3D(0,0, 0);
+
+        v.setZ(-25.4);
+
+        assertEquals(-25.4, v.getZ(), Vector3D.EPSILON);
+    }
 }
