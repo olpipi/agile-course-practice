@@ -123,7 +123,7 @@ public class Vector3DTest {
     public void cantCompareToNonVector() {
         Vector3D v = new Vector3D(4.3, 45.1, -5.1);
 
-        assertNotEquals("Vector3D", v);
+        assertNotEquals(v, "Vector3D");
     }
 
     @Test
