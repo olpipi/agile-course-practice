@@ -103,4 +103,15 @@ public class ArraySorterTest {
 
         ArraySorter.sort(actualArray);
     }
+
+    @Test
+    public void canSortOfNonSortedArrayOfStrings() {
+        String[] actualArray = {"ab", "bc", "ac"};
+        String[] expectedArray = actualArray.clone();
+        Arrays.sort(expectedArray);
+
+        ArraySorter.sort(actualArray);
+
+        assertArrayEquals(expectedArray, actualArray);
+    }
 }
