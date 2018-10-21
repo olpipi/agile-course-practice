@@ -175,7 +175,7 @@ public class Vector3DTest {
     }
 
     @Test
-    public void canAddVectors1() {
+    public void canAddVectorsWithPositiveCoords() {
         Vector3D v1 = new Vector3D(1, 2, 3);
         Vector3D v2 = new Vector3D(3, 2, 1);
         Vector3D expectedRes = new Vector3D(4, 4, 4);
@@ -186,7 +186,7 @@ public class Vector3DTest {
     }
 
     @Test
-    public void canAddVectors2() {
+    public void canAddVectorsWithNegativeCoords() {
         Vector3D v1 = new Vector3D(-1, -2, -3);
         Vector3D v2 = new Vector3D(3, 2, 1);
         Vector3D expectedRes = new Vector3D(2, 0, -2);
@@ -197,22 +197,10 @@ public class Vector3DTest {
     }
 
     @Test
-    public void canAddVectorsMultipleTimes() {
-        Vector3D v1 = new Vector3D(19.0, 12.0, -42.0);
-        Vector3D v2 = new Vector3D(-16.0, 16.0, -28.0);
-        Vector3D v3 = new Vector3D(16.0, -20.0, 46.0);
-        Vector3D expectedRes = new Vector3D(19.0, 8.0, -24.0);
-
-        Vector3D res = v1.add(v2).add(v3);
-
-        assertEquals(expectedRes, res);
-    }
-
-    @Test
-    public void canSubtractVectors1() {
+    public void canSubtractVectorsWithPositiveCoords() {
         Vector3D v1 = new Vector3D(10, 20, 30);
-        Vector3D v2 = new Vector3D(-5, 2, 30);
-        Vector3D expectedRes = new Vector3D(15, 18, 0);
+        Vector3D v2 = new Vector3D(5, 2, 30);
+        Vector3D expectedRes = new Vector3D(5, 18, 0);
 
         Vector3D res = v1.subtract(v2);
 
@@ -220,24 +208,12 @@ public class Vector3DTest {
     }
 
     @Test
-    public void canSubtractVectors2() {
+    public void canSubtractVectorsWithNegativeCoords() {
         Vector3D v1 = new Vector3D(4, -5, 10);
         Vector3D v2 = new Vector3D(14, 22, -40);
         Vector3D expectedRes = new Vector3D(-10, -27, 50);
 
         Vector3D res = v1.subtract(v2);
-
-        assertEquals(expectedRes, res);
-    }
-
-    @Test
-    public void canSubtractVectorsMultipleTimes() {
-        Vector3D v1 = new Vector3D(0.17, 0.1, -0.26);
-        Vector3D v2 = new Vector3D(0.16, 0.42, -0.28);
-        Vector3D v3 = new Vector3D(-0.29, 0.2, 0.48);
-        Vector3D expectedRes = new Vector3D(0.3, -0.52, -0.46);
-
-        Vector3D res = v1.subtract(v2).subtract(v3);
 
         assertEquals(expectedRes, res);
     }
@@ -273,7 +249,7 @@ public class Vector3DTest {
     }
 
     @Test
-    public void canCalculateMagnitude1() {
+    public void canCalculateMagnitudeWithPositiveCoords() {
         Vector3D v = new Vector3D(2.0, 6.0, 9.0);
 
         double mgn = v.magnitude();
@@ -282,7 +258,7 @@ public class Vector3DTest {
     }
 
     @Test
-    public void canCalculateMagnitude2() {
+    public void canCalculateMagnitudeWithNegativeCoords() {
         Vector3D v = new Vector3D(-1.1, 1.2, -2.4);
 
         double mgn = v.magnitude();
@@ -300,9 +276,9 @@ public class Vector3DTest {
     }
 
     @Test
-    public void canNormalizeVector1() {
-        Vector3D v = new Vector3D(7.2, -9.6, 0);
-        Vector3D expectedRes = new Vector3D(0.6, -0.8, 0);
+    public void canNormalizeVectorWithPositiveCoords() {
+        Vector3D v = new Vector3D(7.2, 9.6, 0);
+        Vector3D expectedRes = new Vector3D(0.6, 0.8, 0);
 
         Vector3D res = v.normalize();
 
@@ -310,9 +286,9 @@ public class Vector3DTest {
     }
 
     @Test
-    public void canNormalizeVector2() {
-        Vector3D v = new Vector3D(-80, 0, -60);
-        Vector3D expectedRes = new Vector3D(-0.8, 0, -0.6);
+    public void canNormalizeVectorWithNegativeCoords() {
+        Vector3D v = new Vector3D(-80, 0, 60);
+        Vector3D expectedRes = new Vector3D(-0.8, 0, 0.6);
 
         Vector3D res = v.normalize();
 

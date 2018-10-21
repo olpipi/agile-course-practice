@@ -86,7 +86,7 @@ public class Vector3D {
             throw new NullVectorNormalizing();
         }
 
-        return multiply(1.0 / magnitude());
+        return multiply(1.0 / mgn);
     }
 
     public double dot(final Vector3D other) {
