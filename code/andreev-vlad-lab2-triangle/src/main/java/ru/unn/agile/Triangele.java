@@ -25,6 +25,10 @@ public class Triangele {
     protected static boolean validate(final Point point1,
                                       final Point point2,
                                       final Point point3) {
+        if (point1 == null
+                || point2 == null
+                || point3 == null)
+            return false;
         return ((point3.getX() - point1.getX()) * (point2.getY() - point1.getY())
                 != (point3.getY() - point1.getY()) * (point2.getX() - point1.getX()));
     }
@@ -64,6 +68,14 @@ public class Triangele {
         return angleBetweenTwoLines(c, a, b);
     }
 
+    public double getPerimeter() {
+        return a.getLength() + b.getLength() + c.getLength();
+    }
+
+    public double getSquare() {
+        return 0.5 * a.getLength() * b.getLength();
+    }
+
     @Override
     public String toString() {
         return "Triangele{"
@@ -71,9 +83,5 @@ public class Triangele {
                 + ", b=" + b
                 + ", c=" + c
                 + '}';
-    }
-
-    public double getPerimeter() {
-        return a.getLength() + b.getLength() + c.getLength();
     }
 }

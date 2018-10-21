@@ -5,7 +5,7 @@ import ru.unn.agile.primitives.Point;
 
 import static org.junit.Assert.*;
 
-public class TriangleLengthLinesTest {
+public class TriangleLengthLinesAndInitTest {
     private final double delta = 0.001;
 
     @Test
@@ -74,6 +74,17 @@ public class TriangleLengthLinesTest {
     @Test(expected = IllegalArgumentException.class)
     public void createInvalidTriangleThreePointsOnOneLineWithZero() {
         Point point1 = new Point(0.0, 0.0);
+        Point point2 = new Point(1.0, 0.0);
+        Point point3 = new Point(2.0, 0.0);
+
+        Triangele triangle = new Triangele(point1, point2, point3);
+
+        assertEquals(5.0, triangle.getLengthA(), delta);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void createInvalidTriangleWithNullPoint() {
+        Point point1 = null;
         Point point2 = new Point(1.0, 0.0);
         Point point3 = new Point(2.0, 0.0);
 
