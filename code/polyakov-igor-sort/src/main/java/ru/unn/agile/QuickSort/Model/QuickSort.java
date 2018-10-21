@@ -5,6 +5,10 @@ public final class QuickSort {
 
     public static <T extends Comparable<T>>
     void sort(final T[] array) {
+        if (array == null) {
+            throw new IllegalArgumentException("Array should be initialized");
+        }
+        
         if (array.length < MIN_ARRAY_ELEMENTS_COUNT) {
             throw new IllegalArgumentException("Array elements count should be positive");
         }

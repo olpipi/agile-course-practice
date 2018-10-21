@@ -89,4 +89,11 @@ public class QuickSortTest {
 
         assertArrayEquals(expectedArray, actualArray);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsWhenSortOfNullArray() {
+        Double[] actualArray = null;
+
+        QuickSort.sort(actualArray);
+    }
 }
