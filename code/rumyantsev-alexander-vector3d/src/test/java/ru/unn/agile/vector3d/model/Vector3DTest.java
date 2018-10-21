@@ -5,7 +5,9 @@ import static org.junit.Assert.*;
 
 public class Vector3DTest {
     @Test
-    public void dummy() {
-        assert true;
+    public void canGetX() {
+        Vector3D v = new Vector3D(1, 2, 3);
+
+        assertEquals(1, v.getX(), Vector3D.EPSILON);
     }
 }
