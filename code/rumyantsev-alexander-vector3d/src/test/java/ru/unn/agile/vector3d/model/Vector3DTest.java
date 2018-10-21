@@ -345,4 +345,48 @@ public class Vector3DTest {
 
         assertEquals(0.0, dot, Vector3DTest.EPSILON);
     }
+
+    @Test
+    public void canCalculateCrossProduct() {
+        Vector3D v1 = new Vector3D(1.0, 0.0, 0.0);
+        Vector3D v2 = new Vector3D(0.0, 1.0, 0.0);
+        Vector3D expectedRes = new Vector3D(0.0, 0.0, 1.0);
+
+        Vector3D res = v1.cross(v2);
+
+        assertEquals(expectedRes, res);
+    }
+
+    @Test
+    public void crossProductOfParallelVectorsIsNullVector() {
+        Vector3D v1 = new Vector3D(2.0, 5.0, 7.0);
+        Vector3D v2 = new Vector3D(6.0, 15.0, 21.0);
+        Vector3D expectedRes = new Vector3D(0.0, 0.0, 0.0);
+
+        Vector3D res = v1.cross(v2);
+
+        assertEquals(expectedRes, res);
+    }
+
+    @Test
+    public void twoCrossProductsAreOppositeVectors() {
+        Vector3D v1 = new Vector3D(-7.0, -17.0, 1.0);
+        Vector3D v2 = new Vector3D(-2.0, 8.0, 9.0);
+
+        Vector3D cross12 = v1.cross(v2);
+        Vector3D cross21 = v2.cross(v1);
+
+        assertEquals(cross21.multiply(-1.0), cross12);
+    }
+
+    @Test
+    public void crossProductIsOrthogonalToVectors() {
+        Vector3D v1 = new Vector3D(22.0, -9.0, -16.0);
+        Vector3D v2 = new Vector3D(26.0, 2.0, -3.0);
+
+        Vector3D cross = v1.cross(v2);
+
+        assertEquals(0.0, cross.dot(v1), Vector3DTest.EPSILON);
+        assertEquals(0.0, cross.dot(v2), Vector3DTest.EPSILON);
+    }
 }
