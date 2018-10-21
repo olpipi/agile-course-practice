@@ -389,4 +389,15 @@ public class Vector3DTest {
         assertEquals(0.0, cross.dot(v1), Vector3DTest.EPSILON);
         assertEquals(0.0, cross.dot(v2), Vector3DTest.EPSILON);
     }
+
+    @Test
+    public void sameVectorsHasTheSameHash() {
+        Vector3D v1 = new Vector3D(5.345, -12.755, 3.1415);
+        Vector3D v2 = new Vector3D(5.345, -12.755, 3.1415);
+
+        int v1Hash = v1.hashCode();
+        int v2Hash = v2.hashCode();
+
+        assertEquals(v2Hash, v1Hash);
+    }
 }

@@ -58,6 +58,11 @@ public class Vector3D {
         return false;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z);
+    }
+
     public Vector3D add(final Vector3D other) {
         return new Vector3D(x + other.x, y + other.y, z + other.z);
     }
