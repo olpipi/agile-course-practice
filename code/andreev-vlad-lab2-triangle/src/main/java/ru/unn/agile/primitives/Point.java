@@ -1,4 +1,4 @@
-package ru.unn.agile;
+package ru.unn.agile.primitives;
 
 public class Point {
 
