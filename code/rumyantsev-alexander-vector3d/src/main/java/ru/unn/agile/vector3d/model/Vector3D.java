@@ -50,9 +50,9 @@ public class Vector3D {
         if (obj instanceof Vector3D) {
             Vector3D otherVector = (Vector3D) obj;
 
-            return Math.abs(x - otherVector.x) < Vector3D.EPSILON
-                    && Math.abs(y - otherVector.y) < Vector3D.EPSILON
-                    && Math.abs(z - otherVector.z) < Vector3D.EPSILON;
+            return Math.abs(x - otherVector.x) < EPSILON
+                    && Math.abs(y - otherVector.y) < EPSILON
+                    && Math.abs(z - otherVector.z) < EPSILON;
         }
 
         return false;
@@ -82,7 +82,7 @@ public class Vector3D {
     public Vector3D normalize() {
         double mgn = magnitude();
 
-        if (Math.abs(mgn) < Vector3D.EPSILON) {
+        if (Math.abs(mgn) < EPSILON) {
             throw new NullVectorNormalizing();
         }
 

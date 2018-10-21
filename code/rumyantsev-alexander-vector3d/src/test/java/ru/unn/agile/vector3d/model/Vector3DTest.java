@@ -254,7 +254,7 @@ public class Vector3DTest {
 
         double mgn = v.magnitude();
 
-        assertEquals(11.0, mgn, Vector3DTest.EPSILON);
+        assertEquals(11.0, mgn, EPSILON);
     }
 
     @Test
@@ -263,7 +263,7 @@ public class Vector3DTest {
 
         double mgn = v.magnitude();
 
-        assertEquals(2.9, mgn, Vector3DTest.EPSILON);
+        assertEquals(2.9, mgn, EPSILON);
     }
 
     @Test
@@ -272,7 +272,7 @@ public class Vector3DTest {
 
         double mgn = v.magnitude();
 
-        assertEquals(0.0, mgn, Vector3DTest.EPSILON);
+        assertEquals(0.0, mgn, EPSILON);
     }
 
     @Test
@@ -309,7 +309,7 @@ public class Vector3DTest {
 
         double dot = v1.dot(v2);
 
-        assertEquals(6.0, dot, Vector3DTest.EPSILON);
+        assertEquals(6.0, dot, EPSILON);
     }
 
     @Test
@@ -319,7 +319,7 @@ public class Vector3DTest {
 
         double dot = v1.dot(v2);
 
-        assertEquals(0.0, dot, Vector3DTest.EPSILON);
+        assertEquals(0.0, dot, EPSILON);
     }
 
     @Test
@@ -362,8 +362,8 @@ public class Vector3DTest {
 
         Vector3D cross = v1.cross(v2);
 
-        assertEquals(0.0, cross.dot(v1), Vector3DTest.EPSILON);
-        assertEquals(0.0, cross.dot(v2), Vector3DTest.EPSILON);
+        assertEquals(0.0, cross.dot(v1), EPSILON);
+        assertEquals(0.0, cross.dot(v2), EPSILON);
     }
 
     @Test
