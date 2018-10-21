@@ -11,7 +11,9 @@ public class Triangele {
     private Line b;
     private Line c;
 
-    public Triangele(final Point point1, final Point point2, final Point point3) {
+    public Triangele(final Point point1,
+                     final Point point2,
+                     final Point point3) {
         if (!validate(point1, point2, point3)) {
             throw new IllegalArgumentException();
         }
@@ -58,6 +60,10 @@ public class Triangele {
         return angleBetweenTwoLines(b, c, a);
     }
 
+    public double getAngleCA() {
+        return angleBetweenTwoLines(c, a, b);
+    }
+
     @Override
     public String toString() {
         return "Triangele{"
@@ -67,7 +73,7 @@ public class Triangele {
                 + '}';
     }
 
-    public double getAngleCA() {
-        return angleBetweenTwoLines(c, a, b);
+    public double getPerimeter() {
+        return a.getLength() + b.getLength() + c.getLength();
     }
 }
