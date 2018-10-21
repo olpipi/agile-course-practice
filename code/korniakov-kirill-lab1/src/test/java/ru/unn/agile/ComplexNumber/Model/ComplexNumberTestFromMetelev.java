@@ -3,7 +3,7 @@ package ru.unn.agile.complexnumber.model;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class MetelevEvgeniiTest {
+public class ComplexNumberTestFromMetelev {
     @Test
     public void canAddComplexNumbers() {
         // Arrange
