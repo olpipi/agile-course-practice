@@ -52,5 +52,4 @@ public class TrianglePerimeterAndSquareTest {
 
         assertEquals(30, triangle.getSquare(), delta);
     }
-    
 }

@@ -27,8 +27,9 @@ public class Triangele {
                                       final Point point3) {
         if (point1 == null
                 || point2 == null
-                || point3 == null)
+                || point3 == null) {
             return false;
+        }
         return ((point3.getX() - point1.getX()) * (point2.getY() - point1.getY())
                 != (point3.getY() - point1.getY()) * (point2.getX() - point1.getX()));
     }
@@ -73,7 +74,7 @@ public class Triangele {
     }
 
     public double getSquare() {
-        return 0.5 * a.getLength() * b.getLength();
+        return (a.getLength() * b.getLength()) / 2;
     }
 
     @Override
