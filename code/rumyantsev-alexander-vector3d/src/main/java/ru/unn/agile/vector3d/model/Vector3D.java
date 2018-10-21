@@ -48,28 +48,28 @@ public class Vector3D {
         if (obj instanceof Vector3D) {
             Vector3D otherVector = (Vector3D) obj;
 
-            return Math.abs(this.x - otherVector.x) < Vector3D.EPSILON &&
-                    Math.abs(this.y - otherVector.y) < Vector3D.EPSILON &&
-                    Math.abs(this.z - otherVector.z) < Vector3D.EPSILON;
+            return Math.abs(x - otherVector.x) < Vector3D.EPSILON &&
+                    Math.abs(y - otherVector.y) < Vector3D.EPSILON &&
+                    Math.abs(z - otherVector.z) < Vector3D.EPSILON;
         }
 
         return false;
     }
 
     public Vector3D add(Vector3D other) {
-        return new Vector3D(this.x + other.x, this.y + other.y, this.z + other.z);
+        return new Vector3D(x + other.x, y + other.y, z + other.z);
     }
 
     public Vector3D subtract(Vector3D other) {
-        return new Vector3D(this.x - other.x, this.y - other.y, this.z - other.z);
+        return new Vector3D(x - other.x, y - other.y, z - other.z);
     }
 
     public Vector3D multiply(double coef) {
-        return new Vector3D(this.x * coef, this.y * coef, this.z * coef);
+        return new Vector3D(x * coef, y * coef, z * coef);
     }
 
     public double magnitude() {
-        return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+        return Math.sqrt(x * x + y * y + z * z);
     }
 
     public Vector3D normalize() {
@@ -83,6 +83,6 @@ public class Vector3D {
     }
 
     public double dot(Vector3D other) {
-        return this.x * other.x + this.y * other.y + this.z * other.z;
+        return x * other.x + y * other.y + z * other.z;
     }
 }
