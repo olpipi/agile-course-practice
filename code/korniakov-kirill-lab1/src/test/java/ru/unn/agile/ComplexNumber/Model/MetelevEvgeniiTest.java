@@ -39,4 +39,14 @@ public class MetelevEvgeniiTest {
         // Assert
         assertEquals(Boolean.TRUE, z1.equals(z2));
     }
+    @Test
+    public void isNOTEqualsComplexNumbers() {
+        // Arrange
+        ComplexNumber z1 = new ComplexNumber(2, 1);
+        ComplexNumber z2 = new ComplexNumber(1, 1);
+
+        // Act
+        // Assert
+        assertEquals(Boolean.FALSE, z1.equals(z2));
+    }
 }
