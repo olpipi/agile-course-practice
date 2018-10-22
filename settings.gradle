@@ -2,6 +2,10 @@
 include "code/bevzuk-anton"
 project(":code/bevzuk-anton").name = "bevzuk-anton-Model"
 
+// Pozdiaev Valerii
+include "code/pozdiaev-valerii-currency-converter"
+project(":code/pozdiaev-valerii-currency-converter").name = "pozdiaev-valerii-currency-converter"
+
 // Korniakov Kirill, lab1
 include "code/korniakov-kirill-lab1"
 project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
