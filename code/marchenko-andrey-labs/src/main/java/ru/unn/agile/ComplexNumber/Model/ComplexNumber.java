@@ -32,6 +32,10 @@ public class ComplexNumber {
         return new ComplexNumber(real + other.real, imaginary + other.imaginary);
     }
 
+    public ComplexNumber subtract(final ComplexNumber other) {
+        return new ComplexNumber(real - other.real, imaginary - other.imaginary);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

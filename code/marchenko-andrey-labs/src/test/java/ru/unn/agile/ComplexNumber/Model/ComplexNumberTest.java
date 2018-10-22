@@ -101,4 +101,34 @@ public class ComplexNumberTest {
         assertEquals(new ComplexNumber(0.0, 0.0), z3);
     }
 
+    @Test
+    public void canSubtractComplexNumbersWithPositiveValues() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
+        ComplexNumber z2 = new ComplexNumber(1.0, 1.0);
+
+        ComplexNumber z3 = z1.subtract(z2);
+
+        assertEquals(new ComplexNumber(0.0, 1.0), z3);
+    }
+
+    @Test
+    public void canSubtractComplexNumbersWithNegativeValues() {
+        ComplexNumber z1 = new ComplexNumber(-1.0, -2.0);
+        ComplexNumber z2 = new ComplexNumber(-1.0, -1.0);
+
+        ComplexNumber z3 = z1.subtract(z2);
+
+        assertEquals(new ComplexNumber(0.0, -1.0), z3);
+    }
+
+    @Test
+    public void canSubtractComplexNumbersWithZeroValues() {
+        ComplexNumber z1 = new ComplexNumber(0.0, 0.0);
+        ComplexNumber z2 = new ComplexNumber(0.0, 0.0);
+
+        ComplexNumber z3 = z1.subtract(z2);
+
+        assertEquals(new ComplexNumber(0.0, 0.0), z3);
+    }
+
 }
