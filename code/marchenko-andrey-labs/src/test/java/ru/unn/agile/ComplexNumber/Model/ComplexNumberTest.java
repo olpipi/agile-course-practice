@@ -188,4 +188,31 @@ public class ComplexNumberTest {
         assertEquals(new ComplexNumber(0.0, 0.0), z2);
     }
 
+    @Test
+    public void canCalculateMagnitudeForComplexNumberWithPositiveValues() {
+        ComplexNumber z1 = new ComplexNumber(3.0, 4.0);
+
+        double magnitude = z1.magnitude();
+
+        assertEquals(5.0, magnitude, EPSILON);
+    }
+
+    @Test
+    public void canCalculateMagnitudeForComplexNumberWithNegativeValues() {
+        ComplexNumber z1 = new ComplexNumber(-3.0, -4.0);
+
+        double magnitude = z1.magnitude();
+
+        assertEquals(5.0, magnitude, EPSILON);
+    }
+
+    @Test
+    public void canCalculateMagnitudeForComplexNumberWithZeroValues() {
+        ComplexNumber z1 = new ComplexNumber(0.0, 0.0);
+
+        double magnitude = z1.magnitude();
+
+        assertEquals(0.0, magnitude, EPSILON);
+    }
+
 }

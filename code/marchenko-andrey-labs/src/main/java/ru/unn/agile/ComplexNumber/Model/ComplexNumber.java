@@ -48,6 +48,10 @@ public class ComplexNumber {
         return new ComplexNumber(real, -imaginary);
     }
 
+    public double magnitude() {
+        return Math.sqrt(real * real + imaginary * imaginary);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
