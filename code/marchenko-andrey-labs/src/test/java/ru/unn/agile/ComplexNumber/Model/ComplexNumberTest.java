@@ -269,4 +269,25 @@ public class ComplexNumberTest {
 
         assertEquals(0.0, argument, EPSILON);
     }
+
+    @Test
+    public void canConvertToStringComplexNumberWithPositiveValues() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 1.0);
+
+        assertEquals("ComplexNumber{real=1.0, imaginary=1.0}", z1.toString());
+    }
+
+    @Test
+    public void canConvertToStringComplexNumberWithNegativeValues() {
+        ComplexNumber z1 = new ComplexNumber(1.0,  -1.0);
+
+        assertEquals("ComplexNumber{real=1.0, imaginary=-1.0}", z1.toString());
+    }
+
+    @Test
+    public void canConvertToStringComplexNumberWithZeroValues() {
+        ComplexNumber z1 = new ComplexNumber(0.0, 0.0);
+
+        assertEquals("ComplexNumber{real=0.0, imaginary=0.0}", z1.toString());
+    }
 }

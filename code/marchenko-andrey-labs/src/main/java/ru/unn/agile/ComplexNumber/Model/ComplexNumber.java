@@ -69,6 +69,14 @@ public class ComplexNumber {
     }
 
     @Override
+    public String toString() {
+        return "ComplexNumber{" +
+                "real=" + real +
+                ", imaginary=" + imaginary +
+                '}';
+    }
+
+    @Override
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
