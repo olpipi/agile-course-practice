@@ -131,4 +131,34 @@ public class ComplexNumberTest {
         assertEquals(new ComplexNumber(0.0, 0.0), z3);
     }
 
+    @Test
+    public void canMultiplyComplexNumbersWithPositiveValues() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
+        ComplexNumber z2 = new ComplexNumber(1.0, 1.0);
+
+        ComplexNumber z3 = z1.multiply(z2);
+
+        assertEquals(new ComplexNumber(-1.0, 3.0), z3);
+    }
+
+    @Test
+    public void canMultiplyComplexNumbersWithNegativeValues() {
+        ComplexNumber z1 = new ComplexNumber(-1.0, -2.0);
+        ComplexNumber z2 = new ComplexNumber(-1.0, -1.0);
+
+        ComplexNumber z3 = z1.multiply(z2);
+
+        assertEquals(new ComplexNumber(-1.0, 3.0), z3);
+    }
+
+    @Test
+    public void canMultiplyComplexNumbersWithZeroValues() {
+        ComplexNumber z1 = new ComplexNumber(0.0, 0.0);
+        ComplexNumber z2 = new ComplexNumber(0.0, 0.0);
+
+        ComplexNumber z3 = z1.multiply(z2);
+
+        assertEquals(new ComplexNumber(0.0, 0.0), z3);
+    }
+
 }

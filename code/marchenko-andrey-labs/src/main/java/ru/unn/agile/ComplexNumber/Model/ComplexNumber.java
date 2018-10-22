@@ -36,6 +36,12 @@ public class ComplexNumber {
         return new ComplexNumber(real - other.real, imaginary - other.imaginary);
     }
 
+    public ComplexNumber multiply(final ComplexNumber other) {
+        return new ComplexNumber(
+                real * other.real - imaginary * other.imaginary,
+                real * other.imaginary + imaginary * other.real);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
