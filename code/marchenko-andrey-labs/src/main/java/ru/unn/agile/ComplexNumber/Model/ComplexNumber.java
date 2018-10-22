@@ -52,6 +52,10 @@ public class ComplexNumber {
         return Math.sqrt(real * real + imaginary * imaginary);
     }
 
+    public double argument() {
+        return Math.atan2(imaginary, real);
+    }
+
     public ComplexNumber divide(final ComplexNumber other) {
         if (other.magnitude() < EPSILON) {
             throw new ArithmeticException("Cannot be divided by zero");

@@ -243,4 +243,30 @@ public class ComplexNumberTest {
         assertEquals(new ComplexNumber(2.0, 0.0), z3);
     }
 
+    @Test
+    public void canCalculateArgumentForComplexNumberWithPositiveValues() {
+        ComplexNumber z1 = new ComplexNumber(1.0, Math.pow(3.0, 0.5));
+
+        double argument = z1.argument();
+
+        assertEquals(1.047197551, argument, EPSILON);
+    }
+
+    @Test
+    public void canCalculateArgumentForComplexNumberWithNegativeValues() {
+        ComplexNumber z1 = new ComplexNumber(1.0,  -Math.pow(3.0, 0.5));
+
+        double argument = z1.argument();
+
+        assertEquals(-1.047197551, argument, EPSILON);
+    }
+
+    @Test
+    public void canCalculateArgumentForComplexNumberWithZeroValues() {
+        ComplexNumber z1 = new ComplexNumber(0.0, 0.0);
+
+        double argument = z1.argument();
+
+        assertEquals(0.0, argument, EPSILON);
+    }
 }
