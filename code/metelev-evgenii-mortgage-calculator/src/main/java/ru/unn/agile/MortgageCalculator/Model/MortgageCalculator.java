@@ -1,10 +1,22 @@
 package ru.unn.agile.MortgageCalculator.Model;
 
 public class MortgageCalculator {
-    public void setTypeOfPaymaent(String annuity) {
+    private String typeOfPayment;
+    public void setTypeOfPayment(String AnnuityOrDifferentiated) {
+        switch (AnnuityOrDifferentiated){
+            case "Annuity":
+                typeOfPayment = AnnuityOrDifferentiated;
+                break;
+            case "Differentiated":
+                typeOfPayment = AnnuityOrDifferentiated;
+                break;
+            default:
+                typeOfPayment = "NotCorrect";
+                break;
+        }
     }
 
-    public String getTypeOfPaymaent() {
-        return "annuity";
+    public String getTypeOfPayment() {
+        return typeOfPayment;
     }
 }
