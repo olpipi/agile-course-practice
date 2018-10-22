@@ -1,14 +1,15 @@
 package ru.unn.agile.MortgageCalculator.Model;
 
 import org.junit.Test;
-
-import static junit.framework.TestCase.assertEquals;
-
+import static org.junit.Assert.*;
 public class MortgageCalculatorTest {
+
     @Test
-    public void test()
-    {
-        MortgageCalculator calc = new MortgageCalculator();
-        assertEquals(1, calc.testFunc());
+    public void geTypeOfPayment() {
+        MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+
+        myMortgageCalculator.setTypeOfPaymaent("Annuity");
+
+        assertEquals("annuity",myMortgageCalculator.getTypeOfPaymaent());
     }
 }
