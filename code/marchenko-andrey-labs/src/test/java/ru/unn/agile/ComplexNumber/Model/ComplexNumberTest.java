@@ -215,4 +215,32 @@ public class ComplexNumberTest {
         assertEquals(0.0, magnitude, EPSILON);
     }
 
+    @Test(expected=ArithmeticException.class)
+    public void canDivideComplexNumberByZero() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
+        ComplexNumber z2 = new ComplexNumber(0.0, 0.0);
+
+        z1.divide(z2);
+    }
+
+    @Test
+    public void canDivideComplexNumbersWithPositiveValues() {
+        ComplexNumber z1 = new ComplexNumber(2.0, 4.0);
+        ComplexNumber z2 = new ComplexNumber(1.0, 2.0);
+
+        ComplexNumber z3 = z1.divide(z2);
+
+        assertEquals(new ComplexNumber(2.0, 0.0), z3);
+    }
+
+    @Test
+    public void canDivideComplexNumbersWithNegativeValues() {
+        ComplexNumber z1 = new ComplexNumber(-2.0, -4.0);
+        ComplexNumber z2 = new ComplexNumber(-1.0, -2.0);
+
+        ComplexNumber z3 = z1.divide(z2);
+
+        assertEquals(new ComplexNumber(2.0, 0.0), z3);
+    }
+
 }

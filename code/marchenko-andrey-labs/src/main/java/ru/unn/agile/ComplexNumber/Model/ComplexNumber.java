@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class ComplexNumber {
 
-    public static double EPSILON = 0.000001;
+    public static final double EPSILON = 0.000001;
 
     private double real;
     private double imaginary;
@@ -52,12 +52,29 @@ public class ComplexNumber {
         return Math.sqrt(real * real + imaginary * imaginary);
     }
 
+    public ComplexNumber divide(final ComplexNumber other) {
+        if (other.magnitude() < EPSILON) {
+            throw new ArithmeticException("Cannot be divided by zero");
+        }
+
+        ComplexNumber temp = this.multiply(other.conjugate());
+        double denominator = Math.pow(other.magnitude(), 2);
+        return new ComplexNumber(
+                temp.real / denominator,
+                temp.imaginary / denominator);
+    }
+
     @Override
     public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         ComplexNumber that = (ComplexNumber) o;
-        return Math.abs(that.real - real) < EPSILON && Math.abs(that.imaginary - imaginary) < EPSILON;
+        return Math.abs(that.real - real) < EPSILON
+                && Math.abs(that.imaginary - imaginary) < EPSILON;
     }
 
     @Override
