@@ -38,8 +38,8 @@ public class MortgageCalculatorTest {
     @Test
     public void checkFullCostOfApartment() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
-        myMortgageCalculator.setFullCostOfApartment(100000);
-        assertEquals(100000,myMortgageCalculator.getFullCostOfApartment(),epsilon);
+        myMortgageCalculator.setFullCostOfApartment(100000.12);
+        assertEquals(100000.12,myMortgageCalculator.getFullCostOfApartment(),epsilon);
     }
     @Test
     public void checkFullCostOfApartmentIsZero() {
@@ -53,4 +53,23 @@ public class MortgageCalculatorTest {
         myMortgageCalculator.setFullCostOfApartment(-300);
         assertEquals(-1,myMortgageCalculator.getFullCostOfApartment(),epsilon);
     }
+    @Test
+    public void checkInitialPayment() {
+        MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+        myMortgageCalculator.setInitialPayment(50000.50);
+        assertEquals(50000.50,myMortgageCalculator.getInitialPayment(),epsilon);
+    }
+    @Test
+    public void checkInitialPaymentIsZero() {
+        MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+        myMortgageCalculator.setInitialPayment(0);
+        assertEquals(0,myMortgageCalculator.getInitialPayment(),epsilon);
+    }
+    @Test
+    public void checkInitialPaymentIsNegative() {
+        MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+        myMortgageCalculator.setInitialPayment(-10000);
+        assertEquals(-1,myMortgageCalculator.getInitialPayment(),epsilon);
+    }
+
 }
