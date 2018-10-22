@@ -7,7 +7,7 @@ public class ComplexNumber {
     private double real;
     private double imaginary;
 
-    public ComplexNumber(double real, double imaginary) {
+    public ComplexNumber(final double real, final double imaginary) {
         this.real = real;
         this.imaginary = imaginary;
     }
@@ -20,16 +20,20 @@ public class ComplexNumber {
         return imaginary;
     }
 
-    public void setReal(double real) {
+    public void setReal(final double real) {
         this.real = real;
     }
 
-    public void setImaginary(double imaginary) {
+    public void setImaginary(final double imaginary) {
         this.imaginary = imaginary;
     }
 
+    public ComplexNumber add(final ComplexNumber other) {
+        return new ComplexNumber(real + other.real, imaginary + other.imaginary);
+    }
+
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ComplexNumber that = (ComplexNumber) o;
@@ -39,7 +43,6 @@ public class ComplexNumber {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(real, imaginary);
     }
 }
