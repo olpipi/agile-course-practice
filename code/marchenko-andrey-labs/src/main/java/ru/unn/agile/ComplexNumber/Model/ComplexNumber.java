@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class ComplexNumber {
 
+    public static double EPSILON = 0.000001;
+
     private double real;
     private double imaginary;
 
@@ -42,13 +44,16 @@ public class ComplexNumber {
                 real * other.imaginary + imaginary * other.real);
     }
 
+    public ComplexNumber conjugate() {
+        return new ComplexNumber(real, -imaginary);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ComplexNumber that = (ComplexNumber) o;
-        return Double.compare(that.real, real) == 0 &&
-                Double.compare(that.imaginary, imaginary) == 0;
+        return Math.abs(that.real - real) < EPSILON && Math.abs(that.imaginary - imaginary) < EPSILON;
     }
 
     @Override

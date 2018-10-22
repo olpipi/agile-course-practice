@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class ComplexNumberTest {
 
-    private final double EPSILON = 0.000001;
+    private final double EPSILON = ComplexNumber.EPSILON;
 
     @Test
     public void canCreateComplexNumberWithInitialValues() {
@@ -159,6 +159,33 @@ public class ComplexNumberTest {
         ComplexNumber z3 = z1.multiply(z2);
 
         assertEquals(new ComplexNumber(0.0, 0.0), z3);
+    }
+
+    @Test
+    public void canConjugateComplexNumberWithPositiveValues() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
+
+        ComplexNumber z2 = z1.conjugate();
+
+        assertEquals(new ComplexNumber(1.0, -2.0), z2);
+    }
+
+    @Test
+    public void canConjugateComplexNumberWithNegativeValues() {
+        ComplexNumber z1 = new ComplexNumber(-1.0, -2.0);
+
+        ComplexNumber z2 = z1.conjugate();
+
+        assertEquals(new ComplexNumber(-1.0, 2.0), z2);
+    }
+
+    @Test
+    public void canConjugateComplexNumberZeroValues() {
+        ComplexNumber z1 = new ComplexNumber(0.0, 0.0);
+
+        ComplexNumber z2 = z1.conjugate();
+
+        assertEquals(new ComplexNumber(0.0, 0.0), z2);
     }
 
 }
