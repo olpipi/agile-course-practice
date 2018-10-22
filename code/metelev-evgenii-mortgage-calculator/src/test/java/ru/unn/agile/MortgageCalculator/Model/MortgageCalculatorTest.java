@@ -71,5 +71,11 @@ public class MortgageCalculatorTest {
         myMortgageCalculator.setInitialPayment(-10000);
         assertEquals(-1,myMortgageCalculator.getInitialPayment(),epsilon);
     }
-
+    @Test
+    public void checkInitialPaymentIsMoreThenFullCost() {
+        MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+        myMortgageCalculator.setFullCostOfApartment(100000);
+        myMortgageCalculator.setInitialPayment(100001);
+        assertEquals(-1,myMortgageCalculator.getInitialPayment(),epsilon);
+    }
 }

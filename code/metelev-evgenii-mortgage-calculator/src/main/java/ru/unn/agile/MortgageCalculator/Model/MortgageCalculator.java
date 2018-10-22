@@ -34,7 +34,8 @@ public class MortgageCalculator {
     }
 
     public void setInitialPayment(double firstPayment) {
-        if (firstPayment>=0)
+        if (fullCostOfApartment<=0) setFullCostOfApartment(firstPayment+1);
+        if (firstPayment>=0 && firstPayment<=fullCostOfApartment)
             initialPayment = firstPayment;
         else
             initialPayment = -1;
