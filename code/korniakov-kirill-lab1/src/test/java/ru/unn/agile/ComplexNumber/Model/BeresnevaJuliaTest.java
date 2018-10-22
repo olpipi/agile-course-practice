@@ -6,12 +6,12 @@ import static org.junit.Assert.*;
 public class BeresnevaJuliaTest {
     @Test
     public void canAddComplexNumbers() {
-        ComplexNumber z1 = new ComplexNumber(1, -1);
+        ComplexNumber z1 = new ComplexNumber(2, -1);
         ComplexNumber z2 = new ComplexNumber(-1, 1);
 
         ComplexNumber z = z1.add(z2);
 
-        assertEquals(new ComplexNumber(0, 0), z);
+        assertEquals(new ComplexNumber(1, 0), z);
     }
 
     @Test
