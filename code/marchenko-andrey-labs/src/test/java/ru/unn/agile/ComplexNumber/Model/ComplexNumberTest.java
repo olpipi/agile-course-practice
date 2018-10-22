@@ -46,4 +46,29 @@ public class ComplexNumberTest {
 
         assertEquals(2.35, number.getImaginary(), EPSILON);
     }
+
+    @Test
+    public void areEqualComplexNumbersEqual() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
+        ComplexNumber z2 = new ComplexNumber(1.0, 2.0);
+
+        assertEquals(z1, z2);
+    }
+
+    @Test
+    public void areComplexNumbersWithDifferentRealValueNotEqual() {
+        ComplexNumber z1 = new ComplexNumber(2.0, 2.0);
+        ComplexNumber z2 = new ComplexNumber(1.0, 2.0);
+
+        assertNotEquals(z1,z2);
+    }
+
+    @Test
+    public void areComplexNumbersWithDifferentImaginaryValueNotEqual() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
+        ComplexNumber z2 = new ComplexNumber(1.0, 1.0);
+
+        assertNotEquals(z1,z2);
+    }
+
 }

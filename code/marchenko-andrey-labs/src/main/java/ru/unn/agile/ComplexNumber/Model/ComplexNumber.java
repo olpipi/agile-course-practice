@@ -1,5 +1,7 @@
 package ru.unn.agile.ComplexNumber.Model;
 
+import java.util.Objects;
+
 public class ComplexNumber {
 
     private double real;
@@ -24,5 +26,20 @@ public class ComplexNumber {
 
     public void setImaginary(double imaginary) {
         this.imaginary = imaginary;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ComplexNumber that = (ComplexNumber) o;
+        return Double.compare(that.real, real) == 0 &&
+                Double.compare(that.imaginary, imaginary) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(real, imaginary);
     }
 }
