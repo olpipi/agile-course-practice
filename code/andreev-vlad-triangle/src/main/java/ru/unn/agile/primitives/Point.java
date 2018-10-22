@@ -29,7 +29,7 @@ public class Point {
         this.y = y;
     }
 
-    public Point minus(final Point point) {
+    public Point subtract(final Point point) {
         Point result = new Point();
 
         result.setX(this.getX() - point.getX());

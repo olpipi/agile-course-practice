@@ -14,7 +14,7 @@ public class LineImpl implements Line {
 
     @Override
     public double getLength() {
-        Point point = point2.minus(point1);
+        Point point = point2.subtract(point1);
         return sqrt(pow(point.getY(), 2)
                 + pow(point.getX(), 2));
     }
