@@ -14,7 +14,7 @@ public class TrianglePerimeterAndSquareTest {
         Point point2 = new Point(3.0, 0.0);
         Point point3 = new Point(3.0, 4.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(12, triangle.getPerimeter(), delta);
     }
@@ -25,7 +25,7 @@ public class TrianglePerimeterAndSquareTest {
         Point point2 = new Point(5.0, 0.0);
         Point point3 = new Point(5.0, 12.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(30, triangle.getPerimeter(), delta);
     }
@@ -37,7 +37,7 @@ public class TrianglePerimeterAndSquareTest {
         Point point2 = new Point(3.0, 0.0);
         Point point3 = new Point(3.0, 4.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(6, triangle.getSquare(), delta);
     }
@@ -48,7 +48,7 @@ public class TrianglePerimeterAndSquareTest {
         Point point2 = new Point(8.0, 0.0);
         Point point3 = new Point(8.0, 15.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(60, triangle.getSquare(), delta);
     }
@@ -59,7 +59,7 @@ public class TrianglePerimeterAndSquareTest {
         Point point2 = new Point(0.0, 0.0);
         Point point3 = new Point(4.0, 0.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(6, triangle.getSquare(), delta);
     }

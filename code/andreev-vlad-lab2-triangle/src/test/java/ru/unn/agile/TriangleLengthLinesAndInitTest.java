@@ -13,7 +13,7 @@ public class TriangleLengthLinesAndInitTest {
         Point point1 = new Point(0.0, 0.0);
         Point point2 = new Point(1.0, 0.0);
         Point point3 = new Point(0.0, 1.0);
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(1.0, triangle.getLengthA(), delta);
     }
@@ -23,7 +23,7 @@ public class TriangleLengthLinesAndInitTest {
         Point point1 = new Point(0.0, 0.0);
         Point point2 = new Point(3.0, 4.0);
         Point point3 = new Point(0.0, 1.0);
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(5.0, triangle.getLengthA(), delta);
     }
@@ -33,7 +33,7 @@ public class TriangleLengthLinesAndInitTest {
         Point point1 = new Point(-1.0, 0.0);
         Point point2 = new Point(2.0, 4.0);
         Point point3 = new Point(0.0, 1.0);
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(5.0, triangle.getLengthA(), delta);
     }
@@ -44,7 +44,7 @@ public class TriangleLengthLinesAndInitTest {
         Point point2 = new Point(3.0, 4.0);
         Point point3 = new Point(6.0, 0.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(5.0, triangle.getLengthA(), delta);
     }
@@ -55,7 +55,7 @@ public class TriangleLengthLinesAndInitTest {
         Point point2 = new Point(0.0, 0.0);
         Point point3 = new Point(6.0, 0.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(5.0, triangle.getLengthA(), delta);
     }
@@ -66,7 +66,7 @@ public class TriangleLengthLinesAndInitTest {
         Point point2 = new Point(1.0, 1.0);
         Point point3 = new Point(2.0, 2.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(5.0, triangle.getLengthA(), delta);
     }
@@ -77,7 +77,7 @@ public class TriangleLengthLinesAndInitTest {
         Point point2 = new Point(1.0, 0.0);
         Point point3 = new Point(2.0, 0.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(5.0, triangle.getLengthA(), delta);
     }
@@ -88,7 +88,7 @@ public class TriangleLengthLinesAndInitTest {
         Point point2 = new Point(1.0, 0.0);
         Point point3 = new Point(2.0, 0.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(5.0, triangle.getLengthA(), delta);
     }
@@ -98,7 +98,7 @@ public class TriangleLengthLinesAndInitTest {
         Point point1 = new Point(0.0, 0.0);
         Point point2 = new Point(3.0, 0.0);
         Point point3 = new Point(0.0, 4.0);
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(5.0, triangle.getLengthB(), delta);
     }
@@ -108,7 +108,7 @@ public class TriangleLengthLinesAndInitTest {
         Point point1 = new Point(0.0, 0.0);
         Point point2 = new Point(3.0, 0.0);
         Point point3 = new Point(3.0, 4.0);
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(5.0, triangle.getLengthC(), delta);
     }

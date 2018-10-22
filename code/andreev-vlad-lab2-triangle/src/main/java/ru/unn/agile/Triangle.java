@@ -6,14 +6,14 @@ import ru.unn.agile.primitives.Point;
 
 import static java.lang.Math.*;
 
-public class Triangele {
+public class Triangle {
     private Line a;
     private Line b;
     private Line c;
 
-    public Triangele(final Point point1,
-                     final Point point2,
-                     final Point point3) {
+    public Triangle(final Point point1,
+                    final Point point2,
+                    final Point point3) {
         if (!validate(point1, point2, point3)) {
             throw new IllegalArgumentException();
         }

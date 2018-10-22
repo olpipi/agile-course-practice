@@ -13,7 +13,7 @@ public class TriangleAnglesTest {
         Point point1 = new Point(0.0, 0.0);
         Point point2 = new Point(4.0, 0.0);
         Point point3 = new Point(4.0, 3.0);
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(1.57, triangle.getAngleAB(), delta);
     }
@@ -23,7 +23,7 @@ public class TriangleAnglesTest {
         Point point1 = new Point(0.0, 4.0);
         Point point2 = new Point(0.0, 0.0);
         Point point3 = new Point(3.0, 4.0);
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(0.643, triangle.getAngleAB(), delta);
     }
@@ -34,7 +34,7 @@ public class TriangleAnglesTest {
         Point point2 = new Point(3.0, 4.0);
         Point point3 = new Point(6.0, 0.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(1.287, triangle.getAngleAB(), delta);
     }
@@ -45,7 +45,7 @@ public class TriangleAnglesTest {
         Point point2 = new Point(0.0, 0.0);
         Point point3 = new Point(6.0, 0.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(0.927, triangle.getAngleAB(), delta);
     }
@@ -56,7 +56,7 @@ public class TriangleAnglesTest {
         Point point2 = new Point(1.0, -1.0);
         Point point3 = new Point(-4.0, -3.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(2.331, triangle.getAngleAB(), delta);
     }
@@ -67,7 +67,7 @@ public class TriangleAnglesTest {
         Point point2 = new Point(3.0, 4.0);
         Point point3 = new Point(1.0, -1.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(2.331, triangle.getAngleBC(), delta);
     }
@@ -78,7 +78,7 @@ public class TriangleAnglesTest {
         Point point2 = new Point(-4.0, -3.0);
         Point point3 = new Point(3.0, 4.0);
 
-        Triangele triangle = new Triangele(point1, point2, point3);
+        Triangle triangle = new Triangle(point1, point2, point3);
 
         assertEquals(2.331, triangle.getAngleCA(), delta);
     }
