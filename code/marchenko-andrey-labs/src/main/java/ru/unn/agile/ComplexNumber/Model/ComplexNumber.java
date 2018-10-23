@@ -74,6 +74,12 @@ public class ComplexNumber {
                 Math.exp(real) * Math.sin(imaginary));
     }
 
+    public ComplexNumber sin() {
+        return new ComplexNumber(
+                Math.sin(real) * Math.cosh(imaginary),
+                Math.cos(real) * Math.sinh(imaginary));
+    }
+
     @Override
     public String toString() {
         return "ComplexNumber{" +

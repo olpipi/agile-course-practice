@@ -317,4 +317,31 @@ public class ComplexNumberTest {
 
         assertEquals(new ComplexNumber(1.0,0.0), z2);
     }
+
+    @Test
+    public void canCalculateSinForComplexNumberWithPositiveValues() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
+
+        ComplexNumber z2 = z1.sin();
+
+        assertEquals(new ComplexNumber(3.1657785,1.959601), z2);
+    }
+
+    @Test
+    public void canCalculateSinForComplexNumberWithNegativeValues() {
+        ComplexNumber z1 = new ComplexNumber(-1.0, -2.0);
+
+        ComplexNumber z2 = z1.sin();
+
+        assertEquals(new ComplexNumber(-3.1657785,-1.959601), z2);
+    }
+
+    @Test
+    public void canCalculateSinForComplexNumberWithZeroValues() {
+        ComplexNumber z1 = new ComplexNumber(0.0, 0.0);
+
+        ComplexNumber z2 = z1.sin();
+
+        assertEquals(new ComplexNumber(0.0,0.0), z2);
+    }
 }
