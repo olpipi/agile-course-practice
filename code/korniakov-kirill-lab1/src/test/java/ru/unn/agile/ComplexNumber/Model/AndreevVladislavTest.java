@@ -4,9 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Andreev Vladislav on 19.10.2018.
- */
+
 public class AndreevVladislavTest {
     @Test
     public void canAddComplexNumbers() {
