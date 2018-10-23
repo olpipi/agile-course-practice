@@ -86,12 +86,16 @@ public class ComplexNumber {
                 -Math.sin(real) * Math.sinh(imaginary));
     }
 
+    public ComplexNumber tan() {
+        return sin().divide(cos());
+    }
+
     @Override
     public String toString() {
-        return "ComplexNumber{" +
-                "real=" + real +
-                ", imaginary=" + imaginary +
-                '}';
+        return "ComplexNumber{"
+                + "real=" + real
+                + ", imaginary=" + imaginary
+                + '}';
     }
 
     @Override

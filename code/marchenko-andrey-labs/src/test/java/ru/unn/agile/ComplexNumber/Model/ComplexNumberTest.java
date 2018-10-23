@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class ComplexNumberTest {
 
-    private final double EPSILON = ComplexNumber.EPSILON;
+    private static final double EPSILON = ComplexNumber.EPSILON;
 
     @Test
     public void canCreateComplexNumberWithInitialValues() {
@@ -60,7 +60,7 @@ public class ComplexNumberTest {
         ComplexNumber z1 = new ComplexNumber(2.0, 2.0);
         ComplexNumber z2 = new ComplexNumber(1.0, 2.0);
 
-        assertNotEquals(z1,z2);
+        assertNotEquals(z1, z2);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class ComplexNumberTest {
         ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
         ComplexNumber z2 = new ComplexNumber(1.0, 1.0);
 
-        assertNotEquals(z1,z2);
+        assertNotEquals(z1, z2);
     }
 
     @Test
@@ -215,7 +215,7 @@ public class ComplexNumberTest {
         assertEquals(0.0, magnitude, EPSILON);
     }
 
-    @Test(expected=ArithmeticException.class)
+    @Test(expected = ArithmeticException.class)
     public void canDivideComplexNumberByZero() {
         ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
         ComplexNumber z2 = new ComplexNumber(0.0, 0.0);
@@ -279,7 +279,7 @@ public class ComplexNumberTest {
 
     @Test
     public void canConvertToStringComplexNumberWithNegativeValues() {
-        ComplexNumber z1 = new ComplexNumber(1.0,  -1.0);
+        ComplexNumber z1 = new ComplexNumber(1.0, -1.0);
 
         assertEquals("ComplexNumber{real=1.0, imaginary=-1.0}", z1.toString());
     }
@@ -297,7 +297,7 @@ public class ComplexNumberTest {
 
         ComplexNumber z2 = z1.exp();
 
-        assertEquals(new ComplexNumber(-1.1312043,2.4717267), z2);
+        assertEquals(new ComplexNumber(-1.1312043, 2.4717267), z2);
     }
 
     @Test
@@ -306,7 +306,7 @@ public class ComplexNumberTest {
 
         ComplexNumber z2 = z1.exp();
 
-        assertEquals(new ComplexNumber(-0.1530918,-0.3345118), z2);
+        assertEquals(new ComplexNumber(-0.1530918, -0.3345118), z2);
     }
 
     @Test
@@ -315,7 +315,7 @@ public class ComplexNumberTest {
 
         ComplexNumber z2 = z1.exp();
 
-        assertEquals(new ComplexNumber(1.0,0.0), z2);
+        assertEquals(new ComplexNumber(1.0, 0.0), z2);
     }
 
     @Test
@@ -324,7 +324,7 @@ public class ComplexNumberTest {
 
         ComplexNumber z2 = z1.sin();
 
-        assertEquals(new ComplexNumber(3.1657785,1.959601), z2);
+        assertEquals(new ComplexNumber(3.1657785, 1.959601), z2);
     }
 
     @Test
@@ -333,7 +333,7 @@ public class ComplexNumberTest {
 
         ComplexNumber z2 = z1.sin();
 
-        assertEquals(new ComplexNumber(-3.1657785,-1.959601), z2);
+        assertEquals(new ComplexNumber(-3.1657785, -1.959601), z2);
     }
 
     @Test
@@ -342,7 +342,7 @@ public class ComplexNumberTest {
 
         ComplexNumber z2 = z1.sin();
 
-        assertEquals(new ComplexNumber(0.0,0.0), z2);
+        assertEquals(new ComplexNumber(0.0, 0.0), z2);
     }
 
     @Test
@@ -351,7 +351,7 @@ public class ComplexNumberTest {
 
         ComplexNumber z2 = z1.cos();
 
-        assertEquals(new ComplexNumber(2.032723,-3.0518977), z2);
+        assertEquals(new ComplexNumber(2.032723, -3.0518977), z2);
     }
 
     @Test
@@ -360,7 +360,7 @@ public class ComplexNumberTest {
 
         ComplexNumber z2 = z1.cos();
 
-        assertEquals(new ComplexNumber(2.032723,-3.0518977), z2);
+        assertEquals(new ComplexNumber(2.032723, -3.0518977), z2);
     }
 
     @Test
@@ -369,6 +369,33 @@ public class ComplexNumberTest {
 
         ComplexNumber z2 = z1.cos();
 
-        assertEquals(new ComplexNumber(1.0,0.0), z2);
+        assertEquals(new ComplexNumber(1.0, 0.0), z2);
+    }
+
+    @Test
+    public void canCalculateTanForComplexNumberWithPositiveValues() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
+
+        ComplexNumber z2 = z1.tan();
+
+        assertEquals(new ComplexNumber(0.0338128, 1.0147936), z2);
+    }
+
+    @Test
+    public void canCalculateTanForComplexNumberWithNegativeValues() {
+        ComplexNumber z1 = new ComplexNumber(-1.0, -2.0);
+
+        ComplexNumber z2 = z1.tan();
+
+        assertEquals(new ComplexNumber(-0.0338128, -1.0147936), z2);
+    }
+
+    @Test
+    public void canCalculateTanForComplexNumberWithZeroValues() {
+        ComplexNumber z1 = new ComplexNumber(0.0, 0.0);
+
+        ComplexNumber z2 = z1.tan();
+
+        assertEquals(new ComplexNumber(0.0, 0.0), z2);
     }
 }
