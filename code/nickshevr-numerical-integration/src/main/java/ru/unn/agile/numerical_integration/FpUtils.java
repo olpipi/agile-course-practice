@@ -2,7 +2,7 @@ package ru.unn.agile.numerical_integration;
 
 public final class FpUtils {
     private FpUtils() {
-        throw new AssertionError("Don't make instance");
+        throw new AssertionError("It's static util");
     };
 
     public static double recursionSum(

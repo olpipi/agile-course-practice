@@ -4,10 +4,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Modifier;
-
 public class BaseDefinitionTest {
     private final double delta = 0.001;
     private Expression cube = x -> Math.pow(x, 3);
@@ -16,36 +12,24 @@ public class BaseDefinitionTest {
 
     @Test
     public void shouldBeFinal() {
-        assertTrue("BaseDefinition should be final", Modifier.isFinal(mainClass.getModifiers()));
+        UtilityClassTest.testForFinal(mainClass);
     }
 
     @Test
     public void shouldHaveOneConstructor() {
-        assertEquals("There must be only one constructor", 1,
-                mainClass.getDeclaredConstructors().length);
+        UtilityClassTest.shouldHaveOneConstructor(mainClass);
     }
 
     @Test
-    public void constructorShouldBePrivate() throws IllegalArgumentException, NoSuchMethodException {
-        final Constructor<?> constructor = mainClass.getDeclaredConstructor();
-
-        if (!Modifier.isPrivate(constructor.getModifiers())) {
-            fail("constructor is not private");
-        }
+    public void constructorShouldBePrivate()
+            throws IllegalArgumentException, NoSuchMethodException {
+        UtilityClassTest.constructorShouldBePrivate(mainClass);
     }
 
-    @Test(expected = AssertionError.class)
-    public void constructorShouldThrowError() throws IllegalArgumentException, NoSuchMethodException {
-        final Constructor<?> constructor = mainClass.getDeclaredConstructor();
-
-        constructor.setAccessible(true);
-        try {
-            constructor.newInstance();
-        } catch (Exception e) {
-            assertEquals(e.getMessage(), defaultMessage);
-        }
-
-        constructor.setAccessible(false);
+    @Test
+    public void constructorShouldThrowError()
+            throws IllegalArgumentException, NoSuchMethodException {
+        UtilityClassTest.constructWithExeption(mainClass, defaultMessage);
     }
 
     @Test
@@ -62,7 +46,7 @@ public class BaseDefinitionTest {
         assertEquals(result, 0, delta);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void dxIsNegative() {
         BaseDefinition.calculate(cube, 0, 1, -0.01);
     }
