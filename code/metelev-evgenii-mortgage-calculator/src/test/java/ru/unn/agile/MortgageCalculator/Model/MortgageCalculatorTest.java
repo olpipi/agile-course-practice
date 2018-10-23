@@ -4,9 +4,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 public class MortgageCalculatorTest {
 
-    final double epsilon = 0.000000001;
-    final double isNotCorrectNum = -1;
-    final String isNotCorrect = "NotCorrect";
+    final private double epsilon = 0.1;
+    final private double isNotCorrectNum = -1;
+    final private String isNotCorrect = "NotCorrect";
     @Test
     public void checkTypeOfPaymentIsAnnuity() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
@@ -116,5 +116,37 @@ public class MortgageCalculatorTest {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
         myMortgageCalculator.setDateOfMortgage(-10);
         assertEquals(-1,myMortgageCalculator.getDateOfMortgage());
+    }
+    @Test
+    public void checkInterestRate() {
+        MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+        myMortgageCalculator.setInterestRate(50.0);
+        assertEquals(50.0,myMortgageCalculator.getInterestRate(),epsilon);
+    }
+    @Test
+    public void checkInterestRateIsNegative() {
+        MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+        myMortgageCalculator.setInterestRate(-50.0);
+        assertEquals(isNotCorrectNum,myMortgageCalculator.getInterestRate(),epsilon);
+    }
+    @Test
+    public void checkPrincipalDebt() {
+        MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+        myMortgageCalculator.setTypeOfPayment("Differentiated");
+        myMortgageCalculator.setFullCostOfApartment(1000);
+        myMortgageCalculator.setInitialPayment(0);
+        myMortgageCalculator.setTypeOfDate("Months");
+        myMortgageCalculator.setDateOfMortgage(12);
+        assertEquals(83.3,myMortgageCalculator.getPrincipalDebt(),epsilon);
+    }
+    @Test
+    public void checkPrincipalDebtIsNotCorrect() {
+        MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+        myMortgageCalculator.setTypeOfPayment("Differentiated");
+        myMortgageCalculator.setFullCostOfApartment(0);
+        myMortgageCalculator.setInitialPayment(0);
+        myMortgageCalculator.setTypeOfDate("Months");
+        myMortgageCalculator.setDateOfMortgage(-5);
+        assertEquals(-1,myMortgageCalculator.getPrincipalDebt(),epsilon);
     }
 }

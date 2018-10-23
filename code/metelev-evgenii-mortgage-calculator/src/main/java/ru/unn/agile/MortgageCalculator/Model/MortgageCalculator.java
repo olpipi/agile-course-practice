@@ -6,6 +6,7 @@ public class MortgageCalculator {
     private double fullCostOfApartment;
     private double initialPayment;
     private int dateOfMortgage;
+    private double interestRate;
     public void setTypeOfPayment(String AnnuityOrDifferentiated) {
         switch (AnnuityOrDifferentiated){
             case "Annuity":
@@ -66,5 +67,19 @@ public class MortgageCalculator {
 
     public int getDateOfMortgage() {
         return dateOfMortgage;
+    }
+
+    public void setInterestRate(double procent) {
+        interestRate = -1;
+        if (procent>=0 && procent<=100)
+            interestRate = procent;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public double getPrincipalDebt() {
+        return fullCostOfApartment/dateOfMortgage;
     }
 }
