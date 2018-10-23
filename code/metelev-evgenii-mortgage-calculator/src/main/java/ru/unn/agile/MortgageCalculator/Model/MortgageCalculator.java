@@ -2,8 +2,10 @@ package ru.unn.agile.MortgageCalculator.Model;
 
 public class MortgageCalculator {
     private String typeOfPayment;
+    private String typeOfDate;
     private double fullCostOfApartment;
     private double initialPayment;
+    private int dateOfMortgage;
     public void setTypeOfPayment(String AnnuityOrDifferentiated) {
         switch (AnnuityOrDifferentiated){
             case "Annuity":
@@ -43,5 +45,26 @@ public class MortgageCalculator {
 
     public double getInitialPayment() {
         return initialPayment;
+    }
+
+    public void setTypeOfDate(String yearsOrMonths) {
+        typeOfDate = "NotCorrect";
+        if (yearsOrMonths == "Years" || yearsOrMonths == "Months")
+            typeOfDate = yearsOrMonths;
+    }
+
+    public String getTypeOfDate() {
+        return typeOfDate;
+    }
+
+    public void setDateOfMortgage(int date) {
+        if (date>0)
+            dateOfMortgage = date;
+        else
+            dateOfMortgage = -1;
+    }
+
+    public int getDateOfMortgage() {
+        return dateOfMortgage;
     }
 }
