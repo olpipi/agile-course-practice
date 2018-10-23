@@ -1,4 +1,4 @@
-package ru.unn.agile.ArraySorter.Model;
+package ru.unn.agile.arraysorter.model;
 
 import java.util.Arrays;
 

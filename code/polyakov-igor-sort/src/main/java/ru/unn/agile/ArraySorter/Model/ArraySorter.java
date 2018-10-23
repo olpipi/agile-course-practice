@@ -1,4 +1,4 @@
-package ru.unn.agile.ArraySorter.Model;
+package ru.unn.agile.arraysorter.model;
 
 public final class ArraySorter {
     public static <T extends Comparable<T>>
