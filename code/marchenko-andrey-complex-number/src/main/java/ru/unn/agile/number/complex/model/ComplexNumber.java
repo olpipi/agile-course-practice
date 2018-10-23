@@ -103,12 +103,13 @@ public class ComplexNumber {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+        if (o instanceof ComplexNumber) {
+            ComplexNumber that = (ComplexNumber) o;
+
+            return Math.abs(that.real - real) < EPSILON
+                    && Math.abs(that.imaginary - imaginary) < EPSILON;
         }
-        ComplexNumber that = (ComplexNumber) o;
-        return Math.abs(that.real - real) < EPSILON
-                && Math.abs(that.imaginary - imaginary) < EPSILON;
+        return false;
     }
 
     @Override

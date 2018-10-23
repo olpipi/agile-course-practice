@@ -6,9 +6,9 @@ project(":code/bevzuk-anton").name = "bevzuk-anton-Model"
 include "code/korniakov-kirill-lab1"
 project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
 
-// Marchenko Andrey, complex-number-labs
-include "code/marchenko-andrey-labs"
-project(":code/marchenko-andrey-labs").name = "marchenko-andrey-labs-model"
+// Marchenko Andrey, complex-number
+include "code/marchenko-andrey-complex-number"
+project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-complex-number"
 
 // Korniakov Kirill, lab2-legacy
 include "code/korniakov-kirill-lab2-legacy/Model"

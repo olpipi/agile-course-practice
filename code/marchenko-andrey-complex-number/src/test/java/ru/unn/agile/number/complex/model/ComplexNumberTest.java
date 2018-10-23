@@ -56,6 +56,35 @@ public class ComplexNumberTest {
     }
 
     @Test
+    public void isComplexNumberEqualToItSelf() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
+
+        assertEquals(z1, z1);
+    }
+
+    @Test
+    public void isNullEqualToComplexNumber() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
+
+        assertNotEquals(null, z1);
+    }
+
+    @Test
+    public void isObjectEqualToComplexNumber() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
+
+        assertNotEquals(new Object(), z1);
+    }
+
+    @Test
+    public void doSameComplexNumberHaveSameHashCode() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
+        ComplexNumber z2 = new ComplexNumber(1.0, 2.0);
+
+        assertEquals(z1.hashCode(), z2.hashCode());
+    }
+
+    @Test
     public void areComplexNumbersWithDifferentRealValueNotEqual() {
         ComplexNumber z1 = new ComplexNumber(2.0, 2.0);
         ComplexNumber z2 = new ComplexNumber(1.0, 2.0);
