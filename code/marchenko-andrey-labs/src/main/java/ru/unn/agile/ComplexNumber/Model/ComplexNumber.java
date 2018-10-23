@@ -80,6 +80,12 @@ public class ComplexNumber {
                 Math.cos(real) * Math.sinh(imaginary));
     }
 
+    public ComplexNumber cos() {
+        return new ComplexNumber(
+                Math.cos(real) * Math.cosh(imaginary),
+                -Math.sin(real) * Math.sinh(imaginary));
+    }
+
     @Override
     public String toString() {
         return "ComplexNumber{" +

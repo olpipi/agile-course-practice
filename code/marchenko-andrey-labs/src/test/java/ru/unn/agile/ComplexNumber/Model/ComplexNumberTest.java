@@ -344,4 +344,31 @@ public class ComplexNumberTest {
 
         assertEquals(new ComplexNumber(0.0,0.0), z2);
     }
+
+    @Test
+    public void canCalculateCosForComplexNumberWithPositiveValues() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
+
+        ComplexNumber z2 = z1.cos();
+
+        assertEquals(new ComplexNumber(2.032723,-3.0518977), z2);
+    }
+
+    @Test
+    public void canCalculateCosForComplexNumberWithNegativeValues() {
+        ComplexNumber z1 = new ComplexNumber(-1.0, -2.0);
+
+        ComplexNumber z2 = z1.cos();
+
+        assertEquals(new ComplexNumber(2.032723,-3.0518977), z2);
+    }
+
+    @Test
+    public void canCalculateCosForComplexNumberWithZeroValues() {
+        ComplexNumber z1 = new ComplexNumber(0.0, 0.0);
+
+        ComplexNumber z2 = z1.cos();
+
+        assertEquals(new ComplexNumber(1.0,0.0), z2);
+    }
 }
