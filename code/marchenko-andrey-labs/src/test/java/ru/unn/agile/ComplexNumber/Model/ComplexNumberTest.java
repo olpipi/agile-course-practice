@@ -290,4 +290,31 @@ public class ComplexNumberTest {
 
         assertEquals("ComplexNumber{real=0.0, imaginary=0.0}", z1.toString());
     }
+
+    @Test
+    public void canCalculateExpForComplexNumberWithPositiveValues() {
+        ComplexNumber z1 = new ComplexNumber(1.0, 2.0);
+
+        ComplexNumber z2 = z1.exp();
+
+        assertEquals(new ComplexNumber(-1.1312043,2.4717267), z2);
+    }
+
+    @Test
+    public void canCalculateExpForComplexNumberWithNegativeValues() {
+        ComplexNumber z1 = new ComplexNumber(-1.0, -2.0);
+
+        ComplexNumber z2 = z1.exp();
+
+        assertEquals(new ComplexNumber(-0.1530918,-0.3345118), z2);
+    }
+
+    @Test
+    public void canCalculateExpForComplexNumberWithZeroValues() {
+        ComplexNumber z1 = new ComplexNumber(0.0, 0.0);
+
+        ComplexNumber z2 = z1.exp();
+
+        assertEquals(new ComplexNumber(1.0,0.0), z2);
+    }
 }

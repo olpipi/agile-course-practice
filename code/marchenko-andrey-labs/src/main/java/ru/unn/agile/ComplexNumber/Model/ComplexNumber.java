@@ -68,6 +68,12 @@ public class ComplexNumber {
                 temp.imaginary / denominator);
     }
 
+    public ComplexNumber exp() {
+        return new ComplexNumber(
+                Math.exp(real) * Math.cos(imaginary),
+                Math.exp(real) * Math.sin(imaginary));
+    }
+
     @Override
     public String toString() {
         return "ComplexNumber{" +
