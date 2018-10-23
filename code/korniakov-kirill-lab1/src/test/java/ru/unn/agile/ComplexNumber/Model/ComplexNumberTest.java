@@ -33,7 +33,7 @@ public class ComplexNumberTest {
     @Test
     public void areEqualNumbersEqual() {
         ComplexNumber z1 = new ComplexNumber(3.14, 2.73);
-        ComplexNumber z2 = new ComplexNumber(3.14, 2.73);
+        ComplexNumber z2 = new ComplexNumber(3.14, 2.5);
         assertTrue(z1.equals(z2));
     }
 
