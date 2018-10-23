@@ -20,6 +20,7 @@ public class KryukovaPolinaTest {
         assertEquals(new ComplexNumber(1, 1), z);
     }
 
+	@Test
     public void canGetRealComplexNumbers() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(2.0, 1.0);
@@ -31,6 +32,7 @@ public class KryukovaPolinaTest {
         assertEquals(2.0, re, delta);
     }
 
+	@Test
     public void canMultiplyComplexNumbers() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(1, 2);
@@ -43,6 +45,7 @@ public class KryukovaPolinaTest {
         assertEquals(new ComplexNumber(-5, 10), z);
     }
 
+	@Test
     public void canEqualsComplexNumbers() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(1, 2);
