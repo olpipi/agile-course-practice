@@ -2,13 +2,21 @@
 include "code/bevzuk-anton"
 project(":code/bevzuk-anton").name = "bevzuk-anton-Model"
 
+// Pozdiaev Valerii
+include "code/pozdiaev-valerii-currency-converter"
+project(":code/pozdiaev-valerii-currency-converter").name = "pozdiaev-valerii-currency-converter"
+
 // Korniakov Kirill, lab1
 include "code/korniakov-kirill-lab1"
 project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
 
-// Marchenko Andrey, complex-number
+// Marchenko Andrey
 include "code/marchenko-andrey-complex-number"
 project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-complex-number"
+
+// Andreev Vladilsav
+include "code/andreev-vlad-triangle"
+project(":code/andreev-vlad-triangle").name = "andreev-vlad-triangle-Model"
 
 // Korniakov Kirill, lab2-legacy
 include "code/korniakov-kirill-lab2-legacy/Model"
@@ -45,3 +53,11 @@ include "code/korniakov-kirill-lab3/View"
 project(":code/korniakov-kirill-lab3/View").name = "korniakov-kirill-lab3-View"
 include "code/korniakov-kirill-lab3/Infrastructure"
 project(":code/korniakov-kirill-lab3/Infrastructure").name = "korniakov-kirill-lab3-Infrastructure"
+
+// Polyakov Igor, sort
+include "code/polyakov-igor-sort"
+project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
+
+// Rumyantsev Alexander, Vector3D
+include "code/rumyantsev-alexander-vector3d"
+project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vector3d"
