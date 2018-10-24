@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class IvanovaOlgaTest {
 
     @Test
-    public void canAddComplexNumber() {
+    public void canAddComplexNumbers() {
         ComplexNumber complexNumber1 = new ComplexNumber(3, 3);
         ComplexNumber complexNumber2 = new ComplexNumber(2, 2);
 
@@ -17,7 +17,7 @@ public class IvanovaOlgaTest {
     }
 
     @Test
-    public void canMultiplyComplexNumber() {
+    public void canMultiplyComplexNumbers() {
         ComplexNumber complexNumber1 = new ComplexNumber(3, 3);
         ComplexNumber complexNumber2 = new ComplexNumber(2, 3);
 
@@ -27,7 +27,7 @@ public class IvanovaOlgaTest {
     }
 
     @Test
-    public void canAddZeroNumbers() {
+    public void canAddZeroAndComplexNumber() {
         ComplexNumber complexNumber1 = new ComplexNumber(5, 5);
         ComplexNumber complexNumber2 = new ComplexNumber(0, 0);
 
@@ -37,7 +37,7 @@ public class IvanovaOlgaTest {
     }
 
     @Test
-    public void canMultiplyZeroNumbers() {
+    public void canMultiplyZeroAndComplexNumber() {
         ComplexNumber complexNumber1 = new ComplexNumber(5, 5);
         ComplexNumber complexNumber2 = new ComplexNumber(0, 0);
 
