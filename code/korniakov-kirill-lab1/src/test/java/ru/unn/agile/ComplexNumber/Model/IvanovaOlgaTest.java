@@ -36,4 +36,14 @@ public class IvanovaOlgaTest {
         assertEquals(new ComplexNumber(5, 5), complexNumber3);
     }
 
+    @Test
+    public void canMultiplyZeroNumbers() {
+        ComplexNumber complexNumber1 = new ComplexNumber(5, 5);
+        ComplexNumber complexNumber2 = new ComplexNumber(0, 0);
+
+        ComplexNumber complexNumber3 = complexNumber1.multiply(complexNumber2);
+
+        assertEquals(new ComplexNumber(0, 0), complexNumber3);
+    }
+
 }
