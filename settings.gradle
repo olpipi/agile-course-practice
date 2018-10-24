@@ -10,6 +10,10 @@ project(":code/pozdiaev-valerii-currency-converter").name = "pozdiaev-valerii-cu
 include "code/korniakov-kirill-lab1"
 project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
 
+// Andreev Vladilsav
+include "code/andreev-vlad-triangle"
+project(":code/andreev-vlad-triangle").name = "andreev-vlad-triangle-Model"
+
 // Korniakov Kirill, lab2-legacy
 include "code/korniakov-kirill-lab2-legacy/Model"
 project(":code/korniakov-kirill-lab2-legacy/Model").name = "korniakov-kirill-lab2-Model-legacy"
