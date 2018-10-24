@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 public class OsechkinSergeyTest {
     @Test
-    public void canAddComplexNumbers_1() {
+    public void canAddComplexNumbers1() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(1, 1);
         ComplexNumber z2 = new ComplexNumber(1, 1);
@@ -54,7 +54,7 @@ public class OsechkinSergeyTest {
     }
 
     @Test
-    public void canAddComplexNumbers_2() {
+    public void canAddComplexNumbers2() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(0, 0);
         ComplexNumber z2 = new ComplexNumber(0, 0);
