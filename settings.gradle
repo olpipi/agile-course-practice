@@ -41,3 +41,7 @@ include "code/korniakov-kirill-lab3/View"
 project(":code/korniakov-kirill-lab3/View").name = "korniakov-kirill-lab3-View"
 include "code/korniakov-kirill-lab3/Infrastructure"
 project(":code/korniakov-kirill-lab3/Infrastructure").name = "korniakov-kirill-lab3-Infrastructure"
+
+// Beresneva Julia
+include "code/lcd-digits"
+project(":code/lcd-digits").name = "lcd-digits-Model"
