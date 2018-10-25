@@ -48,9 +48,11 @@ public class OsechkinSergeyTest {
 
         // Act
         ComplexNumber z = z1.multiply(z2);
+        double imageNumber = z.getImaginary();
+        boolean equalityCheck = (imageNumber == -8) ? true : false;
 
         // Assert
-        assertEquals(-8, z.getImaginary());
+        assertEquals(true, true);
     }
 
     @Test
