@@ -19,7 +19,7 @@ public class OsechkinSergeyTest {
     }
 
     @Test
-    public void canZeroComplexNumber() {
+    public void canAddComplexNumberWhereResultZeroComplex() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(-1, -1);
         ComplexNumber z2 = new ComplexNumber(1, 1);
@@ -48,15 +48,13 @@ public class OsechkinSergeyTest {
 
         // Act
         ComplexNumber z = z1.multiply(z2);
-        double imageNumber = z.getImaginary();
-        boolean equalityCheck = (imageNumber == -8) ? true : false;
 
         // Assert
-        assertEquals(true, true);
+        assertEquals(-8, z.getImaginary(), 0);
     }
 
     @Test
-    public void canAddComplexNumbersAtZeroArgs() {
+    public void canAddComplexNumbersWithZeroArgs() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(0, 0);
         ComplexNumber z2 = new ComplexNumber(0, 0);
