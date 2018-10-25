@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 public class OsechkinSergeyTest {
     @Test
-    public void canAddComplexNumbers1() {
+    public void canAddComplexNumbers() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(1, 1);
         ComplexNumber z2 = new ComplexNumber(1, 1);
@@ -19,7 +19,7 @@ public class OsechkinSergeyTest {
     }
 
     @Test
-    public void checkZeroComplexNumber() {
+    public void canZeroComplexNumber() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(-1, -1);
         ComplexNumber z2 = new ComplexNumber(1, 1);
@@ -32,7 +32,7 @@ public class OsechkinSergeyTest {
     }
 
     @Test
-    public void checkToStringComplexNumber() {
+    public void canToStringComplexNumber() {
         // Arrange
         ComplexNumber z = new ComplexNumber(-1, -1);
 
@@ -41,7 +41,7 @@ public class OsechkinSergeyTest {
     }
 
     @Test
-    public void checkImaginaryPartWhenMultiplyComplexNumber() {
+    public void canExtractImaginaryPartWhenMultiplyComplexNumber() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(-5, -3);
         ComplexNumber z2 = new ComplexNumber(1, 1);
@@ -50,11 +50,11 @@ public class OsechkinSergeyTest {
         ComplexNumber z = z1.multiply(z2);
 
         // Assert
-        assertEquals(true, z.getImaginary() == -8);
+        assertEquals(-8, z.getImaginary());
     }
 
     @Test
-    public void canAddComplexNumbers2() {
+    public void canAddComplexNumbersAtZeroArgs() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(0, 0);
         ComplexNumber z2 = new ComplexNumber(0, 0);
