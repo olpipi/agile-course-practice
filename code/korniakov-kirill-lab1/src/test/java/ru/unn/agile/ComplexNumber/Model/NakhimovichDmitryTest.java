@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 public class NakhimovichDmitryTest {
     @Test
-    public void canEqualsComplexNumbers() {
+    public void canCompareComplexNumbers() {
         ComplexNumber complexNumber1 = new ComplexNumber(1, 1);
         ComplexNumber complexNumber2 = new ComplexNumber(1, 1);
 
@@ -14,12 +14,12 @@ public class NakhimovichDmitryTest {
 
     @Test
     public void canAddComplexNumbers() {
-        ComplexNumber z1 = new ComplexNumber(1, -2);
-        ComplexNumber z2 = new ComplexNumber(0, 1);
+        ComplexNumber complexNumber1 = new ComplexNumber(1, -2);
+        ComplexNumber complexNumber2 = new ComplexNumber(0, 1);
 
-        ComplexNumber z = z1.add(z2);
+        ComplexNumber complexNumberResult = complexNumber1.add(complexNumber2);
 
-        assertEquals(new ComplexNumber(1, -1), z);
+        assertEquals(new ComplexNumber(1, -1), complexNumberResult);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class NakhimovichDmitryTest {
     }
 
     @Test
-    public void canToStringComplexNumber() {
+    public void canConvertComplexNumberToString() {
         ComplexNumber complexNumber = new ComplexNumber(66, -66);
 
         assertEquals("66.0 - 66.0i", complexNumber.toString());
