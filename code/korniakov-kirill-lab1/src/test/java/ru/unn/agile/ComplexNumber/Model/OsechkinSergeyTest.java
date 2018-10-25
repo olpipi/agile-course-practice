@@ -33,9 +33,14 @@ public class OsechkinSergeyTest {
 
     @Test
     public void canConvertComplexNumberToString() {
-        // Act & Assert
+        // Arrange
         ComplexNumber z = new ComplexNumber(-1, -1);
-        assertEquals("-1.0 - 1.0i", z.toString());
+
+        // Act
+        String strComplex = z.toString();
+
+        // Assert
+        assertEquals("-1.0 - 1.0i", strComplex);
     }
 
     @Test
