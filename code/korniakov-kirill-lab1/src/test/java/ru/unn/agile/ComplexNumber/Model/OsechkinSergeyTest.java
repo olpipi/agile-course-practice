@@ -19,7 +19,7 @@ public class OsechkinSergeyTest {
     }
 
     @Test
-    public void canAddComplexNumberWhereResultZeroComplex() {
+    public void canAddOppositeComplexNumbers() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(-1, -1);
         ComplexNumber z2 = new ComplexNumber(1, 1);
@@ -32,29 +32,26 @@ public class OsechkinSergeyTest {
     }
 
     @Test
-    public void canToStringComplexNumber() {
-        // Arrange
+    public void canConvertComplexNumberToString() {
+        // Act & Assert
         ComplexNumber z = new ComplexNumber(-1, -1);
-
-        // Assert
         assertEquals("-1.0 - 1.0i", z.toString());
     }
 
     @Test
-    public void canExtractImaginaryPartWhenMultiplyComplexNumber() {
+    public void canExtractImaginaryPartComplexNumber() {
         // Arrange
-        ComplexNumber z1 = new ComplexNumber(-5, -3);
-        ComplexNumber z2 = new ComplexNumber(1, 1);
+        ComplexNumber z = new ComplexNumber(-5, -3);
 
         // Act
-        ComplexNumber z = z1.multiply(z2);
+        double im = z.getImaginary();
 
         // Assert
-        assertEquals(-8, z.getImaginary(), 0);
+        assertEquals(-3, im, 0.001);
     }
 
     @Test
-    public void canAddComplexNumbersWithZeroArgs() {
+    public void canAddZeroComplexNumbers() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(0, 0);
         ComplexNumber z2 = new ComplexNumber(0, 0);
