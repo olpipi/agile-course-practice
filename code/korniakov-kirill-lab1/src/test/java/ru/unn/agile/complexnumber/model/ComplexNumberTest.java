@@ -77,6 +77,14 @@ public class ComplexNumberTest {
     }
 
     @Test
+    public void canMultiplyNumbers() {
+        ComplexNumber z1 = new ComplexNumber(1, 2);
+        ComplexNumber z2 = new ComplexNumber(3, 4);
+        ComplexNumber sum = z1.multiply(z2);
+        assertEquals(new ComplexNumber(-5, 10), sum);
+    }
+
+    @Test
     public void canGetHashCodeOfComplexNumber() {
         ComplexNumber z = new ComplexNumber(1, -1);
 
