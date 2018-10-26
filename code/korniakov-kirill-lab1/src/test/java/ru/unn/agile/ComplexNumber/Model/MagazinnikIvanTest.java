@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 public class MagazinnikIvanTest {
     @Test
-    public void canGetMaxDoubleImPart() {
+    public void canGetMaxDoubleImaginaryPart() {
         ComplexNumber z = new ComplexNumber(0, Double.MAX_VALUE);
 
         double imaginary = z.getImaginary();
@@ -23,7 +23,7 @@ public class MagazinnikIvanTest {
     }
 
     @Test
-    public void canAddNumbersWithMaxRealAndImageParts() {
+    public void canAddNumbersWithMaxRealAndImaginaryParts() {
         ComplexNumber z1 = new ComplexNumber(Double.MAX_VALUE, 0);
         ComplexNumber z2 = new ComplexNumber(0, Double.MAX_VALUE);
 
