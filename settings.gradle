@@ -61,7 +61,3 @@ project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
 // Rumyantsev Alexander, Vector3D
 include "code/rumyantsev-alexander-vector3d"
 project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vector3d"
-
-// Beresneva Julia, LCD Digits
-include "code/lcd-digits"
-project(":code/lcd-digits").name = "lcd-digits-Model"
