@@ -1,11 +1,13 @@
 package ru.unn.agile.complexnumber.model;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
-public class SheptunovVladislavTest {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+public class NakhimovichDmitryTest {
     @Test
-    public void canEqualsComplexNumbers() {
+    public void canCompareComplexNumbers() {
         ComplexNumber complexNumber1 = new ComplexNumber(1, 1);
         ComplexNumber complexNumber2 = new ComplexNumber(1, 1);
 
@@ -14,12 +16,12 @@ public class SheptunovVladislavTest {
 
     @Test
     public void canAddComplexNumbers() {
-        ComplexNumber complexNumber1 = new ComplexNumber(1, 1);
-        ComplexNumber complexNumber2 = new ComplexNumber(1, -1);
+        ComplexNumber complexNumber1 = new ComplexNumber(1, -2);
+        ComplexNumber complexNumber2 = new ComplexNumber(0, 1);
 
         ComplexNumber complexNumberResult = complexNumber1.add(complexNumber2);
 
-        assertEquals(new ComplexNumber(2, 0), complexNumberResult);
+        assertEquals(new ComplexNumber(1, -1), complexNumberResult);
     }
 
     @Test
@@ -33,9 +35,9 @@ public class SheptunovVladislavTest {
     }
 
     @Test
-    public void canToStringComplexNumber() {
-        ComplexNumber complexNumber = new ComplexNumber(1, -1);
+    public void canConvertComplexNumberToString() {
+        ComplexNumber complexNumber = new ComplexNumber(66, -66);
 
-        assertEquals("1.0 - 1.0i", complexNumber.toString());
+        assertEquals("66.0 - 66.0i", complexNumber.toString());
     }
 }
