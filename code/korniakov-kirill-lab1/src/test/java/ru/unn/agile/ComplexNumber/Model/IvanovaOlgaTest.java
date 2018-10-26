@@ -27,7 +27,7 @@ public class IvanovaOlgaTest {
     }
 
     @Test
-    public void canAddZeroAndComplexNumber() {
+    public void canAddZeroByNonZeroComplexNumber() {
         ComplexNumber complexNumber1 = new ComplexNumber(5, 5);
         ComplexNumber complexNumber2 = new ComplexNumber(0, 0);
 
@@ -37,7 +37,7 @@ public class IvanovaOlgaTest {
     }
 
     @Test
-    public void canMultiplyZeroAndComplexNumber() {
+    public void canMultiplyZeroByNonZeroComplexNumber() {
         ComplexNumber complexNumber1 = new ComplexNumber(5, 5);
         ComplexNumber complexNumber2 = new ComplexNumber(0, 0);
 
