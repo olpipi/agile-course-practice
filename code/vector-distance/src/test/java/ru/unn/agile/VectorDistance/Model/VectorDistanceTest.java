@@ -39,4 +39,28 @@ public class VectorDistanceTest {
 
         assertEquals(6.0f, result, 1e-14);
     }
+
+    @Test
+    public void canComputeL2DistanceWithNegatives() {
+        FloatVector a = new FloatVector(new float[]{-9.0f, 8.0f, -7.0f, 6.0f});
+        FloatVector b = new FloatVector(new float[]{1.0f, -2.0f, 3.0f, -4.0f});
+
+        float result = VectorDistance.computeL2(a, b);
+
+        assertEquals(20.0f, result, 1e-14);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void canNotComputeL2DistanceOfNullVector()
+            throws NullPointerException {
+        VectorDistance.computeL2(null, null);
+    }
+    @Test(expected = InvalidParameterException.class)
+    public void canNotComputeL2DistanceOfDifferentLengthVectors()
+            throws InvalidParameterException {
+        FloatVector a = new FloatVector(new float[]{1.0f});
+        FloatVector b = new FloatVector(new float[]{4.0f, 5.0f});
+
+        VectorDistance.computeL2(a, b);
+    }
 }
