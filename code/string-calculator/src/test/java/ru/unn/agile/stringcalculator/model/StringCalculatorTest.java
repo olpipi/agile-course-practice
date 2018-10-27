@@ -96,4 +96,9 @@ public class StringCalculatorTest {
     public void canRaiseExceptionWhenGonNegativeNumber() {
         StringCalculator.add("-1");
     }
+    
+    @Test(expected = NegativeNumberException.class)
+    public void canRaiseExceptionWhenGonNegativeNumberAfterNormalNumber() {
+        StringCalculator.add("1,-1");
+    }
 }
