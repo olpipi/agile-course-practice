@@ -1,6 +1,7 @@
 package ru.unn.agile.stringcalculator.model;
 
 import ru.unn.agile.stringcalculator.model.errorhandling.NegativeNumberException;
+import ru.unn.agile.stringcalculator.model.errorhandling.NotANumberException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,9 +11,10 @@ import java.util.regex.Pattern;
 
 public final class StringCalculator {
     private static final String DELIMITER_PATTERN = "(?s)^([^0-9])\\n.*";
-    private static final String VALID_NUMBER_PATTERN = "^[0-9]+";
+    private static final String VALID_NUMBER_PATTERN = "^-?[0-9]+";
     private static final String DEFAULT_DELIMITER = ",";
     private static final String NEW_LINE_DELIMITER = "\n";
+    private static final char MINUS_SIGN = '-';
 
     private StringCalculator() {
 
@@ -74,15 +76,24 @@ public final class StringCalculator {
         return s.replace(delimiter, DEFAULT_DELIMITER);
     }
 
-    private static boolean isValidNumber(final String number) {
+    private static boolean isNumber(final String number) {
         return number.matches(VALID_NUMBER_PATTERN);
     }
 
     private static void checkAllNumbersIsValid(final List<String> numbers) {
+        List<String> negativeNumbersList = new ArrayList<>();
         for (String number : numbers) {
-            if (!isValidNumber(number)) {
-                throw new NegativeNumberException("Negative not allowed: " + number);
+            if (!isNumber(number)) {
+                throw new NotANumberException("Not a number: " + number);
             }
+            if (number.charAt(0) == MINUS_SIGN) {
+                negativeNumbersList.add(number);
+            }
+        }
+        if (!negativeNumbersList.isEmpty())
+        {
+            String negativeNumberString = String.join(DEFAULT_DELIMITER, negativeNumbersList);
+            throw new NegativeNumberException("Negative not allowed: " + negativeNumberString);
         }
     }
 }
