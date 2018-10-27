@@ -137,6 +137,30 @@ public class VectorDistanceTest {
 
         float result = VectorDistance.computeLinf(a, b);
 
-        assertEquals(120.0f, result, 1e-14);
+        assertEquals(110.0f, result, 1e-14);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void canNotComputeLinfDistanceOfNullVector()
+            throws NullPointerException {
+        VectorDistance.computeLinf(null, null);
+    }
+
+    @Test(expected = InvalidParameterException.class)
+    public void canNotComputeLinfDistanceOfDifferentLengthVectors()
+            throws InvalidParameterException {
+        FloatVector a = new FloatVector(new float[]{1.0f});
+        FloatVector b = new FloatVector(new float[]{4.0f, 5.0f});
+
+        VectorDistance.computeLinf(a, b);
+    }
+
+    @Test(expected = FloatingOverflowException.class)
+    public void canNotComputeLinfDistanceWithWhenOverflow()
+            throws FloatingOverflowException {
+        FloatVector a = new FloatVector(new float[]{Float.MAX_VALUE});
+        FloatVector b = new FloatVector(new float[]{-Float.MAX_VALUE});
+
+        VectorDistance.computeLinf(a, b);
     }
 }
