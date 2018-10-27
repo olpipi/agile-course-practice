@@ -9,7 +9,7 @@ public class StringCalculatorTest {
     {
         int sum = StringCalculator.Add("");
 
-        assertEquals(sum ,0);
+        assertEquals(0 ,sum);
     }
 
     @Test
@@ -17,7 +17,7 @@ public class StringCalculatorTest {
     {
         int sum = StringCalculator.Add("1");
 
-        assertEquals(sum ,1);
+        assertEquals(1 ,sum);
     }
 
     @Test
@@ -25,7 +25,7 @@ public class StringCalculatorTest {
     {
         int sum = StringCalculator.Add("1,2");
 
-        assertEquals(sum, 3);
+        assertEquals(3, sum);
     }
 
 }
