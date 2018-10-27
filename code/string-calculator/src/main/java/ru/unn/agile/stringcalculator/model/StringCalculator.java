@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class StringCalculator {
-    private static final String DELIMITER_PATTERN = "^([^0-9])\\n.*";
+    private static final String DELIMITER_PATTERN = "(?s)^([^0-9])\\n.*";
     private static final String DEFAULT_DELIMITER = ",";
     private static final String NEW_LINE_DELIMITER = "\n";
 
