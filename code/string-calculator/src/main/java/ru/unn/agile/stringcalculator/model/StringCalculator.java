@@ -16,7 +16,7 @@ public class StringCalculator {
         return numbersSum;
     }
 
-    public static List<String> getNumbersArrayFromString(String numbersString) {
+    private static List<String> getNumbersArrayFromString(String numbersString) {
         List<String> numbersList = new ArrayList<>();
         String numbersListWithDefaultDelimeter = replaceNewLines(numbersString);
         if (!numbersListWithDefaultDelimeter.isEmpty()) {
@@ -30,7 +30,7 @@ public class StringCalculator {
         return numbersList;
     }
 
-    public static String replaceNewLines(String s) {
+    private static String replaceNewLines(String s) {
         String replacedString = s.replace("\n", DELIMITER);
         return replacedString;
     }

@@ -37,87 +37,10 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void canGetEmptyNumbersListFromEmptyString() {
-        List<String> numbersList = StringCalculator.getNumbersArrayFromString("");
+    public void canAddNewLineSeparatedNumbers() {
+        int sum = StringCalculator.Add("1\n2");
 
-        assertTrue(numbersList.isEmpty());
-    }
-
-    @Test
-    public void canGetSingleNumberListFromSingleElementString() {
-        List<String> expectedSingleNumberList = new ArrayList<>();
-        expectedSingleNumberList.add("1");
-
-        List<String> numbersList = StringCalculator.getNumbersArrayFromString("1");
-
-        assertEquals(expectedSingleNumberList, numbersList);
-    }
-
-    @Test
-    public void canGetTwoNumbersListFromTwoElementsString() {
-        List<String> expectedSingleNumberList = new ArrayList<>();
-        expectedSingleNumberList.add("1");
-        expectedSingleNumberList.add("2");
-
-        List<String> numbersList = StringCalculator.getNumbersArrayFromString("1,2");
-
-        assertEquals(expectedSingleNumberList, numbersList);
-    }
-
-    @Test
-    public void canGetThreeNumbersListFromThreeElementsString() {
-        List<String> expectedSingleNumberList = new ArrayList<>();
-        expectedSingleNumberList.add("1");
-        expectedSingleNumberList.add("2");
-        expectedSingleNumberList.add("3");
-
-        List<String> numbersList = StringCalculator.getNumbersArrayFromString("1,2,3");
-
-        assertEquals(expectedSingleNumberList, numbersList);
-    }
-
-    @Test
-    public void canReplaceNewLinesToComma() {
-        String stringWithReplacedNewLines = StringCalculator.replaceNewLines("1\n2");
-
-        assertEquals("1,2", stringWithReplacedNewLines);
-    }
-
-    @Test
-    public void checkReplaceNewLinesOnEmptyStringReturnEmptyString() {
-        String stringWithReplacedNewLines = StringCalculator.replaceNewLines("");
-
-        assertEquals("", stringWithReplacedNewLines);
-    }
-
-    @Test
-    public void checkReplaceNewLinesOnStringWithoutNewLinesReturnOriginalString() {
-        String stringWithReplacedNewLines = StringCalculator.replaceNewLines("1,2,3");
-
-        assertEquals("1,2,3", stringWithReplacedNewLines);
-    }
-
-    @Test
-    public void canGetTwoNumbersListFromTwoElementsStringWithNewLineDelimiter(){
-        List<String> expectedSingleNumberList = new ArrayList<>();
-        expectedSingleNumberList.add("1");
-        expectedSingleNumberList.add("2");
-
-        List<String> numbersList = StringCalculator.getNumbersArrayFromString("1\n2");
-
-        assertEquals(expectedSingleNumberList, numbersList);
-    }
-
-    @Test
-    public void canGetNumbersFromMixedDelimiterString(){
-        List<String> expectedSingleNumberList = new ArrayList<>();
-        expectedSingleNumberList.add("1");
-        expectedSingleNumberList.add("2");
-        expectedSingleNumberList.add("3");
-
-        List<String> numbersList = StringCalculator.getNumbersArrayFromString("1\n2,3");
-
-        assertEquals(expectedSingleNumberList, numbersList);
+        assertEquals(3, sum);
     }
 
     @Test
