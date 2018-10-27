@@ -7,6 +7,7 @@ public class MoiseevNikitaTest {
     @Test
     public void canInstantiateComplexNumber() {
         ComplexNumber z = new ComplexNumber(0, 0);
+        
         assertNotNull(z);
     }
 
@@ -22,7 +23,7 @@ public class MoiseevNikitaTest {
     }
 
     @Test
-    public void equalsReturnsTrueForIdenticalComplexNumbers() {
+    public void doesEqualsReturnTrueForIdenticalComplexNumbers() {
         ComplexNumber z1 = new ComplexNumber(42, 24);
         ComplexNumber z2 = new ComplexNumber(42, 24);
 
