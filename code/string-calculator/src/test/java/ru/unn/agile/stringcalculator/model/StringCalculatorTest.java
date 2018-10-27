@@ -50,4 +50,18 @@ public class StringCalculatorTest {
         assertEquals(6, sum);
     }
 
+    @Test
+    public void canAddNumbersWithTrailingDelimiterAtTheEnd(){
+        int sum = StringCalculator.Add("1,2,");
+
+        assertEquals(3, sum);
+    }
+
+    @Test
+    public void canAddNumbersWithTrailingNewLineAtTheEnd(){
+        int sum = StringCalculator.Add("1,2\n");
+
+        assertEquals(3, sum);
+    }
+
 }
