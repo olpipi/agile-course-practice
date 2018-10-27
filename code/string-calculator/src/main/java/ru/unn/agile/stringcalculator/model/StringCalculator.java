@@ -21,6 +21,10 @@ public class StringCalculator {
     public static List<String> getNumbersArrayFromString(String numbersString) {
         List<String> numbersList = new ArrayList<String>();
         if (!numbersString.isEmpty()) {
+            if (numbersString.contains(",")) {
+                numbersList = Arrays.asList(numbersString.split(","));
+                return numbersList;
+            }
             numbersList.add(numbersString);
         }
         return numbersList;
