@@ -23,11 +23,19 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void canAddTwoNumbersWithDefaultDelimiter() {
+    public void canAddTwoNumbers() {
         int sum = StringCalculator.Add("1,2");
 
         assertEquals(3, sum);
     }
+
+    @Test
+    public void canAddThreeNumbers() {
+        int sum = StringCalculator.Add("1,2,3");
+
+        assertEquals(6, sum);
+    }
+
     @Test
     public void canGetEmptyNumbersListFromEmptyString() {
         List<String> numbersList = StringCalculator.getNumbersArrayFromString("");
