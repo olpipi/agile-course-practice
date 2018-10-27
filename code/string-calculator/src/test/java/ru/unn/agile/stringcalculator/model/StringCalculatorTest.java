@@ -111,4 +111,8 @@ public class StringCalculatorTest {
     public void canRaiseExceptionWhenNotANumberPassedAfterValidNumber() {
         StringCalculator.add("1,a");
     }
+    @Test(expected = NotANumberException.class)
+    public void canRaiseNotANumberExceptionWhenNegativeNubmerAlsoPresent() {
+        StringCalculator.add("-1,a");
+    }
 }
