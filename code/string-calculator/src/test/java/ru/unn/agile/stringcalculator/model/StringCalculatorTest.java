@@ -106,4 +106,9 @@ public class StringCalculatorTest {
     public void canRaiseExceptionWhenNotANumberPassed() {
         StringCalculator.add("a");
     }
+
+    @Test(expected = NotANumberException.class)
+    public void canRaiseExceptionWhenNotANumberPassedAfterValidNumber() {
+        StringCalculator.add("1,a");
+    }
 }
