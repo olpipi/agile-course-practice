@@ -119,3 +119,12 @@ public class StringCalculatorTest {
 
         assertEquals(expectedSingleNumberList, numbersList);
     }
+
+    @Test
+    public void canAddNumbersWithDifferentDelimiters(){
+        int sum = StringCalculator.Add("1,2\n3");
+
+        assertEquals(6, sum);
+    }
+
+}
