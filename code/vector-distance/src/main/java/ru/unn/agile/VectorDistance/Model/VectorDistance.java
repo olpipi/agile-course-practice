@@ -22,7 +22,13 @@ public final class VectorDistance {
     }
 
     public static float computeL2(final FloatVector a, final FloatVector b) {
-        return 0;
+        float distance = 0.f;
+
+        for (int i = 0; i < a.length(); ++i) {
+            distance += (a.get(i) - b.get(i)) * (a.get(i) - b.get(i));
+        }
+
+        return (float) Math.sqrt(distance);
     }
 
     private VectorDistance() { /* none */ }
