@@ -20,15 +20,8 @@ public final class StringCalculator {
 
     public static int add(final String numbers) {
         int numbersSum = 0;
-        String delimiter = DEFAULT_DELIMITER;
-        String modifiedNumbers = numbers;
-        if (isNonDefaultDelimiter(modifiedNumbers)) {
-            delimiter = getDelimiter(modifiedNumbers);
-            modifiedNumbers = removeDelimiterFromString(modifiedNumbers, delimiter);
-        }
-        modifiedNumbers = replaceDelimiter(modifiedNumbers, NEW_LINE_DELIMITER);
-        modifiedNumbers = replaceDelimiter(modifiedNumbers, delimiter);
-        List<String> singleNumbers = getNumbersArrayFromString(modifiedNumbers);
+        String commaSeparatedNumbers = replaceInputStringToCommaSeparated(numbers);
+        List<String> singleNumbers = getNumbersArrayFromString(commaSeparatedNumbers);
         for (String number : singleNumbers) {
             if (!isValidNumber(number)) {
                 throw new StringCalculatorException("Negative not allowed: " + number);
@@ -36,6 +29,18 @@ public final class StringCalculator {
             numbersSum += Integer.parseInt(number);
         }
         return numbersSum;
+    }
+
+    private static String replaceInputStringToCommaSeparated(final String inputString) {
+        String delimiter = DEFAULT_DELIMITER;
+        String modifiedNumbers = inputString;
+        if (isNonDefaultDelimiter(modifiedNumbers)) {
+            delimiter = getDelimiter(modifiedNumbers);
+            modifiedNumbers = removeDelimiterFromString(modifiedNumbers, delimiter);
+        }
+        modifiedNumbers = replaceDelimiter(modifiedNumbers, NEW_LINE_DELIMITER);
+        modifiedNumbers = replaceDelimiter(modifiedNumbers, delimiter);
+        return modifiedNumbers;
     }
 
     private static List<String> getNumbersArrayFromString(final String numbersString) {
