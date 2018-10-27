@@ -55,6 +55,7 @@ public class VectorDistanceTest {
             throws NullPointerException {
         VectorDistance.computeL2(null, null);
     }
+
     @Test(expected = InvalidParameterException.class)
     public void canNotComputeL2DistanceOfDifferentLengthVectors()
             throws InvalidParameterException {
@@ -74,5 +75,20 @@ public class VectorDistanceTest {
         float result = VectorDistance.computeL3(a, b);
 
         assertEquals(20.0f, result, 1e-14);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void canNotComputeL3DistanceOfNullVector()
+            throws NullPointerException {
+        VectorDistance.computeL3(null, null);
+    }
+
+    @Test(expected = InvalidParameterException.class)
+    public void canNotComputeL3DistanceOfDifferentLengthVectors()
+            throws InvalidParameterException {
+        FloatVector a = new FloatVector(new float[]{1.0f});
+        FloatVector b = new FloatVector(new float[]{4.0f, 5.0f});
+
+        VectorDistance.computeL3(a, b);
     }
 }
