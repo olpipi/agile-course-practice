@@ -18,6 +18,10 @@ project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-comple
 include "code/andreev-vlad-triangle"
 project(":code/andreev-vlad-triangle").name = "andreev-vlad-triangle-Model"
 
+// Zhiltsov Max, lab 1
+include "code/vector-distance"
+project(":code/vector-distance").name = "vector-distance-Model"
+
 // Korniakov Kirill, lab2-legacy
 include "code/korniakov-kirill-lab2-legacy/Model"
 project(":code/korniakov-kirill-lab2-legacy/Model").name = "korniakov-kirill-lab2-Model-legacy"
