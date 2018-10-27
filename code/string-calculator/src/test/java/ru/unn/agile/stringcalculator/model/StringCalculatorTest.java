@@ -2,7 +2,7 @@ package ru.unn.agile.stringcalculator.model;
 
 import org.junit.Test;
 import ru.unn.agile.stringcalculator.model.errorhandling.NegativeNumberException;
-import ru.unn.agile.stringcalculator.model.errorhandling.StringCalculatorException;
+import ru.unn.agile.stringcalculator.model.errorhandling.NotANumberException;
 
 import static org.junit.Assert.*;
 
@@ -100,5 +100,10 @@ public class StringCalculatorTest {
     @Test(expected = NegativeNumberException.class)
     public void canRaiseExceptionWhenGonNegativeNumberAfterNormalNumber() {
         StringCalculator.add("1,-1");
+    }
+
+    @Test(expected = NotANumberException.class)
+    public void canRaiseExceptionWhenNotANumberPassed() {
+        StringCalculator.add("a");
     }
 }
