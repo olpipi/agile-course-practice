@@ -146,6 +146,7 @@ project(":code/math-statistics").name = "math-statistics"
 include "code/fytov-aleksandr-frac-calc"
 project(":code/fytov-aleksandr-frac-calc").name = "fytov-aleksandr-frac-calc"
 
+<<<<<<< HEAD
 // 3D shapes volume
 include "code/shape-volume-calculator"
 project(":code/shape-volume-calculator").name = "shape-volume-calculator"
@@ -157,3 +158,8 @@ project(":code/rumiantseva-maria-quadratic-equation-solver").name = "rumiantseva
 // Sheptunov Vladislav, BinarySearchTree
 include "code/binary-search-tree"
 project(":code/binary-search-tree").name = "binary-search-tree"
+
+// Nakhimovich Dmitry, Segments2D
+include "code/nakhimovich-dmitry-segments2d"
+project(":code/nakhimovich-dmitry-segments2d").name = "nakhimovich-dmitry-segments2d"
+
