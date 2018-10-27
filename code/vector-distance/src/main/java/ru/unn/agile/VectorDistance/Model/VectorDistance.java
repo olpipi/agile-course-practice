@@ -44,6 +44,20 @@ public final class VectorDistance {
         return (float) Math.pow(distance, 1.0 / l3Power);
     }
 
+    public static float computeL4(final FloatVector a, final FloatVector b) {
+        ensureNotNullArgs(a, b);
+        ensureSameLength(a, b);
+
+        final double l4Power = 4.0;
+        float distance = 0.f;
+
+        for (int i = 0; i < a.length(); ++i) {
+            distance += Math.pow(a.get(i) - b.get(i), l4Power);
+        }
+
+        return (float) Math.pow(distance, 1.0 / l4Power);
+    }
+
     private VectorDistance() { /* none */ }
 
     private static void ensureNotNullArgs(
