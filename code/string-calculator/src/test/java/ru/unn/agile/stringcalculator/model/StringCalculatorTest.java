@@ -7,8 +7,17 @@ public class StringCalculatorTest {
     @Test
     public void canReturnZeroForEmptyString()
     {
-        int sum =StringCalculator.Add("");
+        int sum = StringCalculator.Add("");
+
         assertEquals(sum ,0);
+    }
+
+    @Test
+    public void canAddSingleNumber()
+    {
+        int sum = StringCalculator.Add("1");
+
+        assertEquals(sum ,1);
     }
 
 }
