@@ -51,4 +51,36 @@ public class MathStatisticsTest {
         assertEquals(new Double(8.9625), mean);
     }
 
+    @Test
+    public void canCalculateMeanWithNegotiveNumbers() {
+        Number[] data = {-3, 8.3, 86.2, -3.5};
+
+        Double mean = MathStatistics.meanCalculate(data);
+
+        assertEquals(new Double(22.0), mean);
+    }
+
+    @Test
+    public void canCalculateNegotiveMean() {
+        Double[] data = {-10.2, 4.3, 0.0, -31.9, 3.0, 0.33};
+
+        Double mean = MathStatistics.meanCalculate(data);
+
+        assertEquals(new Double(-5.745), mean);
+    }
+
+    @Test
+    public void canCalculateMeanWithBigSizeofDataArray() {
+        Integer[] data = new Integer[1000];
+        for(int i=0; i<data.length; i++) {
+            data[i] = i;
+        }
+        Double expected = new Double((0+999)/2.0);
+
+        Double mean = MathStatistics.meanCalculate(data);
+
+        assertEquals(expected, mean);
+    }
+
+
 }
