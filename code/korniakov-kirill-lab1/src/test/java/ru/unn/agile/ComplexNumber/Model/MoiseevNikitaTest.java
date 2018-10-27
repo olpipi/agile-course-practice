@@ -7,7 +7,7 @@ public class MoiseevNikitaTest {
     @Test
     public void canInstantiateComplexNumber() {
         ComplexNumber z = new ComplexNumber(0, 0);
-        
+
         assertNotNull(z);
     }
 
