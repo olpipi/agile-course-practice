@@ -20,4 +20,12 @@ public class StringCalculatorTest {
         assertEquals(sum ,1);
     }
 
+    @Test
+    public void canAddTwoNumbersWithDefaultDelimiter()
+    {
+        int sum = StringCalculator.Add("1,2");
+
+        assertEquals(sum, 3);
+    }
+
 }
