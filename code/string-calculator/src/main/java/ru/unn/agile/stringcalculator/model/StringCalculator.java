@@ -1,7 +1,6 @@
 package ru.unn.agile.stringcalculator.model;
 
 import ru.unn.agile.stringcalculator.model.errorhandling.NegativeNumberException;
-import ru.unn.agile.stringcalculator.model.errorhandling.StringCalculatorException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,10 +22,8 @@ public final class StringCalculator {
         int numbersSum = 0;
         String commaSeparatedNumbers = replaceInputStringToCommaSeparated(numbers);
         List<String> singleNumbers = getNumbersArrayFromString(commaSeparatedNumbers);
+        checkAllNumbersIsValid(singleNumbers);
         for (String number : singleNumbers) {
-            if (!isValidNumber(number)) {
-                throw new NegativeNumberException("Negative not allowed: " + number);
-            }
             numbersSum += Integer.parseInt(number);
         }
         return numbersSum;
@@ -79,5 +76,13 @@ public final class StringCalculator {
 
     private static boolean isValidNumber(final String number) {
         return number.matches(VALID_NUMBER_PATTERN);
+    }
+
+    private static void checkAllNumbersIsValid(final List<String> numbers) {
+        for (String number : numbers) {
+            if (!isValidNumber(number)) {
+                throw new NegativeNumberException("Negative not allowed: " + number);
+            }
+        }
     }
 }
