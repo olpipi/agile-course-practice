@@ -83,4 +83,11 @@ public class StringCalculatorTest {
         assertEquals("1,2", stringWithReplacedNewLines);
     }
 
+    @Test
+    public void checkReplaceNewLinesOnEmptyStringReturnEmptyString() {
+        String stringWithReplacedNewLines = StringCalculator.replaceNewLines("");
+
+        assertEquals("", stringWithReplacedNewLines);
+    }
+
 }
