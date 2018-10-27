@@ -44,6 +44,13 @@ public class StringCalculatorTest {
     }
 
     @Test
+    public void canAddThreeNewLineSeparatedNumbers() {
+        int sum = StringCalculator.Add("1\n2\n3");
+
+        assertEquals(6, sum);
+    }
+
+    @Test
     public void canAddNumbersWithDifferentDelimiters(){
         int sum = StringCalculator.Add("1,2\n3");
 
