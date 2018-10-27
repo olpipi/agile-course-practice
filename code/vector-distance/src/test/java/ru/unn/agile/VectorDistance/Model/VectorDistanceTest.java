@@ -99,10 +99,25 @@ public class VectorDistanceTest {
             -1.0f, 0.0f, -1.0f, 2.0f, -3.0f, 4.0f, -5.0f, 6.0f});
         FloatVector b = new FloatVector(new float[]{
             1.0f, -2.0f, 3.0f, -4.0f, 5.0f, -6.0f, 7.0f, -8.0f,
-           -9.0f, 10.0f, -11.0f, 12.0f, -13.0f, 14.0f, -15.0f, 16.0f});
+            9.0f, -10.0f, -11.0f, 12.0f, -13.0f, 14.0f, -15.0f, 16.0f});
 
         float result = VectorDistance.computeL4(a, b);
 
         assertEquals(20.0f, result, 1e-14);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void canNotComputeL4DistanceOfNullVector()
+            throws NullPointerException {
+        VectorDistance.computeL4(null, null);
+    }
+
+    @Test(expected = InvalidParameterException.class)
+    public void canNotComputeL4DistanceOfDifferentLengthVectors()
+            throws InvalidParameterException {
+        FloatVector a = new FloatVector(new float[]{1.0f});
+        FloatVector b = new FloatVector(new float[]{4.0f, 5.0f});
+
+        VectorDistance.computeL4(a, b);
     }
 }
