@@ -8,7 +8,7 @@ public class LcdDigit {
 
     public LcdDigit(final int incomingNumber) {
         this.number = incomingNumber;
-        this.lcd = convertToLcd(number);
+        this.lcd = "";
     }
 
     private String convertToLcd(final int incomingNumber) {
@@ -111,7 +111,6 @@ public class LcdDigit {
 
     public void setNumber(final int incomingNumber) {
         this.number = incomingNumber;
-        this.setLcd();
     }
 
     public int getNumber() {
@@ -123,6 +122,7 @@ public class LcdDigit {
     }
 
     public String getLcd() {
+        this.lcd = convertToLcd(number);
         return lcd;
     }
 }
