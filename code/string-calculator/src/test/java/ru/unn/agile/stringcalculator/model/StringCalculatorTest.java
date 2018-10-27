@@ -106,6 +106,20 @@ public class StringCalculatorTest {
         assertEquals(2034, sum);
     }
 
+    @Test
+    public void canAddSingleZeroNumber() {
+        int sum = StringCalculator.add("0");
+
+        assertEquals(0, sum);
+    }
+
+    @Test
+    public void canAddZeroNumberWithNonZero() {
+        int sum = StringCalculator.add("0,1");
+
+        assertEquals(1, sum);
+    }
+
     @Test(expected = NegativeNumberException.class)
     public void canRaiseExceptionWhenGonNegativeNumber() {
         StringCalculator.add("-1");
@@ -125,8 +139,10 @@ public class StringCalculatorTest {
     public void canRaiseExceptionWhenNotANumberPassedAfterValidNumber() {
         StringCalculator.add("1,a");
     }
+
     @Test(expected = NotANumberException.class)
     public void canRaiseNotANumberExceptionWhenNegativeNubmerAlsoPresent() {
         StringCalculator.add("-1,a");
     }
+
 }
