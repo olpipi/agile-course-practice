@@ -141,8 +141,27 @@ public class StringCalculatorTest {
     }
 
     @Test(expected = NotANumberException.class)
-    public void canRaiseNotANumberExceptionWhenNegativeNubmerAlsoPresent() {
+    public void canRaiseNotANumberExceptionWhenNegativeNumberAlsoPresent() {
         StringCalculator.add("-1,a");
     }
 
+    @Test(expected = NotANumberException.class)
+    public void canRaiseNotANumberExceptionWithNewLines() {
+        StringCalculator.add("1\na");
+    }
+
+    @Test(expected = NotANumberException.class)
+    public void canRaiseNotANumberExceptionWithNonDefaultDelimiter() {
+        StringCalculator.add(";\n1;a");
+    }
+
+    @Test(expected = NegativeNumberException.class)
+    public void canRaiseExceptionWhenGonNegativeNumberWithNewLines() {
+        StringCalculator.add("1\n-1");
+    }
+
+    @Test(expected = NegativeNumberException.class)
+    public void canRaiseExceptionWhenGonNegativeNumberWithNonDefaultDelimiter() {
+        StringCalculator.add(";\n1;-1");
+    }
 }
