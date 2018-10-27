@@ -8,15 +8,12 @@ public class StringCalculator {
     private static final String DELIMITER = ",";
 
     public static int Add(String numbers) {
-        if (numbers.length() > 0) {
-            if (numbers.contains(",")) {
-                List<String> singleNumbers = Arrays.asList(numbers.split(","));
-                return Integer.parseInt(singleNumbers.get(0)) + Integer.parseInt(singleNumbers.get(1));
-            }
-
-            return Integer.parseInt(numbers);
+        int numbersSum = 0;
+        List<String> singleNumbers = getNumbersArrayFromString(numbers);
+        for (String number : singleNumbers) {
+            numbersSum += Integer.parseInt(number);
         }
-        return 0;
+        return numbersSum;
     }
 
     public static List<String> getNumbersArrayFromString(String numbersString) {
