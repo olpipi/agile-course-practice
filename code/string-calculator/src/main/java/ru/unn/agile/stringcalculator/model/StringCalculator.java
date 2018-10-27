@@ -18,12 +18,13 @@ public class StringCalculator {
 
     public static List<String> getNumbersArrayFromString(String numbersString) {
         List<String> numbersList = new ArrayList<>();
-        if (!numbersString.isEmpty()) {
-            if (numbersString.contains(DELIMITER)) {
-                numbersList = Arrays.asList(numbersString.split(DELIMITER));
+        String numbersListWithDefaultDelimeter = replaceNewLines(numbersString);
+        if (!numbersListWithDefaultDelimeter.isEmpty()) {
+            if (numbersListWithDefaultDelimeter.contains(DELIMITER)) {
+                numbersList = Arrays.asList(numbersListWithDefaultDelimeter.split(DELIMITER));
             }
             else {
-                numbersList.add(numbersString);
+                numbersList.add(numbersListWithDefaultDelimeter);
             }
         }
         return numbersList;
