@@ -92,6 +92,20 @@ public class StringCalculatorTest {
         assertEquals(6, sum);
     }
 
+    @Test
+    public void canAddNonSingleCharNumbers() {
+        int sum = StringCalculator.add("20");
+
+        assertEquals(20, sum);
+    }
+
+    @Test
+    public void canAddManyNonSingleCharNumbers() {
+        int sum = StringCalculator.add("31,8,1995");
+
+        assertEquals(2034, sum);
+    }
+
     @Test(expected = NegativeNumberException.class)
     public void canRaiseExceptionWhenGonNegativeNumber() {
         StringCalculator.add("-1");
