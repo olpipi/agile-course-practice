@@ -1,9 +1,12 @@
 package ru.unn.agile.vectordistance.model;
 
 import java.security.InvalidParameterException;
+import java.util.Objects;
 
 public final class VectorDistance {
     public static float computeL1(final FloatVector a, final FloatVector b) {
+        Objects.requireNonNull(a, "Expected not null parameter a");
+        Objects.requireNonNull(b, "Expected not null parameter b");
         if (a.length() != b.length()) {
             throw new InvalidParameterException(
                 "Expected vectors of same length");
@@ -16,6 +19,10 @@ public final class VectorDistance {
         }
 
         return distance;
+    }
+
+    public static float computeL2(final FloatVector a, final FloatVector b) {
+        return 0;
     }
 
     private VectorDistance() { /* none */ }

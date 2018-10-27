@@ -29,4 +29,14 @@ public class VectorDistanceTest {
             throws NullPointerException {
         VectorDistance.computeL1(null, null);
     }
+
+    @Test
+    public void canComputeL2Distance() {
+        FloatVector a = new FloatVector(new float[]{1.0f, 2.0f, 3.0f, 4.0f});
+        FloatVector b = new FloatVector(new float[]{4.0f, 5.0f, 6.0f, 7.0f});
+
+        float result = VectorDistance.computeL2(a, b);
+
+        assertEquals(6.0f, result, 1e-14);
+    }
 }
