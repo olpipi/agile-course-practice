@@ -120,4 +120,13 @@ public class VectorDistanceTest {
 
         VectorDistance.computeL4(a, b);
     }
+
+    @Test(expected = FloatingOverflowException.class)
+    public void canNotComputeL4DistanceWithWhenOverflow()
+            throws FloatingOverflowException {
+        FloatVector a = new FloatVector(new float[]{Float.MAX_VALUE});
+        FloatVector b = new FloatVector(new float[]{-1.0f});
+
+        VectorDistance.computeL4(a, b);
+    }
 }
