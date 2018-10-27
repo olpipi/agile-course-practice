@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StringCalculator {
+    private static final String DELIMITER = ",";
 
     public static int Add(String numbers) {
         if (numbers.length() > 0) {
@@ -19,13 +20,14 @@ public class StringCalculator {
     }
 
     public static List<String> getNumbersArrayFromString(String numbersString) {
-        List<String> numbersList = new ArrayList<String>();
+        List<String> numbersList = new ArrayList<>();
         if (!numbersString.isEmpty()) {
-            if (numbersString.contains(",")) {
-                numbersList = Arrays.asList(numbersString.split(","));
-                return numbersList;
+            if (numbersString.contains(DELIMITER)) {
+                numbersList = Arrays.asList(numbersString.split(DELIMITER));
             }
-            numbersList.add(numbersString);
+            else {
+                numbersList.add(numbersString);
+            }
         }
         return numbersList;
     }
