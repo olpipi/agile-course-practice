@@ -129,4 +129,14 @@ public class VectorDistanceTest {
 
         VectorDistance.computeL4(a, b);
     }
+
+    @Test
+    public void canComputeLinfDistance() {
+        FloatVector a = new FloatVector(new float[]{-9.0f, 18.0f, -107.0f});
+        FloatVector b = new FloatVector(new float[]{1.0f, -2.0f, 3.0f});
+
+        float result = VectorDistance.computeLinf(a, b);
+
+        assertEquals(120.0f, result, 1e-14);
+    }
 }

@@ -12,6 +12,7 @@ public final class VectorDistance {
 
         for (int i = 0; i < a.length(); ++i) {
             distance += Math.abs(a.get(i) - b.get(i));
+            ensureIsFinite(distance);
         }
 
         return distance;
@@ -25,6 +26,7 @@ public final class VectorDistance {
 
         for (int i = 0; i < a.length(); ++i) {
             distance += Math.pow(a.get(i) - b.get(i), 2);
+            ensureIsFinite(distance);
         }
 
         return (float) Math.sqrt(distance);
@@ -39,6 +41,7 @@ public final class VectorDistance {
 
         for (int i = 0; i < a.length(); ++i) {
             distance += Math.pow(Math.abs(a.get(i) - b.get(i)), l3Power);
+            ensureIsFinite(distance);
         }
 
         return (float) Math.pow(distance, 1.0 / l3Power);
@@ -57,6 +60,10 @@ public final class VectorDistance {
         }
 
         return (float) Math.pow(distance, 1.0 / l4Power);
+    }
+
+    public static float computeLinf(final FloatVector a, final FloatVector b) {
+        return 0;
     }
 
     private VectorDistance() { /* none */ }
