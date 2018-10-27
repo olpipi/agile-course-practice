@@ -19,7 +19,7 @@ public class LcdDigit {
         String thirdLine = "";
 
         for (char ch: stringNumber.toCharArray()) {
-            firstLine = firstLine + toHeadOfLcd(ch) + " ";
+            firstLine = firstLine + toTopOfLcd(ch) + " ";
         }
 
         for (char ch: stringNumber.toCharArray()) {
@@ -33,18 +33,18 @@ public class LcdDigit {
         return firstLine + "\n" + secondLine + "\n" + thirdLine + "\n";
     }
 
-    private String toHeadOfLcd(final char digit) {
-        String head = "";
+    private String toTopOfLcd(final char digit) {
+        String top = "";
         switch (digit) {
             case '1':
             case '4':
-                head = "...";
+                top = "...";
                 break;
             default:
-                head = "._.";
+                top = "._.";
                 break;
         }
-        return head;
+        return top;
     }
 
     private String toMiddleOFLcd(final char digit) {
@@ -65,7 +65,7 @@ public class LcdDigit {
             case '6':
                 mid = "|_.";
                 break;
-            default: // in case 4,8,9
+            default:
                 mid = "|_|";
                 break;
         }
@@ -87,16 +87,11 @@ public class LcdDigit {
             case '5':
                 bottom = "._|";
                 break;
-            default: //in case of 1,4,7,9
+            default:
                 bottom = "..|";
                 break;
         }
         return bottom;
-    }
-
-    public void printIt() {
-        String str = getLcd();
-        System.out.print(str);
     }
 
     @Override
@@ -115,10 +110,6 @@ public class LcdDigit {
 
     public int getNumber() {
         return number;
-    }
-
-    private void setLcd() {
-        this.lcd = convertToLcd(number);
     }
 
     public String getLcd() {

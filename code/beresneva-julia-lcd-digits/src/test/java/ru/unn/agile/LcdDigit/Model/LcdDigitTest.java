@@ -60,8 +60,6 @@ public class LcdDigitTest {
     public void canGetLongLcdDigitNumber() {
         LcdDigit number = new LcdDigit(1234567890);
 
-        number.printIt();
-
         assertEquals(
                 "... ._. ._. ... ._. ._. ._. ._. ._. ._. \n"
                 + "..| ._| ._| |_| |_. |_. ..| |_| |_| |.| \n"
