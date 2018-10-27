@@ -56,4 +56,16 @@ public class StringCalculatorTest {
         assertEquals(expectedSingleNumberList, numbersList);
     }
 
+    @Test
+    public void canGetThreeNumbersListFromThreeElementsString() {
+        List<String> expectedSingleNumberList = new ArrayList<>();
+        expectedSingleNumberList.add("1");
+        expectedSingleNumberList.add("2");
+        expectedSingleNumberList.add("3");
+
+        List<String> numbersList = StringCalculator.getNumbersArrayFromString("1,2,3");
+
+        assertEquals(expectedSingleNumberList, numbersList);
+    }
+
 }
