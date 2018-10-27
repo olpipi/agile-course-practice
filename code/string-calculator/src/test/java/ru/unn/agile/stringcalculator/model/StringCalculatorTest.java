@@ -76,4 +76,11 @@ public class StringCalculatorTest {
         assertEquals(expectedSingleNumberList, numbersList);
     }
 
+    @Test
+    public void canReplaceNewLinesToComma() {
+        String stringWithReplacedNewLines = StringCalculator.replaceNewLines("1\n2");
+
+        assertEquals("1,2", stringWithReplacedNewLines);
+    }
+
 }

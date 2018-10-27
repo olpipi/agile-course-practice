@@ -28,4 +28,8 @@ public class StringCalculator {
         }
         return numbersList;
     }
+
+    public static String replaceNewLines(String s) {
+        return "";
+    }
 }
