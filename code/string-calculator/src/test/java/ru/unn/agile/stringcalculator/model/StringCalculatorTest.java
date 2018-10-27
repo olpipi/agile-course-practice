@@ -97,4 +97,15 @@ public class StringCalculatorTest {
         assertEquals("1,2,3", stringWithReplacedNewLines);
     }
 
+    @Test
+    public void canGetTwoNumbersListFromTwoElementsStringWithNewLineDelimeter(){
+        List<String> expectedSingleNumberList = new ArrayList<>();
+        expectedSingleNumberList.add("1");
+        expectedSingleNumberList.add("2");
+
+        List<String> numbersList = StringCalculator.getNumbersArrayFromString("1\n2");
+
+        assertEquals(expectedSingleNumberList, numbersList);
+    }
+
 }
