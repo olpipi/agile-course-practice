@@ -1,6 +1,7 @@
 package ru.unn.agile.stringcalculator.model;
 
 import org.junit.Test;
+import ru.unn.agile.stringcalculator.model.errorhandling.StringCalculatorException;
 
 import static org.junit.Assert.*;
 
@@ -90,4 +91,8 @@ public class StringCalculatorTest {
         assertEquals(6, sum);
     }
 
+    @Test(expected = StringCalculatorException.class)
+    public void canRaiseExceptionWhenGonNegativeNumber() {
+        StringCalculator.add("-1");
+    }
 }
