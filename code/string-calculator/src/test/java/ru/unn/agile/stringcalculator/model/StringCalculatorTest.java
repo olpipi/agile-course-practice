@@ -69,10 +69,25 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void canAddNumbersWithCustomDelimiter() {
+    public void canAddNumberWithCustomDelimiter() {
         int sum = StringCalculator.add(";\n1");
 
         assertEquals(1, sum);
+    }
+
+    @Test
+    public void canAddTwoNumbersWithCustomDelimiter() {
+        int sum = StringCalculator.add(";\n1;2");
+
+        assertEquals(3, sum);
+    }
+
+
+    @Test
+    public void canAddNumbersWithCustomDelimiterAndNewLines() {
+        int sum = StringCalculator.add(";\n1;2\n3");
+
+        assertEquals(6, sum);
     }
 
 }
