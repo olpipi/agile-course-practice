@@ -90,8 +90,7 @@ public final class StringCalculator {
                 negativeNumbersList.add(number);
             }
         }
-        if (!negativeNumbersList.isEmpty())
-        {
+        if (!negativeNumbersList.isEmpty()) {
             String negativeNumberString = String.join(DEFAULT_DELIMITER, negativeNumbersList);
             throw new NegativeNumberException("Negative not allowed: " + negativeNumberString);
         }
