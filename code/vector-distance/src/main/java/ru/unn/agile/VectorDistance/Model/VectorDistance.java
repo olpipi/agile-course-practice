@@ -63,7 +63,16 @@ public final class VectorDistance {
     }
 
     public static float computeLinf(final FloatVector a, final FloatVector b) {
-        return 0;
+        float distance = 0.f;
+
+        for (int i = 0; i < a.length(); ++i) {
+            float currentDistance = Math.abs(a.get(i) - b.get(i));
+            if (distance < currentDistance) {
+                distance = currentDistance;
+            }
+        }
+
+        return distance;
     }
 
     private VectorDistance() { /* none */ }
