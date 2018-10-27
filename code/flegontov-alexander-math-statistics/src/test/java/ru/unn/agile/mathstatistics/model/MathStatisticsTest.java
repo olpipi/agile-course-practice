@@ -10,7 +10,7 @@ public class MathStatisticsTest {
     public void canCalculateMeanWithOneNumbers() {
         Integer[] data = {10};
 
-        Double mean = MathStatistics.MeanCalculate(data);
+        Double mean = MathStatistics.meanCalculate(data);
 
         assertEquals(new Double(10), mean);
     }
@@ -19,7 +19,7 @@ public class MathStatisticsTest {
     public void canCalculateMeanWithOneNegotiveInteger() {
         Integer[] data = {-23};
 
-        Double mean = MathStatistics.MeanCalculate(data);
+        Double mean = MathStatistics.meanCalculate(data);
 
         assertEquals(new Double(-23), mean);
     }
@@ -28,7 +28,7 @@ public class MathStatisticsTest {
     public void canCalculateMeanPositiveIntegers() {
         Integer[] data = {10, 5, 25, 30};
 
-        Double mean = MathStatistics.MeanCalculate(data);
+        Double mean = MathStatistics.meanCalculate(data);
 
         assertEquals(new Double(17.5), mean);
     }
