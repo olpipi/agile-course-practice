@@ -63,4 +63,16 @@ public class VectorDistanceTest {
 
         VectorDistance.computeL2(a, b);
     }
+
+    @Test
+    public void canComputeL3Distance() {
+        FloatVector a = new FloatVector(
+            new float[]{-9.0f, 8.0f, -7.0f, 6.0f, -5.0f, 4.0f, -3.0f, 2.0f});
+        FloatVector b = new FloatVector(
+            new float[]{1.0f, -2.0f, 3.0f, -4.0f, 5.0f, -6.0f, 7.0f, -8.0f});
+
+        float result = VectorDistance.computeL3(a, b);
+
+        assertEquals(20.0f, result, 1e-14);
+    }
 }

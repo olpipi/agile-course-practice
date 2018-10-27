@@ -30,6 +30,10 @@ public final class VectorDistance {
         return (float) Math.sqrt(distance);
     }
 
+    public static float computeL3(final FloatVector a, final FloatVector b) {
+        return 0;
+    }
+
     private VectorDistance() { /* none */ }
 
     private static void ensureNotNullArgs(
