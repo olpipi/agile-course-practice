@@ -1,5 +1,6 @@
 package ru.unn.agile.stringcalculator.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,5 +16,10 @@ public class StringCalculator {
             return Integer.parseInt(numbers);
         }
         return 0;
+    }
+
+    public static List<String> getNumbersArrayFromString(String numbersString) {
+        List<String> numbersList = new ArrayList<String>();
+        return numbersList;
     }
 }
