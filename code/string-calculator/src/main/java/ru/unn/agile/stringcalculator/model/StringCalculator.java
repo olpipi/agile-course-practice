@@ -38,8 +38,8 @@ public final class StringCalculator {
             delimiter = getDelimiter(modifiedNumbers);
             modifiedNumbers = removeDelimiterFromString(modifiedNumbers, delimiter);
         }
-        modifiedNumbers = replaceDelimiter(modifiedNumbers, NEW_LINE_DELIMITER);
-        modifiedNumbers = replaceDelimiter(modifiedNumbers, delimiter);
+        modifiedNumbers = replaceDelimiterToDefault(modifiedNumbers, NEW_LINE_DELIMITER);
+        modifiedNumbers = replaceDelimiterToDefault(modifiedNumbers, delimiter);
         return modifiedNumbers;
     }
 
@@ -72,7 +72,7 @@ public final class StringCalculator {
         return tmpString;
     }
 
-    private static String replaceDelimiter(final String s, final String delimiter) {
+    private static String replaceDelimiterToDefault(final String s, final String delimiter) {
         return s.replace(delimiter, DEFAULT_DELIMITER);
     }
 
