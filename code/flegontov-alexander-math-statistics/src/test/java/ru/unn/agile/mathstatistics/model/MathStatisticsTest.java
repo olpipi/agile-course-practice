@@ -33,5 +33,22 @@ public class MathStatisticsTest {
         assertEquals(new Double(17.5), mean);
     }
 
+    @Test
+    public void canCalculateMeanWithDouble() {
+        Double[] data = {1.2, 3.3, 0.2, 8.1, 0.9};
+
+        Double mean = MathStatistics.meanCalculate(data);
+
+        assertEquals(new Double(2.74), mean);
+    }
+
+    @Test
+    public void canCalculateMeanWithIntegersAndDouble() {
+        Number[] data = {1.2, 3.3, 11, 2, 8.9, 2, 36, 7.3};
+
+        Double mean = MathStatistics.meanCalculate(data);
+
+        assertEquals(new Double(8.9625), mean);
+    }
 
 }
