@@ -31,6 +31,9 @@ public final class VectorDistance {
     }
 
     public static float computeL3(final FloatVector a, final FloatVector b) {
+        ensureNotNullArgs(a, b);
+        ensureSameLength(a, b);
+
         final double l3Power = 3.0;
         float distance = 0.f;
 
