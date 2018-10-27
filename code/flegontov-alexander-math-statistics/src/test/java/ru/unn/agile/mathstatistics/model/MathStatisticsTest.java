@@ -16,7 +16,7 @@ public class MathStatisticsTest {
     }
 
     @Test
-    public void canCalculateMeanWithOneNegotiveInteger() {
+    public void canCalculateMeanWithOneNegativeInteger() {
         Integer[] data = {-23};
 
         Double mean = MathStatistics.meanCalculate(data);
@@ -52,7 +52,7 @@ public class MathStatisticsTest {
     }
 
     @Test
-    public void canCalculateMeanWithNegotiveNumbers() {
+    public void canCalculateMeanWithNegativeNumbers() {
         Number[] data = {-3, 8.3, 86.2, -3.5};
 
         Double mean = MathStatistics.meanCalculate(data);
@@ -61,7 +61,7 @@ public class MathStatisticsTest {
     }
 
     @Test
-    public void canCalculateNegotiveMean() {
+    public void canCalculateNegativeMean() {
         Double[] data = {-10.2, 4.3, 0.0, -31.9, 3.0, 0.33};
 
         Double mean = MathStatistics.meanCalculate(data);
@@ -72,10 +72,10 @@ public class MathStatisticsTest {
     @Test
     public void canCalculateMeanWithBigSizeofDataArray() {
         Integer[] data = new Integer[1000];
-        for(int i=0; i<data.length; i++) {
+        for (int i = 0; i < data.length; ++i) {
             data[i] = i;
         }
-        Double expected = new Double((0+999)/2.0);
+        Double expected = new Double((0 + 999) / 2.0);
 
         Double mean = MathStatistics.meanCalculate(data);
 
