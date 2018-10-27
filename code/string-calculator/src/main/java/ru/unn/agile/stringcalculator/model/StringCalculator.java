@@ -30,6 +30,7 @@ public class StringCalculator {
     }
 
     public static String replaceNewLines(String s) {
-        return "";
+        String replacedString = s.replace("\n", DELIMITER);
+        return replacedString;
     }
 }
