@@ -5,28 +5,26 @@ import static org.junit.Assert.*;
 
 public class MoiseevNikitaTest {
     @Test
-    public void canInstantiate() {
-        ComplexNumber z = new ComplexNumber(42, 24);
+    public void canInstantiateComplexNumber() {
+        ComplexNumber z = new ComplexNumber(0, 0);
         assertNotNull(z);
     }
 
     @Test
-    public void canInstantiateWithCorrectValues() {
-        double real = 42.123456789012345;
-        double imaginary = 24.123456789012345;
-        ComplexNumber z = new ComplexNumber(real, imaginary);
+    public void canAddComplexNumbers() {
+        ComplexNumber z1 = new ComplexNumber(1, 2);
+        ComplexNumber z2 = new ComplexNumber(3, 4);
+        ComplexNumber expectedSum = new ComplexNumber(4, 6);
 
-        double delta = Math.pow(10, -15);
-        assertEquals(z.getReal(), real, delta);
-        assertEquals(z.getImaginary(), imaginary, delta);
+        ComplexNumber sum = z1.add(z2);
+
+        assertEquals(sum, expectedSum);
     }
 
     @Test
-    public void canCompare() {
-        double real = 1.234;
-        double imaginary = 9.876;
-        ComplexNumber z1 = new ComplexNumber(real, imaginary);
-        ComplexNumber z2 = new ComplexNumber(real, imaginary);
+    public void equalsReturnsTrueForIdenticalComplexNumbers() {
+        ComplexNumber z1 = new ComplexNumber(42, 24);
+        ComplexNumber z2 = new ComplexNumber(42, 24);
 
         assertEquals(z1, z2);
     }
