@@ -1,5 +1,6 @@
 package ru.unn.agile.stringcalculator.model;
 
+import ru.unn.agile.stringcalculator.model.errorhandling.NegativeNumberException;
 import ru.unn.agile.stringcalculator.model.errorhandling.StringCalculatorException;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public final class StringCalculator {
         List<String> singleNumbers = getNumbersArrayFromString(commaSeparatedNumbers);
         for (String number : singleNumbers) {
             if (!isValidNumber(number)) {
-                throw new StringCalculatorException("Negative not allowed: " + number);
+                throw new NegativeNumberException("Negative not allowed: " + number);
             }
             numbersSum += Integer.parseInt(number);
         }
