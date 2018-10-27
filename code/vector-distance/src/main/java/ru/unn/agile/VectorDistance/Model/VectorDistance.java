@@ -31,7 +31,14 @@ public final class VectorDistance {
     }
 
     public static float computeL3(final FloatVector a, final FloatVector b) {
-        return 0;
+        final double l3Power = 3.0;
+        float distance = 0.f;
+
+        for (int i = 0; i < a.length(); ++i) {
+            distance += Math.pow(Math.abs(a.get(i) - b.get(i)), l3Power);
+        }
+
+        return (float) Math.pow(distance, 1.0 / l3Power);
     }
 
     private VectorDistance() { /* none */ }
