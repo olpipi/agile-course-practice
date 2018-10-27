@@ -164,4 +164,9 @@ public class StringCalculatorTest {
     public void canRaiseExceptionWhenGonNegativeNumberWithNonDefaultDelimiter() {
         StringCalculator.add(";\n1;-1");
     }
+
+    @Test(expected = NotANumberException.class)
+    public void canRaiseExceptionWhenTwoDelimitersPassed() {
+        StringCalculator.add("1,,1");
+    }
 }
