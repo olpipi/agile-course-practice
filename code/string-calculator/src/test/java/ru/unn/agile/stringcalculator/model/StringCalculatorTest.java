@@ -5,9 +5,10 @@ import static org.junit.Assert.*;
 
 public class StringCalculatorTest {
     @Test
-    public void dummyTest()
+    public void canReturnZeroForEmptyString()
     {
-        assert true;
+        int sum =StringCalculator.Add("");
+        assertEquals(sum ,0);
     }
 
 }
