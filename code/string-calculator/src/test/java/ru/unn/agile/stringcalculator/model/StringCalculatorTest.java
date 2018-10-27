@@ -71,4 +71,11 @@ public class StringCalculatorTest {
         assertEquals(3, sum);
     }
 
+    @Test
+    public void canAddNumbersWithCustomDelimiter(){
+        int sum = StringCalculator.Add(";\n1");
+
+        assertEquals(1, sum);
+    }
+
 }
