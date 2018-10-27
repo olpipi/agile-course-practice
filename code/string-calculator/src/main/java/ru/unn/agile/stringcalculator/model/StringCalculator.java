@@ -20,6 +20,9 @@ public class StringCalculator {
 
     public static List<String> getNumbersArrayFromString(String numbersString) {
         List<String> numbersList = new ArrayList<String>();
+        if (!numbersString.isEmpty()) {
+            numbersList.add(numbersString);
+        }
         return numbersList;
     }
 }

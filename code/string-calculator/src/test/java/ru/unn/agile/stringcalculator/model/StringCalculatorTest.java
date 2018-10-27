@@ -2,6 +2,7 @@ package ru.unn.agile.stringcalculator.model;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -28,10 +29,20 @@ public class StringCalculatorTest {
         assertEquals(3, sum);
     }
     @Test
-    public void canGetEmptyNumbersListFromEmtyString() {
+    public void canGetEmptyNumbersListFromEmptyString() {
         List<String> numbersList = StringCalculator.getNumbersArrayFromString("");
 
         assertTrue(numbersList.isEmpty());
+    }
+
+    @Test
+    public void canGetSingleNumberListFromSingleElementString() {
+        List<String> expectedSingleNumberList = new ArrayList<>();
+        expectedSingleNumberList.add("1");
+
+        List<String> numbersList = StringCalculator.getNumbersArrayFromString("1");
+
+        assertEquals(expectedSingleNumberList, numbersList);
     }
 
 }
