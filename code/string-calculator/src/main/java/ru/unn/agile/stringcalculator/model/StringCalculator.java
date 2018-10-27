@@ -1,5 +1,7 @@
 package ru.unn.agile.stringcalculator.model;
 
+import ru.unn.agile.stringcalculator.model.errorhandling.StringCalculatorException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.regex.Pattern;
 
 public final class StringCalculator {
     private static final String DELIMITER_PATTERN = "(?s)^([^0-9])\\n.*";
+    private static final String VALID_NUMBER_PATTERN = "^[0-9]+";
     private static final String DEFAULT_DELIMITER = ",";
     private static final String NEW_LINE_DELIMITER = "\n";
 
@@ -27,6 +30,9 @@ public final class StringCalculator {
         modifiedNumbers = replaceDelimiter(modifiedNumbers, delimiter);
         List<String> singleNumbers = getNumbersArrayFromString(modifiedNumbers);
         for (String number : singleNumbers) {
+            if (!isValidNumber(number)) {
+                throw new StringCalculatorException("Negative not allowed: " + number);
+            }
             numbersSum += Integer.parseInt(number);
         }
         return numbersSum;
@@ -63,5 +69,9 @@ public final class StringCalculator {
 
     private static String replaceDelimiter(final String s, final String delimiter) {
         return s.replace(delimiter, DEFAULT_DELIMITER);
+    }
+
+    private static boolean isValidNumber(final String number) {
+        return number.matches(VALID_NUMBER_PATTERN);
     }
 }
