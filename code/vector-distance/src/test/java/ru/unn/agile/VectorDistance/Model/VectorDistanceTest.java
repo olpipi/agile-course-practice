@@ -23,4 +23,10 @@ public class VectorDistanceTest {
 
         VectorDistance.computeL1(a, b);
     }
+
+    @Test(expected = NullPointerException.class)
+    public void canNotComputeL1DistanceOfNullVector()
+            throws NullPointerException {
+        VectorDistance.computeL1(null, null);
+    }
 }
