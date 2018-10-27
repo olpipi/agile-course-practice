@@ -53,12 +53,19 @@ public final class VectorDistance {
 
         for (int i = 0; i < a.length(); ++i) {
             distance += Math.pow(a.get(i) - b.get(i), l4Power);
+            ensureIsFinite(distance);
         }
 
         return (float) Math.pow(distance, 1.0 / l4Power);
     }
 
     private VectorDistance() { /* none */ }
+
+    private static void ensureIsFinite(final float x) {
+        if (!Float.isFinite(x)) {
+            throw new FloatingOverflowException("Floating overflow");
+        }
+    }
 
     private static void ensureNotNullArgs(
             final FloatVector a, final FloatVector b) {
