@@ -14,11 +14,11 @@ public final class MathStatistics {
     }
 
     static Double dispersionCalculate(final Number[] data) {
-        Double mean = meanCalculate(data);
+        final Double mean = meanCalculate(data);
 
         Double dispersion = 0.0;
         for (int i = 0; i < data.length; ++i) {
-            dispersion += (data[i].doubleValue()-mean)*(data[i].doubleValue()-mean);
+            dispersion += Math.pow((data[i].doubleValue() - mean), 2);
         }
 
         dispersion /= data.length;
