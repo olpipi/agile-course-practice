@@ -33,10 +33,16 @@ public final class MathStatistics {
         if(data == null){
             throw new IllegalArgumentException("Array should be initialized!");
         }
+
         for (int i = 0; i < data.length; ++i) {
             if (data[i] == null) {
-                throw new IllegalArgumentException("Null element shouldn't be in array!ssss");
+                throw new IllegalArgumentException("Null element shouldn't be in array!");
             }
+        }
+
+        if(data.length < 1)
+        {
+            throw new IllegalArgumentException("The Length of data array must be non-zero value!");
         }
     }
 
