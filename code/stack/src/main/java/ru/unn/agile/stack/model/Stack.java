@@ -11,10 +11,10 @@ public class Stack<E> {
     }
 
     public boolean empty() {
-        return list.size() == 0;
+        return list.isEmpty();
     }
 
-    public E push(E item) {
+    public E push(final E item) {
         if (item == null) {
             throw new IllegalArgumentException("Element must not be null");
         }

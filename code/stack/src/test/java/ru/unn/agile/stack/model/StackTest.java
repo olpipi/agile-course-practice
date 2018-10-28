@@ -7,14 +7,14 @@ import static org.junit.Assert.*;
 public class StackTest {
     @Test
     public void canCreateStack() {
-        Stack stack = new Stack<Integer>();
+        Stack<Object> stack = new Stack<>();
 
         assertTrue(stack.empty());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void canNotPushNullToStack() {
-        Stack stack = new Stack<Integer>();
+        Stack<Object> stack = new Stack<>();
 
         stack.push(null);
     }
@@ -22,7 +22,7 @@ public class StackTest {
     @Test
     public void canPushObjectToStack() {
         Object expected = new Object();
-        Stack stack = new Stack<Integer>();
+        Stack<Object> stack = new Stack<>();
 
         Object actual = stack.push(expected);
 
@@ -31,7 +31,7 @@ public class StackTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void canNotPopElementFromEmptyStack() {
-        Stack stack = new Stack<Integer>();
+        Stack<Object> stack = new Stack<>();
 
         stack.pop();
     }
@@ -39,7 +39,7 @@ public class StackTest {
     @Test
     public void canPopElementFromNotEmptyStack() {
         Object expected = new Object();
-        Stack stack = new Stack<Integer>();
+        Stack<Object> stack = new Stack<>();
         stack.push(expected);
 
         Object actual = stack.pop();
