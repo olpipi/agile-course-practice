@@ -229,6 +229,26 @@ public class MathStatisticsTest {
         assertEquals(new Double(-240003.0), moment);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsWhenCalculateMomentWithNullElement() {
+        Number[] data = {1, null, 7, 2, 2, 3};
+
+        MathStatistics.momentCalculate(data,3,6);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsWhenCalculateMomentWithNullData() {
+        Double[] data = null;
+
+        MathStatistics.momentCalculate(data, 1,2);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsWhenCalculateMomentWithEmptyData() {
+        Number[] data = {};
+
+        MathStatistics.momentCalculate(data, 2, 3);
+    }
 
     private Integer[] getMonotonicArray(final int start, final int end) {
         Integer[] data = new Integer[end-start];

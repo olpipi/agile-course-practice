@@ -28,6 +28,7 @@ public final class MathStatistics {
     }
 
     static Double momentCalculate(final Number[] data, int order, int a) {
+        checkInputData(data);
 
         Double moment = 0.0;
         for (int i = 0; i < data.length; ++i) {
