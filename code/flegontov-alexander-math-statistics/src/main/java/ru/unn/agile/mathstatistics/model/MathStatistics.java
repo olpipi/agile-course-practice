@@ -16,7 +16,6 @@ public final class MathStatistics {
     }
 
     static Double dispersionCalculate(final Number[] data) {
-
         final Double mean = meanCalculate(data);
 
         Double dispersion = 0.0;
@@ -28,9 +27,8 @@ public final class MathStatistics {
         return dispersion;
     }
 
-    private static void checkInputData(final Number[] data)
-    {
-        if(data == null){
+    private static void checkInputData(final Number[] data) {
+        if (data == null) {
             throw new IllegalArgumentException("Array should be initialized!");
         }
 
@@ -40,8 +38,7 @@ public final class MathStatistics {
             }
         }
 
-        if(data.length < 1)
-        {
+        if (data.length < 1) {
             throw new IllegalArgumentException("The Length of data array must be non-zero value!");
         }
     }

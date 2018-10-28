@@ -83,21 +83,21 @@ public class MathStatisticsTest {
     public void throwsWhenCalculateMeanWithNullElement() {
         Number[] data = {1.2, 2, -5, null, 8, 7};
 
-        Double mean = MathStatistics.meanCalculate(data);
+        MathStatistics.meanCalculate(data);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateMeanWithNullData() {
         Double[] data = null;
 
-        Double mean = MathStatistics.meanCalculate(data);
+        MathStatistics.meanCalculate(data);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateMeanWithEmptyData() {
         Number[] data = {};
 
-        Double mean = MathStatistics.meanCalculate(data);
+        MathStatistics.meanCalculate(data);
     }
 
     @Test
@@ -158,21 +158,21 @@ public class MathStatisticsTest {
     public void throwsWhenCalculateDispersionWithNullElement() {
         Number[] data = {2, -3, 5, null, 1, 8};
 
-        Double dispersion = MathStatistics.dispersionCalculate(data);
+        MathStatistics.dispersionCalculate(data);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateDispersionWithNullData() {
         Double[] data = null;
 
-        Double dispersion = MathStatistics.dispersionCalculate(data);
+        MathStatistics.dispersionCalculate(data);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateDispersionWithEmptyData() {
         Number[] data = {};
 
-        Double dispersion = MathStatistics.dispersionCalculate(data);
+        MathStatistics.dispersionCalculate(data);
     }
 
 
