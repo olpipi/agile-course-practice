@@ -31,6 +31,25 @@ public class StackTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void isSizeOfEmptyStackEqualsZero() {
+        Stack<Object> stack = new Stack<>();
+
+        int size = stack.size();
+
+        assertEquals(0, size);
+    }
+
+    @Test
+    public void canGetSizeOfNotEmptyStack() {
+        Stack<Object> stack = new Stack<>();
+        stack.push(new Object());
+
+        int size = stack.size();
+
+        assertEquals(1, size);
+    }
+
     @Test(expected = EmptyStackException.class)
     public void canNotPopFromEmptyStack() {
         Stack<Object> stack = new Stack<>();
@@ -66,5 +85,4 @@ public class StackTest {
 
         assertEquals(expected, actual);
     }
-
 }

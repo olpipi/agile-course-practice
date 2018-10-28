@@ -15,6 +15,10 @@ public class Stack<E> {
         return list.isEmpty();
     }
 
+    public int size() {
+        return list.size();
+    }
+
     public E push(final E item) {
         if (item == null) {
             throw new IllegalArgumentException("Element must not be null");
@@ -43,5 +47,4 @@ public class Stack<E> {
 
         return list.get(size - 1);
     }
-
 }
