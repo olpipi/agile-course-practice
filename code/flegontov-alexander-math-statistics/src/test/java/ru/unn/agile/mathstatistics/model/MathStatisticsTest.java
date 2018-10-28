@@ -175,11 +175,65 @@ public class MathStatisticsTest {
         MathStatistics.dispersionCalculate(data);
     }
 
+    @Test
+    public void canCalculateMomentWithOneNumber() {
+        Integer[] data = {3};
+
+        Double moment = MathStatistics.momentCalculate(data, 3, 46);
+
+        assertEquals(new Double(-79507.0), moment);
+    }
+
+    @Test
+    public void canCalculateMomentWithOneNegativeNumber() {
+        Integer[] data = {-11};
+
+        Double moment = MathStatistics.momentCalculate(data, 1, 44);
+
+        assertEquals(new Double(-55), moment);
+    }
+
+    @Test
+    public void canCalculateMomentWithNegativeNumbers() {
+        Number[] data = {9, 3, -1, 9, -8};
+
+        Double moment = MathStatistics.momentCalculate(data, 6, 9);
+
+        assertEquals(new Double(5036845.0), moment);
+    }
+
+    @Test
+    public void canCalculateMomentWithArrayOfZeros() {
+        Number[] data = {0, 0, 0, 0};
+
+        Double moment = MathStatistics.momentCalculate(data, 5, 2);
+
+        assertEquals(new Double(-32.0), moment);
+    }
+
+    @Test
+    public void canCalculateMomentWithDouble() {
+        Number[] data = {7.1, 6.3, 11.8, 0.8, 23.2};
+
+        Double moment = MathStatistics.momentCalculate(data, 3, 3);
+
+        assertEquals(new Double(1803.618), moment);
+    }
+
+    @Test
+    public void canCalculateMomentWithBigSizeOfDataArray() {
+        Integer[] data = getMonotonicArray(-400, 400);
+
+        Double moment = MathStatistics.momentCalculate(data, 3, 1);
+
+        assertEquals(new Double(-240003.0), moment);
+    }
+
 
     private Integer[] getMonotonicArray(final int start, final int end) {
-        Integer[] data = new Integer[end];
-        for (int i = start; i < data.length; ++i) {
-            data[i] = i;
+        Integer[] data = new Integer[end-start];
+        for (int i = 0; i < data.length; ++i) {
+            data[i] = start + i;
         }
         return data;
     }
