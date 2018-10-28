@@ -254,14 +254,35 @@ public class MathStatisticsTest {
     public void throwsWhenCalculateMomentWithZeroOrder() {
         Number[] data = {0.1, 9.3, 1.8, 0.8, 2.2};
 
-        Double moment = MathStatistics.momentCalculate(data, 0, 3);
+        MathStatistics.momentCalculate(data, 0, 3);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateMomentWithNegativeOrder() {
         Number[] data = {0.1, 0.3, 6.8, -6.8, 2.2};
 
-        Double moment = MathStatistics.momentCalculate(data, -5, 3);
+        MathStatistics.momentCalculate(data, -5, 3);
+    }
+
+    @Test
+    public void canCalculateRawMoment() {
+        Number[] data = {0, -3, 0.1 , 0, 1.9};
+
+        Double mean = MathStatistics.meanCalculate(data);
+        Double moment = MathStatistics.momentCalculate(data, 1, 0);
+
+        assertEquals(mean, moment);
+    }
+
+    @Test
+    public void canCalculateCentralMoment() {
+        Number[] data = {2.1, 1.2, -3, 0, 4.9};
+
+        Double dispersion = MathStatistics.dispersionCalculate(data);
+        Double mean = MathStatistics.meanCalculate(data);
+        Double moment = MathStatistics.momentCalculate(data, 2, mean);
+
+        assertEquals(dispersion, moment);
     }
 
     private Integer[] getMonotonicArray(final int start, final int end) {
