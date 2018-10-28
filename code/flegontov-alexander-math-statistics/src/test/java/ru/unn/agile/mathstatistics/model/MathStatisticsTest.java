@@ -71,7 +71,7 @@ public class MathStatisticsTest {
 
     @Test
     public void canCalculateMeanWithBigSizeOfDataArray() {
-        Integer[] data = getMonotonicArray();
+        Integer[] data = getMonotonicArray(0, 1000);
         Double expected = new Double((0 + 999) / 2.0);
 
         Double mean = MathStatistics.meanCalculate(data);
@@ -127,16 +127,16 @@ public class MathStatisticsTest {
 
     @Test
     public void canCalculateDispersionWithBigSizeOfDataArray() {
-        Integer[] data = getMonotonicArray();
+        Integer[] data = getMonotonicArray(0, 1000);
 
         Double dispersion = MathStatistics.dispersionCalculate(data);
 
         assertEquals(new Double(83333.25), dispersion);
     }
 
-    public Integer[] getMonotonicArray() {
-        Integer[] data = new Integer[1000];
-        for (int i = 0; i < data.length; ++i) {
+    public Integer[] getMonotonicArray(final int start, final int end) {
+        Integer[] data = new Integer[end];
+        for (int i = start; i < data.length; ++i) {
             data[i] = i;
         }
         return data;
