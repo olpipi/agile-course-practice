@@ -1,17 +1,32 @@
 package ru.unn.agile.bitarray.model;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
-
 import java.util.ArrayList;
-import java.util.BitSet;
+import java.util.Collections;
 import java.util.List;
 
 public class BitArray {
 
     private List<Integer> bits;
 
-    BitArray(){
+    BitArray() {
         this.bits = new ArrayList<>();
+    }
+
+    BitArray(int number) {
+        if (number < 0)
+            throw new IllegalArgumentException("Argument must be positive number");
+
+        this.bits = new ArrayList<>();
+
+        if (number == 0)
+            return;
+
+        do {
+            this.bits.add(number %2);
+            number /= 2;
+        } while (number != 0);
+
+        Collections.reverse(this.bits);
     }
 
     BitArray(List<Integer> bitArray) {
@@ -30,6 +45,10 @@ public class BitArray {
 
     public int size() {
         return bits.size();
+    }
+
+    public int getAtIndex(int index) {
+        return this.bits.get(index);
     }
 
     @Override
