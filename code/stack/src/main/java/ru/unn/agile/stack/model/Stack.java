@@ -1,6 +1,7 @@
 package ru.unn.agile.stack.model;
 
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.List;
 
 public class Stack<E> {
@@ -26,11 +27,21 @@ public class Stack<E> {
     public synchronized E pop() {
         int size = list.size();
 
-        if (size < 1) {
-            throw new IndexOutOfBoundsException("Stack is empty");
+        if (empty()) {
+            throw new EmptyStackException();
         }
 
         return list.remove(size - 1);
+    }
+
+    public synchronized E peek() {
+        int size = list.size();
+
+        if (empty()) {
+            throw new EmptyStackException();
+        }
+
+        return list.get(size - 1);
     }
 
 }
