@@ -151,6 +151,11 @@ public class StringCalculatorTest {
     }
 
     @Test(expected = NotANumberException.class)
+    public void canRaiseNotANumberWithDoubleMinusSign() {
+        StringCalculator.add("--1");
+    }
+
+    @Test(expected = NotANumberException.class)
     public void canRaiseNotANumberExceptionWithNonDefaultDelimiter() {
         StringCalculator.add(";\n1;a");
     }
