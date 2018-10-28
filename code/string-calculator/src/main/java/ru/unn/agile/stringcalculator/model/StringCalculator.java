@@ -17,24 +17,27 @@ public final class StringCalculator {
     private static final char MINUS_SIGN = '-';
 
     private StringCalculator() {
-
+        /* none */
     }
 
     public static int add(final String numbers) {
         int numbersSum = 0;
-        String commaSeparatedNumbers = replaceInputStringToCommaSeparated(numbers);
+        if ("".equals(numbers)) {
+            return numbersSum;
+        }
+        String commaSeparatedNumbers = normalizeDelimiters(numbers);
         List<String> singleNumbers = getNumbersArrayFromString(commaSeparatedNumbers);
-        checkAllNumbersIsValid(singleNumbers);
+        checkAllNumbersAreValid(singleNumbers);
         for (String number : singleNumbers) {
             numbersSum += Integer.parseInt(number);
         }
         return numbersSum;
     }
 
-    private static String replaceInputStringToCommaSeparated(final String inputString) {
+    private static String normalizeDelimiters(final String inputString) {
         String delimiter = DEFAULT_DELIMITER;
         String modifiedNumbers = inputString;
-        if (isNonDefaultDelimiter(modifiedNumbers)) {
+        if (isNonDefaultDelimiterProvided(modifiedNumbers)) {
             delimiter = getDelimiter(modifiedNumbers);
             modifiedNumbers = removeDelimiterFromString(modifiedNumbers, delimiter);
         }
@@ -44,18 +47,10 @@ public final class StringCalculator {
     }
 
     private static List<String> getNumbersArrayFromString(final String numbersString) {
-        List<String> numbersList = new ArrayList<>();
-        if (!numbersString.isEmpty()) {
-            if (numbersString.contains(DEFAULT_DELIMITER)) {
-                numbersList = Arrays.asList(numbersString.split(DEFAULT_DELIMITER));
-            } else {
-                numbersList.add(numbersString);
-            }
-        }
-        return numbersList;
+        return Arrays.asList(numbersString.split(DEFAULT_DELIMITER));
     }
 
-    private static boolean isNonDefaultDelimiter(final String s) {
+    private static boolean isNonDefaultDelimiterProvided(final String s) {
         return s.matches(DELIMITER_PATTERN);
     }
 
@@ -67,9 +62,7 @@ public final class StringCalculator {
     }
 
     private static String removeDelimiterFromString(final String s, final String delimiter) {
-        String tmpString;
-        tmpString = s.replace(delimiter + NEW_LINE_DELIMITER, "");
-        return tmpString;
+        return s.replace(delimiter + NEW_LINE_DELIMITER, "");
     }
 
     private static String replaceDelimiterToDefault(final String s, final String delimiter) {
@@ -80,7 +73,7 @@ public final class StringCalculator {
         return number.matches(VALID_NUMBER_PATTERN);
     }
 
-    private static void checkAllNumbersIsValid(final List<String> numbers) {
+    private static void checkAllNumbersAreValid(final List<String> numbers) {
         List<String> negativeNumbersList = new ArrayList<>();
         for (String number : numbers) {
             if (!isNumber(number)) {
