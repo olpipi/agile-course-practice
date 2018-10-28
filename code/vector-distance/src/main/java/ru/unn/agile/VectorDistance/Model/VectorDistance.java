@@ -8,7 +8,7 @@ public final class VectorDistance {
         ensureNotNullArgs(a, b);
         ensureSameLength(a, b);
 
-        float distance = 0.f;
+        float distance = 0.0f;
 
         for (int i = 0; i < a.length(); ++i) {
             distance += Math.abs(a.get(i) - b.get(i));
@@ -22,7 +22,7 @@ public final class VectorDistance {
         ensureNotNullArgs(a, b);
         ensureSameLength(a, b);
 
-        float distance = 0.f;
+        float distance = 0.0f;
 
         for (int i = 0; i < a.length(); ++i) {
             distance += Math.pow(a.get(i) - b.get(i), 2);
@@ -37,7 +37,7 @@ public final class VectorDistance {
         ensureSameLength(a, b);
 
         final double l3Power = 3.0;
-        float distance = 0.f;
+        float distance = 0.0f;
 
         for (int i = 0; i < a.length(); ++i) {
             distance += Math.pow(Math.abs(a.get(i) - b.get(i)), l3Power);
@@ -52,7 +52,7 @@ public final class VectorDistance {
         ensureSameLength(a, b);
 
         final double l4Power = 4.0;
-        float distance = 0.f;
+        float distance = 0.0f;
 
         for (int i = 0; i < a.length(); ++i) {
             distance += Math.pow(a.get(i) - b.get(i), l4Power);
@@ -66,7 +66,7 @@ public final class VectorDistance {
         ensureNotNullArgs(a, b);
         ensureSameLength(a, b);
 
-        float distance = 0.f;
+        float distance = 0.0f;
 
         for (int i = 0; i < a.length(); ++i) {
             float currentDistance = Math.abs(a.get(i) - b.get(i));
