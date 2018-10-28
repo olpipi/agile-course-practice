@@ -7,6 +7,9 @@ public class MortgageCalculator {
     private double initialPayment;
     private int dateOfMortgage;
     private double interestRate;
+    MortgageCalculator(){
+        setTypeOfPayment("");
+    }
     MortgageCalculator(String typeOfPaymentParam){
         setTypeOfPayment(typeOfPaymentParam);
     }
@@ -22,6 +25,7 @@ public class MortgageCalculator {
                 typeOfPayment = "NotCorrect";
                 break;
         }
+
     }
 
     public String getTypeOfPayment() {
@@ -40,7 +44,7 @@ public class MortgageCalculator {
     }
 
     public void setInitialPayment(double firstPayment) {
-        if (fullCostOfApartment<=0) setFullCostOfApartment(firstPayment+1);
+      //  if (fullCostOfApartment<=0) setFullCostOfApartment(firstPayment+1);
         if (firstPayment>=0 && firstPayment<=fullCostOfApartment)
             initialPayment = firstPayment;
         else
