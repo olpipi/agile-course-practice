@@ -7,7 +7,7 @@ public class BinarySearch {
     private int rightBorder;
     private int leftBorder;
 
-    public BinarySearch(int[] arrayParam, int keyParam) {
+    public BinarySearch(final int[] arrayParam, final int keyParam) {
         key = keyParam;
         array = arrayParam;
         leftBorder = 0;
@@ -17,10 +17,6 @@ public class BinarySearch {
 
     public int getKey() {
         return key;
-    }
-
-    public int doSearch() {
-        return 7;
     }
 
     public int[] getArray() {
@@ -41,5 +37,23 @@ public class BinarySearch {
             leftBorder = size / 2;
         }
         return leftBorder;
+    }
+
+    public int doSearch() {
+        int middle;
+
+        while ((leftBorder <= rightBorder)) {
+            middle = (leftBorder + rightBorder) / 2;
+            if (key > array[middle]) {
+                leftBorder = middle + 1;
+            }
+            if (key < array[middle]) {
+                rightBorder = middle - 1;
+            }
+            if (key == array[middle]) {
+                return middle;
+            }
+        }
+        return -1;
     }
 }
