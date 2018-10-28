@@ -23,12 +23,26 @@ public final class PrimeNumber {
         return true;
     }
 
+    public static int checkWholePartOfFirstValueInterval(final double firstValueInterval) {
+        int wholePartOfFirstValueInterval = (int)firstValueInterval;
+        double fractionalPartOfFirstValueInterval = firstValueInterval - wholePartOfFirstValueInterval;
+        if ( fractionalPartOfFirstValueInterval > 0){
+            wholePartOfFirstValueInterval++;
+        }
+
+        return wholePartOfFirstValueInterval;
+    }
+
+
+
     public static List<Integer> findPrimeNumbers(final double firstValueInterval,
                                                  final double lastValueInterval) {
 
         List<Integer> primeNumbersArray = new ArrayList<>();
 
-        for (int i = (int)firstValueInterval; i <= (int)lastValueInterval; i++) {
+        int finalFirstValueInterval = checkWholePartOfFirstValueInterval(firstValueInterval);
+
+        for (int i = finalFirstValueInterval; i <= (int)lastValueInterval; i++) {
             if (isPrimeNumber(i)) {
                 primeNumbersArray.add(i);
             }

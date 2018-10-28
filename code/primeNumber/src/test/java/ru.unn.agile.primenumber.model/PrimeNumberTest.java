@@ -116,4 +116,18 @@ public final class PrimeNumberTest {
 
         assertEquals(expectedArray, actualArray);
     }
+
+    @Test
+    public void canReceiveOnePrimeValueFromDoubleInterval() {
+        double firstValueInterval = 5.2;
+        double lastValueInterval = 7.6;
+
+        List<Integer> expectedArray = new ArrayList<>();
+        expectedArray.add(7);
+
+        List<Integer> actualArray =
+                PrimeNumber.findPrimeNumbers(firstValueInterval, lastValueInterval);
+
+        assertEquals(expectedArray, actualArray);
+    }
 }
