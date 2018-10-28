@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class VectorDistanceTest {
-    private static final float REASONABLE_PRECISION = 1e-14f;
+    private static final float REASONABLE_PRECISION = 1e-7f;
 
     @Test
     public void canComputeL1Distance() {
