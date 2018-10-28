@@ -61,3 +61,7 @@ project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
 // Rumyantsev Alexander, Vector3D
 include "code/rumyantsev-alexander-vector3d"
 project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vector3d"
+
+// Gladkova Tatiana, Binary Search
+include "code/gladkova-tatiana-binary-search"
+project(":code/gladkova-tatiana-binary-search").name = "gladkova-tatiana-binary-search"
