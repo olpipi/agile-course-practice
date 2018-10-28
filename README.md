@@ -1,8 +1,8 @@
 # Спецкурс "Agile Development"
 
-[![Join the chat][gitter-badge]](gitter)
+[![Join the chat][gitter-badge]][gitter]
 [![Build Status][travis-badge]][travis]
-[![Coverage Status][coveralls-badge]](coveralls)
+[![Coverage Status][coveralls-badge]][coveralls]
 
   - Нижегородский государственный университет имени Н.И. Лобачевского (ННГУ)
     - Институт ИТММ, кафедра МОСТ
