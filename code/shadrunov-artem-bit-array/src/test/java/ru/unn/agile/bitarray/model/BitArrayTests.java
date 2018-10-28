@@ -17,7 +17,7 @@ public class BitArrayTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void canInitializeWithAnyDecimalNumbersArray(){
+    public void canInitializeWithAnyDecimalNumbersArray() {
         List<Integer> list = new ArrayList<>();
 
         int i = 7;
@@ -28,7 +28,7 @@ public class BitArrayTests {
     }
 
     @Test
-    public void canCreateBitArrayWithOnesAndZeroesArray(){
+    public void canCreateBitArrayWithOnesAndZeroesArray() {
         List<Integer> list = new ArrayList<>();
 
         for (int i = 0; i < 4; i++) {
@@ -39,6 +39,31 @@ public class BitArrayTests {
         BitArray bitArray = new BitArray(list);
 
         assertNotNull(bitArray);
+    }
+
+    @Test
+    public void canGetSize() {
+        List<Integer> list = new ArrayList<>();
+
+        list.add(1);
+        for (int i = 0; i < 3; i++)
+            list.add(0);
+
+        BitArray bitArray = new BitArray(list);
+
+        assertEquals(4, bitArray.size());
+    }
+
+    @Test
+    public void canCreateBitArrayFromZeroesArray() {
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++)
+            list.add(0);
+
+        BitArray bitArray = new BitArray(list);
+
+        assertEquals(0, bitArray.size());
     }
 
     @Test
@@ -55,14 +80,14 @@ public class BitArrayTests {
     }
 
     @Test
-    public void canConvertEmptyBitArrayToStrng(){
+    public void canConvertEmptyBitArrayToStrng() {
         BitArray bitArray = new BitArray();
 
         assertEquals("", bitArray.toString());
     }
 
     @Test
-    public void canCutFirstZeroesInStringRepresentation(){
+    public void canCutFirstZeroesInStringRepresentation() {
         List<Integer> list = new ArrayList<>();
 
         for (int i = 0; i < 3; i++)
@@ -73,5 +98,17 @@ public class BitArrayTests {
         BitArray bitArray = new BitArray(list);
 
         assertEquals("1", bitArray.toString());
+    }
+
+    @Test
+    public void canConvertZeroesArrayToStrng() {
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++)
+            list.add(0);
+
+        BitArray bitArray = new BitArray(list);
+
+        assertEquals("", bitArray.toString());
     }
 }

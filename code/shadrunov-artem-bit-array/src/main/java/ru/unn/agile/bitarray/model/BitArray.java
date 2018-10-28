@@ -22,10 +22,14 @@ public class BitArray {
             throw new IllegalArgumentException("Array must contains only 1 and 0");
 
         int i = 0;
-        while (bitArray.get(i) == 0)
+        while (bitArray.size() != 0 && bitArray.get(i) == 0)
             bitArray.remove(i);
 
         this.bits = bitArray;
+    }
+
+    public int size() {
+        return bits.size();
     }
 
     @Override
