@@ -5,14 +5,7 @@ public final class MathStatistics {
     }
 
     static Double meanCalculate(final Number[] data) {
-        if(data == null){
-            throw new IllegalArgumentException("array should be initialized");
-        }
-        for (int i = 0; i < data.length; ++i) {
-            if (data[i] == null) {
-                throw new IllegalArgumentException("null element shouldn't be in array");
-            }
-        }
+        checkInputData(data);
 
         Double mean = 0.0;
         for (int i = 0; i < data.length; ++i) {
@@ -23,14 +16,6 @@ public final class MathStatistics {
     }
 
     static Double dispersionCalculate(final Number[] data) {
-        if(data == null){
-            throw new IllegalArgumentException("array should be initialized");
-        }
-        for (int i = 0; i < data.length; ++i) {
-            if (data[i] == null) {
-                throw new IllegalArgumentException("null element shouldn't be in array");
-            }
-        }
 
         final Double mean = meanCalculate(data);
 
@@ -41,6 +26,18 @@ public final class MathStatistics {
 
         dispersion /= data.length;
         return dispersion;
+    }
+
+    private static void checkInputData(final Number[] data)
+    {
+        if(data == null){
+            throw new IllegalArgumentException("Array should be initialized!");
+        }
+        for (int i = 0; i < data.length; ++i) {
+            if (data[i] == null) {
+                throw new IllegalArgumentException("Null element shouldn't be in array!ssss");
+            }
+        }
     }
 
 }

@@ -81,7 +81,7 @@ public class MathStatisticsTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateMeanWithNullElement() {
-        Number[] data = {2, -3, 5, null, 1, 8};
+        Number[] data = {1.2, 2, -5, null, 8, 7};
 
         Double mean = MathStatistics.meanCalculate(data);
     }
@@ -162,7 +162,7 @@ public class MathStatisticsTest {
     }
 
 
-    public Integer[] getMonotonicArray(final int start, final int end) {
+    private Integer[] getMonotonicArray(final int start, final int end) {
         Integer[] data = new Integer[end];
         for (int i = start; i < data.length; ++i) {
             data[i] = i;
