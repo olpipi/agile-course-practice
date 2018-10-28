@@ -233,14 +233,14 @@ public class MathStatisticsTest {
     public void throwsWhenCalculateMomentWithNullElement() {
         Number[] data = {1, null, 7, 2, 2, 3};
 
-        MathStatistics.momentCalculate(data,3,6);
+        MathStatistics.momentCalculate(data, 3, 6);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateMomentWithNullData() {
         Double[] data = null;
 
-        MathStatistics.momentCalculate(data, 1,2.8);
+        MathStatistics.momentCalculate(data, 1, 2.8);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -266,10 +266,10 @@ public class MathStatisticsTest {
 
     @Test
     public void canCalculateRawMoment() {
-        Number[] data = {0, -3, 0.1 , 0, 1.9};
+        Number[] data = {0, -3, 0.1, 0, 1.9};
 
         Double mean = MathStatistics.meanCalculate(data);
-        Double moment = MathStatistics.momentCalculate(data, 1, 0);
+        Double moment = MathStatistics.momentCalculate(data, MathStatistics.MEAN_ORDER, 0);
 
         assertEquals(mean, moment);
     }
@@ -280,13 +280,13 @@ public class MathStatisticsTest {
 
         Double dispersion = MathStatistics.dispersionCalculate(data);
         Double mean = MathStatistics.meanCalculate(data);
-        Double moment = MathStatistics.momentCalculate(data, 2, mean);
+        Double moment = MathStatistics.momentCalculate(data, MathStatistics.DISPERSION_ORDER, mean);
 
         assertEquals(dispersion, moment);
     }
 
     private Integer[] getMonotonicArray(final int start, final int end) {
-        Integer[] data = new Integer[end-start];
+        Integer[] data = new Integer[end - start];
         for (int i = 0; i < data.length; ++i) {
             data[i] = start + i;
         }

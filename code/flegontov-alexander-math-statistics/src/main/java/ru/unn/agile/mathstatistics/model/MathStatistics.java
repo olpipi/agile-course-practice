@@ -1,6 +1,9 @@
 package ru.unn.agile.mathstatistics.model;
 
 public final class MathStatistics {
+    public static final int MEAN_ORDER = 1;
+    public static final int DISPERSION_ORDER = 2;
+
     private MathStatistics() {
     }
 
@@ -20,14 +23,14 @@ public final class MathStatistics {
 
         Double dispersion = 0.0;
         for (int i = 0; i < data.length; ++i) {
-            dispersion += Math.pow((data[i].doubleValue() - mean), 2);
+            dispersion += Math.pow((data[i].doubleValue() - mean), DISPERSION_ORDER);
         }
 
         dispersion /= data.length;
         return dispersion;
     }
 
-    static Double momentCalculate(final Number[] data, int order, Number a) {
+    static Double momentCalculate(final Number[] data, final int order, final Number a) {
         checkInputData(data);
 
         if (order <= 0) {
