@@ -2,7 +2,7 @@ package ru.unn.agile.mathstatistics.model;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class MathStatisticsTest {
 
@@ -79,6 +79,19 @@ public class MathStatisticsTest {
         assertEquals(expected, mean);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsWhenCalculateMeanWithNullElement() {
+        Number[] data = {2, -3, 5, null, 1, 8};
+
+        Double mean = MathStatistics.meanCalculate(data);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsWhenCalculateMeanWithNullData() {
+        Double[] data = null;
+
+        Double mean = MathStatistics.meanCalculate(data);
+    }
 
     @Test
     public void canCalculateDispersionWithOneNumber() {
@@ -133,6 +146,21 @@ public class MathStatisticsTest {
 
         assertEquals(new Double(83333.25), dispersion);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsWhenCalculateDispersionWithNullElement() {
+        Number[] data = {2, -3, 5, null, 1, 8};
+
+        Double dispersion = MathStatistics.dispersionCalculate(data);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsWhenCalculateDispersionWithNullData() {
+        Double[] data = null;
+
+        Double dispersion = MathStatistics.dispersionCalculate(data);
+    }
+
 
     public Integer[] getMonotonicArray(final int start, final int end) {
         Integer[] data = new Integer[end];
