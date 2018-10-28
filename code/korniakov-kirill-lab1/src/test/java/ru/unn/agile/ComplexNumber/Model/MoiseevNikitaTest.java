@@ -19,7 +19,7 @@ public class MoiseevNikitaTest {
 
         ComplexNumber sum = z1.add(z2);
 
-        assertEquals(sum, expectedSum);
+        assertEquals(expectedSum, sum);
     }
 
     @Test
