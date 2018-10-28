@@ -29,22 +29,18 @@ public class Stack<E> {
     }
 
     public synchronized E pop() {
-        int size = list.size();
-
         if (empty()) {
             throw new EmptyStackException();
         }
 
-        return list.remove(size - 1);
+        return list.remove(size() - 1);
     }
 
     public synchronized E peek() {
-        int size = list.size();
-
         if (empty()) {
             throw new EmptyStackException();
         }
 
-        return list.get(size - 1);
+        return list.get(size() - 1);
     }
 }
