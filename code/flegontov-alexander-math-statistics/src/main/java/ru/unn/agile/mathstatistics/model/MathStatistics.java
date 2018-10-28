@@ -27,6 +27,17 @@ public final class MathStatistics {
         return dispersion;
     }
 
+    static Double momentCalculate(final Number[] data, int order, int a) {
+
+        Double moment = 0.0;
+        for (int i = 0; i < data.length; ++i) {
+            moment += Math.pow((data[i].doubleValue() - a), order);
+        }
+
+        moment /= data.length;
+        return moment;
+    }
+
     private static void checkInputData(final Number[] data) {
         if (data == null) {
             throw new IllegalArgumentException("Array should be initialized!");
