@@ -28,7 +28,7 @@ public class Stack<E> {
         return item;
     }
 
-    public synchronized E pop() {
+    public E pop() {
         if (empty()) {
             throw new EmptyStackException();
         }
@@ -36,7 +36,7 @@ public class Stack<E> {
         return list.remove(size() - 1);
     }
 
-    public synchronized E peek() {
+    public E peek() {
         if (empty()) {
             throw new EmptyStackException();
         }

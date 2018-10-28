@@ -11,7 +11,7 @@ public class StackTest {
     public void canCreateStack() {
         Stack<Object> stack = new Stack<>();
 
-        assertTrue(stack.empty());
+        assertNotEquals(null, stack);
     }
 
     @Test(expected = IllegalArgumentException.class)
