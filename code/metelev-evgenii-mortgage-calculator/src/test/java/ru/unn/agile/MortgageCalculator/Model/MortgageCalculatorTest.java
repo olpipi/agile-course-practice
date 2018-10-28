@@ -148,5 +148,6 @@ public class MortgageCalculatorTest {
         myMortgageCalculator.setTypeOfDate("Months");
         myMortgageCalculator.setDateOfMortgage(-5);
         assertEquals(-1,myMortgageCalculator.getPrincipalDebt(),epsilon);
+
     }
 }

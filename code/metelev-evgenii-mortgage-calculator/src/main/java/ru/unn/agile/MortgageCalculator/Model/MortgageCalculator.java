@@ -7,6 +7,9 @@ public class MortgageCalculator {
     private double initialPayment;
     private int dateOfMortgage;
     private double interestRate;
+    MortgageCalculator(String typeOfPaymentParam){
+        setTypeOfPayment(typeOfPaymentParam);
+    }
     public void setTypeOfPayment(String AnnuityOrDifferentiated) {
         switch (AnnuityOrDifferentiated){
             case "Annuity":
