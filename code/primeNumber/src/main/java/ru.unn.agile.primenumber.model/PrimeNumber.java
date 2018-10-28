@@ -23,17 +23,12 @@ public final class PrimeNumber {
         return true;
     }
 
-    public static List<Integer> findPrimeNumbers(final int firstValueInterval,
-                                                 final int lastValueInterval) {
-
-        if (lastValueInterval < firstValueInterval ) {
-            throw new IllegalArgumentException("Enter the correct value!");
-        }
-
+    public static List<Integer> findPrimeNumbers(final double firstValueInterval,
+                                                 final double lastValueInterval) {
 
         List<Integer> primeNumbersArray = new ArrayList<>();
 
-        for (int i = firstValueInterval; i <= lastValueInterval; i++) {
+        for (int i = (int)firstValueInterval; i <= (int)lastValueInterval; i++) {
             if (isPrimeNumber(i)) {
                 primeNumbersArray.add(i);
             }

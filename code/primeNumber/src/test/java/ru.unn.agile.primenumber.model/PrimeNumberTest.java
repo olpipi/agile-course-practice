@@ -69,4 +69,51 @@ public final class PrimeNumberTest {
 
         assertEquals(expectedArray, actualArray);
     }
+
+    @Test
+    public void canReceiveFourPrimeValueFromIntervalFiveToFifteen() {
+        int firstValueInterval = 5;
+        int lastValueInterval = 15;
+
+        List<Integer> expectedArray = new ArrayList<>();
+        expectedArray.add(5);
+        expectedArray.add(7);
+        expectedArray.add(11);
+        expectedArray.add(13);
+
+        List<Integer> actualArray =
+                PrimeNumber.findPrimeNumbers(firstValueInterval, lastValueInterval);
+
+        assertEquals(expectedArray, actualArray);
+    }
+
+    @Test
+    public void canReceiveTwoPrimeValueFromIntervalMinusFiveToThree() {
+        int firstValueInterval = -5;
+        int lastValueInterval = 3;
+
+        List<Integer> expectedArray = new ArrayList<>();
+        expectedArray.add(2);
+        expectedArray.add(3);
+
+        List<Integer> actualArray =
+                PrimeNumber.findPrimeNumbers(firstValueInterval, lastValueInterval);
+
+        assertEquals(expectedArray, actualArray);
+    }
+
+    @Test
+    public void canReceiveTwoPrimeValueFromDoubleInterval() {
+        double firstValueInterval = 4.2;
+        double lastValueInterval = 7.6;
+
+        List<Integer> expectedArray = new ArrayList<>();
+        expectedArray.add(5);
+        expectedArray.add(7);
+
+        List<Integer> actualArray =
+                PrimeNumber.findPrimeNumbers(firstValueInterval, lastValueInterval);
+
+        assertEquals(expectedArray, actualArray);
+    }
 }
