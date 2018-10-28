@@ -27,12 +27,16 @@ public final class MathStatistics {
         return dispersion;
     }
 
-    static Double momentCalculate(final Number[] data, int order, int a) {
+    static Double momentCalculate(final Number[] data, int order, Number a) {
         checkInputData(data);
+
+        if (order <= 0) {
+            throw new IllegalArgumentException("Order must be non-zero and positive value!");
+        }
 
         Double moment = 0.0;
         for (int i = 0; i < data.length; ++i) {
-            moment += Math.pow((data[i].doubleValue() - a), order);
+            moment += Math.pow((data[i].doubleValue() - a.doubleValue()), order);
         }
 
         moment /= data.length;

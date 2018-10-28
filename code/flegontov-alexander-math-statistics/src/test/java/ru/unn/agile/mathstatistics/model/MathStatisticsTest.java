@@ -240,7 +240,7 @@ public class MathStatisticsTest {
     public void throwsWhenCalculateMomentWithNullData() {
         Double[] data = null;
 
-        MathStatistics.momentCalculate(data, 1,2);
+        MathStatistics.momentCalculate(data, 1,2.8);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -248,6 +248,20 @@ public class MathStatisticsTest {
         Number[] data = {};
 
         MathStatistics.momentCalculate(data, 2, 3);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsWhenCalculateMomentWithZeroOrder() {
+        Number[] data = {0.1, 9.3, 1.8, 0.8, 2.2};
+
+        Double moment = MathStatistics.momentCalculate(data, 0, 3);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsWhenCalculateMomentWithNegativeOrder() {
+        Number[] data = {0.1, 0.3, 6.8, -6.8, 2.2};
+
+        Double moment = MathStatistics.momentCalculate(data, -5, 3);
     }
 
     private Integer[] getMonotonicArray(final int start, final int end) {
