@@ -10,6 +10,10 @@ project(":code/pozdiaev-valerii-currency-converter").name = "pozdiaev-valerii-cu
 include "code/korniakov-kirill-lab1"
 project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
 
+// Shadrunov Artem
+include "code/shadrunov-artem-bit-array"
+project(":code/shadrunov-artem-bit-array").name = "shadrunov-artem-bit-array"
+
 // Marchenko Andrey
 include "code/marchenko-andrey-complex-number"
 project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-complex-number"
