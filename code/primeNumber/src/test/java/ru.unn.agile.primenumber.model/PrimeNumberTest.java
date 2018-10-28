@@ -52,4 +52,21 @@ public final class PrimeNumberTest {
 
         assertEquals(expectedArray, actualArray);
     }
+
+    @Test
+    public void canReceiveFourPrimeValueFromIntervalZeroToNine() {
+        int firstValueInterval = 0;
+        int lastValueInterval = 9;
+
+        List<Integer> expectedArray = new ArrayList<>();
+        expectedArray.add(2);
+        expectedArray.add(3);
+        expectedArray.add(5);
+        expectedArray.add(7);
+
+        List<Integer> actualArray =
+                PrimeNumber.findPrimeNumbers(firstValueInterval, lastValueInterval);
+
+        assertEquals(expectedArray, actualArray);
+    }
 }
