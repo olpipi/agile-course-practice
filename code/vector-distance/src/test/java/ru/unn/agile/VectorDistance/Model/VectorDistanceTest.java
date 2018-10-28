@@ -5,6 +5,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class VectorDistanceTest {
+    private static final float REASONABLE_PRECISION = 1e-14f;
+
     @Test
     public void canComputeL1Distance() {
         FloatVector a = new FloatVector(new float[]{1.0f, 2.0f, 3.0f});
@@ -12,7 +14,7 @@ public class VectorDistanceTest {
 
         float result = VectorDistance.computeL1(a, b);
 
-        assertEquals(9.0f, result, 1e-14);
+        assertEquals(9.0f, result, REASONABLE_PRECISION);
     }
 
     @Test(expected = InvalidParameterException.class)
@@ -37,7 +39,7 @@ public class VectorDistanceTest {
 
         float result = VectorDistance.computeL2(a, b);
 
-        assertEquals(6.0f, result, 1e-14);
+        assertEquals(6.0f, result, REASONABLE_PRECISION);
     }
 
     @Test
@@ -47,7 +49,7 @@ public class VectorDistanceTest {
 
         float result = VectorDistance.computeL2(a, b);
 
-        assertEquals(20.0f, result, 1e-14);
+        assertEquals(20.0f, result, REASONABLE_PRECISION);
     }
 
     @Test(expected = NullPointerException.class)
@@ -74,7 +76,7 @@ public class VectorDistanceTest {
 
         float result = VectorDistance.computeL3(a, b);
 
-        assertEquals(20.0f, result, 1e-14);
+        assertEquals(20.0f, result, REASONABLE_PRECISION);
     }
 
     @Test(expected = NullPointerException.class)
@@ -103,7 +105,7 @@ public class VectorDistanceTest {
 
         float result = VectorDistance.computeL4(a, b);
 
-        assertEquals(20.0f, result, 1e-14);
+        assertEquals(20.0f, result, REASONABLE_PRECISION);
     }
 
     @Test(expected = NullPointerException.class)
@@ -137,7 +139,7 @@ public class VectorDistanceTest {
 
         float result = VectorDistance.computeLinf(a, b);
 
-        assertEquals(110.0f, result, 1e-14);
+        assertEquals(110.0f, result, REASONABLE_PRECISION);
     }
 
     @Test(expected = NullPointerException.class)
