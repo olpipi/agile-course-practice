@@ -2,58 +2,60 @@ package ru.unn.agile.number.binarysearch.model;
 
 public class BinarySearch {
 
-    private int key;
     private int[] array;
-    private int rightBorder;
-    private int leftBorder;
 
-    public BinarySearch(final int[] arrayParam, final int keyParam) {
-        key = keyParam;
+    public BinarySearch(final int[] arrayParam) {
         array = arrayParam;
-        leftBorder = 0;
-        rightBorder = array.length - 1;
     }
 
-
-    public int getKey() {
-        return key;
-    }
 
     public int[] getArray() {
         return array;
     }
 
-    public int getRightPositionBorder() {
+    public boolean inLeftHalf(final int key) {
         int size = array.length;
-        if (key < array[size / 2]) {
-            rightBorder = size / 2;
-        }
-        return rightBorder;
+        return  (key < array[size / 2]);
     }
 
-    public int getLeftPositionBorder() {
+    public boolean inRightHalf(final int key) {
         int size = array.length;
-        if (key > array[size / 2]) {
-            leftBorder = size / 2;
-        }
-        return leftBorder;
+        return (array[size / 2] < key);
     }
 
-    public int doSearch() {
+    public int search(final int key) {
         int middle;
+        int leftBorder = 0;
+        int rightBorder = array.length - 1;
 
-        while ((leftBorder <= rightBorder)) {
-            middle = (leftBorder + rightBorder) / 2;
-            if (key > array[middle]) {
-                leftBorder = middle + 1;
-            }
-            if (key < array[middle]) {
-                rightBorder = middle - 1;
-            }
-            if (key == array[middle]) {
-                return middle;
+        if (identifyAnArray()) {
+            while ((leftBorder <= rightBorder)) {
+                middle = (leftBorder + rightBorder) / 2;
+                if (key > array[middle]) {
+                    leftBorder = middle + 1;
+                }
+                if (key < array[middle]) {
+                    rightBorder = middle - 1;
+                }
+                if (key == array[middle]) {
+                    return middle;
+                }
             }
         }
         return -1;
+    }
+
+    public boolean identifyAnArray() {
+        int size = array.length;
+        if (size == 0) {
+            return false;
+        }
+
+        for (int i = 0; i < size - 1; i++) {
+            if (array[i] > array[i + 1]) {
+                return false;
+            }
+        }
+        return true;
     }
 }
