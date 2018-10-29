@@ -38,7 +38,7 @@ public class LengthConverterTest {
     }
 
     @Test
-    public void canConvertMillimetersToMillimeters(){
+    public void canConvertMillimetersToMillimeters() {
         double convertedValue = LengthUnit.MILLIMETERS.convert(5, LengthUnit.MILLIMETERS);
         assertEquals(5, convertedValue, EPSILON);
     }

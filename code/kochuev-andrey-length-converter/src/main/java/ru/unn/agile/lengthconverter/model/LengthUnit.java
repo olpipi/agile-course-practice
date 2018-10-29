@@ -1,36 +1,37 @@
 package ru.unn.agile.lengthconverter.model;
 
 public enum LengthUnit {
-    METERS{
-        public double convert(final double value, LengthUnit targetUnit){
-            if(targetUnit == MILLIMETERS)
-                return value * 1000;
-            else if(targetUnit == KILOMETERS)
-                return value * 0.001;
+    METERS {
+        protected double convertToMeters(final double value) {
+            return value;
+        }
+
+        public double convert(final double value, LengthUnit targetUnit) {
+            if (targetUnit == MILLIMETERS)
+                return value * COEF_KILO;
+            else if (targetUnit == KILOMETERS)
+                return value * COEF_MILLI;
             else
                 return value;
         }
     },
-    MILLIMETERS{
-        public double convert(final double value, LengthUnit targetUnit){
-            if(targetUnit == METERS)
-                return value * 0.001;
-            else if(targetUnit == KILOMETERS)
-                return value * 0.000001;
-            else
-                return value;
+    MILLIMETERS {
+        protected double convertToMeters(final double value) {
+            return value * COEF_MILLI;
         }
     },
-    KILOMETERS{
-        public double convert(final double value, LengthUnit targetUnit){
-            if(targetUnit == METERS)
-                return value * 1000;
-            else if(targetUnit == MILLIMETERS)
-                return value * 1000000;
-            else
-                return value;
+    KILOMETERS {
+        protected double convertToMeters(final double value) {
+            return value * COEF_KILO;
         }
     };
 
-    public abstract double convert(final double value, LengthUnit targetUnit);
+    public double convert(final double value, LengthUnit targetUnit) {
+        return METERS.convert(this.convertToMeters(value), targetUnit);
+    }
+
+    private static final double COEF_KILO = 1e3;
+    private static final double COEF_MILLI = 1e-3;
+
+    abstract double convertToMeters(final double value);
 }
