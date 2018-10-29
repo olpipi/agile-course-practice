@@ -76,5 +76,29 @@ public class ShapesAreaTest {
         assert Math.abs(area - expectedArea) < 0.00001;
     }
 
+    @Test
+    public void canGetUnitHexagonalPyramidArea() {
+        Shape pyramid = new HexagonalPyramid(1, 1);
+        double area = pyramid.getArea();
+        double expectedArea = 3 * (Math.sqrt(0.75) + Math.sqrt(3) / 2);
+        assert Math.abs(area - expectedArea) < 0.00001;
+    }
+
+    @Test
+    public void canGetUnitTriangleArea() {
+        Shape triangle = new Triangle(1, 1, 1);
+        double area = triangle.getArea();
+        double expectedArea = Math.sqrt(3) / 4;
+        assert Math.abs(area - expectedArea) < 0.00001;
+    }
+
+    @Test
+    public void canGetUnitHexagonArea() {
+        Shape hexagon = new Hexagon(1);
+        double area = hexagon.getArea();
+        double expectedArea = 3 * Math.sqrt(3) / 2;
+        assert Math.abs(area - expectedArea) < 0.00001;
+    }
+
 
 }
