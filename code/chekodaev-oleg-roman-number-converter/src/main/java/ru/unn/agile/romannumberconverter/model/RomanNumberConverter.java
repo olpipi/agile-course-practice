@@ -18,10 +18,12 @@ public final class RomanNumberConverter {
 			romanNumber = convertToRomanFirstThreeNumbers(arabicNumber);
 		} else if (arabicNumber == 4) {
 			romanNumber = "IV";
-		} else if (arabicNumber >= 5) {
+		} else if (arabicNumber >= 5 && arabicNumber < 9) {
 			romanNumber = "V";
 			romanNumber += convertToRomanFirstThreeNumbers(arabicNumber - 5);
-		}
+		} else if (arabicNumber == 9) {
+            romanNumber = "IX";
+        }
 			
 		return romanNumber;
     }
