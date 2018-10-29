@@ -3,11 +3,12 @@ package ru.unn.agile.dikstry;
 
 import org.junit.Test;
 
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class MatrixTests {
-    private static double delta = 0.01;
+    private static double delta = 0.1;
 
     @Test
     public void canInitVertex() {
@@ -49,7 +50,7 @@ public class MatrixTests {
 
     @Test
     public void canInitGraph() {
-        double[][] matrix = {
+        int[][] matrix = {
                 {
                     0, 2
                 },
@@ -59,12 +60,12 @@ public class MatrixTests {
         };
         Graph graph = new Graph(matrix);
 
-        assertEquals(1, graph.getSizeOfEdges());
+        assertEquals(2, graph.getSizeOfEdges());
     }
 
     @Test
     public void canInitGraphWithThreeEdges() {
-        double[][] matrix = {
+        int[][] matrix = {
                 {
                     0, 2, 5
                 },
@@ -77,12 +78,12 @@ public class MatrixTests {
         };
         Graph graph = new Graph(matrix);
 
-        assertEquals(2, graph.getSizeOfEdges());
+        assertEquals(4, graph.getSizeOfEdges());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void canInvalidGraphInitiated() {
-        double[][] matrix = {
+        int[][] matrix = {
                 {
                     0, 2
                 },
@@ -100,7 +101,7 @@ public class MatrixTests {
 
     @Test
     public void canInvalidGraphInitiatedMessage() {
-        double[][] matrix = {
+        int[][] matrix = {
                 {
                     0, 2
                 },
@@ -112,10 +113,110 @@ public class MatrixTests {
                 }
         };
         try {
-            Graph graph = new Graph(matrix);
+            new Graph(matrix);
         } catch (IllegalArgumentException e) {
             assertThat(e.getMessage(), is("matrix is not square"));
         }
+    }
+
+    @Test
+    public void isGraphDontHaveNegativeWeight() {
+        int[][] matrix = {
+                {
+                        0, 4, -2
+                },
+                {
+                        -1, 0, 1
+                },
+                {
+                        0, 1, 0
+                }
+        };
+        try {
+            new Graph(matrix);
+        } catch (IllegalArgumentException e) {
+            assertThat(e.getMessage(), is("matrix have negative weight!"));
+        }
+    }
+
+    @Test
+    public void isGraphEmpty() {
+        int[][] matrix = {
+                {
+                        0, 0, 0
+                },
+                {
+                        0, 0, 0
+                },
+                {
+                        0, 0, 0
+                }
+        };
+        try {
+            new Graph(matrix);
+        } catch (IllegalArgumentException e) {
+            assertThat(e.getMessage(), is("matrix have negative weight!"));
+        }
+    }
+
+    @Test
+    public void isCalculateDistanceToStartVertex() {
+        int[][] matrix = {
+                {
+                        0, 2, 0
+                },
+                {
+                        0, 0, 0
+                },
+                {
+                        1, 0, 0
+                }
+        };
+        Graph graph = new Graph(matrix);
+        Vertex vertexOfStart = new Vertex(0);
+        Vertex vertexOfEnd = new Vertex(0);
+
+        assertEquals(0, graph.dikstry(vertexOfStart, vertexOfEnd));
+    }
+
+    @Test
+    public void isCalculateDistanceOnStartToFirstVertex() {
+        int[][] matrix = {
+                {
+                        0, 4, 2
+                },
+                {
+                        1, 0, 0
+                },
+                {
+                        3, 0, 0
+                }
+        };
+        Graph graph = new Graph(matrix);
+        Vertex vertexOfStart = new Vertex(0);
+        Vertex vertexOfEnd = new Vertex(1);
+
+
+        assertEquals(4, graph.dikstry(vertexOfStart, vertexOfEnd));
+    }
+
+    @Test
+    public void isLowestDistancewithOneVertexInDistance() {
+        int[][] matrix = {
+                {
+                        0, 4, 2
+                },
+                {
+                        1, 0, 0
+                },
+                {
+                        1, 0, 0
+                }
+        };
+        Graph graph = new Graph(matrix);
+        Vertex vertexOfStart = new Vertex(0);
+        Vertex vertexOfEnd = new Vertex(1);
+        assertEquals(4, graph.dikstry(vertexOfStart, vertexOfEnd));
     }
 
 }
