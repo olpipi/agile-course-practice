@@ -12,9 +12,10 @@ public class MoskalenkoViktorTest {
 
         // Act
         ComplexNumber z = z1.multiply(z2);
+        ComplexNumber expected = new ComplexNumber(-10, -10);
 
         // Assert
-        assertEquals(new ComplexNumber(-10, -10), z);
+        assertEquals(expected, z);
     }
 
     @Test
