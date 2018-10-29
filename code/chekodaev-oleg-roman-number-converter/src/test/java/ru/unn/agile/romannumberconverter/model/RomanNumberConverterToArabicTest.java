@@ -112,5 +112,17 @@ public class RomanNumberConverterToArabicTest {
         // Assert
         assertEquals(3999, arabicNumber);
     }
+
+    @Test
+    public void convertToArabicIncorrectStringWithNotOnlyRomanSymbolsEqualsToIncorrectRomanValue() {
+        // Arrange
+        String romanNumber = "IX89";
+
+        // Act
+        int arabicNumber = RomanNumberConverter.convertToArabic(romanNumber);
+
+        // Assert
+        assertEquals(RomanNumberConverter.INCORRECT_ROMAN_VALUE, arabicNumber);
+    }
 }
 

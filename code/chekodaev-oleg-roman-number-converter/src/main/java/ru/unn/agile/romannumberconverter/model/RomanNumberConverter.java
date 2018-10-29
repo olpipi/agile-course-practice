@@ -5,6 +5,7 @@ import java.util.TreeMap;
 
 public final class RomanNumberConverter {
     public static final String OUT_OF_RANGE_ARABIC_VALUE = "Arabic_Out_Of_Range";
+    public static final int INCORRECT_ROMAN_VALUE = -1;
 
     public static final int MIN_VALUE = 1;
     public static final int MAX_VALUE = 3999;
@@ -72,6 +73,10 @@ public final class RomanNumberConverter {
                         step = 2;
                     }
                 }
+            }
+
+            if (res == 0) {
+                return INCORRECT_ROMAN_VALUE;
             }
 
             arabicNumber += res;
