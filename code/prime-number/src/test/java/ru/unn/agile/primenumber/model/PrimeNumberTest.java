@@ -12,7 +12,6 @@ public final class PrimeNumberTest {
     public void canReceiveOnePrimeValueFromIntervalZeroToTwo() {
         int firstValueInterval = 0;
         int lastValueInterval = 2;
-
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(2);
 
@@ -27,7 +26,6 @@ public final class PrimeNumberTest {
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(2);
         expectedArray.add(3);
-
         List<Integer> actualArray =
                 PrimeNumber.findPrimeNumbers(0, 3);
 
@@ -38,7 +36,6 @@ public final class PrimeNumberTest {
     public void canReceiveThreePrimeValueFromIntervalZeroToFive() {
         int firstValueInterval = 0;
         int lastValueInterval = 5;
-
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(2);
         expectedArray.add(3);
@@ -54,7 +51,6 @@ public final class PrimeNumberTest {
     public void canReceiveFourPrimeValueFromIntervalZeroToNine() {
         int firstValueInterval = 0;
         int lastValueInterval = 9;
-
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(2);
         expectedArray.add(3);
@@ -71,7 +67,6 @@ public final class PrimeNumberTest {
     public void canReceiveFourPrimeValueFromIntervalFiveToFifteen() {
         int firstValueInterval = 5;
         int lastValueInterval = 15;
-
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(5);
         expectedArray.add(7);
@@ -88,7 +83,6 @@ public final class PrimeNumberTest {
     public void canReceiveTwoPrimeValueFromIntervalMinusFiveToThree() {
         int firstValueInterval = -5;
         int lastValueInterval = 3;
-
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(2);
         expectedArray.add(3);
@@ -103,7 +97,6 @@ public final class PrimeNumberTest {
     public void canReceiveTwoPrimeValueFromDoubleInterval() {
         double firstValueInterval = 4.2;
         double lastValueInterval = 7.6;
-
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(5);
         expectedArray.add(7);
@@ -118,7 +111,6 @@ public final class PrimeNumberTest {
     public void canReceiveOnePrimeValueFromDoubleInterval() {
         double firstValueInterval = 5.2;
         double lastValueInterval = 7.6;
-
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(7);
 
@@ -140,7 +132,6 @@ public final class PrimeNumberTest {
     public void canReceiveOnePrimeValueFromIntervalFiveToFive() {
         int firstValueInterval = 5;
         int lastValueInterval = 5;
-
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(5);
 
