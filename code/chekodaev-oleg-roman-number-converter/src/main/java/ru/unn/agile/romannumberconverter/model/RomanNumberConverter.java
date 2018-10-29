@@ -40,6 +40,17 @@ public final class RomanNumberConverter {
         return romanNumber;
     }
 
+    private static int getBaseNumberMapKey(final String value) {
+        int res = 0;
+        for (Map.Entry e : BASE_NUMBER_MAP.entrySet()) {
+            if (((String) e.getValue()).equals(value)) {
+                res = ((int) e.getKey());
+            }
+        }
+
+        return res;
+    }
+
     public static String convertToRoman(final int arabicNumber) {
         if (arabicNumber < MIN_VALUE || arabicNumber > MAX_VALUE) {
             return OUT_OF_RANGE_ARABIC_VALUE;
@@ -55,30 +66,26 @@ public final class RomanNumberConverter {
         int i = 0;
         while (i < inputValueLength) {
             int res = 0;
-            int step = 0;
+            int step = 1;
 
+            // Check if one symbol in a row equals to value from baseNumbersMap.
             String str = String.valueOf(inputValue[i]);
-            for (Map.Entry e : BASE_NUMBER_MAP.entrySet()) {
-                if (((String) e.getValue()).equals(str)) {
-                    res = ((int) e.getKey());
-                    step = 1;
-                }
-            }
+            res = getBaseNumberMapKey(str);
 
+            // Then check maybe two symbols in a row equals to value from baseNumbersMap.
+            // This needs to define numbers like IX.
             if (i + 1 < inputValueLength) {
                 str += String.valueOf(inputValue[i + 1]);
-                for (Map.Entry e : BASE_NUMBER_MAP.entrySet()) {
-                    if (((String) e.getValue()).equals(str)) {
-                        res = ((int) e.getKey());
-                        step = 2;
-                    }
+                int key = getBaseNumberMapKey(str);
+                if (key != 0) {
+                    res = key;
+                    step = 2;
                 }
             }
 
             if (res == 0) {
                 return INCORRECT_ROMAN_VALUE;
             }
-
             arabicNumber += res;
             i += step;
         }
