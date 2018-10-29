@@ -39,4 +39,16 @@ public class RomanNumberConverterToRomanTest {
         // Assert
         assertEquals("IV", romanNumber);
     }
+
+    @Test
+    public void convertToRomanTheNumber5Converted() {
+        // Arrange
+        int arabicNumber = 5;
+
+        // Act
+        String romanNumber = RomanNumberConverter.convertToRoman(arabicNumber);
+
+        // Assert
+        assertEquals("V", romanNumber);
+    }
 }
