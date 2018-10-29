@@ -11,6 +11,14 @@ public final class RomanNumberConverter {
         BASE_NUMBER_MAP.put(5, "V");
         BASE_NUMBER_MAP.put(9, "IX");
         BASE_NUMBER_MAP.put(10, "X");
+        BASE_NUMBER_MAP.put(40, "XL");
+        BASE_NUMBER_MAP.put(50, "L");
+        BASE_NUMBER_MAP.put(90, "XC");
+        BASE_NUMBER_MAP.put(100, "C");
+        BASE_NUMBER_MAP.put(400, "CD");
+        BASE_NUMBER_MAP.put(500, "D");
+        BASE_NUMBER_MAP.put(900, "CM");
+        BASE_NUMBER_MAP.put(1000, "M");
     }
 
     public static String convertToRoman(final int arabicNumber) {
