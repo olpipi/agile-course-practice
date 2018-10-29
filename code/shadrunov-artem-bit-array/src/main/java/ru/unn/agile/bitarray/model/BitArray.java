@@ -51,6 +51,16 @@ public class BitArray {
         return this.bits.get(index);
     }
 
+    public int toInt() {
+        int result = 0;
+
+        for (int i = 0; i < this.bits.size(); i++) {
+            result += this.bits.get(i) * Math.pow(2, size() - i - 1);
+        }
+
+        return result;
+    }
+
     @Override
     public String toString() {
         String stringBitArray = "";

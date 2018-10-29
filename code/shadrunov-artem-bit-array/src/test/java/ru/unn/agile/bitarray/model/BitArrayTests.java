@@ -171,4 +171,23 @@ public class BitArrayTests {
     public void canInitializeWithNegativeNumber() {
         BitArray bitArray = new BitArray(-1);
     }
+
+    @Test
+    public void canConvertToInt() {
+        List<Integer> list = new ArrayList<>();
+
+        list.add(1);
+        list.add(0);
+
+        BitArray bitArray = new BitArray(list);
+
+        assertEquals(2, bitArray.toInt());
+    }
+
+    @Test
+    public void canConvertToZero() {
+        BitArray bitArray = new BitArray();
+
+        assertEquals(0, bitArray.toInt());
+    }
 }
