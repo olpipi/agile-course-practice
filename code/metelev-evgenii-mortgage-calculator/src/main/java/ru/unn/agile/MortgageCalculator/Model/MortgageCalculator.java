@@ -1,36 +1,37 @@
 package ru.unn.agile.MortgageCalculator.Model;
 
 public class MortgageCalculator {
-    private String typeOfPayment;
-    private String typeOfDate = "Months";
     private double fullCostOfApartment;
     private double initialPayment = 0;
-    private int dateOfMortgage = 12;
+    private int dateOfMortgage = MONTHS_IN_YEAR;
     private double interestRate;
     private double[] fullPriceInTableView;
     private double[] accruedInterestInTableView;
 
     private static final int MONTHS_IN_YEAR = 12;
     private static final double IS_PERCENT = 0.01;
+    private static final double HUNDRED = 100;
 
-
-    public void setFullCostOfApartment(double sum) {
-        if (sum>0)
+    public void setFullCostOfApartment(final double sum) {
+        if (sum > 0) {
             fullCostOfApartment = sum;
-        else
+        }
+        else {
             fullCostOfApartment = -1;
+        }
     }
 
     public double getFullCostOfApartment() {
         return fullCostOfApartment;
     }
 
-    public void setInitialPayment(double firstPayment) {
-      //  if (fullCostOfApartment<=0) setFullCostOfApartment(firstPayment+1);
-        if (firstPayment>=0 && firstPayment<=fullCostOfApartment)
+    public void setInitialPayment(final double firstPayment) {
+        if (firstPayment >= 0 && firstPayment <= fullCostOfApartment){
             initialPayment = firstPayment;
-        else
+        }
+        else {
             initialPayment = -1;
+        }
     }
 
     public double getInitialPayment() {
@@ -38,10 +39,12 @@ public class MortgageCalculator {
     }
 
     public void setDateOfMortgage(int date) {
-        if (date>0)
+        if (date > 0) {
             dateOfMortgage = date;
-        else
+        }
+        else {
             dateOfMortgage = -1;
+        }
     }
 
     public int getDateOfMortgage() {
@@ -50,8 +53,9 @@ public class MortgageCalculator {
 
     public void setInterestRate(double percent) {
         interestRate = -1;
-        if (percent>=0 && percent<=100)
+        if (percent >= 0 && percent <= 100) {
             interestRate = percent;
+        }
     }
 
     public double getInterestRate() {
@@ -60,15 +64,15 @@ public class MortgageCalculator {
 
     public double getPrincipalDebt() {
         fullCostOfApartment -= initialPayment;
-        return Math.round(fullCostOfApartment/dateOfMortgage*100)/100.00;
+        return round(fullCostOfApartment/dateOfMortgage);
     }
 
     public double getAccruedInterest(double balanceOfFullCost) {
-        return Math.round(balanceOfFullCost * interestRate*IS_PERCENT/MONTHS_IN_YEAR*100)/100.00;
+        return round(balanceOfFullCost * interestRate*IS_PERCENT/MONTHS_IN_YEAR);
     }
 
     public double getFullPrice(double balanceOfFullCost) {
-        return Math.round((getPrincipalDebt() + getAccruedInterest(balanceOfFullCost))*100)/100.00;
+        return round(getPrincipalDebt() + getAccruedInterest(balanceOfFullCost));
     }
 
     public void setAccruedInterestInTableView() {
@@ -91,5 +95,8 @@ public class MortgageCalculator {
             fullPriceInTableView[curMonth] = accruedInterestInTableView[curMonth] + getPrincipalDebt();
         }
         return fullPriceInTableView;
+    }
+    private double round(double roundedNum){
+        return Math.round(roundedNum * HUNDRED) / HUNDRED;
     }
 }
