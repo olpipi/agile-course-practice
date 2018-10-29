@@ -37,6 +37,10 @@ public final class PrimeNumber {
     public static List<Integer> findPrimeNumbers(final double firstValueInterval,
                                                  final double lastValueInterval) {
 
+        if (lastValueInterval < firstValueInterval ) {
+            throw new IllegalArgumentException("Enter the correct value!");
+        }
+
         List<Integer> primeNumbersArray = new ArrayList<>();
 
         int finalFirstValueInterval = checkWholePartOfFirstValueInterval(firstValueInterval);

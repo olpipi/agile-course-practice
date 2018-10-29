@@ -24,15 +24,12 @@ public final class PrimeNumberTest {
 
     @Test
     public void canReceiveTwoPrimeValueFromIntervalZeroToThree() {
-        int firstValueInterval = 0;
-        int lastValueInterval = 3;
-
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(2);
         expectedArray.add(3);
 
         List<Integer> actualArray =
-                PrimeNumber.findPrimeNumbers(firstValueInterval, lastValueInterval);
+                PrimeNumber.findPrimeNumbers(0, 3);
 
         assertEquals(expectedArray, actualArray);
     }
@@ -129,5 +126,13 @@ public final class PrimeNumberTest {
                 PrimeNumber.findPrimeNumbers(firstValueInterval, lastValueInterval);
 
         assertEquals(expectedArray, actualArray);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotReceivePrimeValueFromIncorrectInterval() {
+        int firstValueInterval = 3;
+        int lastValueInterval = -3;
+
+        PrimeNumber.findPrimeNumbers(firstValueInterval, lastValueInterval);
     }
 }
