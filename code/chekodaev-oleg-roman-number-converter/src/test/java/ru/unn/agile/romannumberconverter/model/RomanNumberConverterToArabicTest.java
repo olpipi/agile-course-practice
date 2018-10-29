@@ -1,5 +1,7 @@
 package ru.unn.agile.romannumberconverter.model;
 
+import ru.unn.agile.romannumberconverter.model.errorhandling.RomanIncorrectValueExeption;
+
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -112,27 +114,21 @@ public class RomanNumberConverterToArabicTest {
         assertEquals(3999, arabicNumber);
     }
 
-    @Test
+    @Test(expected = RomanIncorrectValueExeption.class)
     public void convertToArabicIncorrectStringWithNotOnlyRomanSymbolsEqualsToIncorrectRomanValue() {
         // Arrange
         String romanNumber = "IX89";
 
-        // Act
+        // Act & Assert
         int arabicNumber = RomanNumberConverter.convertToArabic(romanNumber);
-
-        // Assert
-        assertEquals(RomanNumberConverter.INCORRECT_ROMAN_VALUE, arabicNumber);
     }
 
-    @Test
+    @Test(expected = RomanIncorrectValueExeption.class)
     public void convertToArabicIncorrectStringWithOnlyRomanSymbolsEqualsToIncorrectRomanValue() {
         // Arrange
         String romanNumber = "IXII";
 
-        // Act
+        // Act & Assert
         int arabicNumber = RomanNumberConverter.convertToArabic(romanNumber);
-
-        // Assert
-        assertEquals(RomanNumberConverter.INCORRECT_ROMAN_VALUE, arabicNumber);
     }
 }

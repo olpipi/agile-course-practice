@@ -1,5 +1,7 @@
 package ru.unn.agile.romannumberconverter.model;
 
+import ru.unn.agile.romannumberconverter.model.errorhandling.ArabicOutOfRangeException;
+
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -112,27 +114,21 @@ public class RomanNumberConverterToRomanTest {
         assertEquals("MMMCMXCIX", romanNumber);
     }
 
-    @Test
+    @Test(expected = ArabicOutOfRangeException.class)
     public void convertToRomanTheNumber0EqualsToOutOfRangeValue() {
         // Arrange
         int arabicNumber = 0;
 
-        // Act
+        // Act & Assert
         String romanNumber = RomanNumberConverter.convertToRoman(arabicNumber);
-
-        // Assert
-        assertEquals(RomanNumberConverter.OUT_OF_RANGE_ARABIC_VALUE, romanNumber);
     }
 
-    @Test
+    @Test(expected = ArabicOutOfRangeException.class)
     public void convertToRomanTheNumber4000EqualsToOutOfRangeValue() {
         // Arrange
         int arabicNumber = 4000;
 
-        // Act
+        // Act & Assert
         String romanNumber = RomanNumberConverter.convertToRoman(arabicNumber);
-
-        // Assert
-        assertEquals(RomanNumberConverter.OUT_OF_RANGE_ARABIC_VALUE, romanNumber);
     }
 }
