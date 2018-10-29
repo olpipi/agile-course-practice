@@ -8,7 +8,7 @@ public class Parallelepiped implements Shape {
     private final double b;
     private final double c;
 
-    public Parallelepiped(double a, double b, double c) {
+    public Parallelepiped(final double a, final double b, final double c) {
         this.a = a;
         this.b = b;
         this.c = c;
@@ -16,6 +16,6 @@ public class Parallelepiped implements Shape {
 
     @Override
     public double getArea() {
-        return 2*(a*b + b*c + a*c);
+        return 2 * (a * b + b * c + a * c);
     }
 }

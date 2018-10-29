@@ -8,7 +8,7 @@ public class Cylinder implements Shape {
     private final double height;
     private static final double MULTIPLICATION_COEFFICIENT = 2 * Math.PI;
 
-    public Cylinder(double radius, double height) {
+    public Cylinder(final double radius, final double height) {
         this.radius = radius;
         this.height = height;
     }
