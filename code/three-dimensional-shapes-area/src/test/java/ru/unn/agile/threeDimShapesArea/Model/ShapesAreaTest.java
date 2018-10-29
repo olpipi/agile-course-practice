@@ -32,5 +32,36 @@ public class ShapesAreaTest {
         assert area == 16 * Math.PI;
     }
 
+    @Test
+    public void canGetUnitParallelepipedArea() {
+        Shape parallelepiped = new Parallelepiped(1,1,1);
+        double area = parallelepiped.getArea();
+        assert area == 6;
+    }
+
+    @Test
+    public void canGetParallelepipedArea() {
+        Shape parallelepiped = new Parallelepiped(1,3,5);
+        double area = parallelepiped.getArea();
+        assert area == 46;
+    }
+
+
+    @Test
+    public void canGetUnitCylinderArea() {
+        Shape cylinder = new Cylinder(1,1);
+        double area = cylinder.getArea();
+        assert area == 4 * Math.PI;
+    }
+
+    @Test
+    public void canGetCylinderArea() {
+        Shape cylinder = new Cylinder(3,5);
+        double area = cylinder.getArea();
+        assert area == 2 * Math.PI * 3 * 8;
+    }
+
+
+
 
 }
