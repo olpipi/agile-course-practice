@@ -20,6 +20,12 @@ public class LengthConverterTest {
     }
 
     @Test
+    public void canConvertMetersToMeters() {
+        double convertedValue = LengthUnit.METERS.convert(5, LengthUnit.METERS);
+        assertEquals(5, convertedValue, EPSILON);
+    }
+
+    @Test
     public void canConvertMillimetersToMeters() {
         double convertedValue = LengthUnit.MILLIMETERS.convert(5, LengthUnit.METERS);
         assertEquals(0.005, convertedValue, EPSILON);
@@ -32,6 +38,12 @@ public class LengthConverterTest {
     }
 
     @Test
+    public void canConvertMillimetersToMillimeters(){
+        double convertedValue = LengthUnit.MILLIMETERS.convert(5, LengthUnit.MILLIMETERS);
+        assertEquals(5, convertedValue, EPSILON);
+    }
+
+    @Test
     public void canConvertKilometersToMeters() {
         double convertedValue = LengthUnit.KILOMETERS.convert(5, LengthUnit.METERS);
         assertEquals(5000, convertedValue, EPSILON);
@@ -41,5 +53,11 @@ public class LengthConverterTest {
     public void canConvertKilometersToMillimeters() {
         double convertedValue = LengthUnit.KILOMETERS.convert(5, LengthUnit.MILLIMETERS);
         assertEquals(5000000, convertedValue, EPSILON);
+    }
+
+    @Test
+    public void canConvertKilometersToKilometers() {
+        double convertedValue = LengthUnit.KILOMETERS.convert(5, LengthUnit.KILOMETERS);
+        assertEquals(5, convertedValue, EPSILON);
     }
 }
