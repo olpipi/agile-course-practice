@@ -12,30 +12,7 @@ public class MortgageCalculator {
 
     private static final int MONTHS_IN_YEAR = 12;
     private static final double IS_PERCENT = 0.01;
-    MortgageCalculator(){
-        setTypeOfPayment("");
-    }
-    MortgageCalculator(String typeOfPaymentParam){
-        setTypeOfPayment(typeOfPaymentParam);
-    }
-    public void setTypeOfPayment(String AnnuityOrDifferentiated) {
-        switch (AnnuityOrDifferentiated){
-            case "Annuity":
-                typeOfPayment = AnnuityOrDifferentiated;
-                break;
-            case "Differentiated":
-                typeOfPayment = AnnuityOrDifferentiated;
-                break;
-            default:
-                typeOfPayment = "NotCorrect";
-                break;
-        }
 
-    }
-
-    public String getTypeOfPayment() {
-        return typeOfPayment;
-    }
 
     public void setFullCostOfApartment(double sum) {
         if (sum>0)
@@ -60,16 +37,6 @@ public class MortgageCalculator {
         return initialPayment;
     }
 
-    public void setTypeOfDate(String yearsOrMonths) {
-        typeOfDate = "NotCorrect";
-        if (yearsOrMonths == "Years" || yearsOrMonths == "Months")
-            typeOfDate = yearsOrMonths;
-    }
-
-    public String getTypeOfDate() {
-        return typeOfDate;
-    }
-
     public void setDateOfMortgage(int date) {
         if (date>0)
             dateOfMortgage = date;
@@ -92,6 +59,7 @@ public class MortgageCalculator {
     }
 
     public double getPrincipalDebt() {
+        fullCostOfApartment -= initialPayment;
         return Math.round(fullCostOfApartment/dateOfMortgage*100)/100.00;
     }
 
