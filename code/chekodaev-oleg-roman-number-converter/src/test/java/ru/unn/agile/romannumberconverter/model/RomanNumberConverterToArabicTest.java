@@ -124,5 +124,17 @@ public class RomanNumberConverterToArabicTest {
         // Assert
         assertEquals(RomanNumberConverter.INCORRECT_ROMAN_VALUE, arabicNumber);
     }
+
+    @Test
+    public void convertToArabicIncorrectStringWithOnlyRomanSymbolsEqualsToIncorrectRomanValue() {
+        // Arrange
+        String romanNumber = "IXII";
+
+        // Act
+        int arabicNumber = RomanNumberConverter.convertToArabic(romanNumber);
+
+        // Assert
+        assertEquals(RomanNumberConverter.INCORRECT_ROMAN_VALUE, arabicNumber);
+    }
 }
 

@@ -83,6 +83,11 @@ public final class RomanNumberConverter {
             i += step;
         }
 
+        // Easiest way to drop values which got from incorrect inputs like IXI, XIIIX, ...
+        if (!romanNumber.equals(doConvertToRoman(arabicNumber))) {
+            return INCORRECT_ROMAN_VALUE;
+        }
+
         return arabicNumber;
     }
 }
