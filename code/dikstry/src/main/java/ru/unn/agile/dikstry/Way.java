@@ -15,14 +15,6 @@ public class Way {
         return weight;
     }
 
-    public List<Vertex> getVertexes() {
-        return vertexes;
-    }
-
-    public void setVertexes(final List<Vertex> vertexes) {
-        this.vertexes = vertexes;
-    }
-
     public void setWeight(final int weight) {
         this.weight = weight;
     }
@@ -36,15 +28,5 @@ public class Way {
             this.weight += weight;
         }
     }
-    @Override
-    public String toString() {
-        String result;
-        result = "Vertex in the way : ";
-        for (int i = 0; i < vertexes.size(); i++) {
-            result += vertexes.get(i).getId();
-        }
-        result += "    Distatnce weight  = " + this.weight;
-        return result;
 
-    }
 }

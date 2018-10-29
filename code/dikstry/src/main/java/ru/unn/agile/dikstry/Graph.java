@@ -77,7 +77,9 @@ public class Graph {
                 if (edges.get(i).getVertexLeft().getId() == currentVertex.getId()
                         && (!settledVertex.contains(edges.get(i).getVertexRight()))) {
                         calculateMinimumDistance(edges.get(i), ways);
-                        unsettledVertex.add(edges.get(i).getVertexRight());
+                        if (!unsettledVertex.contains(edges.get(i).getVertexRight())) {
+                            unsettledVertex.add(edges.get(i).getVertexRight());
+                        }
                 }
             }
             settledVertex.add(currentVertex);
@@ -101,10 +103,11 @@ public class Graph {
     }
     private static void calculateMinimumDistance(final Edge edge, final List<Way> ways) {
 
-        double sourceDistance = ways.get(edge.getVertexLeft().getId()).getWeight();
-        double evaluationDistance = ways.get(edge.getVertexRight().getId()).getWeight();
+        int sourceDistance = ways.get(edge.getVertexLeft().getId()).getWeight();
+        int evaluationDistance = ways.get(edge.getVertexRight().getId()).getWeight();
+
         if (sourceDistance + edge.getWeight() < evaluationDistance) {
-            ways.get(edge.getVertexRight().getId()).addWeight(edge.getWeight());
+            ways.get(edge.getVertexRight().getId()).setWeight(sourceDistance + edge.getWeight());
             ways.get(edge.getVertexRight().getId()).addVertex(edge.getVertexLeft());
         }
     }

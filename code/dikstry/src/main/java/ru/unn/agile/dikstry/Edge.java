@@ -15,10 +15,6 @@ public class Edge {
         return weight;
     }
 
-   /* public void setWeight(final double weight) {
-        this.weight = weight;
-    }*/
-
     public Vertex getVertexLeft() {
         return vertexLeft;
     }
@@ -26,4 +22,5 @@ public class Edge {
     public Vertex getVertexRight() {
         return vertexRight;
     }
+
 }

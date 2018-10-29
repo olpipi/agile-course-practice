@@ -204,7 +204,7 @@ public class MatrixTests {
     public void isLowestDistancewithOneVertexInDistance() {
         int[][] matrix = {
                 {
-                        0, 4, 2
+                        0, 4, 0
                 },
                 {
                         1, 0, 0
@@ -217,6 +217,84 @@ public class MatrixTests {
         Vertex vertexOfStart = new Vertex(0);
         Vertex vertexOfEnd = new Vertex(1);
         assertEquals(4, graph.dikstry(vertexOfStart, vertexOfEnd));
+    }
+
+    @Test
+    public void isLowestDistancewithTwoVertexInDistance() {
+        int[][] matrix = {
+                {
+                        0, 4, 2
+                },
+                {
+                        1, 0, 0
+                },
+                {
+                        0, 1, 0
+                }
+        };
+        Graph graph = new Graph(matrix);
+        Vertex vertexOfStart = new Vertex(0);
+        Vertex vertexOfEnd = new Vertex(1);
+        assertEquals(3, graph.dikstry(vertexOfStart, vertexOfEnd));
+    }
+
+    @Test
+    public void isLowestDistanceWithThreeVertexInDistance() {
+        int[][] matrix = {
+                {
+                        0, 1, 4
+                },
+                {
+                        1, 0, 1
+                },
+                {
+                        0, 1, 0
+                }
+        };
+        Graph graph = new Graph(matrix);
+        Vertex vertexOfStart = new Vertex(0);
+        Vertex vertexOfEnd = new Vertex(2);
+        assertEquals(2, graph.dikstry(vertexOfStart, vertexOfEnd));
+    }
+
+    @Test
+    public void isLowestDistanceThenStartedVertexNotZero() {
+        int[][] matrix = {
+                {
+                        0, 1, 4
+                },
+                {
+                        1, 0, 10
+                },
+                {
+                        0, 1, 0
+                }
+        };
+        Graph graph = new Graph(matrix);
+        Vertex vertexOfStart = new Vertex(1);
+        Vertex vertexOfEnd = new Vertex(2);
+        assertEquals(5, graph.dikstry(vertexOfStart, vertexOfEnd));
+    }
+    @Test
+    public void isRightDistanceInGraphWithForeVertex() {
+        int[][] matrix = {
+                {
+                        0, 1, 4, 1
+                },
+                {
+                        1, 0, 10, 0
+                },
+                {
+                        0, 1, 0, 6
+                },
+                {
+                       2, 1, 0, 13
+                }
+        };
+        Graph graph = new Graph(matrix);
+        Vertex vertexOfStart = new Vertex(1);
+        Vertex vertexOfEnd = new Vertex(3);
+        assertEquals(2, graph.dikstry(vertexOfStart, vertexOfEnd));
     }
 
 }
