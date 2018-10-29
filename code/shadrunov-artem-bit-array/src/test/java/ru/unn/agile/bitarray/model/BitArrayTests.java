@@ -3,9 +3,7 @@ package ru.unn.agile.bitarray.model;
 import org.junit.Test;
 import java.util.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 public class BitArrayTests {
@@ -189,5 +187,34 @@ public class BitArrayTests {
         BitArray bitArray = new BitArray();
 
         assertEquals(0, bitArray.toInt());
+    }
+
+    @Test
+    public void canCompareTheSameBitArrays() {
+        List<Integer> list = new ArrayList<>();
+
+        list.add(1);
+        for (int i = 0; i < 3; i++)
+            list.add(0);
+
+        BitArray bitArray1 = new BitArray(list);
+        BitArray bitArray2 = new BitArray(list);
+
+        assertTrue(bitArray1.equals(bitArray2));
+    }
+
+    @Test
+    public void canCompareDifferentBitArrays() {
+        BitArray bitArray1 = new BitArray(8);
+        BitArray bitArray2 = new BitArray(3);
+
+        assertFalse(bitArray1.equals(bitArray2));
+    }
+
+    @Test
+    public void canCompareWithItself() {
+        BitArray bitArray = new BitArray(8);
+
+        assertTrue(bitArray.equals(bitArray));
     }
 }

@@ -68,4 +68,8 @@ public class BitArray {
 
         return stringBitArray;
     }
+
+    public boolean equals(BitArray other) {
+        return this.toInt() == other.toInt();
+    }
 }
