@@ -135,4 +135,18 @@ public final class PrimeNumberTest {
 
         PrimeNumber.findPrimeNumbers(firstValueInterval, lastValueInterval);
     }
+
+    @Test
+    public void canReceiveOnePrimeValueFromIntervalFiveToFive() {
+        int firstValueInterval = 5;
+        int lastValueInterval = 5;
+
+        List<Integer> expectedArray = new ArrayList<>();
+        expectedArray.add(5);
+
+        List<Integer> actualArray =
+                PrimeNumber.findPrimeNumbers(firstValueInterval, lastValueInterval);
+
+        assertEquals(expectedArray, actualArray);
+    }
 }

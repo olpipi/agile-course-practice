@@ -9,7 +9,7 @@ public final class PrimeNumber {
 
     }
 
-    public static boolean isPrimeNumber(final int number) {
+    private static boolean isPrimeNumber(final int number) {
         if (number < 2) {
             return false;
         }
@@ -23,27 +23,16 @@ public final class PrimeNumber {
         return true;
     }
 
-    public static int checkWholePartOfFirstValueInterval(final double firstValueInterval) {
-        int wholePartOfFirstValueInterval = (int) firstValueInterval;
-        double fractionalPartOfFirstValueInterval =
-                firstValueInterval - wholePartOfFirstValueInterval;
-        if (fractionalPartOfFirstValueInterval > 0) {
-            wholePartOfFirstValueInterval++;
-        }
-
-        return wholePartOfFirstValueInterval;
-    }
-
     public static List<Integer> findPrimeNumbers(final double firstValueInterval,
                                                  final double lastValueInterval) {
 
         if (lastValueInterval < firstValueInterval) {
-            throw new IllegalArgumentException("Enter the correct value!");
+            throw new IllegalArgumentException("Last value must be more or equal to first value!");
         }
 
         List<Integer> primeNumbersArray = new ArrayList<>();
 
-        int finalFirstValueInterval = checkWholePartOfFirstValueInterval(firstValueInterval);
+        int finalFirstValueInterval = (int) Math.ceil(firstValueInterval);
 
         for (int i = finalFirstValueInterval; i <= (int) lastValueInterval; i++) {
             if (isPrimeNumber(i)) {
