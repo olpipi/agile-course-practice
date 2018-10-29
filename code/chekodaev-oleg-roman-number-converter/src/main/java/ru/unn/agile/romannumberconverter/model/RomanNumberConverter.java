@@ -11,6 +11,11 @@ public final class RomanNumberConverter {
 			romanNumber = "IV";
 		} else if (arabicNumber == 5) {
 			romanNumber = "V";
+		} else if (arabicNumber > 5) {
+			romanNumber = "V";
+			for (int i = 0; i < arabicNumber - 5; i++) {
+				romanNumber += "I";
+			}
 		}
 			
 		return romanNumber;
