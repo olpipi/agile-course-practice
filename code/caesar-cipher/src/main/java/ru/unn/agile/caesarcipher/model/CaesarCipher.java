@@ -6,7 +6,11 @@ public class CaesarCipher {
     }
 
     public String encode(final String input, final int offset) {
-        return input;
+        String output = "";
+        for (int i = 0; i < input.length(); i++) {
+            int charCode = (int) input.charAt(i);
+            output += (char) (charCode + offset);
+        }
+        return output;
     }
-
 }
