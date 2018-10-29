@@ -61,3 +61,7 @@ project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
 // Rumyantsev Alexander, Vector3D
 include "code/rumyantsev-alexander-vector3d"
 project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vector3d"
+
+// Kochuev Andrey, Length Converter
+include "code/kochuev-andrey-length-converter"
+project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-converter"
