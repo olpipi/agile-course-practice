@@ -4,27 +4,46 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public final class RomanNumberConverter {
+    private RomanNumberConverter() {
+        throw new UnsupportedOperationException();
+    }
+
     public static final String OUT_OF_RANGE_ARABIC_VALUE = "Arabic_Out_Of_Range";
     public static final int INCORRECT_ROMAN_VALUE = -1;
 
     public static final int MIN_VALUE = 1;
     public static final int MAX_VALUE = 3999;
 
+    // Workaround to travis 'MagicNumber"
+    private static final int I = 1;
+    private static final int IV = 4;
+    private static final int V = 5;
+    private static final int IX = 9;
+    private static final int X = 10;
+    private static final int XL = 40;
+    private static final int L = 50;
+    private static final int XC = 90;
+    private static final int C = 100;
+    private static final int CD = 400;
+    private static final int D = 500;
+    private static final int CM = 900;
+    private static final int M = 1000;
+
     private static final Map<Integer, String> BASE_NUMBER_MAP = new TreeMap<Integer, String>();
     static {
-        BASE_NUMBER_MAP.put(1, "I");
-        BASE_NUMBER_MAP.put(4, "IV");
-        BASE_NUMBER_MAP.put(5, "V");
-        BASE_NUMBER_MAP.put(9, "IX");
-        BASE_NUMBER_MAP.put(10, "X");
-        BASE_NUMBER_MAP.put(40, "XL");
-        BASE_NUMBER_MAP.put(50, "L");
-        BASE_NUMBER_MAP.put(90, "XC");
-        BASE_NUMBER_MAP.put(100, "C");
-        BASE_NUMBER_MAP.put(400, "CD");
-        BASE_NUMBER_MAP.put(500, "D");
-        BASE_NUMBER_MAP.put(900, "CM");
-        BASE_NUMBER_MAP.put(1000, "M");
+        BASE_NUMBER_MAP.put(I, "I");
+        BASE_NUMBER_MAP.put(IV, "IV");
+        BASE_NUMBER_MAP.put(V, "V");
+        BASE_NUMBER_MAP.put(IX, "IX");
+        BASE_NUMBER_MAP.put(X, "X");
+        BASE_NUMBER_MAP.put(XL, "XL");
+        BASE_NUMBER_MAP.put(L, "L");
+        BASE_NUMBER_MAP.put(XC, "XC");
+        BASE_NUMBER_MAP.put(C, "C");
+        BASE_NUMBER_MAP.put(CD, "CD");
+        BASE_NUMBER_MAP.put(D, "D");
+        BASE_NUMBER_MAP.put(CM, "CM");
+        BASE_NUMBER_MAP.put(M, "M");
     }
 
     private static String doConvertToRoman(final int arabicNumber) {

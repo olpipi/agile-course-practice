@@ -88,7 +88,6 @@ public class RomanNumberConverterToArabicTest {
         assertEquals(76, arabicNumber);
     }
 
-
     @Test
     public void convertToArabicTheNumber280Converted() {
         // Arrange
@@ -137,4 +136,3 @@ public class RomanNumberConverterToArabicTest {
         assertEquals(RomanNumberConverter.INCORRECT_ROMAN_VALUE, arabicNumber);
     }
 }
-
