@@ -94,7 +94,7 @@ public final class PrimeNumberTest {
     }
 
     @Test
-    public void canReceiveTwoPrimeValueFromDoubleInterval() {
+    public void canReceiveTwoPrimeValueFromDoubleNumbersInterval() {
         double firstValueInterval = 4.2;
         double lastValueInterval = 7.6;
         List<Integer> expectedArray = new ArrayList<>();
@@ -108,7 +108,7 @@ public final class PrimeNumberTest {
     }
 
     @Test
-    public void canReceiveOnePrimeValueFromDoubleInterval() {
+    public void canReceiveOnePrimeValueFromDoubleNumbersInterval() {
         double firstValueInterval = 0.99;
         double lastValueInterval = 2.99;
         List<Integer> expectedArray = new ArrayList<>();

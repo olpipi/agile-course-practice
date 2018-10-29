@@ -23,18 +23,18 @@ public final class PrimeNumber {
         return true;
     }
 
-    public static List<Integer> findPrimeNumbersInInterval(final double startOfInterval,
-                                                           final double endOfInterval) {
+    public static List<Integer> findPrimeNumbersInInterval(final double startInterval,
+                                                           final double endInterval) {
 
-        if (endOfInterval < startOfInterval) {
+        if (endInterval < startInterval) {
             throw new IllegalArgumentException("Last value must be more or equal to first value!");
         }
 
         List<Integer> primeNumbersArray = new ArrayList<>();
 
-        int finalstartOfInterval = (int) Math.ceil(startOfInterval);
+        int finalstartOfInterval = (int) Math.ceil(startInterval);
 
-        for (int i = finalstartOfInterval; i <= (int) endOfInterval; i++) {
+        for (int i = finalstartOfInterval; i <= (int) endInterval; i++) {
             if (isPrimeNumber(i)) {
                 primeNumbersArray.add(i);
             }
