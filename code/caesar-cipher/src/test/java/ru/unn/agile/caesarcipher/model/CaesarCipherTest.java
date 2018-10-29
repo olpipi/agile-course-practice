@@ -15,4 +15,25 @@ public class CaesarCipherTest {
         assertEquals(encodedString, "");
     }
 
+    @Test
+    public void canShiftStringByZeroOffset() {
+        CaesarCipher cipher = new CaesarCipher();
+        String encodedString = cipher.encode("abc", 0);
+        assertEquals(encodedString, "abc");
+    }
+
+    @Test
+    public void canShiftStringByPositiveOffset() {
+        CaesarCipher cipher = new CaesarCipher();
+        String encodedString = cipher.encode("abc", 1);
+        assertEquals(encodedString, "bcd");
+    }
+
+    @Test
+    public void canShiftStringByNegativeOffset() {
+        CaesarCipher cipher = new CaesarCipher();
+        String encodedString = cipher.encode("bcd", -1);
+        assertEquals(encodedString, "abc");
+    }
+
 }
