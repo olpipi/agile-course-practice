@@ -62,6 +62,14 @@ project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
 include "code/rumyantsev-alexander-vector3d"
 project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vector3d"
 
+// Stack
+include "code/stack"
+project(":code/stack").name = "stack"
+
+// Chekodaev Oleg
+include "code/chekodaev-oleg-roman-number-converter"
+project(":code/chekodaev-oleg-roman-number-converter").name = "chekodaev-oleg-roman-number-converter"
+
 // Kochuev Andrey, Length Converter
 include "code/kochuev-andrey-length-converter"
 project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-converter"
