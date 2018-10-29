@@ -51,6 +51,13 @@ public class BitArray {
         return this.bits.get(index);
     }
 
+    public void add(int bit) {
+        if (bit > 1 || bit < 0)
+            throw new IllegalArgumentException("Array must contains only 1 and 0");
+
+        bits.add(bit);
+    }
+
     public int toInt() {
         int result = 0;
 

@@ -217,4 +217,27 @@ public class BitArrayTests {
 
         assertTrue(bitArray.equals(bitArray));
     }
+
+    @Test
+    public void canAddElements() {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+
+        BitArray bitArray = new BitArray(list);
+
+        bitArray.add(0);
+        bitArray.add(1);
+
+        assertEquals(5, bitArray.toInt());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canAddWrongElement() {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+
+        BitArray bitArray = new BitArray(list);
+
+        bitArray.add(2);
+    }
 }
