@@ -5,6 +5,19 @@ package ru.unn.agile.threeDimShapesArea.Model;
  */
 public class Triangle implements Shape {
     private double a;
+
+    public double getA() {
+        return a;
+    }
+
+    public double getB() {
+        return b;
+    }
+
+    public double getC() {
+        return c;
+    }
+
     private double b;
     private double c;
 

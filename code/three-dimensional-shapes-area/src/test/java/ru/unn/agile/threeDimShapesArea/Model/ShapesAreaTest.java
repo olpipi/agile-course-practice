@@ -100,5 +100,13 @@ public class ShapesAreaTest {
         assert Math.abs(area - expectedArea) < 0.00001;
     }
 
+    @Test
+    public void canGetTrianglePrismArea() {
+        Shape prism = new TrianglePrism(new Triangle(1, 1, 1), 5);
+        double area = prism.getArea();
+        double expectedArea = Math.sqrt(3) / 2 + 3 * 5;
+        assert Math.abs(area - expectedArea) < 0.00001;
+    }
+
 
 }
