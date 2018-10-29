@@ -65,3 +65,7 @@ project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vect
 // Stack
 include "code/stack"
 project(":code/stack").name = "stack"
+
+// Chekodaev Oleg
+include "code/chekodaev-oleg-roman-number-converter"
+project(":code/chekodaev-oleg-roman-number-converter").name = "chekodaev-oleg-roman-number-converter"
