@@ -6,32 +6,31 @@ public enum LengthUnit {
             return value;
         }
 
-        public double convert(final double value, LengthUnit targetUnit) {
-            if (targetUnit == MILLIMETERS)
-                return value * COEF_KILO;
-            else if (targetUnit == KILOMETERS)
-                return value * COEF_MILLI;
-            else
+        public double convert(final double value, final LengthUnit targetUnit) {
+            if (targetUnit == MILLIMETERS) {
+                return value * KILO;
+            } else if (targetUnit == KILOMETERS) {
+                return value * MILLI;
+            } else {
                 return value;
+            }
         }
     },
     MILLIMETERS {
         protected double convertToMeters(final double value) {
-            return value * COEF_MILLI;
+            return value * MILLI;
         }
     },
     KILOMETERS {
         protected double convertToMeters(final double value) {
-            return value * COEF_KILO;
+            return value * KILO;
         }
     };
 
-    public double convert(final double value, LengthUnit targetUnit) {
+    public double convert(final double value, final LengthUnit targetUnit) {
         return METERS.convert(this.convertToMeters(value), targetUnit);
     }
-
-    private static final double COEF_KILO = 1e3;
-    private static final double COEF_MILLI = 1e-3;
-
-    abstract double convertToMeters(final double value);
+    private static final double KILO = 1e3;
+    private static final double MILLI = 1e-3;
+    abstract double convertToMeters(double value);
 }
