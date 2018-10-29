@@ -46,4 +46,26 @@ public final class RomanNumberConverter {
 
         return doConvertToRoman(arabicNumber);
     }
+
+    public static int convertToArabic(final String romanNumber) {
+        int arabicNumber = 0;
+        char[] inputValue = romanNumber.toCharArray();
+        int inputValueLength = inputValue.length;
+        int i = 0;
+        while (i < inputValueLength) {
+            int res = 0;
+
+            String str = String.valueOf(inputValue[i]);
+            for (Map.Entry e : BASE_NUMBER_MAP.entrySet()) {
+                if (((String) e.getValue()).equals(str)) {
+                    res = ((int) e.getKey());
+                }
+            }
+
+            arabicNumber += res;
+            i ++;
+        }
+
+        return arabicNumber;
+    }
 }
