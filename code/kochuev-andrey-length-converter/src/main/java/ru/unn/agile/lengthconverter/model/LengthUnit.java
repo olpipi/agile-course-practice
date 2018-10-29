@@ -10,5 +10,7 @@ public enum LengthUnit {
     LengthUnit(final double unitToMeter) {
         this.unitToMeter = unitToMeter;
     }
-    public double getUnitToMeter(){return unitToMeter; }
+    public double getUnitToMeter() {
+        return unitToMeter;
+    }
 }
