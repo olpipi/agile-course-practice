@@ -16,6 +16,7 @@ public class MetelevEvgeniiTest {
         // Assert
         assertEquals(new ComplexNumber(4, 4), z);
     }
+
     @Test
     public void canMultiplyComplexNumbers() {
         // Arrange
@@ -30,23 +31,24 @@ public class MetelevEvgeniiTest {
     }
 
     @Test
-    public void isEqualsComplexNumbers() {
+    public void areComplexNumbersEqual() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(1, 1);
         ComplexNumber z2 = new ComplexNumber(1, 1);
 
         // Act
         // Assert
-        assertEquals(Boolean.TRUE, z1.equals(z2));
+        assertTrue(z1.equals(z2));
     }
+
     @Test
-    public void isNOTEqualsComplexNumbers() {
+    public void areComplexNumbersNotEqual() {
         // Arrange
         ComplexNumber z1 = new ComplexNumber(2, 1);
         ComplexNumber z2 = new ComplexNumber(1, 1);
 
         // Act
         // Assert
-        assertEquals(Boolean.FALSE, z1.equals(z2));
+        assertFalse(z1.equals(z2));
     }
 }
