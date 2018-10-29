@@ -40,7 +40,7 @@ public class MortgageCalculatorTest {
 
         myMortgageCalculator.setFullCostOfApartment(100000.12);
 
-        assertEquals(100000.12, myMortgageCalculator.getFullCostOfApartment(),epsilon);
+        assertEquals(100000.12, myMortgageCalculator.getFullCostOfApartment(), epsilon);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class MortgageCalculatorTest {
 
         myMortgageCalculator.setFullCostOfApartment(0);
 
-        assertEquals(isNotCorrectNum, myMortgageCalculator.getFullCostOfApartment(),epsilon);
+        assertEquals(isNotCorrectNum, myMortgageCalculator.getFullCostOfApartment(), epsilon);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class MortgageCalculatorTest {
 
         myMortgageCalculator.setFullCostOfApartment(-300);
 
-        assertEquals(isNotCorrectNum,myMortgageCalculator.getFullCostOfApartment(),epsilon);
+        assertEquals(isNotCorrectNum,myMortgageCalculator.getFullCostOfApartment(), epsilon);
     }
     @Test
     public void checkInitialPaymentCorrectInitialized() {
@@ -67,7 +67,7 @@ public class MortgageCalculatorTest {
         myMortgageCalculator.setFullCostOfApartment(51000);
         myMortgageCalculator.setInitialPayment(50000.50);
 
-        assertEquals(50000.50,myMortgageCalculator.getInitialPayment(),epsilon);
+        assertEquals(50000.50,myMortgageCalculator.getInitialPayment(), epsilon);
     }
 
     @Test
@@ -76,83 +76,104 @@ public class MortgageCalculatorTest {
 
         myMortgageCalculator.setInitialPayment(0);
 
-        assertEquals(0,myMortgageCalculator.getInitialPayment(),epsilon);
+        assertEquals(0, myMortgageCalculator.getInitialPayment(), epsilon);
     }
 
     @Test
     public void checkInitialPaymentIsNegative() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+
         myMortgageCalculator.setInitialPayment(-10000);
-        assertEquals(isNotCorrectNum,myMortgageCalculator.getInitialPayment(),epsilon);
+
+        assertEquals(isNotCorrectNum, myMortgageCalculator.getInitialPayment(), epsilon);
     }
 
     @Test
     public void checkInitialPaymentIsMoreThenFullCost() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+
         myMortgageCalculator.setFullCostOfApartment(100000);
         myMortgageCalculator.setInitialPayment(100001);
+
         assertEquals(isNotCorrectNum,myMortgageCalculator.getInitialPayment(),epsilon);
     }
 
     @Test
-    public void checkTypeOfDateIsYears() {
+    public void checkIfTypeOfDateIsYears() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+
         myMortgageCalculator.setTypeOfDate("Years");
-        assertEquals("Years",myMortgageCalculator.getTypeOfDate());
+
+        assertEquals("Years", myMortgageCalculator.getTypeOfDate());
     }
 
     @Test
     public void checkTypeOfDateIsMonths() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+
         myMortgageCalculator.setTypeOfDate("Months");
-        assertEquals("Months",myMortgageCalculator.getTypeOfDate());
+
+        assertEquals("Months", myMortgageCalculator.getTypeOfDate());
     }
 
     @Test
     public void checkTypeOfDateIsNotCorrect() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+
         myMortgageCalculator.setTypeOfDate("Something");
-        assertEquals(isNotCorrect,myMortgageCalculator.getTypeOfDate());
+
+        assertEquals(isNotCorrect, myMortgageCalculator.getTypeOfDate());
     }
 
     @Test
     public void checkDateOfMortgage() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+
         myMortgageCalculator.setDateOfMortgage(10);
-        assertEquals(10,myMortgageCalculator.getDateOfMortgage());
+
+        assertEquals(10, myMortgageCalculator.getDateOfMortgage());
     }
 
     @Test
     public void checkDateOfMortgageIs12() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+
         myMortgageCalculator.setDateOfMortgage(12);
-        assertEquals(12,myMortgageCalculator.getDateOfMortgage());
+
+        assertEquals(12, myMortgageCalculator.getDateOfMortgage());
     }
 
     @Test
     public void checkDateOfMortgageIsNegative() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+
         myMortgageCalculator.setDateOfMortgage(-10);
-        assertEquals(-1,myMortgageCalculator.getDateOfMortgage());
+
+        assertEquals(-1, myMortgageCalculator.getDateOfMortgage());
     }
 
     @Test
     public void checkInterestRate() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+
         myMortgageCalculator.setInterestRate(50.0);
-        assertEquals(50.0,myMortgageCalculator.getInterestRate(),epsilon);
+
+        assertEquals(50.0, myMortgageCalculator.getInterestRate(),epsilon);
     }
 
     @Test
     public void checkInterestRateIsNegative() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+
         myMortgageCalculator.setInterestRate(-50.0);
-        assertEquals(isNotCorrectNum,myMortgageCalculator.getInterestRate(),epsilon);
+
+        assertEquals(isNotCorrectNum, myMortgageCalculator.getInterestRate(), epsilon);
     }
 
     @Test
     public void checkPrincipalDebt() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator("Differentiated");
+
         myMortgageCalculator.setFullCostOfApartment(1000);
         myMortgageCalculator.setInitialPayment(0);
         myMortgageCalculator.setDateOfMortgage(12);
