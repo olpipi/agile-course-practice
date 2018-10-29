@@ -15,8 +15,7 @@ public class MortgageCalculator {
     public void setFullCostOfApartment(final double sum) {
         if (sum > 0) {
             fullCostOfApartment = sum;
-        }
-        else {
+        } else {
             fullCostOfApartment = -1;
         }
     }
@@ -26,10 +25,9 @@ public class MortgageCalculator {
     }
 
     public void setInitialPayment(final double firstPayment) {
-        if (firstPayment >= 0 && firstPayment <= fullCostOfApartment){
+        if (firstPayment >= 0 && firstPayment <= fullCostOfApartment) {
             initialPayment = firstPayment;
-        }
-        else {
+        } else {
             initialPayment = -1;
         }
     }
@@ -38,11 +36,10 @@ public class MortgageCalculator {
         return initialPayment;
     }
 
-    public void setDateOfMortgage(int date) {
+    public void setDateOfMortgage(final int date) {
         if (date > 0) {
             dateOfMortgage = date;
-        }
-        else {
+        } else {
             dateOfMortgage = -1;
         }
     }
@@ -51,9 +48,9 @@ public class MortgageCalculator {
         return dateOfMortgage;
     }
 
-    public void setInterestRate(double percent) {
+    public void setInterestRate(final double percent) {
         interestRate = -1;
-        if (percent >= 0 && percent <= 100) {
+        if (percent >= 0 && percent <= HUNDRED) {
             interestRate = percent;
         }
     }
@@ -64,23 +61,25 @@ public class MortgageCalculator {
 
     public double getPrincipalDebt() {
         fullCostOfApartment -= initialPayment;
-        return round(fullCostOfApartment/dateOfMortgage);
+        return round(fullCostOfApartment / dateOfMortgage);
     }
 
-    public double getAccruedInterest(double balanceOfFullCost) {
-        return round(balanceOfFullCost * interestRate*IS_PERCENT/MONTHS_IN_YEAR);
+    public double getAccruedInterest(final double balanceOfFullCost) {
+        return round(balanceOfFullCost * interestRate * IS_PERCENT / MONTHS_IN_YEAR);
     }
 
-    public double getFullPrice(double balanceOfFullCost) {
+    public double getFullPrice(final double balanceOfFullCost) {
         return round(getPrincipalDebt() + getAccruedInterest(balanceOfFullCost));
     }
 
     public void setAccruedInterestInTableView() {
         accruedInterestInTableView = new double[dateOfMortgage];
         double balance = 0;
-        for (int curMonth = 0; curMonth<dateOfMortgage; curMonth++){
-            accruedInterestInTableView[curMonth] = getAccruedInterest(fullCostOfApartment-balance);
-            balance+=getPrincipalDebt();
+        fullCostOfApartment -= initialPayment;
+        for (int curMonth = 0; curMonth < dateOfMortgage; curMonth++) {
+            accruedInterestInTableView[curMonth] =
+                    getAccruedInterest(fullCostOfApartment - balance);
+            balance += getPrincipalDebt();
         }
     }
 
@@ -88,15 +87,20 @@ public class MortgageCalculator {
         return accruedInterestInTableView;
     }
 
-    public double[] getFullPriceInTableView() {
+    public double[] setFullPriceInTableView() {
         setAccruedInterestInTableView();
         fullPriceInTableView = new double[dateOfMortgage];
-        for (int curMonth = 0; curMonth < dateOfMortgage; curMonth++){
-            fullPriceInTableView[curMonth] = accruedInterestInTableView[curMonth] + getPrincipalDebt();
+        for (int curMonth = 0; curMonth < dateOfMortgage; curMonth++) {
+            fullPriceInTableView[curMonth] =
+                    accruedInterestInTableView[curMonth] + getPrincipalDebt();
         }
         return fullPriceInTableView;
     }
-    private double round(double roundedNum){
+
+    public double[] getFullPriceInTableView() {
+        return fullPriceInTableView;
+    }
+    private double round(final double roundedNum) {
         return Math.round(roundedNum * HUNDRED) / HUNDRED;
     }
 }
