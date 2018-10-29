@@ -111,4 +111,28 @@ public class RomanNumberConverterToRomanTest {
         // Assert
         assertEquals("MMMCMXCIX", romanNumber);
     }
+
+    @Test
+    public void convertToRomanTheNumber0EqualsToOutOfRangeValue() {
+        // Arrange
+        int arabicNumber = 0;
+
+        // Act
+        String romanNumber = RomanNumberConverter.convertToRoman(arabicNumber);
+
+        // Assert
+        assertEquals(RomanNumberConverter.OUT_OF_RANGE_ARABIC_VALUE, romanNumber);
+    }
+
+    @Test
+    public void convertToRomanTheNumber4000EqualsToOutOfRangeValue() {
+        // Arrange
+        int arabicNumber = 4000;
+
+        // Act
+        String romanNumber = RomanNumberConverter.convertToRoman(arabicNumber);
+
+        // Assert
+        assertEquals(RomanNumberConverter.OUT_OF_RANGE_ARABIC_VALUE, romanNumber);
+    }
 }

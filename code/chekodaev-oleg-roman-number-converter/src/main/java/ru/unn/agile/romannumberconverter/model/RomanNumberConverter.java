@@ -4,6 +4,11 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public final class RomanNumberConverter {
+    public static final String OUT_OF_RANGE_ARABIC_VALUE = "Arabic_Out_Of_Range";
+
+    public static final int MIN_VALUE = 1;
+    public static final int MAX_VALUE = 3999;
+
     private static final Map<Integer, String> BASE_NUMBER_MAP = new TreeMap<Integer, String>();
     static {
         BASE_NUMBER_MAP.put(1, "I");
@@ -21,16 +26,24 @@ public final class RomanNumberConverter {
         BASE_NUMBER_MAP.put(1000, "M");
     }
 
-    public static String convertToRoman(final int arabicNumber) {
+    private static String doConvertToRoman(final int arabicNumber) {
         String romanNumber = "";
         int nearestKey = ((TreeMap<Integer, String>) BASE_NUMBER_MAP).floorKey(arabicNumber);
         if (nearestKey == arabicNumber) {
             romanNumber = BASE_NUMBER_MAP.get(arabicNumber);
         } else {
             romanNumber = BASE_NUMBER_MAP.get(nearestKey)
-                    + convertToRoman(arabicNumber - nearestKey);
+                    + doConvertToRoman(arabicNumber - nearestKey);
         }
 
         return romanNumber;
+    }
+
+    public static String convertToRoman(final int arabicNumber) {
+        if (arabicNumber < MIN_VALUE || arabicNumber > MAX_VALUE) {
+            return OUT_OF_RANGE_ARABIC_VALUE;
+        }
+
+        return doConvertToRoman(arabicNumber);
     }
 }
