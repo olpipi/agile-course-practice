@@ -7,12 +7,15 @@ public enum LengthUnit {
         }
 
         public double convert(final double value, final LengthUnit targetUnit) {
-            if (targetUnit == MILLIMETERS) {
-                return value * KILO;
-            } else if (targetUnit == KILOMETERS) {
-                return value * MILLI;
-            } else {
-                return value;
+            switch (targetUnit) {
+                case MILLIMETERS:
+                    return value * KILO;
+                case KILOMETERS:
+                    return value * MILLI;
+                case FEET:
+                    return value * METER_TO_FOOT;
+                default:
+                    return value;
             }
         }
     },
@@ -25,6 +28,11 @@ public enum LengthUnit {
         protected double convertToMeters(final double value) {
             return value * KILO;
         }
+    },
+    FEET {
+        protected double convertToMeters(final double value) {
+            return value * FOOT_TO_METER;
+        }
     };
 
     public double convert(final double value, final LengthUnit targetUnit) {
@@ -32,5 +40,7 @@ public enum LengthUnit {
     }
     private static final double KILO = 1e3;
     private static final double MILLI = 1e-3;
+    private static final double METER_TO_FOOT = 3.28084;
+    private static final double FOOT_TO_METER = 0.3048;
     abstract double convertToMeters(double value);
 }
