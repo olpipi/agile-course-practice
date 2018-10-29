@@ -2,11 +2,16 @@ package ru.unn.agile.MortgageCalculator.Model;
 
 public class MortgageCalculator {
     private String typeOfPayment;
-    private String typeOfDate;
+    private String typeOfDate = "Months";
     private double fullCostOfApartment;
-    private double initialPayment;
-    private int dateOfMortgage;
+    private double initialPayment = 0;
+    private int dateOfMortgage = 12;
     private double interestRate;
+    private double[] fullPriceInTableView;
+    private double[] accruedInterestInTableView;
+
+    private static final int MONTHS_IN_YEAR = 12;
+    private static final double IS_PERCENT = 0.01;
     MortgageCalculator(){
         setTypeOfPayment("");
     }
@@ -76,10 +81,10 @@ public class MortgageCalculator {
         return dateOfMortgage;
     }
 
-    public void setInterestRate(double procent) {
+    public void setInterestRate(double percent) {
         interestRate = -1;
-        if (procent>=0 && procent<=100)
-            interestRate = procent;
+        if (percent>=0 && percent<=100)
+            interestRate = percent;
     }
 
     public double getInterestRate() {
@@ -87,6 +92,36 @@ public class MortgageCalculator {
     }
 
     public double getPrincipalDebt() {
-        return fullCostOfApartment/dateOfMortgage;
+        return Math.round(fullCostOfApartment/dateOfMortgage*100)/100.00;
+    }
+
+    public double getAccruedInterest(double balanceOfFullCost) {
+        return Math.round(balanceOfFullCost * interestRate*IS_PERCENT/MONTHS_IN_YEAR*100)/100.00;
+    }
+
+    public double getFullPrice(double balanceOfFullCost) {
+        return Math.round((getPrincipalDebt() + getAccruedInterest(balanceOfFullCost))*100)/100.00;
+    }
+
+    public void setAccruedInterestInTableView() {
+        accruedInterestInTableView = new double[dateOfMortgage];
+        double balance = 0;
+        for (int curMonth = 0; curMonth<dateOfMortgage; curMonth++){
+            accruedInterestInTableView[curMonth] = getAccruedInterest(fullCostOfApartment-balance);
+            balance+=getPrincipalDebt();
+        }
+    }
+
+    public double[] getAccruedInterestInTableView() {
+        return accruedInterestInTableView;
+    }
+
+    public double[] getFullPriceInTableView() {
+        setAccruedInterestInTableView();
+        fullPriceInTableView = new double[dateOfMortgage];
+        for (int curMonth = 0; curMonth < dateOfMortgage; curMonth++){
+            fullPriceInTableView[curMonth] = accruedInterestInTableView[curMonth] + getPrincipalDebt();
+        }
+        return fullPriceInTableView;
     }
 }
