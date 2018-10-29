@@ -11,7 +11,7 @@ public class LengthConverterTest {
     public void canConvertMetersToMillimeters() {
         LengthConverter converter = new LengthConverter();
         double convertedValue = converter.convertMetersToMillimeters(5);
-        assertEquals(5000, convertedValue,EPSILON);
+        assertEquals(5000, convertedValue, EPSILON);
     }
 
     @Test
@@ -19,5 +19,19 @@ public class LengthConverterTest {
         LengthConverter converter = new LengthConverter();
         double convertedValue = converter.convertMillimetersToMeters(5);
         assertEquals(0.005, convertedValue, EPSILON);
+    }
+
+    @Test
+    public void canConvertMetersToKilometers() {
+        LengthConverter converter = new LengthConverter();
+        double convertedValue = converter.convertMetersToKilometers(5);
+        assertEquals(0.005, convertedValue, EPSILON);
+    }
+
+    @Test
+    public void canConvertKilometersToMeters() {
+        LengthConverter converter = new LengthConverter();
+        double convertedValue = converter.convertKilometersToMeters(5);
+        assertEquals(5000, convertedValue, EPSILON);
     }
 }
