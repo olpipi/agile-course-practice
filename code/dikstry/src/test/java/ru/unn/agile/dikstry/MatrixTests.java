@@ -8,7 +8,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class MatrixTests {
-    private static double delta = 0.1;
+    private static final double DELTA = 0.1;
 
     @Test
     public void canInitVertex() {
@@ -29,7 +29,7 @@ public class MatrixTests {
 
         Edge edge = new Edge(vertex1, vertex2, 1);
 
-        assertEquals(1, edge.getWeight(), delta);
+        assertEquals(1, edge.getWeight(), DELTA);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class MatrixTests {
         Vertex vertex1 = new Vertex(1);
         Vertex vertex2 = new Vertex(2);
         Edge edge = new Edge(vertex1, vertex2, 1);
-        assertEquals(2, edge.getVertexRight().getId(), delta);
+        assertEquals(2, edge.getVertexRight().getId(), DELTA);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class MatrixTests {
         };
         Graph graph = new Graph(matrix);
 
-        assertEquals(2, graph.getSizeOfEdges());
+        assertEquals(2, graph.getEdgesSize());
     }
 
     @Test
@@ -78,7 +78,7 @@ public class MatrixTests {
         };
         Graph graph = new Graph(matrix);
 
-        assertEquals(4, graph.getSizeOfEdges());
+        assertEquals(4, graph.getEdgesSize());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -96,7 +96,7 @@ public class MatrixTests {
         };
         Graph graph = new Graph(matrix);
 
-        assertEquals(2, graph.getSizeOfEdges());
+        assertEquals(2, graph.getEdgesSize());
     }
 
     @Test

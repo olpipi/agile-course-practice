@@ -18,9 +18,11 @@ public class Way {
     public void setWeight(final int weight) {
         this.weight = weight;
     }
+
     public void addVertex(final Vertex vertex) {
         vertexes.add(vertex);
     }
+
     public void addWeight(final int weight) {
         if (this.weight == Integer.MAX_VALUE) {
             this.weight = weight;
@@ -28,5 +30,4 @@ public class Way {
             this.weight += weight;
         }
     }
-
 }

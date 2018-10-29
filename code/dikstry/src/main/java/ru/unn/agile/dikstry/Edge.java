@@ -23,4 +23,12 @@ public class Edge {
         return vertexRight;
     }
 
+    public int getIdLeftVertex() {
+        return vertexLeft.getId();
+    }
+
+    public int getIdRighttVertex() {
+        return vertexRight.getId();
+    }
+
 }
