@@ -108,5 +108,21 @@ public class ShapesAreaTest {
         assert Math.abs(area - expectedArea) < 0.00001;
     }
 
+    @Test
+    public void canGetCircleArea() {
+        Shape circle = new Circle(4);
+        double area = circle.getArea();
+        double expectedArea = Math.PI * 16;
+        assert Math.abs(area - expectedArea) < 0.00001;
+    }
+
+    @Test
+    public void canGetConesArea() {
+        Shape cones = new Cones(4, 5);
+        double area = cones.getArea();
+        double expectedArea = Math.PI * 20 + Math.PI * 16;
+        assert Math.abs(area - expectedArea) < 0.00001;
+    }
+
 
 }
