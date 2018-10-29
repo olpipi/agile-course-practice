@@ -10,7 +10,14 @@ public class LengthConverterTest {
     @Test
     public void canConvertMetersToMillimeters() {
         LengthConverter converter = new LengthConverter();
-        double convertedValue = converter.convert(5);
+        double convertedValue = converter.convertMetersToMillimeters(5);
         assertEquals(5000, convertedValue,EPSILON);
+    }
+
+    @Test
+    public void canConvertMillimetersToMeters() {
+        LengthConverter converter = new LengthConverter();
+        double convertedValue = converter.convertMillimetersToMeters(5);
+        assertEquals(0.005, convertedValue, EPSILON);
     }
 }
