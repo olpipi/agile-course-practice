@@ -42,8 +42,8 @@ public class ProninaMariaTest {
         ComplexNumber z3 = new ComplexNumber(3, 10);
 
         // Act
-        ComplexNumber x = z1.add(z2).add(z3);
-        ComplexNumber y = z2.add(z3).add(z1);
+        ComplexNumber x = z1.add(z2.add(z3));
+        ComplexNumber y = (z1.add(z2)).add(z3);
 
         // Assert
         assertEquals(x, y);
@@ -57,8 +57,8 @@ public class ProninaMariaTest {
         ComplexNumber z3 = new ComplexNumber(3, 10);
 
         // Act
-        ComplexNumber x = z1.multiply(z2).multiply(z3);
-        ComplexNumber y = z2.multiply(z3).multiply(z1);
+        ComplexNumber x = z1.multiply(z2.multiply(z3));
+        ComplexNumber y = (z1.multiply(z2)).multiply(z3);
 
         // Assert
         assertEquals(x, y);
