@@ -54,16 +54,28 @@ public final class RomanNumberConverter {
         int i = 0;
         while (i < inputValueLength) {
             int res = 0;
+            int step = 0;
 
             String str = String.valueOf(inputValue[i]);
             for (Map.Entry e : BASE_NUMBER_MAP.entrySet()) {
                 if (((String) e.getValue()).equals(str)) {
                     res = ((int) e.getKey());
+                    step = 1;
+                }
+            }
+
+            if (i + 1 < inputValueLength) {
+                str += String.valueOf(inputValue[i + 1]);
+                for (Map.Entry e : BASE_NUMBER_MAP.entrySet()) {
+                    if (((String) e.getValue()).equals(str)) {
+                        res = ((int) e.getKey());
+                        step = 2;
+                    }
                 }
             }
 
             arabicNumber += res;
-            i ++;
+            i += step;
         }
 
         return arabicNumber;

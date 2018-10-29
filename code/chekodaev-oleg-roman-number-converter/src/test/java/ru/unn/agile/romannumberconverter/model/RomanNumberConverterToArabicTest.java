@@ -27,5 +27,41 @@ public class RomanNumberConverterToArabicTest {
         // Assert
         assertEquals(3, arabicNumber);
     }
+
+    @Test
+    public void convertToArabicTheNumber4Converted() {
+        // Arrange
+        String romanNumber = "IV";
+
+        // Act
+        int arabicNumber = RomanNumberConverter.convertToArabic(romanNumber);
+
+        // Assert
+        assertEquals(4, arabicNumber);
+    }
+
+    @Test
+    public void convertToArabicTheNumber5Converted() {
+        // Arrange
+        String romanNumber = "V";
+
+        // Act
+        int arabicNumber = RomanNumberConverter.convertToArabic(romanNumber);
+
+        // Assert
+        assertEquals(5, arabicNumber);
+    }
+
+    @Test
+    public void convertToArabicTheNumber9Converted() {
+        // Arrange
+        String romanNumber = "IX";
+
+        // Act
+        int arabicNumber = RomanNumberConverter.convertToArabic(romanNumber);
+
+        // Assert
+        assertEquals(9, arabicNumber);
+    }
 }
 
