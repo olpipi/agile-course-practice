@@ -9,29 +9,25 @@ public class LengthConverterTest {
 
     @Test
     public void canConvertMetersToMillimeters() {
-        LengthConverter converter = new LengthConverter();
-        double convertedValue = converter.convertMetersToMillimeters(5);
+        double convertedValue = LengthUnit.METERS.convert(5, LengthUnit.MILLIMETERS);
         assertEquals(5000, convertedValue, EPSILON);
     }
 
     @Test
     public void canConvertMillimetersToMeters() {
-        LengthConverter converter = new LengthConverter();
-        double convertedValue = converter.convertMillimetersToMeters(5);
+        double convertedValue = LengthUnit.MILLIMETERS.convert(5, LengthUnit.METERS);
         assertEquals(0.005, convertedValue, EPSILON);
     }
 
     @Test
     public void canConvertMetersToKilometers() {
-        LengthConverter converter = new LengthConverter();
-        double convertedValue = converter.convertMetersToKilometers(5);
+        double convertedValue = LengthUnit.METERS.convert(5, LengthUnit.KILOMETERS);
         assertEquals(0.005, convertedValue, EPSILON);
     }
 
     @Test
     public void canConvertKilometersToMeters() {
-        LengthConverter converter = new LengthConverter();
-        double convertedValue = converter.convertKilometersToMeters(5);
+        double convertedValue = LengthUnit.KILOMETERS.convert(5, LengthUnit.METERS);
         assertEquals(5000, convertedValue, EPSILON);
     }
 }
