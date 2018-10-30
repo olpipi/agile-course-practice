@@ -182,7 +182,13 @@ public class ShapesAreaTest {
         assert Math.abs(area - expectedArea) < 0.00001;
     }
 
-
+    @Test
+    public void canGetTrianglePyramidArea() {
+        Shape pyramid = new TrianglePyramid(5, 6);
+        double area = pyramid.getArea();
+        double expectedArea = Math.sqrt(3) / 4.0 * 5 * 5 + 3.0 / 2.0 * 5 * Math.sqrt(6 * 6 - 5 * 5 / 4.0);
+        assert Math.abs(area - expectedArea) < 0.00001;
+    }
 
 
 }
