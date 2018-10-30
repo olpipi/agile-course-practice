@@ -10,10 +10,16 @@ project(":code/pozdiaev-valerii-currency-converter").name = "pozdiaev-valerii-cu
 include "code/korniakov-kirill-lab1"
 project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
 
+lab1-tdd-Dijkstra
 
 // Anikina Olga, lab1 
 include "code/dikstry"
 project(":code/dikstry").name = "dikstry-Model"
+
+// Ivanova Olga, lab1
+include "code/prime-number"
+project(":code/prime-number").name = "prime-number-Model"
+
 
 // Marchenko Andrey
 include "code/marchenko-andrey-complex-number"
@@ -67,3 +73,19 @@ project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
 // Rumyantsev Alexander, Vector3D
 include "code/rumyantsev-alexander-vector3d"
 project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vector3d"
+
+// Stack
+include "code/stack"
+project(":code/stack").name = "stack"
+
+// Chekodaev Oleg
+include "code/chekodaev-oleg-roman-number-converter"
+project(":code/chekodaev-oleg-roman-number-converter").name = "chekodaev-oleg-roman-number-converter"
+
+// Kochuev Andrey, Length Converter
+include "code/kochuev-andrey-length-converter"
+project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-converter"
+
+// Beresneva Julia, LCD Digits
+include "code/beresneva-julia-lcd-digits"
+project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
