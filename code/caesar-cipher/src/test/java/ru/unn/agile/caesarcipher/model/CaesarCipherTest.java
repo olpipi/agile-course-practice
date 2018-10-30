@@ -50,4 +50,11 @@ public class CaesarCipherTest {
         assertEquals(encodedString, "a");
     }
 
+    @Test
+    public void canShiftCapitalLettersString() {
+        CaesarCipher cipher = new CaesarCipher();
+        String encodedString = cipher.encode("ABC", 1);
+        assertEquals(encodedString, "BCD");
+    }
+
 }
