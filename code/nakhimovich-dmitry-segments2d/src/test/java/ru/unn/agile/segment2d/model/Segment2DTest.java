@@ -64,9 +64,9 @@ public class Segment2DTest {
 
     @Test
     public void canSetSegment2D_P2() {
-        Point2D p1 = new Point2D.Double(1.0, 1.0);
-        Point2D p2 = new Point2D.Double(2.0, 2.0);
-        Point2D p3 = new Point2D.Double(3.0, 3.0);
+        Point2D p1 = new Point2D.Double(11.0, 11.0);
+        Point2D p2 = new Point2D.Double(22.0, 22.0);
+        Point2D p3 = new Point2D.Double(33.0, 33.0);
         Segment2D segment = new Segment2D(p1, p2);
 
         segment.setP2(p3);
@@ -95,9 +95,9 @@ public class Segment2DTest {
 
     @Test
     public void areNotEqualSegment2D_DifferentP1() {
-        Point2D p1 = new Point2D.Double(1.0, 1.0);
-        Point2D p2 = new Point2D.Double(2.0, 2.0);
-        Point2D p3 = new Point2D.Double(3.0, 3.0);
+        Point2D p1 = new Point2D.Double(4.0, 4.0);
+        Point2D p2 = new Point2D.Double(5.0, 5.0);
+        Point2D p3 = new Point2D.Double(6.0, 6.0);
         Segment2D seg1 = new Segment2D(p1, p2);
         Segment2D seg2 = new Segment2D(p3, p2);
 
@@ -106,9 +106,9 @@ public class Segment2DTest {
 
     @Test
     public void areNotEqualSegment2D_DifferentP2() {
-        Point2D p1 = new Point2D.Double(1.0, 1.0);
-        Point2D p2 = new Point2D.Double(2.0, 2.0);
-        Point2D p3 = new Point2D.Double(3.0, 3.0);
+        Point2D p1 = new Point2D.Double(7.0, 7.0);
+        Point2D p2 = new Point2D.Double(8.0, 8.0);
+        Point2D p3 = new Point2D.Double(9.0, 9.0);
         Segment2D seg1 = new Segment2D(p1, p2);
         Segment2D seg2 = new Segment2D(p1, p3);
 
