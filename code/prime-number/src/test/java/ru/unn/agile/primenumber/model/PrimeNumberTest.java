@@ -130,10 +130,22 @@ public final class PrimeNumberTest {
 
     @Test
     public void canReceiveOnePrimeValueFromIntervalFiveToFive() {
-        int firstValueInterval = 5;
-        int lastValueInterval = 5;
+        int firstValueSegment = 5;
+        int lastValueSegment = 5;
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(5);
+
+        List<Integer> actualArray =
+                PrimeNumber.findPrimeNumbersInInterval(firstValueSegment, lastValueSegment);
+
+        assertEquals(expectedArray, actualArray);
+    }
+
+    @Test
+    public void canNortReceivePrimeValueFromIntervalFourToFour() {
+        int firstValueInterval = 4;
+        int lastValueInterval = 4;
+        List<Integer> expectedArray = new ArrayList<>();
 
         List<Integer> actualArray =
                 PrimeNumber.findPrimeNumbersInInterval(firstValueInterval, lastValueInterval);
