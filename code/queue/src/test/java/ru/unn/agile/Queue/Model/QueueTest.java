@@ -24,6 +24,13 @@ public final class QueueTest {
         assertEquals(expectedElement, q.getTail());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void throwWhenPushNullElementToQueue() {
+        Queue q = new Queue();
+
+        q.push(null);
+    }
+
     @Test
     public void canPopIntegerElementFromQueue() {
         Queue q = new Queue();
