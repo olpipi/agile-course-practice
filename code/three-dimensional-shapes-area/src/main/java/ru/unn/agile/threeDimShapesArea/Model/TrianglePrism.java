@@ -12,6 +12,9 @@ public class TrianglePrism implements Shape {
 
     public TrianglePrism(final Triangle base, final double height) {
         this.base = base;
+        if(height <= 0) {
+            throw new IllegalArgumentException(ShapesAreaConstants.ILLEGAL_ARGUMENTS_EXCEPTION_STR);
+        }
         this.height = height;
     }
 

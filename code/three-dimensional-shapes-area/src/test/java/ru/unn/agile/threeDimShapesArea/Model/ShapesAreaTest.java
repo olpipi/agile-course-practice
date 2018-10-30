@@ -118,11 +118,72 @@ public class ShapesAreaTest {
 
     @Test
     public void canGetConesArea() {
-        Shape cones = new Cones(4, 5);
+        Shape cones = new Cone(4, 5);
         double area = cones.getArea();
         double expectedArea = Math.PI * 20 + Math.PI * 16;
         assert Math.abs(area - expectedArea) < 0.00001;
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotCreateCircleWithNegativeRadius() {
+        Shape shape = new Circle(-1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotCreateConeWithNegativeParams() {
+        Shape shape = new Cone(-1,-1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotCreateCubeWithNegativeParams() {
+        Shape shape = new Cube(-1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotCreateCylinderWithNegativeParams() {
+        Shape shape = new Cylinder(-1,-1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotCreateHexagonWithNegativeParams() {
+        Shape shape = new Hexagon(-1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotCreateHexagonalPyramidWithNegativeParams() {
+        Shape shape = new HexagonalPyramid(1, -1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotCreateParallelepipedWithNegativeParams() {
+        Shape shape = new Parallelepiped(1, -1, 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotCreateSphereWithNegativeParams() {
+        Shape shape = new Sphere(-3);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotCreateSquarePyramidWithNegativeParams() {
+        Shape shape = new SquarePyramid(-3, 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotCreateTrianglePrismWithNegativeParams() {
+        Shape shape = new TrianglePrism(new Triangle(0,0,0), -1);
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
