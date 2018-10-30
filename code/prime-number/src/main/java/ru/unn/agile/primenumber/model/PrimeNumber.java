@@ -23,7 +23,7 @@ public final class PrimeNumber {
         return true;
     }
 
-    public static List<Integer> findPrimeNumbersInInterval(final double startSegment,
+    public static List<Integer> findPrimeNumbersInSegment(final double startSegment,
                                                            final double endSegment) {
 
         if (endSegment < startSegment) {
@@ -32,9 +32,9 @@ public final class PrimeNumber {
 
         List<Integer> primeNumbersArray = new ArrayList<>();
 
-        int finalStartOfInterval = (int) Math.ceil(startSegment);
+        int finalStartOfSegment = (int) Math.ceil(startSegment);
 
-        for (int i = finalStartOfInterval; i <= (int) endSegment; i++) {
+        for (int i = finalStartOfSegment; i <= (int) endSegment; i++) {
             if (isPrimeNumber(i)) {
                 primeNumbersArray.add(i);
             }

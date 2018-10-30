@@ -9,14 +9,14 @@ import java.util.List;
 public final class PrimeNumberTest {
 
     @Test
-    public void canReceiveOnePrimeValueFromIntervalZeroToTwo() {
-        int firstValueInterval = 0;
-        int lastValueInterval = 2;
+    public void canReceiveOnePrimeValueFromSegmentZeroToTwo() {
+        int firstValueSegment = 0;
+        int lastValueSegment = 2;
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(2);
 
         List<Integer> actualArray =
-                PrimeNumber.findPrimeNumbersInInterval(firstValueInterval, lastValueInterval);
+                PrimeNumber.findPrimeNumbersInSegment(firstValueSegment, lastValueSegment);
 
         assertEquals(expectedArray, actualArray);
     }
@@ -27,30 +27,30 @@ public final class PrimeNumberTest {
         expectedArray.add(2);
         expectedArray.add(3);
         List<Integer> actualArray =
-                PrimeNumber.findPrimeNumbersInInterval(0, 3);
+                PrimeNumber.findPrimeNumbersInSegment(0, 3);
 
         assertEquals(expectedArray, actualArray);
     }
 
     @Test
     public void canReceiveThreePrimeValueFromIntervalZeroToFive() {
-        int firstValueInterval = 0;
-        int lastValueInterval = 5;
+        int firstValueSegment = 0;
+        int lastValueSegment = 5;
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(2);
         expectedArray.add(3);
         expectedArray.add(5);
 
         List<Integer> actualArray =
-                PrimeNumber.findPrimeNumbersInInterval(firstValueInterval, lastValueInterval);
+                PrimeNumber.findPrimeNumbersInSegment(firstValueSegment, lastValueSegment);
 
         assertEquals(expectedArray, actualArray);
     }
 
     @Test
     public void canReceiveFourPrimeValueFromIntervalZeroToNine() {
-        int firstValueInterval = 0;
-        int lastValueInterval = 9;
+        int firstValueSegment = 0;
+        int lastValueSegment = 9;
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(2);
         expectedArray.add(3);
@@ -58,15 +58,15 @@ public final class PrimeNumberTest {
         expectedArray.add(7);
 
         List<Integer> actualArray =
-                PrimeNumber.findPrimeNumbersInInterval(firstValueInterval, lastValueInterval);
+                PrimeNumber.findPrimeNumbersInSegment(firstValueSegment, lastValueSegment);
 
         assertEquals(expectedArray, actualArray);
     }
 
     @Test
     public void canReceiveFourPrimeValueFromIntervalFiveToFifteen() {
-        int firstValueInterval = 5;
-        int lastValueInterval = 15;
+        int firstValueSegment = 5;
+        int lastValueSegment = 15;
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(5);
         expectedArray.add(7);
@@ -74,58 +74,58 @@ public final class PrimeNumberTest {
         expectedArray.add(13);
 
         List<Integer> actualArray =
-                PrimeNumber.findPrimeNumbersInInterval(firstValueInterval, lastValueInterval);
+                PrimeNumber.findPrimeNumbersInSegment(firstValueSegment, lastValueSegment);
 
         assertEquals(expectedArray, actualArray);
     }
 
     @Test
     public void canReceiveTwoPrimeValueFromIntervalMinusFiveToThree() {
-        int firstValueInterval = -5;
-        int lastValueInterval = 3;
+        int firstValueSegment = -5;
+        int lastValueSegment = 3;
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(2);
         expectedArray.add(3);
 
         List<Integer> actualArray =
-                PrimeNumber.findPrimeNumbersInInterval(firstValueInterval, lastValueInterval);
+                PrimeNumber.findPrimeNumbersInSegment(firstValueSegment, lastValueSegment);
 
         assertEquals(expectedArray, actualArray);
     }
 
     @Test
     public void canReceiveTwoPrimeValueFromDoubleNumbersInterval() {
-        double firstValueInterval = 4.2;
-        double lastValueInterval = 7.6;
+        double firstValueSegment = 4.2;
+        double lastValueSegment = 7.6;
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(5);
         expectedArray.add(7);
 
         List<Integer> actualArray =
-                PrimeNumber.findPrimeNumbersInInterval(firstValueInterval, lastValueInterval);
+                PrimeNumber.findPrimeNumbersInSegment(firstValueSegment, lastValueSegment);
 
         assertEquals(expectedArray, actualArray);
     }
 
     @Test
     public void canReceiveOnePrimeValueFromDoubleNumbersInterval() {
-        double firstValueInterval = 0.99;
-        double lastValueInterval = 2.99;
+        double firstValueSegment = 0.99;
+        double lastValueSegment = 2.99;
         List<Integer> expectedArray = new ArrayList<>();
         expectedArray.add(2);
 
         List<Integer> actualArray =
-                PrimeNumber.findPrimeNumbersInInterval(firstValueInterval, lastValueInterval);
+                PrimeNumber.findPrimeNumbersInSegment(firstValueSegment, lastValueSegment);
 
         assertEquals(expectedArray, actualArray);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void canNotReceivePrimeValueFromIncorrectInterval() {
-        int firstValueInterval = 3;
-        int lastValueInterval = -3;
+        int firstValueSegment = 3;
+        int lastValueSegment = -3;
 
-        PrimeNumber.findPrimeNumbersInInterval(firstValueInterval, lastValueInterval);
+        PrimeNumber.findPrimeNumbersInSegment(firstValueSegment, lastValueSegment);
     }
 
     @Test
@@ -136,19 +136,19 @@ public final class PrimeNumberTest {
         expectedArray.add(5);
 
         List<Integer> actualArray =
-                PrimeNumber.findPrimeNumbersInInterval(firstValueSegment, lastValueSegment);
+                PrimeNumber.findPrimeNumbersInSegment(firstValueSegment, lastValueSegment);
 
         assertEquals(expectedArray, actualArray);
     }
 
     @Test
     public void canNortReceivePrimeValueFromIntervalFourToFour() {
-        int firstValueInterval = 4;
-        int lastValueInterval = 4;
+        int firstValueSegment = 4;
+        int lastValueSegment = 4;
         List<Integer> expectedArray = new ArrayList<>();
 
         List<Integer> actualArray =
-                PrimeNumber.findPrimeNumbersInInterval(firstValueInterval, lastValueInterval);
+                PrimeNumber.findPrimeNumbersInSegment(firstValueSegment, lastValueSegment);
 
         assertEquals(expectedArray, actualArray);
     }
