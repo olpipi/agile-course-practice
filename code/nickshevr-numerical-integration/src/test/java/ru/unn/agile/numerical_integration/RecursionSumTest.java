@@ -28,14 +28,14 @@ public class RecursionSumTest {
     }
 
     @Test
-    public void squareSum() {
+    public void shouldCalcSquareSum() {
         double result = FpUtils.recursionSum(square, step, 0, 2);
 
         assertEquals(result, 5, delta);
     }
 
     @Test
-    public void cubeSum() {
+    public void shouldCalcCubeSum() {
         double result = FpUtils.recursionSum(cube, step, 0, 2);
 
         assertEquals(result, 9, delta);
