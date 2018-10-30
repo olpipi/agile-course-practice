@@ -208,13 +208,13 @@ public class MatrixTests {
     public void isCalculateDistanceOnStartToFirstVertex() {
         int[][] matrix = {
                 {
-                        0, 4, 2
+                        0, 7, 9
                 },
                 {
-                        1, 0, 0
+                        10, 0, 0
                 },
                 {
-                        3, 0, 0
+                        11, 0, 0
                 }
         };
         Graph graph = new Graph(matrix);
@@ -223,29 +223,29 @@ public class MatrixTests {
 
         int minDistance = graph.dijkstra(vertexOfStart, vertexOfEnd);
 
-        assertEquals(4, minDistance);
+        assertEquals(7, minDistance);
     }
 
     @Test
     public void isLowestDistancewithOneVertexInDistance() {
         int[][] matrix = {
                 {
-                        0, 4, 0
+                        0, 1, 3
                 },
                 {
-                        1, 0, 0
+                        3, 0, 10
                 },
                 {
-                        1, 0, 0
+                        9, 0, 10
                 }
         };
         Graph graph = new Graph(matrix);
         Vertex vertexOfStart = new Vertex(0);
-        Vertex vertexOfEnd = new Vertex(1);
+        Vertex vertexOfEnd = new Vertex(2);
 
         int minDistance = graph.dijkstra(vertexOfStart, vertexOfEnd);
 
-        assertEquals(4, minDistance);
+        assertEquals(3, minDistance);
     }
 
     @Test
