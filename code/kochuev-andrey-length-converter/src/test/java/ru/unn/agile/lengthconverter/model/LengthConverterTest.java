@@ -1,7 +1,9 @@
 package ru.unn.agile.lengthconverter.model;
 
 import org.junit.Test;
-
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.InvocationTargetException;
 import static org.junit.Assert.*;
 
 public class LengthConverterTest {
@@ -117,5 +119,15 @@ public class LengthConverterTest {
         double convertedValue =
                 LengthConverter.convert(LengthUnit.FEET, 5, LengthUnit.FEET);
         assertEquals(5, convertedValue, EPSILON);
+    }
+
+    @Test
+    public void testConstructorIsPrivate()
+            throws NoSuchMethodException, IllegalAccessException,
+            InvocationTargetException, InstantiationException {
+        Constructor<LengthConverter> constructor = LengthConverter.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        constructor.newInstance();
     }
 }
