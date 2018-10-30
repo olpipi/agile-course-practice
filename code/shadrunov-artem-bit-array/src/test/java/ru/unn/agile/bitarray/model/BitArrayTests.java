@@ -21,8 +21,9 @@ public class BitArrayTests {
         List<Integer> list = new ArrayList<>();
 
         int i = 7;
-        while (i != 0)
+        while (i != 0) {
             list.add(i--);
+        }
 
         new BitArray(list);
     }
@@ -46,20 +47,22 @@ public class BitArrayTests {
         List<Integer> list = new ArrayList<>();
 
         list.add(1);
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++) {
             list.add(0);
+        }
 
         BitArray bitArray = new BitArray(list);
 
-        assertEquals(4, bitArray.size());
+        assertEquals(6, bitArray.size());
     }
 
     @Test
     public void canCreateBitArrayFromZeroesArray() {
         List<Integer> list = new ArrayList<>();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) {
             list.add(0);
+        }
 
         BitArray bitArray = new BitArray(list);
 
@@ -71,12 +74,13 @@ public class BitArrayTests {
         List<Integer> list = new ArrayList<>();
 
         list.add(1);
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++) {
             list.add(0);
+        }
 
         BitArray bitArray = new BitArray(list);
 
-        assertEquals("1000", bitArray.toString());
+        assertEquals("100", bitArray.toString());
     }
 
     @Test
@@ -90,8 +94,9 @@ public class BitArrayTests {
     public void canCutFirstZeroesInStringRepresentation() {
         List<Integer> list = new ArrayList<>();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) {
             list.add(0);
+        }
 
         list.add(1);
 
@@ -104,8 +109,9 @@ public class BitArrayTests {
     public void canConvertZeroesArrayToString() {
         List<Integer> list = new ArrayList<>();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) {
             list.add(0);
+        }
 
         BitArray bitArray = new BitArray(list);
 
@@ -117,8 +123,9 @@ public class BitArrayTests {
         List<Integer> list = new ArrayList<>();
 
         list.add(1);
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) {
             list.add(0);
+        }
 
         BitArray bitArray = new BitArray(list);
 
@@ -130,8 +137,9 @@ public class BitArrayTests {
         List<Integer> list = new ArrayList<>();
 
         list.add(1);
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) {
             list.add(0);
+        }
 
         BitArray bitArray = new BitArray(list);
 
@@ -143,8 +151,9 @@ public class BitArrayTests {
         List<Integer> list = new ArrayList<>();
 
         list.add(1);
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) {
             list.add(0);
+        }
 
         BitArray bitArray1 = new BitArray(8);
         BitArray bitArray2 = new BitArray(list);
@@ -195,13 +204,14 @@ public class BitArrayTests {
         List<Integer> list = new ArrayList<>();
 
         list.add(1);
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) {
             list.add(0);
+        }
 
         BitArray bitArray1 = new BitArray(list);
         BitArray bitArray2 = new BitArray(list);
 
-        assertTrue(bitArray1.equals(bitArray2));
+        assertTrue(bitArray1.isEqual(bitArray2));
     }
 
     @Test
@@ -209,14 +219,14 @@ public class BitArrayTests {
         BitArray bitArray1 = new BitArray(8);
         BitArray bitArray2 = new BitArray(3);
 
-        assertFalse(bitArray1.equals(bitArray2));
+        assertFalse(bitArray1.isEqual(bitArray2));
     }
 
     @Test
     public void canCompareWithItself() {
         BitArray bitArray = new BitArray(8);
 
-        assertTrue(bitArray.equals(bitArray));
+        assertTrue(bitArray.isEqual(bitArray));
     }
 
     @Test

@@ -12,33 +12,39 @@ public class BitArray {
         bits = new ArrayList<>();
     }
 
-    BitArray(int number) {
-        if (number < 0)
+    BitArray(final int number) {
+        if (number < 0) {
             throw new IllegalArgumentException("Argument must be positive number");
+        }
 
+        int localNumber = number;
         bits = new ArrayList<>();
 
-        if (number == 0)
+        if (localNumber == 0) {
             return;
+        }
 
         do {
-            bits.add(number % 2);
-            number /= 2;
-        } while (number != 0);
+            bits.add(localNumber % 2);
+            localNumber /= 2;
+        } while (localNumber != 0);
 
         Collections.reverse(bits);
     }
 
-    BitArray(List<Integer> bitArray) {
-        if (bitArray == null)
+    BitArray(final List<Integer> bitArray) {
+        if (bitArray == null) {
             throw new NullPointerException();
+        }
 
-        if (bitArray.stream().anyMatch(i -> !isOneOrZero(i)))
+        if (bitArray.stream().anyMatch(i -> !isOneOrZero(i))) {
             throw new IllegalArgumentException("Array must contains only 1 and 0");
+        }
 
         int i = 0;
-        while (bitArray.size() != 0 && bitArray.get(i) == 0)
+        while (!bitArray.isEmpty() && bitArray.get(i) == 0) {
             bitArray.remove(i);
+        }
 
         bits = bitArray;
     }
@@ -47,24 +53,26 @@ public class BitArray {
         return bits.size();
     }
 
-    public int getAtIndex(int index) {
+    public int getAtIndex(final int index) {
         return bits.get(index);
     }
 
-    public void add(int bit) {
-        if (!isOneOrZero(bit))
+    public void add(final int bit) {
+        if (!isOneOrZero(bit)) {
             throw new IllegalArgumentException("Array must contains only 1 and 0");
+        }
 
         bits.add(bit);
     }
 
-    public void remove(int index) {
+    public void remove(final int index) {
         bits.remove(index);
     }
 
-    public void replace(int index, int bit) {
-        if (!isOneOrZero(bit))
+    public void replace(final int index, final int bit) {
+        if (!isOneOrZero(bit)) {
             throw new IllegalArgumentException("Array must contains only 1 and 0");
+        }
 
         bits.set(index, bit);
     }
@@ -82,16 +90,18 @@ public class BitArray {
     @Override
     public String toString() {
         String stringBitArray = "";
-        for (Integer i : bits) stringBitArray += i.toString();
+        for (Integer i : bits) {
+            stringBitArray += i.toString();
+        }
 
         return stringBitArray;
     }
 
-    public boolean equals(BitArray other) {
+    public boolean isEqual(final BitArray other) {
         return toInt() == other.toInt();
     }
 
-    private boolean isOneOrZero(int number) {
+    private boolean isOneOrZero(final int number) {
         return number == 1 || number == 0;
     }
 }
