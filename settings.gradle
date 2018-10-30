@@ -63,5 +63,5 @@ include "code/rumyantsev-alexander-vector3d"
 project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vector3d"
 
 // Flegontov Alexander, math-statistics
-include "code/flegontov-alexander-math-statistics"
-project(":code/flegontov-alexander-math-statistics").name = "flegontov-alexander-math-statistics"
+include "code/math-statistics"
+project(":code/math-statistics").name = "math-statistics"

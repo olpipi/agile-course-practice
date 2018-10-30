@@ -7,30 +7,30 @@ public final class MathStatistics {
     private MathStatistics() {
     }
 
-    static Double meanCalculate(final Number[] data) {
+    static Double calculateExpectedValue(final Number[] data) {
         checkInputData(data);
 
-        Double mean = 0.0;
+        Double expectedValue = 0.0;
         for (int i = 0; i < data.length; ++i) {
-            mean += data[i].doubleValue();
+            expectedValue += data[i].doubleValue();
         }
-        mean /= data.length;
-        return mean;
+        expectedValue /= data.length;
+        return expectedValue;
     }
 
-    static Double dispersionCalculate(final Number[] data) {
-        final Double mean = meanCalculate(data);
+    static Double calculateDispersion(final Number[] data) {
+        final Double expectedValue = calculateExpectedValue(data);
 
         Double dispersion = 0.0;
         for (int i = 0; i < data.length; ++i) {
-            dispersion += Math.pow((data[i].doubleValue() - mean), DISPERSION_ORDER);
+            dispersion += Math.pow((data[i].doubleValue() - expectedValue), DISPERSION_ORDER);
         }
 
         dispersion /= data.length;
         return dispersion;
     }
 
-    static Double momentCalculate(final Number[] data, final int order, final Number a) {
+    static Double calculateMoment(final Number[] data, final int order, final Number offset) {
         checkInputData(data);
 
         if (order <= 0) {
@@ -39,7 +39,7 @@ public final class MathStatistics {
 
         Double moment = 0.0;
         for (int i = 0; i < data.length; ++i) {
-            moment += Math.pow((data[i].doubleValue() - a.doubleValue()), order);
+            moment += Math.pow((data[i].doubleValue() - offset.doubleValue()), order);
         }
 
         moment /= data.length;

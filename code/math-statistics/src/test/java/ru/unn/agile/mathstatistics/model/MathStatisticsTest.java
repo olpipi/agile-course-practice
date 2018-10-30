@@ -10,63 +10,63 @@ public class MathStatisticsTest {
     public void canCalculateMeanWithOneNumbers() {
         Integer[] data = {10};
 
-        Double mean = MathStatistics.meanCalculate(data);
+        Double expectedValue = MathStatistics.calculateExpectedValue(data);
 
-        assertEquals(new Double(10), mean);
+        assertEquals(new Double(10), expectedValue);
     }
 
     @Test
     public void canCalculateMeanWithOneNegativeInteger() {
         Integer[] data = {-23};
 
-        Double mean = MathStatistics.meanCalculate(data);
+        Double expectedValue = MathStatistics.calculateExpectedValue(data);
 
-        assertEquals(new Double(-23), mean);
+        assertEquals(new Double(-23), expectedValue);
     }
 
     @Test
     public void canCalculateMeanPositiveIntegers() {
         Integer[] data = {10, 5, 25, 30};
 
-        Double mean = MathStatistics.meanCalculate(data);
+        Double expectedValue = MathStatistics.calculateExpectedValue(data);
 
-        assertEquals(new Double(17.5), mean);
+        assertEquals(new Double(17.5), expectedValue);
     }
 
     @Test
     public void canCalculateMeanWithDouble() {
         Double[] data = {1.2, 3.3, 0.2, 8.1, 0.9};
 
-        Double mean = MathStatistics.meanCalculate(data);
+        Double expectedValue = MathStatistics.calculateExpectedValue(data);
 
-        assertEquals(new Double(2.74), mean);
+        assertEquals(new Double(2.74), expectedValue);
     }
 
     @Test
     public void canCalculateMeanWithIntegersAndDouble() {
         Number[] data = {1.2, 3.3, 11, 2, 8.9, 2, 36, 7.3};
 
-        Double mean = MathStatistics.meanCalculate(data);
+        Double expectedValue = MathStatistics.calculateExpectedValue(data);
 
-        assertEquals(new Double(8.9625), mean);
+        assertEquals(new Double(8.9625), expectedValue);
     }
 
     @Test
     public void canCalculateMeanWithNegativeNumbers() {
         Number[] data = {-3, 8.3, 86.2, -3.5};
 
-        Double mean = MathStatistics.meanCalculate(data);
+        Double expectedValue = MathStatistics.calculateExpectedValue(data);
 
-        assertEquals(new Double(22.0), mean);
+        assertEquals(new Double(22.0), expectedValue);
     }
 
     @Test
     public void canCalculateNegativeMean() {
         Double[] data = {-10.2, 4.3, 0.0, -31.9, 3.0, 0.33};
 
-        Double mean = MathStatistics.meanCalculate(data);
+        Double expectedValue = MathStatistics.calculateExpectedValue(data);
 
-        assertEquals(new Double(-5.745), mean);
+        assertEquals(new Double(-5.745), expectedValue);
     }
 
     @Test
@@ -74,37 +74,37 @@ public class MathStatisticsTest {
         Integer[] data = getMonotonicArray(0, 1000);
         Double expected = new Double((0 + 999) / 2.0);
 
-        Double mean = MathStatistics.meanCalculate(data);
+        Double expectedValue = MathStatistics.calculateExpectedValue(data);
 
-        assertEquals(expected, mean);
+        assertEquals(expected, expectedValue);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateMeanWithNullElement() {
         Number[] data = {1.2, 2, -5, null, 8, 7};
 
-        MathStatistics.meanCalculate(data);
+        MathStatistics.calculateExpectedValue(data);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateMeanWithNullData() {
         Double[] data = null;
 
-        MathStatistics.meanCalculate(data);
+        MathStatistics.calculateExpectedValue(data);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateMeanWithEmptyData() {
         Number[] data = {};
 
-        MathStatistics.meanCalculate(data);
+        MathStatistics.calculateExpectedValue(data);
     }
 
     @Test
     public void canCalculateDispersionWithOneNumber() {
         Integer[] data = {8};
 
-        Double dispersion = MathStatistics.dispersionCalculate(data);
+        Double dispersion = MathStatistics.calculateDispersion(data);
 
         assertEquals(new Double(0), dispersion);
     }
@@ -113,7 +113,7 @@ public class MathStatisticsTest {
     public void canCalculateDispersionWithOneNegativeNumber() {
         Integer[] data = {-23};
 
-        Double dispersion = MathStatistics.dispersionCalculate(data);
+        Double dispersion = MathStatistics.calculateDispersion(data);
 
         assertEquals(new Double(0), dispersion);
     }
@@ -122,7 +122,7 @@ public class MathStatisticsTest {
     public void canCalculateDispersionWithNegativeNumbers() {
         Number[] data = {9, 3, -1, 9, -8};
 
-        Double dispersion = MathStatistics.dispersionCalculate(data);
+        Double dispersion = MathStatistics.calculateDispersion(data);
 
         assertEquals(new Double(41.44), dispersion);
     }
@@ -131,7 +131,7 @@ public class MathStatisticsTest {
     public void canCalculateDispersionWithArrayOfZeros() {
         Number[] data = {0, 0, 0, 0};
 
-        Double dispersion = MathStatistics.dispersionCalculate(data);
+        Double dispersion = MathStatistics.calculateDispersion(data);
 
         assertEquals(new Double(0.0), dispersion);
     }
@@ -140,7 +140,7 @@ public class MathStatisticsTest {
     public void canCalculateDispersionWithDouble() {
         Number[] data = {7.2, 64.3, -13.8, 0.6, 23.1};
 
-        Double dispersion = MathStatistics.dispersionCalculate(data);
+        Double dispersion = MathStatistics.calculateDispersion(data);
 
         assertEquals(new Double(717.1096), dispersion);
     }
@@ -149,7 +149,7 @@ public class MathStatisticsTest {
     public void canCalculateDispersionWithBigSizeOfDataArray() {
         Integer[] data = getMonotonicArray(0, 1000);
 
-        Double dispersion = MathStatistics.dispersionCalculate(data);
+        Double dispersion = MathStatistics.calculateDispersion(data);
 
         assertEquals(new Double(83333.25), dispersion);
     }
@@ -158,28 +158,28 @@ public class MathStatisticsTest {
     public void throwsWhenCalculateDispersionWithNullElement() {
         Number[] data = {2, -3, 5, null, 1, 8};
 
-        MathStatistics.dispersionCalculate(data);
+        MathStatistics.calculateDispersion(data);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateDispersionWithNullData() {
         Double[] data = null;
 
-        MathStatistics.dispersionCalculate(data);
+        MathStatistics.calculateDispersion(data);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateDispersionWithEmptyData() {
         Number[] data = {};
 
-        MathStatistics.dispersionCalculate(data);
+        MathStatistics.calculateDispersion(data);
     }
 
     @Test
     public void canCalculateMomentWithOneNumber() {
         Integer[] data = {3};
 
-        Double moment = MathStatistics.momentCalculate(data, 3, 46);
+        Double moment = MathStatistics.calculateMoment(data, 3, 46);
 
         assertEquals(new Double(-79507.0), moment);
     }
@@ -188,7 +188,7 @@ public class MathStatisticsTest {
     public void canCalculateMomentWithOneNegativeNumber() {
         Integer[] data = {-11};
 
-        Double moment = MathStatistics.momentCalculate(data, 1, 44);
+        Double moment = MathStatistics.calculateMoment(data, 1, 44);
 
         assertEquals(new Double(-55), moment);
     }
@@ -197,7 +197,7 @@ public class MathStatisticsTest {
     public void canCalculateMomentWithNegativeNumbers() {
         Number[] data = {9, 3, -1, 9, -8};
 
-        Double moment = MathStatistics.momentCalculate(data, 6, 9);
+        Double moment = MathStatistics.calculateMoment(data, 6, 9);
 
         assertEquals(new Double(5036845.0), moment);
     }
@@ -206,7 +206,7 @@ public class MathStatisticsTest {
     public void canCalculateMomentWithArrayOfZeros() {
         Number[] data = {0, 0, 0, 0};
 
-        Double moment = MathStatistics.momentCalculate(data, 5, 2);
+        Double moment = MathStatistics.calculateMoment(data, 5, 2);
 
         assertEquals(new Double(-32.0), moment);
     }
@@ -215,7 +215,7 @@ public class MathStatisticsTest {
     public void canCalculateMomentWithDouble() {
         Number[] data = {7.1, 6.3, 11.8, 0.8, 23.2};
 
-        Double moment = MathStatistics.momentCalculate(data, 3, 3);
+        Double moment = MathStatistics.calculateMoment(data, 3, 3);
 
         assertEquals(new Double(1803.618), moment);
     }
@@ -224,7 +224,7 @@ public class MathStatisticsTest {
     public void canCalculateMomentWithBigSizeOfDataArray() {
         Integer[] data = getMonotonicArray(-400, 400);
 
-        Double moment = MathStatistics.momentCalculate(data, 3, 1);
+        Double moment = MathStatistics.calculateMoment(data, 3, 1);
 
         assertEquals(new Double(-240003.0), moment);
     }
@@ -233,54 +233,54 @@ public class MathStatisticsTest {
     public void throwsWhenCalculateMomentWithNullElement() {
         Number[] data = {1, null, 7, 2, 2, 3};
 
-        MathStatistics.momentCalculate(data, 3, 6);
+        MathStatistics.calculateMoment(data, 3, 6);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateMomentWithNullData() {
         Double[] data = null;
 
-        MathStatistics.momentCalculate(data, 1, 2.8);
+        MathStatistics.calculateMoment(data, 1, 2.8);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateMomentWithEmptyData() {
         Number[] data = {};
 
-        MathStatistics.momentCalculate(data, 2, 3);
+        MathStatistics.calculateMoment(data, 2, 3);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateMomentWithZeroOrder() {
         Number[] data = {0.1, 9.3, 1.8, 0.8, 2.2};
 
-        MathStatistics.momentCalculate(data, 0, 3);
+        MathStatistics.calculateMoment(data, 0, 3);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateMomentWithNegativeOrder() {
         Number[] data = {0.1, 0.3, 6.8, -6.8, 2.2};
 
-        MathStatistics.momentCalculate(data, -5, 3);
+        MathStatistics.calculateMoment(data, -5, 3);
     }
 
     @Test
     public void canCalculateRawMoment() {
         Number[] data = {0, -3, 0.1, 0, 1.9};
 
-        Double mean = MathStatistics.meanCalculate(data);
-        Double moment = MathStatistics.momentCalculate(data, MathStatistics.MEAN_ORDER, 0);
+        Double expectedValue = MathStatistics.calculateExpectedValue(data);
+        Double moment = MathStatistics.calculateMoment(data, MathStatistics.MEAN_ORDER, 0);
 
-        assertEquals(mean, moment);
+        assertEquals(expectedValue, moment);
     }
 
     @Test
     public void canCalculateCentralMoment() {
         Number[] data = {2.1, 1.2, -3, 0, 4.9};
 
-        Double dispersion = MathStatistics.dispersionCalculate(data);
-        Double mean = MathStatistics.meanCalculate(data);
-        Double moment = MathStatistics.momentCalculate(data, MathStatistics.DISPERSION_ORDER, mean);
+        Double dispersion = MathStatistics.calculateDispersion(data);
+        Double expectedValue = MathStatistics.calculateExpectedValue(data);
+        Double moment = MathStatistics.calculateMoment(data, MathStatistics.DISPERSION_ORDER, expectedValue);
 
         assertEquals(dispersion, moment);
     }
