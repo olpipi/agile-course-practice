@@ -36,4 +36,18 @@ public class CaesarCipherTest {
         assertEquals(encodedString, "abc");
     }
 
+    @Test
+    public void canWrapAroundWithNegativeOffset() {
+        CaesarCipher cipher = new CaesarCipher();
+        String encodedString = cipher.encode("a", -1);
+        assertEquals(encodedString, "z");
+    }
+
+    @Test
+    public void canWrapAroundWithPositiveOffset() {
+        CaesarCipher cipher = new CaesarCipher();
+        String encodedString = cipher.encode("z", 1);
+        assertEquals(encodedString, "a");
+    }
+
 }
