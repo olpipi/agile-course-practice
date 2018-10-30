@@ -4,18 +4,6 @@ import java.security.InvalidParameterException;
 import java.util.Objects;
 
 public final class VectorDistance {
-    private static float computeLPdistance(
-            final FloatVector a, final FloatVector b, final double p) {
-        checkArgs(a, b);
-
-        float distance = 0.0f;
-        for (int i = 0; i < a.length(); ++i) {
-            distance += Math.pow(Math.abs(a.get(i) - b.get(i)), p);
-            ensureIsFinite(distance);
-        }
-        return (float) Math.pow(distance, 1.0 / p);
-    }
-
     public static float computeL1(final FloatVector a, final FloatVector b) {
         final double p = 1.0;
         return computeLPdistance(a, b, p);
@@ -51,6 +39,18 @@ public final class VectorDistance {
     }
 
     private VectorDistance() { /* none */ }
+
+    private static float computeLPdistance(
+            final FloatVector a, final FloatVector b, final double p) {
+        checkArgs(a, b);
+
+        float distance = 0.0f;
+        for (int i = 0; i < a.length(); ++i) {
+            distance += Math.pow(Math.abs(a.get(i) - b.get(i)), p);
+            ensureIsFinite(distance);
+        }
+        return (float) Math.pow(distance, 1.0 / p);
+    }
 
     private static void ensureIsFinite(final float x) {
         if (!Float.isFinite(x)) {
