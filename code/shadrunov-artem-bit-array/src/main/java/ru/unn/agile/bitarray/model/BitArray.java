@@ -58,11 +58,15 @@ public class BitArray {
         bits.add(bit);
     }
 
-    public void replace(int idx, int bit) {
+    public void remove(int index) {
+        bits.remove(index);
+    }
+
+    public void replace(int index, int bit) {
         if (!isOneOrZero(bit))
             throw new IllegalArgumentException("Array must contains only 1 and 0");
 
-        bits.set(idx, bit);
+        bits.set(index, bit);
     }
 
     public int toInt() {

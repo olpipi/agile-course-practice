@@ -264,4 +264,18 @@ public class BitArrayTests {
         BitArray bitArray = new BitArray(2);
         bitArray.replace(10, 0);
     }
+
+    @Test
+    public void canRemoveElement() {
+        BitArray bitArray = new BitArray(2);
+        bitArray.remove(0);
+
+        assertEquals(0, bitArray.toInt());
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void canRemoveAtWrongIndex() {
+        BitArray bitArray = new BitArray(2);
+        bitArray.remove(3);
+    }
 }
