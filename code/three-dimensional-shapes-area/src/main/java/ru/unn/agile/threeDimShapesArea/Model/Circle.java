@@ -8,7 +8,7 @@ public class Circle implements Shape {
     private double radius;
 
     public Circle(final double radius) {
-        if(radius <= 0) {
+        if (radius <= 0) {
             throw new IllegalArgumentException(ShapesAreaConstants.ILLEGAL_ARGUMENTS_EXCEPTION_STR);
         }
 

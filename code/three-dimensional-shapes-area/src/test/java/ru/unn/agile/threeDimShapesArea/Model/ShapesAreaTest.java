@@ -131,7 +131,7 @@ public class ShapesAreaTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void canNotCreateConeWithNegativeParams() {
-        Shape shape = new Cone(-1,-1);
+        Shape shape = new Cone(-1, -1);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -141,7 +141,7 @@ public class ShapesAreaTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void canNotCreateCylinderWithNegativeParams() {
-        Shape shape = new Cylinder(-1,-1);
+        Shape shape = new Cylinder(-1, -1);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -171,17 +171,16 @@ public class ShapesAreaTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void canNotCreateTrianglePrismWithNegativeParams() {
-        Shape shape = new TrianglePrism(new Triangle(0,0,0), -1);
+        Shape shape = new TrianglePrism(new Triangle(0, 0, 0), -1);
     }
 
-
-
-
-
-
-
-
-
+    @Test
+    public void canGetTruncatedConeArea() {
+        Shape cone = new TruncatedCone(2, 4, 1);
+        double area = cone.getArea();
+        double expectedArea = Math.PI * (2 + 4) * 1 + Math.PI * 4 + Math.PI * 16;
+        assert Math.abs(area - expectedArea) < 0.00001;
+    }
 
 
 
