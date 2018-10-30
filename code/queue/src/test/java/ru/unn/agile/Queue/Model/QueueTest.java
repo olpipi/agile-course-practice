@@ -1,5 +1,7 @@
 package ru.unn.agile.queue.model;
 
+import ru.unn.agile.queue.model.errorhandling.EmptyQueueException;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -31,6 +33,13 @@ public final class QueueTest {
         Integer actualElement = q.pop();
 
         assertEquals(expectedElement, actualElement);
+    }
+
+    @Test(expected = EmptyQueueException.class)
+    public void throwWhenPopFromEmptyQueue() {
+        Queue q = new Queue();
+
+        Integer actualElement = q.pop();
     }
 
     @Test
