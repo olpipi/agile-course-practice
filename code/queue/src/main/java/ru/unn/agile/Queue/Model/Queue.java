@@ -6,6 +6,10 @@ public final class Queue {
 
     }
 
+    public Integer pop() {
+        return 1;
+    }
+
     public Integer getTail() {
         return 1;
     }
