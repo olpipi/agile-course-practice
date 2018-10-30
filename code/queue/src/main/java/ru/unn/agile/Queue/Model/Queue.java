@@ -6,34 +6,34 @@ import ru.unn.agile.queue.model.errorhandling.EmptyQueueException;
 import java.util.LinkedList;
 import java.util.List;
 
-public final class Queue {
+public final class Queue<E> {
 
-    private List<Integer> container;
+    private List<E> container;
 
     public Queue() {
-        container = new LinkedList<>();
+        container = new LinkedList<E>();
     }
 
-    public void push(Integer element) {
+    public void push(E element) {
         if( element == null )
             throw new IllegalArgumentException("Element should be initialized");
 
         container.add(element);
     }
 
-    public Integer pop() {
+    public E pop() {
         checkNotEmpty();
 
         return container.remove(0);
     }
 
-    public Integer getHead() {
+    public E getHead() {
         checkNotEmpty();
 
         return container.get(0);
     }
 
-    public Integer getTail() {
+    public E getTail() {
         checkNotEmpty();
 
         return container.get(container.size() - 1);
