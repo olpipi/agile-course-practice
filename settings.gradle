@@ -130,10 +130,6 @@ project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-
 include "code/gladkova-tatiana-binary-search"
 project(":code/gladkova-tatiana-binary-search").name = "gladkova-tatiana-binary-search"
 
-// Three dimensional shapes area calculation
-include "code/three-dimensional-shapes-area"
-project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
-
 // Kryukova Polina, caesar-cipher
 include "code/caesar-cipher"
 project(":code/caesar-cipher").name = "caesar-cipher"
@@ -157,3 +153,7 @@ project(":code/shape-volume-calculator").name = "shape-volume-calculator"
 // Rumiantseva Maria, Quadratic Equation Solver
 include "code/rumiantseva-maria-quadratic-equation-solver"
 project(":code/rumiantseva-maria-quadratic-equation-solver").name = "rumiantseva-maria-quadratic-equation-solver"
+
+// Sheptunov Vladislav, BinarySearchTree
+include "code/binary-search-tree"
+project(":code/binary-search-tree").name = "binary-search-tree"

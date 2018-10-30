@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-
 public class DepositCalculatorTest {
     private final double delta = 0.001;
 
@@ -25,7 +24,7 @@ public class DepositCalculatorTest {
         // Act
         depositCalculator.setDepositAmount(500);
 
-        //Assert
+        // Assert
         assertEquals(500, depositCalculator.getDepositAmount(), delta);
     }
 
@@ -37,7 +36,7 @@ public class DepositCalculatorTest {
         // Act
         depositCalculator.setTermPlacementInMonths(10);
 
-        //Assert
+        // Assert
         assertEquals(10, depositCalculator.getTermPlacementInMonths());
     }
 
@@ -126,7 +125,7 @@ public class DepositCalculatorTest {
 
         // Assert
         assertEquals(FrequencyOfCapitalization.onceMonth,
-                depositCalculator.getFrequencyOfCapitalization());
+            depositCalculator.getFrequencyOfCapitalization());
     }
 
     @Test
