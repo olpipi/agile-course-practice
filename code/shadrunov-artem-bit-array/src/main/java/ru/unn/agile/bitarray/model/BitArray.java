@@ -9,38 +9,38 @@ public class BitArray {
     private List<Integer> bits;
 
     BitArray() {
-        this.bits = new ArrayList<>();
+        bits = new ArrayList<>();
     }
 
     BitArray(int number) {
         if (number < 0)
             throw new IllegalArgumentException("Argument must be positive number");
 
-        this.bits = new ArrayList<>();
+        bits = new ArrayList<>();
 
         if (number == 0)
             return;
 
         do {
-            this.bits.add(number %2);
+            bits.add(number %2);
             number /= 2;
         } while (number != 0);
 
-        Collections.reverse(this.bits);
+        Collections.reverse(bits);
     }
 
     BitArray(List<Integer> bitArray) {
         if (bitArray == null)
             throw new NullPointerException();
 
-        if (bitArray.stream().anyMatch(i -> i < 0 || i > 1))
+        if (bitArray.stream().anyMatch(i -> !isOneOrZero(i)))
             throw new IllegalArgumentException("Array must contains only 1 and 0");
 
         int i = 0;
         while (bitArray.size() != 0 && bitArray.get(i) == 0)
             bitArray.remove(i);
 
-        this.bits = bitArray;
+        bits = bitArray;
     }
 
     public int size() {
@@ -48,21 +48,28 @@ public class BitArray {
     }
 
     public int getAtIndex(int index) {
-        return this.bits.get(index);
+        return bits.get(index);
     }
 
     public void add(int bit) {
-        if (bit > 1 || bit < 0)
+        if (!isOneOrZero(bit))
             throw new IllegalArgumentException("Array must contains only 1 and 0");
 
         bits.add(bit);
     }
 
+    public void replace(int idx, int bit) {
+        if (!isOneOrZero(bit))
+            throw new IllegalArgumentException("Array must contains only 1 and 0");
+
+        bits.set(idx, bit);
+    }
+
     public int toInt() {
         int result = 0;
 
-        for (int i = 0; i < this.bits.size(); i++) {
-            result += this.bits.get(i) * Math.pow(2, size() - i - 1);
+        for (int i = 0; i < bits.size(); i++) {
+            result += bits.get(i) * Math.pow(2, size() - i - 1);
         }
 
         return result;
@@ -77,6 +84,10 @@ public class BitArray {
     }
 
     public boolean equals(BitArray other) {
-        return this.toInt() == other.toInt();
+        return toInt() == other.toInt();
+    }
+
+    private boolean isOneOrZero(int number) {
+        return number == 1 || number == 0;
     }
 }

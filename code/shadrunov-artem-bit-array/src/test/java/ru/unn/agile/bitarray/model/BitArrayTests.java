@@ -240,4 +240,28 @@ public class BitArrayTests {
 
         bitArray.add(2);
     }
+
+    @Test
+    public void canReplaceElement() {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+
+        BitArray bitArray = new BitArray(list);
+
+        bitArray.replace(0, 0);
+
+        assertEquals(0, bitArray.toInt());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canReplaceWithWrongNumber() {
+        BitArray bitArray = new BitArray(2);
+        bitArray.replace(0, 3);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void canReplaceAtWrongIndex() {
+        BitArray bitArray = new BitArray(2);
+        bitArray.replace(10, 0);
+    }
 }
