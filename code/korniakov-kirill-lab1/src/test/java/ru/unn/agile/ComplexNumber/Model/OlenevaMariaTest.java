@@ -1,4 +1,4 @@
-package ru.unn.agile.complexnumber.model;
+package ru.unn.agile.ComplexNumber.Model;
 
 import org.junit.Test;
 import ru.unn.agile.complexnumber.model.ComplexNumber;
