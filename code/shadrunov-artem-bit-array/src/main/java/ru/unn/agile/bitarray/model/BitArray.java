@@ -22,7 +22,7 @@ public class BitArray {
             return;
 
         do {
-            bits.add(number %2);
+            bits.add(number % 2);
             number /= 2;
         } while (number != 0);
 
@@ -82,7 +82,7 @@ public class BitArray {
     @Override
     public String toString() {
         String stringBitArray = "";
-        for (Integer i: bits) stringBitArray += i.toString();
+        for (Integer i : bits) stringBitArray += i.toString();
 
         return stringBitArray;
     }

@@ -1,6 +1,7 @@
 package ru.unn.agile.bitarray.model;
 
 import org.junit.Test;
+
 import java.util.*;
 
 import static org.junit.Assert.*;
@@ -66,7 +67,7 @@ public class BitArrayTests {
     }
 
     @Test
-    public void canConvertToString(){
+    public void canConvertToString() {
         List<Integer> list = new ArrayList<>();
 
         list.add(1);
