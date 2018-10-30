@@ -1,9 +1,19 @@
 package ru.unn.agile.queue.model;
 
+
+import java.util.LinkedList;
+import java.util.List;
+
 public final class Queue {
 
-    public void push(Integer element) {
+    private List<Integer> container;
 
+    public Queue() {
+        container = new LinkedList<>();
+    }
+
+    public void push(Integer element) {
+        container.add(element);
     }
 
     public Integer pop() {
@@ -15,7 +25,6 @@ public final class Queue {
     }
 
     public boolean isEmpty() {
-        return true;
+        return container.isEmpty();
     }
-
 }

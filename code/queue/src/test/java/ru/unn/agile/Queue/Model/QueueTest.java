@@ -34,9 +34,17 @@ public final class QueueTest {
     }
 
     @Test
-    public void isQueueWithoutElementsEmptiness() {
+    public void isQueueWithoutIntegerElementsEmptiness() {
         Queue q = new Queue();
 
         assertTrue(q.isEmpty());
+    }
+
+    @Test
+    public void isQueueWithOneIntegerElementNotEmpty() {
+        Queue q = new Queue();
+        q.push(1);
+
+        assertFalse(q.isEmpty());
     }
 }
