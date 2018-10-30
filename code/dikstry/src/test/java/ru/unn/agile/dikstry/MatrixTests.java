@@ -10,16 +10,23 @@ import static org.junit.Assert.*;
 public class MatrixTests {
     private static final double DELTA = 0.1;
 
+
     @Test
     public void canInitVertex() {
         Vertex vertex = new Vertex(1);
-        assertEquals(1, vertex.getId());
+
+        int idVertex = vertex.getId();
+
+        assertEquals(1, idVertex);
     }
 
     @Test
     public void canInitVertexWithOtherId() {
         Vertex vertex = new Vertex(2);
-        assertEquals(2, vertex.getId());
+
+        int idVertex = vertex.getId();
+
+        assertEquals(2, idVertex);
     }
 
     @Test
@@ -37,7 +44,10 @@ public class MatrixTests {
         Vertex vertex1 = new Vertex(1);
         Vertex vertex2 = new Vertex(2);
         Edge edge = new Edge(vertex1, vertex2, 1);
-        assertEquals(1, edge.getVertexLeft().getId());
+
+        int vertexId = edge.getVertexLeft().getId();
+
+        assertEquals(1, vertexId);
     }
 
     @Test
@@ -45,73 +55,84 @@ public class MatrixTests {
         Vertex vertex1 = new Vertex(1);
         Vertex vertex2 = new Vertex(2);
         Edge edge = new Edge(vertex1, vertex2, 1);
-        assertEquals(2, edge.getVertexRight().getId(), DELTA);
+
+        int idRightVertex = edge.getVertexRight().getId();
+
+        assertEquals(2, idRightVertex, DELTA);
     }
 
     @Test
     public void canInitGraph() {
         int[][] matrix = {
                 {
-                    0, 2
+                        0, 2
                 },
                 {
-                    3, 0
+                        3, 0
                 }
         };
         Graph graph = new Graph(matrix);
 
-        assertEquals(2, graph.getEdgesSize());
+        int edgesSize = graph.getEdgesSize();
+
+        assertEquals(2, edgesSize);
     }
 
     @Test
     public void canInitGraphWithThreeEdges() {
         int[][] matrix = {
                 {
-                    0, 2, 5
+                        0, 2, 5
                 },
                 {
-                    0, 0, 1
+                        0, 0, 1
                 },
                 {
-                    0, 2, 0
+                        0, 2, 0
                 }
         };
         Graph graph = new Graph(matrix);
 
-        assertEquals(4, graph.getEdgesSize());
+        int edgesSize = graph.getEdgesSize();
+
+        assertEquals(4, edgesSize);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void canInvalidGraphInitiated() {
         int[][] matrix = {
                 {
-                    0, 2
+                        0, 2
                 },
                 {
-                    0, 0, 1
+                        0, 0, 1
                 },
                 {
-                    0, 2, 0
+                        0, 2, 0
                 }
         };
         Graph graph = new Graph(matrix);
 
-        assertEquals(2, graph.getEdgesSize());
+        int edgesSize = graph.getEdgesSize();
+
+        assertEquals(2, edgesSize);
     }
 
     @Test
     public void canInvalidGraphInitiatedMessage() {
         int[][] matrix = {
                 {
-                    0, 2
+                        0, 2
                 },
                 {
-                    0, 0, 1
+                        0, 0, 1
                 },
                 {
-                    0, 2, 0
+                        0, 2, 0
                 }
         };
+
+
         try {
             new Graph(matrix);
         } catch (IllegalArgumentException e) {
@@ -132,6 +153,8 @@ public class MatrixTests {
                         0, 1, 0
                 }
         };
+
+
         try {
             new Graph(matrix);
         } catch (IllegalArgumentException e) {
@@ -176,7 +199,9 @@ public class MatrixTests {
         Vertex vertexOfStart = new Vertex(0);
         Vertex vertexOfEnd = new Vertex(0);
 
-        assertEquals(0, graph.dikstry(vertexOfStart, vertexOfEnd));
+        int minDistance = graph.dijkstra(vertexOfStart, vertexOfEnd);
+
+        assertEquals(0, minDistance);
     }
 
     @Test
@@ -196,8 +221,9 @@ public class MatrixTests {
         Vertex vertexOfStart = new Vertex(0);
         Vertex vertexOfEnd = new Vertex(1);
 
+        int minDistance = graph.dijkstra(vertexOfStart, vertexOfEnd);
 
-        assertEquals(4, graph.dikstry(vertexOfStart, vertexOfEnd));
+        assertEquals(4, minDistance);
     }
 
     @Test
@@ -216,7 +242,10 @@ public class MatrixTests {
         Graph graph = new Graph(matrix);
         Vertex vertexOfStart = new Vertex(0);
         Vertex vertexOfEnd = new Vertex(1);
-        assertEquals(4, graph.dikstry(vertexOfStart, vertexOfEnd));
+
+        int minDistance = graph.dijkstra(vertexOfStart, vertexOfEnd);
+
+        assertEquals(4, minDistance);
     }
 
     @Test
@@ -235,7 +264,10 @@ public class MatrixTests {
         Graph graph = new Graph(matrix);
         Vertex vertexOfStart = new Vertex(0);
         Vertex vertexOfEnd = new Vertex(1);
-        assertEquals(3, graph.dikstry(vertexOfStart, vertexOfEnd));
+
+        int minDistance = graph.dijkstra(vertexOfStart, vertexOfEnd);
+
+        assertEquals(3, minDistance);
     }
 
     @Test
@@ -254,7 +286,10 @@ public class MatrixTests {
         Graph graph = new Graph(matrix);
         Vertex vertexOfStart = new Vertex(0);
         Vertex vertexOfEnd = new Vertex(2);
-        assertEquals(2, graph.dikstry(vertexOfStart, vertexOfEnd));
+
+        int minDistance = graph.dijkstra(vertexOfStart, vertexOfEnd);
+
+        assertEquals(2, minDistance);
     }
 
     @Test
@@ -273,8 +308,12 @@ public class MatrixTests {
         Graph graph = new Graph(matrix);
         Vertex vertexOfStart = new Vertex(1);
         Vertex vertexOfEnd = new Vertex(2);
-        assertEquals(5, graph.dikstry(vertexOfStart, vertexOfEnd));
+
+        int minDistance = graph.dijkstra(vertexOfStart, vertexOfEnd);
+
+        assertEquals(5, minDistance);
     }
+
     @Test
     public void isRightDistanceInGraphWithForeVertex() {
         int[][] matrix = {
@@ -288,13 +327,13 @@ public class MatrixTests {
                         0, 1, 0, 6
                 },
                 {
-                       2, 1, 0, 13
+                        2, 1, 0, 13
                 }
         };
         Graph graph = new Graph(matrix);
         Vertex vertexOfStart = new Vertex(1);
         Vertex vertexOfEnd = new Vertex(3);
-        assertEquals(2, graph.dikstry(vertexOfStart, vertexOfEnd));
+        assertEquals(2, graph.dijkstra(vertexOfStart, vertexOfEnd));
     }
 
 }

@@ -11,22 +11,25 @@ public class Graph {
     public Graph(final int[][] matrix) {
         validateMatrix(matrix);
         List<Vertex> vertices = new LinkedList<>();
-        List<Edge> edges = new LinkedList<>();
         for (int i = 0; i < matrix.length; i++) {
             vertices.add(new Vertex(i));
         }
         vertexesCount = vertices.size();
         ways = new ArrayList<>(vertexesCount);
-        for (Vertex vertexI: vertices) {
+        this.edges = initEdges(matrix, vertices);
+    }
+
+    private List<Edge> initEdges(final int[][] matrix, final List<Vertex> vertices) {
+        List<Edge> edges = new LinkedList<>();
+        for (Vertex vertexI : vertices) {
             for (Vertex vertexJ : vertices) {
                 int weight = matrix[vertexI.getId()][vertexJ.getId()];
-                if (weight != 0) {
+                if (weight > 0) {
                     edges.add(new Edge(vertexI, vertexJ, weight));
                 }
             }
         }
-        this.edges = edges;
-        validateNegativeVertex(edges);
+        return edges;
     }
 
     private void validateMatrix(final int[][] matrix) {
@@ -34,16 +37,6 @@ public class Graph {
         for (int i = 0; i < matrix.length; i++) {
             if (numberOfVertex != matrix[i].length) {
                 throw new IllegalArgumentException("matrix is not square");
-
-            }
-        }
-    }
-
-    private void validateNegativeVertex(final List<Edge> edges) {
-        for (Edge edge: edges) {
-            if (edge.getWeight()
-                    < 0) {
-                throw new IllegalArgumentException("matrix have negative weight!");
             }
         }
     }
@@ -52,13 +45,13 @@ public class Graph {
         return edges.size();
     }
 
-    public int dikstry(final Vertex startVertex, final Vertex endVertex) {
-       for (int i = 0; i < vertexesCount; i++) {
-           List<Vertex> vert = new ArrayList<>();
-           Way waytmp = new Way(vert, INF);
-           ways.add(waytmp);
-       }
-       int startId = startVertex.getId();
+    public int dijkstra(final Vertex startVertex, final Vertex endVertex) {
+        for (int i = 0; i < vertexesCount; i++) {
+            List<Vertex> vert = new ArrayList<>();
+            Way waytmp = new Way(vert, INF);
+            ways.add(waytmp);
+        }
+        int startId = startVertex.getId();
         ways.get(startId).addVertex(startVertex);
         ways.get(startId).addWeight(0);
         Set<Vertex> settledVertex = new HashSet<>();
@@ -74,37 +67,35 @@ public class Graph {
             }
             settledVertex.add(currentVertex);
         }
-    return ways.get(endVertex.getId()).getWeight();
+        return ways.get(endVertex.getId()).getWeight();
     }
 
     private void checkCondition(final Edge edge, final int idCurrentVertex,
                                 final Set<Vertex> settledVertex, final List<Vertex> unsettlVertex) {
         if ((edge.getIdLeftVertex() == idCurrentVertex)
                 && (!settledVertex.contains(edge.getVertexRight()))) {
-                calculateMinimumDistance(edge, ways);
-                if (!unsettlVertex.contains(edge.getVertexRight())) {
-                    unsettlVertex.add(edge.getVertexRight());
-                }
+            calculateMinimumDistance(edge, ways);
+            if (!unsettlVertex.contains(edge.getVertexRight())) {
+                unsettlVertex.add(edge.getVertexRight());
             }
         }
+    }
 
-
-
-    private static Vertex getLowestDistanceVertex(final List<Vertex> unsettledVertex,
-                                                  final List<Way> ways) {
+    private Vertex getLowestDistanceVertex(final List<Vertex> unsettledVertex,
+                                           final List<Way> ways) {
         int lowestDistance = INF;
         Vertex lowestDistanceVertex = null;
         for (int i = 0; i < unsettledVertex.size(); i++) {
-          int idCurrentVertex = unsettledVertex.get(i).getId();
-          if (ways.get(idCurrentVertex).getWeight() < lowestDistance) {
-              lowestDistance = ways.get(idCurrentVertex).getWeight();
-              lowestDistanceVertex = unsettledVertex.get(i);
-          }
-      }
+            int idCurrentVertex = unsettledVertex.get(i).getId();
+            if (ways.get(idCurrentVertex).getWeight() < lowestDistance) {
+                lowestDistance = ways.get(idCurrentVertex).getWeight();
+                lowestDistanceVertex = unsettledVertex.get(i);
+            }
+        }
         return lowestDistanceVertex;
     }
 
-    private static void calculateMinimumDistance(final Edge edge, final List<Way> ways) {
+    private void calculateMinimumDistance(final Edge edge, final List<Way> ways) {
         int idLeftVertexOfEdge = edge.getIdLeftVertex();
         int idRightVertexOfEdge = edge.getIdRighttVertex();
         int sourceDistance = ways.get(idLeftVertexOfEdge).getWeight();
