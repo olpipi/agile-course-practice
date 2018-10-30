@@ -1,6 +1,5 @@
 package ru.unn.agile.queue.model;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import ru.unn.agile.queue.model.errorhandling.EmptyQueueException;
 
 import java.util.LinkedList;
@@ -14,9 +13,10 @@ public final class Queue<E> {
         container = new LinkedList<E>();
     }
 
-    public void push(E element) {
-        if( element == null )
+    public void push(final E element) {
+        if (element == null) {
             throw new IllegalArgumentException("Element should be initialized");
+        }
 
         container.add(element);
     }
