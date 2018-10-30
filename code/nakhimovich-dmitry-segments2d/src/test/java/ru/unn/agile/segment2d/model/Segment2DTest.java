@@ -11,15 +11,18 @@ public class Segment2DTest {
     private static final double EPSILON = Segment2D.EPSILON;
 
     @Test
-    public void canCreateSegment2D_withCoords() {
+    public void canCreateSegment2DwithCoords() {
         Segment2D segment = new Segment2D(0.0, 0.0, 1.0, 1.0);
 
         assertNotNull(segment);
     }
 
     @Test
-    public void canCreateSegment2D_withPoints() {
-        Segment2D segment = new Segment2D(new Point2D.Double(0.0, 0.0), new Point2D.Double(1.0, 1.0));
+    public void canCreateSegment2DwithPoints() {
+        Segment2D segment = new Segment2D(
+                new Point2D.Double(0.0, 0.0),
+                new Point2D.Double(1.0, 1.0)
+        );
 
         assertNotNull(segment);
     }
@@ -33,7 +36,7 @@ public class Segment2DTest {
     }
 
     @Test
-    public void canGetSegment2D_P1() {
+    public void canGetSegment2DP1() {
         Point2D p1 = new Point2D.Double(1.0, 1.0);
         Point2D p2 = new Point2D.Double(2.0, 2.0);
         Segment2D segment = new Segment2D(p1, p2);
@@ -42,7 +45,7 @@ public class Segment2DTest {
     }
 
     @Test
-    public void canSetSegment2D_P1() {
+    public void canSetSegment2DP1() {
         Point2D p1 = new Point2D.Double(1.0, 1.0);
         Point2D p2 = new Point2D.Double(2.0, 2.0);
         Point2D p3 = new Point2D.Double(3.0, 3.0);
@@ -54,7 +57,7 @@ public class Segment2DTest {
     }
 
     @Test
-    public void canGetSegment2D_P2() {
+    public void canGetSegment2DP2() {
         Point2D p1 = new Point2D.Double(1.0, 1.0);
         Point2D p2 = new Point2D.Double(2.0, 2.0);
         Segment2D segment = new Segment2D(p1, p2);
@@ -63,7 +66,7 @@ public class Segment2DTest {
     }
 
     @Test
-    public void canSetSegment2D_P2() {
+    public void canSetSegment2DP2() {
         Point2D p1 = new Point2D.Double(11.0, 11.0);
         Point2D p2 = new Point2D.Double(22.0, 22.0);
         Point2D p3 = new Point2D.Double(33.0, 33.0);
@@ -75,7 +78,7 @@ public class Segment2DTest {
     }
 
     @Test
-    public void areEqualSegment2D_theSame() {
+    public void areEqualSegment2DtheSame() {
         Point2D p1 = new Point2D.Double(1.0, 1.0);
         Point2D p2 = new Point2D.Double(2.0, 2.0);
         Segment2D seg1 = new Segment2D(p1, p2);
@@ -85,7 +88,7 @@ public class Segment2DTest {
     }
 
     @Test
-    public void areEqualSegment2D_itself() {
+    public void areEqualSegment2Ditself() {
         Point2D p1 = new Point2D.Double(1.0, 1.0);
         Point2D p2 = new Point2D.Double(2.0, 2.0);
         Segment2D seg = new Segment2D(p1, p2);
@@ -94,7 +97,7 @@ public class Segment2DTest {
     }
 
     @Test
-    public void areNotEqualSegment2D_DifferentP1() {
+    public void areNotEqualSegment2DDifferentP1() {
         Point2D p1 = new Point2D.Double(4.0, 4.0);
         Point2D p2 = new Point2D.Double(5.0, 5.0);
         Point2D p3 = new Point2D.Double(6.0, 6.0);
@@ -105,7 +108,7 @@ public class Segment2DTest {
     }
 
     @Test
-    public void areNotEqualSegment2D_DifferentP2() {
+    public void areNotEqualSegment2DDifferentP2() {
         Point2D p1 = new Point2D.Double(7.0, 7.0);
         Point2D p2 = new Point2D.Double(8.0, 8.0);
         Point2D p3 = new Point2D.Double(9.0, 9.0);
@@ -116,7 +119,7 @@ public class Segment2DTest {
     }
 
     @Test
-    public void areNotEqualSegment2D_null() {
+    public void areNotEqualSegment2Dnull() {
         Point2D p1 = new Point2D.Double(1.0, 1.0);
         Point2D p2 = new Point2D.Double(2.0, 2.0);
         Segment2D seg = new Segment2D(p1, p2);
@@ -125,7 +128,7 @@ public class Segment2DTest {
     }
 
     @Test
-    public void areNotEqualSegment2D_object() {
+    public void areNotEqualSegment2Dobject() {
         Point2D p1 = new Point2D.Double(1.0, 1.0);
         Point2D p2 = new Point2D.Double(2.0, 2.0);
         Segment2D seg = new Segment2D(p1, p2);
@@ -134,7 +137,7 @@ public class Segment2DTest {
     }
 
     @Test
-    public void areEqualHashCodeSegment2D_theSame() {
+    public void areEqualHashCodeSegment2DtheSame() {
         Point2D p1 = new Point2D.Double(3.0, 3.0);
         Point2D p2 = new Point2D.Double(4.0, 4.0);
         Segment2D seg1 = new Segment2D(p1, p2);
@@ -144,7 +147,7 @@ public class Segment2DTest {
     }
 
     @Test
-    public void areEqualHashCodeSegment2D_itself() {
+    public void areEqualHashCodeSegment2Ditself() {
         Point2D p1 = new Point2D.Double(1.0, 1.0);
         Point2D p2 = new Point2D.Double(2.0, 2.0);
         Segment2D seg = new Segment2D(p1, p2);
@@ -158,7 +161,10 @@ public class Segment2DTest {
         Point2D p2 = new Point2D.Double(2.0, 2.0);
         Segment2D seg = new Segment2D(p1, p2);
 
-        assertEquals("Segment2D{p1=Point2D.Double[1.0, 1.0], p2=Point2D.Double[2.0, 2.0]}", seg.toString());
+        assertEquals(
+                "Segment2D{p1=Point2D.Double[1.0, 1.0], p2=Point2D.Double[2.0, 2.0]}",
+                seg.toString()
+        );
     }
 
 }
