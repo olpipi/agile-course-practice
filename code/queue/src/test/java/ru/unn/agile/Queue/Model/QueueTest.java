@@ -32,4 +32,11 @@ public final class QueueTest {
 
         assertEquals(expectedElement, actualElement);
     }
+
+    @Test
+    public void isQueueWithoutElementsEmptiness() {
+        Queue q = new Queue();
+
+        assertTrue(q.isEmpty());
+    }
 }

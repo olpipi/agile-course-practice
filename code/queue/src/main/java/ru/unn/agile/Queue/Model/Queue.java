@@ -14,4 +14,8 @@ public final class Queue {
         return 1;
     }
 
+    public boolean isEmpty() {
+        return true;
+    }
+
 }
