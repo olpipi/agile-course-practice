@@ -10,6 +10,7 @@ public class Segment2D {
     private Point2D p1;
     private Point2D p2;
 
+    /*Basic methods*/
     public Segment2D(final Point2D p1, final Point2D p2) {
         this.p1 = p1;
         this.p2 = p2;
@@ -65,5 +66,36 @@ public class Segment2D {
     }
 
 
+    /*Utils methods*/
+    private boolean isValidSegment() {
+        return p1.distance(p2) > EPSILON;
+    }
+
+    private double det(int a, int b, int c, int d) {
+        return a * d - b * c;
+    }
+
+    private boolean between(double x1, double x2, double target) {
+        return Math.min(x1, x2) <= target + EPSILON &&
+                target <= Math.max(x1, x2) + EPSILON;
+    }
+
+    private boolean intersection1D(double p1_x1, double p1_x2, double p2_x1, double p2_x2) {
+        double cur_p1_x1 = p1_x1;
+        double cur_p1_x2 = p1_x2;
+        double cur_p2_x1 = p2_x1;
+        double cur_p2_x2 = p2_x2;
+
+        if (p1_x1 > p1_x2) {
+            cur_p1_x1 = p1_x2;
+            cur_p1_x2 = p1_x1;
+        }
+        if (p2_x1 > p2_x2) {
+            cur_p2_x1 = p2_x2;
+            cur_p2_x2 = p2_x1;
+        }
+
+        return Math.max(cur_p1_x1, cur_p2_x1) <= Math.min(cur_p1_x2, cur_p2_x2);
+    }
 
 }
