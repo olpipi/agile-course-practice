@@ -52,8 +52,8 @@ public class Segment2D {
 
         if (obj instanceof Segment2D) {
             Segment2D seg = (Segment2D) obj;
-            return p1.distance(seg.p1) < EPSILON
-                    && p2.distance(seg.p2) < EPSILON;
+            return (p1.distance(seg.p1) < EPSILON && p2.distance(seg.p2) < EPSILON)
+                    || (p1.distance(seg.p2) < EPSILON && p2.distance(seg.p1) < EPSILON);
         }
 
         return false;
@@ -63,5 +63,7 @@ public class Segment2D {
     public int hashCode() {
         return Objects.hash(p1, p2);
     }
+
+
 
 }

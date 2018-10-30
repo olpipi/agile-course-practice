@@ -135,8 +135,8 @@ public class Segment2DTest {
 
     @Test
     public void areEqualHashCodeSegment2D_theSame() {
-        Point2D p1 = new Point2D.Double(1.0, 1.0);
-        Point2D p2 = new Point2D.Double(2.0, 2.0);
+        Point2D p1 = new Point2D.Double(3.0, 3.0);
+        Point2D p2 = new Point2D.Double(4.0, 4.0);
         Segment2D seg1 = new Segment2D(p1, p2);
         Segment2D seg2 = new Segment2D(p1, p2);
 
