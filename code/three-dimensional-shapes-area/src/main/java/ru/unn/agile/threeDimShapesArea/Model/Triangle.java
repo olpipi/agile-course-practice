@@ -2,10 +2,8 @@ package ru.unn.agile.threeDimShapesArea.Model;
 
 
 public class Triangle implements Shape {
+
     private double a;
-
-
-
     private double b;
     private double c;
 
@@ -13,7 +11,6 @@ public class Triangle implements Shape {
         if (a <= 0 || b <= 0 || c <= 0) {
             throw new IllegalArgumentException(ShapesAreaConstants.PARAMETERS_CAN_NOT_BE_NEGATIVE);
         }
-
         this.a = a;
         this.b = b;
         this.c = c;

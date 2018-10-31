@@ -15,7 +15,6 @@ public class TrianglePrism implements Shape {
         this.height = height;
     }
 
-
     @Override
     public double getArea() {
         return BASE_COUNT * base.getArea()

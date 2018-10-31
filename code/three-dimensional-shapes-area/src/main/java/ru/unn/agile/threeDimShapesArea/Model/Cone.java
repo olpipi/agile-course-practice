@@ -2,6 +2,7 @@ package ru.unn.agile.threeDimShapesArea.Model;
 
 
 public class Cone implements Shape {
+
     private Circle base;
     private double height;
 
@@ -12,7 +13,6 @@ public class Cone implements Shape {
         base = new Circle(radius);
         this.height = height;
     }
-
 
     @Override
     public double getArea() {

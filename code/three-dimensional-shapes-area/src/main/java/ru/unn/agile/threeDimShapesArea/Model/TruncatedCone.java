@@ -14,7 +14,6 @@ public class TruncatedCone implements Shape {
         upperBase = new Circle(r1);
         bottomBase = new Circle(r2);
         this.l = l;
-
     }
 
     @Override

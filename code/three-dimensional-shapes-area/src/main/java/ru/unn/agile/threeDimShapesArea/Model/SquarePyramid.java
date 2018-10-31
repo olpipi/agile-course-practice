@@ -7,7 +7,6 @@ public class SquarePyramid implements Shape {
     private final double squareSide;
     private final Triangle triangleSide;
 
-
     public SquarePyramid(final double squareSide, final double triangleSide) {
         if (squareSide <= 0) {
             throw new IllegalArgumentException(ShapesAreaConstants.PARAMETERS_CAN_NOT_BE_NEGATIVE);

@@ -9,7 +9,6 @@ public class Circle implements Shape {
         if (radius <= 0) {
             throw new IllegalArgumentException(ShapesAreaConstants.PARAMETERS_CAN_NOT_BE_NEGATIVE);
         }
-
         this.radius = radius;
     }
 

@@ -11,7 +11,6 @@ public class Parallelepiped implements Shape {
         if (height <= 0 || width <= 0 || depth <= 0) {
             throw new IllegalArgumentException(ShapesAreaConstants.PARAMETERS_CAN_NOT_BE_NEGATIVE);
         }
-
         this.height = height;
         this.width = width;
         this.depth = depth;
