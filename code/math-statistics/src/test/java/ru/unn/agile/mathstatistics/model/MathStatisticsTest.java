@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class MathStatisticsTest {
 
     @Test
-    public void canCalculateMeanWithOneNumbers() {
+    public void canCalculateExpectedValueWithOneNumbers() {
         Integer[] data = {10};
         Double[]  probability = {1.0};
 
@@ -17,7 +17,7 @@ public class MathStatisticsTest {
     }
 
     @Test
-    public void canCalculateMeanWithOneNegativeInteger() {
+    public void canCalculateExpectedValueWithOneNegativeInteger() {
         Integer[] data = {-23};
         Double[]  probability = {1.0};
 
@@ -27,7 +27,7 @@ public class MathStatisticsTest {
     }
 
     @Test
-    public void canCalculateMeanPositiveIntegers() {
+    public void canCalculateExpectedValuePositiveIntegers() {
         Integer[] data = {10, 5, 25, 30};
         Double[]  probability = {0.25, 0.25, 0.25, 0.25};
 
@@ -37,7 +37,7 @@ public class MathStatisticsTest {
     }
 
     @Test
-    public void canCalculateMeanWithDouble() {
+    public void canCalculateExpectedValueWithDouble() {
         Double[] data = {1.2, 3.3, 0.2, 8.1, 0.9};
         Double[] probability = {0.2, 0.2, 0.2, 0.2, 0.2};
 
@@ -47,7 +47,7 @@ public class MathStatisticsTest {
     }
 
     @Test
-    public void canCalculateMeanWithIntegersAndDouble() {
+    public void canCalculateExpectedValueWithIntegersAndDouble() {
         Number[] data = {1.2, 3.3, 11, 2, 8.9, 2, 36, 7.3};
         Double[] probability = {0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125};
 
@@ -57,7 +57,7 @@ public class MathStatisticsTest {
     }
 
     @Test
-    public void canCalculateMeanWithNegativeNumbers() {
+    public void canCalculateExpectedValueWithNegativeNumbers() {
         Number[] data = {-3, 8.3, 86.2, -3.5};
         Double[] probability = {0.25, 0.25, 0.25, 0.25};
 
@@ -67,7 +67,7 @@ public class MathStatisticsTest {
     }
 
     @Test
-    public void canCalculateNegativeMean() {
+    public void canCalculateNegativeExpectedValue() {
         Double[] data = {-10.2, 4.3, 0.0, -31.9, 3.0, 0.33};
         Double[] probability = {0.1667, 0.166666, 0.166666, 0.166666, 0.166666, 0.16666};
 
@@ -77,9 +77,9 @@ public class MathStatisticsTest {
     }
 
     @Test
-    public void canCalculateMeanWithBigSizeOfDataArray() {
+    public void canCalculateExpectedValueWithBigSizeOfDataArray() {
         Integer[] data = getMonotonicArray(0, 100);
-        Double[] probability = new Double[100];
+        Double[]  probability = new Double[100];
         Arrays.fill(probability, 0.01);
 
         Double expected = new Double((0 + 99) * 100 / 2) * 0.01;
@@ -90,7 +90,7 @@ public class MathStatisticsTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenCalculateMeanWithNullElement() {
+    public void throwsWhenCalculateExpectedValueWithNullElement() {
         Number[] data = {1.2, 2, -5, null, 7};
         Double[] probability = {0.2, 0.2, 0.2, 0.2, 0.2};
 
@@ -98,7 +98,7 @@ public class MathStatisticsTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenCalculateMeanWithNullData() {
+    public void throwsWhenCalculateExpectedValueWithNullData() {
         Double[] data = null;
         Double[] probability = {1.0};
 
@@ -106,7 +106,7 @@ public class MathStatisticsTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenCalculateMeanWithEmptyData() {
+    public void throwsWhenCalculateExpectedValueWithEmptyData() {
         Number[] data = {};
         Double[] probability = {1.0};
 
@@ -166,7 +166,7 @@ public class MathStatisticsTest {
     @Test
     public void canCalculateDispersionWithBigSizeOfDataArray() {
         Integer[] data = getMonotonicArray(0, 100);
-        Double[] probability = new Double[100];
+        Double[]  probability = new Double[100];
         Arrays.fill(probability, 0.01);
 
         Double dispersion = MathStatistics.calculateDispersion(data, probability);
@@ -251,7 +251,7 @@ public class MathStatisticsTest {
     @Test
     public void canCalculateMomentWithBigSizeOfDataArray() {
         Integer[] data = getMonotonicArray(-400, 400);
-        Double[] probability = new Double[800];
+        Double[]  probability = new Double[800];
         Arrays.fill(probability, 0.00125);
 
         Double moment = MathStatistics.calculateMoment(data, probability, 3, 1);
@@ -300,13 +300,13 @@ public class MathStatisticsTest {
     }
 
     @Test
-    public void canCalculateRawMoment() {
+    public void canCalculateExpectedValue() {
         Number[] data = {0, -3, 0.1, 0, 1.9};
         Double[] probability = {0.2, 0.2, 0.2, 0.2, 0.2};
 
         Double expectedValue = MathStatistics.calculateExpectedValue(data, probability);
         Double moment = MathStatistics.calculateMoment(
-                data, probability, MathStatistics.MEAN_ORDER, 0);
+                data, probability, MathStatistics.EXPECTED_VALUE_ORDER, 0);
 
         assertEquals(expectedValue, moment);
     }
