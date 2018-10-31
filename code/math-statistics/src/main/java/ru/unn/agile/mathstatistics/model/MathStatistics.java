@@ -9,8 +9,7 @@ public final class MathStatistics {
     }
 
     static Double calculateExpectedValue(final Number[] data, final Double[] probabilityVector) {
-        checkInputData(data);
-        checkInputProbabilityVector(data, probabilityVector);
+        checkInputDistributionSeries(data, probabilityVector);
 
         Double expectedValue = 0.0;
         for (int i = 0; i < data.length; ++i) {
@@ -33,8 +32,7 @@ public final class MathStatistics {
 
     static Double calculateMoment(final Number[] data, final Double[] probabilityVector,
                                   final int order, final Number offset) {
-        checkInputData(data);
-        checkInputProbabilityVector(data, probabilityVector);
+        checkInputDistributionSeries(data, probabilityVector);
 
         if (order <= 0) {
             throw new IllegalArgumentException("Order must be non-zero and positive value!");
@@ -55,7 +53,7 @@ public final class MathStatistics {
         }
 
         if (data.length < 1) {
-            throw new IllegalArgumentException("Data array length must be non-zero value!");
+            throw new IllegalArgumentException("Data array length should be positive!");
         }
 
         for (int i = 0; i < data.length; ++i) {
@@ -65,19 +63,14 @@ public final class MathStatistics {
         }
     }
 
-    private static void checkInputProbabilityVector(final Number[] data,
-                                                    final Double[] probabilityVector) {
+    private static void checkInputProbabilityVector(final Double[] probabilityVector) {
 
         if (probabilityVector == null) {
             throw new IllegalArgumentException("Probability array should be initialized!");
         }
 
         if (probabilityVector.length < 1) {
-            throw new IllegalArgumentException("Probability array length must be non-zero value!");
-        }
-
-        if (data.length != probabilityVector.length) {
-            throw new IllegalArgumentException("Probability array length is not equal!");
+            throw new IllegalArgumentException("Probability array length should be positive!");
         }
 
         Double sum = 0.0;
@@ -85,14 +78,23 @@ public final class MathStatistics {
             if (probabilityVector[i] == null) {
                 throw new IllegalArgumentException("Null element shouldn't be in array!");
             }
-            if (!(0 <= probabilityVector[i] && probabilityVector[i] <= 1)) {
+            if (!(0.0 <= probabilityVector[i] && probabilityVector[i] <= 1.0)) {
                 throw new IllegalArgumentException("Probability is out of range [0;1]!");
             }
             sum += probabilityVector[i];
         }
 
         if (Math.abs(1.0 - sum) > EPSILON) {
-            throw new IllegalArgumentException("The total probability must be equal to 1!");
+            throw new IllegalArgumentException("Normalization condition is not satisfied!");
+        }
+    }
+
+    private static void checkInputDistributionSeries(final Number[] data,
+                                                     final Double[] probabilityVector) {
+        checkInputData(data);
+        checkInputProbabilityVector(probabilityVector);
+        if (data.length != probabilityVector.length) {
+            throw new IllegalArgumentException("Data and probability vector lengths aren't equal!");
         }
     }
 
