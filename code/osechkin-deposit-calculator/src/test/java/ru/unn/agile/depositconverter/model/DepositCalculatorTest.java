@@ -11,7 +11,7 @@ public class DepositCalculatorTest {
     private final double delta = 0.001;
 
     @Test(expected = NumberFormatException.class)
-    public void cannotSetDepositAmount() {
+    public void canNegativeDepositAmount() {
         // Arrange
         DepositCalculator depositCalculator = new DepositCalculator();
 
@@ -204,15 +204,12 @@ public class DepositCalculatorTest {
 
     @Test
     public void canCalcRevenueWithCapitalizationHalfYearAndAddToDeposit() {
-        // Arrange
         DepositCalculator depositCalculator = new DepositCalculator();
 
-        // Act
         depositCalculator.setAccruedInterest(AccruedInterest.addToDeposit);
         depositCalculator.setFrequencyOfCapitalization(FrequencyOfCapitalization.halfYear);
         double revenue = depositCalculator.calculateRevenue();
 
-        // Assert
         assertEquals(757120, revenue, delta);
     }
 
