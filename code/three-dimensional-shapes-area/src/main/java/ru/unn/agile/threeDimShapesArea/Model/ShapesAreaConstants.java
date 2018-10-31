@@ -8,5 +8,4 @@ public final class ShapesAreaConstants {
     }
     public static final String PARAMETERS_CAN_NOT_BE_NEGATIVE =
             "Shapes parameters can not be negative or zero";
-
 }
