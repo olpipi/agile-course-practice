@@ -206,7 +206,7 @@ public class MortgageCalculatorTest {
         myMortgageCalculator.setFullCostOfApartment(1000);
         myMortgageCalculator.setDateOfMortgage(12);
         myMortgageCalculator.setInterestRate(20);
-        myMortgageCalculator.setAccruedInterestInTableView();
+        myMortgageCalculator.setAccruedInterestArray();
         actualInterest = myMortgageCalculator.getAccruedInterestInTableView();
 
        assertArrayEquals(expectedPayments, actualInterest, EPSILON);

@@ -5,8 +5,8 @@ public class MortgageCalculator {
     private double initialPayment = 0;
     private int dateOfMortgage = MONTHS_IN_YEAR;
     private double interestRate;
-    private double[] fullPriceInTableView;
-    private double[] accruedInterestInTableView;
+    private double[] fullPriceAsArray;
+    private double[] accruedInterestAsArray;
 
     private static final int MONTHS_IN_YEAR = 12;
     private static final double IS_PERCENT = 0.01;
@@ -72,33 +72,32 @@ public class MortgageCalculator {
         return round(getPrincipalDebt() + getAccruedInterest(balanceOfFullCost));
     }
 
-    public void setAccruedInterestInTableView() {
-        accruedInterestInTableView = new double[dateOfMortgage];
+    public void setAccruedInterestArray() {
+        accruedInterestAsArray = new double[dateOfMortgage];
         double balance = 0;
         fullCostOfApartment -= initialPayment;
         for (int curMonth = 0; curMonth < dateOfMortgage; curMonth++) {
-            accruedInterestInTableView[curMonth] =
+            accruedInterestAsArray[curMonth] =
                     getAccruedInterest(fullCostOfApartment - balance);
             balance += getPrincipalDebt();
         }
     }
 
     public double[] getAccruedInterestInTableView() {
-        return accruedInterestInTableView;
+        return accruedInterestAsArray;
     }
 
-    public double[] setFullPriceInTableView() {
-        setAccruedInterestInTableView();
-        fullPriceInTableView = new double[dateOfMortgage];
+    public void setFullPriceInTableView() {
+        setAccruedInterestArray();
+        fullPriceAsArray = new double[dateOfMortgage];
         for (int curMonth = 0; curMonth < dateOfMortgage; curMonth++) {
-            fullPriceInTableView[curMonth] =
-                    accruedInterestInTableView[curMonth] + getPrincipalDebt();
+            fullPriceAsArray[curMonth] =
+                    accruedInterestAsArray[curMonth] + getPrincipalDebt();
         }
-        return fullPriceInTableView;
     }
 
     public double[] getFullPriceInTableView() {
-        return fullPriceInTableView;
+        return fullPriceAsArray;
     }
     private double round(final double roundedNum) {
         return Math.round(roundedNum * HUNDRED) / HUNDRED;
