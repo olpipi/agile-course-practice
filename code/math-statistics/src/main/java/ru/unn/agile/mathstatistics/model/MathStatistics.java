@@ -1,36 +1,37 @@
 package ru.unn.agile.mathstatistics.model;
 
+import java.util.Arrays;
+
 public final class MathStatistics {
     public static final int MEAN_ORDER = 1;
     public static final int DISPERSION_ORDER = 2;
+    public static final Double EPSILON = 1e-3;
 
     private MathStatistics() {
     }
 
-    static Double calculateExpectedValue(final Number[] data) {
+    static Double calculateExpectedValue(final Number[] data, final Double[] probabilityVector) {
         checkInputData(data);
 
         Double expectedValue = 0.0;
         for (int i = 0; i < data.length; ++i) {
-            expectedValue += data[i].doubleValue();
+            expectedValue += probabilityVector[i] * data[i].doubleValue();
         }
-        expectedValue /= data.length;
         return expectedValue;
     }
 
-    static Double calculateDispersion(final Number[] data) {
-        final Double expectedValue = calculateExpectedValue(data);
+    static Double calculateDispersion(final Number[] data, final Double[] probabilityVector) {
+        final Double expectedValue = calculateExpectedValue(data, probabilityVector);
 
         Double dispersion = 0.0;
         for (int i = 0; i < data.length; ++i) {
-            dispersion += Math.pow((data[i].doubleValue() - expectedValue), DISPERSION_ORDER);
+            dispersion += probabilityVector[i] * Math.pow((data[i].doubleValue() - expectedValue), DISPERSION_ORDER);
         }
 
-        dispersion /= data.length;
         return dispersion;
     }
 
-    static Double calculateMoment(final Number[] data, final int order, final Number offset) {
+    static Double calculateMoment(final Number[] data, final Double[] probabilityVector, final int order, final Number offset) {
         checkInputData(data);
 
         if (order <= 0) {
@@ -39,10 +40,9 @@ public final class MathStatistics {
 
         Double moment = 0.0;
         for (int i = 0; i < data.length; ++i) {
-            moment += Math.pow((data[i].doubleValue() - offset.doubleValue()), order);
+            moment += probabilityVector[i] * Math.pow((data[i].doubleValue() - offset.doubleValue()), order);
         }
 
-        moment /= data.length;
         return moment;
     }
 
