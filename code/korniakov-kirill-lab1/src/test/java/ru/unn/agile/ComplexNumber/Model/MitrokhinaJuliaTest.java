@@ -5,6 +5,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class MitrokhinaJuliaTest {
+
+    private final double eps = 0.001;
+
     @Test
     public void canAddComplexNumbers() {
         // Arrange
@@ -27,7 +30,7 @@ public class MitrokhinaJuliaTest {
         double im = z.getImaginary();
 
         // Assert
-        assertEquals(-1, im, 0.001);
+        assertEquals(-1, im, eps);
     }
 
     @Test
@@ -39,7 +42,7 @@ public class MitrokhinaJuliaTest {
         double re = z.getReal();
 
         // Assert
-        assertEquals(-2, re, 0.001);
+        assertEquals(-2, re, eps);
     }
 }
 
