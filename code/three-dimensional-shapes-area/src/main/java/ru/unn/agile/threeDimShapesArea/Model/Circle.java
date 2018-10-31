@@ -1,8 +1,6 @@
 package ru.unn.agile.threeDimShapesArea.Model;
 
-/**
- * Created by Maria Pronina.
- */
+
 public class Circle implements Shape {
 
     private double radius;

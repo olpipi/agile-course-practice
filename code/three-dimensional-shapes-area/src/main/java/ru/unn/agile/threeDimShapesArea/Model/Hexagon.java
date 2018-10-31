@@ -1,8 +1,6 @@
 package ru.unn.agile.threeDimShapesArea.Model;
 
-/**
- * Created by Maria Pronina.
- */
+
 public class Hexagon implements Shape {
     private double a;
     private static final double HEXAGON_AREA_COEF = 3 * Math.sqrt(3) / 2;

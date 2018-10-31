@@ -1,8 +1,6 @@
 package ru.unn.agile.threeDimShapesArea.Model;
 
-/**
- * Created by Maria Pronina.
- */
+
 public class HexagonalPyramid implements Shape {
     private static final int TRIANGLES_COUNT = 6;
     private Triangle triangleSide;
