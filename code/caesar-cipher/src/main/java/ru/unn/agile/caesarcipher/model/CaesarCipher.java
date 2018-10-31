@@ -5,7 +5,7 @@ public class CaesarCipher {
         /* constructor not needed here */
     }
 
-    private int numberOfCharactersInInterval = (int) 'z' - (int) 'a' + 1;
+    private static final int NUMBER_OF_CHARACTERS_IN_INTERVAL = (int) 'z' - (int) 'a' + 1;
     private int calculateStartingPosition(final int charCode) {
         int startingPosition = 0;
         if ((charCode >= (int) 'a') & (charCode <= (int) 'z')) {
@@ -24,9 +24,9 @@ public class CaesarCipher {
             if (startingPosition != 0) {
                 charCode -= startingPosition;
                 int newCharCode = charCode + offset;
-                newCharCode %= numberOfCharactersInInterval;
+                newCharCode %= NUMBER_OF_CHARACTERS_IN_INTERVAL;
                 if (newCharCode < 0) {
-                    newCharCode += numberOfCharactersInInterval;
+                    newCharCode += NUMBER_OF_CHARACTERS_IN_INTERVAL;
                 }
                 newCharCode += startingPosition;
                 output += (char) (newCharCode);
