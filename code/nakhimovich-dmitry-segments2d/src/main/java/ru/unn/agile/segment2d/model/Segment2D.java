@@ -71,7 +71,11 @@ public class Segment2D {
 
     /*Main methods*/
     public boolean isParallel(final Segment2D targetSegment) {
-        Map<String, String> params = getParameters(targetSegment);
+        if (!isValidSegment() || !targetSegment.isValidSegment()) {
+            return false;
+        }
+
+        Map<String, Double> params = getParameters(targetSegment);
         double base = det(params.get("A1"), params.get("B1"), params.get("A2"), params.get("B2"));
 
         return base == 0;
@@ -83,24 +87,27 @@ public class Segment2D {
         return p1.distance(p2) > EPSILON;
     }
 
-    private double det(final double a1, final double a12, final double a21, final double a22) {
+    private double det(final double a11, final double a12, final double a21, final double a22) {
         return a11 * a22 - a12 * a21;
     }
 
-    private boolean between(final double coordStart, final double coordEnd, final double coordTarget) {
-        return Math.min(coordStart, coordEnd) <= coordTarget + EPSILON &&
-                coordTarget <= Math.max(coordStart, coordEnd) + EPSILON;
+    private boolean between(final double coordStart,
+                            final double coordEnd,
+                            final double coordTarget) {
+        return Math.min(coordStart, coordEnd) <= coordTarget + EPSILON
+                && coordTarget <= Math.max(coordStart, coordEnd) + EPSILON;
     }
 
-    private Map<String, String> getParameters(final Segment2D targetSegment) {
-        Map<String, double> params = new HashMap<String, double>();
+    private Map<String, Double> getParameters(final Segment2D targetSegment) {
+        Map<String, Double> params = new HashMap<>();
 
         params.put("A1", p1.getY() - p2.getY());
         params.put("B1", p2.getX() - p1.getX());
-        params.put("C1", -A1 * p1.getX() - B1 * p1.getY());
+        params.put("C1", -params.get("A1") * p1.getX() - params.get("B1") * p1.getY());
         params.put("A2", targetSegment.p1.getY() - targetSegment.p2.getY());
         params.put("B2", targetSegment.p2.getX() - targetSegment.p1.getX());
-        params.put("C2", -A2 * targetSegment.p1.getX() - B2 * targetSegment.p1.getY());
+        params.put("C2", -params.get("A2") * targetSegment.p1.getX()
+                - params.get("B2") * targetSegment.p1.getY());
 
         return params;
     }
@@ -123,8 +130,8 @@ public class Segment2D {
             segment2p2coordCurrent = segment2p1coord;
         }
 
-        return Math.max(segment1p1coordCurrent, segment2p1coordCurrent) <=
-                Math.min(segment1p2coordCurrent, segment2p2coordCurrent);
+        return Math.max(segment1p1coordCurrent, segment2p1coordCurrent)
+                <= Math.min(segment1p2coordCurrent, segment2p2coordCurrent);
     }
 
 }
