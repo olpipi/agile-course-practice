@@ -55,7 +55,7 @@ public class DepositCalculator {
     }
 
     public String getStartDate() {
-        return this.startDate.convertToString();
+        return this.startDate.toString();
     }
 
     public double getInterestRate() {

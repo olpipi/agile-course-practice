@@ -24,7 +24,8 @@ public class DateTime {
         this.date = this.formatter.parse(date);
     }
 
-    public String convertToString() {
+    @Override
+    public String toString() {
         return this.formatter.format(this.date);
     }
 }

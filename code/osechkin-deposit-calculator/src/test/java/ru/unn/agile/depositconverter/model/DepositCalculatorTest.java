@@ -70,7 +70,7 @@ public class DepositCalculatorTest {
         DateTime dTime = new DateTime("06.02.2018");
 
         // Act
-        String strTime = dTime.convertToString();
+        String strTime = dTime.toString();
 
         // Assert
         assertEquals("06.02.2018", strTime);
