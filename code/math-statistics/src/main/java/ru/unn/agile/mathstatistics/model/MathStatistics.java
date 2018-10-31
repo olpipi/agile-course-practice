@@ -1,7 +1,5 @@
 package ru.unn.agile.mathstatistics.model;
 
-import java.util.Arrays;
-
 public final class MathStatistics {
     public static final int MEAN_ORDER = 1;
     public static final int DISPERSION_ORDER = 2;
@@ -25,13 +23,15 @@ public final class MathStatistics {
 
         Double dispersion = 0.0;
         for (int i = 0; i < data.length; ++i) {
-            dispersion += probabilityVector[i] * Math.pow((data[i].doubleValue() - expectedValue), DISPERSION_ORDER);
+            dispersion += probabilityVector[i]
+                    * Math.pow((data[i].doubleValue() - expectedValue), DISPERSION_ORDER);
         }
 
         return dispersion;
     }
 
-    static Double calculateMoment(final Number[] data, final Double[] probabilityVector, final int order, final Number offset) {
+    static Double calculateMoment(final Number[] data, final Double[] probabilityVector,
+                                  final int order, final Number offset) {
         checkInputData(data, probabilityVector);
 
         if (order <= 0) {
@@ -40,7 +40,8 @@ public final class MathStatistics {
 
         Double moment = 0.0;
         for (int i = 0; i < data.length; ++i) {
-            moment += probabilityVector[i] * Math.pow((data[i].doubleValue() - offset.doubleValue()), order);
+            moment += probabilityVector[i]
+                    * Math.pow((data[i].doubleValue() - offset.doubleValue()), order);
         }
 
         return moment;
@@ -56,7 +57,7 @@ public final class MathStatistics {
         }
 
         if (data.length != probabilityVector.length) {
-            throw new IllegalArgumentException("Length of data array is not equal to length of probability array!");
+            throw new IllegalArgumentException("Data and probability array length is not equal!");
         }
 
         Double sum = 0.0;
@@ -64,13 +65,13 @@ public final class MathStatistics {
             if (data[i] == null || probabilityVector[i] == null) {
                 throw new IllegalArgumentException("Null element shouldn't be in array!");
             }
-            if ( !(0 <= probabilityVector[i] && probabilityVector[i] <= 1) ) {
+            if (!(0 <= probabilityVector[i] && probabilityVector[i] <= 1)) {
                 throw new IllegalArgumentException("Probability is out of range [0;1]!");
             }
             sum += probabilityVector[i];
         }
 
-        if(Math.abs(1.0 - sum) > EPSILON){
+        if (Math.abs(1.0 - sum) > EPSILON) {
             throw new IllegalArgumentException("The total probability must be equal to 1!");
         }
     }
