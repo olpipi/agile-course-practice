@@ -29,6 +29,7 @@ public class OlenevaMariaTest {
     @Test
     public void canSetRealComplexNumber() {
         ComplexNumber z = new ComplexNumber(5, -5);
+
         z.setReal(10);
 
         assertEquals(new ComplexNumber(10, -5), z);
@@ -37,6 +38,7 @@ public class OlenevaMariaTest {
     @Test
     public void canSetImaginaryComplexNumber() {
         ComplexNumber z = new ComplexNumber(5, -5);
+
         z.setImaginary(10);
 
         assertEquals(new ComplexNumber(5, 10), z);
@@ -45,6 +47,7 @@ public class OlenevaMariaTest {
     @Test
     public void canFormatToStringComplexNumber() {
         ComplexNumber z = new ComplexNumber(5.8, -5.5);
+
         String sz = z.toString();
 
         assertEquals("5.8 - 5.5i", sz);
