@@ -5,6 +5,11 @@ import static org.junit.Assert.*;
 
 public class CaesarCipherTest {
 
+    private static final String TEST_STRING =
+            "\"The fault, dear Brutus, is not in our stars, but in ourselves.\"";
+    private static final String TEST_STRING_SHIFTED_BY_20 =
+            "\"Nby zuofn, xyul Vlonom, cm hin ch iol mnulm, von ch iolmyfpym.\"";
+
     @Test
     public void canEncodeEmptyString() {
         // Arrange
@@ -85,6 +90,20 @@ public class CaesarCipherTest {
         CaesarCipher cipher = new CaesarCipher();
         String encodedString = cipher.encode("bcd", -6828277);
         assertEquals(encodedString, "abc");
+    }
+
+    @Test
+    public void canEncodeTestString() {
+        CaesarCipher cipher = new CaesarCipher();
+        String encodedString = cipher.encode(TEST_STRING, 20);
+        assertEquals(encodedString, TEST_STRING_SHIFTED_BY_20);
+    }
+
+    @Test
+    public void canDecodeTestString() {
+        CaesarCipher cipher = new CaesarCipher();
+        String decodedString = cipher.decode(TEST_STRING_SHIFTED_BY_20, 20);
+        assertEquals(TEST_STRING, decodedString);
     }
 }
 
