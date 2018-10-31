@@ -57,4 +57,10 @@ public class CaesarCipherTest {
         assertEquals(encodedString, "BCD");
     }
 
+    @Test
+    public void canIgnoreOtherSymbols() {
+        CaesarCipher cipher = new CaesarCipher();
+        String encodedString = cipher.encode("&^#$!.?", 1);
+        assertEquals(encodedString, "&^#$!.?");
+    }
 }
