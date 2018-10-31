@@ -6,7 +6,6 @@ public class CaesarCipher {
     }
 
     private int numberOfCharactersInInterval = (int) 'z' - (int) 'a' + 1;
-    //private int startingPosition = (int) 'a';
     private int calculateStartingPosition(final int charCode) {
         int startingPosition = 0;
         if ((charCode >= (int) 'a') & (charCode <= (int) 'z')) {
@@ -36,5 +35,9 @@ public class CaesarCipher {
             }
         }
         return output;
+    }
+
+    public String decode(final String input, final int offset) {
+        return encode(input, -1 * offset);
     }
 }

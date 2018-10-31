@@ -69,7 +69,7 @@ public class CaesarCipherTest {
         String testString = "Test 123";
         CaesarCipher cipher = new CaesarCipher();
         String encodedString = cipher.encode(testString, 1);
-        String decodedString = cipher.decode(encodedString, 1)
+        String decodedString = cipher.decode(encodedString, 1);
         assertEquals(testString, decodedString);
     }
 }
