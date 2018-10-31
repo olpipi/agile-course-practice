@@ -1,13 +1,13 @@
 package ru.unn.agile.threeDimShapesArea.Model;
 
 
-public class Parallelepiped implements Shape {
+public class Cuboid implements Shape {
 
     private final double height;
     private final double width;
     private final double depth;
 
-    public Parallelepiped(final double height, final double width, final double depth) {
+    public Cuboid(final double height, final double width, final double depth) {
         if (height <= 0 || width <= 0 || depth <= 0) {
             throw new IllegalArgumentException(ShapesAreaConstants.PARAMETERS_CAN_NOT_BE_NEGATIVE);
         }

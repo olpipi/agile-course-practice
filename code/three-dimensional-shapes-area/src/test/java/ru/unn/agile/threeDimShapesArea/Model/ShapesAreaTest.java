@@ -53,22 +53,22 @@ public class ShapesAreaTest {
     }
 
     @Test
-    public void canGetUnitParallelepipedArea() {
+    public void canGetUnitCuboidArea() {
         // Arrange
-        Shape parallelepiped = new Parallelepiped(1, 1, 1);
+        Shape cuboid = new Cuboid(1, 1, 1);
         // Act
-        double area = parallelepiped.getArea();
+        double area = cuboid.getArea();
         // Assert
         double expectedArea = 6;
         assertEquals(expectedArea, area, DELTA);
     }
 
     @Test
-    public void canGetParallelepipedArea() {
+    public void canGetCuboidArea() {
         // Arrange
-        Shape parallelepiped = new Parallelepiped(1, 3, 5);
+        Shape cuboid = new Cuboid(1, 3, 5);
         // Act
-        double area = parallelepiped.getArea();
+        double area = cuboid.getArea();
         // Assert
         double expectedArea = 46;
         assertEquals(expectedArea, area, DELTA);
@@ -216,8 +216,8 @@ public class ShapesAreaTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void canNotCreateParallelepipedWithNegativeParams() {
-        Shape shape = new Parallelepiped(1, -1, 0);
+    public void canNotCreateCuboidWithNegativeParams() {
+        Shape shape = new Cuboid(1, -1, 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
