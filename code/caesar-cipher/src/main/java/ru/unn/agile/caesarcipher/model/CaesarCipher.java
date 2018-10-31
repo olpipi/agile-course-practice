@@ -41,3 +41,4 @@ public class CaesarCipher {
         return encode(input, -1 * offset);
     }
 }
+
