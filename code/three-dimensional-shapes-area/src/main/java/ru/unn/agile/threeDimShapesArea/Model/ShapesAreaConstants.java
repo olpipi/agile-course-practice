@@ -11,5 +11,4 @@ public final class ShapesAreaConstants {
     private ShapesAreaConstants() {
         // no instance for constants class
     }
-
 }

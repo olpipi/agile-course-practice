@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class ShapesAreaTest {
+
     private static final double DELTA = 0.00001;
 
     @Test
@@ -267,6 +268,4 @@ public class ShapesAreaTest {
                 + 3.0 / 2.0 * 5 * Math.sqrt(6 * 6 - 5 * 5 / 4.0);
         assertEquals(expectedArea, area, DELTA);
     }
-
-
 }
