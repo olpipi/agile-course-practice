@@ -65,3 +65,19 @@ project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vect
 // Flegontov Alexander, math-statistics
 include "code/math-statistics"
 project(":code/math-statistics").name = "math-statistics"
+
+// Stack
+include "code/stack"
+project(":code/stack").name = "stack"
+
+// Chekodaev Oleg
+include "code/chekodaev-oleg-roman-number-converter"
+project(":code/chekodaev-oleg-roman-number-converter").name = "chekodaev-oleg-roman-number-converter"
+
+// Kochuev Andrey, Length Converter
+include "code/kochuev-andrey-length-converter"
+project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-converter"
+
+// Beresneva Julia, LCD Digits
+include "code/beresneva-julia-lcd-digits"
+project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
