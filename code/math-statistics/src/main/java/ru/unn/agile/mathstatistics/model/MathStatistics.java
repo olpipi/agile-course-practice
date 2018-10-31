@@ -9,7 +9,8 @@ public final class MathStatistics {
     }
 
     static Double calculateExpectedValue(final Number[] data, final Double[] probabilityVector) {
-        checkInputData(data, probabilityVector);
+        checkInputData(data);
+        checkInputProbabilityVector(data, probabilityVector);
 
         Double expectedValue = 0.0;
         for (int i = 0; i < data.length; ++i) {
@@ -32,7 +33,8 @@ public final class MathStatistics {
 
     static Double calculateMoment(final Number[] data, final Double[] probabilityVector,
                                   final int order, final Number offset) {
-        checkInputData(data, probabilityVector);
+        checkInputData(data);
+        checkInputProbabilityVector(data, probabilityVector);
 
         if (order <= 0) {
             throw new IllegalArgumentException("Order must be non-zero and positive value!");
@@ -47,22 +49,40 @@ public final class MathStatistics {
         return moment;
     }
 
-    private static void checkInputData(final Number[] data, final Double[] probabilityVector) {
-        if (data == null || probabilityVector == null) {
-            throw new IllegalArgumentException("Array should be initialized!");
+    private static void checkInputData(final Number[] data) {
+        if (data == null) {
+            throw new IllegalArgumentException("Data array should be initialized!");
         }
 
-        if (data.length < 1 || probabilityVector.length < 1) {
-            throw new IllegalArgumentException("Array length must be non-zero value!");
+        if (data.length < 1) {
+            throw new IllegalArgumentException("Data array length must be non-zero value!");
+        }
+
+        for (int i = 0; i < data.length; ++i) {
+            if (data[i] == null) {
+                throw new IllegalArgumentException("Null element shouldn't be in array!");
+            }
+        }
+    }
+
+    private static void checkInputProbabilityVector(final Number[] data,
+                                                    final Double[] probabilityVector) {
+
+        if (probabilityVector == null) {
+            throw new IllegalArgumentException("Probability array should be initialized!");
+        }
+
+        if (probabilityVector.length < 1) {
+            throw new IllegalArgumentException("Probability array length must be non-zero value!");
         }
 
         if (data.length != probabilityVector.length) {
-            throw new IllegalArgumentException("Data and probability array length is not equal!");
+            throw new IllegalArgumentException("Probability array length is not equal!");
         }
 
         Double sum = 0.0;
-        for (int i = 0; i < data.length; ++i) {
-            if (data[i] == null || probabilityVector[i] == null) {
+        for (int i = 0; i < probabilityVector.length; ++i) {
+            if (probabilityVector[i] == null) {
                 throw new IllegalArgumentException("Null element shouldn't be in array!");
             }
             if (!(0 <= probabilityVector[i] && probabilityVector[i] <= 1)) {

@@ -1,9 +1,7 @@
 package ru.unn.agile.mathstatistics.model;
 
 import org.junit.Test;
-
 import java.util.Arrays;
-
 import static org.junit.Assert.*;
 
 public class MathStatisticsTest {
@@ -75,7 +73,7 @@ public class MathStatisticsTest {
 
         Double expectedValue = MathStatistics.calculateExpectedValue(data, probability);
 
-        assertTrue(Math.abs(-5.745 - expectedValue) <= MathStatistics.EPSILON );
+        assertTrue(Math.abs(-5.745 - expectedValue) <= MathStatistics.EPSILON);
     }
 
     @Test
@@ -84,7 +82,7 @@ public class MathStatisticsTest {
         Double[] probability = new Double[100];
         Arrays.fill(probability, 0.01);
 
-        Double expected = new Double((0 + 99)*100/2)*0.01;
+        Double expected = new Double((0 + 99) * 100 / 2) * 0.01;
 
         Double expectedValue = MathStatistics.calculateExpectedValue(data, probability);
 
@@ -173,7 +171,7 @@ public class MathStatisticsTest {
 
         Double dispersion = MathStatistics.calculateDispersion(data, probability);
 
-        assertTrue(Math.abs(833.2499 - dispersion) <= MathStatistics.EPSILON );
+        assertTrue(Math.abs(833.2499 - dispersion) <= MathStatistics.EPSILON);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -307,7 +305,8 @@ public class MathStatisticsTest {
         Double[] probability = {0.2, 0.2, 0.2, 0.2, 0.2};
 
         Double expectedValue = MathStatistics.calculateExpectedValue(data, probability);
-        Double moment = MathStatistics.calculateMoment(data, probability, MathStatistics.MEAN_ORDER, 0);
+        Double moment = MathStatistics.calculateMoment(
+                data, probability, MathStatistics.MEAN_ORDER, 0);
 
         assertEquals(expectedValue, moment);
     }
@@ -319,8 +318,8 @@ public class MathStatisticsTest {
 
         Double dispersion = MathStatistics.calculateDispersion(data, probability);
         Double expectedValue = MathStatistics.calculateExpectedValue(data, probability);
-        Double moment =
-                MathStatistics.calculateMoment(data, probability, MathStatistics.DISPERSION_ORDER, expectedValue);
+        Double moment = MathStatistics.calculateMoment(
+                data, probability, MathStatistics.DISPERSION_ORDER, expectedValue);
 
         assertEquals(dispersion, moment);
     }
