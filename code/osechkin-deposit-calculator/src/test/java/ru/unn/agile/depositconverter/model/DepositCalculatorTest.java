@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.text.ParseException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 
 public class DepositCalculatorTest {
@@ -78,11 +78,9 @@ public class DepositCalculatorTest {
 
     @Test
     public void canSetStartDate() throws ParseException {
-        // Arrange
-        DepositCalculator depositCalculator = new DepositCalculator();
+        DateTime dateTime = new DateTime("06.02.2018");
 
-        // Act & Assert
-        depositCalculator.setStartDate("06.02.2018");
+        assertNotNull(dateTime);
     }
 
     @Test
@@ -266,7 +264,7 @@ public class DepositCalculatorTest {
 
         boolean charges = FrequencyOfCapitalization.useCharges(freqCapital, 1);
 
-        assertEquals(true, charges);
+        assertTrue(charges);
     }
 
     @Test
@@ -275,7 +273,7 @@ public class DepositCalculatorTest {
 
         boolean charges = FrequencyOfCapitalization.useCharges(freqCapital, 2);
 
-        assertEquals(true, charges);
+        assertTrue(charges);
     }
 
     @Test
@@ -284,7 +282,7 @@ public class DepositCalculatorTest {
 
         boolean charges = FrequencyOfCapitalization.useCharges(freqCapital, 2);
 
-        assertEquals(false, charges);
+        assertFalse(charges);
     }
 
 }
