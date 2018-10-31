@@ -3,7 +3,7 @@ package ru.unn.agile.threeDimShapesArea.Model;
 
 public class TrianglePyramid implements Shape {
 
-    private static final int TRIANGLE_PYRAMID_SIDES_COUNT = 3;
+    private static final int SIDES_COUNT = 3;
     private Triangle base;
     private Triangle side;
 
@@ -14,6 +14,6 @@ public class TrianglePyramid implements Shape {
 
     @Override
     public double getArea() {
-        return base.getArea() + TRIANGLE_PYRAMID_SIDES_COUNT * side.getArea();
+        return base.getArea() + SIDES_COUNT * side.getArea();
     }
 }

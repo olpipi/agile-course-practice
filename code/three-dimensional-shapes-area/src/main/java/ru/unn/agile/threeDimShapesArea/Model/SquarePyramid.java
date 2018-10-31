@@ -20,8 +20,7 @@ public class SquarePyramid implements Shape {
     public double getArea() {
         double baseArea = squareSide * squareSide;
         double trianglesArea = TRIANGLES_COUNT * triangleSide.getArea();
-        return baseArea
-                + trianglesArea;
+        return baseArea + trianglesArea;
 
     }
 }

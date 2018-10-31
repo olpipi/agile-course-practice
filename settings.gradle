@@ -82,6 +82,6 @@ project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-c
 include "code/beresneva-julia-lcd-digits"
 project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
 
-// Three dimensional shapes' area calculation
+// Three dimensional shapes area calculation
 include "code/three-dimensional-shapes-area"
 project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
