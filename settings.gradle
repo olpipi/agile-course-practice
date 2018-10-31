@@ -157,3 +157,7 @@ project(":code/rumiantseva-maria-quadratic-equation-solver").name = "rumiantseva
 // Sheptunov Vladislav, BinarySearchTree
 include "code/binary-search-tree"
 project(":code/binary-search-tree").name = "binary-search-tree"
+
+//Pipikin Oleg, Matrix
+include "code/pipikin-oleg-matrix"
+project(":code/pipikin-oleg-matrix").name = "pipikin-oleg-matrix"
