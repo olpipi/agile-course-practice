@@ -1,12 +1,12 @@
 package ru.unn.agile.caesarcipher.model;
 
-public class CaesarCipher {
-    public CaesarCipher() {
+public final class CaesarCipher {
+    private CaesarCipher() {
         /* constructor not needed here */
     }
 
     private static final int NUMBER_OF_CHARACTERS_IN_INTERVAL = (int) 'z' - (int) 'a' + 1;
-    private int calculateStartingPosition(final int charCode) {
+    private static int calculateStartingPosition(final int charCode) {
         int startingPosition = 0;
         if ((charCode >= (int) 'a') & (charCode <= (int) 'z')) {
             startingPosition = (int) 'a';
@@ -16,7 +16,7 @@ public class CaesarCipher {
         return startingPosition;
     }
 
-    public String encode(final String input, final int offset) {
+    public static String encode(final String input, final int offset) {
         String output = "";
         for (int i = 0; i < input.length(); i++) {
             int charCode = (int) input.charAt(i);
@@ -37,7 +37,7 @@ public class CaesarCipher {
         return output;
     }
 
-    public String decode(final String input, final int offset) {
+    public static String decode(final String input, final int offset) {
         return encode(input, -1 * offset);
     }
 }
