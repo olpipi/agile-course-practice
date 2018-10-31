@@ -16,7 +16,7 @@ public class Graph {
         }
         vertexesCount = vertices.size();
         ways = new ArrayList<>(vertexesCount);
-        this.edges = initEdges(matrix, vertices);
+        edges = initEdges(matrix, vertices);
     }
 
     private List<Edge> initEdges(final int[][] matrix, final List<Vertex> vertices) {
@@ -26,17 +26,23 @@ public class Graph {
                 int weight = matrix[vertexI.getId()][vertexJ.getId()];
                 if (weight > 0) {
                     edges.add(new Edge(vertexI, vertexJ, weight));
+                } else if (weight < 0) {
+                    throw new IllegalArgumentException("Matrix can't have negative weight");
                 }
             }
         }
-        return edges;
+        if (edges.isEmpty()) {
+            throw new IllegalArgumentException("Graph don't have any edges");
+        } else {
+            return edges;
+        }
     }
 
     private void validateMatrix(final int[][] matrix) {
         int numberOfVertex = matrix.length;
         for (int i = 0; i < matrix.length; i++) {
             if (numberOfVertex != matrix[i].length) {
-                throw new IllegalArgumentException("matrix is not square");
+                throw new IllegalArgumentException("Matrix must be square");
             }
         }
     }
@@ -62,21 +68,21 @@ public class Graph {
             Vertex currentVertex = getLowestDistanceVertex(unsettledVertex, ways);
             unsettledVertex.remove(currentVertex);
             for (int i = 0; i < edges.size(); i++) {
-                int idCurrentVertex = currentVertex.getId();
-                checkCondition(edges.get(i), idCurrentVertex, settledVertex, unsettledVertex);
+                int currentVertexId = currentVertex.getId();
+                checkCondition(edges.get(i), currentVertexId, settledVertex, unsettledVertex);
             }
             settledVertex.add(currentVertex);
         }
         return ways.get(endVertex.getId()).getWeight();
     }
 
-    private void checkCondition(final Edge edge, final int idCurrentVertex,
-                                final Set<Vertex> settledVertex, final List<Vertex> unsettlVertex) {
-        if ((edge.getIdLeftVertex() == idCurrentVertex)
+    private void checkCondition(final Edge edge, final int currentVertexId,
+                                final Set<Vertex> settledVertex, final List<Vertex> unsetlVertex) {
+        if ((edge.getIdLeftVertex() == currentVertexId)
                 && (!settledVertex.contains(edge.getVertexRight()))) {
             calculateMinimumDistance(edge, ways);
-            if (!unsettlVertex.contains(edge.getVertexRight())) {
-                unsettlVertex.add(edge.getVertexRight());
+            if (!unsetlVertex.contains(edge.getVertexRight())) {
+                unsetlVertex.add(edge.getVertexRight());
             }
         }
     }
@@ -86,9 +92,9 @@ public class Graph {
         int lowestDistance = INF;
         Vertex lowestDistanceVertex = null;
         for (int i = 0; i < unsettledVertex.size(); i++) {
-            int idCurrentVertex = unsettledVertex.get(i).getId();
-            if (ways.get(idCurrentVertex).getWeight() < lowestDistance) {
-                lowestDistance = ways.get(idCurrentVertex).getWeight();
+            int currentVertexId = unsettledVertex.get(i).getId();
+            if (ways.get(currentVertexId).getWeight() < lowestDistance) {
+                lowestDistance = ways.get(currentVertexId).getWeight();
                 lowestDistanceVertex = unsettledVertex.get(i);
             }
         }
@@ -96,14 +102,9 @@ public class Graph {
     }
 
     private void calculateMinimumDistance(final Edge edge, final List<Way> ways) {
-        int idLeftVertexOfEdge = edge.getIdLeftVertex();
-        int idRightVertexOfEdge = edge.getIdRighttVertex();
-        int sourceDistance = ways.get(idLeftVertexOfEdge).getWeight();
-        int evaluationDistance = ways.get(idRightVertexOfEdge).getWeight();
-        int actualWeight = sourceDistance + edge.getWeight();
-        if (actualWeight < evaluationDistance) {
-            ways.get(idRightVertexOfEdge).setWeight(actualWeight);
-            ways.get(idRightVertexOfEdge).addVertex(edge.getVertexLeft());
-        }
+        int leftVertexOfEdgeId = edge.getIdLeftVertex();
+        int rightVertexOfEdgeId = edge.getIdRightVertex();
+        ways.get(leftVertexOfEdgeId).upDateWay(edge, ways.get(rightVertexOfEdgeId));
+
     }
 }

@@ -8,7 +8,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class MatrixTests {
-    private static final double DELTA = 0.1;
+    private static final double DELTA = 0.01;
 
 
     @Test
@@ -30,7 +30,7 @@ public class MatrixTests {
     }
 
     @Test
-    public void canInitEdgeIthOtherId() {
+    public void canInitEdgeWithOtherId() {
         Vertex vertex1 = new Vertex(1);
         Vertex vertex2 = new Vertex(2);
 
@@ -40,7 +40,7 @@ public class MatrixTests {
     }
 
     @Test
-    public void canInitEdgeGetVertexLeft() {
+    public void canEdgeGetVertexLeft() {
         Vertex vertex1 = new Vertex(1);
         Vertex vertex2 = new Vertex(2);
         Edge edge = new Edge(vertex1, vertex2, 1);
@@ -51,7 +51,7 @@ public class MatrixTests {
     }
 
     @Test
-    public void canInitEdgeGetVertexRight() {
+    public void canEdgeGetVertexRight() {
         Vertex vertex1 = new Vertex(1);
         Vertex vertex2 = new Vertex(2);
         Edge edge = new Edge(vertex1, vertex2, 1);
@@ -98,28 +98,8 @@ public class MatrixTests {
         assertEquals(4, edgesSize);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void canInvalidGraphInitiated() {
-        int[][] matrix = {
-                {
-                        0, 2
-                },
-                {
-                        0, 0, 1
-                },
-                {
-                        0, 2, 0
-                }
-        };
-        Graph graph = new Graph(matrix);
-
-        int edgesSize = graph.getEdgesSize();
-
-        assertEquals(2, edgesSize);
-    }
-
     @Test
-    public void canInvalidGraphInitiatedMessage() {
+    public void canGraphValidateMatrix() {
         int[][] matrix = {
                 {
                         0, 2
@@ -136,12 +116,12 @@ public class MatrixTests {
         try {
             new Graph(matrix);
         } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), is("matrix is not square"));
+            assertThat(e.getMessage(), is("Matrix must be square"));
         }
     }
 
     @Test
-    public void isGraphDontHaveNegativeWeight() {
+    public void isGraphCheckNegativeWeight() {
         int[][] matrix = {
                 {
                         0, 4, -2
@@ -158,12 +138,12 @@ public class MatrixTests {
         try {
             new Graph(matrix);
         } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), is("matrix have negative weight!"));
+            assertThat(e.getMessage(), is("Matrix can't have negative weight"));
         }
     }
 
     @Test
-    public void isGraphEmpty() {
+    public void shouldReturnErrorIfGraphIsEmpty() {
         int[][] matrix = {
                 {
                         0, 0, 0
@@ -178,12 +158,12 @@ public class MatrixTests {
         try {
             new Graph(matrix);
         } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), is("matrix have negative weight!"));
+            assertThat(e.getMessage(), is("Graph don't have any edges"));
         }
     }
 
     @Test
-    public void isCalculateDistanceToStartVertex() {
+    public void isDistanceToStartingVertexCalculatedCorrectly() {
         int[][] matrix = {
                 {
                         0, 2, 0
@@ -205,7 +185,7 @@ public class MatrixTests {
     }
 
     @Test
-    public void isCalculateDistanceOnStartToFirstVertex() {
+    public void isDistanceOnStartToFirstVertexCalculatesCorrectly() {
         int[][] matrix = {
                 {
                         0, 7, 9
@@ -227,7 +207,7 @@ public class MatrixTests {
     }
 
     @Test
-    public void isLowestDistancewithOneVertexInDistance() {
+    public void isLowestDistanceWithOneVertexInDistance() {
         int[][] matrix = {
                 {
                         0, 1, 3
@@ -249,7 +229,7 @@ public class MatrixTests {
     }
 
     @Test
-    public void isLowestDistancewithTwoVertexInDistance() {
+    public void isLowestDistanceWithTwoVertexInWay() {
         int[][] matrix = {
                 {
                         0, 4, 2
@@ -271,7 +251,7 @@ public class MatrixTests {
     }
 
     @Test
-    public void isLowestDistanceWithThreeVertexInDistance() {
+    public void isLowestDistanceWithThreeVertexInWay() {
         int[][] matrix = {
                 {
                         0, 1, 4
