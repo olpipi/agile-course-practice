@@ -79,4 +79,11 @@ public class CaesarCipherTest {
         String encodedString = cipher.encode("abc", 6828277);
         assertEquals(encodedString, "bcd");
     }
+
+    @Test
+    public void canHandleBigNegativeOffset() {
+        CaesarCipher cipher = new CaesarCipher();
+        String encodedString = cipher.encode("bcd", -6828277);
+        assertEquals(encodedString, "abc");
+    }
 }
