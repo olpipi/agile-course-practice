@@ -75,8 +75,9 @@ public class Segment2D {
             return false;
         }
 
-        Map<String, Double> params = getParameters(targetSegment);
-        double base = det(params.get("A1"), params.get("B1"), params.get("A2"), params.get("B2"));
+        Map<String, Double> paramsParallel = getParameters(targetSegment);
+        double base = det(paramsParallel.get("A1"), paramsParallel.get("B1"),
+                paramsParallel.get("A2"), paramsParallel.get("B2"));
 
         return base == 0;
     }
@@ -86,16 +87,45 @@ public class Segment2D {
             return false;
         }
 
-        Map<String, Double> params = getParameters(targetSegment);
-        double base = det(params.get("A1"), params.get("B1"), params.get("A2"), params.get("B2"));
+        Map<String, Double> paramsMatched = getParameters(targetSegment);
+        double base = det(paramsMatched.get("A1"), paramsMatched.get("B1"),
+                paramsMatched.get("A2"), paramsMatched.get("B2"));
 
         if (base != 0) {
             return false;
         }
-        return det(params.get("A1"), params.get("C1"), params.get("A2"), params.get("C2")) == 0
-                && det(params.get("B1"), params.get("C1"), params.get("B2"), params.get("C2")) == 0
-                && intersection1D(p1.getX(), p2.getX(), targetSegment.p1.getX(), targetSegment.p2.getX())
-                && intersection1D(p1.getY(), p2.getY(), targetSegment.p1.getY(), targetSegment.p2.getY());
+        return det(paramsMatched.get("A1"), paramsMatched.get("C1"),
+                paramsMatched.get("A2"), paramsMatched.get("C2")) == 0
+                && det(paramsMatched.get("B1"), paramsMatched.get("C1"),
+                paramsMatched.get("B2"), paramsMatched.get("C2")) == 0
+                && intersection1D(p1.getX(), p2.getX(),
+                targetSegment.p1.getX(), targetSegment.p2.getX())
+                && intersection1D(p1.getY(), p2.getY(),
+                targetSegment.p1.getY(), targetSegment.p2.getY());
+    }
+
+    public Point2D intersection(final Segment2D targetSegment) {
+        if (!isValidSegment() || !targetSegment.isValidSegment()) {
+            return null;
+        }
+
+        Map<String, Double> paramsIntersect = getParameters(targetSegment);
+        double base = det(paramsIntersect.get("A1"), paramsIntersect.get("B1"),
+                paramsIntersect.get("A2"), paramsIntersect.get("B2"));
+
+        if (base != 0) {
+            double x = -det(paramsIntersect.get("C1"), paramsIntersect.get("B1"),
+                    paramsIntersect.get("C2"), paramsIntersect.get("B2")) * 1. / base;
+            double y = -det(paramsIntersect.get("A1"), paramsIntersect.get("C1"),
+                    paramsIntersect.get("A2"), paramsIntersect.get("C2")) * 1. / base;
+            if (between(p1.getX(), p2.getX(), x)
+                    && between(p1.getY(), p2.getY(), y)
+                    && between(targetSegment.p1.getX(), targetSegment.p2.getX(), x)
+                    && between(targetSegment.p1.getY(), targetSegment.p2.getY(), y)) {
+                return new Point2D.Double(x, y);
+            }
+        }
+        return null;
     }
 
 

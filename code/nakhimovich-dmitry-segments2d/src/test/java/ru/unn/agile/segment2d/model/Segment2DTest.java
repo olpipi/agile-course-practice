@@ -231,4 +231,36 @@ public class Segment2DTest {
         assertFalse(seg1.isMatched(seg2));
     }
 
+    @Test
+    public void areIntersectionSegment2DDifferentTrue() {
+        Segment2D seg1 = new Segment2D(0.0, 2.0, 2.0, 2.0);
+        Segment2D seg2 = new Segment2D(1.0, 0.0, 1.0, 3.0);
+
+        assertEquals(new Point2D.Double(1.0, 2.0), seg1.intersection(seg2));
+    }
+
+    @Test
+    public void areIntersectionSegment2DDifferentFalse() {
+        Segment2D seg1 = new Segment2D(0.0, 2.0, 2.0, 2.0);
+        Segment2D seg2 = new Segment2D(1.0, 0.0, 1.0, 1.0);
+
+        assertNull(seg1.intersection(seg2));
+    }
+
+    @Test
+    public void areIntersectionSegment2DtheSame() {
+        Segment2D seg1 = new Segment2D(-1.0, 0.0, 1.0, 2.0);
+        Segment2D seg2 = new Segment2D(-1.0, 0.0, 1.0, 2.0);
+
+        assertNull(seg1.intersection(seg2));
+    }
+
+    @Test
+    public void areIntersectionSegment2DwithError() {
+        Segment2D seg1 = new Segment2D(-43.0, 32.0, -122.0, 233.0);
+        Segment2D seg2 = new Segment2D(0.0, 0.0, 0.0, 0.0);
+
+        assertNull(seg1.intersection(seg2));
+    }
+
 }
