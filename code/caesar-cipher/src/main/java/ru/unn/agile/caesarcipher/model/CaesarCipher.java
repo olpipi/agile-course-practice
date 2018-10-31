@@ -24,10 +24,10 @@ public class CaesarCipher {
             if (startingPosition != 0) {
                 charCode -= startingPosition;
                 int newCharCode = charCode + offset;
+                newCharCode %= numberOfCharactersInInterval;
                 if (newCharCode < 0) {
                     newCharCode += numberOfCharactersInInterval;
                 }
-                newCharCode %= numberOfCharactersInInterval;
                 newCharCode += startingPosition;
                 output += (char) (newCharCode);
             } else {
