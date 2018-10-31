@@ -7,7 +7,7 @@ public class Cone implements Shape {
 
     public Cone(final double radius, final double height) {
         if (height <= 0) {
-            throw new IllegalArgumentException(ShapesAreaConstants.ILLEGAL_ARGUMENTS_EXCEPTION_STR);
+            throw new IllegalArgumentException(ShapesAreaConstants.PARAMETERS_CAN_NOT_BE_NEGATIVE);
         }
         base = new Circle(radius);
         this.height = height;

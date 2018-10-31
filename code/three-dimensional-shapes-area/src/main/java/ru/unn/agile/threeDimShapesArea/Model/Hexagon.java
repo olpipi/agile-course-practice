@@ -9,7 +9,7 @@ public class Hexagon implements Shape {
 
     public Hexagon(final double sideSize) {
         if (sideSize <= 0) {
-            throw new IllegalArgumentException(ShapesAreaConstants.ILLEGAL_ARGUMENTS_EXCEPTION_STR);
+            throw new IllegalArgumentException(ShapesAreaConstants.PARAMETERS_CAN_NOT_BE_NEGATIVE);
         }
         a = sideSize;
     }

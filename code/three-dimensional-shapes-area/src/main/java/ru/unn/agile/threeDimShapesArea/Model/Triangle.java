@@ -11,7 +11,7 @@ public class Triangle implements Shape {
 
     public Triangle(final double a, final double b, final double c) {
         if (a <= 0 || b <= 0 || c <= 0) {
-            throw new IllegalArgumentException(ShapesAreaConstants.ILLEGAL_ARGUMENTS_EXCEPTION_STR);
+            throw new IllegalArgumentException(ShapesAreaConstants.PARAMETERS_CAN_NOT_BE_NEGATIVE);
         }
 
         this.a = a;

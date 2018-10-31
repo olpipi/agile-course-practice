@@ -9,7 +9,7 @@ public class TruncatedCone implements Shape {
 
     public TruncatedCone(final double r1, final double r2, final double l) {
         if (l <= 0) {
-            throw new IllegalArgumentException(ShapesAreaConstants.ILLEGAL_ARGUMENTS_EXCEPTION_STR);
+            throw new IllegalArgumentException(ShapesAreaConstants.PARAMETERS_CAN_NOT_BE_NEGATIVE);
         }
         upperBase = new Circle(r1);
         bottomBase = new Circle(r2);

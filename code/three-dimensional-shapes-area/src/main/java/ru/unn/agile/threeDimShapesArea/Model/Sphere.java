@@ -8,7 +8,7 @@ public class Sphere implements Shape {
 
     public Sphere(final double radius) {
         if (radius <= 0) {
-            throw new IllegalArgumentException(ShapesAreaConstants.ILLEGAL_ARGUMENTS_EXCEPTION_STR);
+            throw new IllegalArgumentException(ShapesAreaConstants.PARAMETERS_CAN_NOT_BE_NEGATIVE);
         }
 
         this.radius = radius;

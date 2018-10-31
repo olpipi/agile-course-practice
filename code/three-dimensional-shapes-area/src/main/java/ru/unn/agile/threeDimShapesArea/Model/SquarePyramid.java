@@ -10,7 +10,7 @@ public class SquarePyramid implements Shape {
 
     public SquarePyramid(final double squareSide, final double triangleSide) {
         if (squareSide <= 0) {
-            throw new IllegalArgumentException(ShapesAreaConstants.ILLEGAL_ARGUMENTS_EXCEPTION_STR);
+            throw new IllegalArgumentException(ShapesAreaConstants.PARAMETERS_CAN_NOT_BE_NEGATIVE);
         }
         this.squareSide = squareSide;
         this.triangleSide = new Triangle(squareSide, triangleSide, triangleSide);

@@ -9,7 +9,7 @@ public class Cylinder implements Shape {
 
     public Cylinder(final double radius, final double height) {
         if (height <= 0 || radius <= 0) {
-            throw new IllegalArgumentException(ShapesAreaConstants.ILLEGAL_ARGUMENTS_EXCEPTION_STR);
+            throw new IllegalArgumentException(ShapesAreaConstants.PARAMETERS_CAN_NOT_BE_NEGATIVE);
         }
         this.radius = radius;
         this.height = height;
