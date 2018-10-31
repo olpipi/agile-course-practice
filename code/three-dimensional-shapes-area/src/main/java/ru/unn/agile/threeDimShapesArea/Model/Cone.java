@@ -6,10 +6,10 @@ public class Cone implements Shape {
     private double height;
 
     public Cone(final double radius, final double height) {
-        base = new Circle(radius);
         if (height <= 0) {
             throw new IllegalArgumentException(ShapesAreaConstants.ILLEGAL_ARGUMENTS_EXCEPTION_STR);
         }
+        base = new Circle(radius);
         this.height = height;
     }
 

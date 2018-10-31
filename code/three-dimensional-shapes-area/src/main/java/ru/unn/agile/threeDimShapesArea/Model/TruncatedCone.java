@@ -7,11 +7,11 @@ public class TruncatedCone implements Shape {
     private double l;
 
     public TruncatedCone(final double r1, final double r2, final double l) {
-        upperBase = new Circle(r1);
-        bottomBase = new Circle(r2);
         if (l <= 0) {
             throw new IllegalArgumentException(ShapesAreaConstants.ILLEGAL_ARGUMENTS_EXCEPTION_STR);
         }
+        upperBase = new Circle(r1);
+        bottomBase = new Circle(r2);
         this.l = l;
 
     }
