@@ -3,32 +3,36 @@ package ru.unn.agile.number.binarysearch.model;
 public class BinarySearch {
 
     private int[] array;
+    private int size;
+
 
     public BinarySearch(final int[] arrayParam) {
-        array = arrayParam;
+        if (arrayParam.length != 0) {
+            array = arrayParam;
+            size = array.length;
+        } else {
+            throw new NullPointerException("Размер массива равен нулю");
+        }
     }
-
 
     public int[] getArray() {
         return array;
     }
 
     public boolean inLeftHalf(final int key) {
-        int size = array.length;
         return  (key < array[size / 2]);
     }
 
     public boolean inRightHalf(final int key) {
-        int size = array.length;
         return (array[size / 2] < key);
     }
 
     public int search(final int key) {
         int middle;
         int leftBorder = 0;
-        int rightBorder = array.length - 1;
+        int rightBorder = size - 1;
 
-        if (identifyAnArray()) {
+        if (checkOrderedArray()) {
             while ((leftBorder <= rightBorder)) {
                 middle = (leftBorder + rightBorder) / 2;
                 if (key > array[middle]) {
@@ -45,15 +49,10 @@ public class BinarySearch {
         return -1;
     }
 
-    public boolean identifyAnArray() {
-        int size = array.length;
-        if (size == 0) {
-            return false;
-        }
-
-        for (int i = 0; i < size - 1; i++) {
+    public boolean checkOrderedArray() {
+            for (int i = 0; i < size - 1; i++) {
             if (array[i] > array[i + 1]) {
-                return false;
+                throw new NullPointerException("Массив не отсортирован");
             }
         }
         return true;

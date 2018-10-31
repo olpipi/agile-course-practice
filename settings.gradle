@@ -1,24 +1,36 @@
-// Bevzuk Anton 
+// Bevzuk Anton
 include "code/bevzuk-anton"
 project(":code/bevzuk-anton").name = "bevzuk-anton-Model"
 
-// Pozdiaev Valerii 
+// Pozdiaev Valerii
 include "code/pozdiaev-valerii-currency-converter"
 project(":code/pozdiaev-valerii-currency-converter").name = "pozdiaev-valerii-currency-converter"
 
-// Korniakov Kirill, lab1 
+// nickshevr
+include("code/nickshevr-numerical-integration")
+project(":code/nickshevr-numerical-integration").name = "nickshevr-numerical-integration"
+
+// Korniakov Kirill, lab1
 include "code/korniakov-kirill-lab1"
 project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
 
-// Marchenko Andrey 
+// Ivanova Olga, lab1
+include "code/prime-number"
+project(":code/prime-number").name = "prime-number-Model"
+
+// Marchenko Andrey
 include "code/marchenko-andrey-complex-number"
 project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-complex-number"
 
-// Andreev Vladilsav 
+// Andreev Vladilsav
 include "code/andreev-vlad-triangle"
 project(":code/andreev-vlad-triangle").name = "andreev-vlad-triangle-Model"
 
-// Korniakov Kirill, lab2-legacy 
+// Zhiltsov Max, lab 1
+include "code/vector-distance"
+project(":code/vector-distance").name = "vector-distance-Model"
+
+// Korniakov Kirill, lab2-legacy
 include "code/korniakov-kirill-lab2-legacy/Model"
 project(":code/korniakov-kirill-lab2-legacy/Model").name = "korniakov-kirill-lab2-Model-legacy"
 include "code/korniakov-kirill-lab2-legacy/ViewModel"
@@ -26,7 +38,7 @@ project(":code/korniakov-kirill-lab2-legacy/ViewModel").name = "korniakov-kirill
 include "code/korniakov-kirill-lab2-legacy/View"
 project(":code/korniakov-kirill-lab2-legacy/View").name = "korniakov-kirill-lab2-View-legacy"
 
-// Korniakov Kirill, lab2 
+// Korniakov Kirill, lab2
 include "code/korniakov-kirill-lab2/Model"
 project(":code/korniakov-kirill-lab2/Model").name = "korniakov-kirill-lab2-Model"
 include "code/korniakov-kirill-lab2/ViewModel"
@@ -34,7 +46,7 @@ project(":code/korniakov-kirill-lab2/ViewModel").name = "korniakov-kirill-lab2-V
 include "code/korniakov-kirill-lab2/View"
 project(":code/korniakov-kirill-lab2/View").name = "korniakov-kirill-lab2-View"
 
-// Korniakov Kirill, lab3-legacy 
+// Korniakov Kirill, lab3-legacy
 include "code/korniakov-kirill-lab3-legacy/Model"
 project(":code/korniakov-kirill-lab3-legacy/Model").name = "korniakov-kirill-lab3-Model-legacy"
 include "code/korniakov-kirill-lab3-legacy/ViewModel"
@@ -44,7 +56,7 @@ project(":code/korniakov-kirill-lab3-legacy/View").name = "korniakov-kirill-lab3
 include "code/korniakov-kirill-lab3-legacy/Infrastructure"
 project(":code/korniakov-kirill-lab3-legacy/Infrastructure").name = "korniakov-kirill-lab3-Infrastructure-legacy"
 
-// Korniakov Kirill, lab3 
+// Korniakov Kirill, lab3
 include "code/korniakov-kirill-lab3/Model"
 project(":code/korniakov-kirill-lab3/Model").name = "korniakov-kirill-lab3-Model"
 include "code/korniakov-kirill-lab3/ViewModel"
@@ -54,17 +66,33 @@ project(":code/korniakov-kirill-lab3/View").name = "korniakov-kirill-lab3-View"
 include "code/korniakov-kirill-lab3/Infrastructure"
 project(":code/korniakov-kirill-lab3/Infrastructure").name = "korniakov-kirill-lab3-Infrastructure"
 
-// Polyakov Igor, sort 
+// Gladkov Dmitry, Huffman code
+include "code/gladkov-dmitry-huffman"
+project(":code/gladkov-dmitry-huffman").name = "gladkov-dmitry-huffman"
+
+// Polyakov Igor, sort
 include "code/polyakov-igor-sort"
 project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
 
-// Rumyantsev Alexander, Vector3D 
+// Rumyantsev Alexander, Vector3D
 include "code/rumyantsev-alexander-vector3d"
 project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vector3d"
 
-// Stack 
+// Stack
 include "code/stack"
 project(":code/stack").name = "stack"
+
+// Chekodaev Oleg
+include "code/chekodaev-oleg-roman-number-converter"
+project(":code/chekodaev-oleg-roman-number-converter").name = "chekodaev-oleg-roman-number-converter"
+
+// Kochuev Andrey, Length Converter
+include "code/kochuev-andrey-length-converter"
+project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-converter"
+
+// Beresneva Julia, LCD Digits
+include "code/beresneva-julia-lcd-digits"
+project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
 
 // Gladkova Tatiana, Binary Search 
 include "code/gladkova-tatiana-binary-search"
