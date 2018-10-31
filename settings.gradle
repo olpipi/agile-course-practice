@@ -62,10 +62,6 @@ project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
 include "code/rumyantsev-alexander-vector3d"
 project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vector3d"
 
-// Flegontov Alexander, math-statistics
-include "code/math-statistics"
-project(":code/math-statistics").name = "math-statistics"
-
 // Stack
 include "code/stack"
 project(":code/stack").name = "stack"
@@ -81,3 +77,7 @@ project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-c
 // Beresneva Julia, LCD Digits
 include "code/beresneva-julia-lcd-digits"
 project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
+
+// Flegontov Alexander, math-statistics
+include "code/math-statistics"
+project(":code/math-statistics").name = "math-statistics"
