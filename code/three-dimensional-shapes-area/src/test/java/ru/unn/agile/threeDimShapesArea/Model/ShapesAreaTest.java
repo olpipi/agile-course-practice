@@ -235,6 +235,16 @@ public class ShapesAreaTest {
         Shape shape = new TrianglePrism(new Triangle(0, 0, 0), -1);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotCreateTriangleWithNegativeParams() {
+        Shape shape = new Triangle(-1, -1, -1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotCreateTriangleWithViolatedTriangleInequality() {
+        Shape shape = new Triangle(100, 1, 1);
+    }
+
     @Test
     public void canGetTruncatedConeArea() {
         // Arrange
