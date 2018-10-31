@@ -66,6 +66,10 @@ project(":code/korniakov-kirill-lab3/View").name = "korniakov-kirill-lab3-View"
 include "code/korniakov-kirill-lab3/Infrastructure"
 project(":code/korniakov-kirill-lab3/Infrastructure").name = "korniakov-kirill-lab3-Infrastructure"
 
+// Gladkov Dmitry, Huffman code
+include "code/gladkov-dmitry-huffman"
+project(":code/gladkov-dmitry-huffman").name = "gladkov-dmitry-huffman"
+
 // Polyakov Igor, sort
 include "code/polyakov-igor-sort"
 project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
