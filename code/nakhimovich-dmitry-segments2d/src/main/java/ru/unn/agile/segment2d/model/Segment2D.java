@@ -2,6 +2,8 @@ package ru.unn.agile.segment2d.model;
 
 import java.util.Objects;
 import java.awt.geom.Point2D;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Segment2D {
 
@@ -9,6 +11,7 @@ public class Segment2D {
 
     private Point2D p1;
     private Point2D p2;
+
 
     /*Basic methods*/
     public Segment2D(final Point2D p1, final Point2D p2) {
@@ -66,36 +69,62 @@ public class Segment2D {
     }
 
 
+    /*Main methods*/
+    public boolean isParallel(final Segment2D targetSegment) {
+        Map<String, String> params = getParameters(targetSegment);
+        double base = det(params.get("A1"), params.get("B1"), params.get("A2"), params.get("B2"));
+
+        return base == 0;
+    }
+
+
     /*Utils methods*/
     private boolean isValidSegment() {
         return p1.distance(p2) > EPSILON;
     }
 
-    private double det(int a, int b, int c, int d) {
-        return a * d - b * c;
+    private double det(final double a1, final double a12, final double a21, final double a22) {
+        return a11 * a22 - a12 * a21;
     }
 
-    private boolean between(double x1, double x2, double target) {
-        return Math.min(x1, x2) <= target + EPSILON &&
-                target <= Math.max(x1, x2) + EPSILON;
+    private boolean between(final double coordStart, final double coordEnd, final double coordTarget) {
+        return Math.min(coordStart, coordEnd) <= coordTarget + EPSILON &&
+                coordTarget <= Math.max(coordStart, coordEnd) + EPSILON;
     }
 
-    private boolean intersection1D(double p1_x1, double p1_x2, double p2_x1, double p2_x2) {
-        double cur_p1_x1 = p1_x1;
-        double cur_p1_x2 = p1_x2;
-        double cur_p2_x1 = p2_x1;
-        double cur_p2_x2 = p2_x2;
+    private Map<String, String> getParameters(final Segment2D targetSegment) {
+        Map<String, double> params = new HashMap<String, double>();
 
-        if (p1_x1 > p1_x2) {
-            cur_p1_x1 = p1_x2;
-            cur_p1_x2 = p1_x1;
+        params.put("A1", p1.getY() - p2.getY());
+        params.put("B1", p2.getX() - p1.getX());
+        params.put("C1", -A1 * p1.getX() - B1 * p1.getY());
+        params.put("A2", targetSegment.p1.getY() - targetSegment.p2.getY());
+        params.put("B2", targetSegment.p2.getX() - targetSegment.p1.getX());
+        params.put("C2", -A2 * targetSegment.p1.getX() - B2 * targetSegment.p1.getY());
+
+        return params;
+    }
+
+    private boolean intersection1D(final double segment1p1coord,
+                                   final double segment1p2coord,
+                                   final double segment2p1coord,
+                                   final double segment2p2coord) {
+        double segment1p1coordCurrent = segment1p1coord;
+        double segment1p2coordCurrent = segment1p2coord;
+        double segment2p1coordCurrent = segment2p1coord;
+        double segment2p2coordCurrent = segment2p2coord;
+
+        if (segment1p1coord > segment1p2coord) {
+            segment1p1coordCurrent = segment1p2coord;
+            segment1p2coordCurrent = segment1p1coord;
         }
-        if (p2_x1 > p2_x2) {
-            cur_p2_x1 = p2_x2;
-            cur_p2_x2 = p2_x1;
+        if (segment2p1coord > segment2p2coord) {
+            segment2p1coordCurrent = segment2p2coord;
+            segment2p2coordCurrent = segment2p1coord;
         }
 
-        return Math.max(cur_p1_x1, cur_p2_x1) <= Math.min(cur_p1_x2, cur_p2_x2);
+        return Math.max(segment1p1coordCurrent, segment2p1coordCurrent) <=
+                Math.min(segment1p2coordCurrent, segment2p2coordCurrent);
     }
 
 }

@@ -167,4 +167,12 @@ public class Segment2DTest {
         );
     }
 
+    @Test
+    public void areParallelSegment2DDifferent() {
+        Segment2D seg1 = new Segment2D(0.0, 1.0, 1.0, 0.0);
+        Segment2D seg2 = new Segment2D(-1.0, 0.0, 0.0, -1.0);
+
+        assertEquals(true, seg1.isParallel(seg2));
+    }
+
 }
