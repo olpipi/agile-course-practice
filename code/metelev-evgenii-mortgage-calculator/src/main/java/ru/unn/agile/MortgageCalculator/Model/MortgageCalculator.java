@@ -83,11 +83,11 @@ public class MortgageCalculator {
         }
     }
 
-    public double[] getAccruedInterestInTableView() {
+    public double[] getAccruedInterestArray() {
         return accruedInterestAsArray;
     }
 
-    public void setFullPriceInTableView() {
+    public void setFullPriceArray() {
         setAccruedInterestArray();
         fullPriceAsArray = new double[dateOfMortgage];
         for (int curMonth = 0; curMonth < dateOfMortgage; curMonth++) {
@@ -96,7 +96,7 @@ public class MortgageCalculator {
         }
     }
 
-    public double[] getFullPriceInTableView() {
+    public double[] getFullPriceArray() {
         return fullPriceAsArray;
     }
     private double round(final double roundedNum) {
