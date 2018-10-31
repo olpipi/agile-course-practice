@@ -2,8 +2,9 @@ package ru.unn.agile.threeDimShapesArea.Model;
 
 
 public class Sphere implements Shape {
-    private double radius;
+
     private static final double SPHERE_AREA_COEF = 4 * Math.PI;
+    private double radius;
 
     public Sphere(final double radius) {
         if (radius <= 0) {

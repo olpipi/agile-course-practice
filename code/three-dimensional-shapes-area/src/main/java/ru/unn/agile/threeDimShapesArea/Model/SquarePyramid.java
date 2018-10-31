@@ -2,10 +2,11 @@ package ru.unn.agile.threeDimShapesArea.Model;
 
 
 public class SquarePyramid implements Shape {
-    private final double squareSide;
 
-    private final Triangle triangleSide;
     private static final int TRIANGLES_COUNT = 4;
+    private final double squareSide;
+    private final Triangle triangleSide;
+
 
     public SquarePyramid(final double squareSide, final double triangleSide) {
         if (squareSide <= 0) {

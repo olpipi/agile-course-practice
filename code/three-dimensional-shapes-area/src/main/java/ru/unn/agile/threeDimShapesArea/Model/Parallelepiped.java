@@ -2,6 +2,7 @@ package ru.unn.agile.threeDimShapesArea.Model;
 
 
 public class Parallelepiped implements Shape {
+
     private final double height;
     private final double width;
     private final double depth;

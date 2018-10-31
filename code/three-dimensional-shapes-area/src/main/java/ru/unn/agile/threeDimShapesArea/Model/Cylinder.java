@@ -2,9 +2,10 @@ package ru.unn.agile.threeDimShapesArea.Model;
 
 
 public class Cylinder implements Shape {
+
+    private static final double CYLINDER_AREA_COEF = 2 * Math.PI;
     private final double radius;
     private final double height;
-    private static final double CYLINDER_AREA_COEF = 2 * Math.PI;
 
     public Cylinder(final double radius, final double height) {
         if (height <= 0 || radius <= 0) {

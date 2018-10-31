@@ -2,9 +2,10 @@ package ru.unn.agile.threeDimShapesArea.Model;
 
 
 public class TrianglePyramid implements Shape {
+
+    private static final int TRIANGLE_PYRAMID_SIDES_COUNT = 3;
     private Triangle base;
     private Triangle side;
-    private static final int TRIANGLE_PYRAMID_SIDES_COUNT = 3;
 
     public TrianglePyramid(final double baseSize, final double sideSize) {
         base = new Triangle(baseSize, baseSize, baseSize);

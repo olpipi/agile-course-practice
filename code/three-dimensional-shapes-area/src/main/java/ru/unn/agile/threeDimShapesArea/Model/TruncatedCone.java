@@ -2,6 +2,7 @@ package ru.unn.agile.threeDimShapesArea.Model;
 
 
 public class TruncatedCone implements Shape {
+
     private Circle upperBase;
     private Circle bottomBase;
     private double l;

@@ -3,10 +3,9 @@ package ru.unn.agile.threeDimShapesArea.Model;
 
 public class TrianglePrism implements Shape {
 
+    private static final int BASE_COUNT = 2;
     private final Triangle base;
     private final double height;
-    private static final int BASE_COUNT = 2;
-
 
     public TrianglePrism(final Triangle base, final double height) {
         if (height <= 0) {

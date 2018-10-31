@@ -2,6 +2,7 @@ package ru.unn.agile.threeDimShapesArea.Model;
 
 
 public class HexagonalPyramid implements Shape {
+
     private static final int TRIANGLES_COUNT = 6;
     private Triangle triangleSide;
     private Hexagon hexagonSide;
