@@ -89,3 +89,7 @@ project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-c
 // Beresneva Julia, LCD Digits
 include "code/beresneva-julia-lcd-digits"
 project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
+
+// Moskalenko Viktor, Calculator
+include "code/moskalenko-viktor-calculator"
+project(":code/moskalenko-viktor-calculator").name = "moskalenko-viktor-calculator"
