@@ -81,6 +81,23 @@ public class Segment2D {
         return base == 0;
     }
 
+    public boolean isMatched(final Segment2D targetSegment) {
+        if (!isValidSegment() || !targetSegment.isValidSegment()) {
+            return false;
+        }
+
+        Map<String, Double> params = getParameters(targetSegment);
+        double base = det(params.get("A1"), params.get("B1"), params.get("A2"), params.get("B2"));
+
+        if (base != 0) {
+            return false;
+        }
+        return det(params.get("A1"), params.get("C1"), params.get("A2"), params.get("C2")) == 0
+                && det(params.get("B1"), params.get("C1"), params.get("B2"), params.get("C2")) == 0
+                && intersection1D(p1.getX(), p2.getX(), targetSegment.p1.getX(), targetSegment.p2.getX())
+                && intersection1D(p1.getY(), p2.getY(), targetSegment.p1.getY(), targetSegment.p2.getY());
+    }
+
 
     /*Utils methods*/
     private boolean isValidSegment() {

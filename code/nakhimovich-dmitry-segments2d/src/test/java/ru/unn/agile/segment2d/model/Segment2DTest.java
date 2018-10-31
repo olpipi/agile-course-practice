@@ -199,4 +199,36 @@ public class Segment2DTest {
         assertFalse(seg1.isParallel(seg2));
     }
 
+    @Test
+    public void areMatchedSegment2DDifferentTrue() {
+        Segment2D seg1 = new Segment2D(-1.0, 1.0, 1.0, -1.0);
+        Segment2D seg2 = new Segment2D(0.0, 0.0, 2.0, -2.0);
+
+        assertTrue(seg1.isMatched(seg2));
+    }
+
+    @Test
+    public void areMatchedSegment2DDifferentFalse() {
+        Segment2D seg1 = new Segment2D(-1.0, 1.0, 1.0, -1.0);
+        Segment2D seg2 = new Segment2D(1.2, -1.2, 2.0, -2.0);
+
+        assertFalse(seg1.isMatched(seg2));
+    }
+
+    @Test
+    public void areMatchedSegment2DtheSame() {
+        Segment2D seg1 = new Segment2D(3.0, 4.0, -1.0, 0.0);
+        Segment2D seg2 = new Segment2D(3.0, 4.0, -1.0, 0.0);
+
+        assertTrue(seg1.isMatched(seg2));
+    }
+
+    @Test
+    public void areMatchedSegment2DwithError() {
+        Segment2D seg1 = new Segment2D(-3.0, 3.0, -2.0, 2.0);
+        Segment2D seg2 = new Segment2D(0.0, 0.0, 0.0, 0.0);
+
+        assertFalse(seg1.isMatched(seg2));
+    }
+
 }
