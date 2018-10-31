@@ -14,6 +14,11 @@ project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
 include "code/dikstry"
 project(":code/dikstry").name = "dikstry-Model"
 
+// Ivanova Olga, lab1
+include "code/prime-number"
+project(":code/prime-number").name = "prime-number-Model"
+
+
 // Marchenko Andrey
 include "code/marchenko-andrey-complex-number"
 project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-complex-number"
