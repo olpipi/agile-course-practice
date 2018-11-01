@@ -22,13 +22,13 @@ public final class CaesarCipher {
             int charCode = (int) input.charAt(i);
             int startingPosition = calculateStartingPosition(charCode);
             if (startingPosition != 0) {
-                charCode -= startingPosition;
-                int newCharCode = charCode + offset;
-                newCharCode %= NUMBER_OF_CHARACTERS_IN_INTERVAL;
-                if (newCharCode < 0) {
-                    newCharCode += NUMBER_OF_CHARACTERS_IN_INTERVAL;
+                int charPositionInAlphabet = charCode - startingPosition;
+                int newCharPositionInAlphabet = charPositionInAlphabet + offset;
+                newCharPositionInAlphabet %= NUMBER_OF_CHARACTERS_IN_INTERVAL;
+                if (newCharPositionInAlphabet < 0) {
+                    newCharPositionInAlphabet += NUMBER_OF_CHARACTERS_IN_INTERVAL;
                 }
-                newCharCode += startingPosition;
+                int newCharCode = newCharPositionInAlphabet + startingPosition;
                 output += (char) (newCharCode);
             } else {
                 output += (char) (charCode);
