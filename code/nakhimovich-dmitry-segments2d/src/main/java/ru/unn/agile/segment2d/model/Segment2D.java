@@ -2,8 +2,6 @@ package ru.unn.agile.segment2d.model;
 
 import java.util.Objects;
 import java.awt.geom.Point2D;
-import java.util.Map;
-import java.util.HashMap;
 
 public class Segment2D {
 
@@ -12,8 +10,10 @@ public class Segment2D {
     private Point2D p1;
     private Point2D p2;
 
+    private double paramA1, paramB1, paramC1;
+    private double paramA2, paramB2, paramC2;
 
-    /*Basic methods*/
+
     public Segment2D(final Point2D p1, final Point2D p2) {
         this.p1 = p1;
         this.p2 = p2;
@@ -69,17 +69,14 @@ public class Segment2D {
     }
 
 
-    /*Main methods*/
     public boolean isParallel(final Segment2D targetSegment) {
         if (!isValidSegment() || !targetSegment.isValidSegment()) {
             return false;
         }
 
-        Map<String, Double> paramsParallel = getParameters(targetSegment);
-        double base = det(paramsParallel.get("A1"), paramsParallel.get("B1"),
-                paramsParallel.get("A2"), paramsParallel.get("B2"));
+        getParameters(targetSegment);
 
-        return base == 0;
+        return det(paramA1, paramB1, paramA2, paramB2) == 0;
     }
 
     public boolean isMatched(final Segment2D targetSegment) {
@@ -87,21 +84,18 @@ public class Segment2D {
             return false;
         }
 
-        Map<String, Double> paramsMatched = getParameters(targetSegment);
-        double base = det(paramsMatched.get("A1"), paramsMatched.get("B1"),
-                paramsMatched.get("A2"), paramsMatched.get("B2"));
+        getParameters(targetSegment);
 
-        if (base != 0) {
+        if (det(paramA1, paramB1, paramA2, paramB2) != 0) {
             return false;
+        } else {
+            return det(paramA1, paramC1, paramA2, paramC2) == 0
+                    && det(paramB1, paramC1, paramB2, paramC2) == 0
+                    && intersection1D(p1.getX(), p2.getX(),
+                    targetSegment.p1.getX(), targetSegment.p2.getX())
+                    && intersection1D(p1.getY(), p2.getY(),
+                    targetSegment.p1.getY(), targetSegment.p2.getY());
         }
-        return det(paramsMatched.get("A1"), paramsMatched.get("C1"),
-                paramsMatched.get("A2"), paramsMatched.get("C2")) == 0
-                && det(paramsMatched.get("B1"), paramsMatched.get("C1"),
-                paramsMatched.get("B2"), paramsMatched.get("C2")) == 0
-                && intersection1D(p1.getX(), p2.getX(),
-                targetSegment.p1.getX(), targetSegment.p2.getX())
-                && intersection1D(p1.getY(), p2.getY(),
-                targetSegment.p1.getY(), targetSegment.p2.getY());
     }
 
     public Point2D intersection(final Segment2D targetSegment) {
@@ -109,15 +103,12 @@ public class Segment2D {
             return null;
         }
 
-        Map<String, Double> paramsIntersect = getParameters(targetSegment);
-        double base = det(paramsIntersect.get("A1"), paramsIntersect.get("B1"),
-                paramsIntersect.get("A2"), paramsIntersect.get("B2"));
+        getParameters(targetSegment);
+        double base = det(paramA1, paramB1, paramA2, paramB2);
 
         if (base != 0) {
-            double x = -det(paramsIntersect.get("C1"), paramsIntersect.get("B1"),
-                    paramsIntersect.get("C2"), paramsIntersect.get("B2")) * 1. / base;
-            double y = -det(paramsIntersect.get("A1"), paramsIntersect.get("C1"),
-                    paramsIntersect.get("A2"), paramsIntersect.get("C2")) * 1. / base;
+            double x = -det(paramC1, paramB1, paramC2, paramB2) * 1. / base;
+            double y = -det(paramA1, paramC1, paramA2, paramC2) * 1. / base;
             if (between(p1.getX(), p2.getX(), x)
                     && between(p1.getY(), p2.getY(), y)
                     && between(targetSegment.p1.getX(), targetSegment.p2.getX(), x)
@@ -129,7 +120,6 @@ public class Segment2D {
     }
 
 
-    /*Utils methods*/
     private boolean isValidSegment() {
         return p1.distance(p2) > EPSILON;
     }
@@ -145,18 +135,14 @@ public class Segment2D {
                 && coordTarget <= Math.max(coordStart, coordEnd) + EPSILON;
     }
 
-    private Map<String, Double> getParameters(final Segment2D targetSegment) {
-        Map<String, Double> params = new HashMap<>();
+    private void getParameters(final Segment2D targetSegment) {
+        paramA1 = p1.getY() - p2.getY();
+        paramB1 = p2.getX() - p1.getX();
+        paramC1 = -paramA1 * p1.getX() - paramB1 * p1.getY();
 
-        params.put("A1", p1.getY() - p2.getY());
-        params.put("B1", p2.getX() - p1.getX());
-        params.put("C1", -params.get("A1") * p1.getX() - params.get("B1") * p1.getY());
-        params.put("A2", targetSegment.p1.getY() - targetSegment.p2.getY());
-        params.put("B2", targetSegment.p2.getX() - targetSegment.p1.getX());
-        params.put("C2", -params.get("A2") * targetSegment.p1.getX()
-                - params.get("B2") * targetSegment.p1.getY());
-
-        return params;
+        paramA2 = targetSegment.p1.getY() - targetSegment.p2.getY();
+        paramB2 = targetSegment.p2.getX() - targetSegment.p1.getX();
+        paramC2 = -paramA2 * targetSegment.p1.getX() - paramB2 * targetSegment.p1.getY();
     }
 
     private boolean intersection1D(final double segment1p1coord,
