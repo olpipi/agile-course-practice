@@ -11,9 +11,9 @@ public class GolovanovaTatyanaTest {
         ComplexNumber complexNumber1 = new ComplexNumber(1, 1);
         ComplexNumber complexNumber2 = new ComplexNumber(2, 2);
 
-        ComplexNumber expectedComplexNumber = new ComplexNumber(3, 3);
         ComplexNumber addingComplexNumbers = complexNumber1.add(complexNumber2);
 
+        ComplexNumber expectedComplexNumber = new ComplexNumber(3, 3);
         assertEquals(expectedComplexNumber, addingComplexNumbers);
     }
 
@@ -22,9 +22,9 @@ public class GolovanovaTatyanaTest {
         ComplexNumber complexNumber1 = new ComplexNumber(1, 1);
         ComplexNumber complexNumber2 = new ComplexNumber(2, 2);
 
-        ComplexNumber expectedComplexNumber = new ComplexNumber(0, 4);
         ComplexNumber multiplyComplexNumbers = complexNumber1.multiply(complexNumber2);
 
+        ComplexNumber expectedComplexNumber = new ComplexNumber(0, 4);
         assertEquals(expectedComplexNumber, multiplyComplexNumbers);
     }
 
@@ -32,9 +32,9 @@ public class GolovanovaTatyanaTest {
     public void canGetRealOfComplexNumber() {
         ComplexNumber complexNumber = new ComplexNumber(10, 1);
 
-        double expectedReal = 10.0;
         double real = complexNumber.getReal();
 
+        double expectedReal = 10.0;
         assertEquals(expectedReal, real, delta);
     }
 
@@ -42,9 +42,9 @@ public class GolovanovaTatyanaTest {
     public void canToStringComplexNumber() {
         ComplexNumber complexNumber = new ComplexNumber(10, 1);
 
-        String expectedStrComplexNumber = "10.0 + 1.0i";
         String strComplexNumber = complexNumber.toString();
 
+        String expectedStrComplexNumber = "10.0 + 1.0i";
         assertEquals(expectedStrComplexNumber, strComplexNumber);
     }
 }
