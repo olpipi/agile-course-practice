@@ -101,3 +101,7 @@ project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-M
 // Three dimensional shapes area calculation
 include "code/three-dimensional-shapes-area"
 project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
+
+//Stepanov Nikolay, Salary calculator
+include "code/salary-calculator"
+project(":code/salary-calculator").name = "salary-calculator"
