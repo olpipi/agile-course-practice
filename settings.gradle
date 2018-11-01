@@ -110,6 +110,14 @@ project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-c
 include "code/beresneva-julia-lcd-digits"
 project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
 
+// Osechkin Sergey, DepositCalculator
+include "code/osechkin-deposit-calculator"
+project(":code/osechkin-deposit-calculator").name = "osechkin-deposit-calculator"
+
+// Three dimensional shapes area calculation
+include "code/three-dimensional-shapes-area"
+project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
+
 // Gladkova Tatiana, Binary Search
 include "code/gladkova-tatiana-binary-search"
 project(":code/gladkova-tatiana-binary-search").name = "gladkova-tatiana-binary-search"
