@@ -31,11 +31,23 @@ public class ConverterTemperaturesTest {
         assertEquals(expectedTempFahrenheit, calculatingTempFahrenheit, EPSILON);
     }
 
+
     @Test
     public void canConvertZeroFromFahrenheit() {
         ConverterTemperatures converter = new ConverterWithFahrenheit();
         double tempFahrenheit = 0.0;
         double expectedTempCelsius = -17.777778;
+
+        double calculatingTempCelsius = converter.convertFromCelsius(tempFahrenheit);
+
+        assertEquals(expectedTempCelsius, calculatingTempCelsius, EPSILON);
+    }
+
+    @Test
+    public void canConvert_100_FromFahrenheit() {
+        ConverterTemperatures converter = new ConverterWithFahrenheit();
+        double tempFahrenheit = 100.0;
+        double expectedTempCelsius = 37.777778;
 
         double calculatingTempCelsius = converter.convertFromCelsius(tempFahrenheit);
 
