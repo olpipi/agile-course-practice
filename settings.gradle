@@ -106,15 +106,15 @@ project(":code/chekodaev-oleg-roman-number-converter").name = "chekodaev-oleg-ro
 include "code/kochuev-andrey-length-converter"
 project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-converter"
 
-// Beresneva Julia, LCD Digits 
+// Beresneva Julia, LCD Digits
 include "code/beresneva-julia-lcd-digits"
 project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
 
-// Gladkova Tatiana, Binary Search 
+// Gladkova Tatiana, Binary Search
 include "code/gladkova-tatiana-binary-search"
 project(":code/gladkova-tatiana-binary-search").name = "gladkova-tatiana-binary-search"
 
-// Three dimensional shapes area calculation 
+// Three dimensional shapes area calculation
 include "code/three-dimensional-shapes-area"
 project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
 
@@ -129,3 +129,7 @@ project(":code/math-statistics").name = "math-statistics"
 // Fytov Aleksandr, Fraction calculator
 include "code/fytov-aleksandr-frac-calc"
 project(":code/fytov-aleksandr-frac-calc").name = "fytov-aleksandr-frac-calc"
+
+// 3D shapes volume
+include "code/shape-volume-calculator"
+project(":code/shape-volume-calculator").name = "shape-volume-calculator"
