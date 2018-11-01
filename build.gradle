@@ -23,9 +23,6 @@ repositories {
 
 dependencies {
     compile 'net.sourceforge.pmd:pmd:5.8.1'
-    implementation 'org.testng:testng:6.9.6'
-    implementation 'org.testng:testng:6.9.6'
-    implementation 'org.testng:testng:6.9.6'
 }
 
 cpd {
