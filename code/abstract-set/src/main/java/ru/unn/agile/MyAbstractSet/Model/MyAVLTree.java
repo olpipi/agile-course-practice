@@ -122,8 +122,6 @@ public class MyAVLTree {
         return sb.toString();
     }
 
-    /*          PRIVATE METHODS         */
-
     private Node add(final Node parentNode, final Node newNode) {
         if (parentNode == null) {
             ++nodesCount;
