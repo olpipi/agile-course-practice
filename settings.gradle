@@ -118,6 +118,10 @@ project(":code/gladkova-tatiana-binary-search").name = "gladkova-tatiana-binary-
 include "code/three-dimensional-shapes-area"
 project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
 
+// Kryukova Polina, caesar-cipher
+include "code/caesar-cipher"
+project(":code/caesar-cipher").name = "caesar-cipher"
+
 // Podolov Kirill, Queue
 include "code/queue"
 project(":code/queue").name = "queue-Model"
