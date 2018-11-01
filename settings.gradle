@@ -6,9 +6,17 @@ project(":code/bevzuk-anton").name = "bevzuk-anton-Model"
 include "code/pozdiaev-valerii-currency-converter"
 project(":code/pozdiaev-valerii-currency-converter").name = "pozdiaev-valerii-currency-converter"
 
+// nickshevr
+include("code/nickshevr-numerical-integration")
+project(":code/nickshevr-numerical-integration").name = "nickshevr-numerical-integration"
+
 // Korniakov Kirill, lab1
 include "code/korniakov-kirill-lab1"
 project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
+
+// Ivanova Olga, lab1
+include "code/prime-number"
+project(":code/prime-number").name = "prime-number-Model"
 
 // Marchenko Andrey
 include "code/marchenko-andrey-complex-number"
@@ -17,6 +25,10 @@ project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-comple
 // Andreev Vladilsav
 include "code/andreev-vlad-triangle"
 project(":code/andreev-vlad-triangle").name = "andreev-vlad-triangle-Model"
+
+// Zhiltsov Max, lab 1
+include "code/vector-distance"
+project(":code/vector-distance").name = "vector-distance-Model"
 
 // Korniakov Kirill, lab2-legacy
 include "code/korniakov-kirill-lab2-legacy/Model"
@@ -54,6 +66,10 @@ project(":code/korniakov-kirill-lab3/View").name = "korniakov-kirill-lab3-View"
 include "code/korniakov-kirill-lab3/Infrastructure"
 project(":code/korniakov-kirill-lab3/Infrastructure").name = "korniakov-kirill-lab3-Infrastructure"
 
+// Gladkov Dmitry, Huffman code
+include "code/gladkov-dmitry-huffman"
+project(":code/gladkov-dmitry-huffman").name = "gladkov-dmitry-huffman"
+
 // Polyakov Igor, sort
 include "code/polyakov-igor-sort"
 project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
@@ -62,7 +78,30 @@ project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
 include "code/rumyantsev-alexander-vector3d"
 project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vector3d"
 
+// Magazinnik Ivan, string-calculator
+include "code/string-calculator"
+project(":code/string-calculator").name = "string-calculator"
+
+// Stack
+include "code/stack"
+project(":code/stack").name = "stack"
+
+// Chekodaev Oleg
+include "code/chekodaev-oleg-roman-number-converter"
+project(":code/chekodaev-oleg-roman-number-converter").name = "chekodaev-oleg-roman-number-converter"
+
+// Kochuev Andrey, Length Converter
+include "code/kochuev-andrey-length-converter"
+project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-converter"
+
+// Beresneva Julia, LCD Digits
+include "code/beresneva-julia-lcd-digits"
+project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
+
+// Three dimensional shapes area calculation
+include "code/three-dimensional-shapes-area"
+project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
+
 // Kryukova Polina, caesar-cipher
 include "code/caesar-cipher"
 project(":code/caesar-cipher").name = "caesar-cipher"
-
