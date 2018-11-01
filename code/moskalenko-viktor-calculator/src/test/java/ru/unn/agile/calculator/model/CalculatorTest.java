@@ -171,4 +171,24 @@ public final class CalculatorTest {
 
         assertEquals(expected, result);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotAddWithInvalidArgument() {
+        String n1 = "10";
+        String n2 = "b1111";
+        Calculator.add(n1, n2, NumberSystem.OCTAL);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotMultyplyWithInvalidArgument() {
+        String n1 = "10";
+        String n2 = "b1111";
+        Calculator.multiply(n1, n2, NumberSystem.OCTAL);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotUnaryMinusInvalidArgument() {
+        String number = "10";
+        Calculator.unaryMinus(number, NumberSystem.OCTAL);
+    }
 }
