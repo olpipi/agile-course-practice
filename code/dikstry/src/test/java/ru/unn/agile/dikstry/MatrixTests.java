@@ -4,12 +4,15 @@ package ru.unn.agile.dikstry;
 import org.junit.Test;
 
 
+import java.util.LinkedList;
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class MatrixTests {
     private static final double DELTA = 0.01;
-
+    private static final int INF = Integer.MAX_VALUE;
 
     @Test
     public void canInitVertex() {
@@ -37,6 +40,75 @@ public class MatrixTests {
         Edge edge = new Edge(vertex1, vertex2, 1);
 
         assertEquals(1, edge.getWeight(), DELTA);
+    }
+
+    @Test
+    public void canWayAddWeight() {
+        Vertex vertex1 = new Vertex(1);
+        Vertex vertex2 = new Vertex(2);
+        List<Vertex> vertices = new LinkedList<>();
+        vertices.add(vertex1);
+        vertices.add(vertex2);
+        Edge edge = new Edge(vertex1, vertex2, 4);
+        Way way = new Way(vertices, 4);
+
+        way.addWeight(5);
+
+        assertEquals(9, way.getWeight());
+    }
+
+    @Test
+    public void canWayAddWeightToNewVertex() {
+        Vertex vertex1 = new Vertex(1);
+        Vertex vertex2 = new Vertex(2);
+        List<Vertex> vertices = new LinkedList<>();
+        vertices.add(vertex1);
+        vertices.add(vertex2);
+        Way way = new Way(vertices, INF);
+
+        way.addWeight(5);
+
+        assertEquals(5, way.getWeight());
+    }
+
+    @Test
+    public void canWayUpdateNewWeightToRightVertexRight() {
+        Vertex vertex1 = new Vertex(1);
+        Vertex vertex2 = new Vertex(2);
+        Vertex vertex3 = new Vertex(3);
+        List<Vertex> vertices1 = new LinkedList<>();
+        List<Vertex> vertices2 = new LinkedList<>();
+        vertices1.add(vertex1);
+        vertices1.add(vertex2);
+        vertices2.add(vertex2);
+        vertices2.add(vertex3);
+        Edge edge = new Edge(vertex1, vertex2, 1);
+        Way way = new Way(vertices1, 5);
+        Way way1 = new Way(vertices2, 7);
+
+        way.upDateWay(edge, way1);
+
+        assertEquals(6, way1.getWeight());
+    }
+
+    @Test
+    public void canWayUpdateOldWeightToRightVertexRight() {
+        Vertex vertex1 = new Vertex(1);
+        Vertex vertex2 = new Vertex(2);
+        Vertex vertex3 = new Vertex(3);
+        List<Vertex> vertices1 = new LinkedList<>();
+        List<Vertex> vertices2 = new LinkedList<>();
+        vertices1.add(vertex1);
+        vertices1.add(vertex2);
+        vertices2.add(vertex2);
+        vertices2.add(vertex3);
+        Edge edge = new Edge(vertex1, vertex2, 10);
+        Way way = new Way(vertices1, 5);
+        Way way1 = new Way(vertices2, 7);
+
+        way.upDateWay(edge, way1);
+
+        assertEquals(7, way1.getWeight());
     }
 
     @Test

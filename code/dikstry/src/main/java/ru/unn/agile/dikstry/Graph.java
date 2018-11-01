@@ -5,7 +5,6 @@ import java.util.*;
 public class Graph {
     private static final int INF = Integer.MAX_VALUE;
     private List<Edge> edges;
-    private int vertexesCount;
     private List<Way> ways;
 
     public Graph(final int[][] matrix) {
@@ -14,9 +13,13 @@ public class Graph {
         for (int i = 0; i < matrix.length; i++) {
             vertices.add(new Vertex(i));
         }
-        vertexesCount = vertices.size();
+        int vertexesCount = vertices.size();
         ways = new ArrayList<>(vertexesCount);
         edges = initEdges(matrix, vertices);
+        for (int i = 0; i < vertexesCount; i++) {
+            Way way = new Way(vertices, INF);
+            ways.add(way);
+        }
     }
 
     private List<Edge> initEdges(final int[][] matrix, final List<Vertex> vertices) {
@@ -52,11 +55,7 @@ public class Graph {
     }
 
     public int dijkstra(final Vertex startVertex, final Vertex endVertex) {
-        for (int i = 0; i < vertexesCount; i++) {
-            List<Vertex> vert = new ArrayList<>();
-            Way waytmp = new Way(vert, INF);
-            ways.add(waytmp);
-        }
+
         int startId = startVertex.getId();
         ways.get(startId).addVertex(startVertex);
         ways.get(startId).addWeight(0);
