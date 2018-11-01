@@ -11,10 +11,10 @@ public class GolovanovaTatyanaTest {
         ComplexNumber complexNumber1 = new ComplexNumber(1, 1);
         ComplexNumber complexNumber2 = new ComplexNumber(2, 2);
 
-        ComplexNumber expectedcomplexNumber = new ComplexNumber(3, 3);
+        ComplexNumber expectedComplexNumber = new ComplexNumber(3, 3);
         ComplexNumber addingComplexNumbers = complexNumber1.add(complexNumber2);
 
-        assertEquals(expectedcomplexNumber, addingComplexNumbers);
+        assertEquals(expectedComplexNumber, addingComplexNumbers);
     }
 
     @Test
