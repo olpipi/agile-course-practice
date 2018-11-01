@@ -6,6 +6,10 @@ project(":code/bevzuk-anton").name = "bevzuk-anton-Model"
 include "code/pozdiaev-valerii-currency-converter"
 project(":code/pozdiaev-valerii-currency-converter").name = "pozdiaev-valerii-currency-converter"
 
+// nickshevr
+include("code/nickshevr-numerical-integration")
+project(":code/nickshevr-numerical-integration").name = "nickshevr-numerical-integration"
+
 // Korniakov Kirill, lab1
 include "code/korniakov-kirill-lab1"
 project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
@@ -18,7 +22,6 @@ project(":code/dikstry").name = "dikstry-Model"
 include "code/prime-number"
 project(":code/prime-number").name = "prime-number-Model"
 
-
 // Marchenko Andrey
 include "code/marchenko-andrey-complex-number"
 project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-complex-number"
@@ -26,6 +29,11 @@ project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-comple
 // Andreev Vladilsav
 include "code/andreev-vlad-triangle"
 project(":code/andreev-vlad-triangle").name = "andreev-vlad-triangle-Model"
+
+
+// Zhiltsov Max, lab 1
+include "code/vector-distance"
+project(":code/vector-distance").name = "vector-distance-Model"
 
 
 // Korniakov Kirill, lab2-legacy
