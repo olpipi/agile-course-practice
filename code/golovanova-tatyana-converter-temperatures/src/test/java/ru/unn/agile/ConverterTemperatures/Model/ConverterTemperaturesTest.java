@@ -130,4 +130,15 @@ public class ConverterTemperaturesTest {
 
         assertEquals(expectedTempCelsius, calculatingTempCelsius, EPSILON);
     }
+
+    @Test
+    public void canConvert100FromNewton() {
+        ConverterTemperatures converter = new ConverterWithNewton();
+        double tempNewton = 100.0;
+        double expectedTempCelsius = 303.030303;
+
+        double calculatingTempCelsius = converter.convertToCelsius(tempNewton);
+
+        assertEquals(expectedTempCelsius, calculatingTempCelsius, EPSILON);
+    }
 }
