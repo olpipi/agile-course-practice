@@ -145,3 +145,7 @@ project(":code/fytov-aleksandr-frac-calc").name = "fytov-aleksandr-frac-calc"
 // 3D shapes volume
 include "code/shape-volume-calculator"
 project(":code/shape-volume-calculator").name = "shape-volume-calculator"
+
+// Rumiantseva Maria, Quadratic Equation Solver
+include "code/rumiantseva-maria-quadratic-equation-solver"
+project(":code/rumiantseva-maria-quadratic-equation-solver").name = "rumiantseva-maria-quadratic-equation-solver"
