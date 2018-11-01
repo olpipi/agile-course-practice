@@ -2,7 +2,7 @@ package ru.unn.agile.ConverterTemperatures.Model;
 
 import org.junit.Test;
 import ru.unn.agile.ConverterTemperatures.model.ConverterTemperatures;
-import ru.unn.agile.ConverterTemperatures.model.ConverterToFahrenheit;
+import ru.unn.agile.ConverterTemperatures.model.ConverterWithFahrenheit;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,23 +11,34 @@ public class ConverterTemperaturesTest {
 
     @Test
     public void canConvertZeroToFahrenheit() {
-        ConverterTemperatures converter = new ConverterToFahrenheit();
+        ConverterTemperatures converter = new ConverterWithFahrenheit();
         double tempCelsius = 0.0;
         double expectedTempFahrenheit = 32.0;
 
-        double calculatingTempFahrenheit = converter.convert(tempCelsius);
+        double calculatingTempFahrenheit = converter.convertTo(tempCelsius);
 
         assertEquals(expectedTempFahrenheit, calculatingTempFahrenheit, EPSILON);
     }
 
     @Test
     public void canConvert_100_ToFahrenheit() {
-        ConverterTemperatures converter = new ConverterToFahrenheit();
+        ConverterTemperatures converter = new ConverterWithFahrenheit();
         double tempCelsius = 100.0;
         double expectedTempFahrenheit = 212.0;
 
-        double calculatingTempFahrenheit = converter.convert(tempCelsius);
+        double calculatingTempFahrenheit = converter.convertTo(tempCelsius);
 
         assertEquals(expectedTempFahrenheit, calculatingTempFahrenheit, EPSILON);
+    }
+
+    @Test
+    public void canConvertZeroFromFahrenheit() {
+        ConverterTemperatures converter = new ConverterWithFahrenheit();
+        double tempFahrenheit = 0.0;
+        double expectedTempCelsius = -17.777778;
+
+        double calculatingTempCelsius = converter.convertFromCelsius(tempFahrenheit);
+
+        assertEquals(expectedTempCelsius, calculatingTempCelsius, EPSILON);
     }
 }
