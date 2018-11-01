@@ -172,7 +172,7 @@ public class BitArrayTests {
     public void canInitializeWithZero() {
         BitArray bitArray = new BitArray(0);
 
-        assertTrue(bitArray.size() == 0);
+        assertEquals(0, bitArray.size());
     }
 
     @Test(expected = IllegalArgumentException.class)

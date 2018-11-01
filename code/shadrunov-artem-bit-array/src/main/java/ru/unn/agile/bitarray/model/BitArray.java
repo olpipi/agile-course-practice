@@ -3,6 +3,7 @@ package ru.unn.agile.bitarray.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BitArray {
 
@@ -89,12 +90,10 @@ public class BitArray {
 
     @Override
     public String toString() {
-        String stringBitArray = "";
-        for (Integer i : bits) {
-            stringBitArray += i.toString();
-        }
-
-        return stringBitArray;
+        return bits
+                .stream()
+                .map(e -> e.toString())
+                .collect(Collectors.joining(""));
     }
 
     public boolean isEqual(final BitArray other) {
