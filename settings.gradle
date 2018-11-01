@@ -2,6 +2,10 @@
 include "code/bevzuk-anton"
 project(":code/bevzuk-anton").name = "bevzuk-anton-Model"
 
+//Oleneva Maria
+include "code/oleneva-intersect-line-and-plane"
+project(":code/oleneva-intersect-line-and-plane").name = "code/oleneva-intersect-line-and-plane"
+
 // Pozdiaev Valerii
 include "code/pozdiaev-valerii-currency-converter"
 project(":code/pozdiaev-valerii-currency-converter").name = "pozdiaev-valerii-currency-converter"
@@ -14,6 +18,10 @@ project(":code/nickshevr-numerical-integration").name = "nickshevr-numerical-int
 include "code/korniakov-kirill-lab1"
 project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
 
+// Anikina Olga
+include "code/dikstry"
+project(":code/dikstry").name = "dikstry-Model"
+
 // Ivanova Olga, lab1
 include "code/prime-number"
 project(":code/prime-number").name = "prime-number-Model"
@@ -25,6 +33,10 @@ project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-comple
 // Andreev Vladilsav
 include "code/andreev-vlad-triangle"
 project(":code/andreev-vlad-triangle").name = "andreev-vlad-triangle-Model"
+
+// Moiseev Nikita, lab 1
+include "code/abstract-set"
+project(":code/abstract-set").name = "abstract-set-Model"
 
 // Zhiltsov Max, lab 1
 include "code/vector-distance"
@@ -94,13 +106,29 @@ project(":code/chekodaev-oleg-roman-number-converter").name = "chekodaev-oleg-ro
 include "code/kochuev-andrey-length-converter"
 project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-converter"
 
-// Beresneva Julia, LCD Digits
+// Beresneva Julia, LCD Digits 
 include "code/beresneva-julia-lcd-digits"
 project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
 
-// Three dimensional shapes area calculation
+// Gladkova Tatiana, Binary Search 
+include "code/gladkova-tatiana-binary-search"
+project(":code/gladkova-tatiana-binary-search").name = "gladkova-tatiana-binary-search"
+
+// Three dimensional shapes area calculation 
 include "code/three-dimensional-shapes-area"
 project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
+
+// Podolov Kirill, Queue
+include "code/queue"
+project(":code/queue").name = "queue-Model"
+
+// Flegontov Alexander, math-statistics
+include "code/math-statistics"
+project(":code/math-statistics").name = "math-statistics"
+
+// Fytov Aleksandr, Fraction calculator
+include "code/fytov-aleksandr-frac-calc"
+project(":code/fytov-aleksandr-frac-calc").name = "fytov-aleksandr-frac-calc"
 
 // Rumiantseva Maria, Quadratic Equation Solver
 include "code/rumiantseva-maria-quadratic-equation-solver"
