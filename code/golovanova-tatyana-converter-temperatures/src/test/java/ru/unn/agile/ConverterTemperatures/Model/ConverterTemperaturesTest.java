@@ -3,7 +3,7 @@ package ru.unn.agile.ConverterTemperatures.Model;
 import org.junit.Test;
 import ru.unn.agile.ConverterTemperatures.model.ConverterTemperatures;
 import ru.unn.agile.ConverterTemperatures.model.ConverterWithFahrenheit;
-
+import ru.unn.agile.ConverterTemperatures.model.ConverterWithKelvin;
 import static org.junit.Assert.assertEquals;
 
 public class ConverterTemperaturesTest {
@@ -51,6 +51,17 @@ public class ConverterTemperaturesTest {
         double calculatingTempCelsius = converter.convertFromCelsius(tempFahrenheit);
 
         assertEquals(expectedTempCelsius, calculatingTempCelsius, EPSILON);
+    }
+
+    @Test
+    public void canConvertZeroToKelvin() {
+        ConverterTemperatures converter = new ConverterWithKelvin();
+        double tempCelsius = 0.0;
+        double expectedTempKelvin = 273.15;
+
+        double calculatingTempKelvin = converter.convertTo(tempCelsius);
+
+        assertEquals(expectedTempKelvin, calculatingTempKelvin, EPSILON);
     }
 
 
