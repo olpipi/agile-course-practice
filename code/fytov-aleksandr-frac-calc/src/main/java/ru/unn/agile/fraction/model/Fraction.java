@@ -1,5 +1,7 @@
 package ru.unn.agile.fraction.model;
 
+import java.util.Objects;
+
 public class Fraction {
     private int num;
     private int denom;
@@ -28,5 +30,17 @@ this.denom = denominator;
 	@Override
     public String toString() {
         return String.format("%d/%d", num, denom);
+    }
+	
+	@Override
+    public boolean equals(final Object object) {
+        Fraction number = (Fraction) object;
+        return number.getNumerator() == getNumerator()
+                && number.getDenominator() == getDenominator();
+    }
+
+@Override
+    public int hashCode() {
+        return Objects.hash(num, denom);
     }
 }
