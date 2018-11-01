@@ -21,7 +21,7 @@ public class ConverterTemperaturesTest {
     }
 
     @Test
-    public void canConvert_100_ToFahrenheit() {
+    public void canConvert100ToFahrenheit() {
         ConverterTemperatures converter = new ConverterWithFahrenheit();
         double tempCelsius = 100.0;
         double expectedTempFahrenheit = 212.0;
@@ -30,7 +30,6 @@ public class ConverterTemperaturesTest {
 
         assertEquals(expectedTempFahrenheit, calculatingTempFahrenheit, EPSILON);
     }
-
 
     @Test
     public void canConvertZeroFromFahrenheit() {
@@ -44,7 +43,7 @@ public class ConverterTemperaturesTest {
     }
 
     @Test
-    public void canConvert_100_FromFahrenheit() {
+    public void canConvert100FromFahrenheit() {
         ConverterTemperatures converter = new ConverterWithFahrenheit();
         double tempFahrenheit = 100.0;
         double expectedTempCelsius = 37.777778;
@@ -53,4 +52,6 @@ public class ConverterTemperaturesTest {
 
         assertEquals(expectedTempCelsius, calculatingTempCelsius, EPSILON);
     }
+
+
 }
