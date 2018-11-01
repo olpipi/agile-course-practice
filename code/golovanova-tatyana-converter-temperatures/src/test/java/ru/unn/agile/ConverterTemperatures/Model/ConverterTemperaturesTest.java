@@ -4,6 +4,7 @@ import org.junit.Test;
 import ru.unn.agile.ConverterTemperatures.model.ConverterTemperatures;
 import ru.unn.agile.ConverterTemperatures.model.ConverterWithFahrenheit;
 import ru.unn.agile.ConverterTemperatures.model.ConverterWithKelvin;
+import ru.unn.agile.ConverterTemperatures.model.ConverterWithNewton;
 import static org.junit.Assert.assertEquals;
 
 public class ConverterTemperaturesTest {
@@ -85,6 +86,7 @@ public class ConverterTemperaturesTest {
 
         assertEquals(expectedTempCelsius, calculatingTempCelsius, EPSILON);
     }
+
     @Test
     public void canConvert100FromKelvin() {
         ConverterTemperatures converter = new ConverterWithKelvin();
@@ -94,5 +96,16 @@ public class ConverterTemperaturesTest {
         double calculatingTempCelsius = converter.convertToCelsius(tempKelvin);
 
         assertEquals(expectedTempCelsius, calculatingTempCelsius, EPSILON);
+    }
+
+    @Test
+    public void canConvertZeroToNewton() {
+        ConverterTemperatures converter = new ConverterWithNewton();
+        double tempCelsius = 0.0;
+        double expectedTempKelvin = 0.0;
+
+        double calculatingTempKelvin = converter.convertFromCelsius(tempCelsius);
+
+        assertEquals(expectedTempKelvin, calculatingTempKelvin, EPSILON);
     }
 }
