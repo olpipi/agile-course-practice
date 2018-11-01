@@ -4,28 +4,29 @@ public final class Calculator {
 
     private static final String INVALID_ARGUMENTS = "Invalid arguments";
 
-    public static String add(String n1, String n2, NumberSystem outputFormat) {
-        Integer value1 = NumberConverter.tryParse(n1);
-        Integer value2 = NumberConverter.tryParse(n2);
-        if ((value1 == null) || (value2 == null)) {
+    public static String add(final String n1, final String n2, final NumberSystem outputFormat) {
+        final Integer firstAddArgument = NumberConverter.tryParse(n1);
+        final Integer secondAddArgument = NumberConverter.tryParse(n2);
+        if ((firstAddArgument == null) || (secondAddArgument == null)) {
             throw new IllegalArgumentException(INVALID_ARGUMENTS);
         }
-        int result = value1 + value2;
+        int result = firstAddArgument + secondAddArgument;
         return NumberConverter.convert(result, outputFormat);
     }
 
-    public static String multiply(String n1, String n2, NumberSystem outputFormat) {
-        Integer value1 = NumberConverter.tryParse(n1);
-        Integer value2 = NumberConverter.tryParse(n2);
-        if ((value1 == null) || (value2 == null)) {
+    public static String multiply(final String n1, final String n2,
+                                  final NumberSystem outputFormat) {
+        final Integer firstMulArgument = NumberConverter.tryParse(n2);
+        final Integer secondMulArgument = NumberConverter.tryParse(n1);
+        if ((firstMulArgument == null) || (secondMulArgument == null)) {
             throw new IllegalArgumentException(INVALID_ARGUMENTS);
         }
-        int result = value1 * value2;
+        int result = firstMulArgument * secondMulArgument;
         return NumberConverter.convert(result, outputFormat);
     }
 
-    public static String unaryMinus(String number, NumberSystem outputFormat) {
-        Integer value = NumberConverter.tryParse(number);
+    public static String unaryMinus(final String number, final NumberSystem outputFormat) {
+        final Integer value = NumberConverter.tryParse(number);
         if (value == null) {
             throw new IllegalArgumentException(INVALID_ARGUMENTS);
         }

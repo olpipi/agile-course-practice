@@ -1,6 +1,5 @@
 package ru.unn.agile.calculator.model;
 
-import java.lang.Integer;
 import java.util.*;
 
 public final class NumberConverter {
@@ -8,55 +7,57 @@ public final class NumberConverter {
     private static final String UNKNOWN_NUMBER_LENGTH = "Unknown number length";
     private static final String UNKNOWN_NUMBER_SYSTEM = "Unknown number system";
     private static final Map<Character, Integer> LETTER_TO_SYSTEM;
+    private static final int BINARY_SYSTEM = 2;
+    private static final int OCTAL_SYSTEM = 8;
+    private static final int HEXADECIMAL_SYSTEM = 16;
+
     static {
         Map<Character, Integer> map = new TreeMap<>();
-        map.put('b', 2);
-        map.put('o', 8);
-        map.put('x', 16);
+        map.put('b', BINARY_SYSTEM);
+        map.put('o', OCTAL_SYSTEM);
+        map.put('x', HEXADECIMAL_SYSTEM);
         LETTER_TO_SYSTEM = Collections.unmodifiableMap(map);
     }
 
-    public static int parse(final String number)
-    {
+    public static int parse(final String number) {
         if (number.length() < 2) {
             throw new IllegalArgumentException(UNKNOWN_NUMBER_LENGTH);
         }
-        char letter_system = number.charAt(0);
-        if (!LETTER_TO_SYSTEM.containsKey(letter_system)) {
+        final char letterSystem = number.charAt(0);
+        if (!LETTER_TO_SYSTEM.containsKey(letterSystem)) {
             throw new IllegalArgumentException(UNKNOWN_NUMBER_SYSTEM);
         }
-        return Integer.parseInt(number.substring(1), LETTER_TO_SYSTEM.get(letter_system));
+        return Integer.parseInt(number.substring(1), LETTER_TO_SYSTEM.get(letterSystem));
     }
 
     public static Integer tryParse(final String number) {
         try {
             return parse(number);
-        }
-        catch(Exception ex) {
+        } catch (Exception ex) {
             return null;
         }
     }
 
-    public static String convert(int number, NumberSystem system) {
-        boolean is_negative = number < 0;
-        number = Math.abs(number);
+    public static String convert(final int number, final NumberSystem system) {
+        final boolean isNegative = number < 0;
+        final int numberModule = Math.abs(number);
         String result;
 
         switch (system) {
             case BINARY:
-                result = "b" + Integer.toBinaryString(number);
+                result = "b" + Integer.toBinaryString(numberModule);
                 break;
             case OCTAL:
-                result = "o" + Integer.toOctalString(number);
+                result = "o" + Integer.toOctalString(numberModule);
                 break;
             case HEXADECIMAL:
-                result = "x" + Integer.toHexString(number);
+                result = "x" + Integer.toHexString(numberModule);
                 break;
             default:
                 throw new IllegalArgumentException(UNKNOWN_NUMBER_SYSTEM);
         }
 
-        if (is_negative) {
+        if (isNegative) {
             result = result.substring(0, 1) + "-" + result.substring(1);
         }
         return result;
