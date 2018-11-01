@@ -87,4 +87,19 @@ public final class QueueTest {
 
         assertEquals(expectedElement, q.getTail());
     }
+
+    @Test
+    public void isQueueSupportedFIFOPrinciple() {
+        Queue<Integer> q = new Queue<>();
+        Integer firstExpectedElement = 1;
+        Integer secondExpectedElement = 2;
+        q.push(firstExpectedElement);
+        q.push(secondExpectedElement);
+
+        Integer firstActualElement = q.pop();
+        Integer secondActualElement = q.pop();
+
+        assertEquals(firstExpectedElement, firstActualElement);
+        assertEquals(secondExpectedElement, secondActualElement);
+    }
 }
