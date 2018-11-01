@@ -109,3 +109,7 @@ project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-
 // Podolov Kirill, Queue
 include "code/queue"
 project(":code/queue").name = "queue-Model"
+
+// Flegontov Alexander, math-statistics
+include "code/math-statistics"
+project(":code/math-statistics").name = "math-statistics"
