@@ -101,3 +101,7 @@ project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-M
 // Three dimensional shapes area calculation
 include "code/three-dimensional-shapes-area"
 project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
+
+// Rumiantseva Maria, Quadratic Equation Solver
+include "code/rumiantseva-maria-quadratic-equation-solver"
+project(":code/rumiantseva-maria-quadratic-equation-solver").name = "rumiantseva-maria-quadratic-equation-solver"
