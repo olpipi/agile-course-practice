@@ -24,7 +24,8 @@ public final class Plane {
     public Point countNormalToPlane() {
         Point pointTmp1 = this.pointB.createVector(this.pointA);
         Point pointTmp2 = this.pointC.createVector(this.pointA);
-        return (pointTmp1.vectorProduct(pointTmp2)).normalizePoint();
+        Point pointTmp = pointTmp1.vectorProduct(pointTmp2);
+        return pointTmp.normalizePoint();
     }
 
     public double countToNormalDistance(final Line lineL) {

@@ -12,29 +12,41 @@ public class IntersectTest {
 
     @Test
     public void canGetPointX() {
+        //Arrange
         Point pointA = new Point(1, 2, 3);
+
+        //Act&Assert
         assertEquals(1, pointA.getX(), delta);
     }
 
     @Test
     public void canGetPointY() {
+        //Arrange
         Point pointA = new Point(1, 2, 3);
+
+        //Act&Assert
         assertEquals(2, pointA.getY(), delta);
     }
 
     @Test
     public void canGetPointZ() {
+        //Arrange
         Point pointA = new Point(1, 2, 3);
+
+        //Act&Assert
         assertEquals(3, pointA.getZ(), delta);
     }
 
     @Test
     public void canGetLineX() {
+        //Arrange
         Point pointX = new Point(1, 2, 3);
         Point pointY = new Point(1, 2, 15);
 
+        //Act
         Line lineL = new Line(pointX, pointY);
 
+        //Assert
         assertEquals(pointX.getX(), lineL.getX().getX(), delta);
         assertEquals(pointX.getY(), lineL.getX().getY(), delta);
         assertEquals(pointX.getZ(), lineL.getX().getZ(), delta);
@@ -42,11 +54,14 @@ public class IntersectTest {
 
     @Test
     public void canGetLineY() {
+        //Arrange
         Point pointX = new Point(1, 2, 3);
         Point pointY = new Point(1, 2, 15);
 
+        //Act
         Line lineL = new Line(pointX, pointY);
 
+        //Assert
         assertEquals(pointY.getX(), lineL.getY().getX(), delta);
         assertEquals(pointY.getY(), lineL.getY().getY(), delta);
         assertEquals(pointY.getZ(), lineL.getY().getZ(), delta);
@@ -54,12 +69,15 @@ public class IntersectTest {
 
     @Test
     public void canGetPlaneA() {
+        //Arrange
         Point pointA = new Point(15, 4, 21);
         Point pointB = new Point(5, -5, 6);
         Point pointC = new Point(4, 2, -15);
 
+        //Act
         Plane planeP = new Plane(pointA, pointB, pointC);
 
+        //Assert
         assertEquals(pointA.getX(), planeP.getA().getX(), delta);
         assertEquals(pointA.getY(), planeP.getA().getY(), delta);
         assertEquals(pointA.getZ(), planeP.getA().getZ(), delta);
@@ -67,12 +85,15 @@ public class IntersectTest {
 
     @Test
     public void canGetPlaneB() {
+        //Arrange
         Point pointA = new Point(54, 5, 1);
         Point pointB = new Point(23, 2, 9);
         Point pointC = new Point(-45, 2, 15);
 
+        //Act
         Plane planeP = new Plane(pointA, pointB, pointC);
 
+        //Assert
         assertEquals(pointB.getX(), planeP.getB().getX(), delta);
         assertEquals(pointB.getY(), planeP.getB().getY(), delta);
         assertEquals(pointB.getZ(), planeP.getB().getZ(), delta);
@@ -80,12 +101,15 @@ public class IntersectTest {
 
     @Test
     public void canGetPlaneC() {
+        //Arrange
         Point pointA = new Point(1, 7, 0);
         Point pointB = new Point(15, 2, 9);
         Point pointC = new Point(2, 3, 15);
 
+        //Act
         Plane planeP = new Plane(pointA, pointB, pointC);
 
+        //Assert
         assertEquals(pointC.getX(), planeP.getC().getX(), delta);
         assertEquals(pointC.getY(), planeP.getC().getY(), delta);
         assertEquals(pointC.getZ(), planeP.getC().getZ(), delta);
@@ -93,11 +117,14 @@ public class IntersectTest {
 
     @Test
     public void canCreatVector() {
+        //Arrange
         Point pointA = new Point(1, 0, 0);
         Point pointB = new Point(0, 2, 0);
 
+        //Act
         Point vectorV = pointA.createVector(pointB);
 
+        //Assert
         assertEquals(vectorV.getX(), 1, delta);
         assertEquals(vectorV.getY(), -2, delta);
         assertEquals(vectorV.getZ(), 0, delta);
@@ -105,11 +132,14 @@ public class IntersectTest {
 
     @Test
     public void canVectorProduct() {
+        //Arrange
         Point pointA = new Point(1, 2, 1);
         Point pointB = new Point(2, 0, 1);
 
+        //Act
         Point vectorProduct = pointA.vectorProduct(pointB);
 
+        //Assert
         assertEquals(vectorProduct.getX(), 2, delta);
         assertEquals(vectorProduct.getY(), 1, delta);
         assertEquals(vectorProduct.getZ(), -4, delta);
@@ -118,20 +148,26 @@ public class IntersectTest {
 
     @Test
     public void canScalarProduct() {
+        //Arrange
         Point pointA = new Point(1, 5, 26);
         Point pointB = new Point(2, -1, 0);
 
+        //Act
         double scalarProduct = pointA.scalarProduct(pointB);
 
+        //Assert
         assertEquals(scalarProduct, -3, delta);
     }
 
     @Test
     public void canNormalizeVector() {
+        //Arrange
         Point pointB = new Point(3, 4, 0);
 
+        //Act
         Point normalPointB = pointB.normalizePoint();
 
+        //Assert
         assertEquals(normalPointB.getX(), 0.6, delta);
         assertEquals(normalPointB.getY(), 0.8, delta);
         assertEquals(normalPointB.getZ(), 0, delta);
@@ -139,14 +175,17 @@ public class IntersectTest {
 
     @Test
     public void canCountNormalToPlane() {
+        //Arrange
         Point pointA = new Point(1, 1, 1);
         Point pointB = new Point(0, 2, 0);
         Point pointC = new Point(0, 1, 0);
 
         Plane planeP = new Plane(pointA, pointB, pointC);
 
+        //Act
         Point normalN = planeP.countNormalToPlane();
 
+        //Assert
         assertEquals(normalN.getX(), -0.707106781188095, delta);
         assertEquals(normalN.getY(), 0, delta);
         assertEquals(normalN.getZ(), 0.707106781188095, delta);
@@ -155,6 +194,7 @@ public class IntersectTest {
 
     @Test
     public void canCountToNormalDistance() {
+        //Arrange
         Point pointA = new Point(1, 0, 1);
         Point pointB = new Point(34, 2, 0);
         Point pointC = new Point(50, -31, 0);
@@ -166,8 +206,10 @@ public class IntersectTest {
 
         Plane planeP = new Plane(pointA, pointB, pointC);
 
+        //Act
         double distance = planeP.countToNormalDistance(lineL);
 
+        //Assert
         assertEquals(distance, -1.0137306107981, delta);
     }
 
@@ -185,10 +227,10 @@ public class IntersectTest {
 
         Plane planeP = new Plane(pointA, pointB, pointC);
 
-        //Assert
+        //Act
         LineIntersectPlane check = new LineIntersectPlane(planeP, lineL);
 
-        //Act
+        //Assert
         assertEquals(true, check.checkIntersection());
     }
 
@@ -206,10 +248,10 @@ public class IntersectTest {
 
         Plane planeP = new Plane(pointA, pointB, pointC);
 
-        //Assert
+        //Act
         LineIntersectPlane check = new LineIntersectPlane(planeP, lineL);
 
-        //Act
+        //Assert
         assertEquals(false, check.checkIntersection());
     }
 
@@ -227,15 +269,16 @@ public class IntersectTest {
 
         Plane planeP = new Plane(pointA, pointB, pointC);
 
-        //Assert
+        //Act
         LineIntersectPlane check = new LineIntersectPlane(planeP, lineL);
 
-        //Act
+        //Assert
         assertEquals(true, check.checkIntersection());
     }
 
     @Test
     public void canLineIntersectPlaneWithRandomPoint() {
+        //Arrange
         Point pointA = new Point(1, 0, 1);
         Point pointB = new Point(0, 2, 0);
         Point pointC = new Point(0, 1, 0);
@@ -247,8 +290,10 @@ public class IntersectTest {
 
         Plane planeP = new Plane(pointA, pointB, pointC);
 
+        //Act
         LineIntersectPlane check = new LineIntersectPlane(planeP, lineL);
 
+        //Assert
         assertEquals(true, check.checkIntersection());
     }
 }
