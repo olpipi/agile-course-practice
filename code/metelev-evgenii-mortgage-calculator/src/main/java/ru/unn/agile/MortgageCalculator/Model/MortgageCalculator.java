@@ -1,6 +1,11 @@
 package ru.unn.agile.MortgageCalculator.Model;
 
 public class MortgageCalculator {
+    private static final String
+            FULL_PRICE_IS_NULL =  "Полная стоимость меньше или равна нулю";
+    private static final String INITIAL_PAYMENT_IS_NULL =
+            "Первоначальный взнос больше полной стоимости или меньше нуля";
+    private static final String INTEREST_RATE_IS_NULL = "Процент меньше нуля или больше ста";
     private double fullCostOfApartment;
     private double initialPayment = 0;
     private int dateOfMortgage = MONTHS_IN_YEAR;
@@ -16,7 +21,7 @@ public class MortgageCalculator {
         if (sum > 0) {
             fullCostOfApartment = sum;
         } else {
-            fullCostOfApartment = -1;
+            throw new NullPointerException(FULL_PRICE_IS_NULL);
         }
     }
 
@@ -28,7 +33,8 @@ public class MortgageCalculator {
         if (firstPayment >= 0 && firstPayment <= fullCostOfApartment) {
             initialPayment = firstPayment;
         } else {
-            initialPayment = -1;
+            throw new
+                    NullPointerException(INITIAL_PAYMENT_IS_NULL);
         }
     }
 
@@ -40,7 +46,7 @@ public class MortgageCalculator {
         if (date > 0) {
             dateOfMortgage = date;
         } else {
-            dateOfMortgage = -1;
+            throw new NullPointerException("Дата меньше нуля");
         }
     }
 
@@ -49,9 +55,10 @@ public class MortgageCalculator {
     }
 
     public void setInterestRate(final double percent) {
-        interestRate = -1;
         if (percent >= 0 && percent <= HUNDRED) {
             interestRate = percent;
+        } else {
+            throw new NullPointerException(INTEREST_RATE_IS_NULL);
         }
     }
 

@@ -6,7 +6,6 @@ import static org.junit.Assert.*;
 public class MortgageCalculatorTest {
 
     private static final double  EPSILON = 0.1;
-    private static final int IS_NOT_CORRECT_NUM = -1;
 
     @Test
     public void checkThatFullCostOfApartmentCorrectInitialized() {
@@ -17,22 +16,20 @@ public class MortgageCalculatorTest {
         assertEquals(100000.12, myMortgageCalculator.getFullCostOfApartment(), EPSILON);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void checkIfFullCostOfApartmentIsZero() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
 
         myMortgageCalculator.setFullCostOfApartment(0);
 
-        assertEquals(IS_NOT_CORRECT_NUM, myMortgageCalculator.getFullCostOfApartment(), EPSILON);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void checkIfFullCostOfApartmentIsNegative() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
 
         myMortgageCalculator.setFullCostOfApartment(-300);
 
-        assertEquals(IS_NOT_CORRECT_NUM, myMortgageCalculator.getFullCostOfApartment(), EPSILON);
     }
 
     @Test
@@ -54,23 +51,21 @@ public class MortgageCalculatorTest {
         assertEquals(0, myMortgageCalculator.getInitialPayment(), EPSILON);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void checkInitialPaymentIsNegative() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
 
         myMortgageCalculator.setInitialPayment(-10000);
 
-        assertEquals(IS_NOT_CORRECT_NUM, myMortgageCalculator.getInitialPayment(), EPSILON);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void checkInitialPaymentIsMoreThenFullCost() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
 
         myMortgageCalculator.setFullCostOfApartment(100000);
         myMortgageCalculator.setInitialPayment(100001);
 
-        assertEquals(IS_NOT_CORRECT_NUM, myMortgageCalculator.getInitialPayment(), EPSILON);
     }
 
     @Test
@@ -82,22 +77,20 @@ public class MortgageCalculatorTest {
         assertEquals(10, myMortgageCalculator.getDateOfMortgage());
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void checkDateOfMortgageInMonthsIsNegative() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
 
         myMortgageCalculator.setDateOfMortgage(-2);
 
-        assertEquals(IS_NOT_CORRECT_NUM, myMortgageCalculator.getDateOfMortgage());
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void checkDateOfMortgageInMonthsIsZero() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
 
         myMortgageCalculator.setDateOfMortgage(0);
 
-        assertEquals(IS_NOT_CORRECT_NUM, myMortgageCalculator.getDateOfMortgage());
     }
 
     @Test
@@ -109,13 +102,12 @@ public class MortgageCalculatorTest {
         assertEquals(50.0, myMortgageCalculator.getInterestRate(), EPSILON);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void checkInterestRateIsNegative() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
 
         myMortgageCalculator.setInterestRate(-50.0);
 
-        assertEquals(IS_NOT_CORRECT_NUM, myMortgageCalculator.getInterestRate(), EPSILON);
     }
 
     @Test
