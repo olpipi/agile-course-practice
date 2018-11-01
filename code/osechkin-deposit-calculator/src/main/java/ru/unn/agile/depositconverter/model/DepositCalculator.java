@@ -1,7 +1,5 @@
 package ru.unn.agile.depositconverter.model;
 
-import java.text.ParseException;
-
 public class DepositCalculator {
     static final double DEFAULT_DEPOSIT = 700000;
     static final int DEFAULT_TERM_PLACMENT = 12;
@@ -13,7 +11,6 @@ public class DepositCalculator {
     private double depositAmount;
     private int termPlacementInMonths;
     private double income;
-    private DateTime startDate;
     private double interestRate;
     private AccruedInterest accruedInterest;
     private FrequencyOfCapitalization frequencyOfCapitalization;
@@ -22,7 +19,6 @@ public class DepositCalculator {
         this.depositAmount = DEFAULT_DEPOSIT;
         this.termPlacementInMonths = DEFAULT_TERM_PLACMENT;
         this.income = DEFAULT_INCOME;
-        this.startDate = new DateTime();
         this.interestRate = DEFAULT_INTEREST_RATE;
         this.accruedInterest = AccruedInterest.addToDeposit;
         this.frequencyOfCapitalization = FrequencyOfCapitalization.onceMonth;
@@ -48,14 +44,6 @@ public class DepositCalculator {
 
     public int getTermPlacementInMonths() {
         return this.termPlacementInMonths;
-    }
-
-    public void setStartDate(final String date) throws ParseException {
-        this.startDate = new DateTime(date);
-    }
-
-    public String getStartDate() {
-        return this.startDate.toString();
     }
 
     public double getInterestRate() {
@@ -86,7 +74,7 @@ public class DepositCalculator {
     }
 
     private void calculationCapitalization(final double gain, final int term) {
-        if (FrequencyOfCapitalization.useCharges(this.frequencyOfCapitalization, term)) {
+        if (this.frequencyOfCapitalization.useCharges(term)) {
             this.income = gain;
         } else if (term == this.termPlacementInMonths) {
             this.income = gain;

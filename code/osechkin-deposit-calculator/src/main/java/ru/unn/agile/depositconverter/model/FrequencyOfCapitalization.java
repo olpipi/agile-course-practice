@@ -1,25 +1,17 @@
 package ru.unn.agile.depositconverter.model;
 
 public enum FrequencyOfCapitalization {
-    onceMonth,
-    onceTwoMonth,
-    quarterly,
-    halfYear;
-    private static final int DEFAULT_TWO_MONTH = 2;
-    private static final int DEFAULT_QUARTERLY = 3;
-    private static final int DEFAULT_HALF_YEAR = 6;
+    onceMonth(1),
+    onceTwoMonth(2),
+    quarterly(3),
+    halfYear(6);
+    private int month;
 
-    public static boolean useCharges(final FrequencyOfCapitalization frequencyCapital,
-                                     final int term) {
-        if (frequencyCapital == FrequencyOfCapitalization.onceTwoMonth) {
-            return (term % DEFAULT_TWO_MONTH == 0);
-        } else if (frequencyCapital == FrequencyOfCapitalization.quarterly) {
-            return (term % DEFAULT_QUARTERLY == 0);
-        } else if (frequencyCapital == FrequencyOfCapitalization.halfYear) {
-            return (term % DEFAULT_HALF_YEAR == 0);
-        } else {
-            return true;
-        }
+    FrequencyOfCapitalization(final int month) {
+        this.month = month;
+    }
 
+    public boolean useCharges(final int term) {
+        return term % this.month == 0;
     }
 }

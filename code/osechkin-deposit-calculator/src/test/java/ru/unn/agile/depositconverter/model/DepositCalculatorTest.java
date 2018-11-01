@@ -2,8 +2,6 @@ package ru.unn.agile.depositconverter.model;
 
 import org.junit.Test;
 
-import java.text.ParseException;
-
 import static org.junit.Assert.*;
 
 
@@ -50,49 +48,6 @@ public class DepositCalculatorTest {
 
         // Act & Assert
         depositCalculator.setTermPlacementInMonths(-5);
-    }
-
-    @Test
-    public void canCreateDateTime() throws ParseException {
-        // Arrange & Act & Assert
-        DateTime dTime = new DateTime("02.02.2018");
-    }
-
-    @Test(expected = ParseException.class)
-    public void cannotCreateDateTime() throws ParseException {
-        // Arrange & Act & Assert
-        DateTime dTime = new DateTime("36.02.2018");
-    }
-
-    @Test
-    public void canDateTimeConvertToString() throws ParseException {
-        // Arrange
-        DateTime dTime = new DateTime("06.02.2018");
-
-        // Act
-        String strTime = dTime.toString();
-
-        // Assert
-        assertEquals("06.02.2018", strTime);
-    }
-
-    @Test
-    public void canSetStartDate() throws ParseException {
-        DateTime dateTime = new DateTime("06.02.2018");
-
-        assertNotNull(dateTime);
-    }
-
-    @Test
-    public void canGetStartDate() throws ParseException {
-        // Arrange
-        DepositCalculator depositCalculator = new DepositCalculator();
-
-        // Act
-        depositCalculator.setStartDate("06.02.2018");
-
-        //Assert
-        assertEquals("06.02.2018", depositCalculator.getStartDate());
     }
 
     @Test(expected = NumberFormatException.class)
@@ -259,7 +214,7 @@ public class DepositCalculatorTest {
     public void canUseChargesWhenOneMonth() {
         FrequencyOfCapitalization freqCapital = FrequencyOfCapitalization.onceMonth;
 
-        boolean charges = FrequencyOfCapitalization.useCharges(freqCapital, 1);
+        boolean charges = freqCapital.useCharges(1);
 
         assertTrue(charges);
     }
@@ -268,7 +223,7 @@ public class DepositCalculatorTest {
     public void canUseChargesWhenTwoMonth() {
         FrequencyOfCapitalization freqCapital = FrequencyOfCapitalization.onceTwoMonth;
 
-        boolean charges = FrequencyOfCapitalization.useCharges(freqCapital, 2);
+        boolean charges = freqCapital.useCharges(2);
 
         assertTrue(charges);
     }
@@ -277,7 +232,7 @@ public class DepositCalculatorTest {
     public void cannotUseCharges() {
         FrequencyOfCapitalization freqCapital = FrequencyOfCapitalization.quarterly;
 
-        boolean charges = FrequencyOfCapitalization.useCharges(freqCapital, 2);
+        boolean charges = freqCapital.useCharges(2);
 
         assertFalse(charges);
     }
