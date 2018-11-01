@@ -18,6 +18,10 @@ project(":code/nickshevr-numerical-integration").name = "nickshevr-numerical-int
 include "code/korniakov-kirill-lab1"
 project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
 
+// Anikina Olga
+include "code/dikstry"
+project(":code/dikstry").name = "dikstry-Model"
+
 // Ivanova Olga, lab1
 include "code/prime-number"
 project(":code/prime-number").name = "prime-number-Model"
