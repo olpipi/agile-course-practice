@@ -110,17 +110,29 @@ project(":code/metelev-evgenii-mortgage-calculator").name = "metelev-evgenii-Mod
 include "code/kochuev-andrey-length-converter"
 project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-converter"
 
-// Beresneva Julia, LCD Digits 
+// Beresneva Julia, LCD Digits
 include "code/beresneva-julia-lcd-digits"
 project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
 
-// Gladkova Tatiana, Binary Search 
+// Osechkin Sergey, DepositCalculator
+include "code/osechkin-deposit-calculator"
+project(":code/osechkin-deposit-calculator").name = "osechkin-deposit-calculator"
+
+// Three dimensional shapes area calculation
+include "code/three-dimensional-shapes-area"
+project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
+
+// Gladkova Tatiana, Binary Search
 include "code/gladkova-tatiana-binary-search"
 project(":code/gladkova-tatiana-binary-search").name = "gladkova-tatiana-binary-search"
 
-// Three dimensional shapes area calculation 
+// Three dimensional shapes area calculation
 include "code/three-dimensional-shapes-area"
 project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
+
+// Kryukova Polina, caesar-cipher
+include "code/caesar-cipher"
+project(":code/caesar-cipher").name = "caesar-cipher"
 
 // Podolov Kirill, Queue
 include "code/queue"
@@ -133,3 +145,11 @@ project(":code/math-statistics").name = "math-statistics"
 // Fytov Aleksandr, Fraction calculator
 include "code/fytov-aleksandr-frac-calc"
 project(":code/fytov-aleksandr-frac-calc").name = "fytov-aleksandr-frac-calc"
+
+// 3D shapes volume
+include "code/shape-volume-calculator"
+project(":code/shape-volume-calculator").name = "shape-volume-calculator"
+
+// Rumiantseva Maria, Quadratic Equation Solver
+include "code/rumiantseva-maria-quadratic-equation-solver"
+project(":code/rumiantseva-maria-quadratic-equation-solver").name = "rumiantseva-maria-quadratic-equation-solver"
