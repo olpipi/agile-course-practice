@@ -31,15 +31,29 @@ public class QuadraticEquation {
     }
 
     public double[] solve() {
+        double root1;
+        double root2;
         double[] roots = new double[2];
         double d = Math.pow(b, 2) - K * a * c;
 
-        if (d < 0) {
-            throw new QuadraticEquationSolverException("Quadratic equation have no real roots");
+        if (d > 0) {
+            root1 = (-b - Math.sqrt(d)) / (2.0 * a);
+            root2 = (-b + Math.sqrt(d)) / (2.0 * a);
+            if (root1 < root2) {
+                roots[0] = root1;
+                roots[1] = root2;
+            } else {
+                roots[0] = root2;
+                roots[1] = root1;
+            }
         } else {
-            if (d == 0) {
-                for (int i = 0; i < roots.length; i++) {
-                    roots[i] = -1.0 * (b / (2.0 * a));
+            if (d < 0) {
+                throw new QuadraticEquationSolverException("Quadratic equation have no real roots");
+            } else {
+                if (d == 0) {
+                    for (int i = 0; i < roots.length; i++) {
+                        roots[i] = -b / (2.0 * a);
+                    }
                 }
             }
         }

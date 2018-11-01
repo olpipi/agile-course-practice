@@ -53,4 +53,14 @@ public class QuadraticEquationTest {
         System.out.println(roots[0]);
         assertEquals(((roots[0] == roots[1]) && (roots[0] == expectedRes)), true);
     }
+
+    @Test
+    public void checkTwoRoots() {
+        QuadraticEquation func = new QuadraticEquation(1.0, 2.0, -48.0);
+
+        double[] roots = func.solve();
+
+        assertEquals(-8.0, roots[0], QuadraticEquation.EPSILON);
+        assertEquals(6.0, roots[1], QuadraticEquation.EPSILON);
+    }
 }
