@@ -26,7 +26,8 @@ public class GolovanovaTatyanaTest {
     public void canGetRealOfComplexNumber() {
         ComplexNumber complexNumber = new ComplexNumber(10, 1);
         String checkReal = "10.0";
-        String real = Double.toString(complexNumber.getReal());
+        double strReal = complexNumber.getReal();
+        String real = Double.toString(strReal);
 
         assertEquals(checkReal, real);
     }
