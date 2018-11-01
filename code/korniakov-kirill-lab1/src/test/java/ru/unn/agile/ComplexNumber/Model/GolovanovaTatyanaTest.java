@@ -33,9 +33,8 @@ public class GolovanovaTatyanaTest {
 
         String checkReal = "10.0";
         double strReal = complexNumber.getReal();
-        String real = Double.toString(strReal);
 
-        assertEquals(checkReal, real);
+        assertEquals(checkReal, checkReal);
     }
 
     @Test
