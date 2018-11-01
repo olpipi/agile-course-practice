@@ -5,20 +5,20 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static ru.unn.agile.shapevolume.TestConstants.EPSILON;
 
-public class RightPrismTest {
+public class RegularPolygonPrismTest {
 
     @Test
     public void whenZeroHeightThenZeroVolume() {
-        RightPrism rightPrism = new RightPrism(3, 2.0, 0.0);
+        RegularPolygonPrism prism = new RegularPolygonPrism(3, 2.0, 0.0);
 
-        double volume = rightPrism.getVolume();
+        double volume = prism.getVolume();
 
         assertEquals(0.0, volume, EPSILON);
     }
 
     @Test
     public void whenEquilateralTriangleBaseThenCalculateVolume() {
-        RightPrism prism = new RightPrism(3, 2.0, 5.0);
+        RegularPolygonPrism prism = new RegularPolygonPrism(3, 2.0, 5.0);
 
         double volume = prism.getVolume();
 
@@ -26,7 +26,7 @@ public class RightPrismTest {
     }
     @Test
     public void whenHexagonBaseThenCalculateVolume() {
-        RightPrism prism = new RightPrism(6, 1.0, 2.0);
+        RegularPolygonPrism prism = new RegularPolygonPrism(6, 1.0, 2.0);
 
         double volume = prism.getVolume();
 
@@ -35,6 +35,11 @@ public class RightPrismTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void whenNegativeHeightThenThrows() {
-        new RightPrism(3, 1.0, -1.0);
+        new RegularPolygonPrism(3, 1.0, -1.0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenLessThanThreeSidesThenThrows() {
+        new RegularPolygonPrism(2, 1.0, 1.0);
     }
 }
