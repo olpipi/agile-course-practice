@@ -30,4 +30,9 @@ public class QuadraticEquationTest {
 
         assertEquals(7.1, c, QuadraticEquation.EPSILON);
     }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void canNotCreateQuadraticEquationWithZeroACoeff() {
+        QuadraticEquation func = new QuadraticEquation(0.0, 6.1, 7.1);
+    }
 }

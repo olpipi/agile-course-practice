@@ -8,9 +8,13 @@ public class QuadraticEquation {
     private double c;
 
     public QuadraticEquation(final double a, final double b, final double c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
+        if (a > EPSILON) {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+        } else {
+            throw new IllegalArgumentException("Quadratic coefficient must not be equal to zero");
+        }
     }
 
     public double getA() {
