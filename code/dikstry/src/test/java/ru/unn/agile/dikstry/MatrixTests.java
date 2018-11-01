@@ -92,26 +92,6 @@ public class MatrixTests {
     }
 
     @Test
-    public void canWayUpdateOldWeightToRightVertexRight() {
-        Vertex vertex1 = new Vertex(1);
-        Vertex vertex2 = new Vertex(2);
-        Vertex vertex3 = new Vertex(3);
-        List<Vertex> vertices1 = new LinkedList<>();
-        List<Vertex> vertices2 = new LinkedList<>();
-        vertices1.add(vertex1);
-        vertices1.add(vertex2);
-        vertices2.add(vertex2);
-        vertices2.add(vertex3);
-        Edge edge = new Edge(vertex1, vertex2, 10);
-        Way way = new Way(vertices1, 5);
-        Way way1 = new Way(vertices2, 7);
-
-        way.upDateWay(edge, way1);
-
-        assertEquals(7, way1.getWeight());
-    }
-
-    @Test
     public void canEdgeGetVertexLeft() {
         Vertex vertex1 = new Vertex(1);
         Vertex vertex2 = new Vertex(2);
