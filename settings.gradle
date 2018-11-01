@@ -98,7 +98,6 @@ project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-c
 include "code/beresneva-julia-lcd-digits"
 project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
 
-feature_deposit_calculator
 // Osechkin Sergey, DepositCalculator
 include "code/osechkin-deposit-calculator"
 project(":code/osechkin-deposit-calculator").name = "osechkin-deposit-calculator"
