@@ -8,4 +8,20 @@ public class Fraction {
         this.num = numerator;
 this.denom = denominator;
     }
+	
+	public void setNumerator(final int numerator) {
+        this.num = numerator;
+    }
+
+    public int getNumerator() {
+        return num;
+    }
+
+    public void setDenominator(final int denominator) {
+        this.denom = denominator;
+    }
+
+    public int getDenominator() {
+        return denom;
+    }
 }
