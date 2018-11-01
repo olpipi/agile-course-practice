@@ -5,10 +5,12 @@ public class QuadraticEquation {
 
     private double a;
     private double b;
+    private double c;
 
     public QuadraticEquation(final double a, final double b, final double c) {
         this.a = a;
         this.b = b;
+        this.c = c;
     }
 
     public double getA() {
@@ -17,5 +19,9 @@ public class QuadraticEquation {
 
     public double getB() {
         return b;
+    }
+
+    public double getC() {
+        return c;
     }
 }

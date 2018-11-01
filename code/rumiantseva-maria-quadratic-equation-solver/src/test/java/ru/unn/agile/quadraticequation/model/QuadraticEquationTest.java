@@ -21,4 +21,13 @@ public class QuadraticEquationTest {
 
         assertEquals(6.1, b, QuadraticEquation.EPSILON);
     }
+
+    @Test
+    public void canGetFreeTerm() {
+        QuadraticEquation func = new QuadraticEquation(5.1, 6.1, 7.1);
+
+        double c = func.getC();
+
+        assertEquals(7.1, c, QuadraticEquation.EPSILON);
+    }
 }
