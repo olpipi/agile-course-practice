@@ -26,6 +26,10 @@ project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-comple
 include "code/andreev-vlad-triangle"
 project(":code/andreev-vlad-triangle").name = "andreev-vlad-triangle-Model"
 
+// Moiseev Nikita, lab 1
+include "code/abstract-set"
+project(":code/abstract-set").name = "abstract-set-Model"
+
 // Zhiltsov Max, lab 1
 include "code/vector-distance"
 project(":code/vector-distance").name = "vector-distance-Model"
@@ -101,6 +105,14 @@ project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-M
 // Three dimensional shapes area calculation
 include "code/three-dimensional-shapes-area"
 project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
+
+// Podolov Kirill, Queue
+include "code/queue"
+project(":code/queue").name = "queue-Model"
+
+// Flegontov Alexander, math-statistics
+include "code/math-statistics"
+project(":code/math-statistics").name = "math-statistics"
 
 // Fytov Aleksandr, Fraction calculator
 include "code/fytov-aleksandr-frac-calc"
