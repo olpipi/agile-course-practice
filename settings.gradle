@@ -101,3 +101,7 @@ project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-M
 // Three dimensional shapes area calculation
 include "code/three-dimensional-shapes-area"
 project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
+
+// Fytov Aleksandr, Fraction calculator
+include "code/fytov-aleksandr-frac-calc"
+project(":code/fytov-aleksandr-frac-calc").name = "fytov-aleksandr-frac-calc"
