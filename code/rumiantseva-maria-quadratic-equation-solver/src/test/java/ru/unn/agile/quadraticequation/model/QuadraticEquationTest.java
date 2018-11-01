@@ -12,4 +12,13 @@ public class QuadraticEquationTest {
 
         assertEquals(5.1, a, QuadraticEquation.EPSILON);
     }
+
+    @Test
+    public void canGetLinearCoefficient() {
+        QuadraticEquation func = new QuadraticEquation(5.1, 6.1, 7.1);
+
+        double b = func.getB();
+
+        assertEquals(6.1, b, QuadraticEquation.EPSILON);
+    }
 }
