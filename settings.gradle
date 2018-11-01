@@ -121,3 +121,7 @@ project(":code/math-statistics").name = "math-statistics"
 // Fytov Aleksandr, Fraction calculator
 include "code/fytov-aleksandr-frac-calc"
 project(":code/fytov-aleksandr-frac-calc").name = "fytov-aleksandr-frac-calc"
+
+// Moskalenko Viktor, Calculator
+include "code/moskalenko-viktor-calculator"
+project(":code/moskalenko-viktor-calculator").name = "moskalenko-viktor-calculator"
