@@ -3,7 +3,6 @@ package ru.unn.agile.dikstry;
 import java.util.List;
 
 public class Way {
-    private static final int INF = Integer.MAX_VALUE;
     private List<Vertex> vertexes;
     private int weight;
 
@@ -26,14 +25,6 @@ public class Way {
 
     private void addVertex(final Vertex vertex) {
         vertexes.add(vertex);
-    }
-
-    public void addWeight(final int weight) {
-        if (this.weight == INF) {
-            this.weight = weight;
-        } else {
-            this.weight += weight;
-        }
     }
 
     public void upDateWay(final Edge edge, final Way wayToRightVertex) {

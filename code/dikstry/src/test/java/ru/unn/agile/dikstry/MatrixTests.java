@@ -43,7 +43,7 @@ public class MatrixTests {
     }
 
     @Test
-    public void canWayAddVertex() {
+    public void canWayAddVertexAfterUpdate() {
         Vertex vertex1 = new Vertex(1);
         Vertex vertex2 = new Vertex(8);
         Vertex vertex3 = new Vertex(4);
@@ -64,21 +64,6 @@ public class MatrixTests {
     }
 
     @Test
-    public void canWayAddWeight() {
-        Vertex vertex1 = new Vertex(1);
-        Vertex vertex2 = new Vertex(2);
-        List<Vertex> vertices = new LinkedList<>();
-        vertices.add(vertex1);
-        vertices.add(vertex2);
-        Edge edge = new Edge(vertex1, vertex2, 4);
-        Way way = new Way(vertices, 4);
-
-        way.addWeight(5);
-
-        assertEquals(9, way.getWeight());
-    }
-
-    @Test
     public void canWayAddWeightToNewVertex() {
         Vertex vertex1 = new Vertex(1);
         Vertex vertex2 = new Vertex(2);
@@ -87,7 +72,7 @@ public class MatrixTests {
         vertices.add(vertex2);
         Way way = new Way(vertices, INF);
 
-        way.addWeight(7);
+        way.setWeight(7);
 
         assertEquals(7, way.getWeight());
     }

@@ -54,9 +54,8 @@ public class Graph {
     }
 
     public int dijkstra(final Vertex startVertex, final Vertex endVertex) {
-
         int startId = startVertex.getId();
-        ways.get(startId).addWeight(0);
+        ways.get(startId).setWeight(0);
         Set<Vertex> settledVertex = new HashSet<>();
         List<Vertex> unsettledVertex = new ArrayList<>();
         unsettledVertex.add(startVertex);
@@ -102,6 +101,5 @@ public class Graph {
         int leftVertexOfEdgeId = edge.getIdLeftVertex();
         int rightVertexOfEdgeId = edge.getIdRightVertex();
         ways.get(leftVertexOfEdgeId).upDateWay(edge, ways.get(rightVertexOfEdgeId));
-
     }
 }
