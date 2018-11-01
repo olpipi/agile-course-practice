@@ -35,4 +35,11 @@ public class QuadraticEquationTest {
     public void canNotCreateQuadraticEquationWithZeroACoeff() {
         QuadraticEquation func = new QuadraticEquation(0.0, 6.1, 7.1);
     }
+
+    @Test (expected = QuadraticEquationSolverException.class)
+    public void checkIfNoRealRoots() {
+        QuadraticEquation func = new QuadraticEquation(1.1, 2.1, 3.1);
+
+        func.solve();
+    }
 }
