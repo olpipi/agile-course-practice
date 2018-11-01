@@ -42,4 +42,15 @@ public class QuadraticEquationTest {
 
         func.solve();
     }
+
+    @Test
+    public void checkIfOneRoot() {
+        QuadraticEquation func = new QuadraticEquation(1.0, -4.0, 4.0);
+        double expectedRes = 2.0;
+
+        double[] roots = func.solve();
+
+        System.out.println(roots[0]);
+        assertEquals(((roots[0] == roots[1]) && (roots[0] == expectedRes)), true);
+    }
 }

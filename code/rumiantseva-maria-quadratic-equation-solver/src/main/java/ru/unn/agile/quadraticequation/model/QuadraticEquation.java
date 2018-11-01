@@ -30,11 +30,20 @@ public class QuadraticEquation {
         return c;
     }
 
-    public void solve() {
+    public double[] solve() {
+        double[] roots = new double[2];
         double d = Math.pow(b, 2) - K * a * c;
 
         if (d < 0) {
             throw new QuadraticEquationSolverException("Quadratic equation have no real roots");
+        } else {
+            if (d == 0) {
+                for (int i = 0; i < roots.length; i++) {
+                    roots[i] = -1.0 * (b / (2.0 * a));
+                }
+            }
         }
+        return roots;
     }
 }
+
