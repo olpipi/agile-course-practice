@@ -4,13 +4,15 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class QuadraticEquationTest {
+    public static final double EPSILON = 0.000001;
+
     @Test
     public void canGetQuadraticCoefficient() {
         QuadraticEquation func = new QuadraticEquation(5.1, 6.1, 7.1);
 
         double a = func.getA();
 
-        assertEquals(5.1, a, QuadraticEquation.EPSILON);
+        assertEquals(5.1, a, EPSILON);
     }
 
     @Test
@@ -19,7 +21,7 @@ public class QuadraticEquationTest {
 
         double b = func.getB();
 
-        assertEquals(6.1, b, QuadraticEquation.EPSILON);
+        assertEquals(6.1, b, EPSILON);
     }
 
     @Test
@@ -28,7 +30,7 @@ public class QuadraticEquationTest {
 
         double c = func.getC();
 
-        assertEquals(7.1, c, QuadraticEquation.EPSILON);
+        assertEquals(7.1, c, EPSILON);
     }
 
     @Test (expected = IllegalArgumentException.class)
@@ -46,11 +48,11 @@ public class QuadraticEquationTest {
     @Test
     public void checkIfOneRoot() {
         QuadraticEquation func = new QuadraticEquation(1.0, -4.0, 4.0);
-        double expectedRes = 2.0;
 
         double[] roots = func.solve();
 
-        assertEquals(((roots[0] == roots[1]) && (roots[0] == expectedRes)), true);
+        assertEquals((roots[0] == roots[1]), true);
+        assertEquals(2.0, roots[0], EPSILON);
     }
 
     @Test
@@ -59,8 +61,8 @@ public class QuadraticEquationTest {
 
         double[] roots = func.solve();
 
-        assertEquals(-8.0, roots[0], QuadraticEquation.EPSILON);
-        assertEquals(6.0, roots[1], QuadraticEquation.EPSILON);
+        assertEquals(-8.0, roots[0], EPSILON);
+        assertEquals(6.0, roots[1], EPSILON);
     }
 
     @Test
@@ -69,7 +71,7 @@ public class QuadraticEquationTest {
 
         double[] roots = func.solve();
 
-        assertEquals(-5.0, roots[0], QuadraticEquation.EPSILON);
-        assertEquals(3.0, roots[1], QuadraticEquation.EPSILON);
+        assertEquals(-5.0, roots[0], EPSILON);
+        assertEquals(3.0, roots[1], EPSILON);
     }
 }

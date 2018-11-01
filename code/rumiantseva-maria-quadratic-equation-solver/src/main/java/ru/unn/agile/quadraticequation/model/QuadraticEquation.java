@@ -34,17 +34,17 @@ public class QuadraticEquation {
 
     public double[] solve() {
         double[] roots = new double[2];
-        double D = Math.pow(b, 2) - K * a * c;
+        double d = Math.pow(b, 2) - K * a * c;
 
-        if (D > 0) {
-            roots[0] = (-b - Math.sqrt(D)) / (2.0 * a);
-            roots[1] = (-b + Math.sqrt(D)) / (2.0 * a);
+        if (d > 0) {
+            roots[0] = (-b - Math.sqrt(d)) / (2.0 * a);
+            roots[1] = (-b + Math.sqrt(d)) / (2.0 * a);
             Arrays.sort(roots);
-        } else if (D == 0) {
+        } else if (d == 0) {
             for (int i = 0; i < roots.length; i++) {
                 roots[i] = -b / (2.0 * a);
             }
-        } else if (D < 0) {
+        } else if (d < 0) {
             throw new QuadraticEquationSolverException("Quadratic equation have no real roots");
         }
         return roots;
