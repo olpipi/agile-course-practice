@@ -20,4 +20,14 @@ public class ConverterTemperaturesTest {
         assertEquals(expectedTempFahrenheit, calculatingTempFahrenheit, EPSILON);
     }
 
+    @Test
+    public void canConvert_100_ToFahrenheit() {
+        ConverterTemperatures converter = new ConverterToFahrenheit();
+        double tempCelsius = 100.0;
+        double expectedTempFahrenheit = 212.0;
+
+        double calculatingTempFahrenheit = converter.convert(tempCelsius);
+
+        assertEquals(expectedTempFahrenheit, calculatingTempFahrenheit, EPSILON);
+    }
 }
