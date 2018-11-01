@@ -84,4 +84,14 @@ public class QuadraticEquationTest {
         assertEquals((roots[0] == roots[1]), true);
         assertEquals(0.0, roots[0], EPSILON);
     }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void canNotSolveQuadraticCoefficientWithZeroCoeffs() {
+        QuadraticEquation func = new QuadraticEquation(0.0, 0.0, 0.0);
+
+        double[] roots = func.solve();
+
+        assertEquals((roots[0] == roots[1]), true);
+        assertEquals(0.0, roots[0], EPSILON);
+    }
 }
