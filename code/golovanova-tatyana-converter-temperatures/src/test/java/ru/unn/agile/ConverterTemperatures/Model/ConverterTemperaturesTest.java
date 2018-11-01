@@ -85,4 +85,14 @@ public class ConverterTemperaturesTest {
 
         assertEquals(expectedTempCelsius, calculatingTempCelsius, EPSILON);
     }
+    @Test
+    public void canConvert100FromKelvin() {
+        ConverterTemperatures converter = new ConverterWithKelvin();
+        double tempKelvin = 100.0;
+        double expectedTempCelsius = -173.15;
+
+        double calculatingTempCelsius = converter.convertToCelsius(tempKelvin);
+
+        assertEquals(expectedTempCelsius, calculatingTempCelsius, EPSILON);
+    }
 }
