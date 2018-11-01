@@ -12,6 +12,10 @@ public class Way {
         this.weight = weight;
     }
 
+    public List<Vertex> getVertexes() {
+        return vertexes;
+    }
+
     public int getWeight() {
         return weight;
     }
@@ -20,7 +24,7 @@ public class Way {
         this.weight = weight;
     }
 
-    public void addVertex(final Vertex vertex) {
+    private void addVertex(final Vertex vertex) {
         vertexes.add(vertex);
     }
 
@@ -36,6 +40,7 @@ public class Way {
         int actualWeight = weight + edge.getWeight();
         if (actualWeight < wayToRightVertex.getWeight()) {
             wayToRightVertex.setWeight(actualWeight);
+            wayToRightVertex.addVertex(edge.getVertexLeft());
         }
     }
 

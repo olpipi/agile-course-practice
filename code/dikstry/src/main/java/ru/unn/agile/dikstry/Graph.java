@@ -13,10 +13,9 @@ public class Graph {
         for (int i = 0; i < matrix.length; i++) {
             vertices.add(new Vertex(i));
         }
-        int vertexesCount = vertices.size();
-        ways = new ArrayList<>(vertexesCount);
+        ways = new ArrayList<>(vertices.size());
         edges = initEdges(matrix, vertices);
-        for (int i = 0; i < vertexesCount; i++) {
+        for (int i = 0; i < vertices.size(); i++) {
             Way way = new Way(vertices, INF);
             ways.add(way);
         }
@@ -57,7 +56,6 @@ public class Graph {
     public int dijkstra(final Vertex startVertex, final Vertex endVertex) {
 
         int startId = startVertex.getId();
-        ways.get(startId).addVertex(startVertex);
         ways.get(startId).addWeight(0);
         Set<Vertex> settledVertex = new HashSet<>();
         List<Vertex> unsettledVertex = new ArrayList<>();
