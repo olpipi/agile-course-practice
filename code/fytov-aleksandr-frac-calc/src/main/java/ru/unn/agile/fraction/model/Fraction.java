@@ -27,6 +27,20 @@ this.denom = denominator;
         return denom;
     }
 	
+	private Fraction revert() {
+        return (new Fraction(this.getDenominator(), this.getNumerator());
+    }
+	
+	public Fraction multiply(final Fraction other) {
+        return new Fraction(
+                getNumerator() * other.getNumerator(),
+                getDenominator() * other.getDenominator());
+    }
+
+    public Fraction divide(final Fraction other) {
+        return this.multiply(other.revert());
+    }
+	
 	@Override
     public String toString() {
         return String.format("%d/%d", num, denom);

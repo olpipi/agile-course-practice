@@ -115,4 +115,28 @@ public class FractionalNumbersCalcTest {
         // Act & Assert
         assertFalse(frac1.equals(frac2));
     }
+	@Test
+    public void canMultiplyFractionNumbers() {
+        // Arrange
+        Fraction fracNumber1 = new Fraction(1, 5);
+        Fraction fracNumber2 = new Fraction(2, 3);
+
+        // Act
+        Fraction multiplyResult = fracNumber1.multiply(fracNumber2);
+
+        // Assert
+        assertTrue(multiplyResult.equals(new Fraction(2, 15)));
+    }
+    @Test
+    public void canDivideFractionNumbers() {
+        // Arrange
+        Fraction fracNumber1 = new Fraction(1, 5);
+        Fraction fracNumber2 = new Fraction(2, 3);
+
+        // Act
+        Fraction divideResult = fracNumber1.divide(fracNumber2);
+
+        // Assert
+        assertTrue(divideResult.equals(new Fraction(3, 10)));
+    }
 }
