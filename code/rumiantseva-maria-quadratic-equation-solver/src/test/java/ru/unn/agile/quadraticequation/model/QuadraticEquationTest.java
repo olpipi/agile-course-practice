@@ -50,7 +50,6 @@ public class QuadraticEquationTest {
 
         double[] roots = func.solve();
 
-        System.out.println(roots[0]);
         assertEquals(((roots[0] == roots[1]) && (roots[0] == expectedRes)), true);
     }
 
@@ -62,5 +61,15 @@ public class QuadraticEquationTest {
 
         assertEquals(-8.0, roots[0], QuadraticEquation.EPSILON);
         assertEquals(6.0, roots[1], QuadraticEquation.EPSILON);
+    }
+
+    @Test
+    public void checkRootsSequence() {
+        QuadraticEquation func = new QuadraticEquation(-1.0, -2.0, 15.0);
+
+        double[] roots = func.solve();
+
+        assertEquals(-5.0, roots[0], QuadraticEquation.EPSILON);
+        assertEquals(3.0, roots[1], QuadraticEquation.EPSILON);
     }
 }

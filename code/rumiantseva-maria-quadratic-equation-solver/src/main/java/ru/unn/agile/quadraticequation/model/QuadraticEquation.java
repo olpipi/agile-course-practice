@@ -1,5 +1,7 @@
 package ru.unn.agile.quadraticequation.model;
 
+import java.util.Arrays;
+
 public class QuadraticEquation {
     public static final double EPSILON = 0.000001;
     public static final int K = 4;
@@ -9,7 +11,7 @@ public class QuadraticEquation {
     private double c;
 
     public QuadraticEquation(final double a, final double b, final double c) {
-        if (a > EPSILON) {
+        if (Math.abs(a) > EPSILON) {
             this.a = a;
             this.b = b;
             this.c = c;
@@ -31,31 +33,19 @@ public class QuadraticEquation {
     }
 
     public double[] solve() {
-        double root1;
-        double root2;
         double[] roots = new double[2];
-        double d = Math.pow(b, 2) - K * a * c;
+        double D = Math.pow(b, 2) - K * a * c;
 
-        if (d > 0) {
-            root1 = (-b - Math.sqrt(d)) / (2.0 * a);
-            root2 = (-b + Math.sqrt(d)) / (2.0 * a);
-            if (root1 < root2) {
-                roots[0] = root1;
-                roots[1] = root2;
-            } else {
-                roots[0] = root2;
-                roots[1] = root1;
+        if (D > 0) {
+            roots[0] = (-b - Math.sqrt(D)) / (2.0 * a);
+            roots[1] = (-b + Math.sqrt(D)) / (2.0 * a);
+            Arrays.sort(roots);
+        } else if (D == 0) {
+            for (int i = 0; i < roots.length; i++) {
+                roots[i] = -b / (2.0 * a);
             }
-        } else {
-            if (d < 0) {
-                throw new QuadraticEquationSolverException("Quadratic equation have no real roots");
-            } else {
-                if (d == 0) {
-                    for (int i = 0; i < roots.length; i++) {
-                        roots[i] = -b / (2.0 * a);
-                    }
-                }
-            }
+        } else if (D < 0) {
+            throw new QuadraticEquationSolverException("Quadratic equation have no real roots");
         }
         return roots;
     }
