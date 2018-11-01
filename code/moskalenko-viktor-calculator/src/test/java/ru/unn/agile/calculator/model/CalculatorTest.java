@@ -180,7 +180,7 @@ public final class CalculatorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void canNotMultyplyWithInvalidArgument() {
+    public void canNotMultiplyWithInvalidArgument() {
         String n1 = "10";
         String n2 = "b1111";
         Calculator.multiply(n1, n2, NumberSystem.OCTAL);
