@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class QuadraticEquationTest {
-    public static final double EPSILON = 0.000001;
+    public static final double EPSILON = QuadraticEquation.EPSILON;
 
     @Test
     public void canGetQuadraticCoefficient() {
@@ -73,5 +73,15 @@ public class QuadraticEquationTest {
 
         assertEquals(-5.0, roots[0], EPSILON);
         assertEquals(3.0, roots[1], EPSILON);
+    }
+
+    @Test
+    public void canSolveQuadraticCoefficientWithZeroBAndCCoeffs() {
+        QuadraticEquation func = new QuadraticEquation(5.1, 0.0, 0.0);
+
+        double[] roots = func.solve();
+
+        assertEquals((roots[0] == roots[1]), true);
+        assertEquals(0.0, roots[0], EPSILON);
     }
 }
