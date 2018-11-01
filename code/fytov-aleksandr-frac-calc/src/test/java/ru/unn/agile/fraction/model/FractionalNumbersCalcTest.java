@@ -51,4 +51,20 @@ public class FractionalNumbersCalcTest {
         //Assert
         assertEquals(5, number.getDenominator());
     }
+	 @Test
+    public void canConvertToStringFractionNumberWithPositiveValues() {
+        // Arrange
+        Fraction fractionalNumber = new Fraction(1, 2);
+
+        // Act & Assert
+        assertEquals("1/2", fractionalNumber.toString());
+    }
+    @Test
+    public void canConvertToStringFractionNumberWithNegativeValue() {
+        // Arrange
+        Fraction fractionalNumber = new Fraction(-1, 2);
+
+        // Act & Assert
+        assertEquals("-1/2", fractionalNumber.toString());
+    }
 }

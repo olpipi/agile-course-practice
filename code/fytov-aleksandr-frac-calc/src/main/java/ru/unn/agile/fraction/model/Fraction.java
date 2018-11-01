@@ -24,4 +24,9 @@ this.denom = denominator;
     public int getDenominator() {
         return denom;
     }
+	
+	@Override
+    public String toString() {
+        return String.format("%d/%d", num, denom);
+    }
 }
