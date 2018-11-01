@@ -2,6 +2,10 @@
 include "code/bevzuk-anton"
 project(":code/bevzuk-anton").name = "bevzuk-anton-Model"
 
+//Oleneva Maria
+include "code/oleneva-intersect-line-and-plane"
+project(":code/oleneva-intersect-line-and-plane").name = "code/oleneva-intersect-line-and-plane"
+
 // Pozdiaev Valerii
 include "code/pozdiaev-valerii-currency-converter"
 project(":code/pozdiaev-valerii-currency-converter").name = "pozdiaev-valerii-currency-converter"
