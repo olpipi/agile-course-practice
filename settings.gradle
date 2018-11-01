@@ -26,6 +26,10 @@ project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-comple
 include "code/andreev-vlad-triangle"
 project(":code/andreev-vlad-triangle").name = "andreev-vlad-triangle-Model"
 
+// Moiseev Nikita, lab 1
+include "code/abstract-set"
+project(":code/abstract-set").name = "abstract-set-Model"
+
 // Zhiltsov Max, lab 1
 include "code/vector-distance"
 project(":code/vector-distance").name = "vector-distance-Model"
@@ -66,6 +70,10 @@ project(":code/korniakov-kirill-lab3/View").name = "korniakov-kirill-lab3-View"
 include "code/korniakov-kirill-lab3/Infrastructure"
 project(":code/korniakov-kirill-lab3/Infrastructure").name = "korniakov-kirill-lab3-Infrastructure"
 
+// Gladkov Dmitry, Huffman code
+include "code/gladkov-dmitry-huffman"
+project(":code/gladkov-dmitry-huffman").name = "gladkov-dmitry-huffman"
+
 // Polyakov Igor, sort
 include "code/polyakov-igor-sort"
 project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
@@ -73,6 +81,10 @@ project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
 // Rumyantsev Alexander, Vector3D
 include "code/rumyantsev-alexander-vector3d"
 project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vector3d"
+
+// Magazinnik Ivan, string-calculator
+include "code/string-calculator"
+project(":code/string-calculator").name = "string-calculator"
 
 // Stack
 include "code/stack"
@@ -90,6 +102,18 @@ project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-c
 include "code/beresneva-julia-lcd-digits"
 project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
 
-// Moskalenko Viktor, Calculator
-include "code/moskalenko-viktor-calculator"
-project(":code/moskalenko-viktor-calculator").name = "moskalenko-viktor-calculator"
+// Three dimensional shapes area calculation
+include "code/three-dimensional-shapes-area"
+project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
+
+// Podolov Kirill, Queue
+include "code/queue"
+project(":code/queue").name = "queue-Model"
+
+// Flegontov Alexander, math-statistics
+include "code/math-statistics"
+project(":code/math-statistics").name = "math-statistics"
+
+// Fytov Aleksandr, Fraction calculator
+include "code/fytov-aleksandr-frac-calc"
+project(":code/fytov-aleksandr-frac-calc").name = "fytov-aleksandr-frac-calc"
