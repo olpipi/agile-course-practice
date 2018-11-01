@@ -227,4 +227,16 @@ public class MortgageCalculatorTest {
 
         assertArrayEquals(expectedPayments, actualPayments, EPSILON);
     }
+
+    @Test
+    public void checkFullPriceForMortgage() {
+        MortgageCalculator myMortgageCalculator = new MortgageCalculator();
+
+        myMortgageCalculator.setFullCostOfApartment(1000);
+        myMortgageCalculator.setDateOfMortgage(12);
+        myMortgageCalculator.setInterestRate(20);
+        myMortgageCalculator.setFullPriceArray();
+        myMortgageCalculator.setFullCostOfApartment(myMortgageCalculator.getFullCostOfApartment());
+        assertEquals(1108.34, myMortgageCalculator.getFullPriceForMortgage(), EPSILON);
+    }
 }

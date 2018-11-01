@@ -102,4 +102,12 @@ public class MortgageCalculator {
     private double round(final double roundedNum) {
         return Math.round(roundedNum * HUNDRED) / HUNDRED;
     }
+
+    public double getFullPriceForMortgage() {
+        double fullSum = 0;
+        for (int curMonth = 0; curMonth < dateOfMortgage; curMonth++) {
+            fullSum += fullPriceAsArray[curMonth];
+        }
+        return fullSum;
+    }
 }
