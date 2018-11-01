@@ -1,27 +1,36 @@
 package ru.unn.agile.calculator.model;
 
-import java.security.InvalidParameterException;
+import java.lang.Integer;
 
-public class NumberConverter {
-    public int parse(final String number)
+public final class NumberConverter {
+    public static int parse(final String number)
     {
-        return Integer.parseInt(getNumber(number), 2);
-        /*if (number == "0b0")
-        {
-            return 0;
+        if (number.toLowerCase().startsWith("0b")) {
+            return Integer.parseInt(number.substring(2), 2);
+        } else {
+            return Integer.decode(number);
         }
-        else if (number == "0b1")
-        {
-            return 1;
-        }
-        return 2;*/
-        //return Integer.parseInt(number);
     }
 
-    private String getNumber(final String number) {
-        if ((number.length() < 3) || !number.substring(0, 2).equals("0b")) {
-            throw new InvalidParameterException("Invalid number format");
+    public static Integer tryParse(final String number) {
+        try {
+            return parse(number);
         }
-        return number.substring(2);
+        catch(Exception ex) {
+            return null;
+        }
+    }
+
+    public static String convert(int number, NumberSystem system) {
+        switch (system) {
+            case BINARY: return "0b" + Integer.toBinaryString(number);
+            case OCTAL: return "0" + Integer.toOctalString(number);
+            case HEXADECIMAL: return "0x" + Integer.toHexString(number);
+        }
+        throw new IllegalArgumentException("Unknown number system");
+    }
+
+    private NumberConverter() {
+        // no instance for class
     }
 }
