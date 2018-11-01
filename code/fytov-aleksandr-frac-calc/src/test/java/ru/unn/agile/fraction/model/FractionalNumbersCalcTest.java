@@ -116,7 +116,7 @@ public class FractionalNumbersCalcTest {
         assertFalse(frac1.equals(frac2));
     }
 	@Test
-    public void canMultiplyFractionNumbers() {
+    public void canMultiplyFractionNumbersWithPositiveValues() {
         // Arrange
         Fraction fracNumber1 = new Fraction(1, 5);
         Fraction fracNumber2 = new Fraction(2, 3);
@@ -128,7 +128,19 @@ public class FractionalNumbersCalcTest {
         assertTrue(multiplyResult.equals(new Fraction(2, 15)));
     }
     @Test
-    public void canDivideFractionNumbers() {
+    public void canMultiplyFractionNumbersWithNegativeValue() {
+        // Arrange
+        Fraction fracNumber1 = new Fraction(-1, 5);
+        Fraction fracNumber2 = new Fraction(2, 3);
+
+        // Act
+        Fraction multiplyResult = fracNumber1.multiply(fracNumber2);
+
+        // Assert
+        assertTrue(multiplyResult.equals(new Fraction(-2, 15)));
+    }
+    @Test
+    public void canDivideFractionNumbersWithPositiveValues() {
         // Arrange
         Fraction fracNumber1 = new Fraction(1, 5);
         Fraction fracNumber2 = new Fraction(2, 3);
@@ -138,5 +150,99 @@ public class FractionalNumbersCalcTest {
 
         // Assert
         assertTrue(divideResult.equals(new Fraction(3, 10)));
+    }
+    @Test
+    public void canDivideFractionNumbersWithNegativeValues() {
+        // Arrange
+        Fraction fracNumber1 = new Fraction(-1, 5);
+        Fraction fracNumber2 = new Fraction(-2, 3);
+
+        // Act
+        Fraction divideResult = fracNumber1.divide(fracNumber2);
+
+        // Assert
+        assertTrue(divideResult.equals(new Fraction(3, 10)));
+    }
+    @Test(expected = ArithmeticException.class)
+    public void canDivideFractionNumbersWithZeroNumerator() {
+        // Arrange
+        Fraction fracNumber1 = new Fraction(-1, 5);
+        Fraction fracNumber2 = new Fraction(0, 3);
+
+        // Act
+        Fraction divideResult = fracNumber1.divide(fracNumber2);
+    }
+    @Test
+    public void canAddFractionNumbers() {
+        // Arrange
+        Fraction fracNumber1 = new Fraction(1, 5);
+        Fraction fracNumber2 = new Fraction(2, 3);
+
+        // Act
+        Fraction addResult = fracNumber1.addNoGcd(fracNumber2);
+        String res = addResult.toString();
+
+        // Assert
+        assertEquals("13/15", res);
+    }
+    @Test
+    public void canAddFractionNumbersWithGcd() {
+        // Arrange
+        Fraction fracNumber1 = new Fraction(2, 8);
+        Fraction fracNumber2 = new Fraction(7, 3);
+
+        // Act
+        Fraction addResult = fracNumber1.addWithGcd(fracNumber2);
+        String res = addResult.toString();
+
+        // Assert
+        assertEquals("31/12", res);
+    }
+    @Test
+    public void canSubstractFractionNumbersWithPositiveValues() {
+        // Arrange
+        Fraction fracNumber1 = new Fraction(2, 8);
+        Fraction fracNumber2 = new Fraction(7, 3);
+
+        // Act
+        Fraction addResult = fracNumber1.substract(fracNumber2);
+        String res = addResult.toString();
+
+        // Assert
+        assertEquals("-25/12", res);
+    }
+    @Test
+    public void canSubstractFractionNumbersWithNegativeValues() {
+        // Arrange
+        Fraction fracNumber1 = new Fraction(-1, 9);
+        Fraction fracNumber2 = new Fraction(-3, 9);
+
+        // Act
+        Fraction addResult = fracNumber1.substract(fracNumber2);
+        String res = addResult.toString();
+
+        // Assert
+        assertEquals("2/9", res);
+    }
+    @Test
+    public void canSubstractFractionNumbersWithZeroValue() {
+        // Arrange
+        Fraction fracNumber1 = new Fraction(4, 9);
+        Fraction fracNumber2 = new Fraction(0, 5);
+
+        // Act
+        Fraction addResult = fracNumber1.substract(fracNumber2);
+        String res = addResult.toString();
+
+        // Assert
+        assertEquals("4/9", res);
+    }
+    @Test(expected = ArithmeticException.class)
+    public void canDenominationBeZero() {
+        Fraction fracNumber2 = new Fraction(2, 0);
+    }
+    @Test(expected = ArithmeticException.class)
+    public void canDenominationBeLessThanZero() {
+        Fraction fracNumber2 = new Fraction(2, -1);
     }
 }
