@@ -18,6 +18,10 @@ project(":code/nickshevr-numerical-integration").name = "nickshevr-numerical-int
 include "code/korniakov-kirill-lab1"
 project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
 
+// Shadrunov Artem
+include "code/shadrunov-artem-bit-array"
+project(":code/shadrunov-artem-bit-array").name = "shadrunov-artem-bit-array"
+
 // Anikina Olga
 include "code/dikstry"
 project(":code/dikstry").name = "dikstry-Model"
