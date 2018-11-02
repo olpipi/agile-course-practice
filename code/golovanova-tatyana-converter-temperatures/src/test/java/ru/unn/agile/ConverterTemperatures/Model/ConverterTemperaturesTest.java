@@ -117,7 +117,7 @@ public class ConverterTemperaturesTest {
         double expectedTempKelvin = 373.15;
 
         converter.convertFromCelsius(tempCelsius);
-        double getTempKelvinAfterCalculating=converter.getResult();
+        double getTempKelvinAfterCalculating = converter.getResult();
 
         assertEquals(expectedTempKelvin, getTempKelvinAfterCalculating, EPSILON);
     }
@@ -172,7 +172,7 @@ public class ConverterTemperaturesTest {
         double expectedTempCelsius = 303.030303;
 
         converter.convertToCelsius(tempNewton);
-        double getTempCelsiusAfterCalculating=converter.getResult();
+        double getTempCelsiusAfterCalculating = converter.getResult();
 
         assertEquals(expectedTempCelsius, getTempCelsiusAfterCalculating, EPSILON);
     }
