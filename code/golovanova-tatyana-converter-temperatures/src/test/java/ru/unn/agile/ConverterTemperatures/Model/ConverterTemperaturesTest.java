@@ -55,6 +55,18 @@ public class ConverterTemperaturesTest {
     }
 
     @Test
+    public void canGetResultWithFahrenheit() {
+        ConverterTemperatures converter = new ConverterWithFahrenheit();
+        double tempFahrenheit = 100.0;
+        double expectedTempCelsius = 37.777778;
+
+        converter.convertToCelsius(tempFahrenheit);
+        double getTempCelsiusAfterCalculating = converter.getResult();
+
+        assertEquals(expectedTempCelsius, getTempCelsiusAfterCalculating, EPSILON);
+    }
+
+    @Test
     public void canConvertZeroToKelvin() {
         ConverterTemperatures converter = new ConverterWithKelvin();
         double tempCelsius = 0.0;
@@ -97,6 +109,7 @@ public class ConverterTemperaturesTest {
 
         assertEquals(expectedTempCelsius, calculatingTempCelsius, EPSILON);
     }
+
 
     @Test
     public void canConvertZeroToNewton() {
@@ -141,4 +154,5 @@ public class ConverterTemperaturesTest {
 
         assertEquals(expectedTempCelsius, calculatingTempCelsius, EPSILON);
     }
+
 }
