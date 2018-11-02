@@ -65,3 +65,8 @@ project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vect
 // Stack
 include "code/stack"
 project(":code/stack").name = "stack"
+
+// Golovanova Tatyana, sort
+include "code/golovanova-tatyana-converter-temperatures"
+project(":code/golovanova-tatyana-converter-temperatures").name = "golovanova-tatyana-converter-temperatures"
+
