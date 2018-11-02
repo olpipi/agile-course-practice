@@ -30,14 +30,14 @@ public class DepositCalculator {
 
     public void setDepositAmount(final double deposit) {
         if (deposit < 0) {
-            throw new NumberFormatException("Отрицательное значение суммы вклада");
+            throw new NumberFormatException("rere");
         }
         this.depositAmount = deposit;
     }
 
     public void setTermPlacementInMonths(final int term) throws NumberFormatException {
         if (term < 1) {
-            throw new NumberFormatException("Отрицательное значение срока размещения");
+            throw new NumberFormatException("rere");
         }
         this.termPlacementInMonths = term;
     }
@@ -52,7 +52,7 @@ public class DepositCalculator {
 
     public void setInterestRate(final double rate) {
         if (rate < 0) {
-            throw new NumberFormatException("Отрицательное значение процента");
+            throw new NumberFormatException("rere");
         }
         this.interestRate = rate;
     }
