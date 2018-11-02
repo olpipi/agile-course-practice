@@ -106,6 +106,10 @@ project(":code/stack").name = "stack"
 include "code/chekodaev-oleg-roman-number-converter"
 project(":code/chekodaev-oleg-roman-number-converter").name = "chekodaev-oleg-roman-number-converter"
 
+// Metelev Evgenii
+include "code/metelev-evgenii-mortgage-calculator"
+project(":code/metelev-evgenii-mortgage-calculator").name = "metelev-evgenii-Model"
+
 // Kochuev Andrey, Length Converter
 include "code/kochuev-andrey-length-converter"
 project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-converter"
