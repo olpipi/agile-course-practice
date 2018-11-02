@@ -1,7 +1,7 @@
 package ru.unn.agile.MortgageCalculator.Model;
 
 public class MortgageCalculator {
-    private static final String NOT_CORRECT_DATA =  "Некорректные данные";
+    private static final String NOT_CORRECT_DATA =  "Not correct data";
     private double fullCostOfApartment;
     private double initialPayment = 0;
     private int dateOfMortgage = MONTHS_IN_YEAR;
@@ -29,8 +29,7 @@ public class MortgageCalculator {
         if (firstPayment >= 0 && firstPayment <= fullCostOfApartment) {
             initialPayment = firstPayment;
         } else {
-            throw new
-                    NullPointerException(NOT_CORRECT_DATA);
+            throw new NullPointerException(NOT_CORRECT_DATA);
         }
     }
 
@@ -42,7 +41,7 @@ public class MortgageCalculator {
         if (date > 0) {
             dateOfMortgage = date;
         } else {
-            throw new NullPointerException("Дата меньше нуля");
+            throw new NullPointerException("Date is negative!");
         }
     }
 

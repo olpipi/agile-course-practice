@@ -1,8 +1,8 @@
 package ru.unn.agile.MortgageCalculator.Model;
 
 import org.junit.Test;
-
 import static org.junit.Assert.*;
+
 public class MortgageCalculatorTest {
 
     private static final double  EPSILON = 0.1;
@@ -29,7 +29,6 @@ public class MortgageCalculatorTest {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
 
         myMortgageCalculator.setFullCostOfApartment(-300);
-
     }
 
     @Test
@@ -71,7 +70,6 @@ public class MortgageCalculatorTest {
     @Test
     public void checkDateOfMortgageInMonths() {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
-
         myMortgageCalculator.setDateOfMortgage(10);
 
         assertEquals(10, myMortgageCalculator.getDateOfMortgage());
@@ -107,7 +105,6 @@ public class MortgageCalculatorTest {
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
 
         myMortgageCalculator.setInterestRate(-50.0);
-
     }
 
     @Test
@@ -201,7 +198,7 @@ public class MortgageCalculatorTest {
         myMortgageCalculator.setAccruedInterestArray();
         actualInterest = myMortgageCalculator.getAccruedInterestArray();
 
-       assertArrayEquals(expectedPayments, actualInterest, EPSILON);
+        assertArrayEquals(expectedPayments, actualInterest, EPSILON);
     }
 
     @Test
@@ -228,7 +225,7 @@ public class MortgageCalculatorTest {
         myMortgageCalculator.setDateOfMortgage(12);
         myMortgageCalculator.setInterestRate(20);
         myMortgageCalculator.setFullPriceArray();
-        myMortgageCalculator.setFullCostOfApartment(myMortgageCalculator.getFullCostOfApartment());
+
         assertEquals(1108.34, myMortgageCalculator.getFullPriceForMortgage(), EPSILON);
     }
 }
