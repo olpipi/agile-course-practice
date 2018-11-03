@@ -17,6 +17,12 @@ public class Vector3D {
         this.z = z;
     }
 
+    public Vector3D(final String x, final String y, final String z) {
+        this.x = Double.parseDouble(x);
+        this.y = Double.parseDouble(y);
+        this.z = Double.parseDouble(z);
+    }
+
     public double getX() {
         return x;
     }
@@ -97,6 +103,11 @@ public class Vector3D {
         return new Vector3D(y * other.z - z * other.y,
                 z * other.x - x * other.z,
                 x * other.y - y * other.x);
+    }
+
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + ", " + z + ')';
     }
 
     public enum Operation {

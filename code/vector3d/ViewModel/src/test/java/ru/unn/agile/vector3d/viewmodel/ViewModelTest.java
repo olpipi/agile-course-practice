@@ -165,6 +165,18 @@ public class ViewModelTest {
         assertEquals(Vector3D.Operation.ADD, viewModel.operationProperty().get());
     }
 
+    @Test
+    public void operationAddHasCorrectResult() {
+        // Arrange
+        setInputData();
+
+        // Act
+        viewModel.calculate();
+
+        // Assert
+        assertEquals("(2.0, 4.0, 6.0)", viewModel.resultProperty().get());
+    }
+
     private void setInputData() {
         viewModel.vectorXProperty().set("1");
         viewModel.vectorYProperty().set("2");

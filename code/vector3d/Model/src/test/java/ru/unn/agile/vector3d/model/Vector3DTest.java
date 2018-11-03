@@ -377,4 +377,22 @@ public class Vector3DTest {
 
         assertEquals(v2Hash, v1Hash);
     }
+
+    @Test
+    public void canConvertVectorToString() {
+        Vector3D v = new Vector3D(5.01, -12, 3.1415);
+
+        String vStringValue = v.toString();
+
+        assertEquals("(5.01, -12.0, 3.1415)", vStringValue);
+    }
+
+    @Test
+    public void canCreateVectorFromStrings() {
+        Vector3D v = new Vector3D("5.01", "-12", "3.1415");
+
+        assertEquals(5.01, v.getX(), EPSILON);
+        assertEquals(-12, v.getY(), EPSILON);
+        assertEquals(3.1415, v.getZ(), EPSILON);
+    }
 }

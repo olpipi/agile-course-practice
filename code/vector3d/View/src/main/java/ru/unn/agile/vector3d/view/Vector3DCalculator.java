@@ -35,6 +35,7 @@ public class Vector3DCalculator {
         bindOtherVectorFields();
         bindMultiplicationCoeff();
         bindOperation();
+        bindButton();
     }
 
     private void bindVectorFields() {
@@ -55,5 +56,9 @@ public class Vector3DCalculator {
 
     private void bindOperation() {
         cbOperation.valueProperty().bindBidirectional(viewModel.operationProperty());
+    }
+
+    private void bindButton() {
+        btnCalc.setOnAction(event -> viewModel.calculate());
     }
 }

@@ -107,7 +107,18 @@ public class ViewModel {
     }
 
     public void calculate() {
+        if (calculationDisabled.get()) {
+            return;
+        }
 
+        Vector3D vector = new Vector3D(vectorX.get(), vectorY.get(), vectorZ.get());
+
+        if (Vector3D.Operation.ADD.equals(operation.get())) {
+            Vector3D other = new Vector3D(otherVectorX.get(), otherVectorY.get(), otherVectorZ.get());
+
+            result.set(vector.add(other).toString());
+            status.set(Status.SUCCESS.toString());
+        }
     }
 
     private void initFieldsListeners() {
