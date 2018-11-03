@@ -8,8 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ru.unn.agile.vector3d.model.Vector3D;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ViewModelTest {
     private ViewModel viewModel;
@@ -127,6 +126,20 @@ public class ViewModelTest {
     public void calculateButtonIsDisabledWhenFormatIsBad() {
         setInputData();
         viewModel.vectorXProperty().set("trash");
+
+        assertTrue(viewModel.calculationDisabledProperty().get());
+    }
+
+    @Test
+    public void calculateButtonIsEnabledWithCorrectInput() {
+        setInputData();
+
+        assertFalse(viewModel.calculationDisabledProperty().get());
+    }
+
+    @Test
+    public void calculateButtonIsDisabledWithIncompleteInput() {
+        viewModel.vectorXProperty().set("1");
 
         assertTrue(viewModel.calculationDisabledProperty().get());
     }
