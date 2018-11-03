@@ -127,5 +127,8 @@ public class ViewModelTest {
         viewModel.vectorXProperty().set("1");
         viewModel.vectorYProperty().set("2");
         viewModel.vectorZProperty().set("3");
+        viewModel.otherVectorXProperty().set("1");
+        viewModel.otherVectorYProperty().set("2");
+        viewModel.otherVectorZProperty().set("3");
     }
 }
