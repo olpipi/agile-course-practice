@@ -23,32 +23,39 @@ public class CalculateSalary {
         this.countingMonth = LocalDate.now();
     }
 
+    private boolean isIncorrectInput() {
+        return salary <= 0
+                || lengthOfVacation < 0
+                || workedHourInMonth < 0;
+    }
+
     public void setSalary(final double inSalary) {
         if (inSalary < 0) {
-            throw new NumberFormatException("Отрицательнная зарплата");
+            throw new NumberFormatException("Negative salary");
         }
         if (inSalary > MAX_SALARY) {
-            throw new NumberFormatException("Не допустимое значение");
+            throw new NumberFormatException("Not a valid value salary");
         }
         this.salary = inSalary;
     }
 
     public void setWorkedHourInMonth(final int inWorkedHourInMonth) {
         if (inWorkedHourInMonth < 0) {
-            throw new NumberFormatException("Отрицательное значение");
+            throw new NumberFormatException("Negative meaning");
         }
         if (inWorkedHourInMonth > MAX_HOUR_IN_MONTH) {
-            throw new NumberFormatException("Превышено максимальное");
+            throw new NumberFormatException("Maximum value exceeded");
         }
         this.workedHourInMonth = inWorkedHourInMonth;
     }
 
     public void setLengthOfVacation(final int inLengthOfVacation) {
         if (inLengthOfVacation < 0) {
-            throw new NumberFormatException("Отрицательная длина отпуска");
+            throw new NumberFormatException("Negative vacation length");
         }
         this.lengthOfVacation = inLengthOfVacation;
     }
+
     public void setStartOfVacation(final LocalDate inStartOfVacation) {
         this.startOfVacation = inStartOfVacation;
     }
@@ -71,5 +78,71 @@ public class CalculateSalary {
 
     public LocalDate getStartOfVacation() {
         return  this.startOfVacation;
+    }
+
+    public LocalDate getCountingMonth() {
+        return this.countingMonth;
+    }
+
+    public double calculate() {
+        return calcCashWithoutNDS() * NDS;
+    }
+
+    private double calcCashWithoutNDS() {
+        if (isIncorrectInput()) {
+            throw new ArithmeticException("Values must be not negatively");
+        }
+        if (isEmployeeWorkedMoreThanNormHoursInMonth()) {
+            return calcCashWithOvertime();
+        }
+        if (isEmployeeWorkedLessThanNormHoursInMonth()) {
+            return calcCashForLessHours();
+        }
+        return calcCashForNormalHours();
+    }
+
+
+    private double calcCashForLessHours() {
+        return workedHourInMonth * calcCashForOneJobHour();
+    }
+
+    private double calcCashForNormalHours() {
+        return getSummOfWorkedHours() * calcCashForOneJobHour();
+    }
+
+    private double calcCashWithOvertime() {
+        return calcCashForNormalHours() + cashForOvertime();
+    }
+
+    private double cashForOvertime() {
+        return (calcCashForOneJobHour() * 2) * (workedHourInMonth - getSummOfWorkedHours());
+    }
+
+    private double calcCashForOneJobHour() {
+        WorkWithCalendar countMonth = new WorkWithCalendar()
+                .setCountMonth(countingMonth);
+        int jobDaysInCountMonth = countMonth.countJobDaysInMonth();
+        return salary / (summJobHours(jobDaysInCountMonth));
+    }
+
+    private int getSummOfWorkedHours() {
+        WorkWithCalendar countMonth = new WorkWithCalendar()
+                .setCountMonth(countingMonth)
+                .setStartVacation(startOfVacation)
+                .setLengthOfVacation(lengthOfVacation);
+        int cashDaysInMonth = countMonth.countCashDaysInMonth();
+        return summJobHours(cashDaysInMonth);
+    }
+
+    private int summJobHours(final int amountDays) {
+        return amountDays * WORK_HOUR_IN_DAY;
+    }
+
+    private boolean isEmployeeWorkedLessThanNormHoursInMonth() {
+        return workedHourInMonth < getSummOfWorkedHours();
+    }
+
+    private boolean isEmployeeWorkedMoreThanNormHoursInMonth() {
+        return workedHourInMonth > getSummOfWorkedHours();
     }
 }
