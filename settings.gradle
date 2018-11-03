@@ -146,7 +146,6 @@ project(":code/math-statistics").name = "math-statistics"
 include "code/fytov-aleksandr-frac-calc"
 project(":code/fytov-aleksandr-frac-calc").name = "fytov-aleksandr-frac-calc"
 
-<<<<<<< HEAD
 // 3D shapes volume
 include "code/shape-volume-calculator"
 project(":code/shape-volume-calculator").name = "shape-volume-calculator"
