@@ -13,23 +13,22 @@ public class Segment2D {
     private double paramA1, paramB1, paramC1;
     private double paramA2, paramB2, paramC2;
 
-
     public Segment2D(final Point2D p1, final Point2D p2) {
-        this.p1 = p1;
-        this.p2 = p2;
-        if (!isValidSegment()) {
-            this.p1 = null;
-            this.p2 = null;
+        if (isValidSegment(p1, p2)) {
+            this.p1 = p1;
+            this.p2 = p2;
+        } else {
             throw new ArithmeticException("both Point2D can not be the same");
         }
     }
 
     public Segment2D(final double x1, final double y1, final double x2, final double y2) {
-        this.p1 = new Point2D.Double(x1, y1);
-        this.p2 = new Point2D.Double(x2, y2);
-        if (!isValidSegment()) {
-            this.p1 = null;
-            this.p2 = null;
+        Point2D tp1 = new Point2D.Double(x1, y1);
+        Point2D tp2 = new Point2D.Double(x2, y2);
+        if (isValidSegment(tp1, tp2)) {
+            this.p1 = tp1;
+            this.p2 = tp2;
+        } else {
             throw new ArithmeticException("both Point2D can not be the same");
         }
     }
@@ -78,15 +77,14 @@ public class Segment2D {
         return Objects.hash(p1, p2);
     }
 
-
     public boolean isParallel(final Segment2D targetSegment) {
-        getParameters(targetSegment);
+        initParameters(targetSegment);
 
         return det(paramA1, paramB1, paramA2, paramB2) == 0;
     }
 
     public boolean isMatched(final Segment2D targetSegment) {
-        getParameters(targetSegment);
+        initParameters(targetSegment);
 
         if (det(paramA1, paramB1, paramA2, paramB2) != 0) {
             return false;
@@ -102,7 +100,7 @@ public class Segment2D {
     }
 
     public Point2D intersection(final Segment2D targetSegment) {
-        getParameters(targetSegment);
+        initParameters(targetSegment);
         double base = det(paramA1, paramB1, paramA2, paramB2);
 
         if (base != 0) {
@@ -120,9 +118,12 @@ public class Segment2D {
         return null;
     }
 
-
     private boolean isValidSegment() {
         return p1.distance(p2) > EPSILON;
+    }
+
+    private boolean isValidSegment(final Point2D tp1, final Point2D tp2) {
+        return tp1.distance(tp2) > EPSILON;
     }
 
     private double det(final double a11, final double a12, final double a21, final double a22) {
@@ -136,7 +137,7 @@ public class Segment2D {
                 && coordTarget <= Math.max(coordStart, coordEnd) + EPSILON;
     }
 
-    private void getParameters(final Segment2D targetSegment) {
+    private void initParameters(final Segment2D targetSegment) {
         paramA1 = p1.getY() - p2.getY();
         paramB1 = p2.getX() - p1.getX();
         paramC1 = -paramA1 * p1.getX() - paramB1 * p1.getY();
