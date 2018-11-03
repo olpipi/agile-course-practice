@@ -1,5 +1,6 @@
 package ru.unn.agile.vector3d.viewmodel;
 
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -99,10 +100,43 @@ public class ViewModel {
         setDefaultOtherVector();
         setDefaultMultCoeffAndResult();
         setDefaultOperationAndStatus();
+
+        initCalculateStateListener();
     }
 
     public void calculate() {
 
+    }
+
+    private void initCalculateStateListener() {
+        BooleanBinding couldCalculate = new BooleanBinding() {
+            {
+                super.bind(vectorX, vectorY, vectorZ, otherVectorX,
+                        otherVectorY, otherVectorZ, multiplicationCoeff);
+            }
+
+            @Override
+            protected boolean computeValue() {
+                return getInputStatus() == Status.READY;
+            }
+        };
+        calculationDisabled.bind(couldCalculate.not());
+    }
+
+    private Status getInputStatus() {
+        Status inputStatus = Status.READY;
+
+        String vectorXValue = vectorX.get();
+        String vectorYValue = vectorY.get();
+        String vectorZValue = vectorZ.get();
+
+        if (vectorXValue.isEmpty()
+                || vectorYValue.isEmpty()
+                || vectorZValue.isEmpty()) {
+            inputStatus = Status.WAITING;
+        }
+
+        return inputStatus;
     }
 
     private void setDefaultVector() {

@@ -1,5 +1,6 @@
 package ru.unn.agile.vector3d.viewmodel;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import org.junit.After;
@@ -8,6 +9,7 @@ import org.junit.Test;
 import ru.unn.agile.vector3d.model.Vector3D;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ViewModelTest {
     private ViewModel viewModel;
@@ -88,5 +90,15 @@ public class ViewModelTest {
         // Assert
         StringProperty expectedStatus = viewModel.statusProperty();
         assertEquals(ViewModel.Status.WAITING.toString(), expectedStatus.get());
+    }
+
+    @Test
+    public void buttonIsDisabledWhenCalculateWithEmptyFields() {
+        // Arrange & Act
+        viewModel.calculate();
+
+        // Assert
+        BooleanProperty expectedButtonState = viewModel.calculationDisabledProperty();
+        assertTrue(expectedButtonState.get());
     }
 }
