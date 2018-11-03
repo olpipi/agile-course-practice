@@ -161,3 +161,7 @@ project(":code/binary-search-tree").name = "binary-search-tree"
 //Pipikin Oleg, Matrix
 include "code/pipikin-oleg-matrix"
 project(":code/pipikin-oleg-matrix").name = "pipikin-oleg-matrix"
+
+// Nakhimovich Dmitry, Segments2D
+include "code/nakhimovich-dmitry-segments2d"
+project(":code/nakhimovich-dmitry-segments2d").name = "nakhimovich-dmitry-segments2d"
