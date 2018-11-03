@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewModel {
+    private final static String EMPTY_STRING = "";
+
     private final StringProperty vectorX = new SimpleStringProperty();
     private final StringProperty vectorY = new SimpleStringProperty();
     private final StringProperty vectorZ = new SimpleStringProperty();
@@ -77,16 +79,26 @@ public class ViewModel {
     }
 
     public ViewModel() {
-        vectorX.set("");
-        vectorY.set("");
-        vectorZ.set("");
+        setDefaultVector();
+        setDefaultOtherVector();
+        setDefaultMultCoeffAndResult();
+    }
 
-        otherVectorX.set("");
-        otherVectorY.set("");
-        otherVectorZ.set("");
+    private void setDefaultVector() {
+        vectorX.set(EMPTY_STRING);
+        vectorY.set(EMPTY_STRING);
+        vectorZ.set(EMPTY_STRING);
+    }
 
-        multiplicationCoeff.set("");
-        result.set("");
+    private void setDefaultOtherVector() {
+        otherVectorX.set(EMPTY_STRING);
+        otherVectorY.set(EMPTY_STRING);
+        otherVectorZ.set(EMPTY_STRING);
+    }
+
+    private void setDefaultMultCoeffAndResult() {
+        multiplicationCoeff.set(EMPTY_STRING);
+        result.set(EMPTY_STRING);
     }
 
     private class ValueChangeListener implements ChangeListener<String> {

@@ -31,14 +31,24 @@ public class Vector3DCalculator {
 
     @FXML
     void initialize() {
+        bindVectorFields();
+        bindOtherVectorFields();
+        bindMultiplicationCoeff();
+    }
+
+    private void bindVectorFields() {
         txtVectorX.textProperty().bindBidirectional(viewModel.vectorXProperty());
         txtVectorY.textProperty().bindBidirectional(viewModel.vectorYProperty());
         txtVectorZ.textProperty().bindBidirectional(viewModel.vectorZProperty());
+    }
 
+    private void bindOtherVectorFields() {
         txtOtherVectorX.textProperty().bindBidirectional(viewModel.otherVectorXProperty());
         txtOtherVectorY.textProperty().bindBidirectional(viewModel.otherVectorYProperty());
         txtOtherVectorZ.textProperty().bindBidirectional(viewModel.otherVectorZProperty());
+    }
 
+    private void bindMultiplicationCoeff() {
         txtMultCoeff.textProperty().bindBidirectional(viewModel.multiplicationCoeffProperty());
     }
 }
