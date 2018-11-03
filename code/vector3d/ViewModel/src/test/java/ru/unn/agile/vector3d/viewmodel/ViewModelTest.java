@@ -35,4 +35,20 @@ public class ViewModelTest {
         assertEquals(emptyString, initialY.get());
         assertEquals(emptyString, initialZ.get());
     }
+
+    @Test
+    public void canSetInitialOtherVectorValues() {
+        // Arrange
+        String emptyString = "";
+
+        // Act
+        StringProperty initialOtherX = viewModel.otherVectorXProperty();
+        StringProperty initialOtherY = viewModel.otherVectorYProperty();
+        StringProperty initialOtherZ = viewModel.otherVectorZProperty();
+
+        // Assert
+        assertEquals(emptyString, initialOtherX.get());
+        assertEquals(emptyString, initialOtherY.get());
+        assertEquals(emptyString, initialOtherZ.get());
+    }
 }

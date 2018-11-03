@@ -57,10 +57,26 @@ public class ViewModel {
         return vectorZ;
     }
 
+    public StringProperty otherVectorXProperty() {
+        return otherVectorX;
+    }
+
+    public StringProperty otherVectorYProperty() {
+        return otherVectorY;
+    }
+
+    public StringProperty otherVectorZProperty() {
+        return otherVectorZ;
+    }
+
     public ViewModel() {
         vectorX.set("");
         vectorY.set("");
         vectorZ.set("");
+
+        otherVectorX.set("");
+        otherVectorY.set("");
+        otherVectorZ.set("");
     }
 
     enum Status {

@@ -34,5 +34,9 @@ public class Vector3DCalculator {
         txtVectorX.textProperty().bindBidirectional(viewModel.vectorXProperty());
         txtVectorY.textProperty().bindBidirectional(viewModel.vectorYProperty());
         txtVectorZ.textProperty().bindBidirectional(viewModel.vectorZProperty());
+
+        txtOtherVectorX.textProperty().bindBidirectional(viewModel.otherVectorXProperty());
+        txtOtherVectorY.textProperty().bindBidirectional(viewModel.otherVectorYProperty());
+        txtOtherVectorZ.textProperty().bindBidirectional(viewModel.otherVectorZProperty());
     }
 }
