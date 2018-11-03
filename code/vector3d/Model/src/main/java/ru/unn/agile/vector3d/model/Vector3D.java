@@ -98,4 +98,20 @@ public class Vector3D {
                 z * other.x - x * other.z,
                 x * other.y - y * other.x);
     }
+
+    public enum Operation {
+        ADD("Add");
+
+        private final String name;
+
+        Operation(final String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+
+    }
 }
