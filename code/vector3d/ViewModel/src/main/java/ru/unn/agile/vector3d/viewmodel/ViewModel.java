@@ -70,12 +70,28 @@ public class ViewModel {
         return operation;
     }
 
+    public String getStatus() {
+        return status.get();
+    }
+
     public StringProperty statusProperty() {
         return status;
     }
 
+    public String getResult() {
+        return result.get();
+    }
+
     public StringProperty resultProperty() {
         return result;
+    }
+
+    public boolean isCalculationDisabled() {
+        return calculationDisabled.get();
+    }
+
+    public BooleanProperty calculationDisabledProperty() {
+        return calculationDisabled;
     }
 
     public ViewModel() {
@@ -83,6 +99,10 @@ public class ViewModel {
         setDefaultOtherVector();
         setDefaultMultCoeffAndResult();
         setDefaultOperationAndStatus();
+    }
+
+    public void calculate() {
+
     }
 
     private void setDefaultVector() {

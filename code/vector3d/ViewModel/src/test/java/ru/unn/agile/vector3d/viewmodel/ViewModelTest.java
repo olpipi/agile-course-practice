@@ -79,4 +79,14 @@ public class ViewModelTest {
         assertEquals(Vector3D.Operation.ADD, defaultOperation.get());
         assertEquals(ViewModel.Status.WAITING.toString(), defaultStatus.get());
     }
+
+    @Test
+    public void statusIsWaitingWhenCalculateWithEmptyFields() {
+        // Arrange & Act
+        viewModel.calculate();
+
+        // Assert
+        StringProperty expectedStatus = viewModel.statusProperty();
+        assertEquals(ViewModel.Status.WAITING.toString(), expectedStatus.get());
+    }
 }
