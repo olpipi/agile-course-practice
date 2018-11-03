@@ -17,11 +17,21 @@ public class Segment2D {
     public Segment2D(final Point2D p1, final Point2D p2) {
         this.p1 = p1;
         this.p2 = p2;
+        if (!isValidSegment()) {
+            this.p1 = null;
+            this.p2 = null;
+            throw new ArithmeticException("both Point2D can not be the same");
+        }
     }
 
     public Segment2D(final double x1, final double y1, final double x2, final double y2) {
         this.p1 = new Point2D.Double(x1, y1);
         this.p2 = new Point2D.Double(x2, y2);
+        if (!isValidSegment()) {
+            this.p1 = null;
+            this.p2 = null;
+            throw new ArithmeticException("both Point2D can not be the same");
+        }
     }
 
     public Point2D getP1() {
@@ -70,49 +80,40 @@ public class Segment2D {
 
 
     public boolean isParallel(final Segment2D targetSegment) {
-        if (!isValidSegment() || !targetSegment.isValidSegment()) {
-            return false;
-        }
-
         getParameters(targetSegment);
 
         return det(paramA1, paramB1, paramA2, paramB2) == 0;
     }
 
     public boolean isMatched(final Segment2D targetSegment) {
-        if (!isValidSegment() || !targetSegment.isValidSegment()) {
-            return false;
-        }
-
         getParameters(targetSegment);
 
         if (det(paramA1, paramB1, paramA2, paramB2) != 0) {
             return false;
         } else {
+            Point2D tp1 = targetSegment.getP1();
+            Point2D tp2 = targetSegment.getP2();
+
             return det(paramA1, paramC1, paramA2, paramC2) == 0
                     && det(paramB1, paramC1, paramB2, paramC2) == 0
-                    && intersection1D(p1.getX(), p2.getX(),
-                    targetSegment.p1.getX(), targetSegment.p2.getX())
-                    && intersection1D(p1.getY(), p2.getY(),
-                    targetSegment.p1.getY(), targetSegment.p2.getY());
+                    && intersection1D(p1.getX(), p2.getX(), tp1.getX(), tp2.getX())
+                    && intersection1D(p1.getY(), p2.getY(), tp1.getY(), tp2.getY());
         }
     }
 
     public Point2D intersection(final Segment2D targetSegment) {
-        if (!isValidSegment() || !targetSegment.isValidSegment()) {
-            return null;
-        }
-
         getParameters(targetSegment);
         double base = det(paramA1, paramB1, paramA2, paramB2);
 
         if (base != 0) {
             double x = -det(paramC1, paramB1, paramC2, paramB2) * 1. / base;
             double y = -det(paramA1, paramC1, paramA2, paramC2) * 1. / base;
+            Point2D tp1 = targetSegment.getP1();
+            Point2D tp2 = targetSegment.getP2();
             if (between(p1.getX(), p2.getX(), x)
                     && between(p1.getY(), p2.getY(), y)
-                    && between(targetSegment.p1.getX(), targetSegment.p2.getX(), x)
-                    && between(targetSegment.p1.getY(), targetSegment.p2.getY(), y)) {
+                    && between(tp1.getX(), tp2.getX(), x)
+                    && between(tp1.getY(), tp2.getY(), y)) {
                 return new Point2D.Double(x, y);
             }
         }

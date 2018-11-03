@@ -17,6 +17,11 @@ public class Segment2DTest {
         assertNotNull(segment);
     }
 
+    @Test(expected = ArithmeticException.class)
+    public void canCreateSegment2DwithCoordsError() {
+        Segment2D segment = new Segment2D(0.0, 0.0, 0.0, 0.0);
+    }
+
     @Test
     public void canCreateSegment2DwithPoints() {
         Segment2D segment = new Segment2D(
@@ -25,6 +30,14 @@ public class Segment2DTest {
         );
 
         assertNotNull(segment);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void canCreateSegment2DwithPointsError() {
+        Segment2D segment = new Segment2D(
+                new Point2D.Double(1.0, 1.0),
+                new Point2D.Double(1.0, 1.0)
+        );
     }
 
     @Test
@@ -192,14 +205,6 @@ public class Segment2DTest {
     }
 
     @Test
-    public void areParallelSegment2DwithError() {
-        Segment2D seg1 = new Segment2D(0.0, 1.0, 1.0, 0.0);
-        Segment2D seg2 = new Segment2D(2.0, 2.0, 2.0, 2.0);
-
-        assertFalse(seg1.isParallel(seg2));
-    }
-
-    @Test
     public void areMatchedSegment2DDifferentTrue() {
         Segment2D seg1 = new Segment2D(-1.0, 1.0, 1.0, -1.0);
         Segment2D seg2 = new Segment2D(0.0, 0.0, 2.0, -2.0);
@@ -224,14 +229,6 @@ public class Segment2DTest {
     }
 
     @Test
-    public void areMatchedSegment2DwithError() {
-        Segment2D seg1 = new Segment2D(-3.0, 3.0, -2.0, 2.0);
-        Segment2D seg2 = new Segment2D(0.0, 0.0, 0.0, 0.0);
-
-        assertFalse(seg1.isMatched(seg2));
-    }
-
-    @Test
     public void areIntersectionSegment2DDifferentTrue() {
         Segment2D seg1 = new Segment2D(0.0, 2.0, 2.0, 2.0);
         Segment2D seg2 = new Segment2D(1.0, 0.0, 1.0, 3.0);
@@ -251,14 +248,6 @@ public class Segment2DTest {
     public void areIntersectionSegment2DtheSame() {
         Segment2D seg1 = new Segment2D(-1.0, 0.0, 1.0, 2.0);
         Segment2D seg2 = new Segment2D(-1.0, 0.0, 1.0, 2.0);
-
-        assertNull(seg1.intersection(seg2));
-    }
-
-    @Test
-    public void areIntersectionSegment2DwithError() {
-        Segment2D seg1 = new Segment2D(-43.0, 32.0, -122.0, 233.0);
-        Segment2D seg2 = new Segment2D(0.0, 0.0, 0.0, 0.0);
 
         assertNull(seg1.intersection(seg2));
     }
