@@ -157,3 +157,8 @@ project(":code/rumiantseva-maria-quadratic-equation-solver").name = "rumiantseva
 // Sheptunov Vladislav, BinarySearchTree
 include "code/binary-search-tree"
 project(":code/binary-search-tree").name = "binary-search-tree"
+
+// Nakhimovich Dmitry, Segments2D
+include "code/nakhimovich-dmitry-segments2d"
+project(":code/nakhimovich-dmitry-segments2d").name = "nakhimovich-dmitry-segments2d"
+
