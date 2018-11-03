@@ -51,4 +51,18 @@ public class ViewModelTest {
         assertEquals(emptyString, initialOtherY.get());
         assertEquals(emptyString, initialOtherZ.get());
     }
+
+    @Test
+    public void canSetDefaultMultiplicationCoeffAndResult() {
+        // Arrange
+        String emptyString = "";
+
+        // Act
+        StringProperty defaultMultCoeff = viewModel.multiplicationCoeffProperty();
+        StringProperty defaultResult = viewModel.resultProperty();
+
+        // Assert
+        assertEquals(emptyString, defaultMultCoeff.get());
+        assertEquals(emptyString, defaultResult.get());
+    }
 }

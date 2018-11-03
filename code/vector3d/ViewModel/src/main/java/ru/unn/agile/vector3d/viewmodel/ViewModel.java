@@ -14,9 +14,11 @@ public class ViewModel {
     private final StringProperty vectorX = new SimpleStringProperty();
     private final StringProperty vectorY = new SimpleStringProperty();
     private final StringProperty vectorZ = new SimpleStringProperty();
+
     private final StringProperty otherVectorX = new SimpleStringProperty();
     private final StringProperty otherVectorY = new SimpleStringProperty();
     private final StringProperty otherVectorZ = new SimpleStringProperty();
+
     private final StringProperty multiplicationCoeff = new SimpleStringProperty();
 
     private final ObjectProperty<ObservableList<Vector3D.Operation>> operations =
@@ -29,17 +31,6 @@ public class ViewModel {
     private final StringProperty status = new SimpleStringProperty();
 
     private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
-
-    private class ValueChangeListener implements ChangeListener<String> {
-        @Override
-        public void changed(final ObservableValue<? extends String> observable,
-                            final String oldValue, final String newValue) {
-        }
-    }
-
-    public ObjectProperty<ObservableList<Vector3D.Operation>> operationsProperty() {
-        return operations;
-    }
 
     public final ObservableList<Vector3D.Operation> getOperations() {
         return operations.get();
@@ -69,6 +60,22 @@ public class ViewModel {
         return otherVectorZ;
     }
 
+    public StringProperty multiplicationCoeffProperty() {
+        return multiplicationCoeff;
+    }
+
+    public ObjectProperty<Vector3D.Operation> operationProperty() {
+        return operation;
+    }
+
+    public StringProperty statusProperty() {
+        return status;
+    }
+
+    public StringProperty resultProperty() {
+        return result;
+    }
+
     public ViewModel() {
         vectorX.set("");
         vectorY.set("");
@@ -77,6 +84,16 @@ public class ViewModel {
         otherVectorX.set("");
         otherVectorY.set("");
         otherVectorZ.set("");
+
+        multiplicationCoeff.set("");
+        result.set("");
+    }
+
+    private class ValueChangeListener implements ChangeListener<String> {
+        @Override
+        public void changed(final ObservableValue<? extends String> observable,
+                            final String oldValue, final String newValue) {
+        }
     }
 
     enum Status {
