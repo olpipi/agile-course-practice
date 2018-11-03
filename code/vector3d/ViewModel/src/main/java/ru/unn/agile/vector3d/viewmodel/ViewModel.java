@@ -102,10 +102,30 @@ public class ViewModel {
         setDefaultOperationAndStatus();
 
         initCalculateStateListener();
+        initFieldsListeners();
     }
 
     public void calculate() {
 
+    }
+
+    private void initFieldsListeners() {
+        final List<StringProperty> fields = new ArrayList<StringProperty>() {
+            {
+                add(vectorX);
+                add(vectorY);
+                add(vectorZ);
+                add(otherVectorX);
+                add(otherVectorY);
+                add(otherVectorZ);
+            }
+        };
+
+        for (StringProperty field : fields) {
+            final ValueChangeListener listener = new ValueChangeListener();
+            field.addListener(listener);
+            valueChangedListeners.add(listener);
+        }
     }
 
     private void initCalculateStateListener() {
@@ -165,6 +185,7 @@ public class ViewModel {
         @Override
         public void changed(final ObservableValue<? extends String> observable,
                             final String oldValue, final String newValue) {
+            status.set(getInputStatus().toString());
         }
     }
 

@@ -101,4 +101,20 @@ public class ViewModelTest {
         BooleanProperty expectedButtonState = viewModel.calculationDisabledProperty();
         assertTrue(expectedButtonState.get());
     }
+
+    @Test
+    public void statusIsReadyWhenCalculateWithEmptyFields() {
+        // Arrange & Act
+        setInputData();
+
+        // Assert
+        StringProperty expectedStatus = viewModel.statusProperty();
+        assertEquals(ViewModel.Status.READY.toString(), expectedStatus.get());
+    }
+
+    private void setInputData() {
+        viewModel.vectorXProperty().set("1");
+        viewModel.vectorYProperty().set("2");
+        viewModel.vectorZProperty().set("3");
+    }
 }
