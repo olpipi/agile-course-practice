@@ -3,7 +3,8 @@ package ru.unn.agile.vector3d.model;
 import org.junit.Test;
 import ru.unn.agile.vector3d.model.errorhandling.NullVectorNormalizing;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class Vector3DTest {
     public static final double EPSILON = Vector3D.EPSILON;
