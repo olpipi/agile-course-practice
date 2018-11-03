@@ -123,10 +123,19 @@ public class ViewModelTest {
         assertEquals(ViewModel.Status.BAD_FORMAT.toString(), expectedStatus.get());
     }
 
+    @Test
+    public void calculateButtonIsDisabledWhenFormatIsBad() {
+        setInputData();
+        viewModel.vectorXProperty().set("trash");
+
+        assertTrue(viewModel.calculationDisabledProperty().get());
+    }
+
     private void setInputData() {
         viewModel.vectorXProperty().set("1");
         viewModel.vectorYProperty().set("2");
         viewModel.vectorZProperty().set("3");
+
         viewModel.otherVectorXProperty().set("1");
         viewModel.otherVectorYProperty().set("2");
         viewModel.otherVectorZProperty().set("3");

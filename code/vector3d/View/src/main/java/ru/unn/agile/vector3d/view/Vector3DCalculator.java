@@ -34,6 +34,7 @@ public class Vector3DCalculator {
         bindVectorFields();
         bindOtherVectorFields();
         bindMultiplicationCoeff();
+        bindOperation();
     }
 
     private void bindVectorFields() {
@@ -50,5 +51,9 @@ public class Vector3DCalculator {
 
     private void bindMultiplicationCoeff() {
         txtMultCoeff.textProperty().bindBidirectional(viewModel.multiplicationCoeffProperty());
+    }
+
+    private void bindOperation() {
+        cbOperation.valueProperty().bindBidirectional(viewModel.operationProperty());
     }
 }
