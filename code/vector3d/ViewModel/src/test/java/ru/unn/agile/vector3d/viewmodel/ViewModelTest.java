@@ -124,24 +124,45 @@ public class ViewModelTest {
 
     @Test
     public void calculateButtonIsDisabledWhenFormatIsBad() {
+        // Arrange & Act
         setInputData();
         viewModel.vectorXProperty().set("trash");
 
+        // Assert
         assertTrue(viewModel.calculationDisabledProperty().get());
     }
 
     @Test
     public void calculateButtonIsEnabledWithCorrectInput() {
+        // Arrange & Act
         setInputData();
 
+        // Assert
         assertFalse(viewModel.calculationDisabledProperty().get());
     }
 
     @Test
     public void calculateButtonIsDisabledWithIncompleteInput() {
+        // Arrange & Act
         viewModel.vectorXProperty().set("1");
 
+        // Assert
         assertTrue(viewModel.calculationDisabledProperty().get());
+    }
+
+    @Test
+    public void canSetAddOperation() {
+        // Arrange & Act
+        viewModel.operationProperty().set(Vector3D.Operation.ADD);
+
+        // Assert
+        assertEquals(Vector3D.Operation.ADD, viewModel.operationProperty().get());
+    }
+
+    @Test
+    public void addIsDefaultOperation() {
+        // Arrange & Act & Assert
+        assertEquals(Vector3D.Operation.ADD, viewModel.operationProperty().get());
     }
 
     private void setInputData() {
