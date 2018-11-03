@@ -82,6 +82,7 @@ public class ViewModel {
         setDefaultVector();
         setDefaultOtherVector();
         setDefaultMultCoeffAndResult();
+        setDefaultOperationAndStatus();
     }
 
     private void setDefaultVector() {
@@ -99,6 +100,11 @@ public class ViewModel {
     private void setDefaultMultCoeffAndResult() {
         multiplicationCoeff.set(EMPTY_STRING);
         result.set(EMPTY_STRING);
+    }
+
+    private void setDefaultOperationAndStatus() {
+        operation.set(Vector3D.Operation.ADD);
+        status.set(Status.WAITING.toString());
     }
 
     private class ValueChangeListener implements ChangeListener<String> {

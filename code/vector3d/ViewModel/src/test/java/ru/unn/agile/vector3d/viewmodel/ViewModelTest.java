@@ -1,9 +1,11 @@
 package ru.unn.agile.vector3d.viewmodel;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import ru.unn.agile.vector3d.model.Vector3D;
 
 import static org.junit.Assert.assertEquals;
 
@@ -64,5 +66,17 @@ public class ViewModelTest {
         // Assert
         assertEquals(emptyString, defaultMultCoeff.get());
         assertEquals(emptyString, defaultResult.get());
+    }
+
+
+    @Test
+    public void canSetDefaultOperationAndStatus() {
+        // Arrange & Act
+        ObjectProperty<Vector3D.Operation> defaultOperation = viewModel.operationProperty();
+        StringProperty defaultStatus = viewModel.statusProperty();
+
+        // Assert
+        assertEquals(Vector3D.Operation.ADD, defaultOperation.get());
+        assertEquals(ViewModel.Status.WAITING.toString(), defaultStatus.get());
     }
 }
