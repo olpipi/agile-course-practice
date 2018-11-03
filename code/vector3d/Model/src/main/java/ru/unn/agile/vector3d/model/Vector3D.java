@@ -111,7 +111,8 @@ public class Vector3D {
     }
 
     public enum Operation {
-        ADD("Add");
+        ADD("Add"),
+        SUBTRACT("Subtract");
 
         private final String name;
 

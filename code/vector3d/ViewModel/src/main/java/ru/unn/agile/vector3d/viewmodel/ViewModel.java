@@ -7,6 +7,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import ru.unn.agile.vector3d.model.Vector3D;
+import ru.unn.agile.vector3d.viewmodel.actions.ActionFactory;
+import ru.unn.agile.vector3d.viewmodel.actions.IAction;
 import ru.unn.agile.vector3d.viewmodel.validators.FieldValidator;
 
 import java.util.ArrayList;
@@ -64,6 +66,38 @@ public class ViewModel {
         return otherVectorZ;
     }
 
+    public String getVectorX() {
+        return vectorX.get();
+    }
+
+    public String getVectorY() {
+        return vectorY.get();
+    }
+
+    public String getVectorZ() {
+        return vectorZ.get();
+    }
+
+    public String getOtherVectorX() {
+        return otherVectorX.get();
+    }
+
+    public String getOtherVectorY() {
+        return otherVectorY.get();
+    }
+
+    public String getOtherVectorZ() {
+        return otherVectorZ.get();
+    }
+
+    public String getMultiplicationCoeff() {
+        return multiplicationCoeff.get();
+    }
+
+    public Vector3D.Operation getOperation() {
+        return operation.get();
+    }
+
     public StringProperty multiplicationCoeffProperty() {
         return multiplicationCoeff;
     }
@@ -111,13 +145,9 @@ public class ViewModel {
             return;
         }
 
-        Vector3D vector = new Vector3D(vectorX.get(), vectorY.get(), vectorZ.get());
-
-        if (Vector3D.Operation.ADD.equals(operation.get())) {
-            Vector3D other = new Vector3D(otherVectorX.get(), otherVectorY.get(), otherVectorZ.get());
-
-            result.set(vector.add(other).toString());
-            status.set(Status.SUCCESS.toString());
+        IAction action = ActionFactory.getAction(getOperation());
+        if (action != null) {
+            action.execute(this);
         }
     }
 

@@ -174,13 +174,26 @@ public class ViewModelTest {
         viewModel.calculate();
 
         // Assert
-        assertEquals("(2.0, 4.0, 6.0)", viewModel.resultProperty().get());
+        assertEquals("(4.1, -1.9, 9.3)", viewModel.resultProperty().get());
+    }
+
+    @Test
+    public void operationSubtractHasCorrectResult() {
+        // Arrange
+        setInputData();
+        viewModel.operationProperty().set(Vector3D.Operation.SUBTRACT);
+
+        // Act
+        viewModel.calculate();
+
+        // Assert
+        assertEquals("(2.1, -5.9, 3.3)", viewModel.resultProperty().get());
     }
 
     private void setInputData() {
-        viewModel.vectorXProperty().set("1");
-        viewModel.vectorYProperty().set("2");
-        viewModel.vectorZProperty().set("3");
+        viewModel.vectorXProperty().set("3.1");
+        viewModel.vectorYProperty().set("-3.9");
+        viewModel.vectorZProperty().set("6.3");
 
         viewModel.otherVectorXProperty().set("1");
         viewModel.otherVectorYProperty().set("2");
