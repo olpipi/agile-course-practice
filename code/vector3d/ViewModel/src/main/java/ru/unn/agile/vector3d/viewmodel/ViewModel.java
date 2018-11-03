@@ -22,6 +22,7 @@ public class ViewModel {
     private final ObjectProperty<ObservableList<Vector3D.Operation>> operations =
             new SimpleObjectProperty<>(FXCollections.observableArrayList(Vector3D.Operation.values()));
     private final ObjectProperty<Vector3D.Operation> operation = new SimpleObjectProperty<>();
+
     private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
 
     private final StringProperty result = new SimpleStringProperty();
@@ -42,6 +43,24 @@ public class ViewModel {
 
     public final ObservableList<Vector3D.Operation> getOperations() {
         return operations.get();
+    }
+
+    public StringProperty vectorXProperty() {
+        return vectorX;
+    }
+
+    public StringProperty vectorYProperty() {
+        return vectorY;
+    }
+
+    public StringProperty vectorZProperty() {
+        return vectorZ;
+    }
+
+    public ViewModel() {
+        vectorX.set("");
+        vectorY.set("");
+        vectorZ.set("");
     }
 
     enum Status {

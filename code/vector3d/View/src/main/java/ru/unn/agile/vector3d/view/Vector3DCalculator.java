@@ -31,6 +31,8 @@ public class Vector3DCalculator {
 
     @FXML
     void initialize() {
-
+        txtVectorX.textProperty().bindBidirectional(viewModel.vectorXProperty());
+        txtVectorY.textProperty().bindBidirectional(viewModel.vectorYProperty());
+        txtVectorZ.textProperty().bindBidirectional(viewModel.vectorZProperty());
     }
 }
