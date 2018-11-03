@@ -112,6 +112,17 @@ public class ViewModelTest {
         assertEquals(ViewModel.Status.READY.toString(), expectedStatus.get());
     }
 
+    @Test
+    public void canReportBadFormat() {
+        // Arrange & Act
+        viewModel.vectorXProperty().set("1");
+        viewModel.vectorYProperty().set("aa");
+
+        // Assert
+        StringProperty expectedStatus = viewModel.statusProperty();
+        assertEquals(ViewModel.Status.BAD_FORMAT.toString(), expectedStatus.get());
+    }
+
     private void setInputData() {
         viewModel.vectorXProperty().set("1");
         viewModel.vectorYProperty().set("2");

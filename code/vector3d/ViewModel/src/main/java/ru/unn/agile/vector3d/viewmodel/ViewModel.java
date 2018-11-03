@@ -7,6 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import ru.unn.agile.vector3d.model.Vector3D;
+import ru.unn.agile.vector3d.viewmodel.validators.FieldValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -146,14 +147,23 @@ public class ViewModel {
     private Status getInputStatus() {
         Status inputStatus = Status.READY;
 
+        Vector3D.Operation operation = operationProperty().get();
+
         String vectorXValue = vectorX.get();
         String vectorYValue = vectorY.get();
         String vectorZValue = vectorZ.get();
 
-        if (vectorXValue.isEmpty()
-                || vectorYValue.isEmpty()
-                || vectorZValue.isEmpty()) {
-            inputStatus = Status.WAITING;
+        String otherXValue = otherVectorX.get();
+        String otherYValue = otherVectorY.get();
+        String otherZValue = otherVectorZ.get();
+
+        FieldValidator fieldValidator = new FieldValidator();
+
+        if (Vector3D.Operation.ADD.equals(operation)) {
+            inputStatus = fieldValidator.validateVector(vectorXValue, vectorYValue, vectorZValue);
+            if (Status.READY.equals(inputStatus)) {
+                inputStatus = fieldValidator.validateVector(otherXValue, otherYValue, otherZValue);
+            }
         }
 
         return inputStatus;
@@ -189,7 +199,7 @@ public class ViewModel {
         }
     }
 
-    enum Status {
+    public enum Status {
         WAITING("Please provide input data"),
         READY("Press 'Calculate' or Enter"),
         BAD_FORMAT("Bad format"),
