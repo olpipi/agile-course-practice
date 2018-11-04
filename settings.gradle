@@ -10,9 +10,13 @@ project(":code/oleneva-intersect-line-and-plane").name = "code/oleneva-intersect
 include "code/pozdiaev-valerii-currency-converter"
 project(":code/pozdiaev-valerii-currency-converter").name = "pozdiaev-valerii-currency-converter"
 
-// nickshevr
-include("code/nickshevr-numerical-integration")
-project(":code/nickshevr-numerical-integration").name = "nickshevr-numerical-integration"
+// nickshevr, Zhiltsov Max
+include "code/numerical-integration/Model"
+project(":code/numerical-integration/Model").name = "numerical-integration-Model-legacy"
+include "code/numerical-integration/ViewModel"
+project(":code/numerical-integration/ViewModel").name = "numerical-integration-ViewModel-legacy"
+include "code/numerical-integration/View"
+project(":code/numerical-integration/View").name = "numerical-integration-View-legacy"
 
 // Korniakov Kirill, lab1
 include "code/korniakov-kirill-lab1"
