@@ -30,9 +30,9 @@ public class ConwayGameTest {
     public void canGetGivenGeneration() {
         ConwayGame game = new ConwayGame(2, 3);
 
-        game.readGeneration("..**..");
+        game.setGeneration("..**..");
 
-        assertEquals("..*\n*..\n", game.getCurrentGeneration());
+        assertEquals("..*\n*..\n", game.getGeneration());
     }
 
     @Test
@@ -46,29 +46,29 @@ public class ConwayGameTest {
     public void canGetNextGeneration() {
         ConwayGame game = new ConwayGame(4, 8);
 
-        game.readGeneration("............*......**...........");
+        game.setGeneration("............*......**...........");
         game.moveToNextGeneration();
 
-        assertEquals("........\n...**...\n...**...\n........\n", game.getNextGeneration());
+        assertEquals("........\n...**...\n...**...\n........\n", game.getGeneration());
     }
 
     @Test
-    public void canGetNextGeneration2() {
+    public void canGetNextGenerationSmallPlaground() {
         ConwayGame game = new ConwayGame(1, 1);
 
-        game.readGeneration("*");
+        game.setGeneration("*");
         game.moveToNextGeneration();
 
-        assertEquals(".\n", game.getNextGeneration());
+        assertEquals(".\n", game.getGeneration());
     }
 
     @Test
-    public void canGetNextGeneration3() {
+    public void canGetNextGenerationFilledPlayground() {
         ConwayGame game = new ConwayGame(2, 2);
 
-        game.readGeneration("****");
+        game.setGeneration("****");
         game.moveToNextGeneration();
 
-        assertEquals("**\n**\n", game.getNextGeneration());
+        assertEquals("**\n**\n", game.getGeneration());
     }
 }
