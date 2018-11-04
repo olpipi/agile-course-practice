@@ -217,6 +217,38 @@ public class ViewModelTest {
         assertEquals(ViewModel.Status.BAD_FORMAT.toString(), expectedStatus.get());
     }
 
+    @Test
+    public void operationMultiplyHasCorrectResult() {
+        // Arrange
+        viewModel.vectorXProperty().set("1");
+        viewModel.vectorYProperty().set("-2");
+        viewModel.vectorZProperty().set("3");
+        viewModel.multiplicationCoeffProperty().set("2");
+        viewModel.operationProperty().set(Vector3D.Operation.MULTIPLY);
+
+        // Act
+        viewModel.calculate();
+
+        // Assert
+        assertEquals("(2.0, -4.0, 6.0)", viewModel.resultProperty().get());
+    }
+
+    @Test
+    public void canCheckBadFormatWhenOperationIsMultiply() {
+        // Arrange
+        viewModel.vectorXProperty().set("1");
+        viewModel.vectorYProperty().set("-2");
+        viewModel.vectorZProperty().set("3");
+        viewModel.operationProperty().set(Vector3D.Operation.MULTIPLY);
+
+        // Act
+        viewModel.multiplicationCoeffProperty().set("aa");
+
+        // Assert
+        StringProperty expectedStatus = viewModel.statusProperty();
+        assertEquals(ViewModel.Status.BAD_FORMAT.toString(), expectedStatus.get());
+    }
+
     private void setInputData() {
         viewModel.vectorXProperty().set("3.1");
         viewModel.vectorYProperty().set("-3.9");

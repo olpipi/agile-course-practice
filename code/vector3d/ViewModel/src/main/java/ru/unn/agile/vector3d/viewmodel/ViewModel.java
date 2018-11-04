@@ -161,6 +161,7 @@ public class ViewModel {
                 add(otherVectorX);
                 add(otherVectorY);
                 add(otherVectorZ);
+                add(multiplicationCoeff);
             }
         };
 

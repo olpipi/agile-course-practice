@@ -8,6 +8,8 @@ public class ValidatorFactory {
                 || Vector3D.Operation.SUBTRACT.equals(operation)
                 || Vector3D.Operation.DOT.equals(operation)) {
             return new BothVectorsValidator();
+        } else if (Vector3D.Operation.MULTIPLY.equals(operation)) {
+            return new MultiplyCoeffValidator();
         }
         return null;
     }
