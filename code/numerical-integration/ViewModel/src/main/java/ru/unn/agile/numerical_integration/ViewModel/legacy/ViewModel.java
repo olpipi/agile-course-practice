@@ -1,27 +1,38 @@
 package ru.unn.agile.numerical_integration.ViewModel.legacy;
 
 public class ViewModel {
+    private String function;
+    private double leftBorder;
+    private double rightBorder;
+    private int splitsCount;
+    private String outputMessage;
+
+
     public ViewModel() {
-        /* none */
+        function = "";
+        leftBorder = 0;
+        rightBorder = 0;
+        splitsCount = 0;
+        outputMessage = "";
     }
 
     public String getFunction() {
-        return null;
+        return function;
     }
 
     public String getLeftBorderValue() {
-        return null;
+        return Double.toString(leftBorder);
     }
 
     public String getRightBorderValue() {
-        return null;
+        return Double.toString(rightBorder);
     }
 
     public String getSplitsCount() {
-        return null;
+        return Integer.toString(splitsCount);
     }
 
     public String getOutputMessage() {
-        return null;
+        return outputMessage;
     }
 }

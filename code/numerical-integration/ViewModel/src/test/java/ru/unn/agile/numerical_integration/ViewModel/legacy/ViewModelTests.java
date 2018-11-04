@@ -10,9 +10,9 @@ public class ViewModelTests {
         ViewModel model = new ViewModel();
 
         assertEquals("", model.getFunction());
-        assertEquals("", model.getLeftBorderValue());
-        assertEquals("", model.getRightBorderValue());
-        assertEquals("", model.getSplitsCount());
+        assertEquals("0.0", model.getLeftBorderValue());
+        assertEquals("0.0", model.getRightBorderValue());
+        assertEquals("0", model.getSplitsCount());
         assertEquals("", model.getOutputMessage());
     }
 }
