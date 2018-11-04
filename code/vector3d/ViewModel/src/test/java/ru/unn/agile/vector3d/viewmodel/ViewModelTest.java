@@ -190,6 +190,19 @@ public class ViewModelTest {
         assertEquals("(2.1, -5.9, 3.3)", viewModel.resultProperty().get());
     }
 
+    @Test
+    public void operationDotHasCorrectResult() {
+        // Arrange
+        setInputData();
+        viewModel.operationProperty().set(Vector3D.Operation.DOT);
+
+        // Act
+        viewModel.calculate();
+
+        // Assert
+        assertEquals("14.2", viewModel.resultProperty().get());
+    }
+
     private void setInputData() {
         viewModel.vectorXProperty().set("3.1");
         viewModel.vectorYProperty().set("-3.9");

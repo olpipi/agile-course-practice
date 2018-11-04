@@ -112,7 +112,12 @@ public class Vector3D {
 
     public enum Operation {
         ADD("Add"),
-        SUBTRACT("Subtract");
+        SUBTRACT("Subtract"),
+        DOT("Dot"),
+        NORMALIZE("Normalize"),
+        MAGNITUDE("Magnitude"),
+        MULTIPLY("Multiply"),
+        CROSS("Cross");
 
         private final String name;
 

@@ -8,6 +8,8 @@ public class ActionFactory {
             return new AddAction();
         } else if (Vector3D.Operation.SUBTRACT.equals(operation)) {
             return new SubtractAction();
+        } else if (Vector3D.Operation.DOT.equals(operation)) {
+            return new DotAction();
         }
         return null;
     }
