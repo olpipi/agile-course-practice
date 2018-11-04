@@ -203,6 +203,20 @@ public class ViewModelTest {
         assertEquals("14.2", viewModel.resultProperty().get());
     }
 
+    @Test
+    public void canCheckBadFormatWhenOperationIsDot() {
+        // Arrange
+        setInputData();
+        viewModel.operationProperty().set(Vector3D.Operation.DOT);
+
+        // Act
+        viewModel.otherVectorXProperty().set("aa");
+
+        // Assert
+        StringProperty expectedStatus = viewModel.statusProperty();
+        assertEquals(ViewModel.Status.BAD_FORMAT.toString(), expectedStatus.get());
+    }
+
     private void setInputData() {
         viewModel.vectorXProperty().set("3.1");
         viewModel.vectorYProperty().set("-3.9");
