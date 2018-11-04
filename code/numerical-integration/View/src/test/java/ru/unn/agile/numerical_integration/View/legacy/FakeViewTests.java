@@ -1,4 +1,4 @@
-package ru.unn.agile.numerical_integration;
+package ru.unn.agile.numerical_integration.View.legacy;
 
 import org.junit.Ignore;
 import org.junit.Test;
