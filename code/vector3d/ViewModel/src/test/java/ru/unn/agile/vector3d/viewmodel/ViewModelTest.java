@@ -114,7 +114,7 @@ public class ViewModelTest {
     @Test
     public void canReportBadFormat() {
         // Arrange & Act
-        viewModel.vectorXProperty().set("1");
+        setInputData();
         viewModel.vectorYProperty().set("aa");
 
         // Assert

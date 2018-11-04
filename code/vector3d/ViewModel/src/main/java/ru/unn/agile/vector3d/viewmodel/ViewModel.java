@@ -9,7 +9,8 @@ import javafx.collections.ObservableList;
 import ru.unn.agile.vector3d.model.Vector3D;
 import ru.unn.agile.vector3d.viewmodel.actions.ActionFactory;
 import ru.unn.agile.vector3d.viewmodel.actions.IAction;
-import ru.unn.agile.vector3d.viewmodel.validators.FieldValidator;
+import ru.unn.agile.vector3d.viewmodel.validators.IValidator;
+import ru.unn.agile.vector3d.viewmodel.validators.ValidatorFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -186,28 +187,12 @@ public class ViewModel {
     }
 
     private Status getInputStatus() {
-        Status inputStatus = Status.READY;
-
-        Vector3D.Operation operation = operationProperty().get();
-
-        String vectorXValue = vectorX.get();
-        String vectorYValue = vectorY.get();
-        String vectorZValue = vectorZ.get();
-
-        String otherXValue = otherVectorX.get();
-        String otherYValue = otherVectorY.get();
-        String otherZValue = otherVectorZ.get();
-
-        FieldValidator fieldValidator = new FieldValidator();
-
-        if (Vector3D.Operation.ADD.equals(operation)) {
-            inputStatus = fieldValidator.validateVector(vectorXValue, vectorYValue, vectorZValue);
-            if (Status.READY.equals(inputStatus)) {
-                inputStatus = fieldValidator.validateVector(otherXValue, otherYValue, otherZValue);
-            }
+        IValidator validator = ValidatorFactory.getValidator(getOperation());
+        if (validator != null) {
+            validator.validate(this);
         }
 
-        return inputStatus;
+        return Status.getByName(getStatus());
     }
 
     private void setDefaultVector() {
@@ -254,6 +239,15 @@ public class ViewModel {
 
         public String toString() {
             return name;
+        }
+
+        public static Status getByName(String name) {
+            for (Status status : Status.values()) {
+                if (status.name.equals(name)) {
+                    return status;
+                }
+            }
+            return null;
         }
     }
 }
