@@ -162,3 +162,6 @@ project(":code/binary-search-tree").name = "binary-search-tree"
 include "code/nakhimovich-dmitry-segments2d"
 project(":code/nakhimovich-dmitry-segments2d").name = "nakhimovich-dmitry-segments2d"
 
+// Akhmedzhanov Dmitry, Conway Game of Life
+include "code/akhmedzhanov-dmitry-conway-game"
+project(":code/akhmedzhanov-dmitry-conway-game").name = "akhmedzhanov-dmitry-conway-game-Model"
