@@ -1,8 +1,14 @@
 package ru.unn.agile.numerical_integration.View.legacy;
 
+import ru.unn.agile.numerical_integration.ViewModel.legacy.ViewModel;
+
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public final class MainForm {
+    private final ViewModel model = new ViewModel();
+
     private JPanel mainPanel;
     private JTextField functionText;
     private JTextField leftBorderText;
@@ -37,6 +43,41 @@ public final class MainForm {
         suppressUnused(leftBorderLabel);
         suppressUnused(rightBorderLabel);
         suppressUnused(helpText);
+
+
+        computeIntegralButton.addActionListener(e -> {
+            bind();
+            model.compute();
+            backBind();
+        });
+
+        KeyAdapter messageUpdater = new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                bind();
+                backBind();
+            }
+        };
+        functionText.addKeyListener(messageUpdater);
+        leftBorderText.addKeyListener(messageUpdater);
+        rightBorderText.addKeyListener(messageUpdater);
+        splitsText.addKeyListener(messageUpdater);
+    }
+
+    private void bind() {
+        model.setFunction(functionText.getText());
+        model.setLeftBorderValue(leftBorderText.getText());
+        model.setRightBorderValue(rightBorderText.getText());
+        model.setSplitsNumber(splitsText.getText());
+    }
+
+    private void backBind() {
+        functionText.setText(model.getFunctionText());
+        leftBorderText.setText(model.getLeftBorderValue());
+        rightBorderText.setText(model.getRightBorderValue());
+        splitsText.setText(model.getSplitsNumber());
+        computeIntegralButton.setEnabled(model.canComputeFunction());
+        outputText.setText(model.getOutputMessage());
     }
 
     private static Object suppressUnused(final Object o) {

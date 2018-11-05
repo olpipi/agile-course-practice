@@ -63,7 +63,7 @@ public class MathParser {
         // Remove all whitespaces to check if the expression is empty
         expression = expression.replace(" ", "");
         if (expression.isEmpty()) {
-            // Insert 0.0 empty expr to eval to 0
+            // Insert 0.0 to empty expr to eval to 0
             expression = "0.0";
         } else {
             // Insert 0.0 to non empty expr to cast the result to double
