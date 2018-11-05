@@ -1,12 +1,11 @@
 package ru.unn.agile.complexnumber.model;
 
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 public class KrutoberezhskayaIrinaTest {
 
-private final double delta = 0.001;
+    private final double delta = 0.001;
     @Test
     public void canAddComplexNumbers() {
         // Arrange
