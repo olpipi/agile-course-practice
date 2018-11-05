@@ -102,4 +102,12 @@ public class TempConverterTest {
         assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
     }
 
+    @Test (expected = TempConverterExceptions.class)
+    public void canConvertAbsMinToKelvin() {
+        TempUnit tempUnit = TempUnit.KELVIN;
+        double tempBefore = -273.16;
+
+        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+    }
+
 }

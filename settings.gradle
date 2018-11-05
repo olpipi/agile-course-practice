@@ -158,7 +158,7 @@ project(":code/shape-volume-calculator").name = "shape-volume-calculator"
 include "code/rumiantseva-maria-quadratic-equation-solver"
 project(":code/rumiantseva-maria-quadratic-equation-solver").name = "rumiantseva-maria-quadratic-equation-solver"
 
-// Golovanova Tatyana, Converter To/From Celsius
+// Golovanova Tatyana, Converter From Celsius
 include "code/golovanova-tatyana-converter-temperatures"
 project(":code/golovanova-tatyana-converter-temperatures").name = "golovanova-tatyana-converter-temperatures"
 
