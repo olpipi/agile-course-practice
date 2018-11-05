@@ -69,4 +69,16 @@ public class TempConverterTest {
 
         assertEquals(coefExpected, coefActual, EPSILON);
     }
+
+    @Test
+    public void canGetOffsetForKelvin() {
+        TempUnit tempUnit = TempUnit.KELVIN;
+        double offsetExpected = 273.15;
+
+        double offsetActual = tempUnit.getOffset();
+
+        assertEquals(offsetExpected, offsetActual, EPSILON);
+    }
+
+
 }
