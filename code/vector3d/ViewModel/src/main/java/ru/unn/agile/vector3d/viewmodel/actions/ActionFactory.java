@@ -1,6 +1,7 @@
 package ru.unn.agile.vector3d.viewmodel.actions;
 
 import ru.unn.agile.vector3d.model.Vector3D;
+import ru.unn.agile.vector3d.viewmodel.actions.impl.*;
 
 public final class ActionFactory {
     private ActionFactory() {

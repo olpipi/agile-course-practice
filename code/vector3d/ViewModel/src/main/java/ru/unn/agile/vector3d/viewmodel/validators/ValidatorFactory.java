@@ -1,6 +1,9 @@
 package ru.unn.agile.vector3d.viewmodel.validators;
 
 import ru.unn.agile.vector3d.model.Vector3D;
+import ru.unn.agile.vector3d.viewmodel.validators.impl.BothVectorsValidator;
+import ru.unn.agile.vector3d.viewmodel.validators.impl.MultiplyCoeffValidator;
+import ru.unn.agile.vector3d.viewmodel.validators.impl.VectorValidator;
 
 public final class ValidatorFactory {
     private ValidatorFactory() {

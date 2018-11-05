@@ -1,7 +1,8 @@
-package ru.unn.agile.vector3d.viewmodel.actions;
+package ru.unn.agile.vector3d.viewmodel.actions.impl;
 
 import ru.unn.agile.vector3d.model.Vector3D;
 import ru.unn.agile.vector3d.viewmodel.ViewModel;
+import ru.unn.agile.vector3d.viewmodel.actions.IAction;
 
 public class MagnitudeAction implements IAction {
     @Override

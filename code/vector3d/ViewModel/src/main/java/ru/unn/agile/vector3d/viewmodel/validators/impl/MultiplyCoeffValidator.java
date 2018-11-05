@@ -1,4 +1,4 @@
-package ru.unn.agile.vector3d.viewmodel.validators;
+package ru.unn.agile.vector3d.viewmodel.validators.impl;
 
 import ru.unn.agile.vector3d.viewmodel.ViewModel;
 
