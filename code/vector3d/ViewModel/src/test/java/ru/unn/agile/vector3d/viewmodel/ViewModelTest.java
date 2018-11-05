@@ -294,6 +294,25 @@ public class ViewModelTest {
         assertEquals("(-0.8, 0.0, 0.6)", viewModel.resultProperty().get());
     }
 
+    @Test
+    public void operationCrossHasCorrectResult() {
+        // Arrange
+        viewModel.vectorXProperty().set("-7");
+        viewModel.vectorYProperty().set("-17");
+        viewModel.vectorZProperty().set("1");
+
+        viewModel.otherVectorXProperty().set("-2");
+        viewModel.otherVectorYProperty().set("8");
+        viewModel.otherVectorZProperty().set("9");
+        viewModel.operationProperty().set(Vector3D.Operation.CROSS);
+
+        // Act
+        viewModel.calculate();
+
+        // Assert
+        assertEquals("(-161.0, 61.0, -90.0)", viewModel.resultProperty().get());
+    }
+
     private void setInputData() {
         viewModel.vectorXProperty().set("3.1");
         viewModel.vectorYProperty().set("-3.9");

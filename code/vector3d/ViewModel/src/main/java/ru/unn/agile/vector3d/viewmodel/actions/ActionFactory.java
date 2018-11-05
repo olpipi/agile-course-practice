@@ -19,6 +19,8 @@ public final class ActionFactory {
             return new MagnitudeAction();
         } else if (Vector3D.Operation.NORMALIZE.equals(operation)) {
             return new NormalizeAction();
+        } else if (Vector3D.Operation.CROSS.equals(operation)) {
+            return new CrossAction();
         }
         return null;
     }

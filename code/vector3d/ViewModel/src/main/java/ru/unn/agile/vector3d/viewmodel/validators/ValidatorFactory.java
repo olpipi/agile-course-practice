@@ -9,7 +9,8 @@ public final class ValidatorFactory {
     public static IValidator getValidator(final Vector3D.Operation operation) {
         if (Vector3D.Operation.ADD.equals(operation)
                 || Vector3D.Operation.SUBTRACT.equals(operation)
-                || Vector3D.Operation.DOT.equals(operation)) {
+                || Vector3D.Operation.DOT.equals(operation)
+                || Vector3D.Operation.CROSS.equals(operation)) {
             return new BothVectorsValidator();
         } else if (Vector3D.Operation.MULTIPLY.equals(operation)) {
             return new MultiplyCoeffValidator();
