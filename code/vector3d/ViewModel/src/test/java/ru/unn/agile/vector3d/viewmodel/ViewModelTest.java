@@ -279,6 +279,21 @@ public class ViewModelTest {
         assertEquals("3.7416573867739413", viewModel.resultProperty().get());
     }
 
+    @Test
+    public void operationNormalizeHasCorrectResult() {
+        // Arrange
+        viewModel.vectorXProperty().set("-80");
+        viewModel.vectorYProperty().set("0");
+        viewModel.vectorZProperty().set("60");
+        viewModel.operationProperty().set(Vector3D.Operation.NORMALIZE);
+
+        // Act
+        viewModel.calculate();
+
+        // Assert
+        assertEquals("(-0.8, 0.0, 0.6)", viewModel.resultProperty().get());
+    }
+
     private void setInputData() {
         viewModel.vectorXProperty().set("3.1");
         viewModel.vectorYProperty().set("-3.9");

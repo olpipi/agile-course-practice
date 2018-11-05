@@ -17,6 +17,8 @@ public final class ActionFactory {
             return new MultiplyAction();
         } else if (Vector3D.Operation.MAGNITUDE.equals(operation)) {
             return new MagnitudeAction();
+        } else if (Vector3D.Operation.NORMALIZE.equals(operation)) {
+            return new NormalizeAction();
         }
         return null;
     }
