@@ -42,4 +42,15 @@ public class TempConverterTest {
 
         double calculatingTempAfter = converter.convert(tempBefore,tempUnit);
     }
+
+    @Test
+    public void canGetCoefForFahrenheit() {
+        TempConverter converter = new TempConverter();
+        TempUnit tempUnit = TempUnit.FAHRENHEIT;
+        double coefExpected = 1.8;
+
+        double coefActual = tempUnit.getCoef();
+
+        assertEquals(coefExpected, coefActual, EPSILON);
+    }
 }
