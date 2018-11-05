@@ -1,20 +1,29 @@
 package ru.unn.agile.numerical_integration;
 
-public final class BaseDefinition implements NumericMethod {
+public final class BaseDefinition {
     private BaseDefinition() {
         throw new AssertionError("Don't make instance");
     };
 
     public static double calculate(
             final Expression function,
-            final double start,
+            final double begin,
             final double end,
-            final double dx
+            final int splitsNumber
     ) {
-        if (dx < 0) {
-            throw new IllegalArgumentException("dx must be gt 0");
+        if (splitsNumber < 1) {
+            throw new IllegalArgumentException(
+                "Expected positive integer number of splits, got: "
+                + Integer.toString(splitsNumber));
         }
 
-        return FpUtils.recursionSum(function, x -> x + dx, start + dx / 2, end) * dx;
+        double result = 0.0;
+
+        final double dx = (end - begin) / splitsNumber;
+        for (int i = 0; i < splitsNumber; ++i) {
+            final double x = begin + dx * 0.5 + dx * i;
+            result += function.execute(x) * dx;
+        }
+        return result;
     };
 };

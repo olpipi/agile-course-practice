@@ -5,65 +5,79 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class BaseDefinitionTest {
-    private final double delta = 0.001;
-    private Expression cube = x -> Math.pow(x, 3);
-    private Expression square = x -> Math.pow(x, 2);
-    private Expression hyperbola = x -> 1 / x;
-    private final Class mainClass = BaseDefinition.class;
-    private final String defaultMessage = "Don't make instance";
+    private static final double DEFAULT_PRECISION = 0.001;
+    private static final Expression FUNCTION_CUBE = x -> Math.pow(x, 3);
+    private static final Class TESTED_CLASS = BaseDefinition.class;
 
     @Test
     public void shouldBeFinal() {
-        UtilityClassTest.testForFinal(mainClass);
+        UtilityClassTest.testForFinal(TESTED_CLASS);
     }
 
     @Test
     public void shouldHaveOneConstructor() {
-        UtilityClassTest.shouldHaveOneConstructor(mainClass);
+        UtilityClassTest.shouldHaveOneConstructor(TESTED_CLASS);
     }
 
     @Test
     public void constructorShouldBePrivate()
             throws IllegalArgumentException, NoSuchMethodException {
-        UtilityClassTest.constructorShouldBePrivate(mainClass);
+        UtilityClassTest.constructorShouldBePrivate(TESTED_CLASS);
     }
 
     @Test
     public void constructorShouldThrowError()
             throws IllegalArgumentException, NoSuchMethodException {
-        UtilityClassTest.constructWithExeption(mainClass, defaultMessage);
+        final String defaultMessage = "Don't make instance";
+        UtilityClassTest.constructWithExeption(TESTED_CLASS, defaultMessage);
     }
 
     @Test
-    public void shouldCalculateCube() {
-        double result = BaseDefinition.calculate(cube, 0, 1, 0.01);
+    public void canComputeCubicPolynomial() {
+        double result = BaseDefinition.calculate(FUNCTION_CUBE, 0, 1, 100);
 
-        assertEquals(result, 0.25, delta);
+        assertEquals(0.25, result, DEFAULT_PRECISION);
     }
 
     @Test
-    public void returnZeroBoundEquals() {
-        double result = BaseDefinition.calculate(square, 5, 5, 0.01);
+    public void canReturnZeroWhenIntervalIsEmpty() {
+        double result = BaseDefinition.calculate(FUNCTION_CUBE, 5, 5, 100);
 
-        assertEquals(result, 0.0, delta);
-    }
-
-    @Test
-    public void returnInfinityIfUnbounded() {
-        double result = BaseDefinition.calculate(hyperbola, -0.005, 1, 0.01);
-
-        assertEquals(result, Double.POSITIVE_INFINITY, delta);
-    }
-
-    @Test
-    public void shouldReturnZero() {
-        double result = BaseDefinition.calculate(cube, 0, 0, 0.01);
-
-        assertEquals(result, 0, delta);
+        assertEquals(0, result, DEFAULT_PRECISION);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void returnErrorDxNegative() {
-        BaseDefinition.calculate(cube, 0, 1, -0.01);
+    public void canReturnErrorWhenSplitsNegative() {
+        BaseDefinition.calculate(FUNCTION_CUBE, 0, 1, -100);
+    }
+
+    @Test
+    public void canComputeWithManySteps() {
+        double result = BaseDefinition.calculate(FUNCTION_CUBE, 0, 1, 20000);
+
+        assertEquals(0.25, result, DEFAULT_PRECISION);
+    }
+
+    @Test
+    public void canComputeWithInverseBoundaries() {
+        double result = BaseDefinition.calculate(FUNCTION_CUBE, -1, 0, 100);
+
+        assertEquals(-0.25, result, DEFAULT_PRECISION);
+    }
+
+    @Test
+    public void hasSecondOrderOfConvergence() {
+        final int n1 = 100;
+        final int n2 = 1000;
+        final double expectedRate = Math.pow((double) n2 / (double) n1, 2.0);
+        final double expectedResult = 0.25;
+
+        double result1 = BaseDefinition.calculate(FUNCTION_CUBE, 0, 1, n1);
+        double result2 = BaseDefinition.calculate(FUNCTION_CUBE, 0, 1, n2);
+        double error1 = Math.abs(result1 - expectedResult);
+        double error2 = Math.abs(result2 - expectedResult);
+        double actualRate = error1 / error2;
+
+        assertEquals(expectedRate, actualRate, 1e-4);
     }
 }
