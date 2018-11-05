@@ -131,4 +131,15 @@ public class TempConverterTest {
         assertEquals(offsetExpected, offsetActual, EPSILON);
     }
 
+    @Test
+    public void canConvertZeroToNewton() {
+        TempUnit tempUnit = TempUnit.NEWTON;
+        double tempBefore = 0.0;
+        double expectedTempAfter = 0;
+
+        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+
+        assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
+    }
+
 }
