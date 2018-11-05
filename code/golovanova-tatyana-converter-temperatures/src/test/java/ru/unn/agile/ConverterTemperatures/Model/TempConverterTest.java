@@ -110,4 +110,15 @@ public class TempConverterTest {
         double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
     }
 
+
+    @Test
+    public void canGetCoefForNewton() {
+        TempUnit tempUnit = TempUnit.NEWTON;
+        double coefExpected = 0.33;
+
+        double coefActual = tempUnit.getCoef();
+
+        assertEquals(coefExpected, coefActual, EPSILON);
+    }
+
 }
