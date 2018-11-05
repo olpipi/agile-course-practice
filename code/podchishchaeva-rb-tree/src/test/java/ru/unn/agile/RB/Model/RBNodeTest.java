@@ -1,6 +1,7 @@
 package ru.unn.agile.RB.Model;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class RBNodeTest {
@@ -10,6 +11,7 @@ public class RBNodeTest {
 
         assertNotNull(node);
     }
+
     @Test
     public void areEqualRBNodes() {
         RBNode<String, Integer> node1 = new RBNode<>("A", 1);
