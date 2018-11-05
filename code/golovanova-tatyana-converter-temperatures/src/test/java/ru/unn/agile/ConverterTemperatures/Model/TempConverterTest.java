@@ -11,6 +11,28 @@ public class TempConverterTest {
     private static final double EPSILON = 0.000001;
 
     @Test
+    public void canGetCoefForFahrenheit() {
+        TempConverter converter = new TempConverter();
+        TempUnit tempUnit = TempUnit.FAHRENHEIT;
+        double coefExpected = 1.8;
+
+        double coefActual = tempUnit.getCoef();
+
+        assertEquals(coefExpected, coefActual, EPSILON);
+    }
+
+    @Test
+    public void canGetOffsetForFahrenheit() {
+        TempConverter converter = new TempConverter();
+        TempUnit tempUnit = TempUnit.FAHRENHEIT;
+        double offsetExpected = 32;
+
+        double offsetActual = tempUnit.getOffset();
+
+        assertEquals(offsetExpected, offsetActual, EPSILON);
+    }
+
+    @Test
     public void canConvertZeroToFahrenheit() {
         TempConverter converter = new TempConverter();
         TempUnit tempUnit = TempUnit.FAHRENHEIT;
@@ -41,27 +63,5 @@ public class TempConverterTest {
         double tempBefore = -273.16;
 
         double calculatingTempAfter = converter.convert(tempBefore,tempUnit);
-    }
-
-    @Test
-    public void canGetCoefForFahrenheit() {
-        TempConverter converter = new TempConverter();
-        TempUnit tempUnit = TempUnit.FAHRENHEIT;
-        double coefExpected = 1.8;
-
-        double coefActual = tempUnit.getCoef();
-
-        assertEquals(coefExpected, coefActual, EPSILON);
-    }
-
-    @Test
-    public void canGetOffsetForFahrenheit() {
-        TempConverter converter = new TempConverter();
-        TempUnit tempUnit = TempUnit.FAHRENHEIT;
-        double offsetExpected = 32;
-
-        double offsetActual = tempUnit.getOffset();
-
-        assertEquals(offsetExpected, offsetActual, EPSILON);
     }
 }
