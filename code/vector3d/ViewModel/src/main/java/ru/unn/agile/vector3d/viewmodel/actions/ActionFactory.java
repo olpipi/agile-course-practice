@@ -2,8 +2,11 @@ package ru.unn.agile.vector3d.viewmodel.actions;
 
 import ru.unn.agile.vector3d.model.Vector3D;
 
-public class ActionFactory {
-    public static IAction getAction(Vector3D.Operation operation) {
+public final class ActionFactory {
+    private ActionFactory() {
+    }
+
+    public static IAction getAction(final Vector3D.Operation operation) {
         if (Vector3D.Operation.ADD.equals(operation)) {
             return new AddAction();
         } else if (Vector3D.Operation.SUBTRACT.equals(operation)) {

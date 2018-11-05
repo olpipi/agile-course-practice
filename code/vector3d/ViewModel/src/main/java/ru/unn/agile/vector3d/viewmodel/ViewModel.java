@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewModel {
-    private final static String EMPTY_STRING = "";
+    private static final String EMPTY_STRING = "";
 
     private final StringProperty vectorX = new SimpleStringProperty();
     private final StringProperty vectorY = new SimpleStringProperty();
@@ -29,7 +29,8 @@ public class ViewModel {
     private final StringProperty multiplicationCoeff = new SimpleStringProperty();
 
     private final ObjectProperty<ObservableList<Vector3D.Operation>> operations =
-            new SimpleObjectProperty<>(FXCollections.observableArrayList(Vector3D.Operation.values()));
+            new SimpleObjectProperty<>(FXCollections.observableArrayList(
+                    Vector3D.Operation.values()));
     private final ObjectProperty<Vector3D.Operation> operation = new SimpleObjectProperty<>();
 
     private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
@@ -242,7 +243,7 @@ public class ViewModel {
             return name;
         }
 
-        public static Status getByName(String name) {
+        public static Status getByName(final String name) {
             for (Status status : Status.values()) {
                 if (status.name.equals(name)) {
                     return status;

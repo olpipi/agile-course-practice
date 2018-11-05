@@ -5,7 +5,7 @@ import ru.unn.agile.vector3d.viewmodel.ViewModel;
 
 public class DotAction implements IAction {
     @Override
-    public void execute(ViewModel viewModel) {
+    public void execute(final ViewModel viewModel) {
         Vector3D vector = new Vector3D(viewModel.getVectorX(),
                 viewModel.getVectorY(), viewModel.getVectorZ());
         Vector3D other = new Vector3D(viewModel.getOtherVectorX(),

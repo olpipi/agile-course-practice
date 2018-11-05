@@ -4,7 +4,7 @@ import ru.unn.agile.vector3d.viewmodel.ViewModel;
 
 public class MultiplyCoeffValidator extends VectorValidator {
     @Override
-    public void validate(ViewModel viewModel) {
+    public void validate(final ViewModel viewModel) {
         super.validate(viewModel);
 
         if (!ViewModel.Status.READY.toString()

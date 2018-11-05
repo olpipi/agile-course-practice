@@ -5,13 +5,13 @@ import ru.unn.agile.vector3d.viewmodel.ViewModel;
 
 public class SubtractAction implements IAction {
     @Override
-    public void execute(ViewModel viewModel) {
+    public void execute(final ViewModel viewModel) {
         Vector3D vector = new Vector3D(viewModel.getVectorX(),
                 viewModel.getVectorY(), viewModel.getVectorZ());
-        Vector3D other = new Vector3D(viewModel.getOtherVectorX(),
+        Vector3D subVector = new Vector3D(viewModel.getOtherVectorX(),
                 viewModel.getOtherVectorY(), viewModel.getOtherVectorZ());
 
-        viewModel.resultProperty().set(vector.subtract(other).toString());
+        viewModel.resultProperty().set(vector.subtract(subVector).toString());
         viewModel.statusProperty().set(ViewModel.Status.SUCCESS.toString());
     }
 }

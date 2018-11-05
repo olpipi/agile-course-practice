@@ -2,8 +2,11 @@ package ru.unn.agile.vector3d.viewmodel.validators;
 
 import ru.unn.agile.vector3d.model.Vector3D;
 
-public class ValidatorFactory {
-    public static IValidator getValidator(Vector3D.Operation operation) {
+public final class ValidatorFactory {
+    private ValidatorFactory() {
+    }
+
+    public static IValidator getValidator(final Vector3D.Operation operation) {
         if (Vector3D.Operation.ADD.equals(operation)
                 || Vector3D.Operation.SUBTRACT.equals(operation)
                 || Vector3D.Operation.DOT.equals(operation)) {
