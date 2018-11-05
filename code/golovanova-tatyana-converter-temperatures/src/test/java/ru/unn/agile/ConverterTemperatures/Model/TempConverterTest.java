@@ -121,4 +121,14 @@ public class TempConverterTest {
         assertEquals(coefExpected, coefActual, EPSILON);
     }
 
+    @Test
+    public void canGetOffsetForNewton() {
+        TempUnit tempUnit = TempUnit.NEWTON;
+        double offsetExpected = 0;
+
+        double offsetActual = tempUnit.getOffset();
+
+        assertEquals(offsetExpected, offsetActual, EPSILON);
+    }
+
 }
