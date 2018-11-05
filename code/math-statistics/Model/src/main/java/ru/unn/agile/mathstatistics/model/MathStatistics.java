@@ -5,10 +5,8 @@ public final class MathStatistics {
     public static final int DISPERSION_ORDER = 2;
     public static final Double EPSILON = 1e-3;
 
-    private MathStatistics() {
-    }
-
-    static Double calculateExpectedValue(final Number[] data, final Double[] probabilityVector) {
+    public static Double calculateExpectedValue(final Number[] data,
+                                                final Double[] probabilityVector) {
         checkInputDistributionSeries(data, probabilityVector);
 
         Double expectedValue = 0.0;
@@ -18,7 +16,8 @@ public final class MathStatistics {
         return expectedValue;
     }
 
-    static Double calculateDispersion(final Number[] data, final Double[] probabilityVector) {
+    public static Double calculateDispersion(final Number[] data,
+                                             final Double[] probabilityVector) {
         final Double expectedValue = calculateExpectedValue(data, probabilityVector);
 
         Double dispersion = 0.0;
@@ -30,12 +29,14 @@ public final class MathStatistics {
         return dispersion;
     }
 
-    static Double calculateMoment(final Number[] data, final Double[] probabilityVector,
-                                  final int order, final Number offset) {
+    public static Double calculateMoment(final Number[] data,
+                                         final Double[] probabilityVector,
+                                         final int order,
+                                         final Number offset) {
         checkInputDistributionSeries(data, probabilityVector);
 
         if (order <= 0) {
-            throw new IllegalArgumentException("Order must be non-zero and positive value!");
+            throw new IllegalArgumentException("Moment order should be positive!");
         }
 
         Double moment = 0.0;
@@ -45,6 +46,9 @@ public final class MathStatistics {
         }
 
         return moment;
+    }
+
+    private MathStatistics() {
     }
 
     private static void checkInputData(final Number[] data) {
@@ -79,7 +83,7 @@ public final class MathStatistics {
                 throw new IllegalArgumentException("Null element shouldn't be in array!");
             }
             if (!(0.0 <= probabilityVector[i] && probabilityVector[i] <= 1.0)) {
-                throw new IllegalArgumentException("Probability is out of range [0;1]!");
+                throw new IllegalArgumentException("Probability is out of range [0..1]!");
             }
             sum += probabilityVector[i];
         }

@@ -166,9 +166,13 @@ project(":code/numbers-in-words").name = "numbers-in-words"
 include "code/queue"
 project(":code/queue").name = "queue-Model"
 
-// Flegontov Alexander, math-statistics
-include "code/math-statistics"
-project(":code/math-statistics").name = "math-statistics"
+// Flegontov Alexander and Polyakov Igor, math-statistics
+include "code/math-statistics/Model"
+project(":code/math-statistics/Model").name = "math-statistics-Model"
+include "code/math-statistics/ViewModel"
+project(":code/math-statistics/ViewModel").name = "math-statistics-ViewModel"
+include "code/math-statistics/View"
+project(":code/math-statistics/View").name = "math-statistics-View"
 
 // Fytov Aleksandr, Fraction calculator
 include "code/fytov-aleksandr-frac-calc"
