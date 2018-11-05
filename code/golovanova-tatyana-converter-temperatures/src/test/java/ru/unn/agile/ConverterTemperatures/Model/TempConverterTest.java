@@ -153,4 +153,12 @@ public class TempConverterTest {
         assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
     }
 
+    @Test (expected = TempConverterExceptions.class)
+    public void canConvertAbsMinToNewton() {
+        TempUnit tempUnit = TempUnit.NEWTON;
+        double tempBefore = -273.16;
+
+        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+    }
+
 }
