@@ -80,5 +80,15 @@ public class TempConverterTest {
         assertEquals(offsetExpected, offsetActual, EPSILON);
     }
 
+    @Test
+    public void canConvertZeroToKelvin() {
+        TempUnit tempUnit = TempUnit.KELVIN;
+        double tempBefore = 0.0;
+        double expectedTempAfter = 273.15;
+
+        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+
+        assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
+    }
 
 }
