@@ -12,7 +12,6 @@ public class TempConverterTest {
 
     @Test
     public void canGetCoefForFahrenheit() {
-        TempConverter converter = new TempConverter();
         TempUnit tempUnit = TempUnit.FAHRENHEIT;
         double coefExpected = 1.8;
 
@@ -23,7 +22,6 @@ public class TempConverterTest {
 
     @Test
     public void canGetOffsetForFahrenheit() {
-        TempConverter converter = new TempConverter();
         TempUnit tempUnit = TempUnit.FAHRENHEIT;
         double offsetExpected = 32;
 
@@ -34,34 +32,31 @@ public class TempConverterTest {
 
     @Test
     public void canConvertZeroToFahrenheit() {
-        TempConverter converter = new TempConverter();
         TempUnit tempUnit = TempUnit.FAHRENHEIT;
         double tempBefore = 0.0;
         double expectedTempAfter = 32.0;
 
-        double calculatingTempAfter = converter.convert(tempBefore,tempUnit);
+        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
 
         assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
     }
 
     @Test
     public void canConvert100ToFahrenheit() {
-        TempConverter converter = new TempConverter();
         TempUnit tempUnit = TempUnit.FAHRENHEIT;
         double tempBefore = 100.0;
         double expectedTempAfter = 212;
 
-        double calculatingTempAfter = converter.convert(tempBefore,tempUnit);
+        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
 
         assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
     }
 
     @Test (expected = TempConverterExceptions.class)
     public void canConvertAbsMinToFahrenheit() {
-        TempConverter converter = new TempConverter();
         TempUnit tempUnit = TempUnit.FAHRENHEIT;
         double tempBefore = -273.16;
 
-        double calculatingTempAfter = converter.convert(tempBefore,tempUnit);
+        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
     }
 }

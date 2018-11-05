@@ -5,14 +5,14 @@ public enum  TempUnit {
 
     private final double coef;
     private final double offset;
-    TempUnit (final double coef, final double offset) {
+    TempUnit(final double coef, final double offset) {
         this.coef = coef;
         this.offset = offset;
     }
-    public double getCoef(){
+    public double getCoef() {
         return coef;
     }
-    public double getOffset(){
+    public double getOffset() {
         return offset;
     }
 }
