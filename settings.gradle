@@ -154,6 +154,10 @@ project(":code/shape-volume-calculator").name = "shape-volume-calculator"
 include "code/rumiantseva-maria-quadratic-equation-solver"
 project(":code/rumiantseva-maria-quadratic-equation-solver").name = "rumiantseva-maria-quadratic-equation-solver"
 
+// Podchishchaeva Mariya, RBTree
+include "code/podchishchaeva-rb-tree"
+project(":code/podchishchaeva-rb-tree").name = "podchishchaeva-rb-tree"
+
 // Sheptunov Vladislav, BinarySearchTree
 include "code/binary-search-tree"
 project(":code/binary-search-tree").name = "binary-search-tree"
