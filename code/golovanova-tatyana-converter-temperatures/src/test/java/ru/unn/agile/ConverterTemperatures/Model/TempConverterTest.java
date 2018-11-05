@@ -91,4 +91,15 @@ public class TempConverterTest {
         assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
     }
 
+    @Test
+    public void canConvert100ToKelvin() {
+        TempUnit tempUnit = TempUnit.KELVIN;
+        double tempBefore = 100.0;
+        double expectedTempAfter = 373.15;
+
+        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+
+        assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
+    }
+
 }
