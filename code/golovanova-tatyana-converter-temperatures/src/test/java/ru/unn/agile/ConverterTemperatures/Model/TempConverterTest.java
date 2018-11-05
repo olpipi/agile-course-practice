@@ -53,4 +53,15 @@ public class TempConverterTest {
 
         assertEquals(coefExpected, coefActual, EPSILON);
     }
+
+    @Test
+    public void canGetOffsetForFahrenheit() {
+        TempConverter converter = new TempConverter();
+        TempUnit tempUnit = TempUnit.FAHRENHEIT;
+        double offsetExpected = 32;
+
+        double offsetActual = tempUnit.getOffset();
+
+        assertEquals(offsetExpected, offsetActual, EPSILON);
+    }
 }
