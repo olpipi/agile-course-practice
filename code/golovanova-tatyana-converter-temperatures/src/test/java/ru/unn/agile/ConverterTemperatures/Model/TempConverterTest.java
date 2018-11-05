@@ -22,6 +22,18 @@ public class TempConverterTest {
         assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
     }
 
+    @Test
+    public void canConvert100ToFahrenheit() {
+        TempConverter converter = new TempConverter();
+        TempUnit tempUnit = TempUnit.FAHRENHEIT;
+        double tempBefore = 100.0;
+        double expectedTempAfter = 212;
+
+        double calculatingTempAfter = converter.convert(tempBefore,tempUnit);
+
+        assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
+    }
+
     @Test (expected = TempConverterExceptions.class)
     public void canConvertAbsMinToFahrenheit() {
         TempConverter converter = new TempConverter();
