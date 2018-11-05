@@ -27,6 +27,13 @@ public class ConwayGameTest {
     }
 
     @Test
+    public void canGetPlaygroundSize() {
+        ConwayGame game = new ConwayGame(4, 2);
+
+        assertEquals(8, game.getPlaygroundRowsNumber() * game.getPlaygroundColumnsNumber());
+    }
+
+    @Test
     public void canGetGivenGeneration() {
         ConwayGame game = new ConwayGame(2, 3);
 
