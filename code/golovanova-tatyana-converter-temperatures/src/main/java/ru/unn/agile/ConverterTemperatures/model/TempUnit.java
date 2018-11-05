@@ -1,7 +1,8 @@
 package ru.unn.agile.ConverterTemperatures.model;
 
 public enum  TempUnit {
-    FAHRENHEIT(1.8, 32);
+    FAHRENHEIT(1.8, 32),
+    KELVIN(1, 273.15);
 
     private final double coef;
     private final double offset;

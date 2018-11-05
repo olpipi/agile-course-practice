@@ -59,4 +59,14 @@ public class TempConverterTest {
 
         double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
     }
+
+    @Test
+    public void canGetCoefForKelvin() {
+        TempUnit tempUnit = TempUnit.KELVIN;
+        double coefExpected = 1;
+
+        double coefActual = tempUnit.getCoef();
+
+        assertEquals(coefExpected, coefActual, EPSILON);
+    }
 }
