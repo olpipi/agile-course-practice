@@ -249,6 +249,21 @@ public class ViewModelTest {
         assertEquals(ViewModel.Status.BAD_FORMAT.toString(), expectedStatus.get());
     }
 
+    @Test
+    public void buttonIsActiveWhenOperationIsMultiply() {
+        // Arrange
+        viewModel.vectorXProperty().set("1");
+        viewModel.vectorYProperty().set("-2");
+        viewModel.vectorZProperty().set("3");
+        viewModel.multiplicationCoeffProperty().set("2");
+
+        // Act1
+        viewModel.operationProperty().set(Vector3D.Operation.MULTIPLY);
+
+        // Assert
+        assertFalse(viewModel.isCalculationDisabled());
+    }
+
     private void setInputData() {
         viewModel.vectorXProperty().set("3.1");
         viewModel.vectorYProperty().set("-3.9");
