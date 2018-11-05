@@ -142,4 +142,15 @@ public class TempConverterTest {
         assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
     }
 
+    @Test
+    public void canConvert100ToNewton() {
+        TempUnit tempUnit = TempUnit.NEWTON;
+        double tempBefore = 100.0;
+        double expectedTempAfter = 33;
+
+        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+
+        assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
+    }
+
 }
