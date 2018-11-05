@@ -13,7 +13,10 @@ public final class ValidatorFactory {
             return new BothVectorsValidator();
         } else if (Vector3D.Operation.MULTIPLY.equals(operation)) {
             return new MultiplyCoeffValidator();
+        } else if (Vector3D.Operation.MAGNITUDE.equals(operation)) {
+            return new VectorValidator();
         }
+
         return null;
     }
 }

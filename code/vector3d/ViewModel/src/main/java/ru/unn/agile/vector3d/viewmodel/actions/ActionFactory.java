@@ -15,6 +15,8 @@ public final class ActionFactory {
             return new DotAction();
         } else if (Vector3D.Operation.MULTIPLY.equals(operation)) {
             return new MultiplyAction();
+        } else if (Vector3D.Operation.MAGNITUDE.equals(operation)) {
+            return new MagnitudeAction();
         }
         return null;
     }

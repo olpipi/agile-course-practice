@@ -2,6 +2,7 @@ package ru.unn.agile.vector3d.model;
 
 import ru.unn.agile.vector3d.model.errorhandling.NullVectorNormalizing;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class Vector3D {
@@ -107,7 +108,7 @@ public class Vector3D {
 
     @Override
     public String toString() {
-        return "(" + x + ", " + y + ", " + z + ')';
+        return String.format(Locale.ROOT, "(%s, %s, %s)", x, y, z);
     }
 
     public enum Operation {

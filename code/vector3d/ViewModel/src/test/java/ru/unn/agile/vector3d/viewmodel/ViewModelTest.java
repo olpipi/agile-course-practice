@@ -264,6 +264,21 @@ public class ViewModelTest {
         assertFalse(viewModel.isCalculationDisabled());
     }
 
+    @Test
+    public void operationMagnitudeHasCorrectResult() {
+        // Arrange
+        viewModel.vectorXProperty().set("1");
+        viewModel.vectorYProperty().set("2");
+        viewModel.vectorZProperty().set("3");
+        viewModel.operationProperty().set(Vector3D.Operation.MAGNITUDE);
+
+        // Act
+        viewModel.calculate();
+
+        // Assert
+        assertEquals("3.7416573867739413", viewModel.resultProperty().get());
+    }
+
     private void setInputData() {
         viewModel.vectorXProperty().set("3.1");
         viewModel.vectorYProperty().set("-3.9");
