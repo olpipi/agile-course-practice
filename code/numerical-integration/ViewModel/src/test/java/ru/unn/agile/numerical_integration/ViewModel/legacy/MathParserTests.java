@@ -163,4 +163,15 @@ public class MathParserTests {
 
         assertEquals(result1, result2, DOUBLE_PRECISION);
     }
+
+    @Test
+    public void canComputeTwice() {
+        MathParser parser = new MathParser(" 2 * x - 7  ");
+        parser.eval(10);
+
+        parser.eval(20);
+        double result = parser.getResult();
+
+        assertEquals(33.0, result, DOUBLE_PRECISION);
+    }
 }

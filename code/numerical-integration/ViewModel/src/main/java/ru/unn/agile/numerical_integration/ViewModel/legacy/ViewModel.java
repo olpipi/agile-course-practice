@@ -1,5 +1,8 @@
 package ru.unn.agile.numerical_integration.ViewModel.legacy;
 
+import ru.unn.agile.numerical_integration.BaseDefinition;
+import ru.unn.agile.numerical_integration.Expression;
+
 import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -16,6 +19,8 @@ public class ViewModel {
         "Wrong splits number value";
     public static final String ERROR_WRONG_FUNCTION_TEXT =
         "Wrong function";
+    private static final String ERROR_COMPUTATION_FAILURE =
+        "Error during computation";
 
     private String functionText;
     private String leftBorderText;
@@ -122,6 +127,8 @@ public class ViewModel {
                 return ERROR_WRONG_SPLITS_NUMBER;
             case Function:
                 return ERROR_WRONG_FUNCTION_TEXT;
+            case Computation:
+                return ERROR_COMPUTATION_FAILURE;
             default:
                 throw new RuntimeException("Unexpected error kind");
         }
@@ -176,6 +183,26 @@ public class ViewModel {
     }
 
     public void compute() {
+        if (!canComputeFunction()) {
+            return;
+        }
 
+        MathParser parser = new MathParser(functionText);
+        final Expression f = x -> {
+            final boolean success = parser.eval(x);
+            return success ? parser.getResult() : 0.0;
+        };
+
+        final double a = Double.parseDouble(leftBorderText);
+        final double b = Double.parseDouble(rightBorderText);
+        final int splitsNumber = Integer.parseInt(splitsNumberText);
+
+        try {
+            double result = BaseDefinition.calculate(f, a, b, splitsNumber);
+            outputMessage = Double.toString(result);
+        } catch (Exception e) {
+            addError(ErrorKind.Computation, e.toString());
+            checkErrors();
+        }
     }
 }

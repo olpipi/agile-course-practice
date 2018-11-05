@@ -10,22 +10,27 @@ public class MathParser {
     private String expression;
     private String error;
     private double result;
+    private ScriptEngine engine;
 
     public MathParser(final String expression) {
         this.expression = expression;
+        checkExpression();
+        if (hasError()) {
+            return;
+        }
+        prepareExpression();
+
+        ScriptEngineManager manager = new ScriptEngineManager();
+        engine = manager.getEngineByName("js");
     }
 
     public boolean eval(final double variable) {
-        checkExpression();
         if (hasError()) {
             return false;
         }
 
-        prepareExpression(variable);
-
         try {
-            ScriptEngineManager manager = new ScriptEngineManager();
-            ScriptEngine engine = manager.getEngineByName("js");
+            engine.put(VARIABLE_NAME, variable);
             result = (double) engine.eval(expression);
         } catch (ScriptException e) {
             error = "Failed to compute expression";
@@ -34,18 +39,16 @@ public class MathParser {
         return !hasError();
     }
 
-    private void prepareExpression(final double variable) {
-        // Remove all whitespaces to check if the expression is empty
-        expression = expression.replace(" ", "");
-        if (expression.isEmpty()) {
-            // Insert 0.0 empty expr to eval to 0
-            expression = "0.0";
-        } else {
-            // Insert 0.0 to non empty expr to cast the result to double
-            expression = "0.0+" + expression;
-        }
+    public String getError() {
+        return error;
+    }
 
-        substituteVariables(variable);
+    public double getResult() {
+        return result;
+    }
+
+    private boolean hasError() {
+        return !error.isEmpty();
     }
 
     private void checkExpression() {
@@ -56,20 +59,15 @@ public class MathParser {
         }
     }
 
-    private boolean hasError() {
-        return !error.isEmpty();
-    }
-
-    private void substituteVariables(final double variable) {
-        expression = expression.replace(VARIABLE_NAME,
-            Double.toString(variable));
-    }
-
-    public String getError() {
-        return error;
-    }
-
-    public double getResult() {
-        return result;
+    private void prepareExpression() {
+        // Remove all whitespaces to check if the expression is empty
+        expression = expression.replace(" ", "");
+        if (expression.isEmpty()) {
+            // Insert 0.0 empty expr to eval to 0
+            expression = "0.0";
+        } else {
+            // Insert 0.0 to non empty expr to cast the result to double
+            expression = "0.0+" + expression;
+        }
     }
 }

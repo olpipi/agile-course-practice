@@ -6,8 +6,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ViewModelTests {
-    private static final double DOUBLE_PRECISION = 1e-15;
-
     @Test
     public void canCreateDefaultModel() {
         ViewModel model = new ViewModel();
@@ -423,11 +421,11 @@ public class ViewModelTests {
         model.setFunction("3*x*x");
         model.setLeftBorderValue("-2");
         model.setRightBorderValue("2");
-        model.setSplitsNumber("10");
+        model.setSplitsNumber("10000");
 
         model.compute();
         double result = Double.parseDouble(model.getOutputMessage());
 
-        assertEquals(16.0, result, DOUBLE_PRECISION);
+        assertEquals(16.0, result, 1e-5);
     }
 }
