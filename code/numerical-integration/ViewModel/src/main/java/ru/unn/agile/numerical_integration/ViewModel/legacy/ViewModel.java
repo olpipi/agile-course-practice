@@ -174,4 +174,8 @@ public class ViewModel {
     private void removeError(final ErrorKind kind) {
         errorsList.remove(kind);
     }
+
+    public void compute() {
+
+    }
 }

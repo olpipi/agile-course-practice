@@ -6,6 +6,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ViewModelTests {
+    private static final double DOUBLE_PRECISION = 1e-15;
+
     @Test
     public void canCreateDefaultModel() {
         ViewModel model = new ViewModel();
@@ -399,5 +401,33 @@ public class ViewModelTests {
 
         assertFalse(model.getOutputMessage().contains(
             ViewModel.ERROR_WRONG_FUNCTION_TEXT));
+    }
+
+    // Compute button tests
+
+    @Test
+    public void canComputeWhenEverythingIsCorrect() {
+        ViewModel model = new ViewModel();
+
+        model.setFunction("x*x");
+        model.setLeftBorderValue("-2");
+        model.setRightBorderValue("2");
+        model.setSplitsNumber("10");
+
+        assertTrue(model.canComputeFunction());
+    }
+
+    @Test
+    public void isComputationCorrectWhenEverythingIsCorrect() {
+        ViewModel model = new ViewModel();
+        model.setFunction("3*x*x");
+        model.setLeftBorderValue("-2");
+        model.setRightBorderValue("2");
+        model.setSplitsNumber("10");
+
+        model.compute();
+        double result = Double.parseDouble(model.getOutputMessage());
+
+        assertEquals(16.0, result, DOUBLE_PRECISION);
     }
 }
