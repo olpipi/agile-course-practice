@@ -97,10 +97,14 @@ project(":code/korniakov-kirill-lab3/Infrastructure").name = "korniakov-kirill-l
 // Anfimov Vlad, lab1
 include "code/anfimov-vlad-reverse-polish-notation"
 project(":code/anfimov-vlad-reverse-polish-notation").name = "anfimov-vlad-reverse-polish-notation-Model"
-
-// Gladkov Dmitry, Huffman code
-include "code/gladkov-dmitry-huffman"
-project(":code/gladkov-dmitry-huffman").name = "gladkov-dmitry-huffman"
+// Gladkov Dmitry
+include "code/huffman/Model"
+project(":code/huffman/Model").name = "huffman-Model"
+// Sheptunov Vladislav
+include "code/huffman/ViewModel"
+project(":code/huffman/ViewModel").name = "huffman-ViewModel"
+include "code/huffman/View"
+project(":code/huffman/View").name = "huffman-View"
 
 // Polyakov Igor, sort
 include "code/polyakov-igor-sort"
