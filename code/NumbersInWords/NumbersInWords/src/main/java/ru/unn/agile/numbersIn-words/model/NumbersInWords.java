@@ -20,6 +20,7 @@ public final class NumbersInWords {
     private NumbersInWords() {
         /* constructor not needed here */
     }
+
     private static String convertLessThanOneThousand(final int number) {
         String soFar;
         int newNumber = number;
@@ -36,6 +37,7 @@ public final class NumbersInWords {
         if (number == 0) return soFar;
         return numNames[newNumber] + " hundred" + soFar;
     }
+
     public static String convert(long number) {
         if (number == 0) {
             return "zero";
