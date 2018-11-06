@@ -1,15 +1,22 @@
 package ru.unn.agile.HarryPotter.Model;
 
-import java.util.Objects;
-
 public class ShoppingBasket {
     private int[] booksQuantity;
     private double totalPrice;
 
-    public static final double initialBookPrice = 8;
+    public static final double INITIAL_BOOK_PRICE = 8;
+    public static final double TWO_BOOKS_DISCOUNT = 15.2;
+    public static final double THREE_BOOKS_DISCOUNT = 21.6;
+    public static final double FOUR_BOOKS_DISCOUNT = 25.6;
+    public static final double FIVE_BOOKS_DISCOUNT = 30;
+    public static final int ONE_KIND_OF_BOOKS = 1;
+    public static final int TWO_KIND_OF_BOOKS = 2;
+    public static final int THREE_KIND_OF_BOOKS = 3;
+    public static final int FOUR_KIND_OF_BOOKS = 4;
+    public static final int FIVE_KIND_OF_BOOKS = 5;
 
-    public ShoppingBasket(int quantityBook1,int quantityBook2,int quantityBook3,int quantityBook4,int quantityBook5) {
-        this.booksQuantity = new int[]{quantityBook1, quantityBook2, quantityBook3, quantityBook4, quantityBook5};
+    public ShoppingBasket(final int n1, final int n2, final int n3, final int n4, final int n5) {
+        this.booksQuantity = new int[]{n1, n2, n3, n4, n5};
         this.totalPrice = 0.00;
     }
 
@@ -20,33 +27,33 @@ public class ShoppingBasket {
     public double getShoppingBasketPriceSameBooks() {
         int quantity = 0;
 
-        for (int  i = 0; i < 5; i++){
+        for (int  i = 0; i < FIVE_KIND_OF_BOOKS; i++) {
             if (this.booksQuantity[i] != 0) {
                 quantity = booksQuantity[i];
                 break;
             }
         }
-        this.totalPrice = initialBookPrice * quantity;
+        this.totalPrice = INITIAL_BOOK_PRICE * quantity;
         return totalPrice;
     }
 
-    private double getStandardDiscount(int quantity) {
+    private double getStandardDiscount(final int quantity) {
         double price = 0.00;
 
-        if ( quantity == 1 ) {
-                price = initialBookPrice;
+        if (quantity == ONE_KIND_OF_BOOKS) {
+                price = INITIAL_BOOK_PRICE;
         } else
-            if ( quantity == 2 ) {
-               price = 15.2;
+            if (quantity == TWO_KIND_OF_BOOKS) {
+               price = TWO_BOOKS_DISCOUNT;
         } else
-            if ( quantity == 3 ) {
-                price = 21.6;
+            if (quantity == THREE_KIND_OF_BOOKS) {
+                price = THREE_BOOKS_DISCOUNT;
         } else
-            if ( quantity == 4 ) {
-                price = 25.6;
+            if (quantity == FOUR_KIND_OF_BOOKS) {
+                price = FOUR_BOOKS_DISCOUNT;
         } else
-            if ( quantity == 5 ) {
-                price = 30;
+            if (quantity == FIVE_KIND_OF_BOOKS) {
+                price = FIVE_BOOKS_DISCOUNT;
         }
         return price;
     }
@@ -54,7 +61,7 @@ public class ShoppingBasket {
     private int getUniqueBooksInShoppingBasket() {
         int quantityUnique = 0;
 
-        for (int  i = 0; i < 5; i++) {
+        for (int  i = 0; i < FIVE_KIND_OF_BOOKS; i++) {
             if (this.booksQuantity[i] != 0) {
                 quantityUnique++;
             }
@@ -71,7 +78,7 @@ public class ShoppingBasket {
         double finalPrice = 0.00;
 
         while (quantityUnique > 0) {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < FIVE_KIND_OF_BOOKS; i++) {
                 if (this.booksQuantity[i] > 0) {
                     this.booksQuantity[i] -= 1;
                 }
