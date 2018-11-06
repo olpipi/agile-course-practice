@@ -30,14 +30,14 @@ public class DepositCalculator {
 
     public void setDepositAmount(final double deposit) {
         if (deposit < 0) {
-            throw new NumberFormatException("rere");
+            throw new NumberFormatException("Negative value of the deposit amount");
         }
         this.depositAmount = deposit;
     }
 
     public void setTermPlacementInMonths(final int term) throws NumberFormatException {
         if (term < 1) {
-            throw new NumberFormatException("rere");
+			throw new NumberFormatException("Negative value of the term of placement");
         }
         this.termPlacementInMonths = term;
     }
@@ -52,7 +52,7 @@ public class DepositCalculator {
 
     public void setInterestRate(final double rate) {
         if (rate < 0) {
-            throw new NumberFormatException("rere");
+            throw new NumberFormatException("Negative percent value");
         }
         this.interestRate = rate;
     }
@@ -94,7 +94,7 @@ public class DepositCalculator {
     }
 
     public void setFrequencyOfCapitalization(
-            final FrequencyOfCapitalization frequencyOfCapitalization) {
+        final FrequencyOfCapitalization frequencyOfCapitalization) {
         this.frequencyOfCapitalization = frequencyOfCapitalization;
     }
 
