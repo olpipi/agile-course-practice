@@ -165,3 +165,7 @@ project(":code/pipikin-oleg-matrix").name = "pipikin-oleg-matrix"
 // Nakhimovich Dmitry, Segments2D
 include "code/nakhimovich-dmitry-segments2d"
 project(":code/nakhimovich-dmitry-segments2d").name = "nakhimovich-dmitry-segments2d"
+
+// Mitrokhina Julia, Harry Potter Books
+include "code/mitrokhina-julia-harrypotter"
+project(":code/mitrokhina-julia-harrypotter").name = "mitrokhina-julia-harrypotter-Model"
