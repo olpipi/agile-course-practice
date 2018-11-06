@@ -9,13 +9,7 @@ public final class TemperaturesConverter {
         if (value < ABS_MIN_TEMP) {
             throw new TemperaturesConverterExceptions("Value less more abs min temperature");
         } else {
-            double coef = tempUnit.getCoef();
-            double offset = tempUnit.getOffset();
-            double result;
-
-            result = coef * value + offset;
-
-            return result;
+            return tempUnit.getCoef() * value + tempUnit.getOffset();
         }
     }
 }
