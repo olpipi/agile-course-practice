@@ -51,7 +51,7 @@ public class RBTree<K extends Comparable<K>, V extends Comparable<V>> {
             parent.getParent().setColor(RBNode.COLOR.RED);
             uncle.setColor(RBNode.COLOR.BLACK);
             fixTree(parent.getParent());
-        } else if ((uncle != null) && isRightChild(uncle)) {
+        } else if (parentInLeftSubTree(node)) {
             if (isRightChild(node)) {
                 rotateLeft(node);
             }
@@ -60,7 +60,7 @@ public class RBTree<K extends Comparable<K>, V extends Comparable<V>> {
             rotateRight(parent);
         } else {
             if (isLeftChild(node)) {
-                rotateLeft(node);
+                rotateRight(node);
             }
             parent.setColor(RBNode.COLOR.BLACK);
             parent.getParent().setColor(RBNode.COLOR.RED);
@@ -72,55 +72,47 @@ public class RBTree<K extends Comparable<K>, V extends Comparable<V>> {
     }
 
     private void rotateRight(final RBNode<K, V> node) {
-        RBNode<K, V> y = node.getParent();
-        RBNode<K, V> g = y.getParent();
-        RBNode<K, V> beta = node.getRight();
+        RBNode<K, V> parent = node.getParent();
+        RBNode<K, V> rightChild = node.getRight();
 
-        node.setParent(g);
-        if (g != null) {
-            if (isLeftChild(y)) {
-                g.setLeft(node);
-            } else {
-                g.setRight(node);
-            }
-        } else {
-            this.root = node;
-        }
+        swapNodeWithParent(node);
 
-        node.setRight(y);
-
-        y.setParent(node);
-        y.setLeft(beta);
-
-        if (beta != null) {
-            beta.setParent(y);
+        node.setRight(parent);
+        parent.setLeft(rightChild);
+        if (rightChild != null) {
+            rightChild.setParent(parent);
         }
     }
 
     private void rotateLeft(final RBNode<K, V> node) {
-        RBNode<K, V> x = node.getParent();
-        RBNode<K, V> g = x.getParent();
-        RBNode<K, V> beta = node.getLeft();
+        RBNode<K, V> parent = node.getParent();
+        RBNode<K, V> leftChild = node.getLeft();
 
-        node.setParent(g);
+        swapNodeWithParent(node);
 
-        if (g != null) {
-            if (isLeftChild(x)) {
-                g.setLeft(node);
+        node.setLeft(parent);
+        parent.setRight(leftChild);
+        if (leftChild != null) {
+            leftChild.setParent(parent);
+        }
+    }
+
+    private void swapNodeWithParent(final RBNode<K, V> node) {
+        RBNode<K, V> parent = node.getParent();
+        RBNode<K, V> grandParent = parent.getParent();
+        node.setParent(grandParent);
+
+        if (grandParent != null) {
+            if (isLeftChild(parent)) {
+                grandParent.setLeft(node);
             } else {
-                g.setRight(node);
+                grandParent.setRight(node);
             }
         } else {
             this.root = node;
         }
+        parent.setParent(node);
 
-        node.setLeft(x);
-        x.setParent(node);
-
-        x.setRight(beta);
-        if (beta != null) {
-            beta.setParent(x);
-        }
     }
 
     private boolean isLeftChild(final RBNode<K, V> node) {
@@ -142,6 +134,10 @@ public class RBTree<K extends Comparable<K>, V extends Comparable<V>> {
         return (parent == grandParent.getLeft()) ? grandParent.getRight() : grandParent.getLeft();
     }
 
+    private boolean parentInLeftSubTree(final RBNode<K, V> node) {
+        return (node.getParent() == node.getParent().getParent().getLeft());
+    }
+
     public RBNode<K, V> find(final K key) {
         RBNode<K, V> node = root;
         while (node != null) {
@@ -150,7 +146,7 @@ public class RBTree<K extends Comparable<K>, V extends Comparable<V>> {
                 node = node.getLeft();
             } else if (cmp > 0) {
                 node = node.getRight();
-            } else if (cmp == 0) {
+            } else {
                 return node;
             }
         }
