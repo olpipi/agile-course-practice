@@ -7,8 +7,8 @@ public class MultiplyCoeffValidator extends VectorValidator {
     public void validate(final ViewModel viewModel) {
         super.validate(viewModel);
 
-        if (!ViewModel.Status.READY.toString()
-                .equals(viewModel.statusProperty().get())) {
+        String status = viewModel.statusProperty().get();
+        if (!ViewModel.Status.READY.toString().equals(status)) {
             return;
         }
 

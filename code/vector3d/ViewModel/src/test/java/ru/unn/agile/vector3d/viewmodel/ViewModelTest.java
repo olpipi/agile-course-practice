@@ -220,9 +220,9 @@ public class ViewModelTest {
     @Test
     public void operationMultiplyHasCorrectResult() {
         // Arrange
-        viewModel.vectorXProperty().set("1");
-        viewModel.vectorYProperty().set("-2");
-        viewModel.vectorZProperty().set("3");
+        viewModel.vectorXProperty().set("4");
+        viewModel.vectorYProperty().set("-3");
+        viewModel.vectorZProperty().set("5");
         viewModel.multiplicationCoeffProperty().set("2");
         viewModel.operationProperty().set(Vector3D.Operation.MULTIPLY);
 
@@ -230,7 +230,7 @@ public class ViewModelTest {
         viewModel.calculate();
 
         // Assert
-        assertEquals("(2.0, -4.0, 6.0)", viewModel.resultProperty().get());
+        assertEquals("(8.0, -6.0, 10.0)", viewModel.resultProperty().get());
     }
 
     @Test
