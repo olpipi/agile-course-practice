@@ -4,8 +4,10 @@ import org.junit.Test;
 import ru.unn.agile.ConverterTemperatures.model.TemperaturesConverter;
 import ru.unn.agile.ConverterTemperatures.model.TemperaturesUnit;
 import ru.unn.agile.ConverterTemperatures.model.TemperaturesConverterExceptions;
-
-import static org.junit.Assert.assertEquals;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.InvocationTargetException;
+import static org.junit.Assert.*;
 
 public class TemperaturesConverterTest {
     private static final double EPSILON = 0.000001;
@@ -159,6 +161,16 @@ public class TemperaturesConverterTest {
         double tempBefore = -273.16;
 
         double calculatingTempAfter = TemperaturesConverter.convert(tempBefore, tempUnit);
+    }
+
+    @Test
+    public void testConstructorIsPrivate()
+            throws NoSuchMethodException, IllegalAccessException,
+            InvocationTargetException, InstantiationException {
+        Constructor<TemperaturesConverter> constructor = TemperaturesConverter.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        constructor.newInstance();
     }
 
 }
