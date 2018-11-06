@@ -7,7 +7,7 @@ public final class TempConverter {
     }
     public static double convert(final double value, final TempUnit tempUnit) {
         if (value < ABS_MIN_TEMP) {
-            throw new TempConverterExceptions("Value less more absolute minimun temperature");
+            throw new TempConverterExceptions("Value is less more absolute minimun temperature");
         } else {
             double coef = tempUnit.getCoef();
             double offset = tempUnit.getOffset();
