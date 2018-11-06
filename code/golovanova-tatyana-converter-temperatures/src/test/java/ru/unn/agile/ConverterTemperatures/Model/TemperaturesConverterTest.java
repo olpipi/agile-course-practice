@@ -1,18 +1,18 @@
 package ru.unn.agile.ConverterTemperatures.Model;
 
 import org.junit.Test;
-import ru.unn.agile.ConverterTemperatures.model.TempConverter;
-import ru.unn.agile.ConverterTemperatures.model.TempUnit;
-import ru.unn.agile.ConverterTemperatures.model.TempConverterExceptions;
+import ru.unn.agile.ConverterTemperatures.model.TemperaturesConverter;
+import ru.unn.agile.ConverterTemperatures.model.TemperaturesUnit;
+import ru.unn.agile.ConverterTemperatures.model.TemperaturesConverterExceptions;
 
 import static org.junit.Assert.assertEquals;
 
-public class TempConverterTest {
+public class TemperaturesConverterTest {
     private static final double EPSILON = 0.000001;
 
     @Test
     public void canGetCoefForFahrenheit() {
-        TempUnit tempUnit = TempUnit.FAHRENHEIT;
+        TemperaturesUnit tempUnit = TemperaturesUnit.FAHRENHEIT;
         double coefExpected = 1.8;
 
         double coefActual = tempUnit.getCoef();
@@ -22,7 +22,7 @@ public class TempConverterTest {
 
     @Test
     public void canGetOffsetForFahrenheit() {
-        TempUnit tempUnit = TempUnit.FAHRENHEIT;
+        TemperaturesUnit tempUnit = TemperaturesUnit.FAHRENHEIT;
         double offsetExpected = 32;
 
         double offsetActual = tempUnit.getOffset();
@@ -32,37 +32,37 @@ public class TempConverterTest {
 
     @Test
     public void canConvertZeroToFahrenheit() {
-        TempUnit tempUnit = TempUnit.FAHRENHEIT;
+        TemperaturesUnit tempUnit = TemperaturesUnit.FAHRENHEIT;
         double tempBefore = 0.0;
         double expectedTempAfter = 32.0;
 
-        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+        double calculatingTempAfter = TemperaturesConverter.convert(tempBefore, tempUnit);
 
         assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
     }
 
     @Test
     public void canConvert100ToFahrenheit() {
-        TempUnit tempUnit = TempUnit.FAHRENHEIT;
+        TemperaturesUnit tempUnit = TemperaturesUnit.FAHRENHEIT;
         double tempBefore = 100.0;
         double expectedTempAfter = 212;
 
-        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+        double calculatingTempAfter = TemperaturesConverter.convert(tempBefore, tempUnit);
 
         assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
     }
 
-    @Test (expected = TempConverterExceptions.class)
+    @Test (expected = TemperaturesConverterExceptions.class)
     public void canConvertAbsMinToFahrenheit() {
-        TempUnit tempUnit = TempUnit.FAHRENHEIT;
+        TemperaturesUnit tempUnit = TemperaturesUnit.FAHRENHEIT;
         double tempBefore = -273.16;
 
-        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+        double calculatingTempAfter = TemperaturesConverter.convert(tempBefore, tempUnit);
     }
 
     @Test
     public void canGetCoefForKelvin() {
-        TempUnit tempUnit = TempUnit.KELVIN;
+        TemperaturesUnit tempUnit = TemperaturesUnit.KELVIN;
         double coefExpected = 1;
 
         double coefActual = tempUnit.getCoef();
@@ -72,7 +72,7 @@ public class TempConverterTest {
 
     @Test
     public void canGetOffsetForKelvin() {
-        TempUnit tempUnit = TempUnit.KELVIN;
+        TemperaturesUnit tempUnit = TemperaturesUnit.KELVIN;
         double offsetExpected = 273.15;
 
         double offsetActual = tempUnit.getOffset();
@@ -82,38 +82,38 @@ public class TempConverterTest {
 
     @Test
     public void canConvertZeroToKelvin() {
-        TempUnit tempUnit = TempUnit.KELVIN;
+        TemperaturesUnit tempUnit = TemperaturesUnit.KELVIN;
         double tempBefore = 0.0;
         double expectedTempAfter = 273.15;
 
-        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+        double calculatingTempAfter = TemperaturesConverter.convert(tempBefore, tempUnit);
 
         assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
     }
 
     @Test
     public void canConvert100ToKelvin() {
-        TempUnit tempUnit = TempUnit.KELVIN;
+        TemperaturesUnit tempUnit = TemperaturesUnit.KELVIN;
         double tempBefore = 100.0;
         double expectedTempAfter = 373.15;
 
-        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+        double calculatingTempAfter = TemperaturesConverter.convert(tempBefore, tempUnit);
 
         assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
     }
 
-    @Test (expected = TempConverterExceptions.class)
+    @Test (expected = TemperaturesConverterExceptions.class)
     public void canConvertAbsMinToKelvin() {
-        TempUnit tempUnit = TempUnit.KELVIN;
+        TemperaturesUnit tempUnit = TemperaturesUnit.KELVIN;
         double tempBefore = -273.16;
 
-        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+        double calculatingTempAfter = TemperaturesConverter.convert(tempBefore, tempUnit);
     }
 
 
     @Test
     public void canGetCoefForNewton() {
-        TempUnit tempUnit = TempUnit.NEWTON;
+        TemperaturesUnit tempUnit = TemperaturesUnit.NEWTON;
         double coefExpected = 0.33;
 
         double coefActual = tempUnit.getCoef();
@@ -123,7 +123,7 @@ public class TempConverterTest {
 
     @Test
     public void canGetOffsetForNewton() {
-        TempUnit tempUnit = TempUnit.NEWTON;
+        TemperaturesUnit tempUnit = TemperaturesUnit.NEWTON;
         double offsetExpected = 0;
 
         double offsetActual = tempUnit.getOffset();
@@ -133,32 +133,32 @@ public class TempConverterTest {
 
     @Test
     public void canConvertZeroToNewton() {
-        TempUnit tempUnit = TempUnit.NEWTON;
+        TemperaturesUnit tempUnit = TemperaturesUnit.NEWTON;
         double tempBefore = 0.0;
         double expectedTempAfter = 0;
 
-        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+        double calculatingTempAfter = TemperaturesConverter.convert(tempBefore, tempUnit);
 
         assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
     }
 
     @Test
     public void canConvert100ToNewton() {
-        TempUnit tempUnit = TempUnit.NEWTON;
+        TemperaturesUnit tempUnit = TemperaturesUnit.NEWTON;
         double tempBefore = 100.0;
         double expectedTempAfter = 33;
 
-        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+        double calculatingTempAfter = TemperaturesConverter.convert(tempBefore, tempUnit);
 
         assertEquals(expectedTempAfter, calculatingTempAfter, EPSILON);
     }
 
-    @Test (expected = TempConverterExceptions.class)
+    @Test (expected = TemperaturesConverterExceptions.class)
     public void canConvertAbsMinToNewton() {
-        TempUnit tempUnit = TempUnit.NEWTON;
+        TemperaturesUnit tempUnit = TemperaturesUnit.NEWTON;
         double tempBefore = -273.16;
 
-        double calculatingTempAfter = TempConverter.convert(tempBefore, tempUnit);
+        double calculatingTempAfter = TemperaturesConverter.convert(tempBefore, tempUnit);
     }
 
 }

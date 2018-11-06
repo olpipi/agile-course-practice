@@ -1,13 +1,13 @@
 package ru.unn.agile.ConverterTemperatures.model;
 
-public final class TempConverter {
+public final class TemperaturesConverter {
     private static final double ABS_MIN_TEMP = -273.15;
 
-    private TempConverter() {
+    private TemperaturesConverter() {
     }
-    public static double convert(final double value, final TempUnit tempUnit) {
+    public static double convert(final double value, final TemperaturesUnit tempUnit) {
         if (value < ABS_MIN_TEMP) {
-            throw new TempConverterExceptions("Value is less more absolute minimun temperature");
+            throw new TemperaturesConverterExceptions("Value less more abs min temperature");
         } else {
             double coef = tempUnit.getCoef();
             double offset = tempUnit.getOffset();
