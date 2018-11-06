@@ -26,7 +26,7 @@ public class YufinIliaTest {
     @Test
     public void canMultiplyZeroByComplexNumber() {
         ComplexNumber z1 = new ComplexNumber(0.0, 0.0);
-        ComplexNumber z2 = new ComplexNumber(0.0, 1.0);
+        ComplexNumber z2 = new ComplexNumber(0.0, 2.0);
 
         ComplexNumber z = z1.multiply(z2);
 
