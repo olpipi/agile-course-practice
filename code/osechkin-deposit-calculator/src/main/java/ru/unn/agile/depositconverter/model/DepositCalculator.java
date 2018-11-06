@@ -37,7 +37,7 @@ public class DepositCalculator {
 
     public void setTermPlacementInMonths(final int term) throws NumberFormatException {
         if (term < 1) {
-			throw new NumberFormatException("Negative value of the term of placement");
+            throw new NumberFormatException("Negative value of the term of placement");
         }
         this.termPlacementInMonths = term;
     }
