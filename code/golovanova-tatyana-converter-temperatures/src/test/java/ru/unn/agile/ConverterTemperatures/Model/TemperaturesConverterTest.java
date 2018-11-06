@@ -167,7 +167,8 @@ public class TemperaturesConverterTest {
     public void testConstructorIsPrivate()
             throws NoSuchMethodException, IllegalAccessException,
             InvocationTargetException, InstantiationException {
-        Constructor<TemperaturesConverter> constructor = TemperaturesConverter.class.getDeclaredConstructor();
+        Constructor<TemperaturesConverter> constructor;
+        constructor = TemperaturesConverter.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         constructor.newInstance();
