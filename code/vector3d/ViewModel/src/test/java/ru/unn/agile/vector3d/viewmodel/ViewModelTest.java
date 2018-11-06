@@ -313,6 +313,19 @@ public class ViewModelTest {
         assertEquals("(-161.0, 61.0, -90.0)", viewModel.resultProperty().get());
     }
 
+    @Test
+    public void buttonIsActiveWhenChangeOperationWithoutOtherVector() {
+        // Arrange
+        setInputData();
+        viewModel.otherVectorXProperty().set("aaa");
+
+        // Act1
+        viewModel.operationProperty().set(Vector3D.Operation.NORMALIZE);
+
+        // Assert
+        assertFalse(viewModel.isCalculationDisabled());
+    }
+
     private void setInputData() {
         viewModel.vectorXProperty().set("3.1");
         viewModel.vectorYProperty().set("-3.9");

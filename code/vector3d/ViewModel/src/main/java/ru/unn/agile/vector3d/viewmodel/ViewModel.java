@@ -171,13 +171,17 @@ public class ViewModel {
             field.addListener(listener);
             valueChangedListeners.add(listener);
         }
+
+        final ValueChangeListener listener = new ValueChangeListener();
+        operation.addListener(listener);
+        valueChangedListeners.add(listener);
     }
 
     private void initCalculateStateListener() {
         BooleanBinding couldCalculate = new BooleanBinding() {
             {
                 super.bind(vectorX, vectorY, vectorZ, otherVectorX,
-                        otherVectorY, otherVectorZ, multiplicationCoeff);
+                        otherVectorY, otherVectorZ, multiplicationCoeff, operation);
             }
 
             @Override
@@ -219,10 +223,10 @@ public class ViewModel {
         status.set(Status.WAITING.toString());
     }
 
-    private class ValueChangeListener implements ChangeListener<String> {
+    private class ValueChangeListener implements ChangeListener<Object> {
         @Override
-        public void changed(final ObservableValue<? extends String> observable,
-                            final String oldValue, final String newValue) {
+        public void changed(final ObservableValue<?> observable,
+                            final Object oldValue, final Object newValue) {
             status.set(getInputStatus().toString());
         }
     }
