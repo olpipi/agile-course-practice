@@ -1,12 +1,12 @@
 package ru.unn.agile.numbersIn-words.model;
 import java.text.DecimalFormat;
 public final class NumbersInWords {
-    private static final String[] tensNames = {
-            ""," Ten"," Twenty"," Thirty"," Forty"," Fifty"," Sixty"," Seventy"," Eighty"," Ninety"
+    private static final String[] TENSNAMES = {
+            "", " Ten", " Twenty", " Thirty", " Forty", " Fifty", " Sixty", " Seventy", " Eighty", " Ninety"
     };
-    private static final String[] numNames = {
-            ""," One"," Two"," Three"," Four"," Five"," Six"," Seven"," Eight"," Nine"," Ten",
-            " Eleven"," Twelve"," Thirteen"," Fourteen"," Fifteen"," Sixteen"," Seventeen"," Eighteen"," Nineteen"
+    private static final String[] NUMNAMES = {
+            "", " One", " Two", " Three", " Four", " Five", " Six", " Seven", " Eight", " Nine", " Ten",
+            " Eleven", " Twelve", " Thirteen", " Fourteen", " Fifteen", " Sixteen", " Seventeen", " Eighteen", " Nineteen"
     };
 
     private static final int TEN = 10;
@@ -16,6 +16,7 @@ public final class NumbersInWords {
     private static final int SIX = 6;
     private static final int NINE = 9;
     private static final int TWELVE = 12;
+    private static final int TWENTY = 20;
 
     private NumbersInWords() {
         /* constructor not needed here */
@@ -24,21 +25,23 @@ public final class NumbersInWords {
     private static String convertLessThanOneThousand(final int number) {
         String soFar;
         int newNumber = number;
-        if (number % HUNDRED < 20){
-            soFar = numNames[number % HUNDRED];
+        if (number % HUNDRED < TWENTY) {
+            soFar = NUMNAMES[number % HUNDRED];
             newNumber = number / HUNDRED;
         }
         else {
-            soFar = numNames[number % TEN];
+            soFar = NUMNAMES[number % TEN];
             newNumber = number / TEN;
-            soFar = tensNames[newNumber % TEN] + soFar;
+            soFar = TENSNAMES[newNumber % TEN] + soFar;
             newNumber = newNumber / TEN;
         }
-        if (number == 0) return soFar;
-        return numNames[newNumber] + " hundred" + soFar;
+        if (number == 0) {
+            return soFar;
+        }
+        return NUMNAMES[newNumber] + " hundred" + soFar;
     }
 
-    public static String convert(long number) {
+    public static final String convert(long number) {
         if (number == 0) {
             return "zero";
         }
@@ -47,10 +50,10 @@ public final class NumbersInWords {
         DecimalFormat df = new DecimalFormat(mask);
         snumber = df.format(number);
 
-        int billions = Integer.parseInt(snumber.substring(ZERO,THREE));
-        int millions  = Integer.parseInt(snumber.substring(THREE,SIX));
-        int hundredThousands = Integer.parseInt(snumber.substring(SIX,NINE));
-        int thousands = Integer.parseInt(snumber.substring(NINE,TWELVE));
+        int billions = Integer.parseInt(snumber.substring(ZERO, THREE));
+        int millions  = Integer.parseInt(snumber.substring(THREE, SIX));
+        int hundredThousands = Integer.parseInt(snumber.substring(SIX, NINE));
+        int thousands = Integer.parseInt(snumber.substring(NINE, TWELVE));
 
         String tradBillions;
         switch (billions) {
