@@ -2,11 +2,14 @@ package ru.unn.agile.numbersIn-words.model;
 import java.text.DecimalFormat;
 public final class NumbersInWords {
     private static final String[] TENSNAMES = {
-            "", " Ten", " Twenty", " Thirty", " Forty", " Fifty", " Sixty", " Seventy", " Eighty", " Ninety"
+            "", " Ten", " Twenty", " Thirty", " Forty", " Fifty",
+            " Sixty", " Seventy", " Eighty", " Ninety"
     };
     private static final String[] NUMNAMES = {
-            "", " One", " Two", " Three", " Four", " Five", " Six", " Seven", " Eight", " Nine", " Ten",
-            " Eleven", " Twelve", " Thirteen", " Fourteen", " Fifteen", " Sixteen", " Seventeen", " Eighteen", " Nineteen"
+            "", " One", " Two", " Three", " Four", " Five", " Six",
+            " Seven", " Eight", " Nine", " Ten",
+            " Eleven", " Twelve", " Thirteen", " Fourteen", " Fifteen",
+            " Sixteen", " Seventeen", " Eighteen", " Nineteen"
     };
 
     private static final int TEN = 10;
@@ -28,8 +31,7 @@ public final class NumbersInWords {
         if (number % HUNDRED < TWENTY) {
             soFar = NUMNAMES[number % HUNDRED];
             newNumber = number / HUNDRED;
-        }
-        else {
+        } else {
             soFar = NUMNAMES[number % TEN];
             newNumber = number / TEN;
             soFar = TENSNAMES[newNumber % TEN] + soFar;
@@ -41,7 +43,7 @@ public final class NumbersInWords {
         return NUMNAMES[newNumber] + " hundred" + soFar;
     }
 
-    public static final String convert(long number) {
+    public static String convert(final long number) {
         if (number == 0) {
             return "zero";
         }

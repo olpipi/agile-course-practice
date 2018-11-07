@@ -80,6 +80,7 @@ public class NumbersInWordsTest {
     public void canConvertLessBillion() {
         String convertString = NumbersInWords.convert(7832504);
 
-        assertEquals("Seven million Eight hundred Thirty Two thousand Five hundred Four", convertString);
+        assertEquals("Seven million Eight hundred Thirty Two thousand Five hundred Four",
+                convertString);
     }
 }
