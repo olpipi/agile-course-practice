@@ -59,7 +59,7 @@ public class SubtractHolidays {
     }
 
     private int getStartDay() {
-        if (isAllCashMonthInVacation() || vacationInAnotherMonthButEndInCashMonth()) {
+        if (isAllSalaryMonthInVacation() || vacationInAnotherMonthButEndInCashMonth()) {
             return 1;
         }
         if (isAllVacationInCashMonth() || vacationInCashMonthButEndInAnother()) {
@@ -69,7 +69,7 @@ public class SubtractHolidays {
     }
 
     private int getEndDay() {
-        if (isAllCashMonthInVacation() || vacationInCashMonthButEndInAnother()) {
+        if (isAllSalaryMonthInVacation() || vacationInCashMonthButEndInAnother()) {
             return checkMonth.lengthOfMonth();
         }
         if (isAllVacationInCashMonth() || vacationInAnotherMonthButEndInCashMonth()) {
@@ -80,10 +80,10 @@ public class SubtractHolidays {
 
     private boolean isExtraSituationWithEndOfSubtract() {
         return vacationInCashMonthButEndInAnother() && isNotDayOff(startVacation.lengthOfMonth())
-                || isAllCashMonthInVacation() && isNotDayOff(startVacation.lengthOfMonth());
+                || isAllSalaryMonthInVacation() && isNotDayOff(startVacation.lengthOfMonth());
     }
 
-    private boolean isAllCashMonthInVacation() {
+    private boolean isAllSalaryMonthInVacation() {
         return startVacation.getMonth().getValue() < checkMonth.getMonth().getValue()
                 && endVacation.getMonth().getValue() > checkMonth.getMonth().getValue();
     }
