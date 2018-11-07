@@ -58,32 +58,29 @@ public final class NumbersInWords {
         int thousands = Integer.parseInt(snumber.substring(NINE, TWELVE));
 
         String tradBillions;
-        switch (billions) {
-            case 0:
-                tradBillions = "";
-                break;
-            default :
-                tradBillions = convertLessThanOneThousand(billions) + " billion ";
+        if (billions = 0) {
+            tradBillions = "";
+            break;
+        } else {
+            tradBillions = convertLessThanOneThousand(billions) + " billion ";
         }
         String result =  tradBillions;
 
         String tradMillions;
-        switch (millions) {
-            case 0:
-                tradMillions = "";
-                break;
-            default :
-                tradMillions = convertLessThanOneThousand(millions) + " million ";
+        if (millions = 0) {
+            tradMillions = "";
+            break;
+        } else {
+            tradMillions = convertLessThanOneThousand(millions) + " million ";
         }
         result =  result + tradMillions;
 
         String tradHundredThousands;
-        switch (hundredThousands) {
-            case 0:
-                tradHundredThousands = "";
-                break;
-                default :
-                    tradHundredThousands = convertLessThanOneThousand(hundredThousands) + " thousand ";
+        if (hundredThousands = 0) {
+            tradHundredThousands = "";
+            break;
+        } else {
+            tradHundredThousands = convertLessThanOneThousand(hundredThousands) + " thousand ";
         }
         result =  result + tradHundredThousands;
 
