@@ -27,42 +27,42 @@ public class ShoppingBasketTest {
     public void canCalculatePriceThreeSameBooks() {
         ShoppingBasket basket = new ShoppingBasket(0, 0, 0, 3, 0);
 
-        assertEquals(24, basket.getShoppingBasketPriceSameBooks(), DELTA);
+        assertEquals(24, basket.getFinalPriceOfShoppingBasket(), DELTA);
     }
 
     @Test
     public void canCalculatePriceFourSameBooks() {
         ShoppingBasket basket = new ShoppingBasket(0, 0, 0, 0, 4);
 
-        assertEquals(32, basket.getShoppingBasketPriceSameBooks(), DELTA);
+        assertEquals(32, basket.getFinalPriceOfShoppingBasket(), DELTA);
     }
 
     @Test
     public void canCalculatePriceTwoDifferentBooks() {
         ShoppingBasket basket = new ShoppingBasket(1, 1, 0, 0, 0);
 
-        assertEquals(15.2, basket.getDiscountForUniqueItems(), DELTA);
+        assertEquals(15.2, basket.getFinalPriceOfShoppingBasket(), DELTA);
     }
 
     @Test
     public void canCalculatePriceThreeDifferentBooks() {
         ShoppingBasket basket = new ShoppingBasket(0, 1, 1, 1, 0);
 
-        assertEquals(21.6, basket.getDiscountForUniqueItems(), DELTA);
+        assertEquals(21.6, basket.getFinalPriceOfShoppingBasket(), DELTA);
     }
 
     @Test
     public void canCalculatePriceFourDifferentBooks() {
         ShoppingBasket basket = new ShoppingBasket(1, 1, 0, 1, 1);
 
-        assertEquals(25.6, basket.getDiscountForUniqueItems(), DELTA);
+        assertEquals(25.6, basket.getFinalPriceOfShoppingBasket(), DELTA);
     }
 
     @Test
     public void canCalculatePriceFiveDifferentBooks() {
         ShoppingBasket basket = new ShoppingBasket(1, 1, 1, 1, 1);
 
-        assertEquals(30, basket.getDiscountForUniqueItems(), DELTA);
+        assertEquals(30, basket.getFinalPriceOfShoppingBasket(), DELTA);
     }
 
     @Test
