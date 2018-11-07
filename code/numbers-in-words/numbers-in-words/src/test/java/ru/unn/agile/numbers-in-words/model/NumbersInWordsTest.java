@@ -10,76 +10,76 @@ public class NumbersInWordsTest {
     public void canConvertZero() {
         String convertString = NumbersInWords.convert(0);
 
-        assertEquals(convertString, "zero");
+        assertEquals("zero", convertString);
     }
 
     @Test
     public void canConvertaNumberOfSeveralZeros() {
         String convertString = NumbersInWords.convert(000);
 
-        assertEquals(convertString, "zero");
+        assertEquals("zero", convertString);
     }
 
     @Test
-    public void can convertTheTopTenNumbers() {
+    public void canConvertTheTopTenNumbers() {
         String convertString = NumbersInWords.convert(6);
 
-        assertEquals(convertString, "Six");
+        assertEquals("Six", convertString);
     }
 
     @Test
-    public void can convertMultiplesOfTen() {
+    public void canConvertMultiplesOfTen() {
         String convertString = NumbersInWords.convert(80);
 
-        assertEquals(convertString, "Eighty");
+        assertEquals("Eighty", convertString);
     }
 
     @Test
     public void canConvertNumbersToHundreds() {
         String convertString = NumbersInWords.convert(54);
 
-        assertEquals(convertString, "Fifty One");
+        assertEquals("Fifty One", convertString);
     }
 
     @Test
-    public void can convertMultiplesOfHundred() {
+    public void canConvertMultiplesOfHundred() {
         String convertString = NumbersInWords.convert(200);
 
-        assertEquals(convertString, "Two hundred");
+        assertEquals("Two hundred", convertString);
     }
 
     @Test
     public void canConvertLessThousand() {
         String convertString = NumbersInWords.convert(115);
 
-        assertEquals(convertString, "One hundred Fifteen");
+        assertEquals("One hundred Fifteen", convertString);
     }
 
     @Test
-    public void can convertMultiplesOfThousand() {
+    public void canConvertMultiplesOfThousand() {
         String convertString = NumbersInWords.convert(3000);
 
-        assertEquals(convertString, "Three thousand");
+        assertEquals("Three thousand", convertString);
     }
 
     @Test
     public void canConvertLessMillion() {
         String convertString = NumbersInWords.convert(29076);
 
-        assertEquals(convertString, "Twenty Nine thousand Seventy Six");
+        assertEquals("Twenty Nine thousand Seventy Six", convertString);
     }
 
     @Test
-    public void can convertMultiplesOfMillion() {
+    public void canConvertMultiplesOfMillion() {
         String convertString = NumbersInWords.convert(9000000);
 
-        assertEquals(convertString, "Nine million");
+        assertEquals("Nine million", convertString);
     }
 
     @Test
     public void canConvertLessBillion() {
         String convertString = NumbersInWords.convert(7832504);
 
-        assertEquals(convertString, "Seven million Eight hundred Thirty Two thousand Five hundred Four");
+        assertEquals("Seven million Eight hundred Thirty Two thousand Five hundred Four", convertString);
     }
 }
