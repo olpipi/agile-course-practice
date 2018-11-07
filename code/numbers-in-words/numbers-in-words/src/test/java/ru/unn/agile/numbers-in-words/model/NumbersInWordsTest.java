@@ -14,13 +14,6 @@ public class NumbersInWordsTest {
     }
 
     @Test
-    public void canConvertaNumberOfSeveralZeros() {
-        String convertString = NumbersInWords.convert(000);
-
-        assertEquals("zero", convertString);
-    }
-
-    @Test
     public void canConvertTheTopTenNumbers() {
         String convertString = NumbersInWords.convert(6);
 
