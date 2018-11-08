@@ -126,6 +126,10 @@ project(":code/osechkin-deposit-calculator").name = "osechkin-deposit-calculator
 include "code/three-dimensional-shapes-area"
 project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
 
+//Stepanov Nikolay, Salary calculator
+include "code/salary-calculator"
+project(":code/salary-calculator").name = "salary-calculator"
+
 // Gladkova Tatiana, Binary Search
 include "code/gladkova-tatiana-binary-search"
 project(":code/gladkova-tatiana-binary-search").name = "gladkova-tatiana-binary-search"
