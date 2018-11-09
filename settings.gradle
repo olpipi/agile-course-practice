@@ -178,6 +178,10 @@ project(":code/pipikin-oleg-matrix").name = "pipikin-oleg-matrix"
 include "code/nakhimovich-dmitry-segments2d"
 project(":code/nakhimovich-dmitry-segments2d").name = "nakhimovich-dmitry-segments2d"
 
+// Mitrokhina Julia, Harry Potter Books
+include "code/mitrokhina-julia-harrypotter"
+project(":code/mitrokhina-julia-harrypotter").name = "mitrokhina-julia-harrypotter-Model"
+
 // Akhmedzhanov Dmitry, Conway Game of Life
 include "code/akhmedzhanov-dmitry-conway-game"
 project(":code/akhmedzhanov-dmitry-conway-game").name = "akhmedzhanov-dmitry-conway-game-Model"
