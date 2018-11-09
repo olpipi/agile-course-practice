@@ -134,6 +134,10 @@ project(":code/gladkova-tatiana-binary-search").name = "gladkova-tatiana-binary-
 include "code/caesar-cipher"
 project(":code/caesar-cipher").name = "caesar-cipher"
 
+// Krutoberezskaya Irina, numbers-in-words
+include "code/numbers-in-words"
+project(":code/numbers-in-words").name = "numbers-in-words"
+
 // Podolov Kirill, Queue
 include "code/queue"
 project(":code/queue").name = "queue-Model"
@@ -165,7 +169,3 @@ project(":code/pipikin-oleg-matrix").name = "pipikin-oleg-matrix"
 // Nakhimovich Dmitry, Segments2D
 include "code/nakhimovich-dmitry-segments2d"
 project(":code/nakhimovich-dmitry-segments2d").name = "nakhimovich-dmitry-segments2d"
-
-// Krutoberezskaya Irina, numbers-in-words
-include "code/numbers-in-words"
-project(":code/numbers-in-words").name = "numbers-in-words"

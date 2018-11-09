@@ -13,6 +13,9 @@ public final class NumbersInWords {
             " Eleven", " Twelve", " Thirteen", " Fourteen", " Fifteen",
             " Sixteen", " Seventeen", " Eighteen", " Nineteen"
     };
+    private static final String[] DIGIT = {
+            "", " thousand ", " million ", " billion "
+    };
 
     private static final int TEN = 10;
     private static final int HUNDRED = 100;
@@ -23,29 +26,39 @@ public final class NumbersInWords {
     private static final int TWELVE = 12;
     private static final int TWENTY = 20;
 
+    private static final String MASK = "000000000000";
+
     private NumbersInWords() {
     }
 
     private static String convertLessThanOneThousand(final int number) {
-        String PartNumber;
+        String partNumber;
         int newNumber = number;
         if (number % HUNDRED < TWENTY) {
-            PartNumber = NUMNAMES[number % HUNDRED];
+            partNumber = NUMNAMES[number % HUNDRED];
             newNumber = number / HUNDRED;
         } else {
-            PartNumber = NUMNAMES[number % TEN];
+            partNumber = NUMNAMES[number % TEN];
             newNumber = number / TEN;
-            PartNumber = TENSNAMES[newNumber % TEN] + PartNumber;
+            partNumber = TENSNAMES[newNumber % TEN] + partNumber;
             newNumber = newNumber / TEN;
         }
         if (number == 0) {
-            return PartNumber;
+            return partNumber;
         }
-        if(newNumber==0) {
-            return PartNumber;
+        if (newNumber == 0) {
+            return partNumber;
         } else {
-            return NUMNAMES[newNumber] + " hundred" + PartNumber;
+            return NUMNAMES[newNumber] + " hundred" + partNumber;
         }
+    }
+
+    private static String collectsNumber(int NUMBER, int index) {
+        String result = "";
+        if (NUMBER != 0) {
+            result = convertLessThanOneThousand(NUMBER) + DIGIT[index];
+        }
+        return result;
     }
 
     public static String convert(final long number) {
@@ -53,8 +66,7 @@ public final class NumbersInWords {
             return "zero";
         }
         String snumber = Long.toString(number);
-        String mask = "000000000000";
-        DecimalFormat df = new DecimalFormat(mask);
+        DecimalFormat df = new DecimalFormat(MASK);
         snumber = df.format(number);
 
         int billions = Integer.parseInt(snumber.substring(ZERO, THREE));
@@ -62,29 +74,9 @@ public final class NumbersInWords {
         int hundredThousands = Integer.parseInt(snumber.substring(SIX, NINE));
         int thousands = Integer.parseInt(snumber.substring(NINE, TWELVE));
 
-        String tradBillions;
-        if (billions == 0) {
-            tradBillions = "";
-        } else {
-            tradBillions = convertLessThanOneThousand(billions) + " billion ";
-        }
-        String result =  tradBillions;
-
-        String tradMillions;
-        if (millions == 0) {
-            tradMillions = "";
-        } else {
-            tradMillions = convertLessThanOneThousand(millions) + " million ";
-        }
-        result =  result + tradMillions;
-
-        String tradHundredThousands;
-        if (hundredThousands == 0) {
-            tradHundredThousands = "";
-        } else {
-            tradHundredThousands = convertLessThanOneThousand(hundredThousands) + " thousand ";
-        }
-        result =  result + tradHundredThousands;
+        String result = collectsNumber(billions, 3);
+        result = result + collectsNumber(millions, 2);
+        result = result + collectsNumber(hundredThousands, 1);
 
         String tradThousand;
         tradThousand = convertLessThanOneThousand(thousands);
