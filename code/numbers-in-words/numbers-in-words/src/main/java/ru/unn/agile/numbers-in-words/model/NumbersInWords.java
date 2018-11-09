@@ -1,4 +1,4 @@
-package ru.unn.agile.numbersIn-words.model;
+package ru.unn.agile.numbers-in-words.model;
 
 import java.text.DecimalFormat;
 
