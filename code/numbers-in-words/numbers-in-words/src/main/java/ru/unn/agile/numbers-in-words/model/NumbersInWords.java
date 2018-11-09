@@ -25,6 +25,8 @@ public final class NumbersInWords {
     private static final int NINE = 9;
     private static final int TWELVE = 12;
     private static final int TWENTY = 20;
+    private static final int ONE = 1;
+    private static final int TWO = 2;
 
     private static final String MASK = "000000000000";
 
@@ -53,10 +55,10 @@ public final class NumbersInWords {
         }
     }
 
-    private static String collectsNumber(int NUMBER, int index) {
+    private static String collectsNumber(final int number, final int index) {
         String result = "";
-        if (NUMBER != 0) {
-            result = convertLessThanOneThousand(NUMBER) + DIGIT[index];
+        if (number != 0) {
+            result = convertLessThanOneThousand(number) + DIGIT[index];
         }
         return result;
     }
@@ -74,9 +76,9 @@ public final class NumbersInWords {
         int hundredThousands = Integer.parseInt(snumber.substring(SIX, NINE));
         int thousands = Integer.parseInt(snumber.substring(NINE, TWELVE));
 
-        String result = collectsNumber(billions, 3);
-        result = result + collectsNumber(millions, 2);
-        result = result + collectsNumber(hundredThousands, 1);
+        String result = collectsNumber(billions, THREE);
+        result = result + collectsNumber(millions, TWO);
+        result = result + collectsNumber(hundredThousands, ONE);
 
         String tradThousand;
         tradThousand = convertLessThanOneThousand(thousands);
