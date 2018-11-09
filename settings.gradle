@@ -126,6 +126,10 @@ project(":code/osechkin-deposit-calculator").name = "osechkin-deposit-calculator
 include "code/three-dimensional-shapes-area"
 project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
 
+//Stepanov Nikolay, Salary calculator
+include "code/salary-calculator"
+project(":code/salary-calculator").name = "salary-calculator"
+
 // Gladkova Tatiana, Binary Search
 include "code/gladkova-tatiana-binary-search"
 project(":code/gladkova-tatiana-binary-search").name = "gladkova-tatiana-binary-search"
@@ -154,6 +158,14 @@ project(":code/shape-volume-calculator").name = "shape-volume-calculator"
 include "code/rumiantseva-maria-quadratic-equation-solver"
 project(":code/rumiantseva-maria-quadratic-equation-solver").name = "rumiantseva-maria-quadratic-equation-solver"
 
+// Podchishchaeva Mariya, RBTree
+include "code/podchishchaeva-rb-tree"
+project(":code/podchishchaeva-rb-tree").name = "podchishchaeva-rb-tree"
+
+// Golovanova Tatyana, Converter From Celsius
+include "code/golovanova-tatyana-converter-temperatures"
+project(":code/golovanova-tatyana-converter-temperatures").name = "golovanova-tatyana-converter-temperatures"
+
 // Sheptunov Vladislav, BinarySearchTree
 include "code/binary-search-tree"
 project(":code/binary-search-tree").name = "binary-search-tree"
@@ -169,3 +181,7 @@ project(":code/nakhimovich-dmitry-segments2d").name = "nakhimovich-dmitry-segmen
 // Mitrokhina Julia, Harry Potter Books
 include "code/mitrokhina-julia-harrypotter"
 project(":code/mitrokhina-julia-harrypotter").name = "mitrokhina-julia-harrypotter-Model"
+
+// Akhmedzhanov Dmitry, Conway Game of Life
+include "code/akhmedzhanov-dmitry-conway-game"
+project(":code/akhmedzhanov-dmitry-conway-game").name = "akhmedzhanov-dmitry-conway-game-Model"
