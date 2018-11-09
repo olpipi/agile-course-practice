@@ -14,7 +14,7 @@ public final class NumbersInWords {
             " Sixteen", " Seventeen", " Eighteen", " Nineteen"
     };
     private static final String[] DIGIT = {
-            "", " thousand ", " million ", " billion "
+            "", " thousand", " million", " billion"
     };
 
     private static final int TEN = 10;
