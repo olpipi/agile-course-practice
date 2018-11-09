@@ -24,7 +24,6 @@ public final class NumbersInWords {
     private static final int TWENTY = 20;
 
     private NumbersInWords() {
-        /* constructor not needed here */
     }
 
     private static String convertLessThanOneThousand(final int number) {
