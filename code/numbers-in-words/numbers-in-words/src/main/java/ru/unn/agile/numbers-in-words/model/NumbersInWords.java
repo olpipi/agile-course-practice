@@ -41,7 +41,11 @@ public final class NumbersInWords {
         if (number == 0) {
             return PartNumber;
         }
-        return NUMNAMES[newNumber] + " hundred" + PartNumber;
+        if(newNumber==0) {
+            return PartNumber;
+        } else {
+            return NUMNAMES[newNumber] + " hundred" + PartNumber;
+        }
     }
 
     public static String convert(final long number) {

@@ -31,7 +31,7 @@ public class NumbersInWordsTest {
     public void canConvertNumbersToHundreds() {
         String convertString = NumbersInWords.convert(54);
 
-        assertEquals("Fifty One", convertString);
+        assertEquals("Fifty Four", convertString);
     }
 
     @Test
@@ -74,6 +74,21 @@ public class NumbersInWordsTest {
         String convertString = NumbersInWords.convert(7832504);
 
         assertEquals("Seven million Eight hundred Thirty Two thousand Five hundred Four",
+                convertString);
+    }
+
+    @Test
+    public void canConvertMultiplesOfBillion() {
+        String convertString = NumbersInWords.convert(1000000000);
+
+        assertEquals("One billion", convertString);
+    }
+
+    @Test
+    public void canConvertMoreBillion() {
+        String convertString = NumbersInWords.convert(2000005600);
+
+        assertEquals("Two billion Five thousand Six hundred",
                 convertString);
     }
 }
