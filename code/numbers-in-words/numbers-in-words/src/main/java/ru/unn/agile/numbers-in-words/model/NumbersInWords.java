@@ -1,5 +1,7 @@
 package ru.unn.agile.numbersIn-words.model;
+
 import java.text.DecimalFormat;
+
 public final class NumbersInWords {
     private static final String[] TENSNAMES = {
             "", " Ten", " Twenty", " Thirty", " Forty", " Fifty",
@@ -26,21 +28,21 @@ public final class NumbersInWords {
     }
 
     private static String convertLessThanOneThousand(final int number) {
-        String soFar;
+        String PartNumber;
         int newNumber = number;
         if (number % HUNDRED < TWENTY) {
-            soFar = NUMNAMES[number % HUNDRED];
+            PartNumber = NUMNAMES[number % HUNDRED];
             newNumber = number / HUNDRED;
         } else {
-            soFar = NUMNAMES[number % TEN];
+            PartNumber = NUMNAMES[number % TEN];
             newNumber = number / TEN;
-            soFar = TENSNAMES[newNumber % TEN] + soFar;
+            PartNumber = TENSNAMES[newNumber % TEN] + PartNumber;
             newNumber = newNumber / TEN;
         }
         if (number == 0) {
-            return soFar;
+            return PartNumber;
         }
-        return NUMNAMES[newNumber] + " hundred" + soFar;
+        return NUMNAMES[newNumber] + " hundred" + PartNumber;
     }
 
     public static String convert(final long number) {
