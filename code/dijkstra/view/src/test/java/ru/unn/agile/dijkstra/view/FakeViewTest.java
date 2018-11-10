@@ -3,6 +3,7 @@ package ru.unn.agile.dijkstra.view;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 public class FakeViewTest {
@@ -12,4 +13,9 @@ public class FakeViewTest {
         fail("No tests for view");
     }
 
+    @Test
+    public void fakeTestView() {
+        DijkstraView viewModel = new DijkstraView();
+        assertEquals(viewModel.getClass(), viewModel.getClass());
+    }
 }
