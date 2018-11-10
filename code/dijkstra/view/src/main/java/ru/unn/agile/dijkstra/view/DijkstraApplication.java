@@ -10,6 +10,7 @@ public class DijkstraApplication extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("DijkstraForm.fxml"));
+        primaryStage.setTitle("Optimization Graph Way");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
