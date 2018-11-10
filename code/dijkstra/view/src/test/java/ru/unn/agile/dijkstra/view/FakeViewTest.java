@@ -15,7 +15,7 @@ public class FakeViewTest {
 
     @Test
     public void fakeTestView() {
-        DijkstraView viewModel = new DijkstraView();
+        Main viewModel = new Main();
         assertEquals(viewModel.getClass(), viewModel.getClass());
     }
 }

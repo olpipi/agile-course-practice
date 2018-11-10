@@ -8,7 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import ru.unn.agile.dijkstra.viewModel.ViewModel;
 
-public class DijkstraView {
+public class Main {
 
     @FXML
     private Button calculateAction;
