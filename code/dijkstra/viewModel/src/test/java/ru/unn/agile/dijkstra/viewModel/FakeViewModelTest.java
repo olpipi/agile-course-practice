@@ -1,13 +1,14 @@
 package ru.unn.agile.dijkstra.viewModel;
 
-import org.junit.Ignore;
 import org.junit.Test;
-import static org.junit.Assert.fail;
+
+import static org.junit.Assert.assertEquals;
+
 
 public class FakeViewModelTest {
-    @Ignore
     @Test
-    public void fakeTest() {
-        fail("No tests for view");
+    public void fakeTestView() {
+        ViewModel viewModel = new ViewModel();
+        assertEquals(viewModel.getClass(), viewModel.getClass());
     }
 }
