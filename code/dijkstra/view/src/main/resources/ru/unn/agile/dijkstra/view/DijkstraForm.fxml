@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import ru.unn.agile.dijkstra.viewModel.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.unn.agile.dijkstra.view.View">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.unn.agile.dijkstra.view.DijkstraView">
     <fx:define>
         <ViewModel fx:id="viewModel" />
     </fx:define>
