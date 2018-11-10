@@ -428,4 +428,28 @@ public class ViewModelTests {
 
         assertEquals(16.0, result, 1e-5);
     }
+
+    @Test
+    public void whenCanNotComputeComputationDoesNothing() {
+        ViewModel model = new ViewModel();
+        model.setFunction(")");
+        model.setLeftBorderValue("-2");
+        model.setRightBorderValue("2");
+        model.setSplitsNumber("1");
+
+        String outputBeforeCompute = model.getOutputMessage();
+        model.compute();
+        String outputAfterCompute = model.getOutputMessage();
+
+        assertTrue(outputBeforeCompute.equals(outputAfterCompute));
+    }
+
+    @Test
+    public void whenHasMultipleErrorsTheyAreSeparatedByLines() {
+        ViewModel model = new ViewModel();
+        model.setLeftBorderValue("q");
+        model.setRightBorderValue("q");
+
+        assertTrue(model.getOutputMessage().contains("\n"));
+    }
 }

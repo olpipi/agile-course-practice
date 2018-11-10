@@ -174,4 +174,13 @@ public class MathParserTests {
 
         assertEquals(33.0, result, DOUBLE_PRECISION);
     }
+
+    @Test
+    public void voidHasErrorWhenComputingIncorrectExpression() {
+        MathParser parser = new MathParser("x1");
+
+        boolean success = parser.eval(0);
+
+        assertFalse(success);
+    }
 }
