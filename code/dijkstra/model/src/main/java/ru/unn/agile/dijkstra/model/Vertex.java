@@ -1,4 +1,4 @@
-package ru.unn.agile.dikstry;
+package ru.unn.agile.dijkstra.model;
 
 public class Vertex {
     private int id;
