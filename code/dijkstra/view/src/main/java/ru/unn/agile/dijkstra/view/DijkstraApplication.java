@@ -1,4 +1,4 @@
-package ru.unn.agile.dijkstra.mview;
+package ru.unn.agile.dijkstra.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -1,4 +1,4 @@
-package ru.unn.agile.dijkstra.mview;
+package ru.unn.agile.dijkstra.view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

@@ -1,4 +1,4 @@
-package ru.unn.agile.dijkstra.mview;
+package ru.unn.agile.dijkstra.view;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -10,7 +10,7 @@ public class FakeViewTest {
 
     @Ignore @Test
     public void fakeTest() {
-        fail("No tests for mview");
+        fail("No tests for view");
     }
 
     @Test

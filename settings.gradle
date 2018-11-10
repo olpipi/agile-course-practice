@@ -27,8 +27,8 @@ include "code/dijkstra/model"
 project(":code/dijkstra/model").name = "dijkstra-Model"
 include "code/dijkstra/ViewModel"
 project(":code/dijkstra/ViewModel").name = "dijkstra-ViewModel"
-include "code/dijkstra/View"
-project(":code/dijkstra/View").name = "dijkstra-View"
+include "code/dijkstra/MView"
+project(":code/dijkstra/MView").name = "dijkstra-View"
 
 // Ivanova Olga, lab1
 include "code/prime-number"
