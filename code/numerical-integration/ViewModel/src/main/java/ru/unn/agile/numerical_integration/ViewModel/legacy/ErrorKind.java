@@ -4,5 +4,6 @@ public enum ErrorKind {
     LeftBorderValue,
     RightBorderValue,
     SplitsNumber,
-    Computation, Function
+    Computation,
+    Function
 }
