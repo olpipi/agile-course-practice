@@ -182,6 +182,10 @@ project(":code/nakhimovich-dmitry-segments2d").name = "nakhimovich-dmitry-segmen
 include "code/mitrokhina-julia-harrypotter"
 project(":code/mitrokhina-julia-harrypotter").name = "mitrokhina-julia-harrypotter-Model"
 
-// Akhmedzhanov Dmitry, Conway Game of Life
-include "code/akhmedzhanov-dmitry-conway-game"
-project(":code/akhmedzhanov-dmitry-conway-game").name = "akhmedzhanov-dmitry-conway-game-Model"
+// Conway Game of Life
+include "code/conway-game/View"
+project(":code/conway-game/View").name = "conway-game-View"
+include "code/conway-game/Model"
+project(":code/conway-game/Model").name = "conway-game-Model"
+include "code/conway-game/ViewModel"
+project(":code/conway-game/ViewModel").name = "conway-game-ViewModel"

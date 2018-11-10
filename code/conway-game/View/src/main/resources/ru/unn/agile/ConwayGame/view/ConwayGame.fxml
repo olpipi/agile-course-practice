@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="509.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.unn.agile.ConwayGame.view.ConwayGame">
+   <children>
+      <TextField layoutX="16.0" layoutY="42.0" prefHeight="25.0" prefWidth="100.0" />
+      <TextField layoutX="150.0" layoutY="42.0" prefHeight="25.0" prefWidth="100.0" />
+      <Label layoutX="14.0" layoutY="18.0" text="Rows:" />
+      <Label layoutX="150.0" layoutY="18.0" text="Columns:" />
+      <Label layoutX="128.0" layoutY="46.0" text="X" />
+      <Button layoutX="277.0" layoutY="42.0" mnemonicParsing="false" text="Create a grid!" />
+      <TableView layoutX="16.0" layoutY="80.0" prefHeight="200.0" prefWidth="352.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Label alignment="TOP_CENTER" layoutX="18.0" layoutY="335.0" prefHeight="148.0" prefWidth="160.0" text="Input:" />
+      <Label alignment="TOP_CENTER" layoutX="209.0" layoutY="335.0" prefHeight="148.0" prefWidth="160.0" text="Output:" />
+      <Button layoutX="165.0" layoutY="295.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="57.0" text="Submit!" />
+   </children>
+</AnchorPane>
