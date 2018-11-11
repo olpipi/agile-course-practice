@@ -57,6 +57,10 @@ public class ViewModel {
         return operation;
     }
 
+    public void setOperation(final Operation operation) {
+        this.operation = operation;
+    }
+
     public String getOrderText() {
         return orderText;
     }
@@ -70,10 +74,10 @@ public class ViewModel {
     }
 
     public enum Operation {
-        EXPECTED_VALUE("ExpectedValue"),
+        EXPECTED_VALUE("Expected value"),
         DISPERSION("Dispersion"),
-        INITIAL_MOMENT("InitialMoment"),
-        CENTRAL_MOMENT("CentralMoment");
+        INITIAL_MOMENT("Initial moment"),
+        CENTRAL_MOMENT("Central moment");
         private final String name;
 
         Operation(final String name) {

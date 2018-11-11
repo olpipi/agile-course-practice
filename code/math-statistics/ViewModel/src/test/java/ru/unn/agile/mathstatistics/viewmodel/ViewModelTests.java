@@ -1,5 +1,7 @@
 package ru.unn.agile.mathstatistics.viewmodel;
 
+import ru.unn.agile.mathstatistics.model.MathStatistics;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +35,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isStatusWaitingInTheBeginning() {
+    public void isStatusWaitingAtTheBeginning() {
         assertEquals(Status.WAITING, viewModel.getStatusMessageText());
     }
 
@@ -43,12 +45,48 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isClearButtonDisableddAtTheBeginning() {
+    public void isClearButtonDisabledAtTheBeginning() {
         assertFalse(viewModel.isClearButtonEnabled());
     }
 
     @Test
-    public void isCalculateButtonDisabledInTheBeginning() {
+    public void isCalculateButtonDisabledAtTheBeginning() {
         assertFalse(viewModel.isCalculateButtonEnabled());
+    }
+
+    @Test
+    public void canSetExpectedValueOperation() {
+        Operation expectedValueOperation = Operation.EXPECTED_VALUE;
+
+        viewModel.setOperation(expectedValueOperation);
+
+        assertEquals(expectedValueOperation, viewModel.getOperation());
+    }
+
+    @Test
+    public void canSetDispersionOperation() {
+        Operation dispersionOperation = Operation.DISPERSION;
+
+        viewModel.setOperation(dispersionOperation);
+
+        assertEquals(dispersionOperation, viewModel.getOperation());
+    }
+
+    @Test
+    public void canSetInitialMomentOperation() {
+        Operation initialMomentOperation = Operation.INITIAL_MOMENT;
+
+        viewModel.setOperation(initialMomentOperation);
+
+        assertEquals(initialMomentOperation, viewModel.getOperation());
+    }
+
+    @Test
+    public void canSetCentralMomentOperation() {
+        Operation centralMomentOperation = Operation.CENTRAL_MOMENT;
+
+        viewModel.setOperation(centralMomentOperation);
+
+        assertEquals(centralMomentOperation, viewModel.getOperation());
     }
 }
