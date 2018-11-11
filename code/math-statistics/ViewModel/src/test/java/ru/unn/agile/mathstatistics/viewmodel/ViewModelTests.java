@@ -45,11 +45,6 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isClearButtonDisabledAtTheBeginning() {
-        assertFalse(viewModel.isClearButtonEnabled());
-    }
-
-    @Test
     public void isCalculateButtonDisabledAtTheBeginning() {
         assertFalse(viewModel.isCalculateButtonEnabled());
     }

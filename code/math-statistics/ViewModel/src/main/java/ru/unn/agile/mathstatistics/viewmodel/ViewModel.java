@@ -16,7 +16,6 @@ public class ViewModel {
     private boolean isOrderTextEnabled;
 
     private boolean isAddToSampleButtonEnabled;
-    private boolean isClearButtonEnabled;
     private boolean isCalculateButtonEnabled;
 
     public ViewModel() {
@@ -33,8 +32,12 @@ public class ViewModel {
         isOrderTextEnabled = false;
 
         isAddToSampleButtonEnabled = true;
-        isClearButtonEnabled = false;
         isCalculateButtonEnabled = false;
+    }
+
+    public void validateInputData() {
+        if (!parseInputData())
+            return;
     }
 
     public boolean isOrderTextEnabled() {
@@ -43,10 +46,6 @@ public class ViewModel {
 
     public boolean isAddToSampleButtonEnabled() {
         return isAddToSampleButtonEnabled;
-    }
-
-    public boolean isClearButtonEnabled() {
-        return isClearButtonEnabled;
     }
 
     public boolean isCalculateButtonEnabled() {
@@ -92,14 +91,14 @@ public class ViewModel {
         DISPERSION("Dispersion"),
         INITIAL_MOMENT("Initial moment"),
         CENTRAL_MOMENT("Central moment");
-        private final String name;
+        private final String operationName;
 
         Operation(final String name) {
-            this.name = name;
+            this.operationName = name;
         }
 
         public String toString() {
-            return name;
+            return operationName;
         }
     }
 
@@ -110,6 +109,23 @@ public class ViewModel {
         public static final String SUCCESS = "Success";
 
         private Status() { }
+    }
+
+    private boolean parseInputData() {
+        try {
+            if (!valueText.isEmpty()) {
+                Double.parseDouble(valueText);
+            }
+            if (!probabilityText.isEmpty()) {
+                Double.parseDouble(probabilityText);
+            }
+        } catch (Exception e) {
+            statusMessageText = Status.BAD_FORMAT;
+            isCalculateButtonEnabled = false;
+            return false;
+        }
+
+        return true;
     }
 
     private boolean isMomentOperation(Operation operation) {
