@@ -45,11 +45,10 @@ public class ViewModel {
 
     public void checkCountFields() {
         status = Status.READY_CALCULATE;
-        isCalculateButtonEnabled =
-                isCountInputAvailable() &&
-                        isDateCorrect() &&
-                        isWorkedHoursCorrect() &&
-                        isSalaryCorrect();
+        isCalculateButtonEnabled = isCountInputAvailable()
+                && isDateCorrect()
+                && isWorkedHoursCorrect()
+                && isSalaryCorrect();
     }
 
     private boolean isSalaryCorrect() {
@@ -71,8 +70,8 @@ public class ViewModel {
         countPeriod.setWorkedHourInMonth(Integer.parseInt(workedHours));
 
         countPeriod.setCountingMonth(LocalDate.of(Integer.parseInt(countYear)
-                , Integer.parseInt(countMonth)
-                , 1));
+                ,Integer.parseInt(countMonth)
+                ,1));
         result = getMoneyFormatInCashValue(countPeriod);
         status = Status.CASH;
     }
@@ -128,10 +127,8 @@ public class ViewModel {
         int hours = Integer.parseInt(workedHours);
         if (hours <= MAX_WORKED_HOURS && hours > 0)
             return true;
-        else {
-            status = Status.BAD_WORKED_HOURS_FORMAT;
-            return false;
-        }
+        status = Status.BAD_WORKED_HOURS_FORMAT;
+        return false;
     }
 
     private boolean isDateCorrect() {
