@@ -1,5 +1,7 @@
 package ru.unn.agile.ArraySorter.viewmodel;
 
+import ru.unn.agile.arraysorter.model.ArraySorter;
+
 import java.util.ArrayList;
 
 public class ViewModel {
@@ -44,5 +46,18 @@ public class ViewModel {
         Array.clear();
 
         outputArray = Array.toString();
+    }
+
+    public void Sort()
+    {
+        Double[] nativeArray = new Double[Array.size()];
+        Array.toArray(nativeArray);
+
+        ArraySorter.sort(nativeArray);
+
+        for (int i = 0; i < nativeArray.length; i++)
+            Array.set(i, nativeArray[i]);
+
+        outputArray =  Array.toString();
     }
 }
