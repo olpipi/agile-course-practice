@@ -25,10 +25,18 @@ public class ViewModel {
     }
 
     public void setNewElem(final String newElem) {
+        if (newElem.equals(this.newElem)) {
+            return;
+        }
+
         this.newElem = newElem;
     }
 
     public void Add() {
+        if (!parseInput()) {
+            return;
+        }
+
         queue.push(Double.parseDouble(newElem));
         outputQueue = queue.toString();
     }
@@ -41,6 +49,17 @@ public class ViewModel {
     public void Clear() {
         queue.clear();
         outputQueue = queue.toString();
+    }
+
+    private boolean parseInput() {
+        try {
+            if (!newElem.isEmpty()) {
+                Double.parseDouble(newElem);
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
 }
