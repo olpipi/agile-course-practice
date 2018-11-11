@@ -64,7 +64,7 @@ public class ViewModelTests {
         viewModel.calculateSalary();
 
         assertEquals(Status.COUNT_WAITING, viewModel.getStatus());
-        assertFalse(viewModel.getCalculateButtonEnable());
+        assertFalse(viewModel.isCalculateButtonEnable());
         assertEquals("", viewModel.getResult());
     }
 
@@ -78,7 +78,7 @@ public class ViewModelTests {
         viewModel.checkCountFields();
 
         assertEquals(Status.BAD_COUNT_FORMAT, viewModel.getStatus());
-        assertFalse(viewModel.getCalculateButtonEnable());
+        assertFalse(viewModel.isCalculateButtonEnable());
         assertEquals("", viewModel.getResult());
     }
 
@@ -92,7 +92,7 @@ public class ViewModelTests {
         viewModel.checkCountFields();
 
         assertEquals(Status.BAD_MONTH_FORMAT, viewModel.getStatus());
-        assertFalse(viewModel.getCalculateButtonEnable());
+        assertFalse(viewModel.isCalculateButtonEnable());
         assertEquals("", viewModel.getResult());
     }
 
@@ -106,7 +106,7 @@ public class ViewModelTests {
         viewModel.checkCountFields();
 
         assertEquals(Status.BAD_YEAR_FORMAT, viewModel.getStatus());
-        assertFalse(viewModel.getCalculateButtonEnable());
+        assertFalse(viewModel.isCalculateButtonEnable());
         assertEquals("", viewModel.getResult());
     }
 
@@ -120,7 +120,7 @@ public class ViewModelTests {
         viewModel.checkCountFields();
 
         assertEquals(Status.BAD_YEAR_FORMAT, viewModel.getStatus());
-        assertFalse(viewModel.getCalculateButtonEnable());
+        assertFalse(viewModel.isCalculateButtonEnable());
         assertEquals("", viewModel.getResult());
     }
 
@@ -136,7 +136,7 @@ public class ViewModelTests {
 
         assertEquals("8700.0", viewModel.getResult());
         assertEquals(Status.CASH, viewModel.getStatus());
-        assertTrue(viewModel.getCalculateButtonEnable());
+        assertTrue(viewModel.isCalculateButtonEnable());
     }
 
     @Test
@@ -150,7 +150,7 @@ public class ViewModelTests {
 
         assertEquals("10213.04", viewModel.getResult());
         assertEquals(Status.CASH, viewModel.getStatus());
-        assertTrue(viewModel.getCalculateButtonEnable());
+        assertTrue(viewModel.isCalculateButtonEnable());
     }
 
     @Test
@@ -164,7 +164,7 @@ public class ViewModelTests {
 
         assertEquals("7281.52", viewModel.getResult());
         assertEquals(Status.CASH, viewModel.getStatus());
-        assertTrue(viewModel.getCalculateButtonEnable());
+        assertTrue(viewModel.isCalculateButtonEnable());
     }
 
 
@@ -201,6 +201,6 @@ public class ViewModelTests {
 
         assertEquals("", viewModel.getResult());
         assertEquals(Status.BAD_MONTH_FORMAT, viewModel.getStatus());
-        assertFalse(viewModel.getCalculateButtonEnable());
+        assertFalse(viewModel.isCalculateButtonEnable());
     }
 }

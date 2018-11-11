@@ -65,7 +65,7 @@ public final class SalaryCalculatorView {
     }
 
     private void backBind() {
-        calculateButton.setEnabled(viewModel.getCalculateButtonEnable());
+        calculateButton.setEnabled(viewModel.isCalculateButtonEnable());
         txtResult.setText(viewModel.getResult());
         lbStatus.setText(viewModel.getStatus());
     }

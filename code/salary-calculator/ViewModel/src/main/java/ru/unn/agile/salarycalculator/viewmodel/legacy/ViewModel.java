@@ -2,8 +2,6 @@ package ru.unn.agile.salarycalculator.viewmodel.legacy;
 
 import ru.unn.agile.salarycalculator.model.SalaryCalculator;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 
 public class ViewModel {
@@ -78,12 +76,11 @@ public class ViewModel {
     }
 
     private String getMoneyFormatInCashValue(final SalaryCalculator countPeriod) {
-        double inResult = countPeriod.calculateSalaryWithNDS();
-        inResult = new BigDecimal(inResult).setScale(2, RoundingMode.HALF_DOWN).doubleValue();
+        double inResult = Math.round(countPeriod.calculateSalaryWithNDS() * 100d) / 100d;
         return Double.toString(inResult);
     }
 
-    public boolean getCalculateButtonEnable() {
+    public boolean isCalculateButtonEnable() {
         return isCalculateButtonEnabled;
     }
 
