@@ -6,7 +6,6 @@ public final class MathStatisticsCalculator {
     private JTextField valueText;
     private JTextField probabilityText;
     private JButton addToSampleButton;
-    private JTable sampleTable;
     private JButton clearButton;
     private JComboBox operationComboBox;
     private JButton calculateButton;
@@ -19,6 +18,8 @@ public final class MathStatisticsCalculator {
     private JLabel resultLabel;
     private JLabel statusLabel;
     private JLabel statusMessageLabel;
+    private JTextArea sampleTextArea;
+    private JLabel valueProbabilityPair;
 
     public static void main(final String[] args) {
         JFrame frame = new JFrame("MathStatisticsCalculator");
