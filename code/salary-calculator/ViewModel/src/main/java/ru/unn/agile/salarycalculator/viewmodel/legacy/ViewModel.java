@@ -3,6 +3,7 @@ package ru.unn.agile.salarycalculator.viewmodel.legacy;
 import ru.unn.agile.salarycalculator.model.SalaryCalculator;
 
 import java.time.LocalDate;
+import java.util.Locale;
 
 public class ViewModel {
     private static final int MAX_MONTH = 12;
@@ -76,8 +77,7 @@ public class ViewModel {
     }
 
     private String getMoneyFormatInCashValue(final SalaryCalculator countPeriod) {
-        double inResult = Math.round(countPeriod.calculateSalaryWithNDS() * 100d) / 100d;
-        return Double.toString(inResult);
+        return String.format(Locale.ROOT, "%.2f", countPeriod.calculateSalaryWithNDS());
     }
 
     public boolean isCalculateButtonEnable() {

@@ -134,7 +134,7 @@ public class ViewModelTests {
         viewModel.checkCountFields();
         viewModel.calculateSalary();
 
-        assertEquals("8700.0", viewModel.getResult());
+        assertEquals("8700.00", viewModel.getResult());
         assertEquals(Status.CASH, viewModel.getStatus());
         assertTrue(viewModel.isCalculateButtonEnable());
     }
