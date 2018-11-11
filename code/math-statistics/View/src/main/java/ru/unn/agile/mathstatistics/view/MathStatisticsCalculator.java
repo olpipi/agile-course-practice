@@ -2,19 +2,25 @@ package ru.unn.agile.mathstatistics.view;
 
 import javax.swing.*;
 
-public class MathStatisticsCalculator {
-    private JTextField textField1;
-    private JTextField textField2;
-    private JButton button1;
-    private JTable table1;
+public final class MathStatisticsCalculator {
+    private JTextField valueText;
+    private JTextField probabilityText;
+    private JButton addToSampleButton;
+    private JTable sampleTable;
     private JButton clearButton;
-    private JComboBox comboBox1;
+    private JComboBox operationComboBox;
     private JButton calculateButton;
     private JPanel mainPanel;
-    private JTextField textField3;
-    private JTextField textField4;
+    private JTextField orderText;
+    private JTextField resultText;
+    private JPanel valueIndicatorLabel;
+    private JLabel probabilityIndicatorLabel;
+    private JPanel orderLabel;
+    private JLabel resultLabel;
+    private JLabel statusLabel;
+    private JLabel statusMessageLabel;
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         JFrame frame = new JFrame("MathStatisticsCalculator");
         frame.setContentPane(new MathStatisticsCalculator().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
