@@ -48,4 +48,8 @@ public final class Queue<E> {
             throw new EmptyQueueException("Queue is empty");
         }
     }
+
+    public String toString() {
+        return container.toString();
+    }
 }
