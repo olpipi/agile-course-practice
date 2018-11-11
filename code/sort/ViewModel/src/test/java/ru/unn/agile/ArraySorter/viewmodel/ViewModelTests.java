@@ -26,7 +26,7 @@ public class ViewModelTests {
 
     @Test
     public void canAddOneElementToArray() {
-        viewModel.setNewElem("3");
+        viewModel.setNewElem("3.0");
         viewModel.Add();
 
         assertEquals("[3.0]", viewModel.getOutputArray());
@@ -34,6 +34,22 @@ public class ViewModelTests {
 
     @Test
     public void canAddSeveralElementsToArray() {
+        viewModel.setNewElem("-5.0");
+        viewModel.Add();
+        viewModel.setNewElem("4.0");
+        viewModel.Add();
+        viewModel.setNewElem("2.75");
+        viewModel.Add();
+        viewModel.setNewElem("10.1");
+        viewModel.Add();
+        viewModel.setNewElem("0.02");
+        viewModel.Add();
+
+        assertEquals("[-5.0, 4.0, 2.75, 10.1, 0.02]", viewModel.getOutputArray());
+    }
+
+    @Test
+    public void canClearArray() {
         viewModel.setNewElem("6");
         viewModel.Add();
         viewModel.setNewElem("4");
@@ -45,6 +61,8 @@ public class ViewModelTests {
         viewModel.setNewElem("8");
         viewModel.Add();
 
-        assertEquals("[6.0, 4.0, 1.0, 10.0, 8.0]", viewModel.getOutputArray());
+        viewModel.Clear();
+
+        assertEquals("[]", viewModel.getOutputArray());
     }
 }

@@ -38,4 +38,11 @@ public class ViewModel {
 
         outputArray = Array.toString();
     }
+
+    public void Clear()
+    {
+        Array.clear();
+
+        outputArray = Array.toString();
+    }
 }
