@@ -1,6 +1,8 @@
 package ru.unn.agile.queue.viewmodel;
 
+
 import ru.unn.agile.queue.model.*;
+
 
 public class ViewModel {
     private String newElem;
@@ -14,10 +16,21 @@ public class ViewModel {
         outputQueue = "";
     }
 
-
     public String getNewElem() {
         return newElem;
     }
 
+    public String getOutputQueue() {
+        return outputQueue;
+    }
+
+    public void setNewElem(final String newElem) {
+        this.newElem = newElem;
+    }
+
+    public void Add() {
+        queue.push(Double.parseDouble(newElem));
+        outputQueue = queue.toString();
+    }
 
 }

@@ -22,6 +22,7 @@ public class ViewModelTests {
     @Test
     public void canSetDefaultValues() {
         assertEquals("", viewModel.getNewElem());
+        assertEquals("", viewModel.getOutputQueue());
     }
 
     @Test
@@ -32,9 +33,8 @@ public class ViewModelTests {
         assertEquals("[5.43]", viewModel.getOutputQueue());
     }
 
-
     @Test
-    public void canAddQueue() {
+    public void canAddToQueue() {
         viewModel.setNewElem("1.0");
         viewModel.Add();
         viewModel.setNewElem("3.0");
