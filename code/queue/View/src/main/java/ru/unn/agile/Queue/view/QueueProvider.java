@@ -2,16 +2,19 @@ package ru.unn.agile.Queue.view;
 
 import javax.swing.*;
 
-public class QueueProvider {
-    private JPanel panel1;
+public final class QueueProvider {
+    private JPanel mainPanel;
     private JButton clearQueueButton;
     private JButton addElementButton;
     private JButton removeHeadButton;
-    private JTextField textField1;
+    private JTextField addNewElemField;
+    private JLabel queueLabel;
+    private JLabel outputQueueLabel;
+    private JLabel addNewElemLabel;
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         JFrame frame = new JFrame("QueueProvider");
-        frame.setContentPane(new QueueProvider().panel1);
+        frame.setContentPane(new QueueProvider().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
