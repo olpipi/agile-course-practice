@@ -35,16 +35,21 @@ public class ViewModelTests {
 
     @Test
     public void canAddToQueue() {
-        viewModel.setNewElem("1.0");
+        viewModel.setNewElem("1.6");
         viewModel.Add();
-        viewModel.setNewElem("3.0");
+        viewModel.setNewElem("-6.3");
         viewModel.Add();
-        viewModel.setNewElem("4.0");
+        viewModel.setNewElem("0.0");
         viewModel.Add();
-        viewModel.setNewElem("8.0");
+        viewModel.setNewElem("-4.9");
+        viewModel.Add();
+        viewModel.setNewElem("8");
+        viewModel.Add();
+        viewModel.setNewElem("92");
         viewModel.Add();
 
-        assertEquals("[1.0, 3.0, 4.0, 8.0]", viewModel.getOutputQueue());
+        assertEquals("[1.6, -6.3, 0.0, -4.9, 8.0, 92.0]", viewModel.getOutputQueue());
     }
+
 
 }
