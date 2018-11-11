@@ -1,6 +1,7 @@
 package ru.unn.agile.salarycalculator.view.legacy;
 
 import ru.unn.agile.salarycalculator.viewmodel.legacy.ViewModel;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +19,8 @@ public final class SalaryCalculatorView {
     private JTextField txtCountMonth;
     private ViewModel viewModel;
 
-    private SalaryCalculatorView() { }
+    private SalaryCalculatorView() {
+    }
 
     private SalaryCalculatorView(final ViewModel viewModel) {
         this.viewModel = viewModel;

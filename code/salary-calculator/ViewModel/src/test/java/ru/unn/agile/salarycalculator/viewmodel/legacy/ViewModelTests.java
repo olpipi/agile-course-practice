@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import ru.unn.agile.salarycalculator.viewmodel.legacy.ViewModel.Status;
+
 import static org.junit.Assert.*;
 
 public class ViewModelTests {

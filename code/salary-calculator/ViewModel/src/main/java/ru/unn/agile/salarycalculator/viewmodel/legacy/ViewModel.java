@@ -1,6 +1,7 @@
 package ru.unn.agile.salarycalculator.viewmodel.legacy;
 
 import ru.unn.agile.salarycalculator.model.SalaryCalculator;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -38,20 +39,21 @@ public class ViewModel {
         public static final String BAD_WORKED_HOURS_FORMAT = "Worked houses must be between 1 and 500";
         public static final String CASH = "This your cash";
 
-        private Status() { }
+        private Status() {
+        }
     }
 
     public void checkCountFields() {
         status = Status.READY_CALCULATE;
         isCalculateButtonEnabled =
-            isCountInputAvailable() &&
-            isDateCorrect() &&
-            isWorkedHoursCorrect() &&
-            isSalaryCorrect();
+                isCountInputAvailable() &&
+                        isDateCorrect() &&
+                        isWorkedHoursCorrect() &&
+                        isSalaryCorrect();
     }
 
-    private boolean isSalaryCorrect(){
-        if (Double.parseDouble(salary) < 0){
+    private boolean isSalaryCorrect() {
+        if (Double.parseDouble(salary) < 0) {
             status = Status.BAD_SALARY_FORMAT;
             return false;
         }
@@ -69,8 +71,8 @@ public class ViewModel {
         countPeriod.setWorkedHourInMonth(Integer.parseInt(workedHours));
 
         countPeriod.setCountingMonth(LocalDate.of(Integer.parseInt(countYear)
-                                             , Integer.parseInt(countMonth)
-                                             , 1));
+                , Integer.parseInt(countMonth)
+                , 1));
         result = getMoneyFormatInCashValue(countPeriod);
         status = Status.CASH;
     }
@@ -99,6 +101,7 @@ public class ViewModel {
         }
         this.workedHours = inWorkedHours;
     }
+
     public void setCountMonth(final String inCountMonth) {
         if (inCountMonth.equals(this.countMonth)) {
             return;
@@ -125,7 +128,7 @@ public class ViewModel {
         int hours = Integer.parseInt(workedHours);
         if (hours <= MAX_WORKED_HOURS && hours > 0)
             return true;
-        else{
+        else {
             status = Status.BAD_WORKED_HOURS_FORMAT;
             return false;
         }
@@ -160,10 +163,10 @@ public class ViewModel {
             Integer.parseInt(workedHours);
             Integer.parseInt(countMonth);
             Integer.parseInt(countYear);
-    } catch (NumberFormatException e) {
-        status = Status.BAD_COUNT_FORMAT;
-        return false;
-    }
+        } catch (NumberFormatException e) {
+            status = Status.BAD_COUNT_FORMAT;
+            return false;
+        }
         return true;
     }
 
