@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import ru.unn.agile.mathstatistics.viewmodel.ViewModel.Operation;
 import ru.unn.agile.mathstatistics.viewmodel.ViewModel.Status;
@@ -30,5 +30,25 @@ public class ViewModelTests {
         assertEquals("", viewModel.getOrderText());
         assertEquals("", viewModel.getResultText());
         assertEquals(Status.WAITING, viewModel.getStatusMessageText());
+    }
+
+    @Test
+    public void isStatusWaitingInTheBeginning() {
+        assertEquals(Status.WAITING, viewModel.getStatusMessageText());
+    }
+
+    @Test
+    public void isAddToSampleButtonEnabledAtTheBeginning() {
+        assertTrue(viewModel.isAddToSampleButtonEnabled());
+    }
+
+    @Test
+    public void isClearButtonDisableddAtTheBeginning() {
+        assertFalse(viewModel.isClearButtonEnabled());
+    }
+
+    @Test
+    public void isCalculateButtonDisabledInTheBeginning() {
+        assertFalse(viewModel.isCalculateButtonEnabled());
     }
 }

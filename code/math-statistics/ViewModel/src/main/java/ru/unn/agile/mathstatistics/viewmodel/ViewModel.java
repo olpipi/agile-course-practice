@@ -3,8 +3,8 @@ package ru.unn.agile.mathstatistics.viewmodel;
 import java.util.ArrayList;
 
 public class ViewModel {
-    private ArrayList<String> values;
-    private ArrayList<String> probabilities;
+    private ArrayList<Number> values;
+    private ArrayList<Double> probabilities;
 
     private String valueText;
     private String probabilityText;
@@ -18,8 +18,8 @@ public class ViewModel {
     private boolean isCalculateButtonEnabled;
 
     public ViewModel() {
-        values = new ArrayList<String>();
-        probabilities = new ArrayList<String>();
+        values = new ArrayList<Number>();
+        probabilities = new ArrayList<Double>();
 
         valueText = "";
         probabilityText = "";
@@ -31,6 +31,18 @@ public class ViewModel {
         isAddToSampleButtonEnabled = true;
         isClearButtonEnabled = false;
         isCalculateButtonEnabled = false;
+    }
+
+    public boolean isAddToSampleButtonEnabled() {
+        return isAddToSampleButtonEnabled;
+    }
+
+    public boolean isClearButtonEnabled() {
+        return isClearButtonEnabled;
+    }
+
+    public boolean isCalculateButtonEnabled() {
+        return isCalculateButtonEnabled;
     }
 
     public String getValueText() {
