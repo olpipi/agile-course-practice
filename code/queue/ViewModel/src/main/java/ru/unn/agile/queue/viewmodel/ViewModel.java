@@ -33,4 +33,8 @@ public class ViewModel {
         outputQueue = queue.toString();
     }
 
+    public void Remove() {
+        queue.pop();
+        outputQueue = queue.toString();
+    }
 }

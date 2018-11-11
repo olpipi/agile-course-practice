@@ -51,5 +51,18 @@ public class ViewModelTests {
         assertEquals("[1.6, -6.3, 0.0, -4.9, 8.0, 92.0]", viewModel.getOutputQueue());
     }
 
+    @Test
+    public void canRemoveQueueHead() {
+        viewModel.setNewElem("53");
+        viewModel.Add();
+        viewModel.setNewElem("63.2");
+        viewModel.Add();
+        viewModel.setNewElem("-4.2");
+        viewModel.Add();
+
+        viewModel.Remove();
+
+        assertEquals("[63.2, -4.2]", viewModel.getOutputQueue());
+    }
 
 }
