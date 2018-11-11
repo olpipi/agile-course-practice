@@ -9,8 +9,9 @@ public final class QueueProvider {
     private JButton removeHeadButton;
     private JTextField addNewElemField;
     private JLabel queueLabel;
-    private JLabel outputQueueLabel;
     private JLabel addNewElemLabel;
+    private JScrollPane outputQueueScrollPane;
+    private JTextArea outputQueueTextArea;
 
     public static void main(final String[] args) {
         JFrame frame = new JFrame("QueueProvider");
