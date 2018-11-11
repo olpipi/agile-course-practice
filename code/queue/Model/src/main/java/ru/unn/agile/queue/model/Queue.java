@@ -52,4 +52,8 @@ public final class Queue<E> {
     public String toString() {
         return container.toString();
     }
+
+    public void clear() {
+        container.clear();
+    }
 }

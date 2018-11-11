@@ -65,4 +65,20 @@ public class ViewModelTests {
         assertEquals("[63.2, -4.2]", viewModel.getOutputQueue());
     }
 
+    @Test
+    public void canClearQueue() {
+        viewModel.setNewElem("33");
+        viewModel.Add();
+        viewModel.setNewElem("11.3");
+        viewModel.Add();
+        viewModel.setNewElem("2.5");
+        viewModel.Add();
+        viewModel.setNewElem("6.2");
+        viewModel.Add();
+
+        viewModel.Clear();
+
+        assertEquals("[]", viewModel.getOutputQueue());
+    }
+
 }
