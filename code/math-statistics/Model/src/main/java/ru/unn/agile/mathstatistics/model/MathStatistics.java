@@ -5,44 +5,44 @@ public final class MathStatistics {
     public static final int DISPERSION_ORDER = 2;
     public static final Double EPSILON = 1e-3;
 
-    public static Double calculateExpectedValue(final Number[] data,
-                                                final Double[] probabilityVector) {
-        checkInputDistributionSeries(data, probabilityVector);
+    public static Double calculateExpectedValue(final Number[] values,
+                                                final Double[] probabilities) {
+        DistributionSeriesValidator.validate(values, probabilities);
 
         Double expectedValue = 0.0;
-        for (int i = 0; i < data.length; ++i) {
-            expectedValue += probabilityVector[i] * data[i].doubleValue();
+        for (int i = 0; i < values.length; ++i) {
+            expectedValue += probabilities[i] * values[i].doubleValue();
         }
         return expectedValue;
     }
 
-    public static Double calculateDispersion(final Number[] data,
-                                             final Double[] probabilityVector) {
-        final Double expectedValue = calculateExpectedValue(data, probabilityVector);
+    public static Double calculateDispersion(final Number[] values,
+                                             final Double[] probabilities) {
+        final Double expectedValue = calculateExpectedValue(values, probabilities);
 
         Double dispersion = 0.0;
-        for (int i = 0; i < data.length; ++i) {
-            dispersion += probabilityVector[i]
-                    * Math.pow((data[i].doubleValue() - expectedValue), DISPERSION_ORDER);
+        for (int i = 0; i < values.length; ++i) {
+            dispersion += probabilities[i]
+                    * Math.pow((values[i].doubleValue() - expectedValue), DISPERSION_ORDER);
         }
 
         return dispersion;
     }
 
-    public static Double calculateMoment(final Number[] data,
-                                         final Double[] probabilityVector,
+    public static Double calculateMoment(final Number[] values,
+                                         final Double[] probabilities,
                                          final int order,
                                          final Number offset) {
-        checkInputDistributionSeries(data, probabilityVector);
+        DistributionSeriesValidator.validate(values, probabilities);
 
         if (order <= 0) {
             throw new IllegalArgumentException("Moment order should be positive!");
         }
 
         Double moment = 0.0;
-        for (int i = 0; i < data.length; ++i) {
-            moment += probabilityVector[i]
-                    * Math.pow((data[i].doubleValue() - offset.doubleValue()), order);
+        for (int i = 0; i < values.length; ++i) {
+            moment += probabilities[i]
+                    * Math.pow((values[i].doubleValue() - offset.doubleValue()), order);
         }
 
         return moment;
@@ -50,56 +50,4 @@ public final class MathStatistics {
 
     private MathStatistics() {
     }
-
-    private static void checkInputData(final Number[] data) {
-        if (data == null) {
-            throw new IllegalArgumentException("Data array should be initialized!");
-        }
-
-        if (data.length < 1) {
-            throw new IllegalArgumentException("Data array length should be positive!");
-        }
-
-        for (int i = 0; i < data.length; ++i) {
-            if (data[i] == null) {
-                throw new IllegalArgumentException("Null element shouldn't be in array!");
-            }
-        }
-    }
-
-    private static void checkInputProbabilityVector(final Double[] probabilityVector) {
-
-        if (probabilityVector == null) {
-            throw new IllegalArgumentException("Probability array should be initialized!");
-        }
-
-        if (probabilityVector.length < 1) {
-            throw new IllegalArgumentException("Probability array length should be positive!");
-        }
-
-        Double sum = 0.0;
-        for (int i = 0; i < probabilityVector.length; ++i) {
-            if (probabilityVector[i] == null) {
-                throw new IllegalArgumentException("Null element shouldn't be in array!");
-            }
-            if (!(0.0 <= probabilityVector[i] && probabilityVector[i] <= 1.0)) {
-                throw new IllegalArgumentException("Probability is out of range [0..1]!");
-            }
-            sum += probabilityVector[i];
-        }
-
-        if (Math.abs(1.0 - sum) > EPSILON) {
-            throw new IllegalArgumentException("Normalization condition is not satisfied!");
-        }
-    }
-
-    private static void checkInputDistributionSeries(final Number[] data,
-                                                     final Double[] probabilityVector) {
-        checkInputData(data);
-        checkInputProbabilityVector(probabilityVector);
-        if (data.length != probabilityVector.length) {
-            throw new IllegalArgumentException("Data and probability vector lengths aren't equal!");
-        }
-    }
-
 }
