@@ -36,7 +36,8 @@ public class ViewModel {
         public static final String BAD_COUNT_FORMAT = "Wrong format of count input";
         public static final String BAD_MONTH_FORMAT = "Month must be between 1 and 12";
         public static final String BAD_YEAR_FORMAT = "Year must be between 2000 and 2019";
-        public static final String BAD_WORKED_HOURS_FORMAT = "Worked houses must be between 1 and 500";
+        public static final String BAD_WORKED_HOURS_FORMAT =
+                "Worked houses must be between 1 and 500";
         public static final String CASH = "This your cash";
 
         private Status() {
@@ -69,9 +70,9 @@ public class ViewModel {
 
         countPeriod.setWorkedHourInMonth(Integer.parseInt(workedHours));
 
-        countPeriod.setCountingMonth(LocalDate.of(Integer.parseInt(countYear)
-                ,Integer.parseInt(countMonth)
-                ,1));
+        countPeriod.setCountingMonth(LocalDate.of(Integer.parseInt(countYear),
+                Integer.parseInt(countMonth),
+                1));
         result = getMoneyFormatInCashValue(countPeriod);
         status = Status.CASH;
     }
@@ -125,8 +126,9 @@ public class ViewModel {
 
     private boolean isWorkedHoursCorrect() {
         int hours = Integer.parseInt(workedHours);
-        if (hours <= MAX_WORKED_HOURS && hours > 0)
+        if (hours <= MAX_WORKED_HOURS && hours > 0) {
             return true;
+        }
         status = Status.BAD_WORKED_HOURS_FORMAT;
         return false;
     }
