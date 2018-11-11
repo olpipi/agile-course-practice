@@ -127,8 +127,12 @@ include "code/three-dimensional-shapes-area"
 project(":code/three-dimensional-shapes-area").name = "three-dimensional-shapes-area"
 
 //Stepanov Nikolay, Salary calculator
-include "code/salary-calculator"
-project(":code/salary-calculator").name = "salary-calculator"
+include "code/salary-calculator/Model"
+project(":code/salary-calculator/Model").name = "salary-calculator-Model"
+include "code/salary-calculator/View"
+project(":code/salary-calculator/View").name = "salary-calculator-View"
+include "code/salary-calculator/ViewModel"
+project(":code/salary-calculator/ViewModel").name = "salary-calculator-ViewModel"
 
 // Gladkova Tatiana, Binary Search
 include "code/gladkova-tatiana-binary-search"
