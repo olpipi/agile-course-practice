@@ -90,9 +90,13 @@ project(":code/anfimov-vlad-reverse-polish-notation").name = "anfimov-vlad-rever
 include "code/gladkov-dmitry-huffman"
 project(":code/gladkov-dmitry-huffman").name = "gladkov-dmitry-huffman"
 
-// Polyakov Igor, sort
-include "code/polyakov-igor-sort"
-project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
+// Polyakov Igor & Podolov Kirill, sort
+include "code/sort/Model"
+project(":code/sort/Model").name = "sort-Model"
+include "code/sort/ViewModel"
+project(":code/sort/ViewModel").name = "sort-ViewModel"
+include "code/sort/View"
+project(":code/sort/View").name = "sort-View"
 
 // Rumyantsev Alexander, Vector3D
 include "code/rumyantsev-alexander-vector3d"
