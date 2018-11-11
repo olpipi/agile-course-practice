@@ -89,4 +89,40 @@ public class ViewModelTests {
 
         assertEquals(centralMomentOperation, viewModel.getOperation());
     }
+
+    @Test
+    public void isOrderTextDisabledWhenExpectedValueOperationIsSelected() {
+        Operation expectedValueOperation = Operation.EXPECTED_VALUE;
+
+        viewModel.setOperation(expectedValueOperation);
+
+        assertFalse(viewModel.isOrderTextEnabled());
+    }
+
+    @Test
+    public void isOrderTextDisabledWhenDispersionOperationIsSelected() {
+        Operation dispersionOperation = Operation.DISPERSION;
+
+        viewModel.setOperation(dispersionOperation);
+
+        assertFalse(viewModel.isOrderTextEnabled());
+    }
+
+    @Test
+    public void isOrderTextDisabledWhenInitialMomentOperationIsSelected() {
+        Operation initialMomentOperation = Operation.INITIAL_MOMENT;
+
+        viewModel.setOperation(initialMomentOperation);
+
+        assertTrue(viewModel.isOrderTextEnabled());
+    }
+
+    @Test
+    public void isOrderTextDisabledWhenCentralMomentOperationIsSelected() {
+        Operation centralMomentOperation = Operation.CENTRAL_MOMENT;
+
+        viewModel.setOperation(centralMomentOperation);
+
+        assertTrue(viewModel.isOrderTextEnabled());
+    }
 }

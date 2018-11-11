@@ -13,6 +13,8 @@ public class ViewModel {
     private String resultText;
     private String statusMessageText;
 
+    private boolean isOrderTextEnabled;
+
     private boolean isAddToSampleButtonEnabled;
     private boolean isClearButtonEnabled;
     private boolean isCalculateButtonEnabled;
@@ -28,9 +30,15 @@ public class ViewModel {
         resultText = "";
         statusMessageText = Status.WAITING;
 
+        isOrderTextEnabled = false;
+
         isAddToSampleButtonEnabled = true;
         isClearButtonEnabled = false;
         isCalculateButtonEnabled = false;
+    }
+
+    public boolean isOrderTextEnabled() {
+        return isOrderTextEnabled;
     }
 
     public boolean isAddToSampleButtonEnabled() {
@@ -59,6 +67,12 @@ public class ViewModel {
 
     public void setOperation(final Operation operation) {
         this.operation = operation;
+
+        if (isMomentOperation(operation)) {
+            isOrderTextEnabled = true;
+        } else {
+            isOrderTextEnabled = false;
+        }
     }
 
     public String getOrderText() {
@@ -96,5 +110,10 @@ public class ViewModel {
         public static final String SUCCESS = "Success";
 
         private Status() { }
+    }
+
+    private boolean isMomentOperation(Operation operation) {
+        return (operation == Operation.INITIAL_MOMENT) ||
+                (operation == Operation.CENTRAL_MOMENT);
     }
 }
