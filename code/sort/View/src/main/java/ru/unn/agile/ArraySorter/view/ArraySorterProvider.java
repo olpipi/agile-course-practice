@@ -11,7 +11,8 @@ public final class ArraySorterProvider {
     private JLabel sourceArray;
     private JLabel array;
     private JLabel sortedArray;
-    private JLabel resultSortedArray;
+    private JTextArea outputSortedArrayArea;
+    private JScrollPane outputSortedArrayScrollPane;
 
     public static void main(final String[] args) {
         JFrame frame = new JFrame("ArraySorterProvider");
