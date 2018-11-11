@@ -34,10 +34,7 @@ public final class MathStatistics {
                                          final int order,
                                          final Number offset) {
         DistributionSeriesValidator.validate(values, probabilities);
-
-        if (order <= 0) {
-            throw new IllegalArgumentException("Moment order should be positive!");
-        }
+        MomentOrderValidator.validate(order);
 
         Double moment = 0.0;
         for (int i = 0; i < values.length; ++i) {
