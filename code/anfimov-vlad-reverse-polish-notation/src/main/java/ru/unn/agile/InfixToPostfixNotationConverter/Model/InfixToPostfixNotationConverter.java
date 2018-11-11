@@ -1,16 +1,19 @@
-package ru.unn.agile.ReversePolishNotation.Model;
+package ru.unn.agile.InfixToPostfixNotationConverter.Model;
 
 import java.util.*;
 
-public class PostfixNotationExpression {
+public final class InfixToPostfixNotationConverter {
 
-    private String operators = "+-*/^";
+    private static final String OPERATORS = "+-*/^";
+    private static final String NUMBER_PATTERN = "[\\d]+";
+    private static final String INVALID_INPUT_PATTERN = "\\d?\\W*";
+    private static final String EMPTY_STRING_PATTERN = "^\\s*$";
 
-    public PostfixNotationExpression() {
+    private InfixToPostfixNotationConverter() {
         /*empty*/
     }
 
-    private int getPriority(final String operator) {
+    private static int getPriority(final String operator) {
         switch (operator) {
             case "(":
             case ")":
@@ -21,24 +24,22 @@ public class PostfixNotationExpression {
             case "/":
             case "*":
                 return 2;
-                default:
-                    return -1;
+            default:
+                return -1;
         }
     }
 
-    private boolean isNumber(final String str) {
-        for (int i = 0; i < str.length(); i++) {
-            if (!Character.isDigit(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
+    private static boolean isNumber(final String str) {
+        return str.matches(NUMBER_PATTERN);
     }
 
+    private static boolean invalidInput(final String str) {
+        return str.matches(INVALID_INPUT_PATTERN) || str.matches(EMPTY_STRING_PATTERN);
+    }
 
-    public String[] convertToPostfixNotation(final String input) throws RuntimeException {
-        if (input.isEmpty() || input.split(" ").length == 0) {
-            throw new RuntimeException("String can't be empty");
+    public static String convert(final String input) throws RuntimeException {
+        if (invalidInput(input)) {
+            throw new RuntimeException("Wrong input!");
         }
 
         input.replaceAll("\\s+", "");
@@ -57,7 +58,7 @@ public class PostfixNotationExpression {
                     output += stack.pop();
                 }
                 stack.pop();
-            } else if (operators.contains(str)) {
+            } else if (OPERATORS.contains(str)) {
                 while (!stack.isEmpty() && getPriority(str) <= getPriority(stack.peek())) {
                     output += stack.pop();
                 }
@@ -68,16 +69,16 @@ public class PostfixNotationExpression {
             output += stack.pop();
         }
 
-        return output.split("");
+        return output;
     }
 
-    public int calculateResult(final String input) {
-        String[] postfix = convertToPostfixNotation(input);
+    public static int calculateResult(final String input) {
+        String postfix = convert(input);
         Stack<Integer> stack = new Stack<>();
-        for (String str : postfix) {
+        for (String str : postfix.split("")) {
             if (isNumber(str)) {
                 stack.push(Integer.parseInt(str));
-            } else if (operators.contains(str)) {
+            } else if (OPERATORS.contains(str)) {
                 int num1 = 0;
                 int num2 = 0;
                 switch (str) {
@@ -101,8 +102,8 @@ public class PostfixNotationExpression {
                         num2 = stack.pop();
                         stack.push(num2 / num1);
                         break;
-                        default:
-                            break;
+                    default:
+                        break;
                 }
             }
         }
