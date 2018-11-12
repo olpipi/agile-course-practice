@@ -1,4 +1,4 @@
-package ru.unn.agile.numbers-in-words.model;
+package ru.unn.agile.numbers_in_words.model;
 
 import org.junit.Test;
 
