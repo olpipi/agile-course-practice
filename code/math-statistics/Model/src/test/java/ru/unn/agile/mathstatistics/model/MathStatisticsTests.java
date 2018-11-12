@@ -6,8 +6,16 @@ import static org.junit.Assert.*;
 
 public class MathStatisticsTests {
 
+    private Integer[] getMonotonicArray(final int start, final int end) {
+        Integer[] data = new Integer[end - start];
+        for (int i = 0; i < data.length; ++i) {
+            data[i] = start + i;
+        }
+        return data;
+    }
+
     @Test
-    public void canCalculateExpectedValueWithOneNumbers() {
+    public void canCalculateExpectedValueForOneValue() {
         Integer[] values = {10};
         Double[]  probabilities = {1.0};
 
@@ -17,7 +25,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateExpectedValueWithOneNegativeInteger() {
+    public void canCalculateExpectedValueForOneNegativeValue() {
         Integer[] values = {-23};
         Double[]  probabilities = {1.0};
 
@@ -27,7 +35,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateExpectedValuePositiveIntegers() {
+    public void canCalculateExpectedValueForPositiveValues() {
         Integer[] values = {10, 5, 25, 30};
         Double[]  probabilities = {0.25, 0.25, 0.25, 0.25};
 
@@ -37,7 +45,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateExpectedValueWithDouble() {
+    public void canCalculateExpectedValueForDoubleValues() {
         Double[] values = {1.2, 3.3, 0.2, 8.1, 0.9};
         Double[] probability = {0.2, 0.2, 0.2, 0.2, 0.2};
 
@@ -47,7 +55,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateExpectedValueWithIntegersAndDouble() {
+    public void canCalculateExpectedValueForIntegerAndDoubleValues() {
         Number[] values = {1.2, 3.3, 11, 2, 8.9, 2, 36, 7.3};
         Double[] probabilities = {0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125};
 
@@ -57,7 +65,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateExpectedValueWithNegativeNumbers() {
+    public void canCalculateExpectedValueForSomeNegativeValues() {
         Number[] values = {-3, 8.3, 86.2, -3.5};
         Double[] probabilities = {0.25, 0.25, 0.25, 0.25};
 
@@ -67,17 +75,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateNegativeExpectedValue() {
-        Double[] values = {-10.2, 4.3, 0.0, -31.9, 3.0, 0.33};
-        Double[] probabilities = {0.1667, 0.166666, 0.166666, 0.166666, 0.166666, 0.16666};
-
-        Double expectedValue = MathStatistics.calculateExpectedValue(values, probabilities);
-
-        assertTrue(Math.abs(-5.745 - expectedValue) <= MathStatistics.EPSILON);
-    }
-
-    @Test
-    public void canCalculateExpectedValueWithBigSizeOfDataArray() {
+    public void canCalculateExpectedValueForBigDistributionSeries() {
         Integer[] values = getMonotonicArray(0, 100);
         Double[]  probabilities = new Double[100];
         Arrays.fill(probabilities, 0.01);
@@ -90,7 +88,7 @@ public class MathStatisticsTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenCalculateExpectedValueWithNullElement() {
+    public void throwsWhenCalculateExpectedValueForValuesWithSomeNullValue() {
         Number[] values = {1.2, 2, -5, null, 7};
         Double[] probabilities = {0.2, 0.2, 0.2, 0.2, 0.2};
 
@@ -98,7 +96,7 @@ public class MathStatisticsTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenCalculateExpectedValueWithNullData() {
+    public void throwsWhenCalculateExpectedValueForNullValue() {
         Double[] values = null;
         Double[] probabilities = {1.0};
 
@@ -106,7 +104,7 @@ public class MathStatisticsTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenCalculateExpectedValueWithEmptyData() {
+    public void throwsWhenCalculateExpectedValueForEmptyValues() {
         Number[] values = {};
         Double[] probabilities = {1.0};
 
@@ -114,7 +112,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateDispersionWithOneNumber() {
+    public void canCalculateDispersionForOneValue() {
         Integer[] values = {8};
         Double[]  probabilities = {1.0};
 
@@ -124,7 +122,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateDispersionWithOneNegativeNumber() {
+    public void canCalculateDispersionForOneNegativeValue() {
         Integer[] values = {-23};
         Double[]  probabilities = {1.0};
 
@@ -134,7 +132,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateDispersionWithNegativeNumbers() {
+    public void canCalculateDispersionForNegativeValues() {
         Number[] values = {9, 3, -1, 5, -8};
         Double[] probabilities = {0.2, 0.2, 0.2, 0.2, 0.2};
 
@@ -144,7 +142,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateDispersionWithArrayOfZeros() {
+    public void canCalculateDispersionForSimilarValues() {
         Number[] values = {0, 0, 0, 0};
         Double[] probabilities = {0.25, 0.25, 0.25, 0.25};
 
@@ -154,7 +152,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateDispersionWithDouble() {
+    public void canCalculateDispersionForDoubleValues() {
         Number[] values = {7.2, 64.3, -13.8, 0.6, 23.1};
         Double[] probabilities = {0.2, 0.2, 0.2, 0.2, 0.2};
 
@@ -164,7 +162,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateDispersionWithBigSizeOfDataArray() {
+    public void canCalculateDispersionForBigDistributionSeries() {
         Integer[] values = getMonotonicArray(0, 100);
         Double[]  probabilities = new Double[100];
         Arrays.fill(probabilities, 0.01);
@@ -175,7 +173,7 @@ public class MathStatisticsTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenCalculateDispersionWithNullElement() {
+    public void throwsWhenCalculateDispersionForValuesWithSomeNullValue() {
         Number[] values = {2, -3, 5, null, 8};
         Double[] probabilities = {0.2, 0.2, 0.2, 0.2, 0.2};
 
@@ -183,7 +181,7 @@ public class MathStatisticsTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenCalculateDispersionWithNullData() {
+    public void throwsWhenCalculateDispersionForNullValue() {
         Double[] values = null;
         Double[] probabilities = {1.0};
 
@@ -191,7 +189,7 @@ public class MathStatisticsTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenCalculateDispersionWithEmptyData() {
+    public void throwsWhenCalculateDispersionForEmptyValues() {
         Number[] values = {};
         Double[] probabilities = {1.0};
 
@@ -199,157 +197,133 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateMomentWithOneNumber() {
+    public void canCalculateCentralMomentForOneValue() {
         Integer[] values = {3};
         Double[]  probabilities = {1.0};
 
-        Double moment = MathStatistics.calculateMoment(values, probabilities, 3, 46);
+        Double moment = MathStatistics.calculateCentralMoment(values, probabilities, 3, 46);
 
         assertEquals(new Double(-79507.0), moment);
     }
 
     @Test
-    public void canCalculateMomentWithOneNegativeNumber() {
+    public void canCalculateCentralMomentForOneNegativeValue() {
         Integer[] values = {-11};
         Double[]  probabilities = {1.0};
 
-        Double moment = MathStatistics.calculateMoment(values, probabilities, 1, 44);
+        Double moment = MathStatistics.calculateCentralMoment(values, probabilities, 1, 44);
 
         assertEquals(new Double(-55), moment);
     }
 
     @Test
-    public void canCalculateMomentWithNegativeNumbers() {
+    public void canCalculateCentralMomentForSomeNegativeValues() {
         Number[] values = {9, 3, -1, 9, -8};
         Double[] probabilities = {0.2, 0.2, 0.2, 0.2, 0.2};
 
-        Double moment = MathStatistics.calculateMoment(values, probabilities, 4, 9);
+        Double moment = MathStatistics.calculateCentralMoment(values, probabilities, 4, 9);
 
         assertEquals(new Double(18963.4), moment);
     }
 
     @Test
-    public void canCalculateMomentWithArrayOfZeros() {
+    public void canCalculateCentralMomentForSimilarValues() {
         Number[] values = {0, 0, 0, 0};
         Double[] probabilities = {0.25, 0.25, 0.25, 0.25};
 
-        Double moment = MathStatistics.calculateMoment(values, probabilities, 5, 2);
+        Double moment = MathStatistics.calculateCentralMoment(values, probabilities, 5, 2);
 
         assertEquals(new Double(-32.0), moment);
     }
 
     @Test
-    public void canCalculateMomentWithDouble() {
+    public void canCalculateCentralMomentForDoubleValues() {
         Number[] values = {7.1, 6.3, 11.8, 0.8, 23.2};
         Double[] probabilities = {0.2, 0.2, 0.2, 0.2, 0.2};
 
-        Double moment = MathStatistics.calculateMoment(values, probabilities, 3, 3);
+        Double moment = MathStatistics.calculateCentralMoment(values, probabilities, 3, 3);
 
         assertTrue(Math.abs(1803.618 - moment) <= MathStatistics.EPSILON);
     }
 
     @Test
-    public void canCalculateMomentWithBigSizeOfDataArray() {
+    public void canCalculateCentralMomentForBigDistributionSeries() {
         Integer[] values = getMonotonicArray(-400, 400);
         Double[]  probabilities = new Double[800];
         Arrays.fill(probabilities, 0.00125);
 
-        Double moment = MathStatistics.calculateMoment(values, probabilities, 3, 1);
+        Double moment = MathStatistics.calculateCentralMoment(values, probabilities, 3, 1);
 
         assertTrue(Math.abs(-240003.0 - moment) <= MathStatistics.EPSILON);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenCalculateMomentWithNullElement() {
+    public void throwsWhenCalculateCentralMomentForSomeNullValue() {
         Number[] values = {1, null, 7, 2, 2};
         Double[] probabilities = {0.2, 0.2, 0.2, 0.2, 0.2};
 
-        MathStatistics.calculateMoment(values, probabilities, 3, 6);
+        MathStatistics.calculateCentralMoment(values, probabilities, 3, 6);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenCalculateMomentWithNullData() {
-        Double[] values = null;
-        Double[] probabilities = {1.0};
-
-        MathStatistics.calculateMoment(values, probabilities, 1, 2.8);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenCalculateMomentWithEmptyData() {
+    public void throwsWhenCalculateCentralMomentForEmptyValues() {
         Number[] values = {};
         Double[] probabilities = {1.0};
 
-        MathStatistics.calculateMoment(values, probabilities, 2, 3);
+        MathStatistics.calculateCentralMoment(values, probabilities, 2, 3);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenCalculateMomentWithZeroOrder() {
+    public void throwsWhenCalculateCentralMomentOfZeroOrder() {
         Number[] values = {0.1, 9.3, 1.8, 0.8, 2.2};
         Double[] probabilities = {0.2, 0.2, 0.2, 0.2, 0.2};
 
-        MathStatistics.calculateMoment(values, probabilities, 0, 3);
+        MathStatistics.calculateCentralMoment(values, probabilities, 0, 3);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenCalculateMomentWithNegativeOrder() {
+    public void throwsWhenCalculateCentralMomentOfNegativeOrder() {
         Number[] values = {0.1, 0.3, 6.8, -6.8, 2.2};
         Double[] probabilities = {0.2, 0.2, 0.2, 0.2, 0.2};
 
-        MathStatistics.calculateMoment(values, probabilities, -5, 3);
+        MathStatistics.calculateCentralMoment(values, probabilities, -5, 3);
     }
 
     @Test
-    public void canCalculateExpectedValue() {
+    public void isExpectedValueEqualToInitialMomentOfFirstOrder() {
         Number[] values = {0, -3, 0.1, 0, 1.9};
         Double[] probabilities = {0.2, 0.2, 0.2, 0.2, 0.2};
 
         Double expectedValue = MathStatistics.calculateExpectedValue(values, probabilities);
-        Double moment = MathStatistics.calculateMoment(
-                values, probabilities, MathStatistics.EXPECTED_VALUE_ORDER, 0);
+        Double moment = MathStatistics.calculateInitialMoment(
+                values, probabilities, MathStatistics.EXPECTED_VALUE_ORDER);
 
         assertEquals(expectedValue, moment);
     }
 
     @Test
-    public void canCalculateCentralMoment() {
+    public void isDispersionEqualToCentralMomentOfSecondOrder() {
         Number[] values = {2.1, 1.2, -3, 0, 4.9};
         Double[] probabilities = {0.2, 0.2, 0.2, 0.2, 0.2};
 
         Double dispersion = MathStatistics.calculateDispersion(values, probabilities);
         Double expectedValue = MathStatistics.calculateExpectedValue(values, probabilities);
-        Double moment = MathStatistics.calculateMoment(
+        Double moment = MathStatistics.calculateCentralMoment(
                 values, probabilities, MathStatistics.DISPERSION_ORDER, expectedValue);
 
         assertEquals(dispersion, moment);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenProbabilityVectorWithNullElement() {
-        Number[] values = {1, 3, 7, 4, 2};
-        Double[] probabilities = {0.2, null, 0.2, 0.2, 0.2};
-
-        MathStatistics.calculateMoment(values, probabilities, 3, 6);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenProbabilityVectorWithNullData() {
-        Double[] values = {4.0, 5.0, 6.0, 7.0};
-        Double[] probabilities = null;
-
-        MathStatistics.calculateMoment(values, probabilities, 1, 2.8);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenProbabilityVectorWithEmptyData() {
+    public void throwsWhenCalculateInitialMomentForValuesWithEmptyProbabilities() {
         Number[] values = {0, -3, 0.1, 0, 1.9};
         Double[] probabilities = {};
 
-        MathStatistics.calculateMoment(values, probabilities, 2, 3);
+        MathStatistics.calculateInitialMoment(values, probabilities, 2);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenDataLengthAndProbabilityVectorLengthAreNotEqual() {
+    public void throwsWhenValuesAndProbabilitiesSizesAreNotEqual() {
         Number[] values = {7.3, -5.1, 9.3, 5.5};
         Double[] probability = {0.1, 0.2, 0.7};
 
@@ -357,7 +331,7 @@ public class MathStatisticsTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenTotalProbabilityIsNotEqual1() {
+    public void throwsWhenSumOfProbabilitiesIsLessThanOne() {
         Number[] values = {1, 3, 7, 4, 2};
         Double[] probabilities = {0.2, 0.2, 0.13, 0.2, 0.2};
 
@@ -365,7 +339,7 @@ public class MathStatisticsTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenProbabilityVectorElementIsNegative() {
+    public void throwsWhenProbabilitiesContainSomeNegativeElement() {
         Number[] values = {7.3, 5.1, 9.3};
         Double[] probabilities = {0.1, -0.2, 0.7};
 
@@ -373,20 +347,10 @@ public class MathStatisticsTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwsWhenProbabilityVectorElementIsMoreThan1() {
+    public void throwsWhenSumOfProbabilitiesIsMoreThanOne() {
         Number[] values = {7.3, 5.1, 9.3};
         Double[] probabilities = {1.2, 0.5, 0.7};
 
         MathStatistics.calculateDispersion(values, probabilities);
     }
-
-
-    private Integer[] getMonotonicArray(final int start, final int end) {
-        Integer[] data = new Integer[end - start];
-        for (int i = 0; i < data.length; ++i) {
-            data[i] = start + i;
-        }
-        return data;
-    }
-
 }

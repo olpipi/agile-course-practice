@@ -29,12 +29,31 @@ public final class MathStatistics {
         return dispersion;
     }
 
-    public static Double calculateMoment(final Number[] values,
-                                         final Double[] probabilities,
-                                         final int order,
-                                         final Number offset) {
+    public static Double calculateInitialMoment(final Number[] values,
+                                                final Double[] probabilities,
+                                                final int order) {
+        return calculateMoment(values, probabilities, order, 0);
+    }
+
+    public static Double calculateCentralMoment(final Number[] values,
+                                                final Double[] probabilities,
+                                                final int order,
+                                                final Number offset) {
+        return calculateMoment(values, probabilities, order, offset);
+    }
+
+    private MathStatistics() {
+    }
+
+    private static Double calculateMoment(final Number[] values,
+                                          final Double[] probabilities,
+                                          final int order,
+                                          final Number offset) {
         DistributionSeriesValidator.validate(values, probabilities);
         MomentOrderValidator.validate(order);
+        if (offset == null) {
+            throw new IllegalArgumentException("Offset should be initialized!");
+        }
 
         Double moment = 0.0;
         for (int i = 0; i < values.length; ++i) {
@@ -43,8 +62,5 @@ public final class MathStatistics {
         }
 
         return moment;
-    }
-
-    private MathStatistics() {
     }
 }
