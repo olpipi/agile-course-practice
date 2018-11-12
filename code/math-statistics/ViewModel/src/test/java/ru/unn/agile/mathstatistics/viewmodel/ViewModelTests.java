@@ -30,6 +30,7 @@ public class ViewModelTests {
         assertEquals("", viewModel.getProbabilityText());
         assertEquals(Operation.EXPECTED_VALUE, viewModel.getOperation());
         assertEquals("", viewModel.getOrderText());
+        assertEquals("", viewModel.getOffsetText());
         assertEquals("", viewModel.getResultText());
         assertEquals(Status.WAITING, viewModel.getStatusMessageText());
     }
@@ -104,7 +105,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isOrderTextDisabledWhenInitialMomentOperationIsSelected() {
+    public void isOrderTextEnabledWhenInitialMomentOperationIsSelected() {
         Operation initialMomentOperation = Operation.INITIAL_MOMENT;
 
         viewModel.setOperation(initialMomentOperation);
@@ -113,11 +114,47 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isOrderTextDisabledWhenCentralMomentOperationIsSelected() {
+    public void isOrderTextEnabledWhenCentralMomentOperationIsSelected() {
         Operation centralMomentOperation = Operation.CENTRAL_MOMENT;
 
         viewModel.setOperation(centralMomentOperation);
 
         assertTrue(viewModel.isOrderTextEnabled());
+    }
+
+    @Test
+    public void isOffsetTextDisabledWhenExpectedValueOperationIsSelected() {
+        Operation expectedValueOperation = Operation.EXPECTED_VALUE;
+
+        viewModel.setOperation(expectedValueOperation);
+
+        assertFalse(viewModel.isOffsetTextEnabled());
+    }
+
+    @Test
+    public void isOffsetTextDisabledWhenDispersionOperationIsSelected() {
+        Operation dispersionOperation = Operation.DISPERSION;
+
+        viewModel.setOperation(dispersionOperation);
+
+        assertFalse(viewModel.isOffsetTextEnabled());
+    }
+
+    @Test
+    public void isOffsetTextDisabledWhenInitialMomentOperationIsSelected() {
+        Operation initialMomentOperation = Operation.INITIAL_MOMENT;
+
+        viewModel.setOperation(initialMomentOperation);
+
+        assertFalse(viewModel.isOffsetTextEnabled());
+    }
+
+    @Test
+    public void isOffsetTextEnabledWhenCentralMomentOperationIsSelected() {
+        Operation centralMomentOperation = Operation.CENTRAL_MOMENT;
+
+        viewModel.setOperation(centralMomentOperation);
+
+        assertTrue(viewModel.isOffsetTextEnabled());
     }
 }

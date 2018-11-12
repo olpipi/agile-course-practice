@@ -10,10 +10,12 @@ public class ViewModel {
     private String probabilityText;
     private Operation operation;
     private String orderText;
+    private String offsetText;
     private String resultText;
     private String statusMessageText;
 
     private boolean isOrderTextEnabled;
+    private boolean isOffsetTextEnabled;
 
     private boolean isAddToSampleButtonEnabled;
     private boolean isCalculateButtonEnabled;
@@ -27,9 +29,11 @@ public class ViewModel {
         operation = Operation.EXPECTED_VALUE;
         orderText = "";
         resultText = "";
+        offsetText = "";
         statusMessageText = Status.WAITING;
 
         isOrderTextEnabled = false;
+        isOffsetTextEnabled = false;
 
         isAddToSampleButtonEnabled = true;
         isCalculateButtonEnabled = false;
@@ -42,6 +46,10 @@ public class ViewModel {
 
     public boolean isOrderTextEnabled() {
         return isOrderTextEnabled;
+    }
+
+    public boolean isOffsetTextEnabled() {
+        return isOffsetTextEnabled;
     }
 
     public boolean isAddToSampleButtonEnabled() {
@@ -69,6 +77,11 @@ public class ViewModel {
 
         if (isMomentOperation(operation)) {
             isOrderTextEnabled = true;
+            if (operation == Operation.CENTRAL_MOMENT) {
+                isOffsetTextEnabled = true;
+            } else {
+                isOffsetTextEnabled = false;
+            }
         } else {
             isOrderTextEnabled = false;
         }
@@ -76,6 +89,10 @@ public class ViewModel {
 
     public String getOrderText() {
         return orderText;
+    }
+
+    public String getOffsetText() {
+        return offsetText;
     }
 
     public String getResultText() {
