@@ -114,4 +114,34 @@ public class ViewModelTests {
         assertEquals(ViewModel.State.INVALID_FORMAT, viewModel.getCurrentState());
     }
 
+    @Test
+    public void canSwitchStateIfAddFieldIsCorrect() {
+        viewModel.setNewElem("hi");
+        viewModel.processingAddField(ANY_KEY);
+        viewModel.setNewElem("33");
+        viewModel.processingAddField(ANY_KEY);
+
+        assertEquals(ViewModel.State.READY_TO_ADD, viewModel.getCurrentState());
+    }
+
+    @Test
+    public void canSwitchStateIfAddFieldIsInvalid() {
+        viewModel.setNewElem("33");
+        viewModel.processingAddField(ANY_KEY);
+        viewModel.setNewElem("hi");
+        viewModel.processingAddField(ANY_KEY);
+
+        assertEquals(ViewModel.State.INVALID_FORMAT, viewModel.getCurrentState());
+    }
+
+    @Test
+    public void canSwitchStateIfAddFieldIsEmpty() {
+        viewModel.setNewElem("33");
+        viewModel.processingAddField(ANY_KEY);
+        viewModel.setNewElem("");
+        viewModel.processingAddField(ANY_KEY);
+
+        assertEquals(ViewModel.State.WAITING_FOR_INPUT, viewModel.getCurrentState());
+    }
+
 }
