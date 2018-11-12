@@ -165,3 +165,7 @@ project(":code/pipikin-oleg-matrix").name = "pipikin-oleg-matrix"
 // Nakhimovich Dmitry, Segments2D
 include "code/nakhimovich-dmitry-segments2d"
 project(":code/nakhimovich-dmitry-segments2d").name = "nakhimovich-dmitry-segments2d"
+
+// Krutoberezhskaya Irina, number-in-words
+include "code/number-in-words"
+project(":code/number-in-words").name = "number-in-words"
