@@ -41,8 +41,8 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isAddToSampleButtonEnabledAtTheBeginning() {
-        assertTrue(viewModel.isAddToSampleButtonEnabled());
+    public void isAddToDistributionButtonEnabledAtTheBeginning() {
+        assertTrue(viewModel.isAddToDistributionButtonEnabled());
     }
 
     @Test
@@ -156,5 +156,15 @@ public class ViewModelTests {
         viewModel.setOperation(centralMomentOperation);
 
         assertTrue(viewModel.isOffsetTextEnabled());
+    }
+
+    @Test
+    public void isAddToDistributionSeriesButtonEnabledWhenSettingOfCorrectInput() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("1");
+
+        viewModel.validateInputData();
+
+        assertTrue(viewModel.isAddToDistributionButtonEnabled());
     }
 }

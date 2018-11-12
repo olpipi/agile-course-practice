@@ -6,7 +6,7 @@ public final class MathStatistics {
 
     public static Double calculateExpectedValue(final Number[] values,
                                                 final Double[] probabilities) {
-        DistributionSeriesValidator.validate(values, probabilities);
+        DistributionValidator.validate(values, probabilities);
 
         Double expectedValue = 0.0;
         for (int i = 0; i < values.length; ++i) {
@@ -48,7 +48,7 @@ public final class MathStatistics {
                                           final Double[] probabilities,
                                           final int order,
                                           final Number offset) {
-        DistributionSeriesValidator.validate(values, probabilities);
+        DistributionValidator.validate(values, probabilities);
         MomentOrderValidator.validate(order);
         if (offset == null) {
             throw new IllegalArgumentException("Offset should be initialized!");

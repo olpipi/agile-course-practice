@@ -1,5 +1,7 @@
 package ru.unn.agile.mathstatistics.viewmodel;
 
+import ru.unn.agile.mathstatistics.model.*;
+
 import java.util.ArrayList;
 
 public class ViewModel {
@@ -17,7 +19,7 @@ public class ViewModel {
     private boolean isOrderTextEnabled;
     private boolean isOffsetTextEnabled;
 
-    private boolean isAddToSampleButtonEnabled;
+    private boolean isAddToDistributionButtonEnabled;
     private boolean isCalculateButtonEnabled;
 
     public ViewModel() {
@@ -35,13 +37,15 @@ public class ViewModel {
         isOrderTextEnabled = false;
         isOffsetTextEnabled = false;
 
-        isAddToSampleButtonEnabled = true;
+        isAddToDistributionButtonEnabled = true;
         isCalculateButtonEnabled = false;
     }
 
     public void validateInputData() {
-        if (!parseInputData())
-            return;
+        if (!isInputDataFormatCorrect()) {
+            statusMessageText = Status.BAD_INPUT_FORMAT;
+            isAddToDistributionButtonEnabled = false;
+        }
     }
 
     public boolean isOrderTextEnabled() {
@@ -52,8 +56,8 @@ public class ViewModel {
         return isOffsetTextEnabled;
     }
 
-    public boolean isAddToSampleButtonEnabled() {
-        return isAddToSampleButtonEnabled;
+    public boolean isAddToDistributionButtonEnabled() {
+        return isAddToDistributionButtonEnabled;
     }
 
     public boolean isCalculateButtonEnabled() {
@@ -64,8 +68,16 @@ public class ViewModel {
         return valueText;
     }
 
+    public void setValueText(String valueText) {
+        this.valueText = valueText;
+    }
+
     public String getProbabilityText() {
         return probabilityText;
+    }
+
+    public void setProbabilityText(String probabilityText) {
+        this.probabilityText = probabilityText;
     }
 
     public Operation getOperation() {
@@ -121,14 +133,15 @@ public class ViewModel {
 
     public final class Status {
         public static final String WAITING = "Please provide input data";
-        public static final String READY = "Press 'Calculate'";
-        public static final String BAD_FORMAT = "Bad format";
+        public static final String ADD_TO_DISTRIBUTION_READY = "Press 'Add to distribution'";
+        public static final String CALCULATE_READY = "Press 'Calculate'";
+        public static final String BAD_INPUT_FORMAT = "Bad input format";
         public static final String SUCCESS = "Success";
 
         private Status() { }
     }
 
-    private boolean parseInputData() {
+    private boolean isInputDataFormatCorrect() {
         try {
             if (!valueText.isEmpty()) {
                 Double.parseDouble(valueText);
@@ -137,8 +150,6 @@ public class ViewModel {
                 Double.parseDouble(probabilityText);
             }
         } catch (Exception e) {
-            statusMessageText = Status.BAD_FORMAT;
-            isCalculateButtonEnabled = false;
             return false;
         }
 

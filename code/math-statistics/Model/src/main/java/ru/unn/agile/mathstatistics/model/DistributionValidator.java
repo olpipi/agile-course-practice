@@ -1,6 +1,6 @@
 package ru.unn.agile.mathstatistics.model;
 
-public final class DistributionSeriesValidator {
+public final class DistributionValidator {
     public static final Double EPSILON = 1e-3;
 
     public static void validate(final Number[] values, final Double[] probabilities) {
@@ -12,7 +12,7 @@ public final class DistributionSeriesValidator {
         }
     }
 
-    private DistributionSeriesValidator() {
+    private DistributionValidator() {
     }
 
     private static void validateValues(final Number[] values) {

@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class MathStatisticsTests {
 
-    public static final Double EPSILON = DistributionSeriesValidator.EPSILON;
+    public static final Double EPSILON = DistributionValidator.EPSILON;
 
     private Integer[] getMonotonicArray(final int start, final int end) {
         Integer[] data = new Integer[end - start];
@@ -77,7 +77,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateExpectedValueForBigDistributionSeries() {
+    public void canCalculateExpectedValueForBigDistribution() {
         Integer[] values = getMonotonicArray(0, 100);
         Double[]  probabilities = new Double[100];
         Arrays.fill(probabilities, 0.01);
@@ -164,7 +164,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateDispersionForBigDistributionSeries() {
+    public void canCalculateDispersionForBigDistribution() {
         Integer[] values = getMonotonicArray(0, 100);
         Double[]  probabilities = new Double[100];
         Arrays.fill(probabilities, 0.01);
@@ -249,7 +249,7 @@ public class MathStatisticsTests {
     }
 
     @Test
-    public void canCalculateCentralMomentForBigDistributionSeries() {
+    public void canCalculateCentralMomentForBigDistribution() {
         Integer[] values = getMonotonicArray(-400, 400);
         Double[]  probabilities = new Double[800];
         Arrays.fill(probabilities, 0.00125);

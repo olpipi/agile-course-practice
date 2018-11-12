@@ -5,7 +5,7 @@ import javax.swing.*;
 public final class MathStatisticsCalculator {
     private JTextField valueText;
     private JTextField probabilityText;
-    private JButton addToSampleButton;
+    private JButton addToDistributionButton;
     private JButton clearButton;
     private JComboBox operationComboBox;
     private JButton calculateButton;
