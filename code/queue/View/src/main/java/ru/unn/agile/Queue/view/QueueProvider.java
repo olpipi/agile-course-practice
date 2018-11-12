@@ -12,6 +12,8 @@ public final class QueueProvider {
     private JLabel addNewElemLabel;
     private JScrollPane outputQueueScrollPane;
     private JTextArea outputQueueTextArea;
+    private JLabel stateLabel;
+    private JLabel outStateLabel;
 
     public static void main(final String[] args) {
         JFrame frame = new JFrame("QueueProvider");
