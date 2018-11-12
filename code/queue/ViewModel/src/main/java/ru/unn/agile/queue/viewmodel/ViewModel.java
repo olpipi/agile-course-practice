@@ -10,10 +10,13 @@ public class ViewModel {
 
     private Queue<Double> queue;
 
+    private String state;
+
     public ViewModel() {
         queue = new Queue<Double>();
         newElem = "";
         outputQueue = "";
+        state = State.WAITING_FOR_INPUT;
     }
 
     public String getNewElem() {
@@ -53,13 +56,34 @@ public class ViewModel {
 
     private boolean parseInput() {
         try {
-            if (!newElem.isEmpty()) {
+            if (newElem.isEmpty()) {
+                state = State.WAITING_FOR_INPUT;
+            }
+            else{
                 Double.parseDouble(newElem);
             }
         } catch (Exception e) {
+            state = State.INVALID_FORMAT;
             return false;
         }
+        state = State.READY_TO_ADD;
         return true;
+    }
+
+    public void processingAddField(final int keyCode) {
+        parseInput();
+    }
+
+
+    public String getCurrentState() {
+        return state;
+    }
+
+    public final class State {
+        public static final String WAITING_FOR_INPUT = "Waiting new element";
+        public static final String READY_TO_ADD = "Ready to add element";
+        public static final String INVALID_FORMAT = "Invalid format";
+
     }
 
 }
