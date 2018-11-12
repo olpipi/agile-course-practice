@@ -58,6 +58,7 @@ public class ViewModel {
         try {
             if (newElem.isEmpty()) {
                 state = State.WAITING_FOR_INPUT;
+                return true;
             }
             else{
                 Double.parseDouble(newElem);

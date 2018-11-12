@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 
 public class ViewModelTests {
     private ViewModel viewModel;
+    private final int ANY_KEY = 1;
 
     @Before
     public void setUp() {
@@ -90,7 +91,7 @@ public class ViewModelTests {
     public void isWaitingStateWhenAddElemFieldIsEmpty() {
         viewModel.setNewElem("");
 
-        viewModel.processingAddField(1);
+        viewModel.processingAddField(ANY_KEY);
 
         assertEquals(ViewModel.State.WAITING_FOR_INPUT, viewModel.getCurrentState());
     }
@@ -99,7 +100,7 @@ public class ViewModelTests {
     public void isReadyStateWhenAddElemFieldIsFill() {
         viewModel.setNewElem("6.1");
 
-        viewModel.processingAddField(1);
+        viewModel.processingAddField(ANY_KEY);
 
         assertEquals(ViewModel.State.READY_TO_ADD, viewModel.getCurrentState());
     }
@@ -108,7 +109,7 @@ public class ViewModelTests {
     public void canDetectBadFormat() {
         viewModel.setNewElem("Hello");
 
-        viewModel.processingAddField(1);
+        viewModel.processingAddField(ANY_KEY);
 
         assertEquals(ViewModel.State.INVALID_FORMAT, viewModel.getCurrentState());
     }
