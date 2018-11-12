@@ -49,16 +49,19 @@ public class ViewModel {
 
         queue.push(Double.parseDouble(newElem));
         outputQueue = queue.toString();
+        switchEnabledButton();
     }
 
     public void Remove() {
         queue.pop();
         outputQueue = queue.toString();
+        switchEnabledButton();
     }
 
     public void Clear() {
         queue.clear();
         outputQueue = queue.toString();
+        switchEnabledButton();
     }
 
     private boolean parseInput() {
@@ -109,4 +112,13 @@ public class ViewModel {
         return isClearButtonEnabled;
     }
 
+    private void switchEnabledButton(){
+        if(queue.isEmpty()){
+            isRemoveButtonEnabled = false;
+            isClearButtonEnabled = false;
+        }else{
+            isRemoveButtonEnabled = true;
+            isClearButtonEnabled = true;
+        }
+    }
 }
