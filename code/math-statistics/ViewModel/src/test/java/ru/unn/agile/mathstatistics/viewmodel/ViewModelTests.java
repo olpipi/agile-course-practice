@@ -159,12 +159,52 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isAddToDistributionSeriesButtonEnabledWhenSettingOfCorrectInput() {
+    public void isAddToDistributionButtonEnabledWhenSettingOfCorrectInput() {
         viewModel.setValueText("1");
         viewModel.setProbabilityText("1");
 
         viewModel.validateInputData();
 
         assertTrue(viewModel.isAddToDistributionButtonEnabled());
+    }
+
+    @Test
+    public void isAddToDistributionButtonDisabledWhenSettingEmptyValue() {
+        viewModel.setValueText("");
+        viewModel.setProbabilityText("1");
+
+        viewModel.validateInputData();
+
+        assertFalse(viewModel.isAddToDistributionButtonEnabled());
+    }
+
+    @Test
+    public void isAddToDistributionButtonDisabledWhenSettingEmptyProbability() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("");
+
+        viewModel.validateInputData();
+
+        assertFalse(viewModel.isAddToDistributionButtonEnabled());
+    }
+
+    @Test
+    public void isAddToDistributionButtonDisabledWhenSettingOfIncorrectValue() {
+        viewModel.setValueText("abc");
+        viewModel.setProbabilityText("1");
+
+        viewModel.validateInputData();
+
+        assertFalse(viewModel.isAddToDistributionButtonEnabled());
+    }
+
+    @Test
+    public void isAddToDistributionButtonDisabledWhenSettingOfIncorrectProbability() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("abc");
+
+        viewModel.validateInputData();
+
+        assertFalse(viewModel.isAddToDistributionButtonEnabled());
     }
 }

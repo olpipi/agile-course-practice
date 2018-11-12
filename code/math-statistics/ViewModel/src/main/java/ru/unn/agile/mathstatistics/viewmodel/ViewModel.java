@@ -143,12 +143,12 @@ public class ViewModel {
 
     private boolean isInputDataFormatCorrect() {
         try {
-            if (!valueText.isEmpty()) {
-                Double.parseDouble(valueText);
+            if (valueText.isEmpty() || probabilityText.isEmpty()) {
+                return false;
             }
-            if (!probabilityText.isEmpty()) {
-                Double.parseDouble(probabilityText);
-            }
+
+            Double.parseDouble(valueText);
+            Double.parseDouble(probabilityText);
         } catch (Exception e) {
             return false;
         }
