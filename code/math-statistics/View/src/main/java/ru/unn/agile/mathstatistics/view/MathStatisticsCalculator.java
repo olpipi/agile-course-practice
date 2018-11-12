@@ -14,12 +14,14 @@ public final class MathStatisticsCalculator {
     private JTextField resultText;
     private JPanel valueIndicatorLabel;
     private JLabel probabilityIndicatorLabel;
-    private JPanel orderLabel;
     private JLabel resultLabel;
     private JLabel statusLabel;
     private JLabel statusMessageLabel;
     private JTextArea sampleTextArea;
     private JLabel valueProbabilityPair;
+    private JPanel orderLabel;
+    private JLabel offsetLabel;
+    private JTextField offsetText;
 
     public static void main(final String[] args) {
         JFrame frame = new JFrame("MathStatisticsCalculator");
