@@ -110,6 +110,44 @@ public class ViewModelTests {
         assertTrue(viewModel.submitionDisabledProperty().get());
     }
 
+    @Test
+    public void isFirstGenerationLessThenSizes() {
+        setInputSizes();
+        viewModel.firstGenerationProperty().set("..*");
+
+        assertEquals(Status.READY_TO_SET.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void isFirstGenerationMoreThenSizes() {
+        setInputSizes();
+        viewModel.firstGenerationProperty().set("..**.");
+
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void isFirstGenerationBadFormat() {
+        setInputSizes();
+        viewModel.firstGenerationProperty().set("..*k");
+
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void isFirstGenerationGood() {
+        setInputSizesAndData();
+
+        assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void isSubmitAbleWithGoodData() {
+        setInputSizesAndData();
+
+        assertFalse(viewModel.submitionDisabledProperty().get());
+    }
+
     private void setInputSizes() {
         viewModel.rowsNumberProperty().set("2");
         viewModel.columnsNumberProperty().set("2");

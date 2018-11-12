@@ -1,13 +1,14 @@
 package ru.unn.agile.ConwayGame.viewmodel;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.*;
 import ru.unn.agile.ConwayGame.Model.ConwayGame;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ViewModel {
     private final StringProperty rowsNumber = new SimpleStringProperty();
@@ -84,7 +85,7 @@ public class ViewModel {
         int columns = Integer.parseInt(columnsNumber.get());
 
         ConwayGame game = new ConwayGame(rows, columns);
-        game.setGeneration(firstGenerationProperty().toString());
+        game.setGeneration(firstGenerationProperty().getValue());
         game.moveToNextGeneration();
 
         status.set(Status.SUCCESS.toString());
@@ -109,7 +110,7 @@ public class ViewModel {
     public BooleanProperty submitionDisabledProperty() {
         return submitionDisabled;
     }
-    public boolean isSubmitionDisabled() {
+    public final boolean isSubmitionDisabled() {
         return submitionDisabled.get();
     }
 
@@ -134,7 +135,13 @@ public class ViewModel {
     }
 
     private String convertToGeneration(final StringProperty incomingGeneration) {
-        return incomingGeneration.toString();
+        String str = incomingGeneration.getValue();
+
+        Pattern pattern = Pattern.compile("^[.*]+$");
+        Matcher matcher = pattern.matcher(str);
+        matcher.find();
+
+        return matcher.group(0);
     }
 
     private Status getInputStatus() {
@@ -147,6 +154,19 @@ public class ViewModel {
                 && !columnsNumber.get().isEmpty()) {
             inputStatus = Status.READY_TO_SET;
         }
+        if (!rowsNumber.get().isEmpty() && !columnsNumber.get().isEmpty()
+                && !firstGeneration.get().isEmpty()) {
+            int rows = Integer.parseInt(rowsNumberProperty().get());
+            int columns = Integer.parseInt(columnsNumberProperty().get());
+            int size = rows * columns;
+
+            if (firstGeneration.length().intValue() < size) {
+                inputStatus = Status.READY_TO_SET;
+            }
+            if (firstGeneration.length().intValue() > size) {
+                inputStatus = Status.BAD_FORMAT;
+            }
+        }
         try {
             if (!rowsNumber.get().isEmpty()) {
                 Integer.parseInt(rowsNumber.get());
@@ -157,8 +177,7 @@ public class ViewModel {
             if (!firstGeneration.get().isEmpty()) {
                 convertToGeneration(firstGeneration);
             }
-
-        } catch (NumberFormatException nfe) {
+        } catch (NumberFormatException | IllegalStateException exc) {
             inputStatus = Status.BAD_FORMAT;
         }
 
