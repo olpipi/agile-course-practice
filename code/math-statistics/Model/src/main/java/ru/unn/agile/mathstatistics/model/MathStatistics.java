@@ -3,7 +3,6 @@ package ru.unn.agile.mathstatistics.model;
 public final class MathStatistics {
     public static final int EXPECTED_VALUE_ORDER = 1;
     public static final int DISPERSION_ORDER = 2;
-    public static final Double EPSILON = 1e-3;
 
     public static Double calculateExpectedValue(final Number[] values,
                                                 final Double[] probabilities) {

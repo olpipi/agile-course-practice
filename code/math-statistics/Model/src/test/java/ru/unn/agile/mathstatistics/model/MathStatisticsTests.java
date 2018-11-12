@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 
 public class MathStatisticsTests {
 
+    public static final Double EPSILON = DistributionSeriesValidator.EPSILON;
+
     private Integer[] getMonotonicArray(final int start, final int end) {
         Integer[] data = new Integer[end - start];
         for (int i = 0; i < data.length; ++i) {
@@ -169,7 +171,7 @@ public class MathStatisticsTests {
 
         Double dispersion = MathStatistics.calculateDispersion(values, probabilities);
 
-        assertTrue(Math.abs(833.2499 - dispersion) <= MathStatistics.EPSILON);
+        assertTrue(Math.abs(833.2499 - dispersion) <= EPSILON);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -243,7 +245,7 @@ public class MathStatisticsTests {
 
         Double moment = MathStatistics.calculateCentralMoment(values, probabilities, 3, 3);
 
-        assertTrue(Math.abs(1803.618 - moment) <= MathStatistics.EPSILON);
+        assertTrue(Math.abs(1803.618 - moment) <= EPSILON);
     }
 
     @Test
@@ -254,7 +256,7 @@ public class MathStatisticsTests {
 
         Double moment = MathStatistics.calculateCentralMoment(values, probabilities, 3, 1);
 
-        assertTrue(Math.abs(-240003.0 - moment) <= MathStatistics.EPSILON);
+        assertTrue(Math.abs(-240003.0 - moment) <= EPSILON);
     }
 
     @Test(expected = IllegalArgumentException.class)
