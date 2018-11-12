@@ -144,4 +144,56 @@ public class ViewModelTests {
         assertEquals(ViewModel.State.WAITING_FOR_INPUT, viewModel.getCurrentState());
     }
 
+    @Test
+    public void isAddButtonDisabledWhenStartup() {
+        assertEquals(false, viewModel.isAddButtonEnabled());
+    }
+
+    @Test
+    public void isRemoveButtonDisabledWhenStartup() {
+        assertEquals(false, viewModel.isRemoveButtonEnabled());
+    }
+
+    @Test
+    public void isClearButtonDisabledWhenStartup() {
+        assertEquals(false, viewModel.isClearButtonEnabled());
+    }
+
+    @Test
+    public void isAddButtonEnabledWhenAddFieldIsCorrect() {
+        viewModel.setNewElem("37.3");
+        viewModel.processingAddField(ANY_KEY);
+
+        assertEquals(true, viewModel.isAddButtonEnabled());
+    }
+
+    @Test
+    public void isAddButtonDisabledWhenAddFieldIsInvalid() {
+        viewModel.setNewElem("kdbsj");
+        viewModel.processingAddField(ANY_KEY);
+
+        assertEquals(false, viewModel.isAddButtonEnabled());
+    }
+
+    @Test
+    public void isClearButtonEnabledWhenQueueIsNotEmpty() {
+        viewModel.setNewElem("5");
+        viewModel.Add();
+        viewModel.setNewElem("8");
+        viewModel.Add();
+
+        assertEquals(true, viewModel.isClearButtonEnabled());
+    }
+
+    @Test
+    public void isRemoveButtonEnabledWhenQueueIsNotEmpty() {
+        viewModel.setNewElem("4");
+        viewModel.Add();
+        viewModel.setNewElem("1");
+        viewModel.Add();
+
+        assertEquals(true, viewModel.isRemoveButtonEnabled());
+    }
+
+
 }
