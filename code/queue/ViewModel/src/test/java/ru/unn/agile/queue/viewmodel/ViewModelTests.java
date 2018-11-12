@@ -81,4 +81,36 @@ public class ViewModelTests {
         assertEquals("[]", viewModel.getOutputQueue());
     }
 
+    @Test
+    public void isWaitingStateInBeginning() {
+        assertEquals(ViewModel.State.WAITING_FOR_INPUT, viewModel.getCurrentState());
+    }
+
+    @Test
+    public void isWaitingStateWhenAddElemFieldIsEmpty() {
+        viewModel.setNewElem("");
+
+        viewModel.processingAddField(1);
+
+        assertEquals(ViewModel.State.WAITING_FOR_INPUT, viewModel.getCurrentState());
+    }
+
+    @Test
+    public void isReadyStateWhenAddElemFieldIsFill() {
+        viewModel.setNewElem("6.1");
+
+        viewModel.processingAddField(1);
+
+        assertEquals(ViewModel.State.READY_TO_ADD, viewModel.getCurrentState());
+    }
+
+    @Test
+    public void canDetectBadFormat() {
+        viewModel.setNewElem("Hello");
+
+        viewModel.processingAddField(1);
+
+        assertEquals(ViewModel.State.INVALID_FORMAT, viewModel.getCurrentState());
+    }
+
 }
