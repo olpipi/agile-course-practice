@@ -150,23 +150,6 @@ public class ViewModel {
                 || firstGeneration.get().isEmpty()) {
             inputStatus = Status.WAITING;
         }
-        if (firstGeneration.get().isEmpty() && !rowsNumber.get().isEmpty()
-                && !columnsNumber.get().isEmpty()) {
-            inputStatus = Status.READY_TO_SET;
-        }
-        if (!rowsNumber.get().isEmpty() && !columnsNumber.get().isEmpty()
-                && !firstGeneration.get().isEmpty()) {
-            int rows = Integer.parseInt(rowsNumberProperty().get());
-            int columns = Integer.parseInt(columnsNumberProperty().get());
-            int size = rows * columns;
-
-            if (firstGeneration.length().intValue() < size) {
-                inputStatus = Status.READY_TO_SET;
-            }
-            if (firstGeneration.length().intValue() > size) {
-                inputStatus = Status.BAD_FORMAT;
-            }
-        }
         try {
             if (!rowsNumber.get().isEmpty()) {
                 Integer.parseInt(rowsNumber.get());
@@ -177,8 +160,26 @@ public class ViewModel {
             if (!firstGeneration.get().isEmpty()) {
                 convertToGeneration(firstGeneration);
             }
+            if (!rowsNumber.get().isEmpty() && !columnsNumber.get().isEmpty()) {
+                inputStatus = statusWithGeneration(inputStatus);
+            }
         } catch (NumberFormatException | IllegalStateException exc) {
             inputStatus = Status.BAD_FORMAT;
+        }
+
+        return inputStatus;
+    }
+
+    private Status statusWithGeneration(final Status inputStatus) {
+        int rows = Integer.parseInt(rowsNumberProperty().get());
+        int columns = Integer.parseInt(columnsNumberProperty().get());
+        int size = rows * columns;
+
+        if (firstGeneration.length().intValue() < size) {
+            return Status.READY_TO_SET;
+        }
+        if (firstGeneration.length().intValue() > size) {
+            return Status.BAD_FORMAT;
         }
 
         return inputStatus;

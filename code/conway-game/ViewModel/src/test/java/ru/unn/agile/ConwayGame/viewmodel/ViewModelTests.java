@@ -89,7 +89,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isCreateGridAbleWithGoodInput() {
+    public void isCreateGridAbleWithGoodSizes() {
         setInputSizes();
 
         assertFalse(viewModel.creationGridDisabledProperty().get());
