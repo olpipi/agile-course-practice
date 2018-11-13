@@ -178,6 +178,14 @@ public class ViewModelTests {
     }
 
     @Test
+    public void isAddButtonDisabledWhenAddFieldIsEmpty() {
+        viewModel.setNewElem("");
+        viewModel.processingAddField(ANY_KEY);
+
+        assertEquals(false, viewModel.isAddButtonEnabled());
+    }
+
+    @Test
     public void isClearButtonEnabledWhenQueueIsNotEmpty() {
         viewModel.setNewElem("5");
         viewModel.Add();
@@ -197,5 +205,56 @@ public class ViewModelTests {
         assertEquals(true, viewModel.isRemoveButtonEnabled());
     }
 
+    @Test
+    public void canClearSwitchStateClearButton() {
+        viewModel.setNewElem("23");
+        viewModel.Add();
+        viewModel.setNewElem("1");
+        viewModel.Add();
+        viewModel.setNewElem("5");
+        viewModel.Add();
+        viewModel.setNewElem("3");
+        viewModel.Add();
+
+        viewModel.Clear();
+
+        assertEquals(false, viewModel.isClearButtonEnabled());
+    }
+
+    @Test
+    public void canClearSwitchStateRemoveButton() {
+        viewModel.setNewElem("23");
+        viewModel.Add();
+        viewModel.setNewElem("1");
+        viewModel.Add();
+        viewModel.setNewElem("5");
+        viewModel.Add();
+        viewModel.setNewElem("3");
+        viewModel.Add();
+
+        viewModel.Clear();
+
+        assertEquals(false, viewModel.isRemoveButtonEnabled());
+    }
+
+    @Test
+    public void canRemoveSwitchStateClearButton() {
+        viewModel.setNewElem("20");
+        viewModel.Add();
+
+        viewModel.Remove();
+
+        assertEquals(false, viewModel.isClearButtonEnabled());
+    }
+
+    @Test
+    public void canRemoveSwitchStateRemoveButton() {
+        viewModel.setNewElem("13");
+        viewModel.Add();
+
+        viewModel.Remove();
+
+        assertEquals(false, viewModel.isRemoveButtonEnabled());
+    }
 
 }
