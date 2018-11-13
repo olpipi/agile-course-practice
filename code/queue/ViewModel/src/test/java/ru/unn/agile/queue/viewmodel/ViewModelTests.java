@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import ru.unn.agile.queue.viewmodel.ViewModel.*;
 
 public class ViewModelTests {
     private ViewModel viewModel;
@@ -24,6 +25,7 @@ public class ViewModelTests {
     public void canSetDefaultValues() {
         assertEquals("", viewModel.getNewElem());
         assertEquals("", viewModel.getOutputQueue());
+        assertEquals(State.WAITING_FOR_INPUT, viewModel.getCurrentState());
     }
 
     @Test
@@ -83,17 +85,12 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isWaitingStateInBeginning() {
-        assertEquals(ViewModel.State.WAITING_FOR_INPUT, viewModel.getCurrentState());
-    }
-
-    @Test
     public void isWaitingStateWhenAddElemFieldIsEmpty() {
         viewModel.setNewElem("");
 
         viewModel.processingAddField(ANY_KEY);
 
-        assertEquals(ViewModel.State.WAITING_FOR_INPUT, viewModel.getCurrentState());
+        assertEquals(State.WAITING_FOR_INPUT, viewModel.getCurrentState());
     }
 
     @Test
@@ -102,7 +99,7 @@ public class ViewModelTests {
 
         viewModel.processingAddField(ANY_KEY);
 
-        assertEquals(ViewModel.State.READY_TO_ADD, viewModel.getCurrentState());
+        assertEquals(State.READY_TO_ADD, viewModel.getCurrentState());
     }
 
     @Test
@@ -111,7 +108,7 @@ public class ViewModelTests {
 
         viewModel.processingAddField(ANY_KEY);
 
-        assertEquals(ViewModel.State.INVALID_FORMAT, viewModel.getCurrentState());
+        assertEquals(State.INVALID_FORMAT, viewModel.getCurrentState());
     }
 
     @Test
@@ -121,7 +118,7 @@ public class ViewModelTests {
         viewModel.setNewElem("33");
         viewModel.processingAddField(ANY_KEY);
 
-        assertEquals(ViewModel.State.READY_TO_ADD, viewModel.getCurrentState());
+        assertEquals(State.READY_TO_ADD, viewModel.getCurrentState());
     }
 
     @Test
@@ -131,7 +128,7 @@ public class ViewModelTests {
         viewModel.setNewElem("hi");
         viewModel.processingAddField(ANY_KEY);
 
-        assertEquals(ViewModel.State.INVALID_FORMAT, viewModel.getCurrentState());
+        assertEquals(State.INVALID_FORMAT, viewModel.getCurrentState());
     }
 
     @Test
@@ -141,7 +138,12 @@ public class ViewModelTests {
         viewModel.setNewElem("");
         viewModel.processingAddField(ANY_KEY);
 
-        assertEquals(ViewModel.State.WAITING_FOR_INPUT, viewModel.getCurrentState());
+        assertEquals(State.WAITING_FOR_INPUT, viewModel.getCurrentState());
+    }
+
+    @Test
+    public void isWaitingStateWhenStartup() {
+        assertEquals(State.WAITING_FOR_INPUT, viewModel.getCurrentState());
     }
 
     @Test
