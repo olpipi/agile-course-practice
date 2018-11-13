@@ -24,8 +24,8 @@ public class ViewModelTests {
         assertEquals("", viewModel.rowsNumberProperty().get());
         assertEquals("", viewModel.columnsNumberProperty().get());
         assertEquals("", viewModel.firstGenerationProperty().get());
-        assertEquals("Input:", viewModel.inputProperty().get());
-        assertEquals("Output:", viewModel.outputProperty().get());
+        assertEquals("", viewModel.inputProperty().get());
+        assertEquals("", viewModel.outputProperty().get());
         assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
 
     }
@@ -146,6 +146,39 @@ public class ViewModelTests {
         setInputSizesAndData();
 
         assertFalse(viewModel.submitionDisabledProperty().get());
+    }
+
+    @Test
+    public void  isCorrectInput() {
+        viewModel.rowsNumberProperty().set("2");
+        viewModel.columnsNumberProperty().set("3");
+        viewModel.firstGenerationProperty().set("*.**.*");
+
+        viewModel.calculateNextGeneration();
+
+        assertEquals("*.*\n*.*\n", viewModel.inputProperty().get());
+    }
+
+    @Test
+    public void isCorrectShortOutput() {
+        viewModel.rowsNumberProperty().set("1");
+        viewModel.columnsNumberProperty().set("1");
+        viewModel.firstGenerationProperty().set("*");
+
+        viewModel.calculateNextGeneration();
+
+        assertEquals(".\n", viewModel.outputProperty().get());
+    }
+
+    @Test
+    public void isCorrectOutput() {
+        viewModel.rowsNumberProperty().set("4");
+        viewModel.columnsNumberProperty().set("8");
+        viewModel.firstGenerationProperty().set("............*......**...........");
+
+        viewModel.calculateNextGeneration();
+
+        assertEquals("........\n...**...\n...**...\n........\n", viewModel.outputProperty().get());
     }
 
     private void setInputSizes() {

@@ -29,8 +29,8 @@ public class ViewModel {
         columnsNumber.set("");
         firstGeneration.set("");
 
-        input.set("Input:");
-        output.set("Output:");
+        input.set("");
+        output.set("");
         status.set(Status.WAITING.toString());
 
         BooleanBinding couldCreateGrid = new BooleanBinding() {
@@ -78,17 +78,39 @@ public class ViewModel {
     }
 
     public void calculateNextGeneration() {
-        if (creationGridDisabled.get()) {
+        if (submitionDisabled.get()) {
             return;
         }
         int rows = Integer.parseInt(rowsNumber.get());
         int columns = Integer.parseInt(columnsNumber.get());
 
+        String incomingGeneration = firstGenerationProperty().getValue();
+
         ConwayGame game = new ConwayGame(rows, columns);
-        game.setGeneration(firstGenerationProperty().getValue());
+        game.setGeneration(incomingGeneration);
         game.moveToNextGeneration();
+        String newGeneration = game.getGeneration();
 
         status.set(Status.SUCCESS.toString());
+        input.set(format(incomingGeneration));
+        output.set(newGeneration);
+    }
+
+    private String format(final String incomingStr) {
+        String string = "";
+        char[] symbol = incomingStr.toCharArray();
+
+        int rows = Integer.parseInt(rowsNumberProperty().get());
+        int columns = Integer.parseInt(columnsNumberProperty().get());
+
+        for (int j = 0; j < rows; j++) {
+            for (int i = 0; i < columns; i++) {
+                string += symbol[i + j * columns];
+            }
+            string += "\n";
+        }
+
+        return string;
     }
 
     public StringProperty rowsNumberProperty() {
