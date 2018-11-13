@@ -206,7 +206,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void canClearSwitchStateClearButton() {
+    public void canClearDisableClearButton() {
         viewModel.setNewElem("23");
         viewModel.Add();
         viewModel.setNewElem("1");
@@ -222,7 +222,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void canClearSwitchStateRemoveButton() {
+    public void canClearDisableRemoveButton() {
         viewModel.setNewElem("23");
         viewModel.Add();
         viewModel.setNewElem("1");
@@ -238,7 +238,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void canRemoveSwitchStateClearButton() {
+    public void canRemoveDisableClearButton() {
         viewModel.setNewElem("20");
         viewModel.Add();
 
@@ -248,7 +248,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void canRemoveSwitchStateRemoveButton() {
+    public void canRemoveDisableRemoveButton() {
         viewModel.setNewElem("13");
         viewModel.Add();
 
