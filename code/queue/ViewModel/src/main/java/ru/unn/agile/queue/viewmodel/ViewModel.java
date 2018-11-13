@@ -69,7 +69,7 @@ public class ViewModel {
         try {
             if (newElem.isEmpty()) {
                 state = State.WAITING_FOR_INPUT;
-                isAddButtonEnabled = true;
+                isAddButtonEnabled = false;
                 return isAddButtonEnabled;
             }
             else{
