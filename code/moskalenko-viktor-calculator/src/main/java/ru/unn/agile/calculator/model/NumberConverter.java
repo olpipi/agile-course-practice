@@ -38,7 +38,7 @@ public final class NumberConverter {
         }
     }
 
-    public static String convert(final int number, final NumberSystem system) {
+    public static String format(final int number, final NumberSystem system) {
         final boolean isNegative = number < 0;
         final int numberModule = Math.abs(number);
         String result;

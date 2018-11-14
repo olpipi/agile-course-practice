@@ -11,7 +11,7 @@ public final class Calculator {
             throw new IllegalArgumentException(INVALID_ARGUMENTS);
         }
         int result = firstAddArgument + secondAddArgument;
-        return NumberConverter.convert(result, outputFormat);
+        return NumberConverter.format(result, outputFormat);
     }
 
     public static String multiply(final String n1, final String n2,
@@ -22,7 +22,7 @@ public final class Calculator {
             throw new IllegalArgumentException(INVALID_ARGUMENTS);
         }
         int result = firstMulArgument * secondMulArgument;
-        return NumberConverter.convert(result, outputFormat);
+        return NumberConverter.format(result, outputFormat);
     }
 
     public static String unaryMinus(final String number, final NumberSystem outputFormat) {
@@ -31,7 +31,7 @@ public final class Calculator {
             throw new IllegalArgumentException(INVALID_ARGUMENTS);
         }
         int result = -value;
-        return NumberConverter.convert(result, outputFormat);
+        return NumberConverter.format(result, outputFormat);
     }
 
     private Calculator() {

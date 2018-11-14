@@ -97,35 +97,35 @@ public class NumberConverterTest {
     @Test
     public void canConvertFiveToBinary() {
         String expected = "b101";
-        String result = NumberConverter.convert(5, NumberSystem.BINARY);
+        String result = NumberConverter.format(5, NumberSystem.BINARY);
         assertEquals(expected, result);
     }
 
     @Test
     public void canConverEightToBinary() {
         String expected = "b1000";
-        String result = NumberConverter.convert(8, NumberSystem.BINARY);
+        String result = NumberConverter.format(8, NumberSystem.BINARY);
         assertEquals(expected, result);
     }
 
     @Test
     public void canConvertFiveToOctal() {
         String expected = "o5";
-        String result = NumberConverter.convert(5, NumberSystem.OCTAL);
+        String result = NumberConverter.format(5, NumberSystem.OCTAL);
         assertEquals(expected, result);
     }
 
     @Test
     public void canConvertTwelveToHexadecimal() {
         String expected = "xc";
-        String result = NumberConverter.convert(12, NumberSystem.HEXADECIMAL);
+        String result = NumberConverter.format(12, NumberSystem.HEXADECIMAL);
         assertEquals(expected, result);
     }
 
     @Test
     public void canConvertMaxIntToHexadecimal() {
         String expected = "x7fffffff";
-        String result = NumberConverter.convert(Integer.MAX_VALUE, NumberSystem.HEXADECIMAL);
+        String result = NumberConverter.format(Integer.MAX_VALUE, NumberSystem.HEXADECIMAL);
         assertEquals(expected, result);
     }
 
