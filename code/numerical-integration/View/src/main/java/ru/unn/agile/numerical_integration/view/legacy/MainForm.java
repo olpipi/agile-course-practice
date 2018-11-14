@@ -1,4 +1,4 @@
-package ru.unn.agile.numerical_integration.View.legacy;
+package ru.unn.agile.numerical_integration.view.legacy;
 
 import ru.unn.agile.numerical_integration.ViewModel.legacy.ViewModel;
 
