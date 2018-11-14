@@ -135,4 +135,9 @@ public class NumberConverterTest {
         int result = NumberConverter.parse("b-1010");
         assertEquals(expected, result);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotFormatUnknownNumberSystem() {
+        NumberConverter.format(5, NumberSystem.UNKNOWN);
+    }
 }
