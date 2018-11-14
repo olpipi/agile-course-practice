@@ -1,7 +1,5 @@
 package ru.unn.agile.calculator.model;
 
-import java.util.*;
-
 public final class NumberConverter {
 
     private static final String UNKNOWN_NUMBER_LENGTH = "Unknown number length";
