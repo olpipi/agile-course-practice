@@ -12,7 +12,7 @@ public final class NumberConverter {
         b(BINARY_SYSTEM), o(OCTAL_SYSTEM), x(HEXADECIMAL_SYSTEM);
 
         private final int value;
-        LetterToSystem(int value) {
+        LetterToSystem(final int value) {
             this.value = value;
         }
 
@@ -31,7 +31,7 @@ public final class NumberConverter {
         try {
             system = LetterToSystem.valueOf(letterSystem).getValue();
         } catch (Exception ex) {
-            throw new IllegalArgumentException(UNKNOWN_NUMBER_SYSTEM);
+            throw new IllegalArgumentException(UNKNOWN_NUMBER_SYSTEM, ex);
         }
         return Integer.parseInt(number.substring(1), system);
     }

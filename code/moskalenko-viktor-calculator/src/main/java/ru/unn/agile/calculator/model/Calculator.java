@@ -4,7 +4,7 @@ public final class Calculator {
 
     private static final String INVALID_ARGUMENTS = "Invalid arguments";
 
-    private static void checkIntegersNotNull(Integer ... integers) {
+    private static void checkIntegersNotNull(final Integer ... integers) {
         for (Integer integer : integers) {
             if (integer == null) {
                 throw new IllegalArgumentException(INVALID_ARGUMENTS);
