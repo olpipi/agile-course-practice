@@ -185,3 +185,7 @@ project(":code/mitrokhina-julia-harrypotter").name = "mitrokhina-julia-harrypott
 // Akhmedzhanov Dmitry, Conway Game of Life
 include "code/akhmedzhanov-dmitry-conway-game"
 project(":code/akhmedzhanov-dmitry-conway-game").name = "akhmedzhanov-dmitry-conway-game-Model"
+
+// Moskalenko Viktor, Calculator
+include "code/moskalenko-viktor-calculator"
+project(":code/moskalenko-viktor-calculator").name = "moskalenko-viktor-calculator"
