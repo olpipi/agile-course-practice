@@ -4,12 +4,18 @@ public final class Calculator {
 
     private static final String INVALID_ARGUMENTS = "Invalid arguments";
 
+    private static void checkIntegersNotNull(Integer ... integers) {
+        for (Integer integer : integers) {
+            if (integer == null) {
+                throw new IllegalArgumentException(INVALID_ARGUMENTS);
+            }
+        }
+    }
+
     public static String add(final String n1, final String n2, final NumberSystem outputFormat) {
         final Integer firstAddArgument = NumberConverter.tryParse(n1);
         final Integer secondAddArgument = NumberConverter.tryParse(n2);
-        if ((firstAddArgument == null) || (secondAddArgument == null)) {
-            throw new IllegalArgumentException(INVALID_ARGUMENTS);
-        }
+        checkIntegersNotNull(firstAddArgument, secondAddArgument);
         int result = firstAddArgument + secondAddArgument;
         return NumberConverter.format(result, outputFormat);
     }
@@ -18,18 +24,14 @@ public final class Calculator {
                                   final NumberSystem outputFormat) {
         final Integer firstMulArgument = NumberConverter.tryParse(n2);
         final Integer secondMulArgument = NumberConverter.tryParse(n1);
-        if ((firstMulArgument == null) || (secondMulArgument == null)) {
-            throw new IllegalArgumentException(INVALID_ARGUMENTS);
-        }
+        checkIntegersNotNull(firstMulArgument, secondMulArgument);
         int result = firstMulArgument * secondMulArgument;
         return NumberConverter.format(result, outputFormat);
     }
 
     public static String unaryMinus(final String number, final NumberSystem outputFormat) {
         final Integer value = NumberConverter.tryParse(number);
-        if (value == null) {
-            throw new IllegalArgumentException(INVALID_ARGUMENTS);
-        }
+        checkIntegersNotNull(value);
         int result = -value;
         return NumberConverter.format(result, outputFormat);
     }
