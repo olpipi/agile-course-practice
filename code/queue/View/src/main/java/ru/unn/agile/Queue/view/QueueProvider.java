@@ -15,16 +15,9 @@ public final class QueueProvider {
     private JButton removeHeadButton;
     private JButton clearQueueButton;
 
-    private JLabel addNewElemLabel;
     private JTextField addNewElemField;
-
-    private JLabel queueLabel;
-    private JScrollPane outputQueueScrollPane;
     private JTextArea outputQueueTextArea;
-
-    private JLabel stateLabel;
     private JLabel outputStateLabel;
-
 
     private QueueProvider(final ViewModel viewModel) {
         this.viewModel = viewModel;
