@@ -60,7 +60,6 @@ public final class QueueProvider {
         KeyAdapter keyListener = new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                //super.keyReleased(e);
                 bind();
                 QueueProvider.this.viewModel.processingAddField(e.getKeyCode());
                 backBind();
@@ -77,4 +76,18 @@ public final class QueueProvider {
         frame.pack();
         frame.setVisible(true);
     }
+
+    private void bind() {
+        viewModel.setNewElem(addNewElemField.getText());
+    }
+
+    private void backBind() {
+        addElementButton.setEnabled(viewModel.isAddButtonEnabled());
+        removeHeadButton.setEnabled(viewModel.isRemoveButtonEnabled());
+        clearQueueButton.setEnabled(viewModel.isClearButtonEnabled());
+
+        outputQueueTextArea.setText(viewModel.getOutputQueue());
+        outputStateLabel.setText(viewModel.getCurrentState());
+    }
+
 }
