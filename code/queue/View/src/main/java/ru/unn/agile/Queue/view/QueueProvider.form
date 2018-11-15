@@ -90,7 +90,7 @@
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
                             <minimum-size width="80" height="-1"/>
-                            <preferred-size width="60" height="-1"/>
+                            <preferred-size width="80" height="-1"/>
                           </grid>
                         </constraints>
                         <properties/>
@@ -126,12 +126,14 @@
                                   <text value="State:"/>
                                 </properties>
                               </component>
-                              <component id="40b4b" class="javax.swing.JLabel" binding="outStateLabel">
+                              <component id="40b4b" class="javax.swing.JLabel" binding="outputStateLabel">
                                 <constraints border-constraint="Center"/>
                                 <properties>
                                   <font name="Calibri" style="2"/>
-                                  <horizontalTextPosition value="11"/>
+                                  <horizontalAlignment value="0"/>
+                                  <horizontalTextPosition value="0"/>
                                   <text value=""/>
+                                  <verticalAlignment value="3"/>
                                 </properties>
                               </component>
                             </children>
@@ -160,10 +162,13 @@
                     <children>
                       <scrollpane id="64e66" binding="outputQueueScrollPane">
                         <constraints>
-                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                            <minimum-size width="280" height="30"/>
+                            <preferred-size width="280" height="30"/>
+                          </grid>
                         </constraints>
                         <properties>
-                          <horizontalScrollBarPolicy value="32"/>
+                          <horizontalScrollBarPolicy value="31"/>
                           <verticalScrollBarPolicy value="21"/>
                         </properties>
                         <border type="none"/>
