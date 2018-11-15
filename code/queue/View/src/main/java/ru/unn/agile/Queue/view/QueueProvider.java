@@ -26,13 +26,13 @@ public final class QueueProvider {
     private JLabel outputStateLabel;
 
 
-    private QueueProvider(ViewModel viewModel){
+    private QueueProvider(final ViewModel viewModel) {
         this.viewModel = viewModel;
         backBind();
 
         addElementButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 bind();
                 QueueProvider.this.viewModel.Add();
                 backBind();
@@ -41,7 +41,7 @@ public final class QueueProvider {
 
         removeHeadButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 bind();
                 QueueProvider.this.viewModel.Remove();
                 backBind();
@@ -50,7 +50,7 @@ public final class QueueProvider {
 
         clearQueueButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 bind();
                 QueueProvider.this.viewModel.Clear();
                 backBind();
@@ -59,7 +59,7 @@ public final class QueueProvider {
 
         KeyAdapter keyListener = new KeyAdapter() {
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void keyReleased(final KeyEvent e) {
                 bind();
                 QueueProvider.this.viewModel.processingAddField(e.getKeyCode());
                 backBind();

@@ -207,13 +207,13 @@ public class ViewModelTests {
 
     @Test
     public void canClearDisableClearButton() {
-        viewModel.setNewElem("23");
+        viewModel.setNewElem("6");
         viewModel.Add();
-        viewModel.setNewElem("1");
+        viewModel.setNewElem("2");
         viewModel.Add();
-        viewModel.setNewElem("5");
+        viewModel.setNewElem("8");
         viewModel.Add();
-        viewModel.setNewElem("3");
+        viewModel.setNewElem("11");
         viewModel.Add();
 
         viewModel.Clear();
