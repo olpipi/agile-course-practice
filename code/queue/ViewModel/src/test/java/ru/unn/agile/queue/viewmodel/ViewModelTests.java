@@ -9,7 +9,7 @@ import ru.unn.agile.queue.viewmodel.ViewModel.*;
 
 public class ViewModelTests {
     private ViewModel viewModel;
-    private final int ANY_KEY = 1;
+    public static final int ANY_KEY = 1;
 
     @Before
     public void setUp() {
@@ -31,7 +31,7 @@ public class ViewModelTests {
     @Test
     public void canAddOneElemToQueue() {
         viewModel.setNewElem("5.43");
-        viewModel.Add();
+        viewModel.add();
 
         assertEquals("[5.43]", viewModel.getOutputQueue());
     }
@@ -39,17 +39,17 @@ public class ViewModelTests {
     @Test
     public void canAddToQueue() {
         viewModel.setNewElem("1.6");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("-6.3");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("0.0");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("-4.9");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("8");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("92");
-        viewModel.Add();
+        viewModel.add();
 
         assertEquals("[1.6, -6.3, 0.0, -4.9, 8.0, 92.0]", viewModel.getOutputQueue());
     }
@@ -57,13 +57,13 @@ public class ViewModelTests {
     @Test
     public void canRemoveQueueHead() {
         viewModel.setNewElem("53");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("63.2");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("-4.2");
-        viewModel.Add();
+        viewModel.add();
 
-        viewModel.Remove();
+        viewModel.remove();
 
         assertEquals("[63.2, -4.2]", viewModel.getOutputQueue());
     }
@@ -71,15 +71,15 @@ public class ViewModelTests {
     @Test
     public void canClearQueue() {
         viewModel.setNewElem("33");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("11.3");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("2.5");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("6.2");
-        viewModel.Add();
+        viewModel.add();
 
-        viewModel.Clear();
+        viewModel.clear();
 
         assertEquals("[]", viewModel.getOutputQueue());
     }
@@ -188,9 +188,9 @@ public class ViewModelTests {
     @Test
     public void isClearButtonEnabledWhenQueueIsNotEmpty() {
         viewModel.setNewElem("5");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("8");
-        viewModel.Add();
+        viewModel.add();
 
         assertEquals(true, viewModel.isClearButtonEnabled());
     }
@@ -198,9 +198,9 @@ public class ViewModelTests {
     @Test
     public void isRemoveButtonEnabledWhenQueueIsNotEmpty() {
         viewModel.setNewElem("4");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("1");
-        viewModel.Add();
+        viewModel.add();
 
         assertEquals(true, viewModel.isRemoveButtonEnabled());
     }
@@ -208,15 +208,15 @@ public class ViewModelTests {
     @Test
     public void canClearDisableClearButton() {
         viewModel.setNewElem("6");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("2");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("8");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("11");
-        viewModel.Add();
+        viewModel.add();
 
-        viewModel.Clear();
+        viewModel.clear();
 
         assertEquals(false, viewModel.isClearButtonEnabled());
     }
@@ -224,15 +224,15 @@ public class ViewModelTests {
     @Test
     public void canClearDisableRemoveButton() {
         viewModel.setNewElem("23");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("1");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("5");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setNewElem("3");
-        viewModel.Add();
+        viewModel.add();
 
-        viewModel.Clear();
+        viewModel.clear();
 
         assertEquals(false, viewModel.isRemoveButtonEnabled());
     }
@@ -240,9 +240,9 @@ public class ViewModelTests {
     @Test
     public void canRemoveDisableClearButton() {
         viewModel.setNewElem("20");
-        viewModel.Add();
+        viewModel.add();
 
-        viewModel.Remove();
+        viewModel.remove();
 
         assertEquals(false, viewModel.isClearButtonEnabled());
     }
@@ -250,9 +250,9 @@ public class ViewModelTests {
     @Test
     public void canRemoveDisableRemoveButton() {
         viewModel.setNewElem("13");
-        viewModel.Add();
+        viewModel.add();
 
-        viewModel.Remove();
+        viewModel.remove();
 
         assertEquals(false, viewModel.isRemoveButtonEnabled());
     }

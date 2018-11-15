@@ -27,7 +27,7 @@ public final class QueueProvider {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 bind();
-                QueueProvider.this.viewModel.Add();
+                QueueProvider.this.viewModel.add();
                 backBind();
             }
         });
@@ -36,7 +36,7 @@ public final class QueueProvider {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 bind();
-                QueueProvider.this.viewModel.Remove();
+                QueueProvider.this.viewModel.remove();
                 backBind();
             }
         });
@@ -45,7 +45,7 @@ public final class QueueProvider {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 bind();
-                QueueProvider.this.viewModel.Clear();
+                QueueProvider.this.viewModel.clear();
                 backBind();
             }
         });

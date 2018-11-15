@@ -43,7 +43,7 @@ public class ViewModel {
         this.newElem = newElem;
     }
 
-    public void Add() {
+    public void add() {
         if (!parseInput()) {
             return;
         }
@@ -53,13 +53,13 @@ public class ViewModel {
         switchEnabledButtons();
     }
 
-    public void Remove() {
+    public void remove() {
         queue.pop();
         outputQueue = queue.toString();
         switchEnabledButtons();
     }
 
-    public void Clear() {
+    public void clear() {
         queue.clear();
         outputQueue = queue.toString();
         switchEnabledButtons();
@@ -71,8 +71,7 @@ public class ViewModel {
                 state = State.WAITING_FOR_INPUT;
                 isAddButtonEnabled = false;
                 return isAddButtonEnabled;
-            }
-            else{
+            } else {
                 Double.parseDouble(newElem);
             }
         } catch (Exception e) {
@@ -98,7 +97,7 @@ public class ViewModel {
         public static final String WAITING_FOR_INPUT = "Waiting new element";
         public static final String READY_TO_ADD = "Ready to add element";
         public static final String INVALID_FORMAT = "Invalid format";
-
+        private State() { }
     }
 
     public boolean isAddButtonEnabled() {
@@ -113,11 +112,11 @@ public class ViewModel {
         return isClearButtonEnabled;
     }
 
-    private void switchEnabledButtons(){
-        if(queue.isEmpty()){
+    private void switchEnabledButtons() {
+        if (queue.isEmpty()) {
             isRemoveButtonEnabled = false;
             isClearButtonEnabled = false;
-        }else{
+        } else {
             isRemoveButtonEnabled = true;
             isClearButtonEnabled = true;
         }
