@@ -189,3 +189,7 @@ include "code/conway-game/Model"
 project(":code/conway-game/Model").name = "conway-game-Model"
 include "code/conway-game/ViewModel"
 project(":code/conway-game/ViewModel").name = "conway-game-ViewModel"
+
+// Moskalenko Viktor, Calculator
+include "code/moskalenko-viktor-calculator"
+project(":code/moskalenko-viktor-calculator").name = "moskalenko-viktor-calculator"
