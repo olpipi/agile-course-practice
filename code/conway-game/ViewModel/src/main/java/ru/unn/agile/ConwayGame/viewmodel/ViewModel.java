@@ -33,6 +33,11 @@ public class ViewModel {
         output.set("");
         status.set(Status.WAITING.toString());
 
+        bindingCreationGrid();
+        bindingSubmition();
+    }
+
+    private void bindingCreationGrid() {
         BooleanBinding couldCreateGrid = new BooleanBinding() {
             {
                 super.bind(rowsNumber, columnsNumber);
@@ -49,12 +54,10 @@ public class ViewModel {
             add(columnsNumber);
         } };
 
-        for (StringProperty size : sizes) {
-            final ValueChangeListener listener = new ValueChangeListener();
-            size.addListener(listener);
-            valueChangedListeners.add(listener);
-        }
+        additionListener(sizes);
+    }
 
+    private void bindingSubmition() {
         BooleanBinding couldSubmit = new BooleanBinding() {
             {
                 super.bind(firstGeneration);
@@ -70,9 +73,13 @@ public class ViewModel {
             add(firstGeneration);
         } };
 
-        for (StringProperty field : fields) {
+        additionListener(fields);
+    }
+
+    private void additionListener(final List<StringProperty> properties) {
+        for (StringProperty property : properties) {
             final ValueChangeListener listener = new ValueChangeListener();
-            field.addListener(listener);
+            property.addListener(listener);
             valueChangedListeners.add(listener);
         }
     }

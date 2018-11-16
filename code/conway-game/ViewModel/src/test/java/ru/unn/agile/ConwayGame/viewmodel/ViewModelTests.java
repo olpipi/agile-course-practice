@@ -26,7 +26,7 @@ public class ViewModelTests {
         assertEquals("", viewModel.firstGenerationProperty().get());
         assertEquals("", viewModel.inputProperty().get());
         assertEquals("", viewModel.outputProperty().get());
-        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.getStatus());
 
     }
 
@@ -34,28 +34,28 @@ public class ViewModelTests {
     public void statusItWaitingWhenBlankFields() {
         viewModel.calculateNextGeneration();
 
-        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.getStatus());
     }
 
     @Test
     public void statusIsReadyToSetWhenFieldsAreCorrectlyFilled() {
         setInputSizes();
 
-        assertEquals(Status.READY_TO_SET.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.READY_TO_SET.toString(), viewModel.getStatus());
     }
 
     @Test
     public void canReportBadFormat() {
         viewModel.rowsNumberProperty().set("q");
 
-        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatus());
     }
 
     @Test
     public void canWaitIfNoAllFieldsAreFilled() {
         viewModel.rowsNumberProperty().set("5");
 
-        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.getStatus());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class ViewModelTests {
         viewModel.rowsNumberProperty().set("5");
         viewModel.columnsNumberProperty().set("q");
 
-        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatus());
     }
 
     @Test
@@ -71,35 +71,35 @@ public class ViewModelTests {
         viewModel.rowsNumberProperty().set("5");
         viewModel.columnsNumberProperty().set("q");
 
-        assertTrue(viewModel.creationGridDisabledProperty().get());
+        assertTrue(viewModel.isCreationGridDisabled());
     }
 
     @Test
     public void isCreateGridDisableWhenBlankFields() {
         viewModel.rowsNumberProperty().set("7");
 
-        assertTrue(viewModel.creationGridDisabledProperty().get());
+        assertTrue(viewModel.isCreationGridDisabled());
     }
 
     @Test
     public void isCreateGridDisableWhenBadStatus() {
         viewModel.statusProperty().set(Status.BAD_FORMAT.toString());
 
-        assertTrue(viewModel.creationGridDisabledProperty().get());
+        assertTrue(viewModel.isCreationGridDisabled());
     }
 
     @Test
     public void isCreateGridAbleWithGoodSizes() {
         setInputSizes();
 
-        assertFalse(viewModel.creationGridDisabledProperty().get());
+        assertFalse(viewModel.isCreationGridDisabled());
     }
 
     @Test
     public void isSubmitAble() {
         setInputSizesAndData();
 
-        assertFalse(viewModel.submitionDisabledProperty().get());
+        assertFalse(viewModel.isSubmitionDisabled());
     }
 
     @Test
@@ -107,7 +107,7 @@ public class ViewModelTests {
         setInputSizes();
         viewModel.firstGenerationProperty().set("");
 
-        assertTrue(viewModel.submitionDisabledProperty().get());
+        assertTrue(viewModel.isSubmitionDisabled());
     }
 
     @Test
@@ -115,7 +115,7 @@ public class ViewModelTests {
         setInputSizes();
         viewModel.firstGenerationProperty().set("..*");
 
-        assertEquals(Status.READY_TO_SET.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.READY_TO_SET.toString(), viewModel.getStatus());
     }
 
     @Test
@@ -123,7 +123,7 @@ public class ViewModelTests {
         setInputSizes();
         viewModel.firstGenerationProperty().set("..**.");
 
-        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatus());
     }
 
     @Test
@@ -131,21 +131,21 @@ public class ViewModelTests {
         setInputSizes();
         viewModel.firstGenerationProperty().set("..*k");
 
-        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatus());
     }
 
     @Test
     public void isFirstGenerationGood() {
         setInputSizesAndData();
 
-        assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.READY.toString(), viewModel.getStatus());
     }
 
     @Test
     public void isSubmitAbleWithGoodData() {
         setInputSizesAndData();
 
-        assertFalse(viewModel.submitionDisabledProperty().get());
+        assertFalse(viewModel.isSubmitionDisabled());
     }
 
     @Test
@@ -156,7 +156,7 @@ public class ViewModelTests {
 
         viewModel.calculateNextGeneration();
 
-        assertEquals("*.*\n*.*\n", viewModel.inputProperty().get());
+        assertEquals("*.*\n*.*\n", viewModel.getInput());
     }
 
     @Test
@@ -167,7 +167,7 @@ public class ViewModelTests {
 
         viewModel.calculateNextGeneration();
 
-        assertEquals(".\n", viewModel.outputProperty().get());
+        assertEquals(".\n", viewModel.getOutput());
     }
 
     @Test
@@ -178,7 +178,7 @@ public class ViewModelTests {
 
         viewModel.calculateNextGeneration();
 
-        assertEquals("........\n...**...\n...**...\n........\n", viewModel.outputProperty().get());
+        assertEquals("........\n...**...\n...**...\n........\n", viewModel.getOutput());
     }
 
     private void setInputSizes() {
