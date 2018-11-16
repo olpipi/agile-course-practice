@@ -60,7 +60,7 @@ public class ConwayGameTest {
     }
 
     @Test
-    public void canGetNextGenerationSmallPlaground() {
+    public void canGetNextGenerationSmallPlayground() {
         ConwayGame game = new ConwayGame(1, 1);
 
         game.setGeneration("*");
