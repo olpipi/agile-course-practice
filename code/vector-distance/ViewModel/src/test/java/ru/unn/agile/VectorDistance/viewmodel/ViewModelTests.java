@@ -172,9 +172,59 @@ public class ViewModelTests {
         assertEquals(VectorDistance.THE_SAME_LENGTH_VECTOR_EXCEPTION_MESSAGE, viewModel.resultProperty().get());
     }
 
+    @Test
+    public void canCalculateL1Distance() {
+        viewModel.vectorXProperty().set("1 2 3");
+        viewModel.vectorYProperty().set("4 5 6");
+
+        viewModel.calculate();
+
+        assertEquals("9.0", viewModel.resultProperty().get());
+    }
+
+    @Test
+    public void canComputeL2Distance() {
+        setInputData();
+        viewModel.distanceProperty().set(Distance.L2);
+
+        viewModel.calculate();
+
+        assertEquals("5.196152", viewModel.resultProperty().get());
+    }
+
+    @Test
+    public void canComputeL3Distance() {
+        setInputData();
+        viewModel.distanceProperty().set(Distance.L3);
+
+        viewModel.calculate();
+
+        assertEquals("4.326749", viewModel.resultProperty().get());
+    }
+
+    @Test
+    public void canComputeL4Distance() {
+        setInputData();
+        viewModel.distanceProperty().set(Distance.L4);
+
+        viewModel.calculate();
+
+        assertEquals("3.948222", viewModel.resultProperty().get());
+    }
+
+    @Test
+    public void canComputeLinfDistance() {
+        setInputData();
+        viewModel.distanceProperty().set(Distance.Linf);
+
+        viewModel.calculate();
+
+        assertEquals("3.0", viewModel.resultProperty().get());
+    }
+
     private void setInputData() {
-        viewModel.vectorXProperty().set("1");
-        viewModel.vectorYProperty().set("1");
+        viewModel.vectorXProperty().set("1 2 3");
+        viewModel.vectorYProperty().set("4 5 6");
     }
 
 }
