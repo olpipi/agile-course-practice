@@ -41,5 +41,11 @@ public class ViewModelTests {
         assertEquals(Distance.L1, viewModel.distanceProperty().get());
     }
 
+    @Test
+    public void statusIsWaitingWhenCalculateWithEmptyFields() {
+        viewModel.calculate();
+        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+    }
+
 
 }

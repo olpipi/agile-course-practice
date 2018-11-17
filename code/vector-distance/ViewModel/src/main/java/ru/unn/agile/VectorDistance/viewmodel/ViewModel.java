@@ -31,6 +31,11 @@ public class ViewModel {
         distance.set(Distance.L1);
     }
 
+
+    public void calculate() {
+
+    }
+
     public ObjectProperty<Distance> distanceProperty() {
         return distance;
     }
