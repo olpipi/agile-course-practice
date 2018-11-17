@@ -76,12 +76,10 @@ public class ViewModel {
                     addTgtCodeProp.get(),
                     Double.parseDouble(addRateStrProp.get())
             );
-        }
-        catch (NumberFormatException exc) {
+        } catch (NumberFormatException exc) {
             resultProp.set("Не удалось распознать число: \"" + addRateStrProp.get() + "\"");
             return;
-        }
-        catch (CurrencyConverterException exc) {
+        } catch (CurrencyConverterException exc) {
             resultProp.set("Ошибка: " + exc.getMessage());
             return;
         }
@@ -92,5 +90,35 @@ public class ViewModel {
         }
 
         resultProp.set("");
+    }
+
+    public void convertCurrency() {
+        Double amount, res;
+
+        try {
+            amount = Double.parseDouble(convAmountProp.get());
+        }
+        catch (NumberFormatException exc) {
+            resultProp.set("Не удалось распознать число: \"" + convAmountProp.get() + "\"");
+            return;
+        }
+
+        try {
+            res = currencyConverter.convert(
+                    convSrcCodeProp.get(),
+                    convTgtCodeProp.get(),
+                    amount
+            );
+        }
+        catch (CurrencyConverterException exc) {
+            resultProp.set("Ошибка: " + exc.getMessage());
+            return;
+        }
+
+        resultProp.set(String.format("%s %s = %s %s",
+                amount,
+                convSrcCodeProp.get(),
+                res,
+                convTgtCodeProp.get()));
     }
 }
