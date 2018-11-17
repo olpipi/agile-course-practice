@@ -131,4 +131,15 @@ public class ViewModelTests {
         viewModel.vectorXProperty().set("1");
         viewModel.vectorYProperty().set("1");
     }
+
+    @Test
+    public void canReportCalculationErrors() {
+        setInputData();
+        viewModel.vectorXProperty().set("1 2");
+
+        viewModel.calculate();
+
+        assertEquals("", viewModel.resultProperty().get());
+    }
+
 }
