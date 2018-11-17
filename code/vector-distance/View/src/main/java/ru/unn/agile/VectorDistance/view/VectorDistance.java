@@ -24,6 +24,10 @@ public class VectorDistance {
     private Label lbStatus;
     @FXML
     void initialize() {
+        txtVectorX.textProperty().bindBidirectional(viewModel.vectorXProperty());
+        txtVectorY.textProperty().bindBidirectional(viewModel.vectorYProperty());
+        lbResult.textProperty().bindBidirectional(viewModel.resultProperty());
+        lbStatus.textProperty().bindBidirectional(viewModel.statusProperty());
         cbDistances.valueProperty().bindBidirectional(viewModel.distanceProperty());
     }
 }
