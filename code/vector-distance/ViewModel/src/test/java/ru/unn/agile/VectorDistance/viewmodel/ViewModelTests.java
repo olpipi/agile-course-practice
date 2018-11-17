@@ -23,7 +23,11 @@ public class ViewModelTests {
 
     @Test
     public void canSetDefaultValues() {
-        fail();
+        assertEquals("", viewModel.vectorXProperty().get());
+        assertEquals("", viewModel.vectorYProperty().get());
+        assertEquals(Distance.L1, viewModel.distanceProperty().get());
+        assertEquals("", viewModel.resultProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
     }
 
     @Test
