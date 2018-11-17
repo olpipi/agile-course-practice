@@ -7,8 +7,8 @@ include "code/oleneva-intersect-line-and-plane"
 project(":code/oleneva-intersect-line-and-plane").name = "code/oleneva-intersect-line-and-plane"
 
 // Pozdiaev Valerii
-include "code/pozdiaev-valerii-currency-converter"
-project(":code/pozdiaev-valerii-currency-converter").name = "pozdiaev-valerii-currency-converter"
+include "code/currency-converter"
+project(":code/currency-converter").name = "currency-converter"
 
 // nickshevr
 include("code/nickshevr-numerical-integration")
