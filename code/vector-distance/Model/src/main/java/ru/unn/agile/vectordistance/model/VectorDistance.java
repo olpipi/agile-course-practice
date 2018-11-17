@@ -66,4 +66,12 @@ public final class VectorDistance {
                 "Expected vectors of same length");
         }
     }
+
+    public enum Distance {
+        L1("L1") {
+
+        };
+
+        Distance(final String name) {}
+    }
 }
