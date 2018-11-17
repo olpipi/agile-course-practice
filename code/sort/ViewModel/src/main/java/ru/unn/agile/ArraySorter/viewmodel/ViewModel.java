@@ -7,12 +7,14 @@ import java.util.ArrayList;
 public class ViewModel {
     private String newElem;
     private String outputArray;
+    private String status;
 
     ArrayList<Double> Array = new ArrayList<Double>();
 
     public ViewModel() {
         newElem = "";
         outputArray = "";
+        status = Status.WAITING;
 
     }
 
@@ -59,5 +61,16 @@ public class ViewModel {
             Array.set(i, nativeArray[i]);
 
         outputArray =  Array.toString();
+    }
+
+    public String getCurrentState() { return status; }
+
+    public final class Status {
+        public static final String WAITING = "Waiting new element";
+        public static final String READY = "Ready to add new element";
+        public static final String BAD_FORMAT = "Bad format";
+        public static final String SUCCESSFUL = "Sort of array is successful";
+
+        private Status() { }
     }
 }

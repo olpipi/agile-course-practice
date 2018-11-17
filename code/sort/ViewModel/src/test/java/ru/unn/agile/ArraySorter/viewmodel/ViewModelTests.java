@@ -1,5 +1,7 @@
 package ru.unn.agile.ArraySorter.viewmodel;
 
+import ru.unn.agile.ArraySorter.viewmodel.ViewModel.Status;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +24,8 @@ public class ViewModelTests {
     @Test
     public void canSetDefaultValues() {
         assertEquals("", viewModel.getNewElem());
+        assertEquals("", viewModel.getOutputArray());
+        assertEquals(Status.WAITING, viewModel.getCurrentState());
     }
 
     @Test
@@ -97,4 +101,9 @@ public class ViewModelTests {
 
         assertEquals("[-4.0, -0.4, 3.1, 10.2, 13.0, 15.2, 28.1]", viewModel.getOutputArray());
     }
+
+    @Test
+    public void  isWaitingStatusWhenLaunch() { assertEquals(Status.WAITING, viewModel.getCurrentState()); }
+
+
 }
