@@ -32,6 +32,10 @@ public class ViewModelTests {
         assertEquals(Distance.L1, viewModel.distanceProperty().get());
     }
 
+    @Test
+    public void L1DistanceIsDefaultDistance() {
+        assertEquals(Distance.L1, viewModel.distanceProperty().get());
+    }
 
 
 }
