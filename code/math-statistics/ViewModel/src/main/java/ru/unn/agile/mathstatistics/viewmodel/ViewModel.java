@@ -43,7 +43,7 @@ public class ViewModel {
 
     public boolean checkDistributionUnit() {
         if (!isDistributionUnitCorrect()) {
-            statusMessageText = Status.BAD_INPUT_FORMAT;
+            statusMessageText = Status.BAD_DISTRIBUTION_UNIT_FORMAT;
             isAddToDistributionButtonEnabled = false;
 
             return false;
@@ -61,34 +61,7 @@ public class ViewModel {
         Double value = Double.parseDouble(valueText);
         Double probability = Double.parseDouble(probabilityText);
 
-        try {
-            ProbabilityValidator.validate(probability);
-        } catch (IllegalArgumentException e) {
-            statusMessageText = Status.BAD_PROBABILITY_VALUE;
-            return;
-        }
-
-        values.add(value);
-        probabilities.add(probability);
-
-        NormalizationConditionChecker.Status status =
-                NormalizationConditionChecker.check((Double[])probabilities.toArray());
-        if (status == NormalizationConditionChecker.Status.CONDITION_IS_MET) {
-            statusMessageText = Status.CALCULATE_READY;
-            isAddToDistributionButtonEnabled = false;
-            isCalculateButtonEnabled = true;
-
-            return;
-        }
-        if (status == NormalizationConditionChecker.Status.BETWEEN_ZERO_AND_ONE) {
-            statusMessageText = Status.WAITING;
-
-            return;
-        }
-
-        statusMessageText = Status.INCORRECT_PROBABILITIES_SUM;
-        values.remove(values.size() - 1);
-        probabilities.remove(probabilities.size() - 1);
+        processDistributionUnit(value, probability);
     }
 
     public boolean isOrderTextEnabled() {
@@ -177,13 +150,49 @@ public class ViewModel {
     public final class Status {
         public static final String WAITING = "Please provide input data";
         public static final String ADD_TO_DISTRIBUTION_READY = "Press 'Add to distribution'";
+        public static final String ADD_TO_DISTRIBUTION_SUCCESS = "Add to distribution successfully";
         public static final String BAD_PROBABILITY_VALUE = "Bad probability value. Should be 0 <= p <= 1";
         public static final String INCORRECT_PROBABILITIES_SUM = "Bad probabilities sum. Should be equal to 1";
         public static final String CALCULATE_READY = "Press 'Calculate'";
-        public static final String BAD_INPUT_FORMAT = "Bad input format";
+        public static final String BAD_DISTRIBUTION_UNIT_FORMAT = "Bad distribution unit format";
         public static final String SUCCESS = "Success";
 
-        private Status() { }
+        private Status() {
+        }
+    }
+
+    private void processDistributionUnit(Double value, Double probability) {
+        try {
+            ProbabilityValidator.validate(probability);
+        } catch (IllegalArgumentException e) {
+            statusMessageText = Status.BAD_PROBABILITY_VALUE;
+
+            return;
+        }
+
+        values.add(value);
+        probabilities.add(probability);
+
+        Double[] nativeProbabilitiesArray = new Double[probabilities.size()];
+        NormalizationConditionChecker.Status status =
+                NormalizationConditionChecker.check(probabilities.toArray(nativeProbabilitiesArray));
+
+        if (status == NormalizationConditionChecker.Status.CONDITION_IS_MET) {
+            statusMessageText = Status.CALCULATE_READY;
+            isAddToDistributionButtonEnabled = false;
+            isCalculateButtonEnabled = true;
+
+            return;
+        }
+        if (status == NormalizationConditionChecker.Status.BETWEEN_ZERO_AND_ONE) {
+            statusMessageText = Status.ADD_TO_DISTRIBUTION_SUCCESS;
+
+            return;
+        }
+
+        statusMessageText = Status.INCORRECT_PROBABILITIES_SUM;
+        values.remove(values.size() - 1);
+        probabilities.remove(probabilities.size() - 1);
     }
 
     private boolean isDistributionUnitCorrect() {

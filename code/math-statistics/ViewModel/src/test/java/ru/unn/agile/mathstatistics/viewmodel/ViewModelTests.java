@@ -172,7 +172,8 @@ public class ViewModelTests {
 
         assertFalse(viewModel.checkDistributionUnit());
         assertFalse(viewModel.isAddToDistributionButtonEnabled());
-        assertEquals(Status.BAD_INPUT_FORMAT, viewModel.getStatusMessageText());
+        assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT,
+                viewModel.getStatusMessageText());
     }
 
     @Test
@@ -182,7 +183,8 @@ public class ViewModelTests {
 
         assertFalse(viewModel.checkDistributionUnit());
         assertFalse(viewModel.isAddToDistributionButtonEnabled());
-        assertEquals(Status.BAD_INPUT_FORMAT, viewModel.getStatusMessageText());
+        assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT,
+                viewModel.getStatusMessageText());
     }
 
     @Test
@@ -192,7 +194,8 @@ public class ViewModelTests {
 
         assertFalse(viewModel.checkDistributionUnit());
         assertFalse(viewModel.isAddToDistributionButtonEnabled());
-        assertEquals(Status.BAD_INPUT_FORMAT, viewModel.getStatusMessageText());
+        assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT,
+                viewModel.getStatusMessageText());
     }
 
     @Test
@@ -202,7 +205,8 @@ public class ViewModelTests {
 
         assertFalse(viewModel.checkDistributionUnit());
         assertFalse(viewModel.isAddToDistributionButtonEnabled());
-        assertEquals(Status.BAD_INPUT_FORMAT, viewModel.getStatusMessageText());
+        assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT,
+                viewModel.getStatusMessageText());
     }
 
     @Test
@@ -212,6 +216,18 @@ public class ViewModelTests {
 
         viewModel.addToDistributionProcess();
 
-        assertEquals(Status.BAD_PROBABILITY_VALUE, viewModel.getStatusMessageText());
+        assertEquals(Status.BAD_PROBABILITY_VALUE,
+                viewModel.getStatusMessageText());
+    }
+
+    @Test
+    public void canDetectCorrectDistributionUnitByAddToDistributionProcess() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("0.5");
+
+        viewModel.addToDistributionProcess();
+
+        assertEquals(Status.ADD_TO_DISTRIBUTION_SUCCESS,
+                viewModel.getStatusMessageText());
     }
 }
