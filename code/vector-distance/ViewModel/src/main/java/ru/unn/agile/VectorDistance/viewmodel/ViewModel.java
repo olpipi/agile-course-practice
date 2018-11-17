@@ -64,6 +64,9 @@ public class ViewModel {
     }
 
     public void calculate() {
+        if (calculationDisabled.get()) {
+            return;
+        }
 
         FloatVector a = getVectorFromInputString(vectorX.get());
         FloatVector b = getVectorFromInputString(vectorY.get());

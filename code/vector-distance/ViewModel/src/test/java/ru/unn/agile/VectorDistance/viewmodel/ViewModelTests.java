@@ -110,9 +110,25 @@ public class ViewModelTests {
 
     @Test
     public void canReportReady() {
-        viewModel.vectorXProperty().set("1");
-        viewModel.vectorYProperty().set("1");
+        setInputData();
 
         assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
+    }
+    @Test
+    public void calculateButtonIsDisabledWhenNoData() {
+        assertTrue(viewModel.calculationDisabledProperty().get());
+    }
+
+    @Test
+    public void calculateButtonIsDisabledWhenFormatIsBad() {
+        setInputData();
+        viewModel.vectorXProperty().set("trash");
+
+        assertTrue(viewModel.calculationDisabledProperty().get());
+    }
+
+    private void setInputData() {
+        viewModel.vectorXProperty().set("1");
+        viewModel.vectorYProperty().set("1");
     }
 }

@@ -17,7 +17,7 @@
       <Label layoutX="69.0" layoutY="107.0" text="Vector Y" />
       <TextField fx:id="txtVectorX" layoutX="161.0" layoutY="52.0" />
       <TextField fx:id="txtVectorY" layoutX="161.0" layoutY="103.0" />
-      <Button fx:id="btnCalc" layoutX="304.0" layoutY="168.0" mnemonicParsing="false" text="Calculate" />
+      <Button fx:id="btnCalc" defaultButton="true" disable="${viewModel.calculationDisabled}" layoutX="304.0" layoutY="168.0" mnemonicParsing="false" text="Calculate" />
       <Label layoutX="69.0" layoutY="222.0" text="Result" />
       <Label fx:id="lbResult" layoutX="222.0" layoutY="222.0" />
       <Label layoutX="27.0" layoutY="172.0" text="Choose Distance" />
