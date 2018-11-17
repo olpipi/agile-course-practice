@@ -1,7 +1,10 @@
 package ru.unn.agile.currencyconverter.viewmodel;
 
+import java.util.Map;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+
 import ru.unn.agile.currencyconverter.model.CurrencyConverter;
 
 public class ViewModel {
@@ -13,8 +16,10 @@ public class ViewModel {
     private StringProperty convTgtCodeStr = new SimpleStringProperty();
     private StringProperty convAmountStr = new SimpleStringProperty();
 
-    private StringProperty currPairsSrt = new SimpleStringProperty();
+    private StringProperty currPairsStr = new SimpleStringProperty();
     private StringProperty resultSrt = new SimpleStringProperty();
+
+    private CurrencyConverter currencyConverter = new CurrencyConverter();
 
     public StringProperty getAddSrcCodeStr() {
         return addSrcCodeStr;
@@ -40,8 +45,8 @@ public class ViewModel {
         return convAmountStr;
     }
 
-    public StringProperty getCurrPairsSrt() {
-        return currPairsSrt;
+    public StringProperty getCurrPairsStr() {
+        return currPairsStr;
     }
 
     public StringProperty getResultSrt() {
@@ -59,7 +64,28 @@ public class ViewModel {
         convSrcCodeStr.set("");
         convTgtCodeStr.set("");
         convAmountStr.set("");
-        currPairsSrt.set("");
+        currPairsStr.set("");
+        resultSrt.set("");
+    }
+
+    public void addCurrencyPair() {
+        try {
+            currencyConverter.addCurrencyPair(
+                    addSrcCodeStr.get(),
+                    addTgtCodeStr.get(),
+                    Double.parseDouble(addRateStr.get())
+            );
+        }
+        catch (NumberFormatException exc) {
+            resultSrt.set("Не удалось распознать число: " + addRateStr.get());
+            return;
+        }
+
+        Map<String, Double> currencyPairs = currencyConverter.getCurrencyPairs();
+        for (String pair : currencyPairs.keySet()) {
+            currPairsStr.set(currPairsStr.get() + pair + "\n");
+        }
+
         resultSrt.set("");
     }
 }
