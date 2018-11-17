@@ -75,4 +75,18 @@ public class ViewModelTests {
         assertEquals("9.0", viewModel.resultProperty().get());
     }
 
+    @Test
+    public void canReportBadFormatWhenSetVectorX() {
+        viewModel.vectorXProperty().set("a");
+
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void canReportBadFormatWhenSetVectorY() {
+        viewModel.vectorYProperty().set("a");
+
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+    }
+
 }
