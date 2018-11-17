@@ -24,14 +24,14 @@ public class ViewModelTest {
 
     @Test
     public void initViewModelWithDefaultFields() {
-        assertEquals("", viewModel.getAddSrcCodeStr().get());
-        assertEquals("", viewModel.getAddTgtCodeStr().get());
-        assertEquals("", viewModel.getAddRateStr().get());
-        assertEquals("", viewModel.getConvSrcCodeStr().get());
-        assertEquals("", viewModel.getConvTgtCodeStr().get());
-        assertEquals("", viewModel.getConvAmountStr().get());
-        assertEquals("", viewModel.getCurrPairsStr().get());
-        assertEquals("", viewModel.getResultSrt().get());
+        assertEquals("", viewModel.getAddSrcCodeProp().get());
+        assertEquals("", viewModel.getAddTgtCodeProp().get());
+        assertEquals("", viewModel.getAddRateStrProp().get());
+        assertEquals("", viewModel.getConvSrcCodeProp().get());
+        assertEquals("", viewModel.getConvTgtCodeProp().get());
+        assertEquals("", viewModel.getConvAmountProp().get());
+        assertEquals("", viewModel.getCurrPairsStr());
+        assertEquals("", viewModel.getResultStr());
     }
 
     @Test
@@ -39,8 +39,8 @@ public class ViewModelTest {
         setAddCurrencyInput("RUB", "USD", "30");
         viewModel.addCurrencyPair();
 
-        assertEquals("RUB/USD\n", viewModel.getCurrPairsStr().get());
-        assertEquals("", viewModel.getResultSrt().get());
+        assertEquals("RUB/USD\n", viewModel.getCurrPairsStr());
+        assertEquals("", viewModel.getResultStr());
     }
 
     @Test
@@ -51,11 +51,11 @@ public class ViewModelTest {
         setAddCurrencyInput("RUB", "EUR", "40");
         viewModel.addCurrencyPair();
 
-        String[] pairs = viewModel.getCurrPairsStr().get().split("\\r?\\n");
+        String[] pairs = viewModel.getCurrPairsStr().split("\\r?\\n");
         assertEquals(3, pairs.length);
         assertTrue(Arrays.asList(pairs).contains("RUB/USD"));
         assertTrue(Arrays.asList(pairs).contains("RUB/EUR"));
-        assertEquals("", viewModel.getResultSrt().get());
+        assertEquals("", viewModel.getResultStr());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class ViewModelTest {
         setAddCurrencyInput("RUB", "USB", "40.B");
         viewModel.addCurrencyPair();
 
-        assertEquals("Не удалось распознать число: \"40.B\"", viewModel.getResultSrt().get());
+        assertEquals("Не удалось распознать число: \"40.B\"", viewModel.getResultStr());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class ViewModelTest {
         setAddCurrencyInput("RUB", "USB", "");
         viewModel.addCurrencyPair();
 
-        assertEquals("Не удалось распознать число: \"\"", viewModel.getResultSrt().get());
+        assertEquals("Не удалось распознать число: \"\"", viewModel.getResultStr());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class ViewModelTest {
         setAddCurrencyInput("RB", "USB", "40");
         viewModel.addCurrencyPair();
 
-        assertEquals("Ошибка: Currency Codes don't meet the pattern", viewModel.getResultSrt().get());
+        assertEquals("Ошибка: Currency Codes don't meet the pattern", viewModel.getResultStr());
     }
 
     @Test
@@ -87,12 +87,12 @@ public class ViewModelTest {
         setAddCurrencyInput("RUB", "", "40");
         viewModel.addCurrencyPair();
 
-        assertEquals("Ошибка: Currency Codes don't meet the pattern", viewModel.getResultSrt().get());
+        assertEquals("Ошибка: Currency Codes don't meet the pattern", viewModel.getResultStr());
     }
 
     private void setAddCurrencyInput(String srcCodeStr, String tgtCodeStr, String rateStr) {
-        viewModel.getAddSrcCodeStr().set(srcCodeStr);
-        viewModel.getAddTgtCodeStr().set(tgtCodeStr);
-        viewModel.getAddRateStr().set(rateStr);
+        viewModel.getAddSrcCodeProp().set(srcCodeStr);
+        viewModel.getAddTgtCodeProp().set(tgtCodeStr);
+        viewModel.getAddRateStrProp().set(rateStr);
     }
 }
