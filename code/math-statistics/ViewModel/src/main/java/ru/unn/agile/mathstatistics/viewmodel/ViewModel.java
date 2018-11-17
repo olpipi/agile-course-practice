@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class ViewModel {
     private ArrayList<Number> values;
     private ArrayList<Double> probabilities;
+    private ArrayList<String> distributionUnits;
 
     private String valueText;
     private String probabilityText;
@@ -25,6 +26,7 @@ public class ViewModel {
     public ViewModel() {
         values = new ArrayList<Number>();
         probabilities = new ArrayList<Double>();
+        distributionUnits = new ArrayList<String>();
 
         valueText = "";
         probabilityText = "";
@@ -62,6 +64,10 @@ public class ViewModel {
         Double probability = Double.parseDouble(probabilityText);
 
         processDistributionUnit(value, probability);
+    }
+
+    public ArrayList<String> getDistributionUnits() {
+        return distributionUnits;
     }
 
     public boolean isOrderTextEnabled() {
@@ -186,6 +192,7 @@ public class ViewModel {
         }
         if (status == NormalizationConditionChecker.Status.BETWEEN_ZERO_AND_ONE) {
             statusMessageText = Status.ADD_TO_DISTRIBUTION_SUCCESS;
+            applyDistributionUnit(value, probability);
 
             return;
         }
@@ -193,6 +200,13 @@ public class ViewModel {
         statusMessageText = Status.INCORRECT_PROBABILITIES_SUM;
         values.remove(values.size() - 1);
         probabilities.remove(probabilities.size() - 1);
+    }
+
+    private void applyDistributionUnit(Double value, Double probability) {
+        String distributionUnit =
+                "(" + value.toString() + ", " + probability.toString() + ")";
+
+        distributionUnits.add(distributionUnit);
     }
 
     private boolean isDistributionUnitCorrect() {
