@@ -32,8 +32,8 @@ public final class DistributionValidator {
             ProbabilityValidator.validate(probabilities[i]);
         }
 
-        if (NormalizationConditionChecker.check(probabilities) !=
-                NormalizationConditionChecker.Status.CONDITION_IS_MET) {
+        if (NormalizationConditionChecker.check(probabilities)
+                != NormalizationConditionChecker.Status.CONDITION_IS_MET) {
             throw new IllegalArgumentException("Normalization condition is not satisfied!");
         }
     }

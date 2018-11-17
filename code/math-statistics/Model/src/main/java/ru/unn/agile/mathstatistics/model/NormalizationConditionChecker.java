@@ -1,9 +1,9 @@
 package ru.unn.agile.mathstatistics.model;
 
-public class NormalizationConditionChecker {
+public final class NormalizationConditionChecker {
     public static final Double EPSILON = 1e-3;
 
-    public static Double EXPECTED_PROBABILITIES_SUM = 1.0;
+    public static final Double EXPECTED_PROBABILITIES_SUM = 1.0;
 
     public enum Status {
         CONDITION_IS_MET,

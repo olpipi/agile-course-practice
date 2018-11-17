@@ -1,7 +1,7 @@
 package ru.unn.agile.mathstatistics.model;
 
-public class ArrayValidator {
-    public static <T> void validate(T[] array) {
+public final class ArrayValidator {
+    public static <T> void validate(final T[] array) {
         if (array == null) {
             throw new IllegalArgumentException("Array should be initialized!");
         }

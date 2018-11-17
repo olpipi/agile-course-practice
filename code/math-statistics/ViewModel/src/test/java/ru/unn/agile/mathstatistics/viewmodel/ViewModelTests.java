@@ -318,13 +318,13 @@ public class ViewModelTests {
 
         ArrayList<String> distributionUnits = viewModel.getDistributionUnits();
         assertTrue(distributionUnits.isEmpty());
-        assertEquals("", viewModel.getValueText());
         assertEquals("", viewModel.getProbabilityText());
+        assertEquals("", viewModel.getValueText());
         assertEquals(Operation.EXPECTED_VALUE, viewModel.getOperation());
-        assertEquals("", viewModel.getMomentOrderText());
-        assertEquals("", viewModel.getMomentOffsetText());
         assertEquals("", viewModel.getResultText());
         assertEquals(Status.WAITING, viewModel.getStatusMessageText());
+        assertEquals("", viewModel.getMomentOffsetText());
+        assertEquals("", viewModel.getMomentOrderText());
     }
 
     @Test

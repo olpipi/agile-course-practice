@@ -8,8 +8,8 @@ public class ProbabilityValidatorTests {
 
     @Test(expected = Test.None.class)
     public void canDetectCorrectProbability() {
-        Double probability = (ProbabilityValidator.UPPER_PROBABILITY_BOUND +
-                ProbabilityValidator.LOWER_PROBABILITY_BOUND) / 2.0;
+        Double probability = (ProbabilityValidator.UPPER_PROBABILITY_BOUND
+                + ProbabilityValidator.LOWER_PROBABILITY_BOUND) / 2.0;
 
         ProbabilityValidator.validate(probability);
     }
