@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
+import java.util.List;
 
 public final class MathStatisticsCalculator {
     private JTextField valueText;
@@ -159,7 +159,7 @@ public final class MathStatisticsCalculator {
         statusMessageLabel.setText(viewModel.getStatusMessageText());
         resultText.setText(viewModel.getResultText());
 
-        ArrayList<String> distributionUnits = viewModel.getDistributionUnits();
+        List<String> distributionUnits = viewModel.getDistributionUnits();
         sampleTextArea.setText(distributionUnits.toString());
     }
 }

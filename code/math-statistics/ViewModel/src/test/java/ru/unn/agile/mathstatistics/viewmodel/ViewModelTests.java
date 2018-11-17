@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 import ru.unn.agile.mathstatistics.viewmodel.ViewModel.Operation;
 import ru.unn.agile.mathstatistics.viewmodel.ViewModel.Status;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ViewModelTests {
     private ViewModel viewModel;
@@ -167,8 +167,7 @@ public class ViewModelTests {
         viewModel.setProbabilityText("1");
 
         assertFalse(viewModel.checkDistributionUnit());
-        assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT,
-                viewModel.getStatusMessageText());
+        assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT, viewModel.getStatusMessageText());
     }
 
     @Test
@@ -177,8 +176,7 @@ public class ViewModelTests {
         viewModel.setProbabilityText("");
 
         assertFalse(viewModel.checkDistributionUnit());
-        assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT,
-                viewModel.getStatusMessageText());
+        assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT, viewModel.getStatusMessageText());
     }
 
     @Test
@@ -187,8 +185,7 @@ public class ViewModelTests {
         viewModel.setProbabilityText("1");
 
         assertFalse(viewModel.checkDistributionUnit());
-        assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT,
-                viewModel.getStatusMessageText());
+        assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT, viewModel.getStatusMessageText());
     }
 
     @Test
@@ -197,8 +194,7 @@ public class ViewModelTests {
         viewModel.setProbabilityText("abc");
 
         assertFalse(viewModel.checkDistributionUnit());
-        assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT,
-                viewModel.getStatusMessageText());
+        assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT, viewModel.getStatusMessageText());
     }
 
     @Test
@@ -209,8 +205,7 @@ public class ViewModelTests {
         viewModel.addToDistributionProcess();
 
         assertFalse(viewModel.isCalculateButtonEnabled());
-        assertEquals(Status.BAD_PROBABILITY_VALUE,
-                viewModel.getStatusMessageText());
+        assertEquals(Status.BAD_PROBABILITY_VALUE, viewModel.getStatusMessageText());
     }
 
     @Test
@@ -248,8 +243,7 @@ public class ViewModelTests {
         viewModel.addToDistributionProcess();
 
         assertFalse(viewModel.isCalculateButtonEnabled());
-        assertEquals(Status.INCORRECT_PROBABILITIES_SUM,
-                viewModel.getStatusMessageText());
+        assertEquals(Status.INCORRECT_PROBABILITIES_SUM, viewModel.getStatusMessageText());
     }
 
     @Test
@@ -302,7 +296,7 @@ public class ViewModelTests {
 
         viewModel.resetProcess();
 
-        ArrayList<String> distributionUnits = viewModel.getDistributionUnits();
+        List<String> distributionUnits = viewModel.getDistributionUnits();
         assertTrue(distributionUnits.isEmpty());
         assertEquals("", viewModel.getProbabilityText());
         assertEquals("", viewModel.getValueText());
@@ -368,8 +362,7 @@ public class ViewModelTests {
 
         String resultText = viewModel.getResultText();
         assertTrue(resultText.isEmpty());
-        assertEquals(Status.BAD_MOMENT_ORDER_FORMAT,
-                viewModel.getStatusMessageText());
+        assertEquals(Status.BAD_MOMENT_ORDER_FORMAT, viewModel.getStatusMessageText());
     }
 
     @Test
@@ -401,8 +394,7 @@ public class ViewModelTests {
 
         String resultText = viewModel.getResultText();
         assertTrue(resultText.isEmpty());
-        assertEquals(Status.BAD_MOMENT_ORDER_FORMAT,
-                viewModel.getStatusMessageText());
+        assertEquals(Status.BAD_MOMENT_ORDER_FORMAT, viewModel.getStatusMessageText());
     }
 
     @Test
@@ -418,7 +410,6 @@ public class ViewModelTests {
 
         String resultText = viewModel.getResultText();
         assertTrue(resultText.isEmpty());
-        assertEquals(Status.BAD_MOMENT_OFFSET_FORMAT,
-                viewModel.getStatusMessageText());
+        assertEquals(Status.BAD_MOMENT_OFFSET_FORMAT, viewModel.getStatusMessageText());
     }
 }

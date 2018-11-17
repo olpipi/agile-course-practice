@@ -3,11 +3,12 @@ package ru.unn.agile.mathstatistics.viewmodel;
 import ru.unn.agile.mathstatistics.model.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViewModel {
-    private ArrayList<Number> values;
-    private ArrayList<Double> probabilities;
-    private ArrayList<String> distributionUnits;
+    private List<Number> values;
+    private List<Double> probabilities;
+    private List<String> distributionUnits;
 
     private String valueText;
     private String probabilityText;
@@ -122,7 +123,7 @@ public class ViewModel {
         reset();
     }
 
-    public ArrayList<String> getDistributionUnits() {
+    public List<String> getDistributionUnits() {
         return distributionUnits;
     }
 
@@ -142,7 +143,7 @@ public class ViewModel {
         return valueText;
     }
 
-    public void setValueText(String valueText) {
+    public void setValueText(final String valueText) {
         this.valueText = valueText;
     }
 
@@ -150,7 +151,7 @@ public class ViewModel {
         return probabilityText;
     }
 
-    public void setProbabilityText(String probabilityText) {
+    public void setProbabilityText(final String probabilityText) {
         this.probabilityText = probabilityText;
     }
 
@@ -158,7 +159,7 @@ public class ViewModel {
         return momentOrderText;
     }
 
-    public void setMomentOrderText(String momentOrderText) {
+    public void setMomentOrderText(final String momentOrderText) {
         this.momentOrderText = momentOrderText;
     }
 
@@ -166,7 +167,7 @@ public class ViewModel {
         return momentOffsetText;
     }
 
-    public void setMomentOffsetText(String momentOffsetText) {
+    public void setMomentOffsetText(final String momentOffsetText) {
         this.momentOffsetText = momentOffsetText;
     }
 
@@ -217,11 +218,15 @@ public class ViewModel {
         public static final String WAITING = "Please provide input data";
         public static final String ADD_TO_DISTRIBUTION_READY = "Press 'Add to distribution'";
         public static final String BAD_DISTRIBUTION_UNIT_FORMAT = "Bad distribution unit format";
-        public static final String BAD_PROBABILITY_VALUE = "Bad probability value. Should be 0 <= p <= 1";
-        public static final String INCORRECT_PROBABILITIES_SUM = "Bad probabilities sum. Should be equal to 1";
-        public static final String ADD_TO_DISTRIBUTION_SUCCESS = "Add to distribution successfully";
+        public static final String BAD_PROBABILITY_VALUE =
+                "Bad probability value. Should be 0 <= p <= 1";
+        public static final String INCORRECT_PROBABILITIES_SUM =
+                "Bad probabilities sum. Should be equal to 1";
+        public static final String ADD_TO_DISTRIBUTION_SUCCESS =
+                "Add to distribution successfully";
         public static final String BAD_MOMENT_ORDER_FORMAT = "Bad moment order format";
-        public static final String BAD_MOMENT_ORDER_VALUE = "Moment order should be positive integer";
+        public static final String BAD_MOMENT_ORDER_VALUE =
+                "Moment order should be positive integer";
         public static final String BAD_MOMENT_OFFSET_FORMAT = "Bad moment offset format";
         public static final String CALCULATE_READY = "Press 'Calculate'";
         public static final String SUCCESS = "Success";
@@ -230,7 +235,8 @@ public class ViewModel {
         }
     }
 
-    private void processDistributionUnit(Double value, Double probability) {
+    private void processDistributionUnit(final Double value,
+                                         final Double probability) {
         try {
             ProbabilityValidator.validate(probability);
         } catch (IllegalArgumentException e) {
@@ -244,7 +250,8 @@ public class ViewModel {
 
         Double[] nativeProbabilitiesArray = new Double[probabilities.size()];
         NormalizationConditionChecker.Status status =
-                NormalizationConditionChecker.check(probabilities.toArray(nativeProbabilitiesArray));
+                NormalizationConditionChecker.check(
+                        probabilities.toArray(nativeProbabilitiesArray));
 
         if (status == NormalizationConditionChecker.Status.CONDITION_IS_MET) {
             statusMessageText = Status.CALCULATE_READY;
@@ -264,7 +271,8 @@ public class ViewModel {
         probabilities.remove(probabilities.size() - 1);
     }
 
-    private void applyDistributionUnit(Double value, Double probability) {
+    private void applyDistributionUnit(final Double value,
+                                       final Double probability) {
         String distributionUnit =
                 "(" + value.toString() + ", " + probability.toString() + ")";
 
@@ -314,52 +322,48 @@ public class ViewModel {
         return true;
     }
 
-    private void calculateExpectedValue(Number[] nativeValuesArray,
-                                        Double[] nativeProbabilitiesArray) {
-        Double expectedValue =
-                MathStatistics.calculateExpectedValue(nativeValuesArray,
+    private void calculateExpectedValue(final Number[] nativeValuesArray,
+                                        final Double[] nativeProbabilitiesArray) {
+        Double expectedValue = MathStatistics.calculateExpectedValue(nativeValuesArray,
                         nativeProbabilitiesArray);
 
         resultText = expectedValue.toString();
         statusMessageText = Status.SUCCESS;
     }
 
-    private void calculateDispersion(Number[] nativeValuesArray,
-                                     Double[] nativeProbabilitiesArray) {
-        Double dispersion =
-                MathStatistics.calculateDispersion(nativeValuesArray,
-                        nativeProbabilitiesArray);
+    private void calculateDispersion(final Number[] nativeValuesArray,
+                                     final Double[] nativeProbabilitiesArray) {
+        Double dispersion = MathStatistics.calculateDispersion(nativeValuesArray,
+                nativeProbabilitiesArray);
 
         resultText = dispersion.toString();
         statusMessageText = Status.SUCCESS;
     }
 
-    private void calculateInitialMoment(Number[] nativeValuesArray,
-                                        Double[] nativeProbabilitiesArray,
-                                        int order) {
-        Double initialMoment =
-                MathStatistics.calculateInitialMoment(nativeValuesArray,
-                        nativeProbabilitiesArray, order);
+    private void calculateInitialMoment(final Number[] nativeValuesArray,
+                                        final Double[] nativeProbabilitiesArray,
+                                        final int order) {
+        Double initialMoment = MathStatistics.calculateInitialMoment(nativeValuesArray,
+                nativeProbabilitiesArray, order);
 
         resultText = initialMoment.toString();
         statusMessageText = Status.SUCCESS;
     }
 
-    private void calculateCentralMoment(Number[] nativeValuesArray,
-                                        Double[] nativeProbabilitiesArray,
-                                        int order,
-                                        Number offset) {
-        Double centralMoment =
-                MathStatistics.calculateCentralMoment(nativeValuesArray,
-                        nativeProbabilitiesArray, order, offset);
+    private void calculateCentralMoment(final Number[] nativeValuesArray,
+                                        final Double[] nativeProbabilitiesArray,
+                                        final int order,
+                                        final Number offset) {
+        Double centralMoment = MathStatistics.calculateCentralMoment(nativeValuesArray,
+                nativeProbabilitiesArray, order, offset);
 
         resultText = centralMoment.toString();
         statusMessageText = Status.SUCCESS;
     }
 
-    private boolean isMomentOperation(Operation operation) {
-        return (operation == Operation.INITIAL_MOMENT) ||
-                (operation == Operation.CENTRAL_MOMENT);
+    private boolean isMomentOperation(final Operation operation) {
+        return (operation == Operation.INITIAL_MOMENT)
+                || (operation == Operation.CENTRAL_MOMENT);
     }
 
     private void reset() {
