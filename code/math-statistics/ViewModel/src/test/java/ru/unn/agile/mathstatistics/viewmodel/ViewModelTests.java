@@ -326,4 +326,113 @@ public class ViewModelTests {
         assertEquals("", viewModel.getResultText());
         assertEquals(Status.WAITING, viewModel.getStatusMessageText());
     }
+
+    @Test
+    public void canCalculateExpectedValue() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("1.0");
+        viewModel.addToDistributionProcess();
+        viewModel.setOperation(Operation.EXPECTED_VALUE);
+
+        viewModel.calculateProcess();
+
+        String resultText = viewModel.getResultText();
+        assertFalse(resultText.isEmpty());
+        assertEquals(Status.SUCCESS, viewModel.getStatusMessageText());
+    }
+
+    @Test
+    public void canCalculateDispersion() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("1.0");
+        viewModel.addToDistributionProcess();
+        viewModel.setOperation(Operation.DISPERSION);
+
+        viewModel.calculateProcess();
+
+        String resultText = viewModel.getResultText();
+        assertFalse(resultText.isEmpty());
+        assertEquals(Status.SUCCESS, viewModel.getStatusMessageText());
+    }
+
+    @Test
+    public void canCalculateInitialMoment() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("1.0");
+        viewModel.setMomentOrderText("2");
+        viewModel.addToDistributionProcess();
+        viewModel.setOperation(Operation.INITIAL_MOMENT);
+
+        viewModel.calculateProcess();
+
+        String resultText = viewModel.getResultText();
+        assertFalse(resultText.isEmpty());
+        assertEquals(Status.SUCCESS, viewModel.getStatusMessageText());
+    }
+
+    @Test
+    public void canDetectIncorrectOrderInInitialMomentCalculating() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("1.0");
+        viewModel.setMomentOrderText("abc");
+        viewModel.addToDistributionProcess();
+        viewModel.setOperation(Operation.INITIAL_MOMENT);
+
+        viewModel.calculateProcess();
+
+        String resultText = viewModel.getResultText();
+        assertTrue(resultText.isEmpty());
+        assertEquals(Status.BAD_MOMENT_ORDER_FORMAT,
+                viewModel.getStatusMessageText());
+    }
+
+    @Test
+    public void canCalculateCentralMoment() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("1.0");
+        viewModel.setMomentOrderText("1");
+        viewModel.setMomentOffsetText("5.5");
+        viewModel.addToDistributionProcess();
+        viewModel.setOperation(Operation.CENTRAL_MOMENT);
+
+        viewModel.calculateProcess();
+
+        String resultText = viewModel.getResultText();
+        assertFalse(resultText.isEmpty());
+        assertEquals(Status.SUCCESS, viewModel.getStatusMessageText());
+    }
+
+    @Test
+    public void canDetectIncorrectOrderInCentralMomentCalculating() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("1.0");
+        viewModel.setMomentOrderText("abc");
+        viewModel.setMomentOffsetText("5.5");
+        viewModel.addToDistributionProcess();
+        viewModel.setOperation(Operation.CENTRAL_MOMENT);
+
+        viewModel.calculateProcess();
+
+        String resultText = viewModel.getResultText();
+        assertTrue(resultText.isEmpty());
+        assertEquals(Status.BAD_MOMENT_ORDER_FORMAT,
+                viewModel.getStatusMessageText());
+    }
+
+    @Test
+    public void canDetectIncorrectOffsetInCentralMomentCalculating() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("1.0");
+        viewModel.setMomentOrderText("1");
+        viewModel.setMomentOffsetText("abc");
+        viewModel.addToDistributionProcess();
+        viewModel.setOperation(Operation.CENTRAL_MOMENT);
+
+        viewModel.calculateProcess();
+
+        String resultText = viewModel.getResultText();
+        assertTrue(resultText.isEmpty());
+        assertEquals(Status.BAD_MOMENT_OFFSET_FORMAT,
+                viewModel.getStatusMessageText());
+    }
 }

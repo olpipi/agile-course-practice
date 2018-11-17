@@ -74,13 +74,51 @@ public class ViewModel {
     }
 
     public void addToDistributionProcess() {
-        if (!checkDistributionUnit())
+        if (!checkDistributionUnit()) {
             return;
+        }
 
         Double value = Double.parseDouble(valueText);
         Double probability = Double.parseDouble(probabilityText);
 
         processDistributionUnit(value, probability);
+    }
+
+    public void calculateProcess() {
+        Number[] nativeValuesArray = new Number[values.size()];
+        values.toArray(nativeValuesArray);
+        Double[] nativeProbabilitiesArray = new Double[probabilities.size()];
+        probabilities.toArray(nativeProbabilitiesArray);
+
+        if (operation == Operation.EXPECTED_VALUE) {
+            calculateExpectedValue(nativeValuesArray,
+                    nativeProbabilitiesArray);
+        } else if (operation == Operation.DISPERSION) {
+            calculateDispersion(nativeValuesArray,
+                    nativeProbabilitiesArray);
+        } else if (operation == Operation.INITIAL_MOMENT) {
+            if (!checkMomentOrder()) {
+                return;
+            }
+
+            int order = Integer.parseInt(momentOrderText);
+
+            calculateInitialMoment(nativeValuesArray,
+                    nativeProbabilitiesArray, order);
+        } else if (operation == Operation.CENTRAL_MOMENT) {
+            if (!checkMomentOrder()) {
+                return;
+            }
+            if (!checkMomentOffset()) {
+                return;
+            }
+
+            int order = Integer.parseInt(momentOrderText);
+            Number offset = Double.parseDouble(momentOffsetText);
+
+            calculateCentralMoment(nativeValuesArray,
+                    nativeProbabilitiesArray, order, offset);
+        }
     }
 
     public void resetProcess() {
@@ -282,6 +320,49 @@ public class ViewModel {
         }
 
         return true;
+    }
+
+    private void calculateExpectedValue(Number[] nativeValuesArray,
+                                        Double[] nativeProbabilitiesArray) {
+        Double expectedValue =
+                MathStatistics.calculateExpectedValue(nativeValuesArray,
+                        nativeProbabilitiesArray);
+
+        resultText = expectedValue.toString();
+        statusMessageText = Status.SUCCESS;
+    }
+
+    private void calculateDispersion(Number[] nativeValuesArray,
+                                     Double[] nativeProbabilitiesArray) {
+        Double dispersion =
+                MathStatistics.calculateDispersion(nativeValuesArray,
+                        nativeProbabilitiesArray);
+
+        resultText = dispersion.toString();
+        statusMessageText = Status.SUCCESS;
+    }
+
+    private void calculateInitialMoment(Number[] nativeValuesArray,
+                                        Double[] nativeProbabilitiesArray,
+                                        int order) {
+        Double initialMoment =
+                MathStatistics.calculateInitialMoment(nativeValuesArray,
+                        nativeProbabilitiesArray, order);
+
+        resultText = initialMoment.toString();
+        statusMessageText = Status.SUCCESS;
+    }
+
+    private void calculateCentralMoment(Number[] nativeValuesArray,
+                                        Double[] nativeProbabilitiesArray,
+                                        int order,
+                                        Number offset) {
+        Double centralMoment =
+                MathStatistics.calculateCentralMoment(nativeValuesArray,
+                        nativeProbabilitiesArray, order, offset);
+
+        resultText = centralMoment.toString();
+        statusMessageText = Status.SUCCESS;
     }
 
     private boolean isMomentOperation(Operation operation) {
