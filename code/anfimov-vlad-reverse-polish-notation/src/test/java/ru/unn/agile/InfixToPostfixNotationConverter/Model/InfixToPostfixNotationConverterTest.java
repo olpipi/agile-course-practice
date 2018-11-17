@@ -22,7 +22,7 @@ public class InfixToPostfixNotationConverterTest {
     }
 
     @Test(expected = RuntimeException.class)
-    public void canCalculateInvalidExpressionWithoutBracket() {
+    public void conversionThrowsWhenNumbersLeftBracketsNotEqualsRightBrackets() {
         String input = "5 / (7 - (1 + 1))) * 5";
         InfixToPostfixNotationConverter.convert(input);
     }
