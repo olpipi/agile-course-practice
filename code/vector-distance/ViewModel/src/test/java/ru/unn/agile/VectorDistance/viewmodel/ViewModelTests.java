@@ -222,6 +222,17 @@ public class ViewModelTests {
         assertEquals("3.0", viewModel.resultProperty().get());
     }
 
+    @Test
+    public void canComputeDistanceWithFloatNumbers() {
+        viewModel.vectorXProperty().set("1.5");
+        viewModel.vectorYProperty().set("4.5");
+        viewModel.distanceProperty().set(Distance.Linf);
+
+        viewModel.calculate();
+
+        assertEquals("3.0", viewModel.resultProperty().get());
+    }
+
     private void setInputData() {
         viewModel.vectorXProperty().set("1 2 3");
         viewModel.vectorYProperty().set("4 5 6");
