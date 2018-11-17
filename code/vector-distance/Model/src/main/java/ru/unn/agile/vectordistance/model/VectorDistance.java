@@ -48,7 +48,26 @@ public final class VectorDistance {
                 return computeL1(a, b);
             }
         },
-        ;
+        L2("L2") {
+            public float apply(final FloatVector a, final FloatVector b) {
+                return computeL2(a, b);
+            }
+        },
+        L3("L3") {
+            public float apply(final FloatVector a, final FloatVector b) {
+                return computeL3(a, b);
+            }
+        },
+        L4("L4") {
+            public float apply(final FloatVector a, final FloatVector b) {
+                return computeL4(a, b);
+            }
+        },
+        Linf("Linf") {
+            public float apply(final FloatVector a, final FloatVector b) {
+                return computeLinf(a, b);
+            }
+        };
         private final String name;
         Distance(final String name) {
             this.name = name;

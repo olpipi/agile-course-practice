@@ -39,6 +39,34 @@ public class ViewModelTests {
     }
 
     @Test
+    public void canSetL2DistanceCalculation() {
+        viewModel.distanceProperty().set(Distance.L2);
+
+        assertEquals(Distance.L2, viewModel.distanceProperty().get());
+    }
+
+    @Test
+    public void canSetL3DistanceCalculation() {
+        viewModel.distanceProperty().set(Distance.L3);
+
+        assertEquals(Distance.L3, viewModel.distanceProperty().get());
+    }
+
+    @Test
+    public void canSetL4DistanceCalculation() {
+        viewModel.distanceProperty().set(Distance.L4);
+
+        assertEquals(Distance.L3, viewModel.distanceProperty().get());
+    }
+
+    @Test
+    public void canSetLinfDistanceCalculation() {
+        viewModel.distanceProperty().set(Distance.Linf);
+
+        assertEquals(Distance.Linf, viewModel.distanceProperty().get());
+    }
+
+    @Test
     public void L1DistanceIsDefaultDistance() {
         assertEquals(Distance.L1, viewModel.distanceProperty().get());
     }
@@ -67,15 +95,6 @@ public class ViewModelTests {
         viewModel.vectorYProperty().set("1 2 3");
 
         assertEquals(viewModel.vectorYProperty().get(), "1 2 3");
-    }
-
-    @Test
-    public void canCalculateL1Distance() {
-        viewModel.vectorXProperty().set("1 2 3");
-        viewModel.vectorYProperty().set("4 5 6");
-        viewModel.calculate();
-
-        assertEquals("9.0", viewModel.resultProperty().get());
     }
 
     @Test
