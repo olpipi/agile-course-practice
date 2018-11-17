@@ -1,4 +1,5 @@
 package ru.unn.agile.VectorDistance.view;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -24,6 +25,7 @@ public class VectorDistance {
     private Label lbResult;
     @FXML
     private Label lbStatus;
+
     @FXML
     void initialize() {
         txtVectorX.textProperty().bindBidirectional(viewModel.vectorXProperty());

@@ -67,7 +67,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void L1DistanceIsDefaultDistance() {
+    public void isL1DistanceDefaultDistance() {
         assertEquals(Distance.L1, viewModel.distanceProperty().get());
     }
 
@@ -169,7 +169,8 @@ public class ViewModelTests {
 
         viewModel.calculate();
 
-        assertEquals(VectorDistance.THE_SAME_LENGTH_VECTOR_EXCEPTION_MESSAGE, viewModel.resultProperty().get());
+        assertEquals(VectorDistance.THE_SAME_LENGTH_VECTOR_EXCEPTION_MESSAGE,
+                viewModel.resultProperty().get());
     }
 
     @Test

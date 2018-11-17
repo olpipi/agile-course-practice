@@ -8,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import ru.unn.agile.VectorDistance.model.FloatVector;
-import ru.unn.agile.VectorDistance.model.VectorDistance;
 import ru.unn.agile.VectorDistance.model.VectorDistance.Distance;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class ViewModel {
 
     private final ObjectProperty<Distance> distance = new SimpleObjectProperty<>();
 
-    private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
+    private final List<VectorValueChangeListener> valueChangedListeners = new ArrayList<>();
 
     public ViewModel() {
         vectorX.set("");
@@ -66,6 +65,7 @@ public class ViewModel {
     public StringProperty vectorXProperty() {
         return vectorX;
     }
+
     public StringProperty vectorYProperty() {
         return vectorY;
     }
@@ -73,18 +73,15 @@ public class ViewModel {
     public StringProperty resultProperty() {
         return result;
     }
-    public final String getResult() {
-        return result.get();
-    }
+
     public StringProperty statusProperty() {
         return status;
     }
-    public final String getStatus() {
-        return status.get();
-    }
+
     public BooleanProperty calculationDisabledProperty() {
         return calculationDisabled;
     }
+
     public final boolean isCalculationDisabled() {
         return calculationDisabled.get();
     }
@@ -94,6 +91,7 @@ public class ViewModel {
             {
                 super.bind(vectorX, vectorY);
             }
+
             @Override
             protected boolean computeValue() {
                 return getInputStatus() == Status.READY;
@@ -103,13 +101,15 @@ public class ViewModel {
     }
 
     private void addListenersToInputData() {
-        final List<StringProperty> fields = new ArrayList<StringProperty>() { {
-            add(vectorX);
-            add(vectorY);
-        } };
+        final List<StringProperty> fields = new ArrayList<StringProperty>() {
+            {
+                add(vectorX);
+                add(vectorY);
+            }
+        };
 
         for (StringProperty field : fields) {
-            final ValueChangeListener listener = new ValueChangeListener();
+            final VectorValueChangeListener listener = new VectorValueChangeListener();
             field.addListener(listener);
             valueChangedListeners.add(listener);
         }
@@ -139,6 +139,14 @@ public class ViewModel {
         return vectorInput.matches(VALID_VECTOR_PATTERN);
     }
 
+    private class VectorValueChangeListener implements ChangeListener<String> {
+        @Override
+        public void changed(final ObservableValue<? extends String> observable,
+                            final String oldValue, final String newValue) {
+            status.set(getInputStatus().toString());
+        }
+    }
+
     private Status getInputStatus() {
         Status inputStatus = Status.READY;
         if (vectorX.get().isEmpty() || vectorY.get().isEmpty()) {
@@ -151,25 +159,20 @@ public class ViewModel {
         return inputStatus;
     }
 
-    private class ValueChangeListener implements ChangeListener<String> {
-        @Override
-        public void changed(final ObservableValue<? extends String> observable,
-                            final String oldValue, final String newValue) {
-            status.set(getInputStatus().toString());
-        }
-    }
 }
 
 enum Status {
-    WAITING("Please provide input data"),
-    READY("Press 'Calculate' or Enter"),
-    BAD_FORMAT("Bad format"),
+    WAITING("Please set Vectors"),
+    READY("Input data correct. Press calculate."),
+    BAD_FORMAT("Bad data inserted"),
     SUCCESS("Success");
 
     private final String name;
+
     Status(final String name) {
         this.name = name;
     }
+
     public String toString() {
         return name;
     }
