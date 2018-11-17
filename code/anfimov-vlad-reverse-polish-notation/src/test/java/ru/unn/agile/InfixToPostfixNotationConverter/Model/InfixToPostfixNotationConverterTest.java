@@ -83,9 +83,16 @@ public class InfixToPostfixNotationConverterTest {
     }
 
     @Test
-    public void canCalculateWithUnarySign() {
+    public void canCalculateWithUnarySignWithBrackets() {
         int result = InfixToPostfixNotationConverter.calculateResult("(4 + 3)*(-2)");
 
         assertEquals(-14, result);
+    }
+
+    @Test
+    public void canCalculateWithUnarySignWithoutBrackets() {
+        int result = InfixToPostfixNotationConverter.calculateResult("-12 + 3");
+
+        assertEquals(-9, result);
     }
 }

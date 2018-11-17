@@ -68,7 +68,8 @@ public final class InfixToPostfixNotationConverter {
         for (int i = 0; i < result.length; i++) {
             if (isNumber(result[i])) {
                 output += result[i];
-            } else if (UNARY_SIGN.equals(result[i]) && BRACKET_LEFT.equals(result[i - 1])) {
+            } else if (UNARY_SIGN.equals(result[i]) && (i == 0
+                    || BRACKET_LEFT.equals(result[i - 1]))) {
                 output += result[i];
             } else if (isOperator(result[i])) {
                 output += " ".concat(result[i]);
