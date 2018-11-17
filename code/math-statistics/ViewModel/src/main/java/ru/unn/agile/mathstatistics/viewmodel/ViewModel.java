@@ -28,19 +28,7 @@ public class ViewModel {
         probabilities = new ArrayList<Double>();
         distributionUnits = new ArrayList<String>();
 
-        valueText = "";
-        probabilityText = "";
-        operation = Operation.EXPECTED_VALUE;
-        momentOrderText = "";
-        resultText = "";
-        momentOffsetText = "";
-        statusMessageText = Status.WAITING;
-
-        isOrderTextEnabled = false;
-        isOffsetTextEnabled = false;
-
-        isAddToDistributionButtonEnabled = true;
-        isCalculateButtonEnabled = false;
+        reset();
     }
 
     public boolean checkDistributionUnit() {
@@ -93,6 +81,10 @@ public class ViewModel {
         Double probability = Double.parseDouble(probabilityText);
 
         processDistributionUnit(value, probability);
+    }
+
+    public void resetProcess() {
+        reset();
     }
 
     public ArrayList<String> getDistributionUnits() {
@@ -295,5 +287,25 @@ public class ViewModel {
     private boolean isMomentOperation(Operation operation) {
         return (operation == Operation.INITIAL_MOMENT) ||
                 (operation == Operation.CENTRAL_MOMENT);
+    }
+
+    private void reset() {
+        values.clear();
+        probabilities.clear();
+        distributionUnits.clear();
+
+        valueText = "";
+        probabilityText = "";
+        operation = Operation.EXPECTED_VALUE;
+        momentOrderText = "";
+        resultText = "";
+        momentOffsetText = "";
+        statusMessageText = Status.WAITING;
+
+        isOrderTextEnabled = false;
+        isOffsetTextEnabled = false;
+
+        isAddToDistributionButtonEnabled = true;
+        isCalculateButtonEnabled = false;
     }
 }

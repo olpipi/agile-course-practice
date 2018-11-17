@@ -9,6 +9,8 @@ import static org.junit.Assert.*;
 import ru.unn.agile.mathstatistics.viewmodel.ViewModel.Operation;
 import ru.unn.agile.mathstatistics.viewmodel.ViewModel.Status;
 
+import java.util.ArrayList;
+
 public class ViewModelTests {
     private ViewModel viewModel;
 
@@ -304,5 +306,24 @@ public class ViewModelTests {
         viewModel.setMomentOffsetText("abc");
 
         assertFalse(viewModel.checkMomentOffset());
+    }
+
+    @Test
+    public void canReset() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("1.0");
+        viewModel.addToDistributionProcess();
+
+        viewModel.resetProcess();
+
+        ArrayList<String> distributionUnits = viewModel.getDistributionUnits();
+        assertTrue(distributionUnits.isEmpty());
+        assertEquals("", viewModel.getValueText());
+        assertEquals("", viewModel.getProbabilityText());
+        assertEquals(Operation.EXPECTED_VALUE, viewModel.getOperation());
+        assertEquals("", viewModel.getMomentOrderText());
+        assertEquals("", viewModel.getMomentOffsetText());
+        assertEquals("", viewModel.getResultText());
+        assertEquals(Status.WAITING, viewModel.getStatusMessageText());
     }
 }
