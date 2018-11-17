@@ -157,52 +157,61 @@ public class ViewModelTests {
     }
 
     @Test
-    public void canDetectCorrectInputDataFormat() {
+    public void canDetectCorrectDistributionUnit() {
         viewModel.setValueText("1");
         viewModel.setProbabilityText("1");
 
-        viewModel.validateInputDataFormat();
-
+        assertTrue(viewModel.checkDistributionUnit());
         assertTrue(viewModel.isAddToDistributionButtonEnabled());
     }
 
     @Test
-    public void isAddToDistributionButtonDisabledWhenSettingEmptyValue() {
+    public void canDetectEmptyValueOfDistributionUnit() {
         viewModel.setValueText("");
         viewModel.setProbabilityText("1");
 
-        viewModel.validateInputDataFormat();
-
+        assertFalse(viewModel.checkDistributionUnit());
         assertFalse(viewModel.isAddToDistributionButtonEnabled());
+        assertEquals(Status.BAD_INPUT_FORMAT, viewModel.getStatusMessageText());
     }
 
     @Test
-    public void isAddToDistributionButtonDisabledWhenSettingEmptyProbability() {
+    public void canDetectEmptyProbabilityOfDistributionUnit() {
         viewModel.setValueText("1");
         viewModel.setProbabilityText("");
 
-        viewModel.validateInputDataFormat();
-
+        assertFalse(viewModel.checkDistributionUnit());
         assertFalse(viewModel.isAddToDistributionButtonEnabled());
+        assertEquals(Status.BAD_INPUT_FORMAT, viewModel.getStatusMessageText());
     }
 
     @Test
-    public void isAddToDistributionButtonDisabledWhenSettingOfIncorrectValue() {
+    public void canDetectIncorrectValueFormatOfDistributionUnit() {
         viewModel.setValueText("abc");
         viewModel.setProbabilityText("1");
 
-        viewModel.validateInputDataFormat();
-
+        assertFalse(viewModel.checkDistributionUnit());
         assertFalse(viewModel.isAddToDistributionButtonEnabled());
+        assertEquals(Status.BAD_INPUT_FORMAT, viewModel.getStatusMessageText());
     }
 
     @Test
-    public void isAddToDistributionButtonDisabledWhenSettingOfIncorrectProbability() {
+    public void canDetectIncorrectProbabilityFormatOfDistributionUnit() {
         viewModel.setValueText("1");
         viewModel.setProbabilityText("abc");
 
-        viewModel.validateInputDataFormat();
-
+        assertFalse(viewModel.checkDistributionUnit());
         assertFalse(viewModel.isAddToDistributionButtonEnabled());
+        assertEquals(Status.BAD_INPUT_FORMAT, viewModel.getStatusMessageText());
+    }
+
+    @Test
+    public void canDetectBadProbabilityByAddToDistributionProcess() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("-1");
+
+        viewModel.addToDistributionProcess();
+
+        assertEquals(Status.BAD_PROBABILITY_VALUE, viewModel.getStatusMessageText());
     }
 }

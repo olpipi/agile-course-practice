@@ -41,8 +41,21 @@ public class ViewModel {
         isCalculateButtonEnabled = false;
     }
 
+    public boolean checkDistributionUnit() {
+        if (!isDistributionUnitCorrect()) {
+            statusMessageText = Status.BAD_INPUT_FORMAT;
+            isAddToDistributionButtonEnabled = false;
+
+            return false;
+        }
+
+        isAddToDistributionButtonEnabled = true;
+        statusMessageText = Status.ADD_TO_DISTRIBUTION_READY;
+        return true;
+    }
+
     public void addToDistributionProcess() {
-        if (!isInputDataFormatCorrect())
+        if (!checkDistributionUnit())
             return;
 
         Double value = Double.parseDouble(valueText);
@@ -51,30 +64,31 @@ public class ViewModel {
         try {
             ProbabilityValidator.validate(probability);
         } catch (IllegalArgumentException e) {
-            statusMessageText = Status.BAD_PROBABILITY;
+            statusMessageText = Status.BAD_PROBABILITY_VALUE;
             return;
         }
 
-       // if (NormalizationConditionChecker.checkNormalizationCondition())
-        try {
-            values.add(value);
-            probabilities.add(probability);
-        } catch (IllegalArgumentException e) {
+        values.add(value);
+        probabilities.add(probability);
 
-        }
-
-    }
-
-    public void validateInputDataFormat() {
-        if (!isInputDataFormatCorrect()) {
-            statusMessageText = Status.BAD_INPUT_FORMAT;
+        NormalizationConditionChecker.Status status =
+                NormalizationConditionChecker.check((Double[])probabilities.toArray());
+        if (status == NormalizationConditionChecker.Status.CONDITION_IS_MET) {
+            statusMessageText = Status.CALCULATE_READY;
             isAddToDistributionButtonEnabled = false;
+            isCalculateButtonEnabled = true;
+
+            return;
+        }
+        if (status == NormalizationConditionChecker.Status.BETWEEN_ZERO_AND_ONE) {
+            statusMessageText = Status.WAITING;
 
             return;
         }
 
-        isAddToDistributionButtonEnabled = true;
-        statusMessageText = Status.ADD_TO_DISTRIBUTION_READY;
+        statusMessageText = Status.INCORRECT_PROBABILITIES_SUM;
+        values.remove(values.size() - 1);
+        probabilities.remove(probabilities.size() - 1);
     }
 
     public boolean isOrderTextEnabled() {
@@ -163,7 +177,8 @@ public class ViewModel {
     public final class Status {
         public static final String WAITING = "Please provide input data";
         public static final String ADD_TO_DISTRIBUTION_READY = "Press 'Add to distribution'";
-        public static final String BAD_PROBABILITY = "Bad probability value. Should be 0 <= p <= 1";
+        public static final String BAD_PROBABILITY_VALUE = "Bad probability value. Should be 0 <= p <= 1";
+        public static final String INCORRECT_PROBABILITIES_SUM = "Bad probabilities sum. Should be equal to 1";
         public static final String CALCULATE_READY = "Press 'Calculate'";
         public static final String BAD_INPUT_FORMAT = "Bad input format";
         public static final String SUCCESS = "Success";
@@ -171,7 +186,7 @@ public class ViewModel {
         private Status() { }
     }
 
-    private boolean isInputDataFormatCorrect() {
+    private boolean isDistributionUnitCorrect() {
         try {
             if (valueText.isEmpty() || probabilityText.isEmpty()) {
                 return false;
