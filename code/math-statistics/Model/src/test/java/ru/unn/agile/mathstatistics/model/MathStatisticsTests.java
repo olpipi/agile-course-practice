@@ -276,6 +276,14 @@ public class MathStatisticsTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void throwsWhenCalculateCentralMomentWithNullOffset() {
+        Number[] values = {};
+        Double[] probabilities = {1.0};
+
+        MathStatistics.calculateCentralMoment(values, probabilities, 2, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCalculateCentralMomentOfZeroOrder() {
         Number[] values = {0.1, 9.3, 1.8, 0.8, 2.2};
         Double[] probabilities = {0.2, 0.2, 0.2, 0.2, 0.2};

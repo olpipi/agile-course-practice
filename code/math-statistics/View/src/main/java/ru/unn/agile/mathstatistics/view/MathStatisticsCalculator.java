@@ -159,7 +159,14 @@ public final class MathStatisticsCalculator {
         statusMessageLabel.setText(viewModel.getStatusMessageText());
         resultText.setText(viewModel.getResultText());
 
+        momentOffsetText.setEnabled(viewModel.isOffsetTextEnabled());
+        momentOrderText.setEnabled(viewModel.isOrderTextEnabled());
+
         List<String> distributionUnits = viewModel.getDistributionUnits();
-        sampleTextArea.setText(distributionUnits.toString());
+        String distributionUnitsString = "";
+        for (String distributionUnit : distributionUnits) {
+            distributionUnitsString += distributionUnit + "\n";
+        }
+        sampleTextArea.setText(distributionUnitsString);
     }
 }

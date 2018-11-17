@@ -209,6 +209,17 @@ public class ViewModelTests {
     }
 
     @Test
+    public void canDetectBadDistributionUnitFormatByAddToDistributionProcess() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("abc");
+
+        viewModel.addToDistributionProcess();
+
+        assertFalse(viewModel.isCalculateButtonEnabled());
+        assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT, viewModel.getStatusMessageText());
+    }
+
+    @Test
     public void canDetectCorrectDistributionUnitByAddToDistributionProcess() {
         viewModel.setValueText("1");
         viewModel.setProbabilityText("0.5");
@@ -398,11 +409,43 @@ public class ViewModelTests {
     }
 
     @Test
+    public void canDetectEmptyOrderInCentralMomentCalculating() {
+        viewModel.setValueText("2");
+        viewModel.setProbabilityText("1.0");
+        viewModel.setMomentOrderText("");
+        viewModel.setMomentOffsetText("6.5");
+        viewModel.addToDistributionProcess();
+        viewModel.setOperation(Operation.CENTRAL_MOMENT);
+
+        viewModel.calculateProcess();
+
+        String resultText = viewModel.getResultText();
+        assertEquals(Status.BAD_MOMENT_ORDER_FORMAT, viewModel.getStatusMessageText());
+        assertTrue(resultText.isEmpty());
+    }
+
+    @Test
     public void canDetectIncorrectOffsetInCentralMomentCalculating() {
         viewModel.setValueText("1");
         viewModel.setProbabilityText("1.0");
         viewModel.setMomentOrderText("1");
         viewModel.setMomentOffsetText("abc");
+        viewModel.addToDistributionProcess();
+        viewModel.setOperation(Operation.CENTRAL_MOMENT);
+
+        viewModel.calculateProcess();
+
+        String resultText = viewModel.getResultText();
+        assertTrue(resultText.isEmpty());
+        assertEquals(Status.BAD_MOMENT_OFFSET_FORMAT, viewModel.getStatusMessageText());
+    }
+
+    @Test
+    public void canDetectEmptyOffsetInCentralMomentCalculating() {
+        viewModel.setValueText("1");
+        viewModel.setProbabilityText("1.0");
+        viewModel.setMomentOrderText("1");
+        viewModel.setMomentOffsetText("");
         viewModel.addToDistributionProcess();
         viewModel.setOperation(Operation.CENTRAL_MOMENT);
 

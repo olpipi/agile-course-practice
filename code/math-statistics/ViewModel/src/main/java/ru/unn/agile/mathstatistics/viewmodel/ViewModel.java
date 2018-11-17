@@ -187,6 +187,7 @@ public class ViewModel {
             }
         } else {
             isOrderTextEnabled = false;
+            isOffsetTextEnabled = false;
         }
     }
 
@@ -203,7 +204,7 @@ public class ViewModel {
         DISPERSION("Dispersion"),
         INITIAL_MOMENT("Initial moment"),
         CENTRAL_MOMENT("Central moment");
-        private final String operationName;
+        private String operationName;
 
         Operation(final String name) {
             this.operationName = name;
@@ -249,12 +250,12 @@ public class ViewModel {
         probabilities.add(probability);
 
         Double[] nativeProbabilitiesArray = new Double[probabilities.size()];
-        NormalizationConditionChecker.Status status =
-                NormalizationConditionChecker.check(
+        NormalizationConditionChecker.Status status = NormalizationConditionChecker.check(
                         probabilities.toArray(nativeProbabilitiesArray));
 
         if (status == NormalizationConditionChecker.Status.CONDITION_IS_MET) {
             statusMessageText = Status.CALCULATE_READY;
+            applyDistributionUnit(value, probability);
             isCalculateButtonEnabled = true;
 
             return;
@@ -271,8 +272,7 @@ public class ViewModel {
         probabilities.remove(probabilities.size() - 1);
     }
 
-    private void applyDistributionUnit(final Double value,
-                                       final Double probability) {
+    private void applyDistributionUnit(final Double value, final Double probability) {
         String distributionUnit =
                 "(" + value.toString() + ", " + probability.toString() + ")";
 
