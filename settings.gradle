@@ -7,8 +7,12 @@ include "code/oleneva-intersect-line-and-plane"
 project(":code/oleneva-intersect-line-and-plane").name = "code/oleneva-intersect-line-and-plane"
 
 // Pozdiaev Valerii
-include "code/currency-converter"
-project(":code/currency-converter").name = "currency-converter"
+include "code/currency-converter/Model"
+project(":code/currency-converter/Model").name = "currency-converter-Model"
+//include "code/currency-converter/ViewModel"
+//project(":code/currency-converter/ViewModel").name = "currency-converter-ViewModel"
+include "code/currency-converter/View"
+project(":code/currency-converter/View").name = "currency-converter-View"
 
 // nickshevr
 include("code/nickshevr-numerical-integration")
