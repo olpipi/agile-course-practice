@@ -56,7 +56,7 @@ public class ViewModelTests {
     public void canSetL4DistanceCalculation() {
         viewModel.distanceProperty().set(Distance.L4);
 
-        assertEquals(Distance.L3, viewModel.distanceProperty().get());
+        assertEquals(Distance.L4, viewModel.distanceProperty().get());
     }
 
     @Test
@@ -224,13 +224,13 @@ public class ViewModelTests {
 
     @Test
     public void canComputeDistanceWithFloatNumbers() {
-        viewModel.vectorXProperty().set("1.5");
+        viewModel.vectorXProperty().set("0.5");
         viewModel.vectorYProperty().set("4.5");
-        viewModel.distanceProperty().set(Distance.Linf);
+        viewModel.distanceProperty().set(Distance.L1);
 
         viewModel.calculate();
 
-        assertEquals("3.0", viewModel.resultProperty().get());
+        assertEquals("4.0", viewModel.resultProperty().get());
     }
 
     private void setInputData() {

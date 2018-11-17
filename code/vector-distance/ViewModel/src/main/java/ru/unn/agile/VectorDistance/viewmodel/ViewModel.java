@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ViewModel {
     private static final String DEFAULT_DELIMITER = " ";
-    private static final String VALID_VECTOR_PATTERN = "^(-?[0-9]\\s?)+$";
+    private static final String VALID_VECTOR_PATTERN = "^(-?[0-9](\\.[0-9]+)?\\s?)+$";
     private final StringProperty vectorX = new SimpleStringProperty();
     private final StringProperty vectorY = new SimpleStringProperty();
     private final StringProperty result = new SimpleStringProperty();
