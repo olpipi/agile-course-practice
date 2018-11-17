@@ -27,8 +27,8 @@ public class ViewModelTests {
         assertEquals("", viewModel.getValueText());
         assertEquals("", viewModel.getProbabilityText());
         assertEquals(Operation.EXPECTED_VALUE, viewModel.getOperation());
-        assertEquals("", viewModel.getOrderText());
-        assertEquals("", viewModel.getOffsetText());
+        assertEquals("", viewModel.getMomentOrderText());
+        assertEquals("", viewModel.getMomentOffsetText());
         assertEquals("", viewModel.getResultText());
         assertEquals(Status.WAITING, viewModel.getStatusMessageText());
     }
@@ -262,5 +262,47 @@ public class ViewModelTests {
         assertFalse(viewModel.isCalculateButtonEnabled());
         assertEquals(Status.INCORRECT_PROBABILITIES_SUM,
                 viewModel.getStatusMessageText());
+    }
+
+    @Test
+    public void canDetectCorrectMomentOrder() {
+        viewModel.setMomentOrderText("2");
+
+        assertTrue(viewModel.checkMomentOrder());
+    }
+
+    @Test
+    public void canDetectLessThanOneMomentOrder() {
+        viewModel.setMomentOrderText("0");
+
+        assertFalse(viewModel.checkMomentOrder());
+    }
+
+    @Test
+    public void canDetectIncorrectFormatOfMomentOrder() {
+        viewModel.setMomentOrderText("abc");
+
+        assertFalse(viewModel.checkMomentOrder());
+    }
+
+    @Test
+    public void canDetectNotIntegerFormatOfMomentOrder() {
+        viewModel.setMomentOrderText("2.4");
+
+        assertFalse(viewModel.checkMomentOrder());
+    }
+
+    @Test
+    public void canDetectCorrectMomentOffset() {
+        viewModel.setMomentOffsetText("2.4");
+
+        assertTrue(viewModel.checkMomentOffset());
+    }
+
+    @Test
+    public void canDetectIncorrectFormatOfMomentOffset() {
+        viewModel.setMomentOffsetText("abc");
+
+        assertFalse(viewModel.checkMomentOffset());
     }
 }

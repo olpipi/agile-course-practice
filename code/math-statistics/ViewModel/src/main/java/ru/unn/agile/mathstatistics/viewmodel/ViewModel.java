@@ -12,8 +12,8 @@ public class ViewModel {
     private String valueText;
     private String probabilityText;
     private Operation operation;
-    private String orderText;
-    private String offsetText;
+    private String momentOrderText;
+    private String momentOffsetText;
     private String resultText;
     private String statusMessageText;
 
@@ -31,9 +31,9 @@ public class ViewModel {
         valueText = "";
         probabilityText = "";
         operation = Operation.EXPECTED_VALUE;
-        orderText = "";
+        momentOrderText = "";
         resultText = "";
-        offsetText = "";
+        momentOffsetText = "";
         statusMessageText = Status.WAITING;
 
         isOrderTextEnabled = false;
@@ -54,6 +54,35 @@ public class ViewModel {
         isAddToDistributionButtonEnabled = true;
         statusMessageText = Status.ADD_TO_DISTRIBUTION_READY;
         return true;
+    }
+
+    public boolean checkMomentOrder() {
+        if (!isMomentOrderCorrect()) {
+            statusMessageText = Status.BAD_MOMENT_ORDER_FORMAT;
+
+            return false;
+        }
+
+        int order = Integer.parseInt(momentOrderText);
+        try {
+            MomentOrderValidator.validate(order);
+        } catch (IllegalArgumentException e) {
+            statusMessageText = Status.BAD_MOMENT_ORDER_VALUE;
+
+            return false;
+        }
+
+        return  true;
+    }
+
+    public boolean checkMomentOffset() {
+        if (!isMomentOffsetCorrect()) {
+            statusMessageText = Status.BAD_MOMENT_OFFSET_FORMAT;
+
+            return false;
+        }
+
+        return  true;
     }
 
     public void addToDistributionProcess() {
@@ -102,6 +131,22 @@ public class ViewModel {
         this.probabilityText = probabilityText;
     }
 
+    public String getMomentOrderText() {
+        return momentOrderText;
+    }
+
+    public void setMomentOrderText(String momentOrderText) {
+        this.momentOrderText = momentOrderText;
+    }
+
+    public String getMomentOffsetText() {
+        return momentOffsetText;
+    }
+
+    public void setMomentOffsetText(String momentOffsetText) {
+        this.momentOffsetText = momentOffsetText;
+    }
+
     public Operation getOperation() {
         return operation;
     }
@@ -119,14 +164,6 @@ public class ViewModel {
         } else {
             isOrderTextEnabled = false;
         }
-    }
-
-    public String getOrderText() {
-        return orderText;
-    }
-
-    public String getOffsetText() {
-        return offsetText;
     }
 
     public String getResultText() {
@@ -156,11 +193,14 @@ public class ViewModel {
     public final class Status {
         public static final String WAITING = "Please provide input data";
         public static final String ADD_TO_DISTRIBUTION_READY = "Press 'Add to distribution'";
-        public static final String ADD_TO_DISTRIBUTION_SUCCESS = "Add to distribution successfully";
+        public static final String BAD_DISTRIBUTION_UNIT_FORMAT = "Bad distribution unit format";
         public static final String BAD_PROBABILITY_VALUE = "Bad probability value. Should be 0 <= p <= 1";
         public static final String INCORRECT_PROBABILITIES_SUM = "Bad probabilities sum. Should be equal to 1";
+        public static final String ADD_TO_DISTRIBUTION_SUCCESS = "Add to distribution successfully";
+        public static final String BAD_MOMENT_ORDER_FORMAT = "Bad moment order format";
+        public static final String BAD_MOMENT_ORDER_VALUE = "Moment order should be positive integer";
+        public static final String BAD_MOMENT_OFFSET_FORMAT = "Bad moment offset format";
         public static final String CALCULATE_READY = "Press 'Calculate'";
-        public static final String BAD_DISTRIBUTION_UNIT_FORMAT = "Bad distribution unit format";
         public static final String SUCCESS = "Success";
 
         private Status() {
@@ -217,6 +257,34 @@ public class ViewModel {
 
             Double.parseDouble(valueText);
             Double.parseDouble(probabilityText);
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isMomentOrderCorrect() {
+        try {
+            if (momentOrderText.isEmpty()) {
+                return false;
+            }
+
+            Integer.parseInt(momentOrderText);
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isMomentOffsetCorrect() {
+        try {
+            if (momentOffsetText.isEmpty()) {
+                return false;
+            }
+
+            Double.parseDouble(momentOffsetText);
         } catch (Exception e) {
             return false;
         }
