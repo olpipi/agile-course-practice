@@ -5,9 +5,16 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import ru.unn.agile.VectorDistance.model.FloatVector;
+import ru.unn.agile.VectorDistance.model.VectorDistance;
 import ru.unn.agile.VectorDistance.model.VectorDistance.Distance;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ViewModel {
+    private static final String DEFAULT_DELIMITER = " ";
     private final StringProperty vectorX = new SimpleStringProperty();
     private final StringProperty vectorY = new SimpleStringProperty();
     private final StringProperty result = new SimpleStringProperty();
@@ -40,9 +47,33 @@ public class ViewModel {
         calculationDisabled.bind(couldCalculate.not());
     }
 
+    private static List<String> getNumbersArrayFromString(final String numbersString) {
+        return Arrays.asList(numbersString.split(DEFAULT_DELIMITER));
+    }
+
+    private float[] getFloatArrayFromStringList(final List<String> stringList) {
+        float[] floatArray = new float[stringList.size()];
+
+        int i = 0;
+
+        for (String number : stringList) {
+            floatArray[i++] = Float.parseFloat(number);
+        }
+        return floatArray;
+    }
+
+    private FloatVector getVectorFromInputString(final String inputString) {
+        List<String> singleNumbers = getNumbersArrayFromString(inputString);
+        return new FloatVector(getFloatArrayFromStringList(singleNumbers));
+    }
 
     public void calculate() {
 
+        FloatVector a = getVectorFromInputString(vectorX.get());
+        FloatVector b = getVectorFromInputString(vectorY.get());
+
+        result.set(String.valueOf(distance.get().apply(a, b)));
+        status.set(Status.SUCCESS.toString());
     }
 
     public ObjectProperty<Distance> distanceProperty() {

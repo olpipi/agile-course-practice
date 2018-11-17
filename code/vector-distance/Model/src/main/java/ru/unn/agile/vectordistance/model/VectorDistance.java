@@ -69,9 +69,20 @@ public final class VectorDistance {
 
     public enum Distance {
         L1("L1") {
+            public float apply(final FloatVector a, final FloatVector b) {
+                return computeL1(a, b);
+            }
+        },
+        ;
+        private final String name;
+        Distance(final String name) {
+            this.name = name;
+        }
+        @Override
+        public String toString() {
+            return name;
+        }
 
-        };
-
-        Distance(final String name) {}
+        public abstract float apply(FloatVector a, FloatVector b);
     }
 }
