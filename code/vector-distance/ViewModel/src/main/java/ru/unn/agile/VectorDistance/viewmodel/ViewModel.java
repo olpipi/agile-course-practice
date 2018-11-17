@@ -40,17 +40,7 @@ public class ViewModel {
         result.set("");
         status.set(Status.WAITING.toString());
         distance.set(Distance.L1);
-        BooleanBinding couldCalculate = new BooleanBinding() {
-            {
-                super.bind(vectorX, vectorY);
-            }
-            @Override
-            protected boolean computeValue() {
-                return getInputStatus() == Status.READY;
-            }
-        };
-        calculationDisabled.bind(couldCalculate.not());
-
+        setCouldCalculateBinding();
         addListenersToInputData();
     }
 
@@ -97,6 +87,19 @@ public class ViewModel {
     }
     public final boolean isCalculationDisabled() {
         return calculationDisabled.get();
+    }
+
+    private void setCouldCalculateBinding() {
+        BooleanBinding couldCalculate = new BooleanBinding() {
+            {
+                super.bind(vectorX, vectorY);
+            }
+            @Override
+            protected boolean computeValue() {
+                return getInputStatus() == Status.READY;
+            }
+        };
+        calculationDisabled.bind(couldCalculate.not());
     }
 
     private void addListenersToInputData() {

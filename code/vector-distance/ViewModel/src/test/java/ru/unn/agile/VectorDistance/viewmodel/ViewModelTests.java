@@ -88,8 +88,30 @@ public class ViewModelTests {
     }
 
     @Test
+    public void canSetSuccessMessage() {
+        setInputData();
+        viewModel.calculate();
+
+        assertEquals(Status.SUCCESS.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void canSetStatusReady() {
+        setInputData();
+
+        assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
     public void canReportBadFormatWhenSetVectorX() {
         viewModel.vectorXProperty().set("a");
+
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void canReportBadFormatWhenNotANumberBetweenNumbers() {
+        viewModel.vectorXProperty().set("1 a 2");
 
         assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
     }
@@ -110,12 +132,6 @@ public class ViewModelTests {
     }
 
     @Test
-    public void canReportReady() {
-        setInputData();
-
-        assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
-    }
-    @Test
     public void calculateButtonIsDisabledWhenNoData() {
         assertTrue(viewModel.calculationDisabledProperty().get());
     }
@@ -123,7 +139,7 @@ public class ViewModelTests {
     @Test
     public void calculateButtonIsDisabledWhenFormatIsBad() {
         setInputData();
-        viewModel.vectorXProperty().set("trash");
+        viewModel.vectorXProperty().set("ololo");
 
         assertTrue(viewModel.calculationDisabledProperty().get());
     }
