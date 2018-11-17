@@ -23,14 +23,14 @@ public class ViewModelTests {
 
     @Test
     public void canSetDefaultValues() {
-        assertEquals("", viewModel.getNewElem());
+        assertEquals("", viewModel.getElemArray());
         assertEquals("", viewModel.getOutputArray());
         assertEquals(Status.WAITING, viewModel.getCurrentState());
     }
 
     @Test
     public void canAddOneElementToArray() {
-        viewModel.setNewElem("3.0");
+        viewModel.setElemArray("3.0");
         viewModel.Add();
 
         assertEquals("[3.0]", viewModel.getOutputArray());
@@ -38,15 +38,15 @@ public class ViewModelTests {
 
     @Test
     public void canAddSeveralElementsToArray() {
-        viewModel.setNewElem("-5.0");
+        viewModel.setElemArray("-5.0");
         viewModel.Add();
-        viewModel.setNewElem("4.0");
+        viewModel.setElemArray("4.0");
         viewModel.Add();
-        viewModel.setNewElem("2.75");
+        viewModel.setElemArray("2.75");
         viewModel.Add();
-        viewModel.setNewElem("10.1");
+        viewModel.setElemArray("10.1");
         viewModel.Add();
-        viewModel.setNewElem("0.02");
+        viewModel.setElemArray("0.02");
         viewModel.Add();
 
         assertEquals("[-5.0, 4.0, 2.75, 10.1, 0.02]", viewModel.getOutputArray());
@@ -54,15 +54,15 @@ public class ViewModelTests {
 
     @Test
     public void canClearArray() {
-        viewModel.setNewElem("6");
+        viewModel.setElemArray("6");
         viewModel.Add();
-        viewModel.setNewElem("4");
+        viewModel.setElemArray("4");
         viewModel.Add();
-        viewModel.setNewElem("1");
+        viewModel.setElemArray("1");
         viewModel.Add();
-        viewModel.setNewElem("10");
+        viewModel.setElemArray("10");
         viewModel.Add();
-        viewModel.setNewElem("8");
+        viewModel.setElemArray("8");
         viewModel.Add();
 
         viewModel.Clear();
@@ -72,7 +72,7 @@ public class ViewModelTests {
 
     @Test
     public void  canSortOfArrayWithOneElement() {
-        viewModel.setNewElem("-4.0");
+        viewModel.setElemArray("-4.0");
         viewModel.Add();
 
         viewModel.Sort();
@@ -82,19 +82,19 @@ public class ViewModelTests {
 
     @Test
     public void  canSortOfNonSortedBigArray() {
-        viewModel.setNewElem("-4.0");
+        viewModel.setElemArray("-4.0");
         viewModel.Add();
-        viewModel.setNewElem("28.1");
+        viewModel.setElemArray("28.1");
         viewModel.Add();
-        viewModel.setNewElem("13");
+        viewModel.setElemArray("13");
         viewModel.Add();
-        viewModel.setNewElem("-0.4");
+        viewModel.setElemArray("-0.4");
         viewModel.Add();
-        viewModel.setNewElem("15.2");
+        viewModel.setElemArray("15.2");
         viewModel.Add();
-        viewModel.setNewElem("3.1");
+        viewModel.setElemArray("3.1");
         viewModel.Add();
-        viewModel.setNewElem("10.2");
+        viewModel.setElemArray("10.2");
         viewModel.Add();
 
         viewModel.Sort();
@@ -104,6 +104,51 @@ public class ViewModelTests {
 
     @Test
     public void  isWaitingStatusWhenLaunch() { assertEquals(Status.WAITING, viewModel.getCurrentState()); }
+
+    @Test
+    public void isWaitingStatWhenBeginning() {
+        assertEquals(ViewModel.Status.WAITING, viewModel.getCurrentState());
+    }
+
+    @Test
+    public void isWaitingStateWhenAddAndDelElemEmptyField() {
+        viewModel.setElemArray("");
+
+        viewModel.processingAddField(1);
+
+        assertEquals(Status.WAITING, viewModel.getCurrentState());
+    }
+
+    @Test
+    public void isReadyStateWhenAddElemFieldIsWritein() {
+        viewModel.setElemArray("6.1");
+
+        viewModel.processingAddField(1);
+
+        assertEquals(Status.READY, viewModel.getCurrentState());
+    }
+
+    @Test
+    public void canSetBadFormatMessage() {
+        viewModel.setElemArray("b");
+
+        viewModel.processingAddField(1);
+
+        assertEquals(Status.BAD_FORMAT, viewModel.getCurrentState());
+    }
+
+    @Test
+    public void canSetSuccessMessage() {
+        viewModel.setElemArray("-1.0");
+        viewModel.Add();
+        viewModel.setElemArray("2.0");
+        viewModel.Add();
+        viewModel.setElemArray("5.4");
+
+        viewModel.Sort();
+
+        assertEquals(Status.SUCCESSFUL, viewModel.getCurrentState());
+    }
 
 
 }

@@ -5,14 +5,14 @@ import ru.unn.agile.arraysorter.model.ArraySorter;
 import java.util.ArrayList;
 
 public class ViewModel {
-    private String newElem;
+    private String ElemArray;
     private String outputArray;
     private String status;
 
     ArrayList<Double> Array = new ArrayList<Double>();
 
     public ViewModel() {
-        newElem = "";
+        ElemArray = "";
         outputArray = "";
         status = Status.WAITING;
 
@@ -23,21 +23,25 @@ public class ViewModel {
         return outputArray;
     }
 
-    public String getNewElem() {
-        return newElem;
+    public String getElemArray() {
+        return ElemArray;
     }
 
-    public void setNewElem(final String newElem){
-        if (newElem.equals(this.newElem)) {
+    public void setElemArray(final String ElemArray){
+        if (ElemArray.equals(this.ElemArray)) {
             return;
         }
 
-        this.newElem = newElem;
+        this.ElemArray = ElemArray;
     }
 
     public void Add()
     {
-        double value = Double.parseDouble(newElem);
+        if (!parseInput()) {
+            return;
+        }
+
+        double value = Double.parseDouble(ElemArray);
         Array.add(value);
 
         outputArray = Array.toString();
@@ -60,6 +64,8 @@ public class ViewModel {
         for (int i = 0; i < nativeArray.length; i++)
             Array.set(i, nativeArray[i]);
 
+        status = Status.SUCCESSFUL;
+
         outputArray =  Array.toString();
     }
 
@@ -72,5 +78,26 @@ public class ViewModel {
         public static final String SUCCESSFUL = "Sort of array is successful";
 
         private Status() { }
+    }
+
+    public void processingAddField(final int keyCode) {
+        parseInput();
+    }
+
+    private boolean parseInput() {
+        try {
+            if (ElemArray.isEmpty()) {
+                status = Status.WAITING;
+                return true;
+            }
+            else{
+                Double.parseDouble(ElemArray);
+            }
+        } catch (Exception e) {
+            status = Status.BAD_FORMAT;
+            return false;
+        }
+        status = Status.READY;
+        return true;
     }
 }
