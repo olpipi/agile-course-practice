@@ -71,16 +71,9 @@ public final class InfixToPostfixNotationConverter {
             } else if (UNARY_SIGN.equals(result[i]) && (i == 0
                     || BRACKET_LEFT.equals(result[i - 1]))) {
                 output += result[i];
-            } else if (isOperator(result[i])) {
-                output += " ".concat(result[i]);
-                output += " ";
-            } else if (BRACKET_LEFT.equals(result[i])
+            } else if (isOperator(result[i]) || BRACKET_LEFT.equals(result[i])
                     || BRACKET_RIGHT.equals(result[i])) {
-                if (i == 0) {
-                    output += result[i];
-                } else {
-                    output += " ".concat(result[i]);
-                }
+                output += " ".concat(result[i]);
                 output += " ";
             }
         }
