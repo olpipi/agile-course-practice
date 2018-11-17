@@ -108,7 +108,11 @@ public class ViewModel {
 
     private Status getInputStatus() {
         Status inputStatus = Status.READY;
-        return null;
+        if (vectorX.get().isEmpty() || vectorY.get().isEmpty()) {
+            inputStatus = Status.WAITING;
+        }
+
+        return inputStatus;
     }
 }
 
