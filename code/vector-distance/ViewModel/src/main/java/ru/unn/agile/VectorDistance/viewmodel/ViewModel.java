@@ -50,17 +50,8 @@ public class ViewModel {
             }
         };
         calculationDisabled.bind(couldCalculate.not());
-        // Add listeners to the input text fields
-        final List<StringProperty> fields = new ArrayList<StringProperty>() { {
-            add(vectorX);
-            add(vectorY);
-        } };
 
-        for (StringProperty field : fields) {
-            final ValueChangeListener listener = new ValueChangeListener();
-            field.addListener(listener);
-            valueChangedListeners.add(listener);
-        }
+        addListenersToInputData();
     }
 
     public void calculate() {
@@ -108,6 +99,18 @@ public class ViewModel {
         return calculationDisabled.get();
     }
 
+    private void addListenersToInputData() {
+        final List<StringProperty> fields = new ArrayList<StringProperty>() { {
+            add(vectorX);
+            add(vectorY);
+        } };
+
+        for (StringProperty field : fields) {
+            final ValueChangeListener listener = new ValueChangeListener();
+            field.addListener(listener);
+            valueChangedListeners.add(listener);
+        }
+    }
 
     private static List<String> getNumbersArrayFromString(final String numbersString) {
         return Arrays.asList(numbersString.split(DEFAULT_DELIMITER));
