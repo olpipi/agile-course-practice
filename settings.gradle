@@ -135,8 +135,10 @@ include "code/gladkova-tatiana-binary-search"
 project(":code/gladkova-tatiana-binary-search").name = "gladkova-tatiana-binary-search"
 
 // Kryukova Polina, caesar-cipher
-include "code/caesar-cipher"
-project(":code/caesar-cipher").name = "caesar-cipher"
+//include "code/caesar-cipher"
+//project(":code/caesar-cipher").name = "caesar-cipher"
+include "code/caesar-cipher/View"
+project(":code/caesar-cipher/View").name = "caesar-cipher"
 
 // Podolov Kirill, Queue
 include "code/queue"
