@@ -1,7 +1,5 @@
 package ru.unn.agile.mathstatistics.viewmodel;
 
-import ru.unn.agile.mathstatistics.model.MathStatistics;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -159,11 +157,11 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isAddToDistributionButtonEnabledWhenSettingOfCorrectInput() {
+    public void canDetectCorrectInputDataFormat() {
         viewModel.setValueText("1");
         viewModel.setProbabilityText("1");
 
-        viewModel.validateInputData();
+        viewModel.validateInputDataFormat();
 
         assertTrue(viewModel.isAddToDistributionButtonEnabled());
     }
@@ -173,7 +171,7 @@ public class ViewModelTests {
         viewModel.setValueText("");
         viewModel.setProbabilityText("1");
 
-        viewModel.validateInputData();
+        viewModel.validateInputDataFormat();
 
         assertFalse(viewModel.isAddToDistributionButtonEnabled());
     }
@@ -183,7 +181,7 @@ public class ViewModelTests {
         viewModel.setValueText("1");
         viewModel.setProbabilityText("");
 
-        viewModel.validateInputData();
+        viewModel.validateInputDataFormat();
 
         assertFalse(viewModel.isAddToDistributionButtonEnabled());
     }
@@ -193,7 +191,7 @@ public class ViewModelTests {
         viewModel.setValueText("abc");
         viewModel.setProbabilityText("1");
 
-        viewModel.validateInputData();
+        viewModel.validateInputDataFormat();
 
         assertFalse(viewModel.isAddToDistributionButtonEnabled());
     }
@@ -203,7 +201,7 @@ public class ViewModelTests {
         viewModel.setValueText("1");
         viewModel.setProbabilityText("abc");
 
-        viewModel.validateInputData();
+        viewModel.validateInputDataFormat();
 
         assertFalse(viewModel.isAddToDistributionButtonEnabled());
     }

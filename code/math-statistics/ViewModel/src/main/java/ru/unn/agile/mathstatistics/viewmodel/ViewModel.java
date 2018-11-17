@@ -41,11 +41,40 @@ public class ViewModel {
         isCalculateButtonEnabled = false;
     }
 
-    public void validateInputData() {
+    public void addToDistributionProcess() {
+        if (!isInputDataFormatCorrect())
+            return;
+
+        Double value = Double.parseDouble(valueText);
+        Double probability = Double.parseDouble(probabilityText);
+
+        try {
+            ProbabilityValidator.validate(probability);
+        } catch (IllegalArgumentException e) {
+            statusMessageText = Status.BAD_PROBABILITY;
+            return;
+        }
+
+       // if (NormalizationConditionChecker.checkNormalizationCondition())
+        try {
+            values.add(value);
+            probabilities.add(probability);
+        } catch (IllegalArgumentException e) {
+
+        }
+
+    }
+
+    public void validateInputDataFormat() {
         if (!isInputDataFormatCorrect()) {
             statusMessageText = Status.BAD_INPUT_FORMAT;
             isAddToDistributionButtonEnabled = false;
+
+            return;
         }
+
+        isAddToDistributionButtonEnabled = true;
+        statusMessageText = Status.ADD_TO_DISTRIBUTION_READY;
     }
 
     public boolean isOrderTextEnabled() {
@@ -134,6 +163,7 @@ public class ViewModel {
     public final class Status {
         public static final String WAITING = "Please provide input data";
         public static final String ADD_TO_DISTRIBUTION_READY = "Press 'Add to distribution'";
+        public static final String BAD_PROBABILITY = "Bad probability value. Should be 0 <= p <= 1";
         public static final String CALCULATE_READY = "Press 'Calculate'";
         public static final String BAD_INPUT_FORMAT = "Bad input format";
         public static final String SUCCESS = "Success";

@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class MathStatisticsTests {
 
-    public static final Double EPSILON = DistributionValidator.EPSILON;
+    public static final Double EPSILON = 1e-3;
 
     private Integer[] getMonotonicArray(final int start, final int end) {
         Integer[] data = new Integer[end - start];
