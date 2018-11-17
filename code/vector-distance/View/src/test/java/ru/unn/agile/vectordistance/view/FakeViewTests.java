@@ -1,4 +1,4 @@
-package ru.unn.agile.VectorDistance.view;
+package ru.unn.agile.vectordistance.view;
 
 import org.junit.Ignore;
 import org.junit.Test;

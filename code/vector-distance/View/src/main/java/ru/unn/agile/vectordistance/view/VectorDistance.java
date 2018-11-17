@@ -1,4 +1,4 @@
-package ru.unn.agile.VectorDistance.view;
+package ru.unn.agile.vectordistance.view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -7,8 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import ru.unn.agile.VectorDistance.model.VectorDistance.Distance;
-import ru.unn.agile.VectorDistance.viewmodel.ViewModel;
+import ru.unn.agile.vectordistance.model.VectorDistance.Distance;
+import ru.unn.agile.vectordistance.viewmodel.ViewModel;
 
 public class VectorDistance {
     @FXML

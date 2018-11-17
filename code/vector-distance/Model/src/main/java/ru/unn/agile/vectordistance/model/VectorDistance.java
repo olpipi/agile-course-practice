@@ -1,4 +1,4 @@
-package ru.unn.agile.VectorDistance.model;
+package ru.unn.agile.vectordistance.model;
 
 import java.security.InvalidParameterException;
 import java.util.Objects;

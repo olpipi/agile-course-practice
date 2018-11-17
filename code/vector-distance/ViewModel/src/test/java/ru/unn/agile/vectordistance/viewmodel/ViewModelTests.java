@@ -1,11 +1,11 @@
-package ru.unn.agile.VectorDistance.viewmodel;
+package ru.unn.agile.vectordistance.viewmodel;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import ru.unn.agile.VectorDistance.model.VectorDistance;
-import ru.unn.agile.VectorDistance.model.VectorDistance.Distance;
+import ru.unn.agile.vectordistance.model.VectorDistance;
+import ru.unn.agile.vectordistance.model.VectorDistance.Distance;
 
 import static org.junit.Assert.*;
 

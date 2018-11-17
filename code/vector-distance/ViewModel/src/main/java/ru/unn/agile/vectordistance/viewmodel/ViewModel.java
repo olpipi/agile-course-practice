@@ -1,4 +1,4 @@
-package ru.unn.agile.VectorDistance.viewmodel;
+package ru.unn.agile.vectordistance.viewmodel;
 
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.*;
@@ -7,8 +7,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import ru.unn.agile.VectorDistance.model.FloatVector;
-import ru.unn.agile.VectorDistance.model.VectorDistance.Distance;
+import ru.unn.agile.vectordistance.model.FloatVector;
+import ru.unn.agile.vectordistance.model.VectorDistance.Distance;
 
 import java.util.ArrayList;
 import java.util.Arrays;
