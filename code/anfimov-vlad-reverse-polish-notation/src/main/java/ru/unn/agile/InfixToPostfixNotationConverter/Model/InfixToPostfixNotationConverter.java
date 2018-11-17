@@ -13,6 +13,7 @@ public final class InfixToPostfixNotationConverter {
     private static final String BRACKET_LEFT = "(";
     private static final String BRACKET_RIGHT = ")";
     private static final String WHITESPACE_PATTERN = "\\s+";
+    private static final String UNARY_SIGN = "-";
 
     private InfixToPostfixNotationConverter() { }
 
@@ -61,15 +62,24 @@ public final class InfixToPostfixNotationConverter {
         return matcher.find() || equalNumBracket || isEmptyString;
     }
 
-    public static String[] separation(final String input) {
+    private static String[] separation(final String input) {
         String[] result = input.replaceAll(WHITESPACE_PATTERN, "").split("");
         String output = "";
         for (int i = 0; i < result.length; i++) {
             if (isNumber(result[i])) {
                 output += result[i];
-            } else if (isOperator(result[i]) || BRACKET_LEFT.equals(result[i])
-                    || BRACKET_RIGHT.equals(result[i])) {
+            } else if (UNARY_SIGN.equals(result[i]) && BRACKET_LEFT.equals(result[i - 1])) {
+                output += result[i];
+            } else if (isOperator(result[i])) {
                 output += " ".concat(result[i]);
+                output += " ";
+            } else if (BRACKET_LEFT.equals(result[i])
+                    || BRACKET_RIGHT.equals(result[i])) {
+                if (i == 0) {
+                    output += result[i];
+                } else {
+                    output += " ".concat(result[i]);
+                }
                 output += " ";
             }
         }

@@ -29,8 +29,8 @@ public class InfixToPostfixNotationConverterTest {
 
     @Test
     public void canConvertSimpleExpression() {
-        String[] result = InfixToPostfixNotationConverter.convert("14 + 3*2");
-        String[] expected = {"14", "3", "2", "*", "+"};
+        String[] result = InfixToPostfixNotationConverter.convert("(14 + 3)*2");
+        String[] expected = {"14", "3", "+", "2", "*"};
 
         assertArrayEquals(expected, result);
     }
@@ -68,9 +68,24 @@ public class InfixToPostfixNotationConverterTest {
 
     @Test
     public void canSeparateExpressionWithWhitespace() {
-        String[] result = InfixToPostfixNotationConverter.separation("14 + 3");
-        String[] expected = {"14", "+", "3"};
+        String[] result = InfixToPostfixNotationConverter.convert("14 + 3");
+        String[] expected = {"14", "3", "+"};
 
         assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void canConvertWithUnarySign() {
+        String[] result = InfixToPostfixNotationConverter.convert("(4 + 3)*(-2)");
+        String[] expected = {"4", "3", "+", "-2", "*"};
+
+        assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void canCalculateWithUnarySign() {
+        int result = InfixToPostfixNotationConverter.calculateResult("(4 + 3)*(-2)");
+
+        assertEquals(-14, result);
     }
 }
