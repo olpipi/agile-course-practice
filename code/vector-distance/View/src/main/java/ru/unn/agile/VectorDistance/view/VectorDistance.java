@@ -1,4 +1,6 @@
 package ru.unn.agile.VectorDistance.view;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -29,5 +31,12 @@ public class VectorDistance {
         lbResult.textProperty().bindBidirectional(viewModel.resultProperty());
         lbStatus.textProperty().bindBidirectional(viewModel.statusProperty());
         cbDistances.valueProperty().bindBidirectional(viewModel.distanceProperty());
+
+        btnCalc.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                viewModel.calculate();
+            }
+        });
     }
 }
