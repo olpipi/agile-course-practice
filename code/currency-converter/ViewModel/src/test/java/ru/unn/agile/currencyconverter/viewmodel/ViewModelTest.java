@@ -36,7 +36,7 @@ public class ViewModelTest {
 
     @Test
     public void canAddCurrencyPair() {
-        setAddCurrencyInput(viewModel);
+        setAddCurrencyInput("RUB", "USD", "30");
         viewModel.addCurrencyPair();
 
         assertEquals("RUB/USD\n", viewModel.getCurrPairsStr().get());
@@ -45,12 +45,10 @@ public class ViewModelTest {
 
     @Test
     public void canAddMultipleCurrencyPairs() {
-        setAddCurrencyInput(viewModel);
+        setAddCurrencyInput("RUB", "USD", "30");
         viewModel.addCurrencyPair();
 
-        viewModel.getAddSrcCodeStr().set("RUB");
-        viewModel.getAddTgtCodeStr().set("EUR");
-        viewModel.getAddRateStr().set("40");
+        setAddCurrencyInput("RUB", "EUR", "40");
         viewModel.addCurrencyPair();
 
         String[] pairs = viewModel.getCurrPairsStr().get().split("\\r?\\n");
@@ -62,17 +60,39 @@ public class ViewModelTest {
 
     @Test
     public void canPrintDoubleConverterError() {
-        viewModel.getAddSrcCodeStr().set("RUB");
-        viewModel.getAddTgtCodeStr().set("USD");
-        viewModel.getAddRateStr().set("40.B");
+        setAddCurrencyInput("RUB", "USB", "40.B");
         viewModel.addCurrencyPair();
 
-        assertEquals("Не удалось распознать число: 40.B", viewModel.getResultSrt().get());
+        assertEquals("Не удалось распознать число: \"40.B\"", viewModel.getResultSrt().get());
     }
 
-    private void setAddCurrencyInput(ViewModel viewModel) {
-        viewModel.getAddSrcCodeStr().set("RUB");
-        viewModel.getAddTgtCodeStr().set("USD");
-        viewModel.getAddRateStr().set("30");
+    @Test
+    public void canPrintDoubleConverterErrorWithEmptyField() {
+        setAddCurrencyInput("RUB", "USB", "");
+        viewModel.addCurrencyPair();
+
+        assertEquals("Не удалось распознать число: \"\"", viewModel.getResultSrt().get());
+    }
+
+    @Test
+    public void canPrintWrongPairError() {
+        setAddCurrencyInput("RB", "USB", "40");
+        viewModel.addCurrencyPair();
+
+        assertEquals("Ошибка: Currency Codes don't meet the pattern", viewModel.getResultSrt().get());
+    }
+
+    @Test
+    public void canPrintWrongPairErrorWithEmptyField() {
+        setAddCurrencyInput("RUB", "", "40");
+        viewModel.addCurrencyPair();
+
+        assertEquals("Ошибка: Currency Codes don't meet the pattern", viewModel.getResultSrt().get());
+    }
+
+    private void setAddCurrencyInput(String srcCodeStr, String tgtCodeStr, String rateStr) {
+        viewModel.getAddSrcCodeStr().set(srcCodeStr);
+        viewModel.getAddTgtCodeStr().set(tgtCodeStr);
+        viewModel.getAddRateStr().set(rateStr);
     }
 }

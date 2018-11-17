@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import ru.unn.agile.currencyconverter.model.CurrencyConverter;
+import ru.unn.agile.currencyconverter.model.errorhandling.CurrencyConverterException;
 
 public class ViewModel {
     private StringProperty addSrcCodeStr = new SimpleStringProperty();
@@ -77,7 +78,11 @@ public class ViewModel {
             );
         }
         catch (NumberFormatException exc) {
-            resultSrt.set("Не удалось распознать число: " + addRateStr.get());
+            resultSrt.set("Не удалось распознать число: \"" + addRateStr.get() + "\"");
+            return;
+        }
+        catch (CurrencyConverterException exc) {
+            resultSrt.set("Ошибка: " + exc.getMessage());
             return;
         }
 
