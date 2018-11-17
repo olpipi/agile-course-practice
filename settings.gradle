@@ -42,9 +42,13 @@ project(":code/andreev-vlad-triangle").name = "andreev-vlad-triangle-Model"
 include "code/abstract-set"
 project(":code/abstract-set").name = "abstract-set-Model"
 
-// Zhiltsov Max, lab 1
-include "code/vector-distance"
-project(":code/vector-distance").name = "vector-distance-Model"
+// Vector distance
+include "code/vector-distance/Model"
+project(":code/vector-distance/Model").name = "vector-distance-Model"
+include "code/vector-distance/ViewModel"
+project(":code/vector-distance/ViewModel").name = "vector-distance-ViewModel"
+include "code/vector-distance/View"
+project(":code/vector-distance/View").name = "vector-distance-View"
 
 // Korniakov Kirill, lab2-legacy
 include "code/korniakov-kirill-lab2-legacy/Model"
