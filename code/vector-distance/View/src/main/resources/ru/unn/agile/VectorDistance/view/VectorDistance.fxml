@@ -9,6 +9,6 @@
         <ViewModel fx:id="viewModel" />
     </fx:define>
    <children>
-      <ComboBox fx:id="cbOperation" items="${viewModel.distances}" layoutX="22.0" layoutY="258.0" prefWidth="150.0" />
+      <ComboBox fx:id="cbDistances" items="${viewModel.distances}" layoutX="22.0" layoutY="258.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
