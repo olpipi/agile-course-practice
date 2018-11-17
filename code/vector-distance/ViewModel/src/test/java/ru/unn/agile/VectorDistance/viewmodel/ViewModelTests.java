@@ -52,5 +52,27 @@ public class ViewModelTests {
         assertTrue(viewModel.calculationDisabledProperty().get());
     }
 
+    @Test
+    public void canSetVectorX() {
+        viewModel.vectorXProperty().set("1 2 3");
+
+        assertEquals(viewModel.vectorXProperty().get(), "1 2 3");
+    }
+
+    @Test
+    public void canSetVectorY() {
+        viewModel.vectorYProperty().set("1 2 3");
+
+        assertEquals(viewModel.vectorYProperty().get(), "1 2 3");
+    }
+
+    @Test
+    public void canCalculateL1Distance() {
+        viewModel.vectorXProperty().set("1 2 3");
+        viewModel.vectorYProperty().set("4 5 6");
+        viewModel.calculate();
+
+        assertEquals("9.0", viewModel.resultProperty().get());
+    }
 
 }
