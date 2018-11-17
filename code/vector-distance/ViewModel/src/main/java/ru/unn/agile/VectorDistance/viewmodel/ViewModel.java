@@ -1,9 +1,7 @@
 package ru.unn.agile.VectorDistance.viewmodel;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -16,6 +14,7 @@ public class ViewModel {
     private final StringProperty status = new SimpleStringProperty();
     private final ObjectProperty<ObservableList<Distance>> distances =
             new SimpleObjectProperty<>(FXCollections.observableArrayList(Distance.values()));
+    private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
 
     public final ObservableList<Distance> getDistances() {
         return distances.get();
@@ -29,6 +28,16 @@ public class ViewModel {
         result.set("");
         status.set(Status.WAITING.toString());
         distance.set(Distance.L1);
+        BooleanBinding couldCalculate = new BooleanBinding() {
+            {
+                super.bind(vectorX, vectorY);
+            }
+            @Override
+            protected boolean computeValue() {
+                return getInputStatus() == Status.READY;
+            }
+        };
+        calculationDisabled.bind(couldCalculate.not());
     }
 
 
@@ -58,6 +67,17 @@ public class ViewModel {
     }
     public final String getStatus() {
         return status.get();
+    }
+    public BooleanProperty calculationDisabledProperty() {
+        return calculationDisabled;
+    }
+    public final boolean isCalculationDisabled() {
+        return calculationDisabled.get();
+    }
+
+    private Status getInputStatus() {
+        Status inputStatus = Status.READY;
+        return null;
     }
 }
 

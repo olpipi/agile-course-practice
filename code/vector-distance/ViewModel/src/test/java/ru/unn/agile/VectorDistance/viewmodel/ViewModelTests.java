@@ -47,5 +47,10 @@ public class ViewModelTests {
         assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
     }
 
+    @Test
+    public void isCalculationButtonDisabledInitially() {
+        assertTrue(viewModel.calculationDisabledProperty().get());
+    }
+
 
 }
