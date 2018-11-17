@@ -38,34 +38,9 @@ public final class VectorDistance {
         return distance;
     }
 
-    private VectorDistance() { /* none */ }
-
-    private static float computeLPdistance(
-            final FloatVector a, final FloatVector b, final double p) {
-        checkArgs(a, b);
-
-        float distance = 0.0f;
-        for (int i = 0; i < a.length(); ++i) {
-            distance += Math.pow(Math.abs(a.get(i) - b.get(i)), p);
-            ensureIsFinite(distance);
-        }
-        return (float) Math.pow(distance, 1.0 / p);
-    }
-
-    private static void ensureIsFinite(final float x) {
-        if (!Float.isFinite(x)) {
-            throw new FloatingOverflowException("Floating overflow");
-        }
-    }
-
-    private static void checkArgs(final FloatVector a, final FloatVector b) {
-        Objects.requireNonNull(a, "Expected not null parameter a");
-        Objects.requireNonNull(b, "Expected not null parameter b");
-        if (a.length() != b.length()) {
-            throw new InvalidParameterException(
-                "Expected vectors of same length");
-        }
-    }
+    public static final String FLOATING_OVERFLOW_EXCEPTION_MESSAGE = "Floating overflow";
+    public static final String THE_SAME_LENGTH_VECTOR_EXCEPTION_MESSAGE = "Expected vectors of same length";
+    public static final String NOT_NULL_PARAMETER_EXCEPTION_MESSAGE = "Expected not null parameter ";
 
     public enum Distance {
         L1("L1") {
@@ -84,5 +59,34 @@ public final class VectorDistance {
         }
 
         public abstract float apply(FloatVector a, FloatVector b);
+    }
+
+    private VectorDistance() { /* none */ }
+
+    private static float computeLPdistance(
+            final FloatVector a, final FloatVector b, final double p) {
+        checkArgs(a, b);
+
+        float distance = 0.0f;
+        for (int i = 0; i < a.length(); ++i) {
+            distance += Math.pow(Math.abs(a.get(i) - b.get(i)), p);
+            ensureIsFinite(distance);
+        }
+        return (float) Math.pow(distance, 1.0 / p);
+    }
+
+    private static void ensureIsFinite(final float x) {
+        if (!Float.isFinite(x)) {
+            throw new FloatingOverflowException(FLOATING_OVERFLOW_EXCEPTION_MESSAGE);
+        }
+    }
+
+    private static void checkArgs(final FloatVector a, final FloatVector b) {
+        Objects.requireNonNull(a, NOT_NULL_PARAMETER_EXCEPTION_MESSAGE + "a");
+        Objects.requireNonNull(b, NOT_NULL_PARAMETER_EXCEPTION_MESSAGE + "b");
+        if (a.length() != b.length()) {
+            throw new InvalidParameterException(
+                    THE_SAME_LENGTH_VECTOR_EXCEPTION_MESSAGE);
+        }
     }
 }

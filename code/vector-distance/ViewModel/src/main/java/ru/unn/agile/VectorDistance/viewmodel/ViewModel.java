@@ -70,7 +70,11 @@ public class ViewModel {
 
         FloatVector a = getVectorFromInputString(vectorX.get());
         FloatVector b = getVectorFromInputString(vectorY.get());
-        result.set(String.valueOf(distance.get().apply(a, b)));
+        try {
+            result.set(String.valueOf(distance.get().apply(a, b)));
+        } catch (Exception e) {
+            result.set(e.getMessage());
+        }
         status.set(Status.SUCCESS.toString());
     }
 
