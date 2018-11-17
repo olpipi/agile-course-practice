@@ -33,6 +33,7 @@ public class ViewModelTests {
     @Test
     public void canSetL1DistanceCalculation() {
         viewModel.distanceProperty().set(Distance.L1);
+
         assertEquals(Distance.L1, viewModel.distanceProperty().get());
     }
 
@@ -44,6 +45,7 @@ public class ViewModelTests {
     @Test
     public void statusIsWaitingWhenCalculateWithEmptyFields() {
         viewModel.calculate();
+
         assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
     }
 
@@ -76,6 +78,15 @@ public class ViewModelTests {
     }
 
     @Test
+    public void canCalculateWithNegativeNumbers() {
+        viewModel.vectorXProperty().set("-1");
+        viewModel.vectorYProperty().set("-4");
+        viewModel.calculate();
+
+        assertEquals("3.0", viewModel.resultProperty().get());
+    }
+
+    @Test
     public void canReportBadFormatWhenSetVectorX() {
         viewModel.vectorXProperty().set("a");
 
@@ -89,4 +100,19 @@ public class ViewModelTests {
         assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
     }
 
+
+    @Test
+    public void canReportBadFormatIfOnlyOneVectorPassed() {
+        viewModel.vectorXProperty().set("1");
+
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void canReportReady() {
+        viewModel.vectorXProperty().set("1");
+        viewModel.vectorYProperty().set("1");
+
+        assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
+    }
 }
