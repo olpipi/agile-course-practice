@@ -123,7 +123,6 @@ public class ViewModelTests {
         assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
     }
 
-
     @Test
     public void canReportBadFormatIfOnlyOneVectorPassed() {
         viewModel.vectorXProperty().set("1");
@@ -144,11 +143,6 @@ public class ViewModelTests {
         assertTrue(viewModel.calculationDisabledProperty().get());
     }
 
-    private void setInputData() {
-        viewModel.vectorXProperty().set("1");
-        viewModel.vectorYProperty().set("1");
-    }
-
     @Test
     public void canReportCalculationErrors() {
         setInputData();
@@ -157,6 +151,11 @@ public class ViewModelTests {
         viewModel.calculate();
 
         assertEquals(VectorDistance.THE_SAME_LENGTH_VECTOR_EXCEPTION_MESSAGE, viewModel.resultProperty().get());
+    }
+
+    private void setInputData() {
+        viewModel.vectorXProperty().set("1");
+        viewModel.vectorYProperty().set("1");
     }
 
 }
