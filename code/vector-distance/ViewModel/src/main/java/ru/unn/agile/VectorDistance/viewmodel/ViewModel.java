@@ -24,6 +24,10 @@ public class ViewModel {
     private final ObjectProperty<Distance> distance = new SimpleObjectProperty<>();
 
     public ViewModel() {
+        vectorX.set("");
+        vectorY.set("");
+        result.set("");
+        status.set(Status.WAITING.toString());
         distance.set(Distance.L1);
     }
 
