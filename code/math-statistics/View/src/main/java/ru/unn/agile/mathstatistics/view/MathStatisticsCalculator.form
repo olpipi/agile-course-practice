@@ -24,7 +24,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <grid id="aa1ab" binding="valueIndicatorLabel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="aa1ab" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -40,7 +40,7 @@
                       <text value="Xi"/>
                     </properties>
                   </component>
-                  <component id="f3108" class="javax.swing.JLabel" binding="probabilityIndicatorLabel">
+                  <component id="f3108" class="javax.swing.JLabel">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -151,7 +151,7 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="f1dc2" class="javax.swing.JLabel" binding="valueProbabilityPair">
+                      <component id="f1dc2" class="javax.swing.JLabel">
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -217,7 +217,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <grid id="71b00" binding="orderLabel" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="71b00" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -233,7 +233,7 @@
                       <text value="Order"/>
                     </properties>
                   </component>
-                  <component id="2a3c" class="javax.swing.JTextField" binding="orderText">
+                  <component id="2a3c" class="javax.swing.JTextField" binding="momentOrderText">
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
@@ -241,7 +241,7 @@
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="55615" class="javax.swing.JLabel" binding="offsetLabel">
+                  <component id="55615" class="javax.swing.JLabel">
                     <constraints>
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -249,7 +249,7 @@
                       <text value="Offset"/>
                     </properties>
                   </component>
-                  <component id="f9ba2" class="javax.swing.JTextField" binding="offsetText">
+                  <component id="f9ba2" class="javax.swing.JTextField" binding="momentOffsetText">
                     <constraints>
                       <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
@@ -297,7 +297,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="5eb56" class="javax.swing.JLabel" binding="resultLabel">
+              <component id="5eb56" class="javax.swing.JLabel">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -325,7 +325,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="7ea8f" class="javax.swing.JLabel" binding="statusLabel">
+              <component id="7ea8f" class="javax.swing.JLabel">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>

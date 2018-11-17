@@ -2,8 +2,6 @@ package ru.unn.agile.mathstatistics.model;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class ProbabilityValidatorTests {
 
     @Test(expected = Test.None.class)

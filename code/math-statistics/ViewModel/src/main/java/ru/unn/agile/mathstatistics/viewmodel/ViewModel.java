@@ -20,7 +20,6 @@ public class ViewModel {
     private boolean isOrderTextEnabled;
     private boolean isOffsetTextEnabled;
 
-    private boolean isAddToDistributionButtonEnabled;
     private boolean isCalculateButtonEnabled;
 
     public ViewModel() {
@@ -34,12 +33,10 @@ public class ViewModel {
     public boolean checkDistributionUnit() {
         if (!isDistributionUnitCorrect()) {
             statusMessageText = Status.BAD_DISTRIBUTION_UNIT_FORMAT;
-            isAddToDistributionButtonEnabled = false;
 
             return false;
         }
 
-        isAddToDistributionButtonEnabled = true;
         statusMessageText = Status.ADD_TO_DISTRIBUTION_READY;
         return true;
     }
@@ -135,10 +132,6 @@ public class ViewModel {
 
     public boolean isOffsetTextEnabled() {
         return isOffsetTextEnabled;
-    }
-
-    public boolean isAddToDistributionButtonEnabled() {
-        return isAddToDistributionButtonEnabled;
     }
 
     public boolean isCalculateButtonEnabled() {
@@ -255,7 +248,6 @@ public class ViewModel {
 
         if (status == NormalizationConditionChecker.Status.CONDITION_IS_MET) {
             statusMessageText = Status.CALCULATE_READY;
-            isAddToDistributionButtonEnabled = false;
             isCalculateButtonEnabled = true;
 
             return;
@@ -386,7 +378,6 @@ public class ViewModel {
         isOrderTextEnabled = false;
         isOffsetTextEnabled = false;
 
-        isAddToDistributionButtonEnabled = true;
         isCalculateButtonEnabled = false;
     }
 }

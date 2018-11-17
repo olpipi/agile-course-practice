@@ -41,11 +41,6 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isAddToDistributionButtonEnabledAtTheBeginning() {
-        assertTrue(viewModel.isAddToDistributionButtonEnabled());
-    }
-
-    @Test
     public void isCalculateButtonDisabledAtTheBeginning() {
         assertFalse(viewModel.isCalculateButtonEnabled());
     }
@@ -164,7 +159,6 @@ public class ViewModelTests {
         viewModel.setProbabilityText("1");
 
         assertTrue(viewModel.checkDistributionUnit());
-        assertTrue(viewModel.isAddToDistributionButtonEnabled());
     }
 
     @Test
@@ -173,7 +167,6 @@ public class ViewModelTests {
         viewModel.setProbabilityText("1");
 
         assertFalse(viewModel.checkDistributionUnit());
-        assertFalse(viewModel.isAddToDistributionButtonEnabled());
         assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT,
                 viewModel.getStatusMessageText());
     }
@@ -184,7 +177,6 @@ public class ViewModelTests {
         viewModel.setProbabilityText("");
 
         assertFalse(viewModel.checkDistributionUnit());
-        assertFalse(viewModel.isAddToDistributionButtonEnabled());
         assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT,
                 viewModel.getStatusMessageText());
     }
@@ -195,7 +187,6 @@ public class ViewModelTests {
         viewModel.setProbabilityText("1");
 
         assertFalse(viewModel.checkDistributionUnit());
-        assertFalse(viewModel.isAddToDistributionButtonEnabled());
         assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT,
                 viewModel.getStatusMessageText());
     }
@@ -206,7 +197,6 @@ public class ViewModelTests {
         viewModel.setProbabilityText("abc");
 
         assertFalse(viewModel.checkDistributionUnit());
-        assertFalse(viewModel.isAddToDistributionButtonEnabled());
         assertEquals(Status.BAD_DISTRIBUTION_UNIT_FORMAT,
                 viewModel.getStatusMessageText());
     }
@@ -218,7 +208,6 @@ public class ViewModelTests {
 
         viewModel.addToDistributionProcess();
 
-        assertTrue(viewModel.isAddToDistributionButtonEnabled());
         assertFalse(viewModel.isCalculateButtonEnabled());
         assertEquals(Status.BAD_PROBABILITY_VALUE,
                 viewModel.getStatusMessageText());
@@ -231,7 +220,6 @@ public class ViewModelTests {
 
         viewModel.addToDistributionProcess();
 
-        assertTrue(viewModel.isAddToDistributionButtonEnabled());
         assertFalse(viewModel.isCalculateButtonEnabled());
         assertEquals(Status.ADD_TO_DISTRIBUTION_SUCCESS,
                 viewModel.getStatusMessageText());
@@ -246,7 +234,6 @@ public class ViewModelTests {
         viewModel.setProbabilityText("0.5");
         viewModel.addToDistributionProcess();
 
-        assertFalse(viewModel.isAddToDistributionButtonEnabled());
         assertTrue(viewModel.isCalculateButtonEnabled());
         assertEquals(Status.CALCULATE_READY, viewModel.getStatusMessageText());
     }
@@ -260,7 +247,6 @@ public class ViewModelTests {
         viewModel.setProbabilityText("0.7");
         viewModel.addToDistributionProcess();
 
-        assertTrue(viewModel.isAddToDistributionButtonEnabled());
         assertFalse(viewModel.isCalculateButtonEnabled());
         assertEquals(Status.INCORRECT_PROBABILITIES_SUM,
                 viewModel.getStatusMessageText());
