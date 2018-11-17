@@ -18,23 +18,29 @@ public class InfixToPostfixNotationConverterTest {
 
     @Test(expected = RuntimeException.class)
     public void conversionThrowsWhenInputTwoTokensInRow() {
-        InfixToPostfixNotationConverter.convert("4++");
+        InfixToPostfixNotationConverter.convert("44++");
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void canCalculateInvalidExpressionWithoutBracket() {
+        String input = "5 / (7 - (1 + 1))) * 5";
+        InfixToPostfixNotationConverter.convert(input);
     }
 
     @Test
     public void canConvertSimpleExpression() {
-        String result = InfixToPostfixNotationConverter.convert("4 + 3 * 2");
-        String expected = "432*+";
+        String[] result = InfixToPostfixNotationConverter.convert("14 + 3*2");
+        String[] expected = {"14", "3", "2", "*", "+"};
 
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
     public void canConvertExpressionWithBrackets() {
-        String result = InfixToPostfixNotationConverter.convert("((5 / (7 - (1 + 1))) * 5) - 2");
-        String expected = "5711+-/5*2-";
+        String[] result = InfixToPostfixNotationConverter.convert("((5 / (7 - (1 + 1))) * 5) - 2");
+        String[] expected = {"5", "7", "1", "1", "+", "-", "/", "5", "*", "2", "-"};
 
-        assertEquals(expected, result);
+        assertArrayEquals(expected, result);
     }
 
     @Test
@@ -46,7 +52,7 @@ public class InfixToPostfixNotationConverterTest {
 
     @Test
     public void canCalculateResultWithBrackets() {
-        int result = InfixToPostfixNotationConverter.calculateResult("(4 + 3)*2");
+        int result = InfixToPostfixNotationConverter.calculateResult("(4 + 3) * 2");
 
         assertEquals(14, result);
     }
@@ -58,5 +64,13 @@ public class InfixToPostfixNotationConverterTest {
         int result = InfixToPostfixNotationConverter.calculateResult(input);
 
         assertEquals(1, result);
+    }
+
+    @Test
+    public void canSeparateExpressionWithWhitespace() {
+        String[] result = InfixToPostfixNotationConverter.separation("14 + 3");
+        String[] expected = {"14", "+", "3"};
+
+        assertArrayEquals(expected, result);
     }
 }

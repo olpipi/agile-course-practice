@@ -1,17 +1,20 @@
 package ru.unn.agile.InfixToPostfixNotationConverter.Model;
 
 import java.util.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public final class InfixToPostfixNotationConverter {
 
     private static final String OPERATORS = "+-*/^";
-    private static final String NUMBER_PATTERN = "[\\d]+";
-    private static final String INVALID_INPUT_PATTERN = "\\d?\\W*";
+    private static final String NUMBER_PATTERN = "^-?[0-9]+";
+    private static final String INVALID_INPUT_PATTERN = "[*/+-]{2,}";
     private static final String EMPTY_STRING_PATTERN = "^\\s*$";
+    private static final String BRACKET_LEFT = "(";
+    private static final String BRACKET_RIGHT = ")";
+    private static final String WHITESPACE_PATTERN = "\\s+";
 
-    private InfixToPostfixNotationConverter() {
-        /*empty*/
-    }
+    private InfixToPostfixNotationConverter() { }
 
     private static int getPriority(final String operator) {
         switch (operator) {
@@ -33,74 +36,101 @@ public final class InfixToPostfixNotationConverter {
         return str.matches(NUMBER_PATTERN);
     }
 
-    private static boolean invalidInput(final String str) {
-        return str.matches(INVALID_INPUT_PATTERN) || str.matches(EMPTY_STRING_PATTERN);
+    private static boolean isOperator(final String str) {
+        return OPERATORS.contains(str);
     }
 
-    public static String convert(final String input) throws RuntimeException {
-        if (invalidInput(input)) {
+    private static boolean checkEmptyString(final String str) {
+        return str.matches(EMPTY_STRING_PATTERN);
+    }
+
+    private static boolean checkValidInput(final String input) {
+        boolean isEmptyString = checkEmptyString(input);
+
+        long leftBracket = input.chars().filter(s -> s == '(').count();
+        long rightBracket = input.chars().filter(s -> s == ')').count();
+
+        boolean equalNumBracket = false;
+        if (input.contains(BRACKET_LEFT) || input.contains(BRACKET_RIGHT)) {
+            equalNumBracket = leftBracket != rightBracket;
+        }
+
+        Pattern pattern = Pattern.compile(INVALID_INPUT_PATTERN);
+        Matcher matcher = pattern.matcher(input);
+
+        return matcher.find() || equalNumBracket || isEmptyString;
+    }
+
+    public static String[] separation(final String input) {
+        String[] result = input.replaceAll(WHITESPACE_PATTERN, "").split("");
+        String output = "";
+        for (int i = 0; i < result.length; i++) {
+            if (isNumber(result[i])) {
+                output += result[i];
+            } else if (isOperator(result[i]) || BRACKET_LEFT.equals(result[i])
+                    || BRACKET_RIGHT.equals(result[i])) {
+                output += " ".concat(result[i]);
+                output += " ";
+            }
+        }
+        return output.split(WHITESPACE_PATTERN);
+    }
+
+    public static String[] convert(final String input) throws RuntimeException {
+        if (checkValidInput(input)) {
             throw new RuntimeException("Wrong input!");
         }
 
-        input.replaceAll("\\s+", "");
+        String[] expression = separation(input);
 
         String output = "";
-
         Stack<String> stack = new Stack<>();
 
-        for (String str : input.split("")) {
-            if ("(".equals(str)) {
+        for (String str : expression) {
+            if (BRACKET_LEFT.equals(str)) {
                 stack.push(str);
             } else if (isNumber(str)) {
-                output += str;
-            } else if (")".equals(str)) {
-                while (!stack.peek().equals("(")) {
-                    output += stack.pop();
+                output += str.concat(" ");
+            } else if (BRACKET_RIGHT.equals(str)) {
+                while (!stack.peek().equals(BRACKET_LEFT)) {
+                    output += stack.pop().concat(" ");
                 }
                 stack.pop();
-            } else if (OPERATORS.contains(str)) {
+            } else if (isOperator(str)) {
                 while (!stack.isEmpty() && getPriority(str) <= getPriority(stack.peek())) {
-                    output += stack.pop();
+                    output += stack.pop().concat(" ");
                 }
                 stack.push(str);
             }
         }
         while (!stack.isEmpty()) {
-            output += stack.pop();
+            output += stack.pop().concat(" ");
         }
 
-        return output;
+        return output.split(WHITESPACE_PATTERN);
     }
 
     public static int calculateResult(final String input) {
-        String postfix = convert(input);
+        String[] postfix = convert(input);
         Stack<Integer> stack = new Stack<>();
-        for (String str : postfix.split("")) {
+        for (String str : postfix) {
             if (isNumber(str)) {
                 stack.push(Integer.parseInt(str));
             } else if (OPERATORS.contains(str)) {
-                int num1 = 0;
-                int num2 = 0;
+                int firstOperand = stack.pop();
+                int secondOperand = stack.pop();
                 switch (str) {
                     case "+":
-                        num1 = stack.pop();
-                        num2 = stack.pop();
-                        stack.push(num2 + num1);
+                        stack.push(secondOperand + firstOperand);
                         break;
                     case "-":
-                        num1 = stack.pop();
-                        num2 = stack.pop();
-                        stack.push(num2 - num1);
+                        stack.push(secondOperand - firstOperand);
                         break;
                     case "*":
-                        num1 = stack.pop();
-                        num2 = stack.pop();
-                        stack.push(num2 * num1);
+                        stack.push(secondOperand * firstOperand);
                         break;
                     case "/":
-                        num1 = stack.pop();
-                        num2 = stack.pop();
-                        stack.push(num2 / num1);
+                        stack.push(secondOperand / firstOperand);
                         break;
                     default:
                         break;
