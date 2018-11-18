@@ -12,17 +12,13 @@ public class ViewModel {
     private final StringProperty b = new SimpleStringProperty();
     private final StringProperty c = new SimpleStringProperty();
 
-    private final StringProperty x1 = new SimpleStringProperty();
-    private final StringProperty x2 = new SimpleStringProperty();
-
     private final StringProperty roots = new SimpleStringProperty();
 
     public ViewModel() {
-        a.set("");
-        b.set("");
-        c.set("");
-        x1.set("");
-        x2.set("");
+        a.set("0");
+        b.set("0");
+        c.set("0");
+        roots.set("");
     }
 
     public void solve() {
@@ -51,12 +47,6 @@ public class ViewModel {
     }
     public StringProperty cProperty() {
         return c;
-    }
-    public StringProperty x1Property() {
-        return x1;
-    }
-    public StringProperty x2Property() {
-        return x2;
     }
     public StringProperty rootsProperty() {
         return roots;

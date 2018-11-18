@@ -16,11 +16,10 @@ public class ViewModelTest {
 
     @Test
     public void canInitializeViewModel() {
-        assertEquals("", viewModel.aProperty().get());
-        assertEquals("", viewModel.bProperty().get());
-        assertEquals("", viewModel.cProperty().get());
-        assertEquals("", viewModel.x1Property().get());
-        assertEquals("", viewModel.x2Property().get());
+        assertEquals("0", viewModel.aProperty().get());
+        assertEquals("0", viewModel.bProperty().get());
+        assertEquals("0", viewModel.cProperty().get());
+        assertEquals("", viewModel.rootsProperty().get());
     }
 
     @Test
