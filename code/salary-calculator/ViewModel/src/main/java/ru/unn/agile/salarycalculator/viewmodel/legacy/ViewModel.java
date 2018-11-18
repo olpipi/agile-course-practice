@@ -70,8 +70,7 @@ public class ViewModel {
         countPeriod.setWorkedHourInMonth(Integer.parseInt(workedHours));
 
         countPeriod.setCountingMonth(LocalDate.of(Integer.parseInt(countYear),
-                Integer.parseInt(countMonth),
-                1));
+                Integer.parseInt(countMonth), 1));
         result = getMoneyFormatInCashValue(countPeriod);
         status = Status.CASH;
     }
