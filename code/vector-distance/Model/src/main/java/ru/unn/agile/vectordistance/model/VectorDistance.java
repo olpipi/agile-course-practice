@@ -4,6 +4,13 @@ import java.security.InvalidParameterException;
 import java.util.Objects;
 
 public final class VectorDistance {
+    public static final String FLOATING_OVERFLOW_EXCEPTION_MESSAGE =
+            "Floating overflow";
+    public static final String EXPECTED_VECTORS_OF_SAME_LENGTH_EXCEPTION_MESSAGE =
+            "Expected vectors of same length";
+    public static final String EXPECTED_NOT_NULL_PARAMETER_EXCEPTION_MESSAGE =
+            "Expected not null parameter ";
+
     public static float computeL1(final FloatVector a, final FloatVector b) {
         final double p = 1.0;
         return computeLPdistance(a, b, p);
@@ -38,6 +45,44 @@ public final class VectorDistance {
         return distance;
     }
 
+    public enum Distance {
+        L1("L1") {
+            public float apply(final FloatVector a, final FloatVector b) {
+                return computeL1(a, b);
+            }
+        },
+        L2("L2") {
+            public float apply(final FloatVector a, final FloatVector b) {
+                return computeL2(a, b);
+            }
+        },
+        L3("L3") {
+            public float apply(final FloatVector a, final FloatVector b) {
+                return computeL3(a, b);
+            }
+        },
+        L4("L4") {
+            public float apply(final FloatVector a, final FloatVector b) {
+                return computeL4(a, b);
+            }
+        },
+        Linf("Linf") {
+            public float apply(final FloatVector a, final FloatVector b) {
+                return computeLinf(a, b);
+            }
+        };
+        private final String name;
+        Distance(final String name) {
+            this.name = name;
+        }
+        @Override
+        public String toString() {
+            return name;
+        }
+
+        public abstract float apply(FloatVector a, FloatVector b);
+    }
+
     private VectorDistance() { /* none */ }
 
     private static float computeLPdistance(
@@ -54,16 +99,16 @@ public final class VectorDistance {
 
     private static void ensureIsFinite(final float x) {
         if (!Float.isFinite(x)) {
-            throw new FloatingOverflowException("Floating overflow");
+            throw new FloatingOverflowException(FLOATING_OVERFLOW_EXCEPTION_MESSAGE);
         }
     }
 
     private static void checkArgs(final FloatVector a, final FloatVector b) {
-        Objects.requireNonNull(a, "Expected not null parameter a");
-        Objects.requireNonNull(b, "Expected not null parameter b");
+        Objects.requireNonNull(a, EXPECTED_NOT_NULL_PARAMETER_EXCEPTION_MESSAGE + "a");
+        Objects.requireNonNull(b, EXPECTED_NOT_NULL_PARAMETER_EXCEPTION_MESSAGE + "b");
         if (a.length() != b.length()) {
             throw new InvalidParameterException(
-                "Expected vectors of same length");
+                    EXPECTED_VECTORS_OF_SAME_LENGTH_EXCEPTION_MESSAGE);
         }
     }
 }
