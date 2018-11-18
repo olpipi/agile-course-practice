@@ -24,14 +24,14 @@ public class ViewModelTest {
 
     @Test
     public void initViewModelWithDefaultFields() {
-        assertEquals("", viewModel.getAddSrcCodeProp().get());
-        assertEquals("", viewModel.getAddTgtCodeProp().get());
-        assertEquals("", viewModel.getAddRateStrProp().get());
-        assertEquals("", viewModel.getConvSrcCodeProp().get());
-        assertEquals("", viewModel.getConvTgtCodeProp().get());
-        assertEquals("", viewModel.getConvAmountProp().get());
-        assertEquals("", viewModel.getCurrPairsStr());
-        assertEquals("", viewModel.getResultStr());
+        assertEquals("", viewModel.getAddSrcCode());
+        assertEquals("", viewModel.getAddTgtCode());
+        assertEquals("", viewModel.getAddRate());
+        assertEquals("", viewModel.getConvSrcCode());
+        assertEquals("", viewModel.getConvTgtCode());
+        assertEquals("", viewModel.getConvAmount());
+        assertEquals("", viewModel.getCurrPairs());
+        assertEquals("", viewModel.getResult());
     }
 
     @Test
@@ -39,8 +39,8 @@ public class ViewModelTest {
         setAddCurrencyInput("USD", "RUB", "30");
         viewModel.addCurrencyPair();
 
-        assertEquals("USD/RUB\n", viewModel.getCurrPairsStr());
-        assertEquals("", viewModel.getResultStr());
+        assertEquals("USD/RUB\n", viewModel.getCurrPairs());
+        assertEquals("", viewModel.getResult());
     }
 
     @Test
@@ -51,11 +51,11 @@ public class ViewModelTest {
         setAddCurrencyInput("EUR", "RUB", "40");
         viewModel.addCurrencyPair();
 
-        String[] pairs = viewModel.getCurrPairsStr().split("\\r?\\n");
+        String[] pairs = viewModel.getCurrPairs().split("\\r?\\n");
         assertEquals(3, pairs.length);
         assertTrue(Arrays.asList(pairs).contains("USD/RUB"));
         assertTrue(Arrays.asList(pairs).contains("EUR/RUB"));
-        assertEquals("", viewModel.getResultStr());
+        assertEquals("", viewModel.getResult());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class ViewModelTest {
         setAddCurrencyInput("USD", "RUB", "40.B");
         viewModel.addCurrencyPair();
 
-        assertEquals("Не удалось распознать число: \"40.B\"", viewModel.getResultStr());
+        assertEquals("Не удалось распознать число: \"40.B\"", viewModel.getResult());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class ViewModelTest {
         setAddCurrencyInput("USD", "RUB", "");
         viewModel.addCurrencyPair();
 
-        assertEquals("Не удалось распознать число: \"\"", viewModel.getResultStr());
+        assertEquals("Не удалось распознать число: \"\"", viewModel.getResult());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class ViewModelTest {
         setAddCurrencyInput("USD", "RB", "40");
         viewModel.addCurrencyPair();
 
-        assertEquals("Ошибка: Currency Codes don't meet the pattern", viewModel.getResultStr());
+        assertEquals("Ошибка: Currency Codes don't meet the pattern", viewModel.getResult());
     }
 
     @Test
@@ -87,7 +87,7 @@ public class ViewModelTest {
         setAddCurrencyInput("", "RUB", "40");
         viewModel.addCurrencyPair();
 
-        assertEquals("Ошибка: Currency Codes don't meet the pattern", viewModel.getResultStr());
+        assertEquals("Ошибка: Currency Codes don't meet the pattern", viewModel.getResult());
     }
 
     @Test
@@ -98,7 +98,7 @@ public class ViewModelTest {
         setConvertCurrencyInput("USD", "RUB", "2");
         viewModel.convertCurrency();
 
-        assertEquals("2.0 USD = 60.0 RUB", viewModel.getResultStr());
+        assertEquals("2.0 USD = 60.0 RUB", viewModel.getResult());
     }
 
     @Test
@@ -109,7 +109,7 @@ public class ViewModelTest {
         setConvertCurrencyInput("RUB", "USD", "180");
         viewModel.convertCurrency();
 
-        assertEquals("180.0 RUB = 6.0 USD", viewModel.getResultStr());
+        assertEquals("180.0 RUB = 6.0 USD", viewModel.getResult());
     }
 
     @Test
@@ -120,7 +120,7 @@ public class ViewModelTest {
         setConvertCurrencyInput("RUB", "USD", "abc");
         viewModel.convertCurrency();
 
-        assertEquals("Не удалось распознать число: \"abc\"", viewModel.getResultStr());
+        assertEquals("Не удалось распознать число: \"abc\"", viewModel.getResult());
     }
 
     @Test
@@ -131,7 +131,7 @@ public class ViewModelTest {
         setConvertCurrencyInput("RUB", "USD", "");
         viewModel.convertCurrency();
 
-        assertEquals("Не удалось распознать число: \"\"", viewModel.getResultStr());
+        assertEquals("Не удалось распознать число: \"\"", viewModel.getResult());
     }
 
     @Test
@@ -142,7 +142,7 @@ public class ViewModelTest {
         setConvertCurrencyInput("RUB", "UD", "2");
         viewModel.convertCurrency();
 
-        assertEquals("Ошибка: Currency Codes don't meet the pattern", viewModel.getResultStr());
+        assertEquals("Ошибка: Currency Codes don't meet the pattern", viewModel.getResult());
     }
 
     @Test
@@ -153,7 +153,7 @@ public class ViewModelTest {
         setConvertCurrencyInput("", "USD", "2");
         viewModel.convertCurrency();
 
-        assertEquals("Ошибка: Currency Codes don't meet the pattern", viewModel.getResultStr());
+        assertEquals("Ошибка: Currency Codes don't meet the pattern", viewModel.getResult());
     }
 
     @Test
@@ -161,18 +161,18 @@ public class ViewModelTest {
         setConvertCurrencyInput("RUB", "USD", "2");
         viewModel.convertCurrency();
 
-        assertEquals("Ошибка: Can't convert currency. Rate is not found", viewModel.getResultStr());
+        assertEquals("Ошибка: Can't convert currency. Rate is not found", viewModel.getResult());
     }
 
     private void setAddCurrencyInput(String srcCodeStr, String tgtCodeStr, String rateStr) {
-        viewModel.getAddSrcCodeProp().set(srcCodeStr);
-        viewModel.getAddTgtCodeProp().set(tgtCodeStr);
-        viewModel.getAddRateStrProp().set(rateStr);
+        viewModel.setAddSrcCode(srcCodeStr);
+        viewModel.setAddTgtCode(tgtCodeStr);
+        viewModel.setAddRate(rateStr);
     }
 
     private void setConvertCurrencyInput(String srcCodeStr, String tgtCodeStr, String amountStr) {
-        viewModel.getConvSrcCodeProp().set(srcCodeStr);
-        viewModel.getConvTgtCodeProp().set(tgtCodeStr);
-        viewModel.getConvAmountProp().set(amountStr);
+        viewModel.setConvSrcCode(srcCodeStr);
+        viewModel.setConvTgtCode(tgtCodeStr);
+        viewModel.setConvAmount(amountStr);
     }
 }

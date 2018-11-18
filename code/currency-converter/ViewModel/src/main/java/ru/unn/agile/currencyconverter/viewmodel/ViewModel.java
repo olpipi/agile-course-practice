@@ -9,49 +9,105 @@ import ru.unn.agile.currencyconverter.model.CurrencyConverter;
 import ru.unn.agile.currencyconverter.model.errorhandling.CurrencyConverterException;
 
 public class ViewModel {
-    private StringProperty addSrcCodeProp = new SimpleStringProperty();
-    private StringProperty addTgtCodeProp = new SimpleStringProperty();
-    private StringProperty addRateStrProp = new SimpleStringProperty();
+    private StringProperty addSrcCode = new SimpleStringProperty();
+    private StringProperty addTgtCode = new SimpleStringProperty();
+    private StringProperty addRate = new SimpleStringProperty();
 
-    private StringProperty convSrcCodeProp = new SimpleStringProperty();
-    private StringProperty convTgtCodeProp = new SimpleStringProperty();
-    private StringProperty convAmountProp = new SimpleStringProperty();
+    private StringProperty convSrcCode = new SimpleStringProperty();
+    private StringProperty convTgtCode = new SimpleStringProperty();
+    private StringProperty convAmount = new SimpleStringProperty();
 
-    private StringProperty currPairsProp = new SimpleStringProperty();
-    private StringProperty resultProp = new SimpleStringProperty();
+    private StringProperty currPairs = new SimpleStringProperty();
+    private StringProperty result = new SimpleStringProperty();
 
     private CurrencyConverter currencyConverter = new CurrencyConverter();
 
-    public StringProperty getAddSrcCodeProp() {
-        return addSrcCodeProp;
+    public String getAddSrcCode() {
+        return addSrcCode.get();
     }
 
-    public StringProperty getAddTgtCodeProp() {
-        return addTgtCodeProp;
+    public void setAddSrcCode(String newAddSrcCode) {
+        addSrcCode.set(newAddSrcCode);
     }
 
-    public StringProperty getAddRateStrProp() {
-        return addRateStrProp;
+    public StringProperty addSrcCodeProperty() {
+        return addSrcCode;
     }
 
-    public StringProperty getConvSrcCodeProp() {
-        return convSrcCodeProp;
+    public String getAddTgtCode() {
+        return addTgtCode.get();
     }
 
-    public StringProperty getConvTgtCodeProp() {
-        return convTgtCodeProp;
+    public void setAddTgtCode(String newAddTgtCode) {
+        addTgtCode.set(newAddTgtCode);
     }
 
-    public StringProperty getConvAmountProp() {
-        return convAmountProp;
+    public StringProperty addTgtCodeProperty() {
+        return addTgtCode;
     }
 
-    public String getCurrPairsStr() {
-        return currPairsProp.get();
+    public String getAddRate() {
+        return addRate.get();
     }
 
-    public String getResultStr() {
-        return resultProp.get();
+    public void setAddRate(String newAddRate) {
+        addRate.set(newAddRate);
+    }
+
+    public StringProperty addRateProperty() {
+        return addRate;
+    }
+
+    public String getConvSrcCode() {
+        return convSrcCode.get();
+    }
+
+    public void setConvSrcCode(String newConvSrcCode) {
+        convSrcCode.set(newConvSrcCode);
+    }
+
+    public StringProperty convSrcCodeProperty() {
+        return convSrcCode;
+    }
+
+    public String getConvTgtCode() {
+        return convTgtCode.get();
+    }
+
+    public void setConvTgtCode(String newConvTgtCode) {
+        convTgtCode.set(newConvTgtCode);
+    }
+
+    public StringProperty convTgtCodeProperty() {
+        return convTgtCode;
+    }
+
+    public String getConvAmount() {
+        return convAmount.get();
+    }
+
+    public void setConvAmount(String newConvAmount) {
+        convAmount.set(newConvAmount);
+    }
+
+    public StringProperty convAmountProperty() {
+        return convAmount;
+    }
+
+    public String getCurrPairs() {
+        return currPairs.get();
+    }
+
+    public StringProperty currPairsProperty() {
+        return currPairs;
+    }
+
+    public String getResult() {
+        return result.get();
+    }
+
+    public StringProperty resultProperty() {
+        return result;
     }
 
     public ViewModel() {
@@ -59,66 +115,64 @@ public class ViewModel {
     }
 
     private void initDefaultFields() {
-        addSrcCodeProp.set("");
-        addTgtCodeProp.set("");
-        addRateStrProp.set("");
-        convSrcCodeProp.set("");
-        convTgtCodeProp.set("");
-        convAmountProp.set("");
-        currPairsProp.set("");
-        resultProp.set("");
+        addSrcCode.set("");
+        addTgtCode.set("");
+        addRate.set("");
+        convSrcCode.set("");
+        convTgtCode.set("");
+        convAmount.set("");
+        currPairs.set("");
+        result.set("");
     }
 
     public void addCurrencyPair() {
         try {
             currencyConverter.addCurrencyPair(
-                    addSrcCodeProp.get(),
-                    addTgtCodeProp.get(),
-                    Double.parseDouble(addRateStrProp.get())
+                    addSrcCode.get(),
+                    addTgtCode.get(),
+                    Double.parseDouble(addRate.get())
             );
         } catch (NumberFormatException exc) {
-            resultProp.set("Не удалось распознать число: \"" + addRateStrProp.get() + "\"");
+            result.set("Не удалось распознать число: \"" + addRate.get() + "\"");
             return;
         } catch (CurrencyConverterException exc) {
-            resultProp.set("Ошибка: " + exc.getMessage());
+            result.set("Ошибка: " + exc.getMessage());
             return;
         }
 
         Map<String, Double> currencyPairs = currencyConverter.getCurrencyPairs();
         for (String pair : currencyPairs.keySet()) {
-            currPairsProp.set(currPairsProp.get() + pair + "\n");
+            currPairs.set(currPairs.get() + pair + "\n");
         }
 
-        resultProp.set("");
+        result.set("");
     }
 
     public void convertCurrency() {
         Double amount, res;
 
         try {
-            amount = Double.parseDouble(convAmountProp.get());
-        }
-        catch (NumberFormatException exc) {
-            resultProp.set("Не удалось распознать число: \"" + convAmountProp.get() + "\"");
+            amount = Double.parseDouble(convAmount.get());
+        } catch (NumberFormatException exc) {
+            result.set("Не удалось распознать число: \"" + convAmount.get() + "\"");
             return;
         }
 
         try {
             res = currencyConverter.convert(
-                    convSrcCodeProp.get(),
-                    convTgtCodeProp.get(),
+                    convSrcCode.get(),
+                    convTgtCode.get(),
                     amount
             );
-        }
-        catch (CurrencyConverterException exc) {
-            resultProp.set("Ошибка: " + exc.getMessage());
+        } catch (CurrencyConverterException exc) {
+            result.set("Ошибка: " + exc.getMessage());
             return;
         }
 
-        resultProp.set(String.format("%s %s = %s %s",
+        result.set(String.format("%s %s = %s %s",
                 amount,
-                convSrcCodeProp.get(),
+                convSrcCode.get(),
                 res,
-                convTgtCodeProp.get()));
+                convTgtCode.get()));
     }
 }
