@@ -42,8 +42,19 @@ public class PolynomialTest {
 
         Polynomial p = new Polynomial(toInit);
 
-        assertArrayEquals(null, p.getCoeffs(), Polynomial.DELTA);
-        assertEquals(-1, p.getDegree());
+        assertArrayEquals(toInit, p.getCoeffs(), Polynomial.DELTA);
+        assertEquals(0, p.getDegree());
+    }
+
+    @Test
+    public void checkInitWithOnlyZeros() {
+        double[] toInit = {0.0, 0.0, 0.0};
+        double[] result = {0.0};
+
+        Polynomial p = new Polynomial(toInit);
+
+        assertArrayEquals(result, p.getCoeffs(), Polynomial.DELTA);
+        assertEquals(0, p.getDegree());
     }
 
     @Test
@@ -67,7 +78,7 @@ public class PolynomialTest {
 
         Polynomial p = new Polynomial(toInit);
 
-        assertEquals("0", p.toString());
+        assertEquals("0.0", p.toString());
     }
 
     @Test
@@ -150,7 +161,7 @@ public class PolynomialTest {
 
         Polynomial res = p.multiply(0);
 
-        assertEquals("0", res.toString());
+        assertEquals("0.0", res.toString());
     }
 
     @Test
@@ -175,5 +186,73 @@ public class PolynomialTest {
         Polynomial res = p1.multiply(p2);
 
         assertEquals("1.0x^3 - 8.0", res.toString());
+    }
+
+    @Test
+    public void canSubtractPolynomial() {
+        double[] toInit = {1.0, 2.0, 4.0};
+        Polynomial p1 = new Polynomial(toInit);
+        double[] toSubtract = {1.0, -2.0, 3.0};
+        Polynomial p2 = new Polynomial(toSubtract);
+
+        Polynomial res = p1.subtract(p2);
+
+        assertEquals("4.0x + 1.0", res.toString());
+    }
+
+    @Test
+    public void canSubtractPolynomial2() {
+        double[] toInit = {1.0, 2.0, 4.0};
+        Polynomial p1 = new Polynomial(toInit);
+        double[] toSubtract = {1.0, 2.0, 4.0};
+        Polynomial p2 = new Polynomial(toSubtract);
+
+        Polynomial res = p1.subtract(p2);
+
+        assertEquals("0.0", res.toString());
+    }
+
+    @Test
+    public void canSubtractPolynomial3() {
+        double[] toInit = {1.0, 2.0, 4.0};
+        Polynomial p1 = new Polynomial(toInit);
+        double[] toSubtract = {2.0, 4.0};
+        Polynomial p2 = new Polynomial(toSubtract);
+
+        Polynomial res = p1.subtract(p2);
+
+        assertEquals("1.0x^2", res.toString());
+    }
+
+    @Test
+    public void canSubtractPolynomial4() {
+        double[] toInit = {1.0, 2.0, 4.0};
+        Polynomial p1 = new Polynomial(toInit);
+        double[] toSubtract = {1.0, 2.0, 3.0, 4.0};
+        Polynomial p2 = new Polynomial(toSubtract);
+
+        Polynomial res = p1.subtract(p2);
+
+        assertEquals("-1.0x^3 - 1.0x^2 - 1.0x", res.toString());
+    }
+
+    @Test
+    public void canSubtractNumber() {
+        double[] toInit = {1.0, 2.0, 4.0};
+        Polynomial p1 = new Polynomial(toInit);
+
+        Polynomial res = p1.subtract(5);
+
+        assertEquals("1.0x^2 + 2.0x - 1.0", res.toString());
+    }
+
+    @Test
+    public void canSubtractNumber2() {
+        double[] toInit = {0.0};
+        Polynomial p1 = new Polynomial(toInit);
+
+        Polynomial res = p1.subtract(5);
+
+        assertEquals("-5.0", res.toString());
     }
 }

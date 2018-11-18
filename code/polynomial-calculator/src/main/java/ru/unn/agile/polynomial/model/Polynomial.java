@@ -17,8 +17,9 @@ public class Polynomial {
             firstElem++;
         }
         if (firstElem == coef.length) {
-            this.coeffs = null;
-            this.degree = -1;
+            double[] onlyZeros = {0.0};
+            this.coeffs = onlyZeros;
+            this.degree = 0;
             return;
         }
 
@@ -114,6 +115,14 @@ public class Polynomial {
         }
 
         return new Polynomial(coefs);
+    }
+
+    public Polynomial subtract(final Polynomial p) {
+        return new Polynomial(this.add(p.multiply(-1)));
+    }
+
+    public Polynomial subtract(final double d) {
+        return new Polynomial(this.add(-d));
     }
 }
 
