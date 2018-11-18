@@ -174,6 +174,10 @@ project(":code/podchishchaeva-rb-tree").name = "podchishchaeva-rb-tree"
 include "code/golovanova-tatyana-converter-temperatures"
 project(":code/golovanova-tatyana-converter-temperatures").name = "golovanova-tatyana-converter-temperatures"
 
+// Polynomial Calculator
+include "code/polynomial-calculator"
+project(":code/polynomial-calculator").name = "polynomial-calculator"
+
 // Sheptunov Vladislav, BinarySearchTree
 include "code/binary-search-tree"
 project(":code/binary-search-tree").name = "binary-search-tree"
