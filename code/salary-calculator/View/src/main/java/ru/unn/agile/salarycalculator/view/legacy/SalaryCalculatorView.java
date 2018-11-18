@@ -22,8 +22,8 @@ public final class SalaryCalculatorView {
     private SalaryCalculatorView() {
     }
 
-    private SalaryCalculatorView(final ViewModel _viewModel) {
-        this.viewModel = _viewModel;
+    private SalaryCalculatorView(final ViewModel viewModelArg) {
+        this.viewModel = viewModelArg;
         backBind();
         calculateButton.addActionListener(new ActionListener() {
             @Override
