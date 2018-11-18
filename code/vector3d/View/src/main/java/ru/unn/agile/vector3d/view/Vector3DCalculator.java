@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import ru.unn.agile.vector3d.model.Vector3D;
+import ru.unn.agile.vector3d.viewmodel.Operation;
 import ru.unn.agile.vector3d.viewmodel.ViewModel;
 
 public class Vector3DCalculator {
@@ -25,7 +25,7 @@ public class Vector3DCalculator {
     @FXML
     private TextField txtMultCoeff;
     @FXML
-    private ComboBox<Vector3D.Operation> cbOperation;
+    private ComboBox<Operation> cbOperation;
     @FXML
     private Button btnCalc;
 

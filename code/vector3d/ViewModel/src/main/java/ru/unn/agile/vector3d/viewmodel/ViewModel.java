@@ -6,7 +6,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import ru.unn.agile.vector3d.model.Vector3D;
 import ru.unn.agile.vector3d.viewmodel.actions.ActionFactory;
 import ru.unn.agile.vector3d.viewmodel.actions.IAction;
 import ru.unn.agile.vector3d.viewmodel.validators.IValidator;
@@ -28,10 +27,10 @@ public class ViewModel {
 
     private final StringProperty multiplicationCoeff = new SimpleStringProperty();
 
-    private final ObjectProperty<ObservableList<Vector3D.Operation>> operations =
+    private final ObjectProperty<ObservableList<Operation>> operations =
             new SimpleObjectProperty<>(FXCollections.observableArrayList(
-                    Vector3D.Operation.values()));
-    private final ObjectProperty<Vector3D.Operation> operation = new SimpleObjectProperty<>();
+                    Operation.values()));
+    private final ObjectProperty<Operation> operation = new SimpleObjectProperty<>();
 
     private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
 
@@ -40,7 +39,7 @@ public class ViewModel {
 
     private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
 
-    public final ObservableList<Vector3D.Operation> getOperations() {
+    public final ObservableList<Operation> getOperations() {
         return operations.get();
     }
 
@@ -96,7 +95,7 @@ public class ViewModel {
         return multiplicationCoeff.get();
     }
 
-    public Vector3D.Operation getOperation() {
+    public Operation getOperation() {
         return operation.get();
     }
 
@@ -104,7 +103,7 @@ public class ViewModel {
         return multiplicationCoeff;
     }
 
-    public ObjectProperty<Vector3D.Operation> operationProperty() {
+    public ObjectProperty<Operation> operationProperty() {
         return operation;
     }
 
@@ -219,7 +218,7 @@ public class ViewModel {
     }
 
     private void setDefaultOperationAndStatus() {
-        operation.set(Vector3D.Operation.ADD);
+        operation.set(Operation.ADD);
         status.set(Status.WAITING.toString());
     }
 

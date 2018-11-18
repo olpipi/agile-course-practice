@@ -7,9 +7,9 @@ import ru.unn.agile.vector3d.viewmodel.actions.IAction;
 public class DotAction implements IAction {
     @Override
     public void execute(final ViewModel viewModel) {
-        Vector3D vector = new Vector3D(viewModel.getVectorX(),
+        Vector3D vector = createVectorFromStrings(viewModel.getVectorX(),
                 viewModel.getVectorY(), viewModel.getVectorZ());
-        Vector3D other = new Vector3D(viewModel.getOtherVectorX(),
+        Vector3D other = createVectorFromStrings(viewModel.getOtherVectorX(),
                 viewModel.getOtherVectorY(), viewModel.getOtherVectorZ());
 
         viewModel.resultProperty().set(String.valueOf(vector.dot(other)));

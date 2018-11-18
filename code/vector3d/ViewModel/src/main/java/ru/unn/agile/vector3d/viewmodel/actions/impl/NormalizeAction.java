@@ -11,7 +11,7 @@ public class NormalizeAction implements IAction {
         String y = viewModel.getVectorY();
         String z = viewModel.getVectorZ();
 
-        Vector3D vector = new Vector3D(x, y, z);
+        Vector3D vector = createVectorFromStrings(x, y, z);
 
         viewModel.resultProperty().set(String.valueOf(vector.normalize()));
         viewModel.statusProperty().set(ViewModel.Status.SUCCESS.toString());

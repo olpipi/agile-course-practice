@@ -18,12 +18,6 @@ public class Vector3D {
         this.z = z;
     }
 
-    public Vector3D(final String x, final String y, final String z) {
-        this.x = Double.parseDouble(x);
-        this.y = Double.parseDouble(y);
-        this.z = Double.parseDouble(z);
-    }
-
     public double getX() {
         return x;
     }
@@ -109,27 +103,5 @@ public class Vector3D {
     @Override
     public String toString() {
         return String.format(Locale.ROOT, "(%s, %s, %s)", x, y, z);
-    }
-
-    public enum Operation {
-        ADD("Add"),
-        SUBTRACT("Subtract"),
-        DOT("Dot"),
-        NORMALIZE("Normalize"),
-        MAGNITUDE("Magnitude"),
-        MULTIPLY("Multiply"),
-        CROSS("Cross");
-
-        private final String name;
-
-        Operation(final String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return name;
-        }
-
     }
 }

@@ -6,7 +6,6 @@ import javafx.beans.property.StringProperty;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ru.unn.agile.vector3d.model.Vector3D;
 
 import static org.junit.Assert.*;
 
@@ -73,11 +72,11 @@ public class ViewModelTest {
     @Test
     public void canSetDefaultOperationAndStatus() {
         // Arrange & Act
-        ObjectProperty<Vector3D.Operation> defaultOperation = viewModel.operationProperty();
+        ObjectProperty<Operation> defaultOperation = viewModel.operationProperty();
         StringProperty defaultStatus = viewModel.statusProperty();
 
         // Assert
-        assertEquals(Vector3D.Operation.ADD, defaultOperation.get());
+        assertEquals(Operation.ADD, defaultOperation.get());
         assertEquals(ViewModel.Status.WAITING.toString(), defaultStatus.get());
     }
 
@@ -153,16 +152,16 @@ public class ViewModelTest {
     @Test
     public void canSetAddOperation() {
         // Arrange & Act
-        viewModel.operationProperty().set(Vector3D.Operation.ADD);
+        viewModel.operationProperty().set(Operation.ADD);
 
         // Assert
-        assertEquals(Vector3D.Operation.ADD, viewModel.operationProperty().get());
+        assertEquals(Operation.ADD, viewModel.operationProperty().get());
     }
 
     @Test
     public void addIsDefaultOperation() {
         // Arrange & Act & Assert
-        assertEquals(Vector3D.Operation.ADD, viewModel.operationProperty().get());
+        assertEquals(Operation.ADD, viewModel.operationProperty().get());
     }
 
     @Test
@@ -181,7 +180,7 @@ public class ViewModelTest {
     public void operationSubtractHasCorrectResult() {
         // Arrange
         setInputData();
-        viewModel.operationProperty().set(Vector3D.Operation.SUBTRACT);
+        viewModel.operationProperty().set(Operation.SUBTRACT);
 
         // Act
         viewModel.calculate();
@@ -194,7 +193,7 @@ public class ViewModelTest {
     public void operationDotHasCorrectResult() {
         // Arrange
         setInputData();
-        viewModel.operationProperty().set(Vector3D.Operation.DOT);
+        viewModel.operationProperty().set(Operation.DOT);
 
         // Act
         viewModel.calculate();
@@ -207,7 +206,7 @@ public class ViewModelTest {
     public void canCheckBadFormatWhenOperationIsDot() {
         // Arrange
         setInputData();
-        viewModel.operationProperty().set(Vector3D.Operation.DOT);
+        viewModel.operationProperty().set(Operation.DOT);
 
         // Act
         viewModel.otherVectorXProperty().set("aa");
@@ -224,7 +223,7 @@ public class ViewModelTest {
         viewModel.vectorYProperty().set("-3");
         viewModel.vectorZProperty().set("5");
         viewModel.multiplicationCoeffProperty().set("2");
-        viewModel.operationProperty().set(Vector3D.Operation.MULTIPLY);
+        viewModel.operationProperty().set(Operation.MULTIPLY);
 
         // Act
         viewModel.calculate();
@@ -239,7 +238,7 @@ public class ViewModelTest {
         viewModel.vectorXProperty().set("1");
         viewModel.vectorYProperty().set("-2");
         viewModel.vectorZProperty().set("3");
-        viewModel.operationProperty().set(Vector3D.Operation.MULTIPLY);
+        viewModel.operationProperty().set(Operation.MULTIPLY);
 
         // Act
         viewModel.multiplicationCoeffProperty().set("aa");
@@ -258,7 +257,7 @@ public class ViewModelTest {
         viewModel.multiplicationCoeffProperty().set("2");
 
         // Act1
-        viewModel.operationProperty().set(Vector3D.Operation.MULTIPLY);
+        viewModel.operationProperty().set(Operation.MULTIPLY);
 
         // Assert
         assertFalse(viewModel.isCalculationDisabled());
@@ -270,7 +269,7 @@ public class ViewModelTest {
         viewModel.vectorXProperty().set("1");
         viewModel.vectorYProperty().set("2");
         viewModel.vectorZProperty().set("3");
-        viewModel.operationProperty().set(Vector3D.Operation.MAGNITUDE);
+        viewModel.operationProperty().set(Operation.MAGNITUDE);
 
         // Act
         viewModel.calculate();
@@ -285,7 +284,7 @@ public class ViewModelTest {
         viewModel.vectorXProperty().set("-80");
         viewModel.vectorYProperty().set("0");
         viewModel.vectorZProperty().set("60");
-        viewModel.operationProperty().set(Vector3D.Operation.NORMALIZE);
+        viewModel.operationProperty().set(Operation.NORMALIZE);
 
         // Act
         viewModel.calculate();
@@ -304,7 +303,7 @@ public class ViewModelTest {
         viewModel.otherVectorXProperty().set("-2");
         viewModel.otherVectorYProperty().set("8");
         viewModel.otherVectorZProperty().set("9");
-        viewModel.operationProperty().set(Vector3D.Operation.CROSS);
+        viewModel.operationProperty().set(Operation.CROSS);
 
         // Act
         viewModel.calculate();
@@ -320,7 +319,7 @@ public class ViewModelTest {
         viewModel.otherVectorXProperty().set("aaa");
 
         // Act1
-        viewModel.operationProperty().set(Vector3D.Operation.NORMALIZE);
+        viewModel.operationProperty().set(Operation.NORMALIZE);
 
         // Assert
         assertFalse(viewModel.isCalculationDisabled());

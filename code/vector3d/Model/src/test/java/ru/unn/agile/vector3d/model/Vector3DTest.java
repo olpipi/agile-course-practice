@@ -386,13 +386,4 @@ public class Vector3DTest {
 
         assertEquals("(5.01, -12.0, 3.1415)", vStringValue);
     }
-
-    @Test
-    public void canCreateVectorFromStrings() {
-        Vector3D v = new Vector3D("5.01", "-12", "3.1415");
-
-        assertEquals(5.01, v.getX(), EPSILON);
-        assertEquals(-12, v.getY(), EPSILON);
-        assertEquals(3.1415, v.getZ(), EPSILON);
-    }
 }
