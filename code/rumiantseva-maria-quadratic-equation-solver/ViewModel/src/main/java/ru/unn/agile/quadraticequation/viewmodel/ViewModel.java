@@ -3,9 +3,7 @@ package ru.unn.agile.quadraticequation.viewmodel;
 import ru.unn.agile.quadraticequation.model.QuadraticEquation;
 import ru.unn.agile.quadraticequation.model.QuadraticEquationSolverException;
 import javafx.beans.property.*;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class ViewModel {
     private final StringProperty a = new SimpleStringProperty();
@@ -45,8 +43,6 @@ public class ViewModel {
 
             throw e;
         }
-
-
 
         double[] equationRoots;
         try {

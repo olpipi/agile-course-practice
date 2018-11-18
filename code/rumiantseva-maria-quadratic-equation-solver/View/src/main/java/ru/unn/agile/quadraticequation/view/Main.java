@@ -5,13 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ru.unn.agile.quadraticequation.viewmodel.ViewModel;
 
 public class Main extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("QuadricEquationSolver.fxml"));
-        primaryStage.setTitle("QuadricEquationSolver");
+        Parent root = FXMLLoader.load(getClass().getResource("QuadraticEquationSolver.fxml"));
+        primaryStage.setTitle("QuadraticEquationSolver");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
