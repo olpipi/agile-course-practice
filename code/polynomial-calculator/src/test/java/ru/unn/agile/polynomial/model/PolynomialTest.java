@@ -45,4 +45,37 @@ public class PolynomialTest {
         assertArrayEquals(null, p.getCoeffs(), Polynomial.DELTA);
         assertEquals(-1, p.getDegree());
     }
+
+    @Test
+    public void canConvertToString() {
+        double[] toInit = {1.0, -2.0, 3.0};
+
+        Polynomial p = new Polynomial(toInit);
+
+        assertEquals("1.0x^2 - 2.0x + 3.0", p.toString());
+    }
+
+    @Test
+    public void canConvertToStringNull() {
+        Polynomial p = new Polynomial();
+
+        assertEquals("0", p.toString());
+    }
+    @Test
+    public void canConvertToStringZero() {
+        double[] toInit = {0.0};
+
+        Polynomial p = new Polynomial(toInit);
+
+        assertEquals("0", p.toString());
+    }
+
+    @Test
+    public void canConvertToStringWithZero() {
+        double[] toInit = {0.0, -2.0, 3.0, 0.0};
+
+        Polynomial p = new Polynomial(toInit);
+
+        assertEquals("-2.0x^2 + 3.0x", p.toString());
+    }
 }

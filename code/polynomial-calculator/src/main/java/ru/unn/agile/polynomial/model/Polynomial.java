@@ -43,5 +43,32 @@ public class Polynomial {
     public int getDegree() {
         return this.degree;
     }
+
+    public String toString() {
+        if        (degree == -1) {
+            return "0";
+        } else if (degree ==  0) {
+            return "" + coeffs[0];
+        } else if (degree ==  1) {
+            return coeffs[0] + "x + " + coeffs[1];
+        }
+
+        String s = coeffs[0] + "x^" + degree;
+        for (int i = 1; i <= degree; i++) {
+            if        (coeffs[i] == 0) {
+                continue;
+            } else if (coeffs[i]  > 0) {
+                s = s + " + " + (coeffs[i]);
+            } else if (coeffs[i]  < 0) {
+                s = s + " - " + (-coeffs[i]);
+            }
+            if        (i == degree - 1) {
+                s = s + "x";
+            } else if (i <  degree - 1) {
+                s = s + "x^" + i;
+            }
+        }
+        return s;
+    }
 }
 
