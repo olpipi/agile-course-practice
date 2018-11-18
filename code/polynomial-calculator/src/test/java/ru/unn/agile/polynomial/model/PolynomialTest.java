@@ -255,4 +255,43 @@ public class PolynomialTest {
 
         assertEquals("-5.0", res.toString());
     }
+
+    @Test
+    public void canComparePolynomials() {
+        double[] toInit = {1.0, 2.0, 3.0};
+        Polynomial p1 = new Polynomial(toInit);
+        double[] toCompare = {1.0, 2.0};
+        Polynomial p2 = new Polynomial(toCompare);
+
+        assertFalse(p1.isEqual(p2));
+    }
+
+    @Test
+    public void canComparePolynomials2() {
+        double[] toInit = {1.0, 2.0, 3.0};
+        Polynomial p1 = new Polynomial(toInit);
+        double[] toCompare = {1.0, 2.0, 4.0};
+        Polynomial p2 = new Polynomial(toCompare);
+
+        assertFalse(p1.isEqual(p2));
+    }
+
+    @Test
+    public void canComparePolynomials3() {
+        double[] toInit = {1.0, 2.0, 3.0};
+        Polynomial p1 = new Polynomial(toInit);
+        double[] toCompare = {1.0, 2.0, 3.0};
+        Polynomial p2 = new Polynomial(toCompare);
+
+        assertTrue(p1.isEqual(p2));
+    }
+
+    @Test
+    public void canComparePolynomials4() {
+        double[] toInit = {1.0, 2.0, 3.0};
+        Polynomial p1 = new Polynomial(toInit);
+        Polynomial p2 = new Polynomial();
+
+        assertFalse(p1.isEqual(p2));
+    }
 }

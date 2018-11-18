@@ -124,5 +124,19 @@ public class Polynomial {
     public Polynomial subtract(final double d) {
         return new Polynomial(this.add(-d));
     }
+
+    public boolean isEqual(final Polynomial p) {
+        if (this.degree != p.degree) {
+        return false;
+        } else {
+            for (int i = 0; i <= this.degree; i++) {
+                if (this.coeffs[i] != p.coeffs[i]) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
 }
 
