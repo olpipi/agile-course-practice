@@ -150,5 +150,20 @@ public class ViewModelTests {
         assertEquals(Status.SUCCESSFUL, viewModel.getCurrentState());
     }
 
+    @Test
+    public void isAddButtonDisabledWhenLaunch() {
+        assertEquals(false, viewModel.isAddButtonEnabled());
+    }
+
+    @Test
+    public void isClearButtonDisabledWhenLaunch() {
+        assertEquals(false, viewModel.isClearButtonEnabled());
+    }
+
+    @Test
+    public void isSortButtonDisabledWhenLaunch() {
+        assertEquals(false, viewModel.isSortButtonEnabled());
+    }
+
 
 }

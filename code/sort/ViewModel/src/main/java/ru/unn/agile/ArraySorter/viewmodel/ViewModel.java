@@ -9,6 +9,10 @@ public class ViewModel {
     private String outputArray;
     private String status;
 
+    private boolean isAddButtonEnabled;
+    private boolean isClearButtonEnabled;
+    private boolean isSortButtonEnabled;
+
     ArrayList<Double> Array = new ArrayList<Double>();
 
     public ViewModel() {
@@ -16,6 +20,9 @@ public class ViewModel {
         outputArray = "";
         status = Status.WAITING;
 
+        isAddButtonEnabled = false;
+        isClearButtonEnabled = false;
+        isSortButtonEnabled = false;
     }
 
     public String getOutputArray()
@@ -99,5 +106,17 @@ public class ViewModel {
         }
         status = Status.READY;
         return true;
+    }
+
+    public boolean isAddButtonEnabled() {
+        return isAddButtonEnabled;
+    }
+
+    public boolean isClearButtonEnabled() {
+        return isClearButtonEnabled;
+    }
+
+    public boolean isSortButtonEnabled() {
+        return isSortButtonEnabled;
     }
 }
