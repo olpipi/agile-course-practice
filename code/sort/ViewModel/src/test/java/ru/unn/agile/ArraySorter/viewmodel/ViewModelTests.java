@@ -120,7 +120,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isReadyStateWhenAddElemFieldIsWritein() {
+    public void isReadyStateWhenAddElemFieldIsWriteIn() {
         viewModel.setElemArray("6.1");
 
         viewModel.processingAddField(1);
@@ -165,5 +165,86 @@ public class ViewModelTests {
         assertEquals(false, viewModel.isSortButtonEnabled());
     }
 
+    @Test
+    public void isAddButtonEnabledAddElemFieldIsCorrect() {
+        viewModel.setElemArray("1.2");
+        viewModel.processingAddField(1);
 
+        assertEquals(true, viewModel.isAddButtonEnabled());
+    }
+
+    @Test
+    public void isAddButtonDisabledWhenAddElemFieldIsEmpty() {
+        viewModel.setElemArray("");
+        viewModel.processingAddField(1);
+
+        assertEquals(false, viewModel.isAddButtonEnabled());
+    }
+
+    @Test
+    public void isAddButtonDisabledWhenAddElemIsInvalid() {
+        viewModel.setElemArray("ijijfdf");
+        viewModel.processingAddField(1);
+
+        assertEquals(false, viewModel.isAddButtonEnabled());
+    }
+
+    @Test
+    public void isClearButtonEnabledWhenArrayIsNotEmpty() {
+        viewModel.setElemArray("2");
+        viewModel.Add();
+        viewModel.setElemArray("9");
+        viewModel.Add();
+
+        assertEquals(true, viewModel.isClearButtonEnabled());
+    }
+
+    @Test
+    public void isSortButtonEnabledWhenArrayIsNotEmpty() {
+        viewModel.setElemArray("8");
+        viewModel.Add();
+        viewModel.setElemArray("4");
+        viewModel.Add();
+
+        assertEquals(true, viewModel.isSortButtonEnabled());
+    }
+    @Test
+    public void canClearDisableClearButton() {
+        viewModel.setElemArray("1");
+        viewModel.Add();
+        viewModel.setElemArray("8");
+        viewModel.Add();
+        viewModel.setElemArray("4");
+        viewModel.Add();
+
+        viewModel.Clear();
+
+        assertEquals(false, viewModel.isClearButtonEnabled());
+    }
+
+    @Test
+    public void canClearDisableSortButton() {
+        viewModel.setElemArray("8");
+        viewModel.Add();
+        viewModel.setElemArray("2");
+        viewModel.Add();
+        viewModel.setElemArray("1");
+        viewModel.Add();
+        viewModel.setElemArray("5");
+        viewModel.Add();
+
+        viewModel.Clear();
+
+        assertEquals(false, viewModel.isSortButtonEnabled());
+    }
+
+    @Test
+    public void canSortDisableClearButton() {
+        viewModel.setElemArray("2");
+        viewModel.Add();
+
+        viewModel.Sort();
+
+        assertEquals(false, viewModel.isClearButtonEnabled());
+    }
 }

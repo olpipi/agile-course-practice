@@ -95,17 +95,21 @@ public class ViewModel {
         try {
             if (ElemArray.isEmpty()) {
                 status = Status.WAITING;
-                return true;
+                isAddButtonEnabled = false;
+                return isAddButtonEnabled;
             }
             else{
                 Double.parseDouble(ElemArray);
+                status = Status.READY;
+                isAddButtonEnabled = true;
             }
         } catch (Exception e) {
             status = Status.BAD_FORMAT;
-            return false;
+            isAddButtonEnabled = false;
+            return isAddButtonEnabled;
         }
-        status = Status.READY;
-        return true;
+
+        return isAddButtonEnabled;
     }
 
     public boolean isAddButtonEnabled() {
