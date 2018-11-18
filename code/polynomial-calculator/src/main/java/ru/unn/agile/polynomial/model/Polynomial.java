@@ -65,10 +65,33 @@ public class Polynomial {
             if        (i == degree - 1) {
                 s = s + "x";
             } else if (i <  degree - 1) {
-                s = s + "x^" + i;
+                s = s + "x^" + (i + 1);
             }
         }
         return s;
+    }
+
+    public Polynomial add(final Polynomial p) {
+        int n = Math.max(this.degree, p.degree);
+        double[] coefs = new double[n + 1];
+
+        int i0 = n - this.degree;
+        for (int i = 0; i <= this.degree; i++) {
+            coefs[i0 + i] = this.coeffs[i];
+        }
+
+        i0 = n - p.degree;
+        for (int i = 0; i <= p.degree; i++) {
+            coefs[i0 + i] += p.coeffs[i];
+        }
+
+        return new Polynomial(coefs);
+    }
+
+    public Polynomial add(final double d) {
+        Polynomial res = new Polynomial(this);
+        res.coeffs[this.degree] += d;
+        return res;
     }
 }
 

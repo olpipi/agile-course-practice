@@ -78,4 +78,60 @@ public class PolynomialTest {
 
         assertEquals("-2.0x^2 + 3.0x", p.toString());
     }
+
+    @Test
+    public void canAddNumber() {
+        double[] toInit = {1.0, -2.0, 3.0, -4.0};
+        Polynomial p = new Polynomial(toInit);
+
+        p.add(5);
+
+        assertEquals("1.0x^3 - 2.0x^2 + 3.0x + 1.0", p.toString());
+    }
+
+    @Test
+    public void canAddNumber2() {
+        double[] toInit = {1.0, -2.0, 3.0, -4.0};
+        Polynomial p = new Polynomial(toInit);
+
+        p.add(4);
+
+        assertEquals("1.0x^3 - 2.0x^2 + 3.0x", p.toString());
+    }
+
+    @Test
+    public void canAddPolynomial() {
+        double[] toInit = {1.0, -2.0, 3.0, -4.0};
+        Polynomial p1 = new Polynomial(toInit);
+        double[] toAdd = {-1.0, -2.0, 3.0, -4.0};
+        Polynomial p2 = new Polynomial(toAdd);
+
+        Polynomial res = p1.add(p2);
+
+        assertEquals("-4.0x^2 + 6.0x - 8.0", res.toString());
+    }
+
+    @Test
+    public void canAddPolynomial2() {
+        double[] toInit = {1.0, -2.0, 3.0, -4.0};
+        Polynomial p1 = new Polynomial(toInit);
+        double[] toAdd = {2.0, 3.0, -4.0};
+        Polynomial p2 = new Polynomial(toAdd);
+
+        Polynomial res = p1.add(p2);
+
+        assertEquals("1.0x^3 + 6.0x - 8.0", res.toString());
+    }
+
+    @Test
+    public void canAddPolynomial3() {
+        double[] toInit = {1.0, -2.0, 3.0, -4.0};
+        Polynomial p1 = new Polynomial(toInit);
+        double[] toAdd = {-1.0, 2.0, -3.0, 4.0};
+        Polynomial p2 = new Polynomial(toAdd);
+
+        Polynomial res = p1.add(p2);
+
+        assertEquals("0", res.toString());
+    }
 }
