@@ -22,14 +22,14 @@ public final class SalaryCalculatorView {
     private SalaryCalculatorView() {
     }
 
-    private SalaryCalculatorView(final ViewModel viewModel) {
-        this.viewModel = viewModel;
+    private SalaryCalculatorView(final ViewModel _viewModel) {
+        this.viewModel = _viewModel;
         backBind();
         calculateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent actionEvent) {
                 bind();
-                SalaryCalculatorView.this.viewModel.calculateSalary();
+                viewModel.calculateSalary();
                 backBind();
             }
         });
@@ -38,7 +38,7 @@ public final class SalaryCalculatorView {
             @Override
             public void keyReleased(final KeyEvent e) {
                 bind();
-                SalaryCalculatorView.this.viewModel.checkCountFields();
+                viewModel.checkCountFields();
                 backBind();
             }
         };
