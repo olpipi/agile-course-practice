@@ -24,77 +24,77 @@ public class ViewModelTests {
 
     @Test
     public void canSetDefaultValues() {
-        assertEquals("", viewModel.vectorXProperty().get());
-        assertEquals("", viewModel.vectorYProperty().get());
-        assertEquals(Distance.L1, viewModel.distanceProperty().get());
-        assertEquals("", viewModel.resultProperty().get());
-        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+        assertEquals("", viewModel.getVectorXProperty());
+        assertEquals("", viewModel.getVectorYProperty());
+        assertEquals(Distance.L1, viewModel.getDistanceProperty());
+        assertEquals("", viewModel.getResultProperty());
+        assertEquals(Status.WAITING.toString(), viewModel.getStatusProperty());
     }
 
     @Test
     public void canSetL1DistanceCalculation() {
         viewModel.distanceProperty().set(Distance.L1);
 
-        assertEquals(Distance.L1, viewModel.distanceProperty().get());
+        assertEquals(Distance.L1, viewModel.getDistanceProperty());
     }
 
     @Test
     public void canSetL2DistanceCalculation() {
         viewModel.distanceProperty().set(Distance.L2);
 
-        assertEquals(Distance.L2, viewModel.distanceProperty().get());
+        assertEquals(Distance.L2, viewModel.getDistanceProperty());
     }
 
     @Test
     public void canSetL3DistanceCalculation() {
         viewModel.distanceProperty().set(Distance.L3);
 
-        assertEquals(Distance.L3, viewModel.distanceProperty().get());
+        assertEquals(Distance.L3, viewModel.getDistanceProperty());
     }
 
     @Test
     public void canSetL4DistanceCalculation() {
         viewModel.distanceProperty().set(Distance.L4);
 
-        assertEquals(Distance.L4, viewModel.distanceProperty().get());
+        assertEquals(Distance.L4, viewModel.getDistanceProperty());
     }
 
     @Test
     public void canSetLinfDistanceCalculation() {
         viewModel.distanceProperty().set(Distance.Linf);
 
-        assertEquals(Distance.Linf, viewModel.distanceProperty().get());
+        assertEquals(Distance.Linf, viewModel.getDistanceProperty());
     }
 
     @Test
     public void isL1DistanceDefaultDistance() {
-        assertEquals(Distance.L1, viewModel.distanceProperty().get());
+        assertEquals(Distance.L1, viewModel.getDistanceProperty());
     }
 
     @Test
     public void statusIsWaitingWhenCalculateWithEmptyFields() {
         viewModel.calculate();
 
-        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.getStatusProperty());
     }
 
     @Test
     public void isCalculationButtonDisabledInitially() {
-        assertTrue(viewModel.calculationDisabledProperty().get());
+        assertTrue(viewModel.isCalculationDisabledProperty());
     }
 
     @Test
     public void canSetVectorX() {
         viewModel.vectorXProperty().set("1 2 3");
 
-        assertEquals(viewModel.vectorXProperty().get(), "1 2 3");
+        assertEquals("1 2 3", viewModel.getVectorXProperty());
     }
 
     @Test
     public void canSetVectorY() {
         viewModel.vectorYProperty().set("1 2 3");
 
-        assertEquals(viewModel.vectorYProperty().get(), "1 2 3");
+        assertEquals("1 2 3", viewModel.getVectorYProperty());
     }
 
     @Test
@@ -103,7 +103,7 @@ public class ViewModelTests {
         viewModel.vectorYProperty().set("-4");
         viewModel.calculate();
 
-        assertEquals("3.0", viewModel.resultProperty().get());
+        assertEquals("3.0", viewModel.getResultProperty());
     }
 
     @Test
@@ -111,47 +111,47 @@ public class ViewModelTests {
         setInputData();
         viewModel.calculate();
 
-        assertEquals(Status.SUCCESS.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.SUCCESS.toString(), viewModel.getStatusProperty());
     }
 
     @Test
     public void canSetStatusReady() {
         setInputData();
 
-        assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.READY.toString(), viewModel.getStatusProperty());
     }
 
     @Test
     public void canReportBadFormatWhenSetVectorX() {
         viewModel.vectorXProperty().set("a");
 
-        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatusProperty());
     }
 
     @Test
     public void canReportBadFormatWhenNotANumberBetweenNumbers() {
         viewModel.vectorXProperty().set("1 a 2");
 
-        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatusProperty());
     }
 
     @Test
     public void canReportBadFormatWhenSetVectorY() {
         viewModel.vectorYProperty().set("a");
 
-        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatusProperty());
     }
 
     @Test
     public void canReportBadFormatIfOnlyOneVectorPassed() {
         viewModel.vectorXProperty().set("1");
 
-        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatusProperty());
     }
 
     @Test
     public void calculateButtonIsDisabledWhenNoData() {
-        assertTrue(viewModel.calculationDisabledProperty().get());
+        assertTrue(viewModel.isCalculationDisabledProperty());
     }
 
     @Test
@@ -159,7 +159,7 @@ public class ViewModelTests {
         setInputData();
         viewModel.vectorXProperty().set("ololo");
 
-        assertTrue(viewModel.calculationDisabledProperty().get());
+        assertTrue(viewModel.isCalculationDisabledProperty());
     }
 
     @Test
@@ -170,7 +170,7 @@ public class ViewModelTests {
         viewModel.calculate();
 
         assertEquals(VectorDistance.THE_SAME_LENGTH_VECTOR_EXCEPTION_MESSAGE,
-                viewModel.resultProperty().get());
+                viewModel.getResultProperty());
     }
 
     @Test
@@ -180,7 +180,7 @@ public class ViewModelTests {
 
         viewModel.calculate();
 
-        assertEquals("9.0", viewModel.resultProperty().get());
+        assertEquals("9.0", viewModel.getResultProperty());
     }
 
     @Test
@@ -190,7 +190,7 @@ public class ViewModelTests {
 
         viewModel.calculate();
 
-        assertEquals("5.196152", viewModel.resultProperty().get());
+        assertEquals("5.196152", viewModel.getResultProperty());
     }
 
     @Test
@@ -200,7 +200,7 @@ public class ViewModelTests {
 
         viewModel.calculate();
 
-        assertEquals("4.326749", viewModel.resultProperty().get());
+        assertEquals("4.326749", viewModel.getResultProperty());
     }
 
     @Test
@@ -210,7 +210,7 @@ public class ViewModelTests {
 
         viewModel.calculate();
 
-        assertEquals("3.948222", viewModel.resultProperty().get());
+        assertEquals("3.948222", viewModel.getResultProperty());
     }
 
     @Test
@@ -220,7 +220,7 @@ public class ViewModelTests {
 
         viewModel.calculate();
 
-        assertEquals("3.0", viewModel.resultProperty().get());
+        assertEquals("3.0", viewModel.getResultProperty());
     }
 
     @Test
@@ -231,7 +231,7 @@ public class ViewModelTests {
 
         viewModel.calculate();
 
-        assertEquals("4.0", viewModel.resultProperty().get());
+        assertEquals("4.0", viewModel.getResultProperty());
     }
 
     private void setInputData() {

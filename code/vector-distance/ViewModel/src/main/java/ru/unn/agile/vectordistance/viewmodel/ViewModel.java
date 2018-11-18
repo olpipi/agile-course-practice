@@ -33,6 +33,30 @@ public class ViewModel {
 
     private final List<VectorValueChangeListener> valueChangedListeners = new ArrayList<>();
 
+    public Distance getDistanceProperty() {
+        return distanceProperty().get();
+    }
+
+    public String getVectorXProperty() {
+        return vectorXProperty().get();
+    }
+
+    public String getVectorYProperty() {
+        return vectorYProperty().get();
+    }
+
+    public String getResultProperty() {
+        return resultProperty().get();
+    }
+
+    public String getStatusProperty() {
+        return statusProperty().get();
+    }
+
+    public boolean isCalculationDisabledProperty() {
+        return calculationDisabledProperty().get();
+    }
+
     public ViewModel() {
         vectorX.set("");
         vectorY.set("");
