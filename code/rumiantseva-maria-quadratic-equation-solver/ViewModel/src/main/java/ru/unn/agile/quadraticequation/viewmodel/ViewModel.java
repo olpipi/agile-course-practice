@@ -22,10 +22,31 @@ public class ViewModel {
     }
 
     public void solve() {
-        QuadraticEquation quadraticEquation = new QuadraticEquation(
-                Double.parseDouble(a.get()),
-                Double.parseDouble(b.get()),
-                Double.parseDouble(c.get()));
+        QuadraticEquation quadraticEquation;
+
+        try {
+            quadraticEquation = new QuadraticEquation(
+                    Double.parseDouble(a.get()),
+                    Double.parseDouble(b.get()),
+                    Double.parseDouble(c.get()));
+        }
+        catch (Exception e) {
+            if (e.getClass() == IllegalArgumentException.class)
+            {
+                roots.set("Enter quadratic coefficient");
+                return;
+            }
+
+            if (e.getClass() == NumberFormatException.class)
+            {
+                roots.set("Coefficients must be numeric");
+                return;
+            }
+
+            throw e;
+        }
+
+
 
         double[] equationRoots;
         try {

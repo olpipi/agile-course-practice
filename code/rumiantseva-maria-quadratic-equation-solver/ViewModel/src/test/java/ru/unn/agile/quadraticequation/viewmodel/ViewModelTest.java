@@ -54,4 +54,22 @@ public class ViewModelTest {
 
         assertEquals("No roots", viewModel.rootsProperty().get());
     }
+
+    @Test
+    public void canSolveWithoutSetRoots() {
+        viewModel.solve();
+
+        assertEquals("Enter quadratic coefficient", viewModel.rootsProperty().get());
+    }
+
+    @Test
+    public void canSolveWithNonNumericCoefficients() {
+        viewModel.aProperty().set("a");
+        viewModel.bProperty().set("b");
+        viewModel.cProperty().set("c");
+
+        viewModel.solve();
+
+        assertEquals("Coefficients must be numeric", viewModel.rootsProperty().get());
+    }
 }
