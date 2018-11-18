@@ -50,6 +50,7 @@ public class ViewModel {
 
         double value = Double.parseDouble(ElemArray);
         Array.add(value);
+        changeEnabledButtons();
 
         outputArray = Array.toString();
     }
@@ -57,6 +58,7 @@ public class ViewModel {
     public void Clear()
     {
         Array.clear();
+        changeEnabledButtons();
 
         outputArray = Array.toString();
     }
@@ -71,6 +73,7 @@ public class ViewModel {
         for (int i = 0; i < nativeArray.length; i++)
             Array.set(i, nativeArray[i]);
 
+        changeEnabledButtons();
         status = Status.SUCCESSFUL;
 
         outputArray =  Array.toString();
@@ -122,5 +125,15 @@ public class ViewModel {
 
     public boolean isSortButtonEnabled() {
         return isSortButtonEnabled;
+    }
+
+    private void changeEnabledButtons() {
+        if (Array.isEmpty()) {
+            isSortButtonEnabled = false;
+            isClearButtonEnabled = false;
+        } else {
+            isSortButtonEnabled = true;
+            isClearButtonEnabled = true;
+        }
     }
 }

@@ -239,12 +239,12 @@ public class ViewModelTests {
     }
 
     @Test
-    public void canSortDisableClearButton() {
+    public void isClearButtonAddOneElementEnabled() {
         viewModel.setElemArray("2");
         viewModel.Add();
 
         viewModel.Sort();
 
-        assertEquals(false, viewModel.isClearButtonEnabled());
+        assertEquals(true, viewModel.isClearButtonEnabled());
     }
 }
