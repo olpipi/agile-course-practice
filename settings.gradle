@@ -86,6 +86,10 @@ project(":code/korniakov-kirill-lab3/View").name = "korniakov-kirill-lab3-View"
 include "code/korniakov-kirill-lab3/Infrastructure"
 project(":code/korniakov-kirill-lab3/Infrastructure").name = "korniakov-kirill-lab3-Infrastructure"
 
+// Anfimov Vlad, lab1
+include "code/anfimov-vlad-reverse-polish-notation"
+project(":code/anfimov-vlad-reverse-polish-notation").name = "anfimov-vlad-reverse-polish-notation-Model"
+
 // Gladkov Dmitry, Huffman code
 include "code/gladkov-dmitry-huffman"
 project(":code/gladkov-dmitry-huffman").name = "gladkov-dmitry-huffman"
@@ -141,6 +145,10 @@ project(":code/gladkova-tatiana-binary-search").name = "gladkova-tatiana-binary-
 // Kryukova Polina, caesar-cipher
 include "code/caesar-cipher"
 project(":code/caesar-cipher").name = "caesar-cipher"
+
+// Krutoberezskaya Irina, numbers-in-words
+include "code/numbers-in-words"
+project(":code/numbers-in-words").name = "numbers-in-words"
 
 // Podolov Kirill, Queue
 include "code/queue"
