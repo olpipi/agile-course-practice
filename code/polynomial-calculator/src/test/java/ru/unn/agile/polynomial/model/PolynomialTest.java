@@ -101,7 +101,7 @@ public class PolynomialTest {
     }
 
     @Test
-    public void canAddNumber2() {
+    public void canAddNumberForZeroCoefficient() {
         double[] toInit = {1.0, -2.0, 3.0, -4.0};
         Polynomial p = new Polynomial(toInit);
 
@@ -123,7 +123,7 @@ public class PolynomialTest {
     }
 
     @Test
-    public void canAddPolynomial2() {
+    public void canAddPolynomialWithOtherLength() {
         double[] toInit = {1.0, -2.0, 3.0, -4.0};
         Polynomial p1 = new Polynomial(toInit);
         double[] toAdd = {2.0, 3.0, -4.0};
@@ -135,13 +135,15 @@ public class PolynomialTest {
     }
 
     @Test
-    public void canAddPolynomial3() {
+    public void canAddPolynomialWithZeroResult() {
         double[] toInit = {1.0, -2.0, 3.0, -4.0};
         Polynomial p1 = new Polynomial(toInit);
         double[] toAdd = {-1.0, 2.0, -3.0, 4.0};
         Polynomial p2 = new Polynomial(toAdd);
 
         Polynomial res = p1.add(p2);
+
+        assertEquals("0.0", res.toString());
     }
 
     @Test
@@ -177,7 +179,7 @@ public class PolynomialTest {
     }
 
     @Test
-    public void canMultiplyByPolynomial2() {
+    public void canMultiplyByPolynomialWithZeroResultCoefficients() {
         double[] toInit = {1.0, 2.0, 4.0};
         Polynomial p1 = new Polynomial(toInit);
         double[] toMultiply = {1.0, -2.0};
@@ -201,7 +203,7 @@ public class PolynomialTest {
     }
 
     @Test
-    public void canSubtractPolynomial2() {
+    public void canSubtractPolynomialWithZeroResult() {
         double[] toInit = {1.0, 2.0, 4.0};
         Polynomial p1 = new Polynomial(toInit);
         double[] toSubtract = {1.0, 2.0, 4.0};
@@ -213,7 +215,7 @@ public class PolynomialTest {
     }
 
     @Test
-    public void canSubtractPolynomial3() {
+    public void canSubtractPolynomialWithZeroResultCoefficients() {
         double[] toInit = {1.0, 2.0, 4.0};
         Polynomial p1 = new Polynomial(toInit);
         double[] toSubtract = {2.0, 4.0};
@@ -225,7 +227,7 @@ public class PolynomialTest {
     }
 
     @Test
-    public void canSubtractPolynomial4() {
+    public void canSubtractPolynomialWithZeroFreeCoefficient() {
         double[] toInit = {1.0, 2.0, 4.0};
         Polynomial p1 = new Polynomial(toInit);
         double[] toSubtract = {1.0, 2.0, 3.0, 4.0};
@@ -247,7 +249,7 @@ public class PolynomialTest {
     }
 
     @Test
-    public void canSubtractNumber2() {
+    public void canSubtractNumberWithZeroPolynomial() {
         double[] toInit = {0.0};
         Polynomial p1 = new Polynomial(toInit);
 
@@ -257,7 +259,7 @@ public class PolynomialTest {
     }
 
     @Test
-    public void canComparePolynomials() {
+    public void canComparePolynomialsWithDifferentLength() {
         double[] toInit = {1.0, 2.0, 3.0};
         Polynomial p1 = new Polynomial(toInit);
         double[] toCompare = {1.0, 2.0};
@@ -267,7 +269,7 @@ public class PolynomialTest {
     }
 
     @Test
-    public void canComparePolynomials2() {
+    public void canComparePolynomials() {
         double[] toInit = {1.0, 2.0, 3.0};
         Polynomial p1 = new Polynomial(toInit);
         double[] toCompare = {1.0, 2.0, 4.0};
@@ -277,7 +279,7 @@ public class PolynomialTest {
     }
 
     @Test
-    public void canComparePolynomials3() {
+    public void canComparePolynomialEquals() {
         double[] toInit = {1.0, 2.0, 3.0};
         Polynomial p1 = new Polynomial(toInit);
         double[] toCompare = {1.0, 2.0, 3.0};
@@ -287,7 +289,7 @@ public class PolynomialTest {
     }
 
     @Test
-    public void canComparePolynomials4() {
+    public void canCompareWithNullPolynomial() {
         double[] toInit = {1.0, 2.0, 3.0};
         Polynomial p1 = new Polynomial(toInit);
         Polynomial p2 = new Polynomial();

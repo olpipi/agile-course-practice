@@ -45,7 +45,7 @@ public class Polynomial {
     }
 
     public String toString() {
-        if        (degree == -1) {
+        if (degree == -1) {
             return "0";
         } else if (degree ==  0) {
             return "" + coeffs[0];
@@ -55,14 +55,14 @@ public class Polynomial {
 
         String s = coeffs[0] + "x^" + degree;
         for (int i = 1; i <= degree; i++) {
-            if        (coeffs[i] == 0) {
+            if (coeffs[i] == 0) {
                 continue;
             } else if (coeffs[i]  > 0) {
                 s = s + " + " + (coeffs[i]);
             } else if (coeffs[i]  < 0) {
                 s = s + " - " + (-coeffs[i]);
             }
-            if        (i == degree - 1) {
+            if (i == degree - 1) {
                 s = s + "x";
             } else if (i <  degree - 1) {
                 s = s + "x^" + (degree - i);
@@ -72,20 +72,20 @@ public class Polynomial {
     }
 
     public Polynomial add(final Polynomial p) {
-        int n = Math.max(this.degree, p.degree);
-        double[] coefs = new double[n + 1];
+        int maxDegree = Math.max(this.degree, p.degree);
+        double[] resultCoeffs = new double[maxDegree + 1];
 
-        int i0 = n - this.degree;
+        int toStart = maxDegree - this.degree;
         for (int i = 0; i <= this.degree; i++) {
-            coefs[i0 + i] = this.coeffs[i];
+            resultCoeffs[toStart + i] = this.coeffs[i];
         }
 
-        i0 = n - p.degree;
+        toStart = maxDegree - p.degree;
         for (int i = 0; i <= p.degree; i++) {
-            coefs[i0 + i] += p.coeffs[i];
+            resultCoeffs[toStart + i] += p.coeffs[i];
         }
 
-        return new Polynomial(coefs);
+        return new Polynomial(resultCoeffs);
     }
 
     public Polynomial add(final double d) {
@@ -95,25 +95,25 @@ public class Polynomial {
     }
 
     public Polynomial multiply(final Polynomial p) {
-        int n = this.degree + p.degree;
-        double[] coefs = new double[n + 1];
+        int resultDegree = this.degree + p.degree;
+        double[] resultCoeffs = new double[resultDegree + 1];
 
         for (int i = 0; i <= this.degree; i++) {
             for (int j = 0; j <= p.degree; j++) {
-                coefs[i + j] += this.coeffs[i] * p.coeffs[j];
+                resultCoeffs[i + j] += this.coeffs[i] * p.coeffs[j];
             }
         }
 
-        return new Polynomial(coefs);
+        return new Polynomial(resultCoeffs);
     }
 
     public Polynomial multiply(final double d) {
-        double[] coefs = new double[this.degree + 1];
+        double[] resultCoeffs = new double[this.degree + 1];
         for (int i = 0; i <= this.degree; i++) {
-            coefs[i] = this.coeffs[i] * d;
+            resultCoeffs[i] = this.coeffs[i] * d;
         }
 
-        return new Polynomial(coefs);
+        return new Polynomial(resultCoeffs);
     }
 
     public Polynomial subtract(final Polynomial p) {
