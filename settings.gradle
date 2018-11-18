@@ -163,8 +163,12 @@ include "code/shape-volume-calculator"
 project(":code/shape-volume-calculator").name = "shape-volume-calculator"
 
 // Rumiantseva Maria, Quadratic Equation Solver
-include "code/rumiantseva-maria-quadratic-equation-solver"
-project(":code/rumiantseva-maria-quadratic-equation-solver").name = "rumiantseva-maria-quadratic-equation-solver"
+include "code/rumiantseva-maria-quadratic-equation-solver/Model"
+project(":code/rumiantseva-maria-quadratic-equation-solver/Model").name = "rumiantseva-maria-quadratic-equation-solver-Model"
+include "code/rumiantseva-maria-quadratic-equation-solver/ViewModel"
+project(":code/rumiantseva-maria-quadratic-equation-solver/ViewModel").name = "rumiantseva-maria-quadratic-equation-solver-ViewModel"
+include "code/rumiantseva-maria-quadratic-equation-solver/View"
+project(":code/rumiantseva-maria-quadratic-equation-solver/View").name = "rumiantseva-maria-quadratic-equation-solver-View"
 
 // Podchishchaeva Mariya, RBTree
 include "code/podchishchaeva-rb-tree"
