@@ -32,7 +32,7 @@ public class ViewModelTests {
     @Test
     public void canAddOneElementToArray() {
         viewModel.setElemArray("3.0");
-        viewModel.Add();
+        viewModel.add();
 
         assertEquals("[3.0]", viewModel.getOutputSourceArray());
     }
@@ -40,15 +40,15 @@ public class ViewModelTests {
     @Test
     public void canAddSeveralElementsToArray() {
         viewModel.setElemArray("-5.0");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("4.0");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("2.75");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("10.1");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("0.02");
-        viewModel.Add();
+        viewModel.add();
 
         assertEquals("[-5.0, 4.0, 2.75, 10.1, 0.02]", viewModel.getOutputSourceArray());
     }
@@ -56,17 +56,17 @@ public class ViewModelTests {
     @Test
     public void canClearArray() {
         viewModel.setElemArray("6");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("4");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("1");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("10");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("8");
-        viewModel.Add();
+        viewModel.add();
 
-        viewModel.Clear();
+        viewModel.clear();
 
         assertEquals("[]", viewModel.getOutputArray());
     }
@@ -74,9 +74,9 @@ public class ViewModelTests {
     @Test
     public void  canSortOfArrayWithOneElement() {
         viewModel.setElemArray("-4.0");
-        viewModel.Add();
+        viewModel.add();
 
-        viewModel.Sort();
+        viewModel.sort();
 
         assertEquals("[-4.0]", viewModel.getOutputArray());
     }
@@ -84,27 +84,29 @@ public class ViewModelTests {
     @Test
     public void  canSortOfNonSortedBigArray() {
         viewModel.setElemArray("-4.0");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("28.1");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("13");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("-0.4");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("15.2");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("3.1");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("10.2");
-        viewModel.Add();
+        viewModel.add();
 
-        viewModel.Sort();
+        viewModel.sort();
 
         assertEquals("[-4.0, -0.4, 3.1, 10.2, 13.0, 15.2, 28.1]", viewModel.getOutputArray());
     }
 
     @Test
-    public void  isWaitingStatusWhenLaunch() { assertEquals(Status.WAITING, viewModel.getCurrentState()); }
+    public void  isWaitingStatusWhenLaunch() {
+        assertEquals(Status.WAITING, viewModel.getCurrentState());
+    }
 
     @Test
     public void isWaitingStatWhenBeginning() {
@@ -141,12 +143,12 @@ public class ViewModelTests {
     @Test
     public void canSetSuccessMessage() {
         viewModel.setElemArray("-1.0");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("2.0");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("5.4");
 
-        viewModel.Sort();
+        viewModel.sort();
 
         assertEquals(Status.SUCCESSFUL, viewModel.getCurrentState());
     }
@@ -193,9 +195,9 @@ public class ViewModelTests {
     @Test
     public void isClearButtonEnabledWhenArrayIsNotEmpty() {
         viewModel.setElemArray("2");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("9");
-        viewModel.Add();
+        viewModel.add();
 
         assertEquals(true, viewModel.isClearButtonEnabled());
     }
@@ -203,22 +205,22 @@ public class ViewModelTests {
     @Test
     public void isSortButtonEnabledWhenArrayIsNotEmpty() {
         viewModel.setElemArray("8");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("4");
-        viewModel.Add();
+        viewModel.add();
 
         assertEquals(true, viewModel.isSortButtonEnabled());
     }
     @Test
     public void canClearDisableClearButton() {
         viewModel.setElemArray("1");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("8");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("4");
-        viewModel.Add();
+        viewModel.add();
 
-        viewModel.Clear();
+        viewModel.clear();
 
         assertEquals(false, viewModel.isClearButtonEnabled());
     }
@@ -226,15 +228,15 @@ public class ViewModelTests {
     @Test
     public void canClearDisableSortButton() {
         viewModel.setElemArray("8");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("2");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("1");
-        viewModel.Add();
+        viewModel.add();
         viewModel.setElemArray("5");
-        viewModel.Add();
+        viewModel.add();
 
-        viewModel.Clear();
+        viewModel.clear();
 
         assertEquals(false, viewModel.isSortButtonEnabled());
     }
@@ -242,9 +244,9 @@ public class ViewModelTests {
     @Test
     public void isClearButtonAddOneElementEnabled() {
         viewModel.setElemArray("2");
-        viewModel.Add();
+        viewModel.add();
 
-        viewModel.Sort();
+        viewModel.sort();
 
         assertEquals(true, viewModel.isClearButtonEnabled());
     }

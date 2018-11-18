@@ -3,9 +3,10 @@ package ru.unn.agile.ArraySorter.viewmodel;
 import ru.unn.agile.arraysorter.model.ArraySorter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViewModel {
-    private String ElemArray;
+    private String elemArray;
     private String outputArray;
     private String outputSourceArray;
     private String status;
@@ -14,11 +15,11 @@ public class ViewModel {
     private boolean isClearButtonEnabled;
     private boolean isSortButtonEnabled;
 
-    ArrayList<Double> Array = new ArrayList<Double>();
-    ArrayList<Double> sourceArray = new ArrayList<Double>();
+    private List<Double> array = new ArrayList<Double>();
+    private List<Double> sourceArray = new ArrayList<Double>();
 
     public ViewModel() {
-        ElemArray = "";
+        elemArray = "";
         outputArray = "";
         outputSourceArray = "";
         status = Status.WAITING;
@@ -28,69 +29,67 @@ public class ViewModel {
         isSortButtonEnabled = false;
     }
 
-    public String getOutputArray()
-    {
+    public String getOutputArray() {
         return outputArray;
     }
 
-    public String getOutputSourceArray()
-    {
+    public String getOutputSourceArray() {
         return outputSourceArray;
     }
 
     public String getElemArray() {
-        return ElemArray;
+        return elemArray;
     }
 
-    public void setElemArray(final String ElemArray){
-        if (ElemArray.equals(this.ElemArray)) {
+    public void setElemArray(final String elemArray) {
+        if (elemArray.equals(this.elemArray)) {
             return;
         }
 
-        this.ElemArray = ElemArray;
+        this.elemArray = elemArray;
     }
 
-    public void Add()
-    {
+    public void add() {
         if (!parseInput()) {
             return;
         }
 
-        double value = Double.parseDouble(ElemArray);
-        Array.add(value);
+        double value = Double.parseDouble(elemArray);
+        array.add(value);
         sourceArray.add(value);
         changeEnabledButtons();
 
-        outputSourceArray = Array.toString();
+        outputSourceArray = array.toString();
     }
 
-    public void Clear()
-    {
-        Array.clear();
+    public void clear() {
+        array.clear();
         sourceArray.clear();
         changeEnabledButtons();
 
-        outputArray = Array.toString();
+        outputArray = array.toString();
         outputSourceArray = sourceArray.toString();
     }
 
-    public void Sort()
-    {
-        Double[] nativeArray = new Double[Array.size()];
-        Array.toArray(nativeArray);
+    public void sort() {
+        Double[] nativeArray = new Double[array.size()];
+        array.toArray(nativeArray);
 
         ArraySorter.sort(nativeArray);
 
-        for (int i = 0; i < nativeArray.length; i++)
-            Array.set(i, nativeArray[i]);
+        for (int i = 0; i < nativeArray.length; i++) {
+            array.set(i, nativeArray[i]);
+        }
 
         changeEnabledButtons();
         status = Status.SUCCESSFUL;
 
-        outputArray =  Array.toString();
+        outputArray =  array.toString();
     }
 
-    public String getCurrentState() { return status; }
+    public String getCurrentState() {
+        return status;
+    }
 
     public final class Status {
         public static final String WAITING = "Waiting new element";
@@ -107,13 +106,12 @@ public class ViewModel {
 
     private boolean parseInput() {
         try {
-            if (ElemArray.isEmpty()) {
+            if (elemArray.isEmpty()) {
                 status = Status.WAITING;
                 isAddButtonEnabled = false;
                 return isAddButtonEnabled;
-            }
-            else{
-                Double.parseDouble(ElemArray);
+            } else {
+                Double.parseDouble(elemArray);
                 status = Status.READY;
                 isAddButtonEnabled = true;
             }
@@ -139,7 +137,7 @@ public class ViewModel {
     }
 
     private void changeEnabledButtons() {
-        if (Array.isEmpty()) {
+        if (array.isEmpty()) {
             isSortButtonEnabled = false;
             isClearButtonEnabled = false;
         } else {

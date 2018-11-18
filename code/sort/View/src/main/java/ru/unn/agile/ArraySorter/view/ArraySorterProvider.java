@@ -36,7 +36,7 @@ public final class ArraySorterProvider {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 bind();
-                ArraySorterProvider.this.viewModel.Add();
+                ArraySorterProvider.this.viewModel.add();
                 backBind();
             }
         });
@@ -45,7 +45,7 @@ public final class ArraySorterProvider {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 bind();
-                ArraySorterProvider.this.viewModel.Sort();
+                ArraySorterProvider.this.viewModel.sort();
                 backBind();
             }
         });
@@ -54,7 +54,7 @@ public final class ArraySorterProvider {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 bind();
-                ArraySorterProvider.this.viewModel.Clear();
+                ArraySorterProvider.this.viewModel.clear();
                 backBind();
             }
         });
