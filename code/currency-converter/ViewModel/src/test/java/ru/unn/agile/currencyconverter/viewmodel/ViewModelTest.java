@@ -75,7 +75,8 @@ public class ViewModelTest {
         setAddCurrencyInput("USD", "RUB", "40.B");
         viewModel.addCurrencyPair();
 
-        assertEquals("Не удалось распознать число: \"40.B\"", viewModel.getResult());
+        assertEquals("Не удалось распознать число: \"40.B\"",
+                viewModel.getResult());
     }
 
     @Test
@@ -83,7 +84,8 @@ public class ViewModelTest {
         setAddCurrencyInput("USD", "RUB", "");
         viewModel.addCurrencyPair();
 
-        assertEquals("Не удалось распознать число: \"\"", viewModel.getResult());
+        assertEquals("Не удалось распознать число: \"\"",
+                viewModel.getResult());
     }
 
     @Test
@@ -132,7 +134,8 @@ public class ViewModelTest {
         setConvertCurrencyInput("RUB", "USD", "abc");
         viewModel.convertCurrency();
 
-        assertEquals("Не удалось распознать число: \"abc\"", viewModel.getResult());
+        assertEquals("Не удалось распознать число: \"abc\"",
+                viewModel.getResult());
     }
 
     @Test
@@ -143,7 +146,8 @@ public class ViewModelTest {
         setConvertCurrencyInput("RUB", "USD", "");
         viewModel.convertCurrency();
 
-        assertEquals("Не удалось распознать число: \"\"", viewModel.getResult());
+        assertEquals("Не удалось распознать число: \"\"",
+                viewModel.getResult());
     }
 
     @Test
@@ -173,7 +177,8 @@ public class ViewModelTest {
         setConvertCurrencyInput("RUB", "USD", "2");
         viewModel.convertCurrency();
 
-        assertEquals("Ошибка: Can't convert currency. Rate is not found", viewModel.getResult());
+        assertEquals("Ошибка: Can't convert currency. Rate is not found",
+                viewModel.getResult());
     }
 
     @Test
@@ -190,13 +195,15 @@ public class ViewModelTest {
         assertEquals("1.0 USD = 40.0 RUB", viewModel.getResult());
     }
 
-    private void setAddCurrencyInput(String srcCodeStr, String tgtCodeStr, String rateStr) {
+    private void setAddCurrencyInput(final String srcCodeStr, final String tgtCodeStr,
+                                     final String rateStr) {
         viewModel.setAddSrcCode(srcCodeStr);
         viewModel.setAddTgtCode(tgtCodeStr);
         viewModel.setAddRate(rateStr);
     }
 
-    private void setConvertCurrencyInput(String srcCodeStr, String tgtCodeStr, String amountStr) {
+    private void setConvertCurrencyInput(final String srcCodeStr, final String tgtCodeStr,
+                                         final String amountStr) {
         viewModel.setConvSrcCode(srcCodeStr);
         viewModel.setConvTgtCode(tgtCodeStr);
         viewModel.setConvAmount(amountStr);

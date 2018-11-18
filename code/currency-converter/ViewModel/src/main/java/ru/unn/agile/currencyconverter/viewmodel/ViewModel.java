@@ -26,7 +26,7 @@ public class ViewModel {
         return addSrcCode.get();
     }
 
-    public void setAddSrcCode(String newAddSrcCode) {
+    public void setAddSrcCode(final String newAddSrcCode) {
         addSrcCode.set(newAddSrcCode);
     }
 
@@ -38,7 +38,7 @@ public class ViewModel {
         return addTgtCode.get();
     }
 
-    public void setAddTgtCode(String newAddTgtCode) {
+    public void setAddTgtCode(final String newAddTgtCode) {
         addTgtCode.set(newAddTgtCode);
     }
 
@@ -50,7 +50,7 @@ public class ViewModel {
         return addRate.get();
     }
 
-    public void setAddRate(String newAddRate) {
+    public void setAddRate(final String newAddRate) {
         addRate.set(newAddRate);
     }
 
@@ -62,7 +62,7 @@ public class ViewModel {
         return convSrcCode.get();
     }
 
-    public void setConvSrcCode(String newConvSrcCode) {
+    public void setConvSrcCode(final String newConvSrcCode) {
         convSrcCode.set(newConvSrcCode);
     }
 
@@ -74,7 +74,7 @@ public class ViewModel {
         return convTgtCode.get();
     }
 
-    public void setConvTgtCode(String newConvTgtCode) {
+    public void setConvTgtCode(final String newConvTgtCode) {
         convTgtCode.set(newConvTgtCode);
     }
 
@@ -86,7 +86,7 @@ public class ViewModel {
         return convAmount.get();
     }
 
-    public void setConvAmount(String newConvAmount) {
+    public void setConvAmount(final String newConvAmount) {
         convAmount.set(newConvAmount);
     }
 
@@ -133,7 +133,9 @@ public class ViewModel {
                     Double.parseDouble(addRate.get())
             );
         } catch (NumberFormatException exc) {
-            result.set("Не удалось распознать число: \"" + addRate.get() + "\"");
+            result.set(
+                    "Не удалось распознать число: \"" + addRate.get() + "\""
+            );
             return;
         } catch (CurrencyConverterException exc) {
             result.set("Ошибка: " + exc.getMessage());
@@ -155,7 +157,10 @@ public class ViewModel {
         try {
             amount = Double.parseDouble(convAmount.get());
         } catch (NumberFormatException exc) {
-            result.set("Не удалось распознать число: \"" + convAmount.get() + "\"");
+            result.set(
+                    "Не удалось распознать число: \""
+                            + convAmount.get() + "\""
+            );
             return;
         }
 

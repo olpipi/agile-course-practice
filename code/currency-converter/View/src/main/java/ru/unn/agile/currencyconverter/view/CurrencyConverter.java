@@ -1,9 +1,7 @@
 package ru.unn.agile.currencyconverter.view;
 
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 
 import ru.unn.agile.currencyconverter.viewmodel.ViewModel;
@@ -38,12 +36,12 @@ public class CurrencyConverter {
     }
 
     @FXML
-    public void handleAddButtonAction(ActionEvent event) {
+    public void handleAddButtonAction(final ActionEvent event) {
         viewModel.addCurrencyPair();
     }
 
     @FXML
-    public void handleConvertButtonAction(ActionEvent event) {
+    public void handleConvertButtonAction(final ActionEvent event) {
         viewModel.convertCurrency();
     }
 }
