@@ -17,8 +17,7 @@ public class Polynomial {
             firstElem++;
         }
         if (firstElem == coef.length) {
-            double[] onlyZeros = {0.0};
-            this.coeffs = onlyZeros;
+            this.coeffs = new double[]{0.0};
             this.degree = 0;
             return;
         }
