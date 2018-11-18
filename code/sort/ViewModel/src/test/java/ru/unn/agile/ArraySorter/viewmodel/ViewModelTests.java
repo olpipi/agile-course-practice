@@ -247,4 +247,34 @@ public class ViewModelTests {
 
         assertEquals(true, viewModel.isClearButtonEnabled());
     }
+
+    @Test
+    public void canChangeStateIfAddElemFieldIsCorrect() {
+        viewModel.setElemArray("test");
+        viewModel.processingAddField(1);
+        viewModel.setElemArray("12.1");
+        viewModel.processingAddField(1);
+
+        assertEquals(Status.READY, viewModel.getCurrentState());
+    }
+
+    @Test
+    public void canChangeStateIfAddElemFieldIsInvalid() {
+        viewModel.setElemArray("12.1");
+        viewModel.processingAddField(1);
+        viewModel.setElemArray("test");
+        viewModel.processingAddField(1);
+
+        assertEquals(Status.BAD_FORMAT, viewModel.getCurrentState());
+    }
+
+    @Test
+    public void canChangeStateIfAddElemFieldIsEmpty() {
+        viewModel.setElemArray("12.1");
+        viewModel.processingAddField(1);
+        viewModel.setElemArray("");
+        viewModel.processingAddField(1);
+
+        assertEquals(Status.WAITING, viewModel.getCurrentState());
+    }
 }
