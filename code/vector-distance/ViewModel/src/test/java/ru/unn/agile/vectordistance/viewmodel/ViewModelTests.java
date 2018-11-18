@@ -29,6 +29,7 @@ public class ViewModelTests {
         assertEquals(Distance.L1, viewModel.getDistanceProperty());
         assertEquals("", viewModel.getResultProperty());
         assertEquals(Status.WAITING.toString(), viewModel.getStatusProperty());
+        assertTrue(viewModel.isCalculationDisabledProperty());
     }
 
     @Test
@@ -67,20 +68,10 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isL1DistanceDefaultDistance() {
-        assertEquals(Distance.L1, viewModel.getDistanceProperty());
-    }
-
-    @Test
     public void statusIsWaitingWhenCalculateWithEmptyFields() {
         viewModel.calculate();
 
         assertEquals(Status.WAITING.toString(), viewModel.getStatusProperty());
-    }
-
-    @Test
-    public void isCalculationButtonDisabledInitially() {
-        assertTrue(viewModel.isCalculationDisabledProperty());
     }
 
     @Test
@@ -123,6 +114,7 @@ public class ViewModelTests {
 
     @Test
     public void canReportBadFormatWhenSetVectorX() {
+        setInputData();
         viewModel.vectorXProperty().set("a");
 
         assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatusProperty());
@@ -130,6 +122,7 @@ public class ViewModelTests {
 
     @Test
     public void canReportBadFormatWhenNotANumberBetweenNumbers() {
+        setInputData();
         viewModel.vectorXProperty().set("1 a 2");
 
         assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatusProperty());
@@ -137,16 +130,17 @@ public class ViewModelTests {
 
     @Test
     public void canReportBadFormatWhenSetVectorY() {
+        setInputData();
         viewModel.vectorYProperty().set("a");
 
         assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatusProperty());
     }
 
     @Test
-    public void canReportBadFormatIfOnlyOneVectorPassed() {
+    public void canReportWaitingIfOnlyOneVectorPassed() {
         viewModel.vectorXProperty().set("1");
 
-        assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatusProperty());
+        assertEquals(Status.WAITING.toString(), viewModel.getStatusProperty());
     }
 
     @Test
@@ -169,7 +163,7 @@ public class ViewModelTests {
 
         viewModel.calculate();
 
-        assertEquals(VectorDistance.THE_SAME_LENGTH_VECTOR_EXCEPTION_MESSAGE,
+        assertEquals(VectorDistance.EXPECTED_VECTORS_OF_SAME_LENGTH_EXCEPTION_MESSAGE,
                 viewModel.getResultProperty());
     }
 

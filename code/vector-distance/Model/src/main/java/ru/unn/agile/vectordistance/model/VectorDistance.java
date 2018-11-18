@@ -6,9 +6,9 @@ import java.util.Objects;
 public final class VectorDistance {
     public static final String FLOATING_OVERFLOW_EXCEPTION_MESSAGE =
             "Floating overflow";
-    public static final String THE_SAME_LENGTH_VECTOR_EXCEPTION_MESSAGE =
+    public static final String EXPECTED_VECTORS_OF_SAME_LENGTH_EXCEPTION_MESSAGE =
             "Expected vectors of same length";
-    public static final String NOT_NULL_PARAMETER_EXCEPTION_MESSAGE =
+    public static final String EXPECTED_NOT_NULL_PARAMETER_EXCEPTION_MESSAGE =
             "Expected not null parameter ";
 
     public static float computeL1(final FloatVector a, final FloatVector b) {
@@ -104,11 +104,11 @@ public final class VectorDistance {
     }
 
     private static void checkArgs(final FloatVector a, final FloatVector b) {
-        Objects.requireNonNull(a, NOT_NULL_PARAMETER_EXCEPTION_MESSAGE + "a");
-        Objects.requireNonNull(b, NOT_NULL_PARAMETER_EXCEPTION_MESSAGE + "b");
+        Objects.requireNonNull(a, EXPECTED_NOT_NULL_PARAMETER_EXCEPTION_MESSAGE + "a");
+        Objects.requireNonNull(b, EXPECTED_NOT_NULL_PARAMETER_EXCEPTION_MESSAGE + "b");
         if (a.length() != b.length()) {
             throw new InvalidParameterException(
-                    THE_SAME_LENGTH_VECTOR_EXCEPTION_MESSAGE);
+                    EXPECTED_VECTORS_OF_SAME_LENGTH_EXCEPTION_MESSAGE);
         }
     }
 }

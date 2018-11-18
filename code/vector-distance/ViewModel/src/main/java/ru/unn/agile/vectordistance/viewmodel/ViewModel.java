@@ -10,13 +10,12 @@ import javafx.collections.ObservableList;
 import ru.unn.agile.vectordistance.model.FloatVector;
 import ru.unn.agile.vectordistance.model.VectorDistance.Distance;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class ViewModel {
     private static final String DEFAULT_DELIMITER = " ";
-    private static final String VALID_VECTOR_PATTERN = "^(-?[0-9](\\.[0-9]+)?\\s?)+$";
+    private static final String VALID_VECTOR_PATTERN = "^(-?\\d+(\\.\\d*)?)([ ]-?\\d+(\\.\\d*)?)*$";
     private final StringProperty vectorX = new SimpleStringProperty();
     private final StringProperty vectorY = new SimpleStringProperty();
     private final StringProperty result = new SimpleStringProperty();
@@ -30,8 +29,6 @@ public class ViewModel {
     }
 
     private final ObjectProperty<Distance> distance = new SimpleObjectProperty<>();
-
-    private final List<VectorValueChangeListener> valueChangedListeners = new ArrayList<>();
 
     public Distance getDistanceProperty() {
         return distanceProperty().get();
@@ -125,17 +122,10 @@ public class ViewModel {
     }
 
     private void addListenersToInputData() {
-        final List<StringProperty> fields = new ArrayList<StringProperty>() {
-            {
-                add(vectorX);
-                add(vectorY);
-            }
-        };
-
+        final List<StringProperty> fields = Arrays.asList(vectorX, vectorY);
+        final VectorValueChangeListener listener = new VectorValueChangeListener();
         for (StringProperty field : fields) {
-            final VectorValueChangeListener listener = new VectorValueChangeListener();
             field.addListener(listener);
-            valueChangedListeners.add(listener);
         }
     }
 
@@ -172,15 +162,14 @@ public class ViewModel {
     }
 
     private Status getInputStatus() {
-        Status inputStatus = Status.READY;
         if (vectorX.get().isEmpty() || vectorY.get().isEmpty()) {
-            inputStatus = Status.WAITING;
+            return Status.WAITING;
         }
         if (!checkInputIsValid(vectorX.get()) || !checkInputIsValid(vectorY.get())) {
-            inputStatus = Status.BAD_FORMAT;
+            return Status.BAD_FORMAT;
         }
 
-        return inputStatus;
+        return Status.READY;
     }
 
 }
