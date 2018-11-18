@@ -52,9 +52,21 @@ public class ViewModelTest {
         viewModel.addCurrencyPair();
 
         String[] pairs = viewModel.getCurrPairs().split("\\r?\\n");
-        assertEquals(3, pairs.length);
+        assertEquals(2, pairs.length);
         assertTrue(Arrays.asList(pairs).contains("USD/RUB"));
         assertTrue(Arrays.asList(pairs).contains("EUR/RUB"));
+        assertEquals("", viewModel.getResult());
+    }
+
+    @Test
+    public void addingExistingCurrPairDoesntCreateDuplicate() {
+        setAddCurrencyInput("USD", "RUB", "30");
+        viewModel.addCurrencyPair();
+
+        setAddCurrencyInput("USD", "RUB", "40");
+        viewModel.addCurrencyPair();
+
+        assertEquals("USD/RUB\n", viewModel.getCurrPairs());
         assertEquals("", viewModel.getResult());
     }
 
@@ -162,6 +174,20 @@ public class ViewModelTest {
         viewModel.convertCurrency();
 
         assertEquals("Ошибка: Can't convert currency. Rate is not found", viewModel.getResult());
+    }
+
+    @Test
+    public void canModifyExistingCurrencyPair() {
+        setAddCurrencyInput("USD", "RUB", "30");
+        viewModel.addCurrencyPair();
+
+        setAddCurrencyInput("USD", "RUB", "40");
+        viewModel.addCurrencyPair();
+
+        setConvertCurrencyInput("USD", "RUB", "1");
+        viewModel.convertCurrency();
+
+        assertEquals("1.0 USD = 40.0 RUB", viewModel.getResult());
     }
 
     private void setAddCurrencyInput(String srcCodeStr, String tgtCodeStr, String rateStr) {

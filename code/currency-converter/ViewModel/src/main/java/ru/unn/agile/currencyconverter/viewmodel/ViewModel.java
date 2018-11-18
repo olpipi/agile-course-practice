@@ -141,6 +141,7 @@ public class ViewModel {
         }
 
         Map<String, Double> currencyPairs = currencyConverter.getCurrencyPairs();
+        currPairs.set("");
         for (String pair : currencyPairs.keySet()) {
             currPairs.set(currPairs.get() + pair + "\n");
         }
