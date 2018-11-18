@@ -131,7 +131,49 @@ public class PolynomialTest {
         Polynomial p2 = new Polynomial(toAdd);
 
         Polynomial res = p1.add(p2);
+    }
+
+    @Test
+    public void canMultiplyByNumber() {
+        double[] toInit = {1.0, -2.0, 3.0, -4.0};
+        Polynomial p = new Polynomial(toInit);
+
+        Polynomial res = p.multiply(5);
+
+        assertEquals("5.0x^3 - 10.0x^2 + 15.0x - 20.0", res.toString());
+    }
+
+    @Test
+    public void canMultiplyByZero() {
+        double[] toInit = {1.0, -2.0, 3.0, -4.0};
+        Polynomial p = new Polynomial(toInit);
+
+        Polynomial res = p.multiply(0);
 
         assertEquals("0", res.toString());
+    }
+
+    @Test
+    public void canMultiplyByPolynomial() {
+        double[] toInit = {1.0, -2.0, 3.0, -4.0};
+        Polynomial p1 = new Polynomial(toInit);
+        double[] toMultiply = {2.0, 1.0};
+        Polynomial p2 = new Polynomial(toMultiply);
+
+        Polynomial res = p1.multiply(p2);
+
+        assertEquals("2.0x^4 - 3.0x^3 + 4.0x^2 - 5.0x - 4.0", res.toString());
+    }
+
+    @Test
+    public void canMultiplyByPolynomial2() {
+        double[] toInit = {1.0, 2.0, 4.0};
+        Polynomial p1 = new Polynomial(toInit);
+        double[] toMultiply = {1.0, -2.0};
+        Polynomial p2 = new Polynomial(toMultiply);
+
+        Polynomial res = p1.multiply(p2);
+
+        assertEquals("1.0x^3 - 8.0", res.toString());
     }
 }

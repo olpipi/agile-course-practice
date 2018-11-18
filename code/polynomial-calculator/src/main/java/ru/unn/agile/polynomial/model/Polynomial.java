@@ -65,7 +65,7 @@ public class Polynomial {
             if        (i == degree - 1) {
                 s = s + "x";
             } else if (i <  degree - 1) {
-                s = s + "x^" + (i + 1);
+                s = s + "x^" + (degree - i);
             }
         }
         return s;
@@ -92,6 +92,28 @@ public class Polynomial {
         Polynomial res = new Polynomial(this);
         res.coeffs[this.degree] += d;
         return res;
+    }
+
+    public Polynomial multiply(final Polynomial p) {
+        int n = this.degree + p.degree;
+        double[] coefs = new double[n + 1];
+
+        for (int i = 0; i <= this.degree; i++) {
+            for (int j = 0; j <= p.degree; j++) {
+                coefs[i + j] += this.coeffs[i] * p.coeffs[j];
+            }
+        }
+
+        return new Polynomial(coefs);
+    }
+
+    public Polynomial multiply(final double d) {
+        double[] coefs = new double[this.degree + 1];
+        for (int i = 0; i <= this.degree; i++) {
+            coefs[i] = this.coeffs[i] * d;
+        }
+
+        return new Polynomial(coefs);
     }
 }
 
