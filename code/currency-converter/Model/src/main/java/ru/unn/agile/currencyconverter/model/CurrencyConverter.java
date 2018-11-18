@@ -48,7 +48,7 @@ public class CurrencyConverter {
         currencyPairs.put(currencyPair, rate);
     }
 
-    public Map getCurrencyPairs() {
+    public Map<String, Double> getCurrencyPairs() {
         return this.currencyPairs;
     }
 
