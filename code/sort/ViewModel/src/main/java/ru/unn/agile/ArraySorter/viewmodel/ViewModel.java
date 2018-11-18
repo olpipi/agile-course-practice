@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class ViewModel {
     private String ElemArray;
     private String outputArray;
+    private String outputSourceArray;
     private String status;
 
     private boolean isAddButtonEnabled;
@@ -14,10 +15,12 @@ public class ViewModel {
     private boolean isSortButtonEnabled;
 
     ArrayList<Double> Array = new ArrayList<Double>();
+    ArrayList<Double> sourceArray = new ArrayList<Double>();
 
     public ViewModel() {
         ElemArray = "";
         outputArray = "";
+        outputSourceArray = "";
         status = Status.WAITING;
 
         isAddButtonEnabled = false;
@@ -28,6 +31,11 @@ public class ViewModel {
     public String getOutputArray()
     {
         return outputArray;
+    }
+
+    public String getOutputSourceArray()
+    {
+        return outputSourceArray;
     }
 
     public String getElemArray() {
@@ -50,17 +58,20 @@ public class ViewModel {
 
         double value = Double.parseDouble(ElemArray);
         Array.add(value);
+        sourceArray.add(value);
         changeEnabledButtons();
 
-        outputArray = Array.toString();
+        outputSourceArray = Array.toString();
     }
 
     public void Clear()
     {
         Array.clear();
+        sourceArray.clear();
         changeEnabledButtons();
 
         outputArray = Array.toString();
+        outputSourceArray = sourceArray.toString();
     }
 
     public void Sort()

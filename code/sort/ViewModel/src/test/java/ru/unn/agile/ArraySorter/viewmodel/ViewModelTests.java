@@ -25,6 +25,7 @@ public class ViewModelTests {
     public void canSetDefaultValues() {
         assertEquals("", viewModel.getElemArray());
         assertEquals("", viewModel.getOutputArray());
+        assertEquals("", viewModel.getOutputSourceArray());
         assertEquals(Status.WAITING, viewModel.getCurrentState());
     }
 
@@ -33,7 +34,7 @@ public class ViewModelTests {
         viewModel.setElemArray("3.0");
         viewModel.Add();
 
-        assertEquals("[3.0]", viewModel.getOutputArray());
+        assertEquals("[3.0]", viewModel.getOutputSourceArray());
     }
 
     @Test
@@ -49,7 +50,7 @@ public class ViewModelTests {
         viewModel.setElemArray("0.02");
         viewModel.Add();
 
-        assertEquals("[-5.0, 4.0, 2.75, 10.1, 0.02]", viewModel.getOutputArray());
+        assertEquals("[-5.0, 4.0, 2.75, 10.1, 0.02]", viewModel.getOutputSourceArray());
     }
 
     @Test
