@@ -115,8 +115,8 @@ include "code/stack"
 project(":code/stack").name = "stack"
 
 // Chekodaev Oleg
-include "code/chekodaev-oleg-roman-number-converter"
-project(":code/chekodaev-oleg-roman-number-converter").name = "chekodaev-oleg-roman-number-converter"
+include "code/roman-number-converter"
+project(":code/roman-number-converter").name = "roman-number-converter"
 
 // Metelev Evgenii
 include "code/metelev-evgenii-mortgage-calculator"
