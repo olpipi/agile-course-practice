@@ -1,4 +1,4 @@
-package ru.unn.agile.polynomial.model;
+package ru.unn.agile.polynomial.Model;
 
 public class Polynomial {
     public static final double DELTA = 0.000001;

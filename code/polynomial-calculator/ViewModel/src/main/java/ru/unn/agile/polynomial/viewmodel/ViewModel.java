@@ -1,9 +1,9 @@
-package ru.unn.agile.polynomial.viewmodel;
+package ru.unn.agile.polynomial.ViewModel;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.util.Pair;
-import ru.unn.agile.polynomial.model.Polynomial;
+import ru.unn.agile.polynomial.Model.Polynomial;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;

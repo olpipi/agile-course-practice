@@ -1,4 +1,4 @@
-package ru.unn.agile.polynomial.view;
+package ru.unn.agile.polynomial.View;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

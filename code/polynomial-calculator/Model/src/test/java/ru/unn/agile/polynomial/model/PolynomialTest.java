@@ -1,4 +1,4 @@
-package ru.unn.agile.polynomial.model;
+package ru.unn.agile.polynomial.Model;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
