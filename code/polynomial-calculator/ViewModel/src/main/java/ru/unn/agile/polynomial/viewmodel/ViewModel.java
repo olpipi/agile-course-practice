@@ -71,7 +71,7 @@ public class ViewModel {
                 array.add(new Pair<>(0, Double.valueOf(matcher.group(GROUP_MATCH_4))));
             }
         }
-        if (array.size() != 0) {
+        if (!array.isEmpty()) {
             double[] coeffs = new double[array.get(0).getKey() + 1];
             for (int i = 0; i < array.size(); i++) {
                 coeffs[coeffs.length - 1 - array.get(i).getKey().intValue()]
