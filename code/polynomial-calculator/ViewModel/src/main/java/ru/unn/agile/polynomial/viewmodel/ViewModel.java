@@ -19,6 +19,10 @@ public class ViewModel {
     private static final int GROUP_MATCH_3 = 3; // ([-]?\d+\.*\d*)x (-5)x
     private static final int GROUP_MATCH_4 = 4; // ([-]?\d+\.*\d*) (-42.0)
 
+    private static final String GROUP_MORE_FIRST_DEGREE = "([-]?\\d\\.*\\d*)x\\^(\\d\\.*\\d*)";
+    private static final String GROUP_FIRST_DEGREE = "([-]?\\d+\\.*\\d*)x";
+    private static final String GROUP_ZERO_DEGREE = "([-]?\\d+\\.*\\d*)";
+
     public StringProperty firstPolynomialStrProperty() {
         return firstPolynomialStr;
     }
@@ -52,9 +56,9 @@ public class ViewModel {
     }
 
     public Polynomial parsePolynomial(final String polynomialStr) {
-        Pattern pattern = Pattern.compile("([-]?\\d\\.*\\d*)x\\^(\\d\\.*\\d*)"
-                + "|([-]?\\d+\\.*\\d*)x"
-                + "|([-]?\\d+\\.*\\d*)");
+        Pattern pattern = Pattern.compile(GROUP_MORE_FIRST_DEGREE
+                + "|" + GROUP_FIRST_DEGREE
+                + "|" + GROUP_ZERO_DEGREE);
         Matcher matcher = pattern.matcher(polynomialStr);
         ArrayList<Pair<Integer, Double>> array = new ArrayList<>();
         while (matcher.find()) {
