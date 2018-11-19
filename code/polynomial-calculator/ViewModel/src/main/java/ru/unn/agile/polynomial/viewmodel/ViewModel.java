@@ -14,16 +14,16 @@ public class ViewModel {
     private final StringProperty secondPolynomialStr = new SimpleStringProperty();
     private final StringProperty resultStr = new SimpleStringProperty();
 
-    private final int GROUP_MATCH_1 = 1;// [-]?\d\.*\d*)x (-3)x^3
-    private final int GROUP_MATCH_2 = 2;// x\^(\d\.*\d*) -3x^(3)
-    private final int GROUP_MATCH_3 = 3;// ([-]?\d+\.*\d*)x (-5)x
-    private final int GROUP_MATCH_4 = 4;// ([-]?\d+\.*\d*) (-42.0)
+    private static final int GROUP_MATCH_1 = 1; // [-]?\d\.*\d*)x (-3)x^3
+    private static final int GROUP_MATCH_2 = 2; // x\^(\d\.*\d*) -3x^(3)
+    private static final int GROUP_MATCH_3 = 3; // ([-]?\d+\.*\d*)x (-5)x
+    private static final int GROUP_MATCH_4 = 4; // ([-]?\d+\.*\d*) (-42.0)
 
     public StringProperty firstPolynomialStrProperty() {
         return firstPolynomialStr;
     }
 
-    public void setFirstPolynomialStr(String firstPolynomialStr) {
+    public void setFirstPolynomialStr(final String firstPolynomialStr) {
         this.firstPolynomialStr.set(firstPolynomialStr);
     }
 
@@ -31,7 +31,7 @@ public class ViewModel {
         return secondPolynomialStr;
     }
 
-    public void setSecondPolynomialStr(String secondPolynomialStr) {
+    public void setSecondPolynomialStr(final String secondPolynomialStr) {
         this.secondPolynomialStr.set(secondPolynomialStr);
     }
 
@@ -52,8 +52,9 @@ public class ViewModel {
     }
 
     public Polynomial parsePolynomial(final String polynomialStr) {
-        Pattern pattern =
-                Pattern.compile("([-]?\\d\\.*\\d*)x\\^(\\d\\.*\\d*)|([-]?\\d+\\.*\\d*)x|([-]?\\d+\\.*\\d*)");
+        Pattern pattern = Pattern.compile("([-]?\\d\\.*\\d*)x\\^(\\d\\.*\\d*)" +
+                "|([-]?\\d+\\.*\\d*)x" +
+                "|([-]?\\d+\\.*\\d*)");
         Matcher matcher = pattern.matcher(polynomialStr);
         ArrayList<Pair<Integer, Double>> array = new ArrayList<>();
         while (matcher.find()) {
