@@ -35,8 +35,12 @@ include "code/marchenko-andrey-complex-number"
 project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-complex-number"
 
 // Andreev Vladilsav
-include "code/andreev-vlad-triangle"
-project(":code/andreev-vlad-triangle").name = "andreev-vlad-triangle-Model"
+include "code/triangle/Model"
+project(":code/triangle/Model").name = "triangle-Model"
+include "code/triangle/ViewModel"
+project(":code/triangle/ViewModel").name = "triangle-ViewModel"
+include "code/triangle/View"
+project(":code/triangle/View").name = "triangle-View"
 
 // Moiseev Nikita, lab 1
 include "code/abstract-set"
