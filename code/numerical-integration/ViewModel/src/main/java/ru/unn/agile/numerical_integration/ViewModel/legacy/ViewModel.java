@@ -9,18 +9,26 @@ import java.util.Iterator;
 
 public class ViewModel {
     private static final String FLOAT_NUMBER_REGEX =
-        "[+-]?((\\d+\\.?\\d*)|(\\d*\\.\\d+))";
+            "[+-]?((\\d+\\.?\\d*)|(\\d*\\.\\d+))";
 
     public static final String ERROR_WRONG_LEFT_BORDER =
-        "Wrong left border value";
+            "Wrong left border value";
     public static final String ERROR_WRONG_RIGHT_BORDER =
-        "Wrong right border value";
+            "Wrong right border value";
     public static final String ERROR_WRONG_SPLITS_NUMBER =
-        "Wrong splits number value";
+            "Wrong splits number value";
     public static final String ERROR_WRONG_FUNCTION_TEXT =
-        "Wrong function";
+            "Wrong function";
     private static final String ERROR_COMPUTATION_FAILURE =
-        "Error during computation";
+            "Error during computation";
+    private static final String ERROR_EXPECTED_FLOAT_NUMBER =
+            "Expected float number";
+    private static final String ERROR_EXPECTED_INTEGER_NUMBER =
+            "Expected integer number";
+    private static final String ERROR_EXPECTED_POSITIVE_NUMBER =
+            "Expected positive number";
+    private static final String STATUS_HEADER_TEXT =
+            "Unable to compute due to the following errors:";
 
     private String functionText;
     private String leftBorderText;
@@ -84,6 +92,30 @@ public class ViewModel {
         return errorsList.isEmpty();
     }
 
+    public void compute() {
+        if (!canComputeFunction()) {
+            return;
+        }
+
+        MathExpression parser = new MathExpression(functionText);
+        final Expression f = x -> {
+            final boolean success = parser.eval(x);
+            return success ? parser.getResult() : 0.0;
+        };
+
+        final double a = Double.parseDouble(leftBorderText);
+        final double b = Double.parseDouble(rightBorderText);
+        final int splitsNumber = Integer.parseInt(splitsNumberText);
+
+        try {
+            double result = BaseDefinition.calculate(f, a, b, splitsNumber);
+            outputMessage = Double.toString(result);
+        } catch (Exception e) {
+            addError(ErrorKind.Computation, e.toString());
+            checkErrors();
+        }
+    }
+
     private void checkErrors() {
         checkFunctionText();
         checkLeftBorderValue();
@@ -93,6 +125,54 @@ public class ViewModel {
         outputMessage = createErrorMessage();
     }
 
+    private void checkFunctionText() {
+        final MathExpression parser = new MathExpression(functionText);
+        final boolean success = parser.eval(0);
+        if (!success) {
+            addError(ErrorKind.Function, parser.getError());
+            return;
+        }
+        removeError(ErrorKind.Function);
+    }
+
+    private void checkLeftBorderValue() {
+        if (leftBorderText.matches(FLOAT_NUMBER_REGEX)) {
+            removeError(ErrorKind.LeftBorderValue);
+        } else {
+            addError(ErrorKind.LeftBorderValue, ERROR_EXPECTED_FLOAT_NUMBER);
+        }
+    }
+
+    private void checkRightBorderValue() {
+        if (rightBorderText.matches(FLOAT_NUMBER_REGEX)) {
+            removeError(ErrorKind.RightBorderValue);
+        } else {
+            addError(ErrorKind.RightBorderValue, ERROR_EXPECTED_FLOAT_NUMBER);
+        }
+    }
+
+    private void checkSplitsNumber() {
+        if (!splitsNumberText.matches("[+-]?\\d+")) {
+            addError(ErrorKind.SplitsNumber, ERROR_EXPECTED_INTEGER_NUMBER);
+            return;
+        }
+
+        if (Integer.parseInt(splitsNumberText) < 1) {
+            addError(ErrorKind.SplitsNumber, ERROR_EXPECTED_POSITIVE_NUMBER);
+            return;
+        }
+
+        removeError(ErrorKind.SplitsNumber);
+    }
+
+    private void addError(final ErrorKind kind, final String message) {
+        errorsList.put(kind, message);
+    }
+
+    private void removeError(final ErrorKind kind) {
+        errorsList.remove(kind);
+    }
+
     private String createErrorMessage() {
         final int variableToMakeLinterHappy = 100;
         StringBuilder builder = new StringBuilder(variableToMakeLinterHappy);
@@ -100,7 +180,7 @@ public class ViewModel {
         Iterator it = errorsList.entrySet().iterator();
 
         if (it.hasNext()) {
-            builder.append("Unable to compute due to the following errors:\n");
+            builder.append(STATUS_HEADER_TEXT).append("\n");
         }
 
         while (it.hasNext()) {
@@ -131,78 +211,6 @@ public class ViewModel {
                 return ERROR_COMPUTATION_FAILURE;
             default:
                 throw new RuntimeException("Unexpected error kind");
-        }
-    }
-
-    private void checkFunctionText() {
-        final MathParser parser = new MathParser(functionText);
-        final boolean success = parser.eval(0);
-        if (!success) {
-            addError(ErrorKind.Function, parser.getError());
-            return;
-        }
-        removeError(ErrorKind.Function);
-    }
-
-    private void checkLeftBorderValue() {
-        if (leftBorderText.matches(FLOAT_NUMBER_REGEX)) {
-            removeError(ErrorKind.LeftBorderValue);
-        } else {
-            addError(ErrorKind.LeftBorderValue, "Expected float number");
-        }
-    }
-
-    private void checkRightBorderValue() {
-        if (rightBorderText.matches(FLOAT_NUMBER_REGEX)) {
-            removeError(ErrorKind.RightBorderValue);
-        } else {
-            addError(ErrorKind.RightBorderValue, "Expected float number");
-        }
-    }
-
-    private void checkSplitsNumber() {
-        if (!splitsNumberText.matches("[+-]?\\d+")) {
-            addError(ErrorKind.SplitsNumber, "Expected integer number");
-            return;
-        }
-
-        if (Integer.parseInt(splitsNumberText) < 1) {
-            addError(ErrorKind.SplitsNumber, "Expected positive number");
-            return;
-        }
-
-        removeError(ErrorKind.SplitsNumber);
-    }
-
-    private void addError(final ErrorKind kind, final String message) {
-        errorsList.put(kind, message);
-    }
-
-    private void removeError(final ErrorKind kind) {
-        errorsList.remove(kind);
-    }
-
-    public void compute() {
-        if (!canComputeFunction()) {
-            return;
-        }
-
-        MathParser parser = new MathParser(functionText);
-        final Expression f = x -> {
-            final boolean success = parser.eval(x);
-            return success ? parser.getResult() : 0.0;
-        };
-
-        final double a = Double.parseDouble(leftBorderText);
-        final double b = Double.parseDouble(rightBorderText);
-        final int splitsNumber = Integer.parseInt(splitsNumberText);
-
-        try {
-            double result = BaseDefinition.calculate(f, a, b, splitsNumber);
-            outputMessage = Double.toString(result);
-        } catch (Exception e) {
-            addError(ErrorKind.Computation, e.toString());
-            checkErrors();
         }
     }
 }

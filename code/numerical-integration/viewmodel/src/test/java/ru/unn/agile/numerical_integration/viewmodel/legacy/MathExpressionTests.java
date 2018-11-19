@@ -4,12 +4,12 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.*;
 
-public class MathParserTests {
+public class MathExpressionTests {
     private static final double DOUBLE_PRECISION = 1e-15;
 
     @Test
     public void canComputeNumber() {
-        MathParser parser = new MathParser("10");
+        MathExpression parser = new MathExpression("10");
 
         boolean status = parser.eval(0);
         double result = parser.getResult();
@@ -20,7 +20,7 @@ public class MathParserTests {
 
     @Test
     public void canComputeNegativeNumber() {
-        MathParser parser = new MathParser("-10");
+        MathExpression parser = new MathExpression("-10");
 
         boolean status = parser.eval(0);
         double result = parser.getResult();
@@ -31,7 +31,7 @@ public class MathParserTests {
 
     @Test
     public void canComputeNothing() {
-        MathParser parser = new MathParser("");
+        MathExpression parser = new MathExpression("");
 
         boolean status = parser.eval(0);
         double result = parser.getResult();
@@ -42,7 +42,7 @@ public class MathParserTests {
 
     @Test
     public void canComputeVariable() {
-        MathParser parser = new MathParser("x");
+        MathExpression parser = new MathExpression("x");
 
         boolean status = parser.eval(10);
         double result = parser.getResult();
@@ -53,7 +53,7 @@ public class MathParserTests {
 
     @Test
     public void canComputeNegatedVariable() {
-        MathParser parser = new MathParser("-x");
+        MathExpression parser = new MathExpression("-x");
 
         boolean status = parser.eval(10);
         double result = parser.getResult();
@@ -64,7 +64,7 @@ public class MathParserTests {
 
     @Test
     public void canComputeWhitespaces() {
-        MathParser parser = new MathParser("   ");
+        MathExpression parser = new MathExpression("   ");
 
         boolean status = parser.eval(10);
         double result = parser.getResult();
@@ -75,7 +75,7 @@ public class MathParserTests {
 
     @Test
     public void canComputeNumberWithinWhitespaces() {
-        MathParser parser = new MathParser("   5   ");
+        MathExpression parser = new MathExpression("   5   ");
 
         boolean status = parser.eval(10);
         double result = parser.getResult();
@@ -86,7 +86,7 @@ public class MathParserTests {
 
     @Test
     public void canComputeSum() {
-        MathParser parser = new MathParser(" 5 + 2  ");
+        MathExpression parser = new MathExpression(" 5 + 2  ");
 
         boolean status = parser.eval(10);
         double result = parser.getResult();
@@ -97,7 +97,7 @@ public class MathParserTests {
 
     @Test
     public void canComputeSumOfNumbers() {
-        MathParser parser = new MathParser(" 5 + 2  ");
+        MathExpression parser = new MathExpression(" 5 + 2  ");
 
         boolean status = parser.eval(10);
         double result = parser.getResult();
@@ -108,7 +108,7 @@ public class MathParserTests {
 
     @Test
     public void canComputeSumOfVariables() {
-        MathParser parser = new MathParser(" x + x  ");
+        MathExpression parser = new MathExpression(" x + x  ");
 
         boolean status = parser.eval(10);
         double result = parser.getResult();
@@ -119,7 +119,7 @@ public class MathParserTests {
 
     @Test
     public void canComputeProduct() {
-        MathParser parser = new MathParser(" 5 * x  ");
+        MathExpression parser = new MathExpression(" 5 * x  ");
 
         boolean status = parser.eval(10);
         double result = parser.getResult();
@@ -130,7 +130,7 @@ public class MathParserTests {
 
     @Test
     public void canComputeDifference() {
-        MathParser parser = new MathParser(" 5 - x  ");
+        MathExpression parser = new MathExpression(" 5 - x  ");
 
         boolean status = parser.eval(10);
         double result = parser.getResult();
@@ -141,7 +141,7 @@ public class MathParserTests {
 
     @Test
     public void canComputeRatio() {
-        MathParser parser = new MathParser(" -5 / x  ");
+        MathExpression parser = new MathExpression(" -5 / x  ");
 
         boolean status = parser.eval(10);
         double result = parser.getResult();
@@ -152,8 +152,8 @@ public class MathParserTests {
 
     @Test
     public void canComputeInRightOrder() {
-        MathParser parser1 = new MathParser(" 2 + 2 * 2  ");
-        MathParser parser2 = new MathParser(" 2 * 2 + 2  ");
+        MathExpression parser1 = new MathExpression(" 2 + 2 * 2  ");
+        MathExpression parser2 = new MathExpression(" 2 * 2 + 2  ");
 
         parser1.eval(10);
         double result1 = parser1.getResult();
@@ -166,7 +166,7 @@ public class MathParserTests {
 
     @Test
     public void canComputeTwice() {
-        MathParser parser = new MathParser(" 2 * x - 7  ");
+        MathExpression parser = new MathExpression(" 2 * x - 7  ");
         parser.eval(10);
 
         parser.eval(20);
@@ -177,7 +177,7 @@ public class MathParserTests {
 
     @Test
     public void voidHasErrorWhenComputingIncorrectExpression() {
-        MathParser parser = new MathParser("x1");
+        MathExpression parser = new MathExpression("x1");
 
         boolean success = parser.eval(0);
 
