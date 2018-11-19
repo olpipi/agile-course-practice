@@ -1,33 +1,41 @@
 package ru.unn.agile.huffman.view;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Label;
+
+import ru.unn.agile.huffman.viewmodel.ViewModel;
 
 public class HuffmanEncoding {
+    @FXML
+    private ViewModel viewModel;
 
     @FXML
-    private ResourceBundle resources;
+    private Button btnEncode;
 
     @FXML
-    private URL location;
+    private TextArea txtInput;
 
     @FXML
-    private Button encodeButton;
+    private TextArea txtOutput;
 
     @FXML
-    private TextArea inputText;
-
-    @FXML
-    private TextArea outputText;
+    private Label lbStatus;
 
     @FXML
     void initialize() {
-        assert encodeButton != null : "fx:id=\"encodeButton\" was not injected: check your FXML file 'HuffmanEncoding.fxml'.";
-        assert inputText != null : "fx:id=\"inputText\" was not injected: check your FXML file 'HuffmanEncoding.fxml'.";
-        assert outputText != null : "fx:id=\"outputText\" was not injected: check your FXML file 'HuffmanEncoding.fxml'.";
+        txtInput.textProperty().bindBidirectional(viewModel.txtProperty());
+        txtOutput.textProperty().bindBidirectional(viewModel.txtEncodeProperty());
+        lbStatus.textProperty().bindBidirectional(viewModel.statusProperty());
 
+        btnEncode.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                viewModel.encode();
+            }
+        });
     }
 }
