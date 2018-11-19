@@ -17,7 +17,7 @@ public class ViewModelTest {
     @Test
     public void canParsePolynomial() {
         ViewModel viewModel = new ViewModel();
-        Polynomial polynomial = viewModel.parsePolynomial("2x^3+4x^2+5x-42");
-        assertEquals("2x^3+4x^2+5x-42", polynomial.toString());
+        Polynomial polynomial = viewModel.parsePolynomial("2.0x^3+4.0x^2+5.0x-42.0");
+        assertEquals("2.0x^3 + 4.0x^2 + 5.0x - 42.0", polynomial.toString());
     }
 }

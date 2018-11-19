@@ -47,20 +47,26 @@ public class ViewModel {
     }
 
     public Polynomial parsePolynomial(String polynomialStr) {
-        Pattern pattern = Pattern.compile("([-]?\\d\\.*\\d*)x\\^(\\d\\.*\\d*)|([-]?\\d+\\.*\\d*)x|([-]?\\d+\\.*\\d*)");
+        Pattern pattern =
+                Pattern.compile("([-]?\\d\\.*\\d*)x\\^(\\d\\.*\\d*)|([-]?\\d+\\.*\\d*)x|([-]?\\d+\\.*\\d*)");
         Matcher matcher = pattern.matcher(polynomialStr);
         ArrayList<Pair<Integer, Double>> array = new ArrayList<>();
         while (matcher.find()) {
-            if (matcher.group(1) != null && matcher.group(2) != null)
-                array.add(new Pair<>(Integer.valueOf(matcher.group(2)), Double.valueOf(matcher.group(1))));
-            else if (matcher.group(3) != null)
+            if (matcher.group(1) != null && matcher.group(2) != null) {
+                array.add(new Pair<>(Integer.valueOf(matcher.group(2))
+                        , Double.valueOf(matcher.group(1))));
+            }
+            else if (matcher.group(3) != null) {
                 array.add(new Pair<>(1, Double.valueOf(matcher.group(3))));
-            else if (matcher.group(4) != null)
+            }
+            else if (matcher.group(4) != null) {
                 array.add(new Pair<>(0, Double.valueOf(matcher.group(4))));
+            }
         }
         double[] coeffs = new double[array.get(0).getKey() + 1];
         for (int i = 0; i < array.size(); i++) {
-            coeffs[coeffs.length - 1 - array.get(i).getKey().intValue()] = array.get(i).getValue().doubleValue();
+            coeffs[coeffs.length - 1 
+                    - array.get(i).getKey().intValue()] = array.get(i).getValue().doubleValue();
         }
         return new Polynomial(coeffs);
     }

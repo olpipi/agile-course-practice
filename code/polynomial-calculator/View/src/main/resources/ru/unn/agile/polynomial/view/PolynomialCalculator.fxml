@@ -17,6 +17,6 @@
       <Label layoutX="32.0" layoutY="209.0" text="Результат" />
       <TextArea layoutX="32.0" layoutY="235.0" prefHeight="37.0" prefWidth="281.0" />
       <Label layoutX="327.0" layoutY="60.0" text="Форма записи полинома" />
-      <Label layoutX="356.0" layoutY="85.0" text="-2x^2+3x^1+6" />
+      <Label layoutX="356.0" layoutY="85.0" text="-2.0x^2+3.0x^1+6.0" />
    </children>
 </AnchorPane>
