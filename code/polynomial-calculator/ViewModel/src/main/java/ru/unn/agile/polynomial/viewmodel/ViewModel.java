@@ -43,7 +43,7 @@ public class ViewModel {
         return resultStr;
     }
 
-    public void setResultStr(String resultStr) {
+    public void setResultStr(final String resultStr) {
         this.resultStr.set(resultStr);
     }
 
@@ -52,9 +52,9 @@ public class ViewModel {
     }
 
     public Polynomial parsePolynomial(final String polynomialStr) {
-        Pattern pattern = Pattern.compile("([-]?\\d\\.*\\d*)x\\^(\\d\\.*\\d*)" +
-                "|([-]?\\d+\\.*\\d*)x" +
-                "|([-]?\\d+\\.*\\d*)");
+        Pattern pattern = Pattern.compile("([-]?\\d\\.*\\d*)x\\^(\\d\\.*\\d*)"
+                + "|([-]?\\d+\\.*\\d*)x"
+                + "|([-]?\\d+\\.*\\d*)");
         Matcher matcher = pattern.matcher(polynomialStr);
         ArrayList<Pair<Integer, Double>> array = new ArrayList<>();
         while (matcher.find()) {
