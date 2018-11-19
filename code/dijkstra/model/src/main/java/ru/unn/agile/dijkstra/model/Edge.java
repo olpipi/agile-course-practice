@@ -11,6 +11,10 @@ public class Edge {
         this.weight = weight;
     }
 
+    public Edge() {
+        this.weight = 0;
+    }
+
     public int getWeight() {
         return weight;
     }
@@ -21,14 +25,6 @@ public class Edge {
 
     public Vertex getVertexRight() {
         return vertexRight;
-    }
-
-    public int getIdLeftVertex() {
-        return vertexLeft.getId();
-    }
-
-    public int getIdRightVertex() {
-        return vertexRight.getId();
     }
 
 }

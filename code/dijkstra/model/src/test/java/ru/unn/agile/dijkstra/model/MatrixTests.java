@@ -1,6 +1,5 @@
 package ru.unn.agile.dijkstra.model;
 
-
 import org.junit.Test;
 
 
@@ -374,4 +373,38 @@ public class MatrixTests {
         assertEquals(2, graph.dijkstra(vertexOfStart, vertexOfEnd));
     }
 
+    @Test
+    public void canInitGraphByEdges() {
+        Vertex vertex1 = new Vertex(1);
+        Vertex vertex2 = new Vertex(8);
+        Vertex vertex3 = new Vertex(4);
+
+        Edge edge1 = new Edge(vertex1, vertex2, 4);
+        Edge edge2 = new Edge(vertex2, vertex3, 5);
+
+        List<Edge> edges = new LinkedList<Edge>();
+        edges.add(edge1);
+        edges.add(edge2);
+
+        Graph graph = new Graph(edges);
+        assertEquals(2, graph.getEdgesSize());
+    }
+
+    @Test
+    public void canCalculateGraphInitiatedByEdges() {
+        Vertex vertex1 = new Vertex(1);
+        Vertex vertex2 = new Vertex(8);
+        Vertex vertex3 = new Vertex(4);
+
+        Edge edge1 = new Edge(vertex1, vertex2, 4);
+        Edge edge2 = new Edge(vertex2, vertex3, 5);
+
+        List<Edge> edges = new LinkedList<Edge>();
+        edges.add(edge1);
+        edges.add(edge2);
+
+        Graph graph = new Graph(edges);
+
+        assertEquals(9, graph.dijkstra(vertex1, vertex3));
+    }
 }
