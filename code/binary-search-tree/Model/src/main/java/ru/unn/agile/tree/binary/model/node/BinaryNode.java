@@ -1,4 +1,4 @@
-package main.java.ru.unn.agile.tree.binary.model.node;
+package ru.unn.agile.tree.binary.model.node;
 
 public class BinaryNode<K extends Comparable<K>, V extends Comparable<V>>
         implements Comparable<BinaryNode<K, V>> {

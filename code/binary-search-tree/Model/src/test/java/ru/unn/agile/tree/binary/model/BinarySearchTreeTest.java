@@ -1,7 +1,6 @@
-package test.java.ru.unn.agile.tree.binary.model;
+package ru.unn.agile.tree.binary.model;
 
-import main.java.ru.unn.agile.tree.binary.model.BinarySearchTree;
-import main.java.ru.unn.agile.tree.binary.model.node.BinaryNode;
+import ru.unn.agile.tree.binary.model.node.BinaryNode;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

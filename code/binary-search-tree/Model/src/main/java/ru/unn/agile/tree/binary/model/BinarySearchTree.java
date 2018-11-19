@@ -1,6 +1,6 @@
-package main.java.ru.unn.agile.tree.binary.model;
+package ru.unn.agile.tree.binary.model;
 
-import  main.java.ru.unn.agile.tree.binary.model.node.BinaryNode;
+import ru.unn.agile.tree.binary.model.node.BinaryNode;
 
 public class BinarySearchTree<K extends Comparable<K>, V extends Comparable<V>> {
 

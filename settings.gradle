@@ -183,8 +183,12 @@ include "code/polynomial-calculator"
 project(":code/polynomial-calculator").name = "polynomial-calculator"
 
 // Sheptunov Vladislav, BinarySearchTree
-include "code/binary-search-tree"
-project(":code/binary-search-tree").name = "binary-search-tree"
+include "code/binary-search-tree/Model"
+project(":code/binary-search-tree/Model").name = "binary-search-tree-Model"
+include "code/binary-search-tree/ViewModel"
+project(":code/binary-search-tree/ViewModel").name = "binary-search-tree-ViewModel"
+include "code/binary-search-tree/View"
+project(":code/binary-search-tree/View").name = "binary-search-tree-View"
 
 //Pipikin Oleg, Matrix
 include "code/pipikin-oleg-matrix"
