@@ -392,11 +392,11 @@ public class MatrixTests {
 
     @Test
     public void canCalculateGraphInitiatedByEdges() {
-        Vertex vertex1 = new Vertex(1);
-        Vertex vertex2 = new Vertex(8);
-        Vertex vertex3 = new Vertex(4);
+        Vertex vertex1 = new Vertex(3);
+        Vertex vertex2 = new Vertex(10);
+        Vertex vertex3 = new Vertex(6);
 
-        Edge edge1 = new Edge(vertex1, vertex2, 4);
+        Edge edge1 = new Edge(vertex1, vertex2, 10);
         Edge edge2 = new Edge(vertex2, vertex3, 5);
 
         List<Edge> edges = new LinkedList<Edge>();
@@ -405,6 +405,6 @@ public class MatrixTests {
 
         Graph graph = new Graph(edges);
 
-        assertEquals(9, graph.dijkstra(vertex1, vertex3));
+        assertEquals(15, graph.dijkstra(vertex1, vertex3));
     }
 }
