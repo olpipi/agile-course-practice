@@ -117,8 +117,8 @@ project(":code/stack").name = "stack"
 // Roman number converter
 include "code/roman-number-converter/Model"
 project(":code/roman-number-converter/Model").name = "roman-number-converter-Model"
-//include "code/roman-number-converter/ViewModel"
-//project(":code/roman-number-converter/ViewModel").name = "roman-number-converter-ViewModel"
+include "code/roman-number-converter/ViewModel"
+project(":code/roman-number-converter/ViewModel").name = "roman-number-converter-ViewModel"
 include "code/roman-number-converter/View"
 project(":code/roman-number-converter/View").name = "roman-number-converter-View"
 
