@@ -175,8 +175,6 @@ include "code/golovanova-tatyana-converter-temperatures"
 project(":code/golovanova-tatyana-converter-temperatures").name = "golovanova-tatyana-converter-temperatures"
 
 // Shiryaeva Ekaterina, Kochuev Andrey Polynomial Calculator
-include "code/polynomial-calculator"
-project(":code/polynomial-calculator").name = "polynomial-calculator"
 include "code/polynomial-calculator/Model"
 project(":code/polynomial-calculator/Model").name = "polynomial-calculator-Model"
 include "code/polynomial-calculator/ViewModel"
