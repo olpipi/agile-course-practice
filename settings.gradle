@@ -98,9 +98,13 @@ project(":code/gladkov-dmitry-huffman").name = "gladkov-dmitry-huffman"
 include "code/polyakov-igor-sort"
 project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
 
-// Rumyantsev Alexander, Vector3D
-include "code/rumyantsev-alexander-vector3d"
-project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vector3d"
+// Vector3D
+include "code/vector3d/Model"
+project(":code/vector3d/Model").name = "vector3d-Model"
+include "code/vector3d/ViewModel"
+project(":code/vector3d/ViewModel").name = "vector3d-ViewModel"
+include "code/vector3d/View"
+project(":code/vector3d/View").name = "vector3d-View"
 
 // Magazinnik Ivan, string-calculator
 include "code/string-calculator"
