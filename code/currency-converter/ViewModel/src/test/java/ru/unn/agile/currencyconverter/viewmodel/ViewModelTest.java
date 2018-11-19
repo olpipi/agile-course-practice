@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ViewModelTest {
@@ -23,7 +24,7 @@ public class ViewModelTest {
     }
 
     @Test
-    public void initViewModelWithDefaultFields() {
+    public void initViewModelWithDefaultValues() {
         assertEquals("", viewModel.getAddSrcCode());
         assertEquals("", viewModel.getAddTgtCode());
         assertEquals("", viewModel.getAddRate());
@@ -32,6 +33,18 @@ public class ViewModelTest {
         assertEquals("", viewModel.getConvAmount());
         assertEquals("", viewModel.getCurrPairs());
         assertEquals("", viewModel.getResult());
+    }
+
+    @Test
+    public void viewModelPropertiesAreInitializedUponStart() {
+        assertNotEquals(null, viewModel.addSrcCodeProperty().get());
+        assertNotEquals(null, viewModel.addTgtCodeProperty().get());
+        assertNotEquals(null, viewModel.addRateProperty().get());
+        assertNotEquals(null, viewModel.convSrcCodeProperty().get());
+        assertNotEquals(null, viewModel.convTgtCodeProperty().get());
+        assertNotEquals(null, viewModel.convAmountProperty().get());
+        assertNotEquals(null, viewModel.currPairsProperty().get());
+        assertNotEquals(null, viewModel.resultProperty().get());
     }
 
     @Test

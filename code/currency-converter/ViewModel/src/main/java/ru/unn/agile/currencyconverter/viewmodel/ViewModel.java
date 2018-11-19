@@ -9,6 +9,10 @@ import ru.unn.agile.currencyconverter.model.CurrencyConverter;
 import ru.unn.agile.currencyconverter.model.errorhandling.CurrencyConverterException;
 
 public class ViewModel {
+    private static final String ERR_WRONG_NUMBER_TMPL =
+            "Не удалось распознать число: \"%s\"";
+    private static final String ERR_CURR_CONV_EXC_TMPL = "Ошибка: %s";
+
     private StringProperty addSrcCode = new SimpleStringProperty();
     private StringProperty addTgtCode = new SimpleStringProperty();
     private StringProperty addRate = new SimpleStringProperty();
@@ -133,12 +137,10 @@ public class ViewModel {
                     Double.parseDouble(addRate.get())
             );
         } catch (NumberFormatException exc) {
-            result.set(
-                    "Не удалось распознать число: \"" + addRate.get() + "\""
-            );
+            result.set(String.format(ERR_WRONG_NUMBER_TMPL, addRate.get()));
             return;
         } catch (CurrencyConverterException exc) {
-            result.set("Ошибка: " + exc.getMessage());
+            result.set(String.format(ERR_CURR_CONV_EXC_TMPL, exc.getMessage()));
             return;
         }
 
@@ -157,10 +159,7 @@ public class ViewModel {
         try {
             amount = Double.parseDouble(convAmount.get());
         } catch (NumberFormatException exc) {
-            result.set(
-                    "Не удалось распознать число: \""
-                            + convAmount.get() + "\""
-            );
+            result.set(String.format(ERR_WRONG_NUMBER_TMPL, convAmount.get()));
             return;
         }
 
@@ -171,7 +170,7 @@ public class ViewModel {
                     amount
             );
         } catch (CurrencyConverterException exc) {
-            result.set("Ошибка: " + exc.getMessage());
+            result.set(String.format(ERR_CURR_CONV_EXC_TMPL, exc.getMessage()));
             return;
         }
 
