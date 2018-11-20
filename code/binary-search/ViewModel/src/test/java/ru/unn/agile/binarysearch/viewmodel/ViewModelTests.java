@@ -30,4 +30,24 @@ public class ViewModelTests {
         assertEquals("", viewModel.getStatus());
     }
 
+    @Test
+    public void canSetArrayValue() {
+        ViewModel viewModel = new ViewModel();
+        int[] expected = new int[] {1, 2, 3};
+
+        viewModel.setArrayTextBoxValue("1,2,3");
+
+        assertArrayEquals(expected, viewModel.getBinarySearchArray());
+    }
+
+    @Test
+    public void canSetElementValue() {
+        ViewModel viewModel = new ViewModel();
+        String expected = "2";
+
+        viewModel.setElementTextBoxValue("2");
+
+        assertEquals(expected, viewModel.getElementTextBoxValue());
+    }
+
 }
