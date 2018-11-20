@@ -1,5 +1,8 @@
 package ru.unn.agile.triangle.viewmodel;
 
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -14,6 +17,13 @@ public class ViewModel {
     private StringProperty bY = new SimpleStringProperty();
     private StringProperty cY = new SimpleStringProperty();
     private StringProperty result = new SimpleStringProperty();
+
+    private final BooleanProperty perimeterDisabled = new SimpleBooleanProperty();
+    private final BooleanProperty squareDisabled = new SimpleBooleanProperty();
+
+    public ViewModel() {
+        initDefaultFields();
+    }
 
     public String getAx() {
         return aX.get();
@@ -71,8 +81,20 @@ public class ViewModel {
         return result;
     }
 
-    public ViewModel() {
-        initDefaultFields();
+    public BooleanProperty perimeterDisabledProperty() {
+        return perimeterDisabled;
+    }
+
+    public final boolean isPerimeterDisabled() {
+        return perimeterDisabled.get();
+    }
+
+    public BooleanProperty squareDisabledProperty() {
+        return squareDisabled;
+    }
+
+    public final boolean isSquareDisabled() {
+        return squareDisabled.get();
     }
 
     private void initDefaultFields() {
@@ -83,9 +105,25 @@ public class ViewModel {
         bY.set("");
         cY.set("");
         result.set("");
+
+        BooleanBinding couldCalculate = new BooleanBinding() {
+            {
+                super.bind(aX, aY, bX, bY, cX, cY );
+            }
+            @Override
+            protected boolean computeValue() {
+                return getInputStatus() == Status.READY;
+        };
+        };
+        perimeterDisabled.bind(couldCalculate.not());
+        squareDisabled.bind(couldCalculate.not());
     }
 
     public void perimeter() {
+        if (perimeterDisabled.get()) {
+            return;
+        }
+
         Point pointA = new Point(aX.get(), aY.get());
         Point pointB = new Point(bX.get(), bY.get());
         Point pointC = new Point(cX.get(), cY.get());
@@ -96,6 +134,10 @@ public class ViewModel {
     }
 
     public void square() {
+        if (squareDisabled.get()) {
+            return;
+        }
+
         Point pointA = new Point(aX.get(), aY.get());
         Point pointB = new Point(bX.get(), bY.get());
         Point pointC = new Point(cX.get(), cY.get());
@@ -103,5 +145,52 @@ public class ViewModel {
         Triangle triangle = new Triangle(pointA, pointB, pointC);
 
         result.set(String.valueOf(triangle.getSquare()));
+    }
+
+    private Status getInputStatus() {
+        Status inputStatus = Status.READY;
+        if (aX.get().isEmpty() || aY.get().isEmpty()
+                || bX.get().isEmpty() || bY.get().isEmpty()
+                || cX.get().isEmpty() || cY.get().isEmpty()) {
+            inputStatus = Status.WAITING;
+        }
+        try {
+            if (!aX.get().isEmpty()) {
+                Double.parseDouble(aX.get());
+            }
+            if (!aY.get().isEmpty()) {
+                Double.parseDouble(aY.get());
+            }
+            if (!bX.get().isEmpty()) {
+                Double.parseDouble(bX.get());
+            }
+            if (!bY.get().isEmpty()) {
+                Double.parseDouble(bY.get());
+            }
+            if (!cX.get().isEmpty()) {
+                Double.parseDouble(cX.get());
+            }
+            if (!cY.get().isEmpty()) {
+                Double.parseDouble(cY.get());
+            }
+        } catch (NumberFormatException nfe) {
+            inputStatus = Status.BAD_FORMAT;
+        }
+
+        return inputStatus;
+    }
+}
+
+enum Status {
+    WAITING("Please provide input data"),
+    READY("Press 'Calculate' or Enter"),
+    BAD_FORMAT("Bad format");
+
+    private final String name;
+    Status(final String name) {
+        this.name = name;
+    }
+    public String toString() {
+        return name;
     }
 }

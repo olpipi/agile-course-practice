@@ -72,11 +72,11 @@
                 </HBox>
                 <HBox>
                     <children>
-                        <Button fx:id="btnCalcPerimeter" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Perimeter" HBox.hgrow="ALWAYS">
+                        <Button fx:id="btnCalcPerimeter" defaultButton="true" disable="${viewModel.perimeterDisabled}" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Perimeter" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin></Button>
-                        <Button fx:id="btnCalcSquare" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Square" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnCalcSquare" defaultButton="true" disable="${viewModel.squareDisabled}"  maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Square" HBox.hgrow="ALWAYS" />
                         </children>
                 </HBox>
                 <HBox>

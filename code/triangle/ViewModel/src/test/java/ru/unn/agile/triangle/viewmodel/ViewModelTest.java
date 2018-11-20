@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ViewModelTest {
     private ViewModel viewModel;
@@ -55,5 +56,15 @@ public class ViewModelTest {
         viewModel.square();
 
         assertEquals("6.0", viewModel.getResult());
+    }
+
+    @Test
+    public void perimeterButtonIsDisabledInitially() {
+        assertTrue(viewModel.perimeterDisabledProperty().get());
+    }
+
+    @Test
+    public void squareButtonIsDisabledInitially() {
+        assertTrue(viewModel.squareDisabledProperty().get());
     }
 }
