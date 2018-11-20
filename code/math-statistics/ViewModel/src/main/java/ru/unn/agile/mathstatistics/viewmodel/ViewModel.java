@@ -1,6 +1,7 @@
 package ru.unn.agile.mathstatistics.viewmodel;
 
 import ru.unn.agile.mathstatistics.model.*;
+import ru.unn.agile.mathstatistics.viewmodel.validators.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,8 @@ public class ViewModel {
     }
 
     public boolean checkDistributionUnit() {
-        if (!isDistributionUnitCorrect()) {
+        InputDistributionUnitValidator validator = new InputDistributionUnitValidator();
+        if (!validator.validate(valueText, probabilityText)) {
             statusMessageText = Status.BAD_DISTRIBUTION_UNIT_FORMAT;
 
             return false;
@@ -43,13 +45,14 @@ public class ViewModel {
     }
 
     public boolean checkMomentOrder() {
-        if (!isMomentOrderCorrect()) {
+        InputMomentOrderValidator validator = new InputMomentOrderValidator();
+        if (!validator.validate(momentOrderText)) {
             statusMessageText = Status.BAD_MOMENT_ORDER_FORMAT;
 
             return false;
         }
 
-        int order = Integer.parseInt(momentOrderText);
+        final int order = Integer.parseInt(momentOrderText);
         try {
             MomentOrderValidator.validate(order);
         } catch (IllegalArgumentException e) {
@@ -62,7 +65,8 @@ public class ViewModel {
     }
 
     public boolean checkMomentOffset() {
-        if (!isMomentOffsetCorrect()) {
+        InputMomentOffsetValidator validator = new InputMomentOffsetValidator();
+        if (!validator.validate(momentOffsetText)) {
             statusMessageText = Status.BAD_MOMENT_OFFSET_FORMAT;
 
             return false;
@@ -76,8 +80,8 @@ public class ViewModel {
             return;
         }
 
-        Double value = Double.parseDouble(valueText);
-        Double probability = Double.parseDouble(probabilityText);
+        final Double value = Double.parseDouble(valueText);
+        final Double probability = Double.parseDouble(probabilityText);
 
         processDistributionUnit(value, probability);
     }
@@ -88,20 +92,21 @@ public class ViewModel {
         Double[] nativeProbabilitiesArray = new Double[probabilities.size()];
         probabilities.toArray(nativeProbabilitiesArray);
 
+        Double calculatedValue = 0.0;
         if (operation == Operation.EXPECTED_VALUE) {
-            calculateExpectedValue(nativeValuesArray,
+            calculatedValue = MathStatistics.calculateExpectedValue(nativeValuesArray,
                     nativeProbabilitiesArray);
         } else if (operation == Operation.DISPERSION) {
-            calculateDispersion(nativeValuesArray,
+            calculatedValue = MathStatistics.calculateDispersion(nativeValuesArray,
                     nativeProbabilitiesArray);
         } else if (operation == Operation.INITIAL_MOMENT) {
             if (!checkMomentOrder()) {
                 return;
             }
 
-            int order = Integer.parseInt(momentOrderText);
+            final int order = Integer.parseInt(momentOrderText);
 
-            calculateInitialMoment(nativeValuesArray,
+            calculatedValue = MathStatistics.calculateInitialMoment(nativeValuesArray,
                     nativeProbabilitiesArray, order);
         } else if (operation == Operation.CENTRAL_MOMENT) {
             if (!checkMomentOrder()) {
@@ -111,12 +116,15 @@ public class ViewModel {
                 return;
             }
 
-            int order = Integer.parseInt(momentOrderText);
-            Number offset = Double.parseDouble(momentOffsetText);
+            final int order = Integer.parseInt(momentOrderText);
+            final Number offset = Double.parseDouble(momentOffsetText);
 
-            calculateCentralMoment(nativeValuesArray,
+            calculatedValue = MathStatistics.calculateCentralMoment(nativeValuesArray,
                     nativeProbabilitiesArray, order, offset);
         }
+
+        resultText = calculatedValue.toString();
+        statusMessageText = Status.SUCCESS;
     }
 
     public void resetProcess() {
@@ -199,50 +207,12 @@ public class ViewModel {
         return statusMessageText;
     }
 
-    public enum Operation {
-        EXPECTED_VALUE("Expected value"),
-        DISPERSION("Dispersion"),
-        INITIAL_MOMENT("Initial moment"),
-        CENTRAL_MOMENT("Central moment");
-        private String operationName;
-
-        Operation(final String name) {
-            this.operationName = name;
-        }
-
-        public String toString() {
-            return operationName;
-        }
-    }
-
-    public final class Status {
-        public static final String WAITING = "Please provide input data";
-        public static final String ADD_TO_DISTRIBUTION_READY = "Press 'Add to distribution'";
-        public static final String BAD_DISTRIBUTION_UNIT_FORMAT = "Bad distribution unit format";
-        public static final String BAD_PROBABILITY_VALUE =
-                "Bad probability value. Should be 0 <= p <= 1";
-        public static final String INCORRECT_PROBABILITIES_SUM =
-                "Bad probabilities sum. Should be equal to 1";
-        public static final String ADD_TO_DISTRIBUTION_SUCCESS =
-                "Add to distribution successfully";
-        public static final String BAD_MOMENT_ORDER_FORMAT = "Bad moment order format";
-        public static final String BAD_MOMENT_ORDER_VALUE =
-                "Moment order should be positive integer";
-        public static final String BAD_MOMENT_OFFSET_FORMAT = "Bad moment offset format";
-        public static final String CALCULATE_READY = "Press 'Calculate'";
-        public static final String SUCCESS = "Success";
-
-        private Status() {
-        }
-    }
-
     private void processDistributionUnit(final Double value,
                                          final Double probability) {
         try {
             ProbabilityValidator.validate(probability);
         } catch (IllegalArgumentException e) {
             statusMessageText = Status.BAD_PROBABILITY_VALUE;
-
             return;
         }
 
@@ -273,97 +243,14 @@ public class ViewModel {
     }
 
     private void applyDistributionUnit(final Double value, final Double probability) {
-        String distributionUnit =
-                "(" + value.toString() + ", " + probability.toString() + ")";
+        final String distributionUnit = "(" + value.toString() + ", " + probability.toString()
+                + ")";
 
         distributionUnits.add(distributionUnit);
     }
 
-    private boolean isDistributionUnitCorrect() {
-        try {
-            if (valueText.isEmpty() || probabilityText.isEmpty()) {
-                return false;
-            }
-
-            Double.parseDouble(valueText);
-            Double.parseDouble(probabilityText);
-        } catch (Exception e) {
-            return false;
-        }
-
-        return true;
-    }
-
-    private boolean isMomentOrderCorrect() {
-        try {
-            if (momentOrderText.isEmpty()) {
-                return false;
-            }
-
-            Integer.parseInt(momentOrderText);
-        } catch (Exception e) {
-            return false;
-        }
-
-        return true;
-    }
-
-    private boolean isMomentOffsetCorrect() {
-        try {
-            if (momentOffsetText.isEmpty()) {
-                return false;
-            }
-
-            Double.parseDouble(momentOffsetText);
-        } catch (Exception e) {
-            return false;
-        }
-
-        return true;
-    }
-
-    private void calculateExpectedValue(final Number[] nativeValuesArray,
-                                        final Double[] nativeProbabilitiesArray) {
-        Double expectedValue = MathStatistics.calculateExpectedValue(nativeValuesArray,
-                        nativeProbabilitiesArray);
-
-        resultText = expectedValue.toString();
-        statusMessageText = Status.SUCCESS;
-    }
-
-    private void calculateDispersion(final Number[] nativeValuesArray,
-                                     final Double[] nativeProbabilitiesArray) {
-        Double dispersion = MathStatistics.calculateDispersion(nativeValuesArray,
-                nativeProbabilitiesArray);
-
-        resultText = dispersion.toString();
-        statusMessageText = Status.SUCCESS;
-    }
-
-    private void calculateInitialMoment(final Number[] nativeValuesArray,
-                                        final Double[] nativeProbabilitiesArray,
-                                        final int order) {
-        Double initialMoment = MathStatistics.calculateInitialMoment(nativeValuesArray,
-                nativeProbabilitiesArray, order);
-
-        resultText = initialMoment.toString();
-        statusMessageText = Status.SUCCESS;
-    }
-
-    private void calculateCentralMoment(final Number[] nativeValuesArray,
-                                        final Double[] nativeProbabilitiesArray,
-                                        final int order,
-                                        final Number offset) {
-        Double centralMoment = MathStatistics.calculateCentralMoment(nativeValuesArray,
-                nativeProbabilitiesArray, order, offset);
-
-        resultText = centralMoment.toString();
-        statusMessageText = Status.SUCCESS;
-    }
-
     private boolean isMomentOperation(final Operation operation) {
-        return (operation == Operation.INITIAL_MOMENT)
-                || (operation == Operation.CENTRAL_MOMENT);
+        return (operation == Operation.INITIAL_MOMENT) || (operation == Operation.CENTRAL_MOMENT);
     }
 
     private void reset() {
@@ -377,7 +264,7 @@ public class ViewModel {
         momentOrderText = "";
         resultText = "";
         momentOffsetText = "";
-        statusMessageText = Status.WAITING;
+        statusMessageText = Status.WAITING_INPUT_DATA;
 
         isOrderTextEnabled = false;
         isOffsetTextEnabled = false;

@@ -6,14 +6,14 @@ public class MomentOrderValidatorTests {
 
     @Test(expected = Test.None.class)
     public void canDetectCorrectMomentOrder() {
-        int order = MomentOrderValidator.MIN_MOMENT_ORDER;
+        final int order = MomentOrderValidator.MIN_MOMENT_ORDER;
 
         MomentOrderValidator.validate(order);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void canDetectIncorrectMomentOrder() {
-        int order = MomentOrderValidator.MIN_MOMENT_ORDER - 1;
+        final int order = MomentOrderValidator.MIN_MOMENT_ORDER - 1;
 
         MomentOrderValidator.validate(order);
     }

@@ -2,7 +2,7 @@ package ru.unn.agile.mathstatistics.view;
 
 import javax.swing.*;
 
-import ru.unn.agile.mathstatistics.viewmodel.ViewModel;
+import ru.unn.agile.mathstatistics.viewmodel.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,16 +13,16 @@ import java.util.List;
 public final class MathStatisticsCalculator {
     private JTextField valueText;
     private JTextField probabilityText;
+    private JTextField momentOrderText;
+    private JTextField momentOffsetText;
+    private JTextField resultText;
+    private JTextArea sampleTextArea;
     private JButton addToDistributionButton;
     private JButton resetButton;
-    private JComboBox<ViewModel.Operation> operationComboBox;
     private JButton calculateButton;
+    private JComboBox<Operation> operationComboBox;
     private JPanel mainPanel;
-    private JTextField momentOrderText;
-    private JTextField resultText;
     private JLabel statusMessageLabel;
-    private JTextArea sampleTextArea;
-    private JTextField momentOffsetText;
 
     private ViewModel viewModel;
 
@@ -55,7 +55,7 @@ public final class MathStatisticsCalculator {
     }
 
     private void loadListOfOperations() {
-        ViewModel.Operation[] operations = ViewModel.Operation.values();
+        Operation[] operations = Operation.values();
         operationComboBox.setModel(new JComboBox<>(operations).getModel());
     }
 
@@ -145,7 +145,7 @@ public final class MathStatisticsCalculator {
         viewModel.setMomentOrderText(momentOrderText.getText());
         viewModel.setMomentOffsetText(momentOffsetText.getText());
 
-        viewModel.setOperation((ViewModel.Operation) operationComboBox.getSelectedItem());
+        viewModel.setOperation((Operation) operationComboBox.getSelectedItem());
     }
 
     private void backBind() {

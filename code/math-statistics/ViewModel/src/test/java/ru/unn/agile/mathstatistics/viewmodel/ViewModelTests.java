@@ -6,9 +6,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import ru.unn.agile.mathstatistics.viewmodel.ViewModel.Operation;
-import ru.unn.agile.mathstatistics.viewmodel.ViewModel.Status;
-
 import java.util.List;
 
 public class ViewModelTests {
@@ -32,12 +29,12 @@ public class ViewModelTests {
         assertEquals("", viewModel.getMomentOrderText());
         assertEquals("", viewModel.getMomentOffsetText());
         assertEquals("", viewModel.getResultText());
-        assertEquals(Status.WAITING, viewModel.getStatusMessageText());
+        assertEquals(Status.WAITING_INPUT_DATA, viewModel.getStatusMessageText());
     }
 
     @Test
     public void isStatusWaitingAtTheBeginning() {
-        assertEquals(Status.WAITING, viewModel.getStatusMessageText());
+        assertEquals(Status.WAITING_INPUT_DATA, viewModel.getStatusMessageText());
     }
 
     @Test
@@ -313,7 +310,7 @@ public class ViewModelTests {
         assertEquals("", viewModel.getValueText());
         assertEquals(Operation.EXPECTED_VALUE, viewModel.getOperation());
         assertEquals("", viewModel.getResultText());
-        assertEquals(Status.WAITING, viewModel.getStatusMessageText());
+        assertEquals(Status.WAITING_INPUT_DATA, viewModel.getStatusMessageText());
         assertEquals("", viewModel.getMomentOffsetText());
         assertEquals("", viewModel.getMomentOrderText());
     }
