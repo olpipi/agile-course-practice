@@ -78,6 +78,40 @@ public class ViewModel {
         return null;
     }
 
+    public Polynomial parsePolynomial2(final String polynomialStr) {
+        ArrayList<Pair<Integer, Double>> array = new ArrayList<>();
+        double currentCoeff = 0;
+        int currentDegree = 0;
+        String digitStr = "";
+        int i = 0;
+        while (i < polynomialStr.length()) {
+            if (polynomialStr.toCharArray()[i] == 'x') {
+                currentCoeff = Double.valueOf(digitStr);
+                currentDegree = 1;
+                i++;
+            } else if (Character.isDigit(polynomialStr.toCharArray()[i])
+                    || polynomialStr.toCharArray()[i] == '.') {
+                digitStr += polynomialStr.toCharArray()[i];
+                if (i < polynomialStr.length())
+                    i++;
+                else
+                    break;
+                continue;
+            } else
+                return null;
+        }
+        array.add(new Pair<>(currentDegree, currentCoeff));
+        if (!array.isEmpty()) {
+            double[] coeffs = new double[array.get(0).getKey() + 1];
+            for (int j = 0; j < array.size(); j++) {
+                coeffs[coeffs.length - 1 - array.get(j).getKey().intValue()]
+                        = array.get(j).getValue().doubleValue();
+            }
+            return new Polynomial(coeffs);
+        }
+        return null;
+    }
+
     public String add(final String polynomialStr1, final String polynomialStr2) {
         return parsePolynomial(polynomialStr1).add(parsePolynomial(polynomialStr2)).toString();
     }

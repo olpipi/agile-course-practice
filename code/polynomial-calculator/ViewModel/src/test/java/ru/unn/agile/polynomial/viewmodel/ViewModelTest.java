@@ -73,4 +73,10 @@ public class ViewModelTest {
         assertEquals("4.0x + 1.0", resultPolynomialStr);
     }
 
+    @Test
+    public void canParseOneSymbol() {
+        ViewModel viewModel = new ViewModel();
+        Polynomial polynomial = viewModel.parsePolynomial2("1.0x");
+        assertEquals("1.0x + 0.0", polynomial.toString());
+    }
 }
