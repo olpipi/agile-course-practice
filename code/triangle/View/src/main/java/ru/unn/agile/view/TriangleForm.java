@@ -24,6 +24,8 @@ public class TriangleForm {
     private TextField cY;
     @FXML
     private Button btnCalcPerimeter;
+    @FXML
+    private Button btnCalcSquare;
 
     @FXML
     void initialize() {
@@ -41,6 +43,13 @@ public class TriangleForm {
             @Override
             public void handle(final ActionEvent event) {
                 viewModel.perimeter();
+            }
+        });
+
+        btnCalcSquare.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                viewModel.square();
             }
         });
     }

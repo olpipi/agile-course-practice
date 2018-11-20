@@ -42,4 +42,18 @@ public class ViewModelTest {
 
         assertEquals("12.0", viewModel.getResult());
     }
+
+    @Test
+    public void canGetSquare() {
+        viewModel.aXProperty().set("0.0");
+        viewModel.aYProperty().set("0.0");
+        viewModel.bXProperty().set("3.0");
+        viewModel.bYProperty().set("0.0");
+        viewModel.cXProperty().set("3.0");
+        viewModel.cYProperty().set("4.0");
+
+        viewModel.square();
+
+        assertEquals("6.0", viewModel.getResult());
+    }
 }

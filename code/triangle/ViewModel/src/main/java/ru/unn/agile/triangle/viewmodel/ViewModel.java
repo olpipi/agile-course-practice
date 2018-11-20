@@ -94,4 +94,14 @@ public class ViewModel {
 
         result.set(String.valueOf(triangle.getPerimeter()));
     }
+
+    public void square() {
+        Point pointA = new Point(aX.get(), aY.get());
+        Point pointB = new Point(bX.get(), bY.get());
+        Point pointC = new Point(cX.get(), cY.get());
+
+        Triangle triangle = new Triangle(pointA, pointB, pointC);
+
+        result.set(String.valueOf(triangle.getSquare()));
+    }
 }
