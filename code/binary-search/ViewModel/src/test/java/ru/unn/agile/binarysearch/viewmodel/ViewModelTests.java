@@ -9,4 +9,25 @@ import static org.junit.Assert.*;
 
 public class ViewModelTests {
 
+    @Test
+    public void canInitializeArrayValue() {
+        ViewModel viewModel = new ViewModel();
+
+        assertEquals("", viewModel.getArrayTextBoxValue());
+    }
+
+    @Test
+    public void canInitializeElementValue() {
+        ViewModel viewModel = new ViewModel();
+
+        assertEquals("", viewModel.getElementTextBoxValue());
+    }
+
+    @Test
+    public void canInitializeStatus() {
+        ViewModel viewModel = new ViewModel();
+
+        assertEquals("", viewModel.getStatus());
+    }
+
 }
