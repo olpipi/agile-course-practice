@@ -3,26 +3,72 @@ package ru.unn.agile.triangle.viewmodel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import ru.unn.agile.Triangle;
+import ru.unn.agile.primitives.Point;
+
 public class ViewModel {
-    private StringProperty aStr = new SimpleStringProperty();
-    private StringProperty bStr = new SimpleStringProperty();
-    private StringProperty cStr = new SimpleStringProperty();
-    private StringProperty resultSrt = new SimpleStringProperty();
+    private StringProperty aX = new SimpleStringProperty();
+    private StringProperty bX = new SimpleStringProperty();
+    private StringProperty cX = new SimpleStringProperty();
+    private StringProperty aY = new SimpleStringProperty();
+    private StringProperty bY = new SimpleStringProperty();
+    private StringProperty cY = new SimpleStringProperty();
+    private StringProperty result = new SimpleStringProperty();
 
-    public StringProperty getAStr() {
-        return aStr;
+    public String getAx() {
+        return aX.get();
     }
 
-    public StringProperty getBStr() {
-        return bStr;
+    public StringProperty aXProperty() {
+        return aX;
     }
 
-    public StringProperty getCStr() {
-        return cStr;
+    public String getBx() {
+        return bX.get();
     }
 
-    public StringProperty getResultSrt() {
-        return resultSrt;
+    public StringProperty bXProperty() {
+        return bX;
+    }
+
+    public String getCx() {
+        return cX.get();
+    }
+
+    public StringProperty cXProperty() {
+        return cX;
+    }
+
+    public String getAy() {
+        return aY.get();
+    }
+
+    public StringProperty aYProperty() {
+        return aY;
+    }
+
+    public String getBy() {
+        return bY.get();
+    }
+
+    public StringProperty bYProperty() {
+        return bY;
+    }
+
+    public String getCy() {
+        return cY.get();
+    }
+
+    public StringProperty cYProperty() {
+        return cY;
+    }
+
+    public String getResult() {
+        return result.get();
+    }
+
+    public StringProperty resultProperty() {
+        return result;
     }
 
     public ViewModel() {
@@ -30,9 +76,12 @@ public class ViewModel {
     }
 
     private void initDefaultFields() {
-        aStr.set("");
-        bStr.set("");
-        cStr.set("");
-        resultSrt.set("");
+        aX.set("");
+        bX.set("");
+        cX.set("");
+        aY.set("");
+        bY.set("");
+        cY.set("");
+        result.set("");
     }
 }
