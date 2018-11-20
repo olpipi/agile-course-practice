@@ -46,6 +46,15 @@ public class ViewModelTest {
     }
 
     @Test
+    public void validateEmptyNumericMatrix() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.graphInit();
+
+        assertEquals("Invalid Input Json", viewModel.getStatus());
+    }
+
+    @Test
     public void validateGraphWithNegativeEdgesMatrix() {
         ViewModel viewModel = new ViewModel();
         viewModel.matrixProperty().setValue(getResourceAsString("JsonWithNegativeEdge.json"));

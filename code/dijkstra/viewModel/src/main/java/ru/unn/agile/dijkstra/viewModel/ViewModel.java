@@ -30,6 +30,12 @@ public class ViewModel {
         mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
         mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
         mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+
+        result.set("");
+        matrix.set("");
+        startVertex.set("");
+        finishVertex.set("");
+        status.set("Click Calculate Button after populating data");
     }
 
     public void calculate() {
@@ -61,6 +67,7 @@ public class ViewModel {
 
     public Graph graphInit() {
         try {
+
             List<Edge> edges = mapper.readValue(matrix.get(),
                 mapper.getTypeFactory().constructCollectionType(List.class, Edge.class));
 
@@ -68,6 +75,7 @@ public class ViewModel {
             status.set(new Status(StatusType.SUCCESS).toString());
 
             return graph;
+
         } catch (IOException e) {
             status.set(new Status(StatusType.BAD_REQUEST, "Invalid Input Json").toString());
         } catch (IllegalArgumentException e) {
@@ -88,15 +96,10 @@ public class ViewModel {
         return finishVertex;
     }
 
-    public StringProperty resultProperty() {
-        return result;
-    }
     public final String getResult() {
         return result.get();
     }
-    public StringProperty statusProperty() {
-        return status;
-    }
+
     public final String getStatus() {
         return status.get();
     }
