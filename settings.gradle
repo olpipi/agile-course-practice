@@ -114,9 +114,13 @@ project(":code/vector3d/ViewModel").name = "vector3d-ViewModel"
 include "code/vector3d/View"
 project(":code/vector3d/View").name = "vector3d-View"
 
-// Magazinnik Ivan, string-calculator
-include "code/string-calculator"
-project(":code/string-calculator").name = "string-calculator"
+// string-calculator
+include "code/string-calculator/Model"
+project(":code/string-calculator/Model").name = "string-calculator-Model"
+include "code/string-calculator/ViewModel"
+project(":code/string-calculator/ViewModel").name = "string-calculator-ViewModel"
+include "code/string-calculator/View"
+project(":code/string-calculator/View").name = "string-calculator-View"
 
 // Stack
 include "code/stack"
