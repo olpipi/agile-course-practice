@@ -39,10 +39,6 @@ public class ViewModel {
         this.secondPolynomialStr.set(secondPolynomialStr);
     }
 
-    public String getResultStr() {
-        return resultStr.get();
-    }
-
     public StringProperty resultStrProperty() {
         return resultStr;
     }
@@ -80,6 +76,18 @@ public class ViewModel {
             return new Polynomial(coeffs);
         }
         return null;
+    }
+
+    public String add(final String polynomialStr1, final String polynomialStr2) {
+        return parsePolynomial(polynomialStr1).add(parsePolynomial(polynomialStr2)).toString();
+    }
+
+    public String subtract(final String polynomialStr1, final String polynomialStr2) {
+        return parsePolynomial(polynomialStr1).subtract(parsePolynomial(polynomialStr2)).toString();
+    }
+
+    public String multiply(final String polynomialStr1, final String polynomialStr2) {
+        return parsePolynomial(polynomialStr1).multiply(parsePolynomial(polynomialStr2)).toString();
     }
 
     private void initDefaultFields() {
