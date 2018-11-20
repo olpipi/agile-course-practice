@@ -50,9 +50,6 @@ public final class MathStatistics {
                                           final Number offset) {
         DistributionValidator.validate(values, probabilities);
         MomentOrderValidator.validate(order);
-        if (offset == null) {
-            throw new IllegalArgumentException("Offset should be initialized!");
-        }
 
         Double moment = 0.0;
         for (int i = 0; i < values.length; ++i) {
