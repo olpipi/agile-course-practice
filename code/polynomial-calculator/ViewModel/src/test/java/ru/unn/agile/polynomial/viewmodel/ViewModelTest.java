@@ -1,7 +1,7 @@
-package ru.unn.agile.polynomial.ViewModel;
+package ru.unn.agile.polynomial.viewmodel;
 
 import org.junit.Test;
-import ru.unn.agile.polynomial.Model.Polynomial;
+import ru.unn.agile.polynomial.model.Polynomial;
 
 import static org.junit.Assert.assertEquals;
 
