@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.beans.property.*;
 import ru.unn.agile.dijkstra.model.Edge;
 import ru.unn.agile.dijkstra.model.Graph;
+import ru.unn.agile.dijkstra.model.Vertex;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,8 +18,6 @@ public class ViewModel {
     private final StringProperty matrix = new SimpleStringProperty();
     private final StringProperty startVertex = new SimpleStringProperty();
     private final StringProperty finishVertex = new SimpleStringProperty();
-
-    private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
 
     private final StringProperty result = new SimpleStringProperty();
     private final StringProperty status = new SimpleStringProperty();
@@ -34,19 +33,45 @@ public class ViewModel {
     }
 
     public void calculate() {
-        graphInit();
+        try {
+            Graph graph = graphInit();
+            Vertex startVertex = parseVertex(startVertexProperty());
+            Vertex finishVertex = parseVertex(finishVertexProperty());
+
+            int weight = graph.dijkstra(startVertex, finishVertex);
+
+            result.set(String.valueOf(weight));
+            status.set(new Status(StatusType.SUCCESS).toString());
+
+        } catch (IllegalArgumentException e) {
+            status.set(new Status(StatusType.BAD_REQUEST, e.getMessage()).toString());
+        }
     }
 
-    private Graph graphInit() {
+    public Vertex parseVertex(final StringProperty value) {
+        try {
+            return new Vertex(Integer.parseInt(value.getValue()));
+        } catch (NumberFormatException e) {
+            status.setValue(new Status(StatusType.BAD_REQUEST,
+                    String.format("Invalid Input Value: %s", value.getValue()))
+                    .toString());
+        }
+        return null;
+    }
+
+    public Graph graphInit() {
         try {
             List<Edge> edges = mapper.readValue(matrix.get(),
                 mapper.getTypeFactory().constructCollectionType(List.class, Edge.class));
 
-            status.setValue(new Status(StatusType.SUCCESS).toString());
+            Graph graph = new Graph(edges);
+            status.set(new Status(StatusType.SUCCESS).toString());
 
-            return new Graph(edges);
+            return graph;
         } catch (IOException e) {
-            status.setValue(new Status(StatusType.BAD_FORMAT).toString());
+            status.set(new Status(StatusType.BAD_REQUEST, "Invalid Input Json").toString());
+        } catch (IllegalArgumentException e) {
+            status.set(new Status(StatusType.BAD_REQUEST, e.getMessage()).toString());
         }
         return null;
     }
@@ -63,15 +88,16 @@ public class ViewModel {
         return finishVertex;
     }
 
-    public String getResult() {
+    public StringProperty resultProperty() {
+        return result;
+    }
+    public final String getResult() {
         return result.get();
     }
-
-    public String getStatus() {
-        return status.get();
+    public StringProperty statusProperty() {
+        return status;
     }
-
-    public boolean isCalculationDisabled() {
-        return calculationDisabled.get();
+    public final String getStatus() {
+        return status.get();
     }
 }

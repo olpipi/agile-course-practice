@@ -1,8 +1,7 @@
 package ru.unn.agile.dijkstra.viewModel;
 
 public enum StatusType {
-    NO_INPUT("Please provide input data"),
-    BAD_FORMAT("Bad format"),
+    BAD_REQUEST("Bad format"),
     SUCCESS("Success");
 
     private final String defaultMessage;
