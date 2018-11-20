@@ -18,8 +18,7 @@ public class ViewModel {
     private StringProperty cY = new SimpleStringProperty();
     private StringProperty result = new SimpleStringProperty();
 
-    private final BooleanProperty perimeterDisabled = new SimpleBooleanProperty();
-    private final BooleanProperty squareDisabled = new SimpleBooleanProperty();
+    private final BooleanProperty btnDisabled = new SimpleBooleanProperty();
 
     public ViewModel() {
         initDefaultFields();
@@ -81,20 +80,12 @@ public class ViewModel {
         return result;
     }
 
-    public BooleanProperty perimeterDisabledProperty() {
-        return perimeterDisabled;
+    public BooleanProperty btnDisabledProperty() {
+        return btnDisabled;
     }
 
-    public final boolean isPerimeterDisabled() {
-        return perimeterDisabled.get();
-    }
-
-    public BooleanProperty squareDisabledProperty() {
-        return squareDisabled;
-    }
-
-    public final boolean isSquareDisabled() {
-        return squareDisabled.get();
+    public final boolean isBtnDisabled() {
+        return btnDisabled.get();
     }
 
     private void initDefaultFields() {
@@ -115,12 +106,11 @@ public class ViewModel {
                 return getInputStatus() == Status.READY;
         };
         };
-        perimeterDisabled.bind(couldCalculate.not());
-        squareDisabled.bind(couldCalculate.not());
+        btnDisabled.bind(couldCalculate.not());
     }
 
     public void perimeter() {
-        if (perimeterDisabled.get()) {
+        if (btnDisabled.get()) {
             return;
         }
 
@@ -134,7 +124,7 @@ public class ViewModel {
     }
 
     public void square() {
-        if (squareDisabled.get()) {
+        if (btnDisabled.get()) {
             return;
         }
 
@@ -145,6 +135,48 @@ public class ViewModel {
         Triangle triangle = new Triangle(pointA, pointB, pointC);
 
         result.set(String.valueOf(triangle.getSquare()));
+    }
+
+    public void getLengthAB() {
+        if (btnDisabled.get()) {
+            return;
+        }
+
+        Point pointA = new Point(aX.get(), aY.get());
+        Point pointB = new Point(bX.get(), bY.get());
+        Point pointC = new Point(cX.get(), cY.get());
+
+        Triangle triangle = new Triangle(pointA, pointB, pointC);
+
+        result.set(String.valueOf(triangle.getLengthA()));
+    }
+
+    public void getLengthBC() {
+        if (btnDisabled.get()) {
+            return;
+        }
+
+        Point pointA = new Point(aX.get(), aY.get());
+        Point pointB = new Point(bX.get(), bY.get());
+        Point pointC = new Point(cX.get(), cY.get());
+
+        Triangle triangle = new Triangle(pointA, pointB, pointC);
+
+        result.set(String.valueOf(triangle.getLengthB()));
+    }
+
+    public void getLengthCA() {
+        if (btnDisabled.get()) {
+            return;
+        }
+
+        Point pointA = new Point(aX.get(), aY.get());
+        Point pointB = new Point(bX.get(), bY.get());
+        Point pointC = new Point(cX.get(), cY.get());
+
+        Triangle triangle = new Triangle(pointA, pointB, pointC);
+
+        result.set(String.valueOf(triangle.getLengthC()));
     }
 
     private Status getInputStatus() {

@@ -26,6 +26,12 @@ public class TriangleForm {
     private Button btnCalcPerimeter;
     @FXML
     private Button btnCalcSquare;
+    @FXML
+    private Button btnCalcLengthAB;
+    @FXML
+    private Button btnCalcLengthBC;
+    @FXML
+    private Button btnCalcLengthCA;
 
     @FXML
     void initialize() {
@@ -50,6 +56,27 @@ public class TriangleForm {
             @Override
             public void handle(final ActionEvent event) {
                 viewModel.square();
+            }
+        });
+
+        btnCalcLengthAB.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                viewModel.getLengthAB();
+            }
+        });
+
+        btnCalcLengthBC.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                viewModel.getLengthBC();
+            }
+        });
+
+        btnCalcLengthCA.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                viewModel.getLengthCA();
             }
         });
     }

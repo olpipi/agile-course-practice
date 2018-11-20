@@ -59,12 +59,49 @@ public class ViewModelTest {
     }
 
     @Test
-    public void perimeterButtonIsDisabledInitially() {
-        assertTrue(viewModel.perimeterDisabledProperty().get());
+    public void canABLength() {
+        viewModel.aXProperty().set("0.0");
+        viewModel.aYProperty().set("0.0");
+        viewModel.bXProperty().set("1.0");
+        viewModel.bYProperty().set("0.0");
+        viewModel.cXProperty().set("0.0");
+        viewModel.cYProperty().set("1.0");
+
+        viewModel.getLengthAB();
+
+        assertEquals("1.0", viewModel.getResult());
     }
 
     @Test
-    public void squareButtonIsDisabledInitially() {
-        assertTrue(viewModel.squareDisabledProperty().get());
+    public void canBCLength() {
+        viewModel.aXProperty().set("0.0");
+        viewModel.aYProperty().set("0.0");
+        viewModel.bXProperty().set("3.0");
+        viewModel.bYProperty().set("0.0");
+        viewModel.cXProperty().set("0.0");
+        viewModel.cYProperty().set("4.0");
+
+        viewModel.getLengthBC();
+
+        assertEquals("5.0", viewModel.getResult());
+    }
+
+    @Test
+    public void canCALength() {
+        viewModel.aXProperty().set("0.0");
+        viewModel.aYProperty().set("0.0");
+        viewModel.bXProperty().set("3.0");
+        viewModel.bYProperty().set("0.0");
+        viewModel.cXProperty().set("3.0");
+        viewModel.cYProperty().set("4.0");
+
+        viewModel.getLengthCA();
+
+        assertEquals("5.0", viewModel.getResult());
+    }
+
+    @Test
+    public void buttonIsDisabledInitially() {
+        assertTrue(viewModel. btnDisabledProperty().get());
     }
 }

@@ -72,11 +72,11 @@
                 </HBox>
                 <HBox>
                     <children>
-                        <Button fx:id="btnCalcPerimeter" defaultButton="true" disable="${viewModel.perimeterDisabled}" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Perimeter" HBox.hgrow="ALWAYS">
+                        <Button fx:id="btnCalcPerimeter" defaultButton="true" disable="${viewModel.btnDisabled}" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Perimeter" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin></Button>
-                        <Button fx:id="btnCalcSquare" defaultButton="true" disable="${viewModel.squareDisabled}"  maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Square" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnCalcSquare" defaultButton="true" disable="${viewModel.btnDisabled}"  maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Square" HBox.hgrow="ALWAYS" />
                         </children>
                 </HBox>
                 <HBox>
@@ -85,7 +85,9 @@
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin></Button>
-                        <Button fx:id="btnCalcLenght" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Lenght" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnCalcLengthAB" defaultButton="true" disable="${viewModel.btnDisabled}" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Lenght AB" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnCalcLengthBC" defaultButton="true" disable="${viewModel.btnDisabled}" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Lenght BC" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnCalcLengthCA" defaultButton="true" disable="${viewModel.btnDisabled}" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Lenght CA" HBox.hgrow="ALWAYS" />
                     </children>
                 </HBox>
                 <HBox prefHeight="48.0" prefWidth="716.0">
