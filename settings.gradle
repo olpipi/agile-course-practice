@@ -6,9 +6,13 @@ project(":code/bevzuk-anton").name = "bevzuk-anton-Model"
 include "code/oleneva-intersect-line-and-plane"
 project(":code/oleneva-intersect-line-and-plane").name = "code/oleneva-intersect-line-and-plane"
 
-// Pozdiaev Valerii
-include "code/pozdiaev-valerii-currency-converter"
-project(":code/pozdiaev-valerii-currency-converter").name = "pozdiaev-valerii-currency-converter"
+// Currency Converter
+include "code/currency-converter/Model"
+project(":code/currency-converter/Model").name = "currency-converter-Model"
+include "code/currency-converter/ViewModel"
+project(":code/currency-converter/ViewModel").name = "currency-converter-ViewModel"
+include "code/currency-converter/View"
+project(":code/currency-converter/View").name = "currency-converter-View"
 
 // nickshevr, Zhiltsov Max
 include "code/numerical-integration/Model"
