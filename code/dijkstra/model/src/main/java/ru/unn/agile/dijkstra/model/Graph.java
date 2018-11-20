@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 public class Graph {
     private static final int INF = Integer.MAX_VALUE;
+    private List<Vertex> vertexes;
     private List<Edge> edges;
     private Map<Vertex, Way> ways;
 
@@ -14,9 +15,9 @@ public class Graph {
             vertexes.add(edge.getVertexLeft());
             vertexes.add(edge.getVertexRight());
         }
-        vertexes = vertexes.stream().distinct().collect(Collectors.toList());
         validateGraph(edges);
 
+        this.vertexes = vertexes.stream().distinct().collect(Collectors.toList());
         this.edges = edges;
         this.ways = initWays(vertexes);
 
@@ -31,8 +32,9 @@ public class Graph {
         List<Edge> edges = initEdges(matrix, vertices);
         validateGraph(edges);
 
+        this.vertexes = vertices;
         this.edges = edges;
-        ways = initWays(vertices);
+        this.ways = initWays(vertices);
     }
 
     private void validateGraph(final List<Edge> edges) {
@@ -40,6 +42,9 @@ public class Graph {
             throw new IllegalArgumentException("Graph don't have any edges");
         }
         for (Edge edge : edges) {
+            if (edge.getVertexLeft() == null || edge.getVertexRight() == null) {
+                throw new IllegalArgumentException("Vertex can't be null");
+            }
             if (edge.getWeight() < 0) {
                 throw new IllegalArgumentException("Matrix can't have negative weight");
             }
@@ -82,6 +87,9 @@ public class Graph {
     }
 
     public int dijkstra(final Vertex startVertex, final Vertex endVertex) {
+        isVertexInGraph(startVertex);
+        isVertexInGraph(endVertex);
+
         ways.get(startVertex).setWeight(0);
         Set<Vertex> settledVertex = new HashSet<>();
         List<Vertex> unsettledVertex = new ArrayList<>();
@@ -126,5 +134,13 @@ public class Graph {
         Vertex leftVertexOfEdge = edge.getVertexLeft();
         Vertex rightVertexOfEdge = edge.getVertexRight();
         ways.get(leftVertexOfEdge).upDateWay(edge, ways.get(rightVertexOfEdge));
+    }
+
+    private void isVertexInGraph(final Vertex vertex) {
+        if (!vertexes.contains(vertex)) {
+            throw new IllegalArgumentException(
+                    String.format("Vertex %s not contains in graph", vertex)
+            );
+        }
     }
 }

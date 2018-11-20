@@ -407,4 +407,45 @@ public class MatrixTests {
 
         assertEquals(15, graph.dijkstra(vertex1, vertex3));
     }
+
+    @Test
+    public void canCalculateGraphWhenVertexOutOfGraph() {
+        Vertex vertex1 = new Vertex(1);
+        Vertex vertex2 = new Vertex(2);
+        Vertex vertex3 = new Vertex(3);
+
+        Edge edge1 = new Edge(vertex1, vertex2, 2);
+        Edge edge2 = new Edge(vertex2, vertex3, 4);
+
+        List<Edge> edges = new LinkedList<Edge>();
+        edges.add(edge1);
+        edges.add(edge2);
+
+        Graph graph = new Graph(edges);
+        try {
+            Vertex vertexOutOfGraph = new Vertex(4);
+            graph.dijkstra(vertexOutOfGraph, vertex3);
+        } catch (IllegalArgumentException e) {
+            assertThat(e.getMessage(), is("Vertex id = 4 not contains in graph"));
+        }
+    }
+
+    @Test
+    public void canCalculateGraphByVertexInGraph() {
+        Vertex vertex1 = new Vertex(3);
+        Vertex vertex2 = new Vertex(4);
+        Vertex vertex3 = new Vertex(5);
+
+        Edge edge1 = new Edge(vertex1, vertex2, 1);
+        Edge edge2 = new Edge(vertex2, vertex3, 2);
+
+        List<Edge> edges = new LinkedList<Edge>();
+        edges.add(edge1);
+        edges.add(edge2);
+
+        Graph graph = new Graph(edges);
+
+        Vertex vertexInGraph = new Vertex(3);
+        assertEquals(3, graph.dijkstra(vertexInGraph, vertex3));
+    }
 }

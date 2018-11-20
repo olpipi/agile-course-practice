@@ -31,4 +31,9 @@ public class Vertex {
     public int hashCode() {
         return getId();
     }
+
+    @Override
+    public String toString() {
+        return "id = " + id;
+    }
 }
