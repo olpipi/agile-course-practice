@@ -211,5 +211,11 @@ include "code/conway-game/ViewModel"
 project(":code/conway-game/ViewModel").name = "conway-game-ViewModel"
 
 // Moskalenko Viktor, Calculator
-include "code/moskalenko-viktor-calculator"
-project(":code/moskalenko-viktor-calculator").name = "moskalenko-viktor-calculator"
+
+include "code/moskalenko-viktor-calculator/Model"
+project(":code/moskalenko-viktor-calculator/Model").name = "moskalenko-viktor-calculator-Model"
+include "code/moskalenko-viktor-calculator/ViewModel"
+project(":code/moskalenko-viktor-calculator/ViewModel").name = "moskalenko-viktor-calculator-ViewModel"
+include "code/moskalenko-viktor-calculator/View"
+project(":code/moskalenko-viktor-calculator/View").name = "moskalenko-viktor-calculator-View"
+
