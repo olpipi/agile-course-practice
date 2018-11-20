@@ -9,7 +9,6 @@ import ru.unn.agile.queue.viewmodel.ViewModel.*;
 
 public class ViewModelTests {
     private ViewModel viewModel;
-    public static final int ANY_KEY = 1;
 
     @Before
     public void setUp() {
@@ -23,120 +22,120 @@ public class ViewModelTests {
 
     @Test
     public void canSetDefaultValues() {
-        assertEquals("", viewModel.getNewElem());
-        assertEquals("", viewModel.getOutputQueue());
+        assertEquals("", viewModel.getInputElem());
+        assertEquals("", viewModel.getQueueStringRepresentation());
         assertEquals(State.WAITING_FOR_INPUT, viewModel.getCurrentState());
     }
 
     @Test
     public void canAddOneElemToQueue() {
-        viewModel.setNewElem("5.43");
-        viewModel.add();
+        viewModel.setInputElem("5.43");
+        viewModel.addProcess();
 
-        assertEquals("[5.43]", viewModel.getOutputQueue());
+        assertEquals("[5.43]", viewModel.getQueueStringRepresentation());
     }
 
     @Test
-    public void canAddToQueue() {
-        viewModel.setNewElem("1.6");
-        viewModel.add();
-        viewModel.setNewElem("-6.3");
-        viewModel.add();
-        viewModel.setNewElem("0.0");
-        viewModel.add();
-        viewModel.setNewElem("-4.9");
-        viewModel.add();
-        viewModel.setNewElem("8");
-        viewModel.add();
-        viewModel.setNewElem("92");
-        viewModel.add();
+    public void canAddMoreElemsToQueue() {
+        viewModel.setInputElem("1.6");
+        viewModel.addProcess();
+        viewModel.setInputElem("-6.3");
+        viewModel.addProcess();
+        viewModel.setInputElem("0.0");
+        viewModel.addProcess();
+        viewModel.setInputElem("-4.9");
+        viewModel.addProcess();
+        viewModel.setInputElem("8");
+        viewModel.addProcess();
+        viewModel.setInputElem("92");
+        viewModel.addProcess();
 
-        assertEquals("[1.6, -6.3, 0.0, -4.9, 8.0, 92.0]", viewModel.getOutputQueue());
+        assertEquals("[1.6, -6.3, 0.0, -4.9, 8.0, 92.0]", viewModel.getQueueStringRepresentation());
     }
 
     @Test
-    public void canRemoveQueueHead() {
-        viewModel.setNewElem("53");
-        viewModel.add();
-        viewModel.setNewElem("63.2");
-        viewModel.add();
-        viewModel.setNewElem("-4.2");
-        viewModel.add();
+    public void canRemoveHeadFromQueue() {
+        viewModel.setInputElem("53");
+        viewModel.addProcess();
+        viewModel.setInputElem("63.2");
+        viewModel.addProcess();
+        viewModel.setInputElem("-4.2");
+        viewModel.addProcess();
 
-        viewModel.remove();
+        viewModel.removeProcess();
 
-        assertEquals("[63.2, -4.2]", viewModel.getOutputQueue());
+        assertEquals("[63.2, -4.2]", viewModel.getQueueStringRepresentation());
     }
 
     @Test
     public void canClearQueue() {
-        viewModel.setNewElem("33");
-        viewModel.add();
-        viewModel.setNewElem("11.3");
-        viewModel.add();
-        viewModel.setNewElem("2.5");
-        viewModel.add();
-        viewModel.setNewElem("6.2");
-        viewModel.add();
+        viewModel.setInputElem("33");
+        viewModel.addProcess();
+        viewModel.setInputElem("11.3");
+        viewModel.addProcess();
+        viewModel.setInputElem("2.5");
+        viewModel.addProcess();
+        viewModel.setInputElem("6.2");
+        viewModel.addProcess();
 
         viewModel.clear();
 
-        assertEquals("[]", viewModel.getOutputQueue());
+        assertEquals("[]", viewModel.getQueueStringRepresentation());
     }
 
     @Test
     public void isWaitingStateWhenAddElemFieldIsEmpty() {
-        viewModel.setNewElem("");
+        viewModel.setInputElem("");
 
-        viewModel.processingAddField(ANY_KEY);
+        viewModel.processingAddField();
 
         assertEquals(State.WAITING_FOR_INPUT, viewModel.getCurrentState());
     }
 
     @Test
     public void isReadyStateWhenAddElemFieldIsFill() {
-        viewModel.setNewElem("6.1");
+        viewModel.setInputElem("6.1");
 
-        viewModel.processingAddField(ANY_KEY);
+        viewModel.processingAddField();
 
         assertEquals(State.READY_TO_ADD, viewModel.getCurrentState());
     }
 
     @Test
-    public void canDetectBadFormat() {
-        viewModel.setNewElem("Hello");
+    public void canDetectBadInputElemFormat() {
+        viewModel.setInputElem("Hello");
 
-        viewModel.processingAddField(ANY_KEY);
+        viewModel.processingAddField();
 
         assertEquals(State.INVALID_FORMAT, viewModel.getCurrentState());
     }
 
     @Test
     public void canSwitchStateIfAddFieldIsCorrect() {
-        viewModel.setNewElem("hi");
-        viewModel.processingAddField(ANY_KEY);
-        viewModel.setNewElem("33");
-        viewModel.processingAddField(ANY_KEY);
+        viewModel.setInputElem("hi");
+        viewModel.processingAddField();
+        viewModel.setInputElem("33");
+        viewModel.processingAddField();
 
         assertEquals(State.READY_TO_ADD, viewModel.getCurrentState());
     }
 
     @Test
     public void canSwitchStateIfAddFieldIsInvalid() {
-        viewModel.setNewElem("33");
-        viewModel.processingAddField(ANY_KEY);
-        viewModel.setNewElem("hi");
-        viewModel.processingAddField(ANY_KEY);
+        viewModel.setInputElem("33");
+        viewModel.processingAddField();
+        viewModel.setInputElem("hi");
+        viewModel.processingAddField();
 
         assertEquals(State.INVALID_FORMAT, viewModel.getCurrentState());
     }
 
     @Test
     public void canSwitchStateIfAddFieldIsEmpty() {
-        viewModel.setNewElem("33");
-        viewModel.processingAddField(ANY_KEY);
-        viewModel.setNewElem("");
-        viewModel.processingAddField(ANY_KEY);
+        viewModel.setInputElem("33");
+        viewModel.processingAddField();
+        viewModel.setInputElem("");
+        viewModel.processingAddField();
 
         assertEquals(State.WAITING_FOR_INPUT, viewModel.getCurrentState());
     }
@@ -163,58 +162,58 @@ public class ViewModelTests {
 
     @Test
     public void isAddButtonEnabledWhenAddFieldIsCorrect() {
-        viewModel.setNewElem("37.3");
-        viewModel.processingAddField(ANY_KEY);
+        viewModel.setInputElem("37.3");
+        viewModel.processingAddField();
 
         assertEquals(true, viewModel.isAddButtonEnabled());
     }
 
     @Test
     public void isAddButtonDisabledWhenAddFieldIsInvalid() {
-        viewModel.setNewElem("kdbsj");
-        viewModel.processingAddField(ANY_KEY);
+        viewModel.setInputElem("kdbsj");
+        viewModel.processingAddField();
 
         assertEquals(false, viewModel.isAddButtonEnabled());
     }
 
     @Test
     public void isAddButtonDisabledWhenAddFieldIsEmpty() {
-        viewModel.setNewElem("");
-        viewModel.processingAddField(ANY_KEY);
+        viewModel.setInputElem("");
+        viewModel.processingAddField();
 
         assertEquals(false, viewModel.isAddButtonEnabled());
     }
 
     @Test
     public void isClearButtonEnabledWhenQueueIsNotEmpty() {
-        viewModel.setNewElem("5");
-        viewModel.add();
-        viewModel.setNewElem("8");
-        viewModel.add();
+        viewModel.setInputElem("5");
+        viewModel.addProcess();
+        viewModel.setInputElem("8");
+        viewModel.addProcess();
 
         assertEquals(true, viewModel.isClearButtonEnabled());
     }
 
     @Test
     public void isRemoveButtonEnabledWhenQueueIsNotEmpty() {
-        viewModel.setNewElem("4");
-        viewModel.add();
-        viewModel.setNewElem("1");
-        viewModel.add();
+        viewModel.setInputElem("4");
+        viewModel.addProcess();
+        viewModel.setInputElem("1");
+        viewModel.addProcess();
 
         assertEquals(true, viewModel.isRemoveButtonEnabled());
     }
 
     @Test
     public void canClearDisableClearButton() {
-        viewModel.setNewElem("6");
-        viewModel.add();
-        viewModel.setNewElem("2");
-        viewModel.add();
-        viewModel.setNewElem("8");
-        viewModel.add();
-        viewModel.setNewElem("11");
-        viewModel.add();
+        viewModel.setInputElem("6");
+        viewModel.addProcess();
+        viewModel.setInputElem("2");
+        viewModel.addProcess();
+        viewModel.setInputElem("8");
+        viewModel.addProcess();
+        viewModel.setInputElem("11");
+        viewModel.addProcess();
 
         viewModel.clear();
 
@@ -223,14 +222,14 @@ public class ViewModelTests {
 
     @Test
     public void canClearDisableRemoveButton() {
-        viewModel.setNewElem("23");
-        viewModel.add();
-        viewModel.setNewElem("1");
-        viewModel.add();
-        viewModel.setNewElem("5");
-        viewModel.add();
-        viewModel.setNewElem("3");
-        viewModel.add();
+        viewModel.setInputElem("23");
+        viewModel.addProcess();
+        viewModel.setInputElem("1");
+        viewModel.addProcess();
+        viewModel.setInputElem("5");
+        viewModel.addProcess();
+        viewModel.setInputElem("3");
+        viewModel.addProcess();
 
         viewModel.clear();
 
@@ -239,20 +238,20 @@ public class ViewModelTests {
 
     @Test
     public void canRemoveDisableClearButton() {
-        viewModel.setNewElem("20");
-        viewModel.add();
+        viewModel.setInputElem("20");
+        viewModel.addProcess();
 
-        viewModel.remove();
+        viewModel.removeProcess();
 
         assertEquals(false, viewModel.isClearButtonEnabled());
     }
 
     @Test
     public void canRemoveDisableRemoveButton() {
-        viewModel.setNewElem("13");
-        viewModel.add();
+        viewModel.setInputElem("13");
+        viewModel.addProcess();
 
-        viewModel.remove();
+        viewModel.removeProcess();
 
         assertEquals(false, viewModel.isRemoveButtonEnabled());
     }

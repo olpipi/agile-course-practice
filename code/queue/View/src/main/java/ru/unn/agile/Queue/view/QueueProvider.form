@@ -86,7 +86,7 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="982f8" class="javax.swing.JTextField" binding="addNewElemField">
+                      <component id="982f8" class="javax.swing.JTextField" binding="inputNewElemField">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
                             <minimum-size width="100" height="-1"/>
@@ -173,7 +173,7 @@
                         </properties>
                         <border type="none"/>
                         <children>
-                          <component id="4711d" class="javax.swing.JTextArea" binding="outputQueueTextArea">
+                          <component id="4711d" class="javax.swing.JTextArea" binding="queueTextArea">
                             <constraints/>
                             <properties>
                               <editable value="false"/>

@@ -15,8 +15,8 @@ public final class QueueProvider {
     private JButton removeHeadButton;
     private JButton clearQueueButton;
 
-    private JTextField addNewElemField;
-    private JTextArea outputQueueTextArea;
+    private JTextField inputNewElemField;
+    private JTextArea queueTextArea;
     private JLabel outputStateLabel;
 
     private QueueProvider(final ViewModel viewModel) {
@@ -27,7 +27,7 @@ public final class QueueProvider {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 bind();
-                QueueProvider.this.viewModel.add();
+                QueueProvider.this.viewModel.addProcess();
                 backBind();
             }
         });
@@ -36,7 +36,7 @@ public final class QueueProvider {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 bind();
-                QueueProvider.this.viewModel.remove();
+                QueueProvider.this.viewModel.removeProcess();
                 backBind();
             }
         });
@@ -54,12 +54,12 @@ public final class QueueProvider {
             @Override
             public void keyReleased(final KeyEvent e) {
                 bind();
-                QueueProvider.this.viewModel.processingAddField(e.getKeyCode());
+                QueueProvider.this.viewModel.processingAddField();
                 backBind();
             }
         };
 
-        addNewElemField.addKeyListener(keyListener);
+        inputNewElemField.addKeyListener(keyListener);
     }
 
     public static void main(final String[] args) {
@@ -71,7 +71,7 @@ public final class QueueProvider {
     }
 
     private void bind() {
-        viewModel.setNewElem(addNewElemField.getText());
+        viewModel.setInputElem(inputNewElemField.getText());
     }
 
     private void backBind() {
@@ -79,8 +79,7 @@ public final class QueueProvider {
         removeHeadButton.setEnabled(viewModel.isRemoveButtonEnabled());
         clearQueueButton.setEnabled(viewModel.isClearButtonEnabled());
 
-        outputQueueTextArea.setText(viewModel.getOutputQueue());
+        queueTextArea.setText(viewModel.getQueueStringRepresentation());
         outputStateLabel.setText(viewModel.getCurrentState());
     }
-
 }

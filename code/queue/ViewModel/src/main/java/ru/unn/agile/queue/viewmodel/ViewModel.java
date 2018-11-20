@@ -6,9 +6,9 @@ import ru.unn.agile.queue.model.*;
 public class ViewModel {
     private Queue<Double> queue;
 
-    private String newElem;
-    private String outputQueue;
-    private String state;
+    private String inputElem;
+    private String queueStringRepresentation;
+    private String statusMessage;
 
     private boolean isAddButtonEnabled;
     private boolean isRemoveButtonEnabled;
@@ -18,79 +18,80 @@ public class ViewModel {
     public ViewModel() {
         queue = new Queue<Double>();
 
-        newElem = "";
-        outputQueue = "";
-        state = State.WAITING_FOR_INPUT;
+        inputElem = "";
+        queueStringRepresentation = "";
+        statusMessage = State.WAITING_FOR_INPUT;
 
         isAddButtonEnabled = false;
         isRemoveButtonEnabled = false;
         isClearButtonEnabled = false;
     }
 
-    public String getNewElem() {
-        return newElem;
+    public String getInputElem() {
+        return inputElem;
     }
 
-    public String getOutputQueue() {
-        return outputQueue;
+    public String getQueueStringRepresentation() {
+        return queueStringRepresentation;
     }
 
-    public void setNewElem(final String newElem) {
-        if (newElem.equals(this.newElem)) {
+    public void setInputElem(final String inputElem) {
+        if (inputElem.equals(this.inputElem)) {
             return;
         }
 
-        this.newElem = newElem;
+        this.inputElem = inputElem;
     }
 
-    public void add() {
+    public void addProcess() {
         if (!parseInput()) {
             return;
         }
 
-        queue.push(Double.parseDouble(newElem));
-        outputQueue = queue.toString();
-        switchEnabledButtons();
+        queue.push(Double.parseDouble(inputElem));
+        queueStringRepresentation = queue.toString();
+        changeButtonsEnabling();
     }
 
-    public void remove() {
+    public void removeProcess() {
         queue.pop();
-        outputQueue = queue.toString();
-        switchEnabledButtons();
+        queueStringRepresentation = queue.toString();
+        changeButtonsEnabling();
     }
 
     public void clear() {
         queue.clear();
-        outputQueue = queue.toString();
-        switchEnabledButtons();
+        queueStringRepresentation = queue.toString();
+        changeButtonsEnabling();
     }
 
     private boolean parseInput() {
-        try {
-            if (newElem.isEmpty()) {
-                state = State.WAITING_FOR_INPUT;
-                isAddButtonEnabled = false;
-                return isAddButtonEnabled;
-            } else {
-                Double.parseDouble(newElem);
-            }
-        } catch (Exception e) {
-            state = State.INVALID_FORMAT;
+        if (inputElem.isEmpty()) {
+            statusMessage = State.WAITING_FOR_INPUT;
             isAddButtonEnabled = false;
             return isAddButtonEnabled;
         }
-        state = State.READY_TO_ADD;
+
+        try {
+            Double.parseDouble(inputElem);
+        } catch (Exception e) {
+            statusMessage = State.INVALID_FORMAT;
+            isAddButtonEnabled = false;
+            return isAddButtonEnabled;
+        }
+
+        statusMessage = State.READY_TO_ADD;
         isAddButtonEnabled = true;
         return isAddButtonEnabled;
     }
 
-    public void processingAddField(final int keyCode) {
+    public void processingAddField() {
         parseInput();
     }
 
 
     public String getCurrentState() {
-        return state;
+        return statusMessage;
     }
 
     public final class State {
@@ -112,7 +113,7 @@ public class ViewModel {
         return isClearButtonEnabled;
     }
 
-    private void switchEnabledButtons() {
+    private void changeButtonsEnabling() {
         if (queue.isEmpty()) {
             isRemoveButtonEnabled = false;
             isClearButtonEnabled = false;
