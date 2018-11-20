@@ -102,7 +102,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void canDetectBadInputElemFormat() {
+    public void isInvalidStateWhenAddElemFieldhasIncorrectInput() {
         viewModel.setInputElem("Hello");
 
         viewModel.processingAddField();
@@ -111,7 +111,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void canSwitchStateIfAddFieldIsCorrect() {
+    public void isStateSwitchedToAddReadyIfAddedCorrectInputValue() {
         viewModel.setInputElem("hi");
         viewModel.processingAddField();
         viewModel.setInputElem("33");
@@ -121,7 +121,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void canSwitchStateIfAddFieldIsInvalid() {
+    public void isStateSwitchedToInvalidIfAddedIncorrectInputValue() {
         viewModel.setInputElem("33");
         viewModel.processingAddField();
         viewModel.setInputElem("hi");
@@ -131,7 +131,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void canSwitchStateIfAddFieldIsEmpty() {
+    public void isStateSwitchedToWaitingIfAddFieldIsEmpty() {
         viewModel.setInputElem("33");
         viewModel.processingAddField();
         viewModel.setInputElem("");
