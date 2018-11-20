@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import ru.unn.agile.triangle.viewmodel.ViewModel;
 
@@ -23,6 +22,8 @@ public class TriangleForm {
     private TextField bY;
     @FXML
     private TextField cY;
+    @FXML
+    private Button btnCalcPerimeter;
 
     @FXML
     void initialize() {
@@ -34,5 +35,13 @@ public class TriangleForm {
         aY.textProperty().bindBidirectional(viewModel.aYProperty());
         bY.textProperty().bindBidirectional(viewModel.bYProperty());
         cY.textProperty().bindBidirectional(viewModel.cYProperty());
+
+
+        btnCalcPerimeter.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                viewModel.perimeter();
+            }
+        });
     }
 }

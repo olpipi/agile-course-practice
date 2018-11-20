@@ -45,4 +45,9 @@ public class Point {
                 + ", y=" + y
                 + '}';
     }
+
+    public Point(final String x, final String y) {
+        this.x = Double.parseDouble(x);
+        this.y = Double.parseDouble(y);
+    }
 }

@@ -28,4 +28,18 @@ public class ViewModelTest {
         assertEquals("", viewModel.bYProperty().get());
         assertEquals("", viewModel.cYProperty().get());
     }
+
+    @Test
+    public void canGetPerimeter() {
+        viewModel.aXProperty().set("0.0");
+        viewModel.aYProperty().set("0.0");
+        viewModel.bXProperty().set("3.0");
+        viewModel.bYProperty().set("0.0");
+        viewModel.cXProperty().set("3.0");
+        viewModel.cYProperty().set("4.0");
+
+        viewModel.perimeter();
+
+        assertEquals("12.0", viewModel.getResult());
+    }
 }
