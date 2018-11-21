@@ -51,4 +51,58 @@ public class ViewModelTests {
 
         assertEquals(expectedResult, viewModel.getResult());
     }
+
+
+    @Test
+    public void testCalculateWithOctalOutput() {
+        String a = "x10";
+        String b = "b1111";
+
+        viewModel.number1Property().setValue(a);
+        viewModel.number2Property().setValue(b);
+        viewModel.outputNumberSystemProperty().setValue(NumberSystem.OCTAL);
+
+
+        viewModel.calculate();
+
+        String expectedResult = "Sum: a+b = " + Calculator.add(a,b, NumberSystem.OCTAL) + "\n"
+                + "Mult: a*b = " + Calculator.multiply(a,b, NumberSystem.OCTAL) + "\n"
+                + "Minus: -a = " + Calculator.unaryMinus(a, NumberSystem.OCTAL)
+                + ", -b = " + Calculator.unaryMinus(b, NumberSystem.OCTAL) + "\n";
+
+        assertEquals(expectedResult, viewModel.getResult());
+    }
+
+
+
+    @Test
+    public void testCalculationDisabledWithEmptyInput() {
+        String a = "";
+        String b = "b10";
+
+        viewModel.number1Property().setValue(a);
+        viewModel.number2Property().setValue(b);
+        viewModel.outputNumberSystemProperty().setValue(NumberSystem.OCTAL);
+
+        assertEquals(true, viewModel.isCalculationDisabled());
+        assertEquals(Status.WAIT_FOR_INPUT.toString(), viewModel.getUserMessage());
+    }
+
+    @Test
+    public void testCalculationEnabledWithRightInput() {
+        String a = "x10";
+        String b = "b1111";
+
+        viewModel.number1Property().setValue(a);
+        viewModel.number2Property().setValue(b);
+        viewModel.outputNumberSystemProperty().setValue(NumberSystem.OCTAL);
+
+        assertEquals(false, viewModel.isCalculationDisabled());
+        assertEquals(Status.READY.toString(), viewModel.getUserMessage());
+    }
+
+
+
+
+
 }

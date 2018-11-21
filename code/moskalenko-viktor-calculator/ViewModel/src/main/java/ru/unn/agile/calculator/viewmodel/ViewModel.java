@@ -1,8 +1,15 @@
 package ru.unn.agile.calculator.viewmodel;
 
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import ru.unn.agile.calculator.model.Calculator;
+import ru.unn.agile.calculator.model.NumberConverter;
 import ru.unn.agile.calculator.model.NumberSystem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Maria Pronina.
@@ -17,6 +24,8 @@ public class ViewModel {
     private final StringProperty number2 = new SimpleStringProperty();
     private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
 
+    private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
+
     public NumberSystem getInputNumberSystem() {
         return inputNumberSystem.get();
     }
@@ -29,6 +38,43 @@ public class ViewModel {
         calculationDisabled.setValue(true);
         number1.setValue("");
         number2.setValue("");
+
+        BooleanBinding couldCalculate = new BooleanBinding() {
+            {
+                super.bind(number1, number2);
+            }
+
+            @Override
+            protected boolean computeValue() {
+                return getCurrentStatus() == Status.READY;
+            }
+        };
+        calculationDisabled.bind(couldCalculate.not());
+
+        final List<StringProperty> fields = new ArrayList<StringProperty>() {
+            {
+                add(number1);
+                add(number2);
+            }
+        };
+
+        for (StringProperty field : fields) {
+            final ValueChangeListener listener = new ValueChangeListener();
+            field.addListener(listener);
+            valueChangedListeners.add(listener);
+        }
+
+    }
+
+    private Status getCurrentStatus() {
+        String a = number1.get();
+        String b = number2.get();
+        if("".equals(a) || "".equals(b)) return Status.WAIT_FOR_INPUT;
+        Integer parsedA = NumberConverter.tryParse(a);
+        Integer parsedB = NumberConverter.tryParse(b);
+        if((parsedA == null) || (parsedB == null)) return Status.INPUT_INVALID;
+
+        return Status.READY;
     }
 
     public String getResult() {
@@ -42,6 +88,7 @@ public class ViewModel {
     public BooleanProperty calculationDisabledProperty() {
         return calculationDisabled;
     }
+
     public final boolean isCalculationDisabled() {
         return calculationDisabled.get();
     }
@@ -79,5 +126,17 @@ public class ViewModel {
 
     public NumberSystem getOutputNumberSystem() {
         return outputNumberSystem.get();
+    }
+
+    public ObjectProperty<NumberSystem> outputNumberSystemProperty() {
+        return outputNumberSystem;
+    }
+
+    private class ValueChangeListener implements ChangeListener<String> {
+        @Override
+        public void changed(final ObservableValue<? extends String> observable,
+                            final String oldValue, final String newValue) {
+            userMessage.set(getCurrentStatus().toString());
+        }
     }
 }
