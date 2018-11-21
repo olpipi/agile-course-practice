@@ -112,16 +112,27 @@ public class ViewModel {
         btnDisabled.bind(couldCalculate.not());
     }
 
+    public Point getPointA() {
+
+        return new Point(getAx(), getAy());
+    }
+
+    public Point getPointB() {
+
+        return new Point(getBx(), getBy());
+    }
+
+    public Point getPointC() {
+
+        return new Point(getCx(), getCy());
+    }
+
     public void perimeter() {
         if (btnDisabled.get()) {
             return;
         }
 
-        Point pointA = new Point(aX.get(), aY.get());
-        Point pointB = new Point(bX.get(), bY.get());
-        Point pointC = new Point(cX.get(), cY.get());
-
-        Triangle triangle = new Triangle(pointA, pointB, pointC);
+        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
 
         result.set(String.valueOf(triangle.getPerimeter()));
     }
@@ -131,11 +142,7 @@ public class ViewModel {
             return;
         }
 
-        Point pointA = new Point(aX.get(), aY.get());
-        Point pointB = new Point(bX.get(), bY.get());
-        Point pointC = new Point(cX.get(), cY.get());
-
-        Triangle triangle = new Triangle(pointA, pointB, pointC);
+        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
 
         result.set(String.valueOf(triangle.getSquare()));
     }
@@ -145,11 +152,7 @@ public class ViewModel {
             return;
         }
 
-        Point pointA = new Point(aX.get(), aY.get());
-        Point pointB = new Point(bX.get(), bY.get());
-        Point pointC = new Point(cX.get(), cY.get());
-
-        Triangle triangle = new Triangle(pointA, pointB, pointC);
+        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
 
         result.set(String.valueOf(triangle.getLengthA()));
     }
@@ -159,11 +162,7 @@ public class ViewModel {
             return;
         }
 
-        Point pointA = new Point(aX.get(), aY.get());
-        Point pointB = new Point(bX.get(), bY.get());
-        Point pointC = new Point(cX.get(), cY.get());
-
-        Triangle triangle = new Triangle(pointA, pointB, pointC);
+        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
 
         result.set(String.valueOf(triangle.getLengthB()));
     }
@@ -173,11 +172,7 @@ public class ViewModel {
             return;
         }
 
-        Point pointA = new Point(aX.get(), aY.get());
-        Point pointB = new Point(bX.get(), bY.get());
-        Point pointC = new Point(cX.get(), cY.get());
-
-        Triangle triangle = new Triangle(pointA, pointB, pointC);
+        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
 
         result.set(String.valueOf(triangle.getLengthC()));
     }
@@ -187,11 +182,7 @@ public class ViewModel {
             return;
         }
 
-        Point pointA = new Point(aX.get(), aY.get());
-        Point pointB = new Point(bX.get(), bY.get());
-        Point pointC = new Point(cX.get(), cY.get());
-
-        Triangle triangle = new Triangle(pointA, pointB, pointC);
+        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
 
         result.set(String.valueOf(triangle.getAngleBC()));
     }
@@ -201,11 +192,7 @@ public class ViewModel {
             return;
         }
 
-        Point pointA = new Point(aX.get(), aY.get());
-        Point pointB = new Point(bX.get(), bY.get());
-        Point pointC = new Point(cX.get(), cY.get());
-
-        Triangle triangle = new Triangle(pointA, pointB, pointC);
+        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
 
         result.set(String.valueOf(triangle.getAngleCA()));
     }
@@ -215,11 +202,7 @@ public class ViewModel {
             return;
         }
 
-        Point pointA = new Point(aX.get(), aY.get());
-        Point pointB = new Point(bX.get(), bY.get());
-        Point pointC = new Point(cX.get(), cY.get());
-
-        Triangle triangle = new Triangle(pointA, pointB, pointC);
+        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
 
         result.set(String.valueOf(triangle.getAngleAB()));
     }

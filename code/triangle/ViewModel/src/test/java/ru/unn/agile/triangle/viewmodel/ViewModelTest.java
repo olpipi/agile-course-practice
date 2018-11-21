@@ -49,28 +49,28 @@ public class ViewModelTest {
     public void canGetSquare() {
         viewModel.aXProperty().set("0.0");
         viewModel.aYProperty().set("0.0");
-        viewModel.bXProperty().set("3.0");
+        viewModel.bXProperty().set("8.0");
         viewModel.bYProperty().set("0.0");
-        viewModel.cXProperty().set("3.0");
-        viewModel.cYProperty().set("4.0");
+        viewModel.cXProperty().set("8.0");
+        viewModel.cYProperty().set("15.0");
 
         viewModel.square();
 
-        assertEquals("6.0", viewModel.getResult());
+        assertEquals("60.0", viewModel.getResult());
     }
 
     @Test
     public void canABLength() {
         viewModel.aXProperty().set("0.0");
         viewModel.aYProperty().set("0.0");
-        viewModel.bXProperty().set("1.0");
-        viewModel.bYProperty().set("0.0");
+        viewModel.bXProperty().set("3.0");
+        viewModel.bYProperty().set("4.0");
         viewModel.cXProperty().set("0.0");
         viewModel.cYProperty().set("1.0");
 
         viewModel.getLengthAB();
 
-        assertEquals("1.0", viewModel.getResult());
+        assertEquals("5.0", viewModel.getResult());
     }
 
     @Test
