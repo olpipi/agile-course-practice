@@ -1,8 +1,6 @@
 package ru.unn.agile.calculator.viewmodel;
 
-/**
- * Created by Maria Pronina.
- */
+
 
 enum UserMessages {
     WAIT_FOR_INPUT("Please input numbers"),

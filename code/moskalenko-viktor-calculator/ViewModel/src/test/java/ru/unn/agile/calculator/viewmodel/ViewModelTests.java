@@ -8,9 +8,7 @@ import ru.unn.agile.calculator.model.NumberSystem;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Maria Pronina.
- */
+
 public class ViewModelTests {
     private ViewModel viewModel;
 
@@ -28,7 +26,7 @@ public class ViewModelTests {
     public void canSetDefaultValues() {
         assertEquals(NumberSystem.BINARY, viewModel.getOutputNumberSystem());
         assertEquals("", viewModel.getResult());
-        assertEquals("", viewModel.getUserMessage());
+        assertEquals(UserMessages.WAIT_FOR_INPUT.toString(), viewModel.getUserMessage());
         assertEquals(true, viewModel.isCalculationDisabled());
         assertEquals("", viewModel.number1Property().get());
         assertEquals("", viewModel.number2Property().get());

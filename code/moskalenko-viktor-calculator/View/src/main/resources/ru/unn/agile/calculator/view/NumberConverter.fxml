@@ -12,7 +12,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<?import ru.unn.agile.calculator.viewmodel.ViewModel?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.unn.agile.calculator.view.NumberConverter">
+   <fx:define>
+        <ViewModel fx:id="viewModel" />
+    </fx:define>
    <children>
       <GridPane layoutX="-3.0" layoutY="-2.0" prefHeight="400.0" prefWidth="600.0">
         <columnConstraints>
@@ -47,25 +51,25 @@
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <TextField GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Output Number System" GridPane.rowIndex="2">
+                        <TextField fx:id="txtNumber1" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtNumber2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label  text="Output Number System" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="outputSystem" items="${viewModel.numberSystems}" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </children>
             </FlowPane>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="265.0" text="Calculate" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Button fx:id="btnCalc" disable="${viewModel.calculationDisabled}" mnemonicParsing="false" prefHeight="25.0" prefWidth="265.0" text="Calculate" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <padding>
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                </padding>
             </Button>
-            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+             <Label fx:id="taUserMessage"  text="${viewModel.userMessage}"  GridPane.columnIndex="1" GridPane.rowIndex="1"  />
+             <Label fx:id="taResult" text="${viewModel.result}" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>

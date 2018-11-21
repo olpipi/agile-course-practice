@@ -4,16 +4,18 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import ru.unn.agile.calculator.model.Calculator;
 import ru.unn.agile.calculator.model.NumberConverter;
 import ru.unn.agile.calculator.model.NumberSystem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-/**
- * Created by Maria Pronina.
- */
+
 public class ViewModel {
 
 
@@ -23,17 +25,19 @@ public class ViewModel {
     private final StringProperty number1 = new SimpleStringProperty();
     private final StringProperty number2 = new SimpleStringProperty();
     private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
+    private final ObjectProperty<ObservableList<NumberSystem>> numberSystems =
+            new SimpleObjectProperty<>(FXCollections.observableList(Arrays.stream(NumberSystem.values()).filter(s -> !NumberSystem.UNKNOWN.equals(s)).collect(Collectors.toList())));
 
     private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
 
     public ViewModel() {
 
         outputNumberSystem.setValue(NumberSystem.BINARY);
-        result.setValue("");
-        userMessage.setValue("");
-        calculationDisabled.setValue(true);
-        number1.setValue("");
-        number2.setValue("");
+        result.set("");
+        userMessage.set(UserMessages.WAIT_FOR_INPUT.toString());
+        calculationDisabled.set(true);
+        number1.set("");
+        number2.set("");
 
         BooleanBinding couldCalculate = new BooleanBinding() {
             {
@@ -86,6 +90,13 @@ public class ViewModel {
         return number2;
     }
 
+    public ObjectProperty<ObservableList<NumberSystem>> numberSystemspProperty() {
+        return numberSystems;
+    }
+    public final ObservableList<NumberSystem> getNumberSystems() {
+        return numberSystems.get();
+    }
+
     public void calculate() {
         NumberSystem currentSystem = getOutputNumberSystem();
         String a = number1.get();
@@ -94,8 +105,8 @@ public class ViewModel {
         String composedResult = buildSumResult(currentSystem, a, b)
                 + buildMultResult(currentSystem, a, b)
                 + buildUnaryMinusResult(currentSystem, a, b);
-        result.setValue(composedResult);
-        userMessage.setValue(UserMessages.SUCCESS.toString());
+        result.set(composedResult);
+        userMessage.set(UserMessages.SUCCESS.toString());
     }
 
     public NumberSystem getOutputNumberSystem() {
@@ -105,6 +116,15 @@ public class ViewModel {
     public ObjectProperty<NumberSystem> outputNumberSystemProperty() {
         return outputNumberSystem;
     }
+
+    public StringProperty resultProperty() {
+        return result;
+    }
+
+    public StringProperty userMessageProperty() {
+        return userMessage;
+    }
+
 
     private class ValueChangeListener implements ChangeListener<String> {
         @Override

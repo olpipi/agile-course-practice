@@ -5,9 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.fail;
 
-/**
- * Created by Maria Pronina.
- */
+
 public class FakeViewTests {
     @Ignore
     @Test
