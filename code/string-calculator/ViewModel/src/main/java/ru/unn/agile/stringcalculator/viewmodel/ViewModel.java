@@ -6,9 +6,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import ru.unn.agile.stringcalculator.viewmodel.actions.ActionFactory;
+import ru.unn.agile.stringcalculator.viewmodel.actions.abstraction.IAction;
 
 public class ViewModel {
     private final StringProperty inputData = new SimpleStringProperty();
+
+    private final StringProperty result = new SimpleStringProperty();
 
     private final ObjectProperty<Operation> operation = new SimpleObjectProperty<>();
     private final ObjectProperty<ObservableList<Operation>> operations =
@@ -16,20 +20,38 @@ public class ViewModel {
 
     public ViewModel() {
         inputData.set("");
-        operation.set(Operation.ADD);
     }
 
     public StringProperty inputDataProperty() {
         return inputData;
     }
 
+    public StringProperty resultProperty() {
+        return result;
+    }
+
     public ObjectProperty<Operation> operationProperty() {
         return operation;
     }
 
-    public void calculate() {
-
+    public Operation getOperation() {
+        return operation.get();
     }
 
+    public final ObservableList<Operation> getOperations() {
+        return operations.get();
+    }
+
+    private IAction createActionByOperation(Operation operation) {
+        return ActionFactory.create(operation);
+    }
+
+    public void calculate() {
+        Operation currentOperation = getOperation();
+
+        int resultExpression = createActionByOperation(currentOperation).calculate(inputDataProperty().get());
+
+        result.set(Integer.toString(resultExpression));
+    }
 
 }
