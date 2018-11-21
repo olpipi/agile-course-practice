@@ -162,9 +162,13 @@ project(":code/caesar-cipher").name = "caesar-cipher"
 include "code/numbers-in-words"
 project(":code/numbers-in-words").name = "numbers-in-words"
 
-// Podolov Kirill, Queue
-include "code/queue"
-project(":code/queue").name = "queue-Model"
+// Podolov Kirill & Flegontov Alexander, Queue
+include "code/queue/Model"
+project(":code/queue/Model").name = "queue-Model"
+include "code/queue/ViewModel"
+project(":code/queue/ViewModel").name = "queue-ViewModel"
+include "code/queue/View"
+project(":code/queue/View").name = "queue-View"
 
 // Flegontov Alexander and Polyakov Igor, math-statistics
 include "code/math-statistics/Model"
