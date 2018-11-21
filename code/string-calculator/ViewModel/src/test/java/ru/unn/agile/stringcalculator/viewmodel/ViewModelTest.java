@@ -1,5 +1,6 @@
 package ru.unn.agile.stringcalculator.viewmodel;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.StringProperty;
 import org.junit.After;
 import org.junit.Before;
@@ -47,14 +48,42 @@ public class ViewModelTest {
         assertEquals("39", viewModel.resultProperty().get());
     }
 
-    @Test(expected = NotANumberException.class)
-    public void hasAddOperationCorrectResultWhenInputDataIsNotCorrect() {
-        viewModel.inputDataProperty().set("31.4,8");
+    @Test
+    public void statusIsWaitingWhenInputFieldIsEmpty() {
+        viewModel.operationProperty().set(Operation.ADD);
+
+        StringProperty expectedStatus = viewModel.statusProperty();
+        assertEquals(Status.WAITING.toString(), expectedStatus.get());
+    }
+
+    @Test
+    public void statusIsBadFormatWhenInputDataIsNotCorrect() {
+        viewModel.operationProperty().set(Operation.ADD);
+
+        viewModel.inputDataProperty().set("31.8,5");
+
+        StringProperty expectedStatus = viewModel.statusProperty();
+        assertEquals(Status.BAD_FORMAT.toString(), expectedStatus.get());
+    }
+
+    @Test
+    public void statusIsReadyWhenInputDataIsCorrect() {
+        viewModel.operationProperty().set(Operation.ADD);
+
+        viewModel.inputDataProperty().set("31,8");
+
+        StringProperty expectedStatus = viewModel.statusProperty();
+        assertEquals(Status.READY.toString(), expectedStatus.get());
+    }
+
+    @Test
+    public void statusIsSuccesWhenCalculationPerformedSuccessfully() {
         viewModel.operationProperty().set(Operation.ADD);
 
         viewModel.calculate();
 
-        assertEquals("39", viewModel.resultProperty().get());
+        StringProperty expectedStatus = viewModel.statusProperty();
+        assertEquals(Status.SUCCESS.toString(), expectedStatus.get());
     }
 
 }

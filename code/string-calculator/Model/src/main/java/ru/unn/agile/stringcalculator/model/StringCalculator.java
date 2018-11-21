@@ -25,9 +25,7 @@ public final class StringCalculator {
         if ("".equals(numbers)) {
             return numbersSum;
         }
-        String commaSeparatedNumbers = normalizeDelimiters(numbers);
-        List<String> singleNumbers = getNumbersArrayFromString(commaSeparatedNumbers);
-        checkAllNumbersAreValid(singleNumbers);
+        List<String> singleNumbers = validate(numbers);
         for (String number : singleNumbers) {
             numbersSum += Integer.parseInt(number);
         }
@@ -87,5 +85,12 @@ public final class StringCalculator {
             String negativeNumberString = String.join(DEFAULT_DELIMITER, negativeNumbersList);
             throw new NegativeNumberException("Negative not allowed: " + negativeNumberString);
         }
+    }
+
+    public static List<String> validate(final String numbers) {
+        String commaSeparatedNumbers = normalizeDelimiters(numbers);
+        List<String> singleNumbers = getNumbersArrayFromString(commaSeparatedNumbers);
+        checkAllNumbersAreValid(singleNumbers);
+        return singleNumbers;
     }
 }
