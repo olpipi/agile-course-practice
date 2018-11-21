@@ -47,24 +47,28 @@ public class Polynomial {
     public String toString() {
         if (degree == -1) {
             return "0";
-        } else if (degree ==  0) {
+        } else if (degree == 0) {
             return "" + coeffs[0];
-        } else if (degree ==  1) {
-            return coeffs[0] + "x + " + coeffs[1];
+        } else if (degree == 1) {
+            String s = coeffs[0] + "x";
+            if (coeffs[1] == 0.0)
+                return s;
+            else
+                return s + " + " + coeffs[1];
         }
 
         String s = coeffs[0] + "x^" + degree;
         for (int i = 1; i <= degree; i++) {
-            if (coeffs[i] == 0) {
+            if (coeffs[i] == 0.0) {
                 continue;
-            } else if (coeffs[i]  > 0) {
+            } else if (coeffs[i] > 0) {
                 s = s + " + " + (coeffs[i]);
-            } else if (coeffs[i]  < 0) {
+            } else if (coeffs[i] < 0) {
                 s = s + " - " + (-coeffs[i]);
             }
             if (i == degree - 1) {
                 s = s + "x";
-            } else if (i <  degree - 1) {
+            } else if (i < degree - 1) {
                 s = s + "x^" + (degree - i);
             }
         }
@@ -126,7 +130,7 @@ public class Polynomial {
 
     public boolean isEqual(final Polynomial p) {
         if (this.degree != p.degree) {
-        return false;
+            return false;
         } else {
             for (int i = 0; i <= this.degree; i++) {
                 if (this.coeffs[i] != p.coeffs[i]) {
