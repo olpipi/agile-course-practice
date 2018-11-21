@@ -103,7 +103,7 @@ public class ViewModelTest {
 
     @Test
     public void buttonIsDisabledInitially() {
-        assertTrue(viewModel. btnDisabledProperty().get());
+        assertTrue(viewModel.btnDisabledProperty().get());
     }
 
     @Test

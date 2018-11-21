@@ -9,6 +9,9 @@ import javafx.beans.property.StringProperty;
 import ru.unn.agile.Triangle;
 import ru.unn.agile.primitives.Point;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ViewModel {
     private StringProperty aX = new SimpleStringProperty();
     private StringProperty bX = new SimpleStringProperty();
@@ -99,7 +102,7 @@ public class ViewModel {
 
         BooleanBinding couldCalculate = new BooleanBinding() {
             {
-                super.bind(aX, aY, bX, bY, cX, cY );
+                super.bind(aX, aY, bX, bY, cX, cY);
             }
             @Override
             protected boolean computeValue() {
@@ -223,32 +226,26 @@ public class ViewModel {
 
     private Status getInputStatus() {
         Status inputStatus = Status.READY;
-        if (aX.get().isEmpty() || aY.get().isEmpty()
-                || bX.get().isEmpty() || bY.get().isEmpty()
-                || cX.get().isEmpty() || cY.get().isEmpty()) {
-            inputStatus = Status.WAITING;
-        }
-        try {
-            if (!aX.get().isEmpty()) {
-                Double.parseDouble(aX.get());
+        List<StringProperty> pointArray = new ArrayList<>();
+        pointArray.add(aY);
+        pointArray.add(aX);
+        pointArray.add(bX);
+        pointArray.add(bY);
+        pointArray.add(cX);
+        pointArray.add(cY);
+
+        for (StringProperty field : pointArray) {
+
+            if (field.get().isEmpty()) {
+                inputStatus = Status.WAITING;
             }
-            if (!aY.get().isEmpty()) {
-                Double.parseDouble(aY.get());
+            try {
+                if (field.get().isEmpty()) {
+                    Double.parseDouble(field.get());
+                }
+            } catch (NumberFormatException nfe) {
+                inputStatus = Status.BAD_FORMAT;
             }
-            if (!bX.get().isEmpty()) {
-                Double.parseDouble(bX.get());
-            }
-            if (!bY.get().isEmpty()) {
-                Double.parseDouble(bY.get());
-            }
-            if (!cX.get().isEmpty()) {
-                Double.parseDouble(cX.get());
-            }
-            if (!cY.get().isEmpty()) {
-                Double.parseDouble(cY.get());
-            }
-        } catch (NumberFormatException nfe) {
-            inputStatus = Status.BAD_FORMAT;
         }
 
         return inputStatus;

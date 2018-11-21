@@ -91,9 +91,9 @@ public class TriangleForm {
             public void handle(final ActionEvent event) {
                 viewModel.getCABAngle();
             }
-        })
+        });
 
-        ;btnCalcAngleABC.setOnAction(new EventHandler<ActionEvent>() {
+        btnCalcAngleABC.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent event) {
                 viewModel.getABCAngle();
