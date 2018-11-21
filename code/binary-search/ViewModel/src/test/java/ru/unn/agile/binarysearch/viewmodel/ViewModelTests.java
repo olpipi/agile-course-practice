@@ -62,4 +62,13 @@ public class ViewModelTests {
         assertEquals(expected, viewModel.getStatus());
     }
 
+    @Test
+    public void isSearchEnabledWithCorrectInput() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setArrayTextBoxValue("1,2,3");
+        viewModel.setElementTextBoxValue("2");
+
+        assertEquals(true, viewModel.isSearchEnabled());
+    }
 }
