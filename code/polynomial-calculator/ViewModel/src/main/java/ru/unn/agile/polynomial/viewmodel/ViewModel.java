@@ -41,16 +41,14 @@ public class ViewModel {
     }
 
     public Polynomial parsePolynomial(final String polynomialStr) {
-        ArrayList<Pair<Integer, Double>> array = new ArrayList<>();
-        String digitStr = "";
-        String degreeStr = "";
-        boolean degree = false;
-        int i = 0;
         if (!polynomialStr.isEmpty()) {
-            while (i < polynomialStr.length()) {
+            ArrayList<Pair<Integer, Double>> array = new ArrayList<>();
+            String digitStr = "";
+            String degreeStr = "0";
+            boolean degree = false;
+            for (int i = 0; i < polynomialStr.length(); i++) {
                 if (polynomialStr.toCharArray()[i] == 'x') {
                     degreeStr = "1";
-                    i++;
                 } else if (Character.isDigit(polynomialStr.toCharArray()[i])
                         || polynomialStr.toCharArray()[i] == '.') {
                     if (degree) {
@@ -58,41 +56,31 @@ public class ViewModel {
                     } else {
                         digitStr += polynomialStr.toCharArray()[i];
                     }
-
-                    if (i < polynomialStr.length())
-                        i++;
-                    else
-                        break;
-                    continue;
-                } else if (polynomialStr.toCharArray()[i] == '+') {
-                    array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
-                    degreeStr = "0";
-                    degree = false;
-                    digitStr = "";
-                    i++;
-                } else if (polynomialStr.toCharArray()[i] == '-') {
-                    if (i != 0)
+                } else if (polynomialStr.toCharArray()[i] == '-'
+                        || polynomialStr.toCharArray()[i] == '+') {
+                    if (i != 0) {
                         array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
+                    }
                     degree = false;
                     degreeStr = "0";
-                    digitStr = "-";
-                    i++;
+                    if (polynomialStr.toCharArray()[i] == '-') {
+                        digitStr = "-";
+                    } else {
+                        digitStr = "";
+                    }
                 } else if (polynomialStr.toCharArray()[i] == '^') {
                     degree = true;
                     degreeStr = "";
-                    i++;
-                } else
+                } else {
                     return null;
+                }
             }
-            if (!degreeStr.isEmpty())
-                array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
-            else
-                array.add(new Pair<>(0, Double.valueOf(digitStr)));
+            array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
             if (!array.isEmpty()) {
                 double[] coeffs = new double[array.get(0).getKey() + 1];
-                for (int j = 0; j < array.size(); j++) {
-                    coeffs[coeffs.length - 1 - array.get(j).getKey().intValue()]
-                            = array.get(j).getValue().doubleValue();
+                for (int i = 0; i < array.size(); i++) {
+                    coeffs[coeffs.length - 1 - array.get(i).getKey().intValue()]
+                            = array.get(i).getValue().doubleValue();
                 }
                 return new Polynomial(coeffs);
             }
