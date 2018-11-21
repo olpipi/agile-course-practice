@@ -36,6 +36,7 @@ public final class Calculator {
         return NumberConverter.format(result, outputFormat);
     }
 
+
     private Calculator() {
         // no instance for class
     }
