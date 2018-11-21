@@ -45,12 +45,8 @@ public class ViewModelTests {
         viewModel.addProcess();
         viewModel.setInputValue("2.75");
         viewModel.addProcess();
-        viewModel.setInputValue("10.1");
-        viewModel.addProcess();
-        viewModel.setInputValue("0.02");
-        viewModel.addProcess();
 
-        assertEquals("[-5.0, 4.0, 2.75, 10.1, 0.02]", viewModel.getInputArrayStringRepresentation());
+        assertEquals("[-5.0, 4.0, 2.75]", viewModel.getInputArrayStringRepresentation());
     }
 
     @Test
@@ -85,22 +81,14 @@ public class ViewModelTests {
     public void  canSortOfNonSortedBigArray() {
         viewModel.setInputValue("-4.0");
         viewModel.addProcess();
-        viewModel.setInputValue("28.1");
-        viewModel.addProcess();
-        viewModel.setInputValue("13");
-        viewModel.addProcess();
         viewModel.setInputValue("-0.4");
         viewModel.addProcess();
-        viewModel.setInputValue("15.2");
-        viewModel.addProcess();
         viewModel.setInputValue("3.1");
-        viewModel.addProcess();
-        viewModel.setInputValue("10.2");
         viewModel.addProcess();
 
         viewModel.sort();
 
-        assertEquals("[-4.0, -0.4, 3.1, 10.2, 13.0, 15.2, 28.1]", viewModel.getSortedArrayStringRepresentation());
+        assertEquals("[-4.0, -0.4, 3.1]", viewModel.getSortedArrayStringRepresentation());
     }
 
     @Test
