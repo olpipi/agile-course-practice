@@ -6,6 +6,8 @@ import javafx.beans.property.StringProperty;
 import ru.unn.agile.segment2d.model.Segment2D;
 
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ViewModel {
     private static final String SEGMENT_ERROR_STATUS = "Segment is incorrect!";
@@ -150,14 +152,11 @@ public class ViewModel {
             return;
         }
 
-        Segment2D firstSegment = createSegment(firstSegmentFirstPointCoordX.get(),
-                firstSegmentFirstPointCoordY.get(),
-                firstSegmentSecondPointCoordX.get(),
-                firstSegmentSecondPointCoordY.get());
-        Segment2D secondSegment = createSegment(secondSegmentFirstPointCoordX.get(),
-                secondSegmentFirstPointCoordY.get(),
-                secondSegmentSecondPointCoordX.get(),
-                secondSegmentSecondPointCoordY.get());
+        final List<String> firstSegmentCoords = createFirstSegmentCoordsList();
+        Segment2D firstSegment = createSegment(firstSegmentCoords);
+
+        final List<String> secondSegmentCoords = createSecondSegmentCoordsList();
+        Segment2D secondSegment = createSegment(secondSegmentCoords);
 
         Point2D inttersectionPoint = firstSegment.intersection(secondSegment);
         if (inttersectionPoint != null) {
@@ -183,24 +182,40 @@ public class ViewModel {
         result.set("");
     }
 
-    private Segment2D createSegment(final String firstCoordX, final String firstCoordY,
-                                    final String secondCoordX, final String secondCoordY) {
-        double firstPointCoordX = Double.parseDouble(firstCoordX);
-        double firstPointCoordY = Double.parseDouble(firstCoordY);
-        double secondPointCoordX = Double.parseDouble(secondCoordX);
-        double secondPointCoordY = Double.parseDouble(secondCoordY);
+    private List<String> createFirstSegmentCoordsList()
+    {
+        return new ArrayList<String>() { {
+            add(firstSegmentFirstPointCoordX.get());
+            add(firstSegmentFirstPointCoordY.get());
+            add(firstSegmentSecondPointCoordX.get());
+            add(firstSegmentSecondPointCoordY.get());
+        } };
+    }
+
+    private List<String> createSecondSegmentCoordsList()
+    {
+        return new ArrayList<String>() { {
+            add(secondSegmentFirstPointCoordX.get());
+            add(secondSegmentFirstPointCoordY.get());
+            add(secondSegmentSecondPointCoordX.get());
+            add(secondSegmentSecondPointCoordY.get());
+        } };
+    }
+
+    private Segment2D createSegment(final List<String> coords) {
+        double firstPointCoordX = Double.parseDouble(coords.get(0));
+        double firstPointCoordY = Double.parseDouble(coords.get(1));
+        double secondPointCoordX = Double.parseDouble(coords.get(2));
+        double secondPointCoordY = Double.parseDouble(coords.get(3));
 
         return new Segment2D(firstPointCoordX, firstPointCoordY,
                 secondPointCoordX, secondPointCoordY);
     }
 
-    private void checkIsSegmentValid(final String firstCoordX,
-                                     final String firstCoordY,
-                                     final String secondCoordX,
-                                     final String secondCoordY,
+    private void checkIsSegmentValid(final List<String> coords,
                                      final StringProperty status) {
         try {
-            createSegment(firstCoordX, firstCoordY, secondCoordX, secondCoordY);
+            createSegment(coords);
             status.set(SEGMENT_CORRECT_STATUS);
         } catch (NumberFormatException e) {
             status.set(SEGMENT_ERROR_STATUS);
@@ -210,18 +225,12 @@ public class ViewModel {
     }
 
     private void checkIsFirstSegmentValid() {
-        checkIsSegmentValid(firstSegmentFirstPointCoordX.get(),
-                firstSegmentFirstPointCoordY.get(),
-                firstSegmentSecondPointCoordX.get(),
-                firstSegmentSecondPointCoordY.get(),
-                firstSegmentStatus);
+        final List<String> firstSegmentCoords = createFirstSegmentCoordsList();
+        checkIsSegmentValid(firstSegmentCoords, firstSegmentStatus);
     }
 
     private void checkIsSecondSegmentValid() {
-        checkIsSegmentValid(secondSegmentFirstPointCoordX.get(),
-                secondSegmentFirstPointCoordY.get(),
-                secondSegmentSecondPointCoordX.get(),
-                secondSegmentSecondPointCoordY.get(),
-                secondSegmentStatus);
+        final List<String> secondSegmentCoords = createSecondSegmentCoordsList();
+        checkIsSegmentValid(secondSegmentCoords, secondSegmentStatus);
     }
 }
