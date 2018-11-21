@@ -17,12 +17,16 @@ public class ViewModel {
     private String elementTextBoxValue;
     private String status;
     private BinarySearch search;
+    private boolean arrayCorrect;
+    private boolean elementCorrect;
 
     public ViewModel() {
         arrayTextBoxValue = "";
         elementTextBoxValue = "";
         status = "";
         search = null;
+        arrayCorrect = false;
+        elementCorrect = false;
     }
 
     public String getArrayTextBoxValue() {
@@ -38,12 +42,19 @@ public class ViewModel {
     }
 
     public void setArrayTextBoxValue(final String input) {
-        String[] split = input.split(",");
-        int[] arr = new int[split.length];
-        for (int i = 0; i < split.length; i++) {
-            arr[i] = Integer.parseInt(split[i]);
+        try {
+            String[] split = input.split(",");
+            int[] arr = new int[split.length];
+            for (int i = 0; i < split.length; i++) {
+                arr[i] = Integer.parseInt(split[i]);
+            }
+            arrayCorrect = true;
+            search = new BinarySearch(arr);
+
+        } catch (NumberFormatException nfe) {
+            status = "Invalid array entered";
+            arrayCorrect = false;
         }
-        search = new BinarySearch(arr);
     }
 
     public int[] getBinarySearchArray() {
@@ -51,18 +62,30 @@ public class ViewModel {
     }
 
     public void setElementTextBoxValue(final String input) {
-        elementTextBoxValue = input;
+        try {
+            Integer.parseInt(input);
+            elementCorrect = true;
+            elementTextBoxValue = input;
+        } catch (NumberFormatException nfe) {
+            status = "Invalid element entered";
+            elementCorrect = false;
+        }
     }
 
     public void search() {
-        int key = Integer.parseInt(elementTextBoxValue);
-        int index = search.search(key);
-        if (index == -1) {
-            status = "Key not found";
-        } else {
-            status = "Found key, index " + Integer.toString(index);
+        if (isSearchEnabled()) {
+            int key = Integer.parseInt(elementTextBoxValue);
+            int index = search.search(key);
+            if (index == -1) {
+                status = "Key not found";
+            } else {
+                status = "Found key, index " + Integer.toString(index);
+            }
         }
+    }
 
+    public boolean isSearchEnabled() {
+        return arrayCorrect && elementCorrect;
     }
 
 }
