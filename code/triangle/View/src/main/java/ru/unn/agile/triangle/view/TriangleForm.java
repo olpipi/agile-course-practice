@@ -1,4 +1,4 @@
-package ru.unn.agile.view;
+package ru.unn.agile.triangle.view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
