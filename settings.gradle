@@ -178,9 +178,13 @@ project(":code/math-statistics/ViewModel").name = "math-statistics-ViewModel"
 include "code/math-statistics/View"
 project(":code/math-statistics/View").name = "math-statistics-View"
 
-// Fytov Aleksandr, Fraction calculator
-include "code/fytov-aleksandr-frac-calc"
-project(":code/fytov-aleksandr-frac-calc").name = "fytov-aleksandr-frac-calc"
+// Fraction calculator
+include "code/frac-calc/Model"
+project(":code/frac-calc/Model").name = "frac-calc-Model"
+include "code/frac-calc/ViewModel"
+project(":code/frac-calc/ViewModel").name = "frac-calc-ViewModel"
+include "code/frac-calc/View"
+project(":code/frac-calc/View").name = "frac-calc-View"
 
 // 3D shapes volume
 include "code/shape-volume-calculator"
