@@ -42,8 +42,16 @@ public class ViewModel {
         return result;
     }
 
+    public String getResult() {
+        return result.get();
+    }
+
     public StringProperty statusProperty() {
         return status;
+    }
+
+    public String getStatus() {
+        return status.get();
     }
 
     public ObjectProperty<Operation> operationProperty() {
@@ -58,15 +66,15 @@ public class ViewModel {
         return operation.get();
     }
 
+    public final ObservableList<Operation> getOperations() {
+        return operations.get();
+    }
+
     public boolean isCalculationDisabled() {
         return calculationDisabled.get();
     }
 
-    private IAction createActionByOperation(Operation operation) {
-        IAction action = ActionFactory.create(operation);;
-        if (action == null) {
-            throw new RuntimeException("Action is null");
-        }
+    private IAction createActionByOperation(final Operation operation) {
         return ActionFactory.create(operation);
     }
 
@@ -77,13 +85,14 @@ public class ViewModel {
 
         Operation currentOperation = getOperation();
 
-        int resultExpression = createActionByOperation(currentOperation).calculate(inputDataProperty().get());
+        int resultExpression = createActionByOperation(
+                currentOperation).calculate(inputDataProperty().get());
 
         result.set(Integer.toString(resultExpression));
         status.set(Status.SUCCESS.toString());
     }
 
-    private Status getInputStatus() {
+    private Status getInputDataStatus() {
         Status inputStatus = Status.READY;
         if (inputData.get().equals("")) {
             inputStatus = Status.WAITING;
@@ -104,7 +113,7 @@ public class ViewModel {
             }
             @Override
             protected boolean computeValue() {
-                return getInputStatus() == Status.READY;
+                return getInputDataStatus() == Status.READY;
             }
         };
         calculationDisabled.bind(couldCalculate.not());
@@ -114,15 +123,15 @@ public class ViewModel {
         @Override
         public void changed(final ObservableValue<? extends String> observable,
                             final String oldValue, final String newValue) {
-            status.set(getInputStatus().toString());
+            status.set(getInputDataStatus().toString());
         }
     }
 
 }
 
 enum Status {
-    WAITING("Please provide input data"),
-    READY("Press 'Calculate' or Enter"),
+    WAITING("Please input input data"),
+    READY("Press 'Calculate' Button"),
     BAD_FORMAT("Bad format"),
     SUCCESS("Success");
 

@@ -1,6 +1,7 @@
 package ru.unn.agile.stringcalculator.viewmodel;
 
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,6 +41,22 @@ public class ViewModelTest {
         viewModel.calculate();
 
         assertEquals("39", viewModel.resultProperty().get());
+    }
+
+    @Test
+    public void isItImpossibleToCalculateWhenButtonInActive() {
+        viewModel.inputDataProperty().set("31.8");
+
+        viewModel.calculate();
+
+        assertNull(viewModel.resultProperty().get());
+    }
+
+    @Test
+    public void operationsListContainsOnlyAddOperation() {
+        ObservableList operationsList = viewModel.getOperations();
+
+        assertEquals(Operation.ADD, operationsList.get(0));
     }
 
     @Test
