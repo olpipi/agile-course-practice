@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class ViewModelTest {
     private ViewModel viewModel;
@@ -32,6 +33,21 @@ public class ViewModelTest {
         assertEquals("", viewModel.getFirstSegmentStatus());
         assertEquals("", viewModel.getSecondSegmentStatus());
         assertEquals("", viewModel.getResult());
+    }
+
+    @Test
+    public void viewModelPropertiesAreInitialized() {
+        assertNotEquals(null, viewModel.firstSegmentFirstPointCoordXProperty());
+        assertNotEquals(null, viewModel.firstSegmentFirstPointCoordYProperty());
+        assertNotEquals(null, viewModel.firstSegmentSecondPointCoordXProperty());
+        assertNotEquals(null, viewModel.firstSegmentSecondPointCoordYProperty());
+        assertNotEquals(null, viewModel.secondSegmentFirstPointCoordXProperty());
+        assertNotEquals(null, viewModel.secondSegmentFirstPointCoordYProperty());
+        assertNotEquals(null, viewModel.secondSegmentSecondPointCoordXProperty());
+        assertNotEquals(null, viewModel.secondSegmentSecondPointCoordYProperty());
+        assertNotEquals(null, viewModel.firstSegmentStatusProperty());
+        assertNotEquals(null, viewModel.secondSegmentStatusProperty());
+        assertNotEquals(null, viewModel.resultProperty());
     }
 
     @Test
