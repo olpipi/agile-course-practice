@@ -102,11 +102,6 @@ public class ViewModelTest {
     }
 
     @Test
-    public void buttonIsDisabledInitially() {
-        assertTrue(viewModel.btnDisabledProperty().get());
-    }
-
-    @Test
     public void canCABAngle() {
         viewModel.aXProperty().set("-4.0");
         viewModel.aYProperty().set("-3.0");

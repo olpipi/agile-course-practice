@@ -80,10 +80,6 @@ public class ViewModel {
         return result.get();
     }
 
-    public StringProperty resultProperty() {
-        return result;
-    }
-
     public BooleanProperty btnDisabledProperty() {
         return btnDisabled;
     }
@@ -129,114 +125,98 @@ public class ViewModel {
     }
 
     public void perimeter() {
-        if (btnDisabled.get()) {
-            return;
-        }
-
-        try {
-            Triangle triangle;
-            triangle = new Triangle(getPointA(), getPointB(), getPointC());
-            result.set(String.valueOf(triangle.getPerimeter()));
-        } catch (IllegalArgumentException nfe) {
-            result.set("Invalid triangle");
+        if (!btnDisabled.get()) {
+            try {
+                Triangle triangle;
+                triangle = new Triangle(getPointA(), getPointB(), getPointC());
+                result.set(String.valueOf(triangle.getPerimeter()));
+            } catch (IllegalArgumentException nfe) {
+                result.set("Invalid triangle");
+            }
         }
     }
 
     public void square() {
-        if (btnDisabled.get()) {
-            return;
-        }
-
-        try {
-            Triangle triangle;
-            triangle = new Triangle(getPointA(), getPointB(), getPointC());
-            result.set(String.valueOf(triangle.getSquare()));
-        } catch (IllegalArgumentException nfe) {
-            result.set("Invalid triangle");
+        if (!btnDisabled.get()) {
+            try {
+                Triangle triangle;
+                triangle = new Triangle(getPointA(), getPointB(), getPointC());
+                result.set(String.valueOf(triangle.getSquare()));
+            } catch (IllegalArgumentException nfe) {
+                result.set("Invalid triangle");
+            }
         }
     }
 
     public void getLengthAB() {
-        if (btnDisabled.get()) {
-            return;
-        }
-
-        try {
-            Triangle triangle;
-            triangle = new Triangle(getPointA(), getPointB(), getPointC());
-            result.set(String.valueOf(triangle.getLengthA()));
-        } catch (IllegalArgumentException nfe) {
-            result.set("Invalid triangle");
+        if (!btnDisabled.get()) {
+            try {
+                Triangle triangle;
+                triangle = new Triangle(getPointA(), getPointB(), getPointC());
+                result.set(String.valueOf(triangle.getLengthA()));
+            } catch (IllegalArgumentException nfe) {
+                result.set("Invalid triangle");
+            }
         }
     }
 
     public void getLengthBC() {
-        if (btnDisabled.get()) {
-            return;
-        }
-
-        try {
-            Triangle triangle;
-            triangle = new Triangle(getPointA(), getPointB(), getPointC());
-            result.set(String.valueOf(triangle.getLengthB()));
-        } catch (IllegalArgumentException nfe) {
-            result.set("Invalid triangle");
+        if (!btnDisabled.get()) {
+            try {
+                Triangle triangle;
+                triangle = new Triangle(getPointA(), getPointB(), getPointC());
+                result.set(String.valueOf(triangle.getLengthB()));
+            } catch (IllegalArgumentException nfe) {
+                result.set("Invalid triangle");
+            }
         }
     }
 
     public void getLengthCA() {
-        if (btnDisabled.get()) {
-            return;
-        }
-
-        try {
-            Triangle triangle;
-            triangle = new Triangle(getPointA(), getPointB(), getPointC());
-            result.set(String.valueOf(triangle.getLengthC()));
-        } catch (IllegalArgumentException nfe) {
-            result.set("Invalid triangle");
+        if (!btnDisabled.get()) {
+            try {
+                Triangle triangle;
+                triangle = new Triangle(getPointA(), getPointB(), getPointC());
+                result.set(String.valueOf(triangle.getLengthC()));
+            } catch (IllegalArgumentException nfe) {
+                result.set("Invalid triangle");
+            }
         }
     }
 
     public void getCABAngle() {
-        if (btnDisabled.get()) {
-            return;
-        }
-
-        try {
-            Triangle triangle;
-            triangle = new Triangle(getPointA(), getPointB(), getPointC());
-            result.set(String.valueOf(triangle.getAngleBC()));
-        } catch (IllegalArgumentException nfe) {
-            result.set("Invalid triangle");
+        if (!btnDisabled.get()) {
+            try {
+                Triangle triangle;
+                triangle = new Triangle(getPointA(), getPointB(), getPointC());
+                result.set(String.valueOf(triangle.getAngleBC()));
+            } catch (IllegalArgumentException nfe) {
+                result.set("Invalid triangle");
+            }
         }
     }
 
     public void getABCAngle() {
-        if (btnDisabled.get()) {
-            return;
-        }
-
-        try {
-            Triangle triangle;
-            triangle = new Triangle(getPointA(), getPointB(), getPointC());
-            result.set(String.valueOf(triangle.getAngleCA()));
-        } catch (IllegalArgumentException nfe) {
-            result.set("Invalid triangle");
+        if (!btnDisabled.get()) {
+            try {
+                Triangle triangle;
+                triangle = new Triangle(getPointA(), getPointB(), getPointC());
+                result.set(String.valueOf(triangle.getAngleCA()));
+            } catch (IllegalArgumentException nfe) {
+                result.set("Invalid triangle");
+            }
         }
     }
 
     public void getBCAAngle() {
-        if (btnDisabled.get()) {
-            return;
-        }
-
-        try {
-            Triangle triangle;
-            triangle = new Triangle(getPointA(), getPointB(), getPointC());
-            result.set(String.valueOf(triangle.getAngleAB()));
-        } catch (IllegalArgumentException nfe) {
-            result.set("Invalid triangle");
+        if (!btnDisabled.get()) {
+            try {
+                Triangle triangle;
+                triangle = new Triangle(getPointA(), getPointB(), getPointC());
+                result.set(String.valueOf(triangle.getAngleAB()));
+            } catch (IllegalArgumentException nfe) {
+                result.set("Invalid triangle");
+            }
         }
     }
 
