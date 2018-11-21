@@ -6,6 +6,8 @@ import javafx.beans.property.StringProperty;
 import ru.unn.agile.segment2d.model.Segment2D;
 
 public class ViewModel {
+    private static final String SEGMENT_ERROR_STATUS = "Segment is incorrect!";
+
     private StringProperty firstSegmentFirstPointCoordX = new SimpleStringProperty();
     private StringProperty firstSegmentFirstPointCoordY = new SimpleStringProperty();
     private StringProperty firstSegmentSecondPointCoordX = new SimpleStringProperty();
@@ -23,19 +25,31 @@ public class ViewModel {
 
     public StringProperty firstSegmentFirstPointCoordX() { return firstSegmentFirstPointCoordX; }
     public String getFirstSegmentFirstPointCoordX() { return firstSegmentFirstPointCoordX.get(); }
-    public void setFirstSegmentFirstPointCoordX(final String coordX) { firstSegmentFirstPointCoordX.set(coordX); }
+    public void setFirstSegmentFirstPointCoordX(final String coordX) {
+        firstSegmentFirstPointCoordX.set(coordX);
+        checkIsFirstSegmentValid();
+    }
 
     public StringProperty firstSegmentFirstPointCoordY() { return firstSegmentFirstPointCoordY; }
     public String getFirstSegmentFirstPointCoordY() { return firstSegmentFirstPointCoordY.get(); }
-    public void setFirstSegmentFirstPointCoordY(final String coordY) { firstSegmentFirstPointCoordY.set(coordY); }
+    public void setFirstSegmentFirstPointCoordY(final String coordY) {
+        firstSegmentFirstPointCoordY.set(coordY);
+        checkIsFirstSegmentValid();
+    }
 
     public StringProperty firstSegmentSecondPointCoordX() { return firstSegmentSecondPointCoordX; }
     public String getFirstSegmentSecondPointCoordX() { return firstSegmentSecondPointCoordX.get(); }
-    public void setFirstSegmentSecondPointCoordX(final String coordX) { firstSegmentSecondPointCoordX.set(coordX); }
+    public void setFirstSegmentSecondPointCoordX(final String coordX) {
+        firstSegmentSecondPointCoordX.set(coordX);
+        checkIsFirstSegmentValid();
+    }
 
     public StringProperty firstSegmentSecondPointCoordY() { return firstSegmentSecondPointCoordY; }
     public String getFirstSegmentSecondPointCoordY() { return firstSegmentSecondPointCoordY.get(); }
-    public void setFirstSegmentSecondPointCoordY(final String coordY) { firstSegmentSecondPointCoordY.set(coordY); }
+    public void setFirstSegmentSecondPointCoordY(final String coordY) {
+        firstSegmentSecondPointCoordY.set(coordY);
+        checkIsFirstSegmentValid();
+    }
 
     public StringProperty secondSegmentFirstPointCoordX() { return secondSegmentFirstPointCoordX; }
     public String getSecondSegmentFirstPointCoordX() { return secondSegmentFirstPointCoordX.get(); }
@@ -78,5 +92,21 @@ public class ViewModel {
         firstSegmentStatus.set("");
         secondSegmentStatus.set("");
         result.set("");
+    }
+
+    private void checkCoordCanBeParsedToDouble(String coord) {
+        double parsedCoord;
+        try {
+            parsedCoord = Double.parseDouble(coord);
+        } catch (NumberFormatException e) {
+            firstSegmentStatus.set(SEGMENT_ERROR_STATUS);
+        }
+    }
+
+    private void checkIsFirstSegmentValid() {
+        checkCoordCanBeParsedToDouble(firstSegmentFirstPointCoordX.get());
+        checkCoordCanBeParsedToDouble(firstSegmentFirstPointCoordY.get());
+        checkCoordCanBeParsedToDouble(firstSegmentSecondPointCoordX.get());
+        checkCoordCanBeParsedToDouble(firstSegmentSecondPointCoordY.get());
     }
 }
