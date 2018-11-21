@@ -28,4 +28,10 @@ public class ViewModelTest {
         assertEquals("", initialInputData.get());
     }
 
+    @Test
+    public void canSetAddOperation() {
+        viewModel.operationProperty().set(Operation.ADD);
+        assertEquals(Operation.ADD, viewModel.operationProperty().get());
+    }
+
 }
