@@ -23,27 +23,35 @@ public class ViewModel {
 
     public StringProperty firstSegmentFirstPointCoordX() { return firstSegmentFirstPointCoordX; }
     public String getFirstSegmentFirstPointCoordX() { return firstSegmentFirstPointCoordX.get(); }
+    public void setFirstSegmentFirstPointCoordX(final String coordX) { firstSegmentFirstPointCoordX.set(coordX); }
 
     public StringProperty firstSegmentFirstPointCoordY() { return firstSegmentFirstPointCoordY; }
     public String getFirstSegmentFirstPointCoordY() { return firstSegmentFirstPointCoordY.get(); }
+    public void setFirstSegmentFirstPointCoordY(final String coordY) { firstSegmentFirstPointCoordY.set(coordY); }
 
     public StringProperty firstSegmentSecondPointCoordX() { return firstSegmentSecondPointCoordX; }
     public String getFirstSegmentSecondPointCoordX() { return firstSegmentSecondPointCoordX.get(); }
+    public void setFirstSegmentSecondPointCoordX(final String coordX) { firstSegmentSecondPointCoordX.set(coordX); }
 
     public StringProperty firstSegmentSecondPointCoordY() { return firstSegmentSecondPointCoordY; }
     public String getFirstSegmentSecondPointCoordY() { return firstSegmentSecondPointCoordY.get(); }
+    public void setFirstSegmentSecondPointCoordY(final String coordY) { firstSegmentSecondPointCoordY.set(coordY); }
 
     public StringProperty secondSegmentFirstPointCoordX() { return secondSegmentFirstPointCoordX; }
     public String getSecondSegmentFirstPointCoordX() { return secondSegmentFirstPointCoordX.get(); }
+    public void setSecondSegmentFirstPointCoordX(final String coordX) { secondSegmentFirstPointCoordX.set(coordX); }
 
     public StringProperty secondSegmentFirstPointCoordY() { return secondSegmentFirstPointCoordY; }
     public String getSecondSegmentFirstPointCoordY() { return secondSegmentFirstPointCoordY.get(); }
+    public void setSecondSegmentFirstPointCoordY(final String coordY) { secondSegmentFirstPointCoordY.set(coordY); }
 
     public StringProperty secondSegmentSecondPointCoordX() { return secondSegmentSecondPointCoordX; }
     public String getSecondSegmentSecondPointCoordX() { return secondSegmentSecondPointCoordX.get(); }
+    public void setSecondSegmentSecondPointCoordX(final String coordX) { secondSegmentSecondPointCoordX.set(coordX); }
 
     public StringProperty secondSegmentSecondPointCoordY() { return secondSegmentSecondPointCoordY; }
     public String getSecondSegmentSecondPointCoordY() { return secondSegmentSecondPointCoordY.get(); }
+    public void setSecondSegmentSecondPointCoordY(final String coordY) { secondSegmentSecondPointCoordY.set(coordY); }
 
     public StringProperty firstSegmentStatus() { return firstSegmentStatus; }
     public String getFirstSegmentStatus() { return firstSegmentStatus.get(); }

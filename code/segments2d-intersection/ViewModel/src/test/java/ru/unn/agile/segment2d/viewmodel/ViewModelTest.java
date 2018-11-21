@@ -33,4 +33,25 @@ public class ViewModelTest {
         assertEquals("", viewModel.getSecondSegmentStatus());
         assertEquals("", viewModel.getResult());
     }
+
+    @Test
+    public void canAllCoordFieldsBeSetted() {
+        viewModel.setFirstSegmentFirstPointCoordX("1");
+        viewModel.setFirstSegmentFirstPointCoordY("1");
+        viewModel.setFirstSegmentSecondPointCoordX("1");
+        viewModel.setFirstSegmentSecondPointCoordY("1");
+        viewModel.setSecondSegmentFirstPointCoordX("1");
+        viewModel.setSecondSegmentFirstPointCoordY("1");
+        viewModel.setSecondSegmentSecondPointCoordX("1");
+        viewModel.setSecondSegmentSecondPointCoordY("1");
+
+        assertEquals("1", viewModel.getFirstSegmentFirstPointCoordX());
+        assertEquals("1", viewModel.getFirstSegmentFirstPointCoordY());
+        assertEquals("1", viewModel.getFirstSegmentSecondPointCoordX());
+        assertEquals("1", viewModel.getFirstSegmentSecondPointCoordY());
+        assertEquals("1", viewModel.getSecondSegmentFirstPointCoordX());
+        assertEquals("1", viewModel.getSecondSegmentFirstPointCoordY());
+        assertEquals("1", viewModel.getSecondSegmentSecondPointCoordX());
+        assertEquals("1", viewModel.getSecondSegmentSecondPointCoordY());
+    }
 }
