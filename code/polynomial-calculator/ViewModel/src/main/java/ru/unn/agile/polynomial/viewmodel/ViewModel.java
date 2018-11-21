@@ -97,10 +97,16 @@ public class ViewModel {
                 else
                     break;
                 continue;
+            } else if (polynomialStr.toCharArray()[i] == '+') {
+                array.add(new Pair<>(currentDegree, currentCoeff));
+                currentDegree = 0;
+                currentCoeff =0.0;
+                digitStr = "";
+                i++;
             } else
                 return null;
         }
-        array.add(new Pair<>(currentDegree, currentCoeff));
+        array.add(new Pair<>(currentDegree, Double.valueOf(digitStr)));
         if (!array.isEmpty()) {
             double[] coeffs = new double[array.get(0).getKey() + 1];
             for (int j = 0; j < array.size(); j++) {

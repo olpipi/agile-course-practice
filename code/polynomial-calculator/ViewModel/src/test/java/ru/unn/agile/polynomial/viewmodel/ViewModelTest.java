@@ -74,9 +74,16 @@ public class ViewModelTest {
     }
 
     @Test
-    public void canParseOneSymbol() {
+    public void canParseFirstDegreeWithoutCoeff() {
         ViewModel viewModel = new ViewModel();
         Polynomial polynomial = viewModel.parsePolynomial2("1.0x");
         assertEquals("1.0x", polynomial.toString());
+    }
+
+    @Test
+    public void canParseFirstDegreeWithCoeff() {
+        ViewModel viewModel = new ViewModel();
+        Polynomial polynomial = viewModel.parsePolynomial2("1.0x+1.0");
+        assertEquals("1.0x + 1.0", polynomial.toString());
     }
 }
