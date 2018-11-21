@@ -26,7 +26,10 @@ public class ViewModel {
     private final StringProperty number2 = new SimpleStringProperty();
     private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
     private final ObjectProperty<ObservableList<NumberSystem>> numberSystems =
-            new SimpleObjectProperty<>(FXCollections.observableList(Arrays.stream(NumberSystem.values()).filter(s -> !NumberSystem.UNKNOWN.equals(s)).collect(Collectors.toList())));
+            new SimpleObjectProperty<>(
+                    FXCollections.observableList(Arrays.stream(NumberSystem.values())
+                    .filter(s -> !NumberSystem.UNKNOWN.equals(s))
+                    .collect(Collectors.toList())));
 
     private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
 
