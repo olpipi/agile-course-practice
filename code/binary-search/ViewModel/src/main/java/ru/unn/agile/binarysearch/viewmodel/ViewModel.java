@@ -54,4 +54,15 @@ public class ViewModel {
         elementTextBoxValue = input;
     }
 
+    public void search() {
+        int key = Integer.parseInt(elementTextBoxValue);
+        int index = search.search(key);
+        if (index == -1) {
+            status = "Key not found";
+        } else {
+            status = "Found key, index " + Integer.toString(index);
+        }
+
+    }
+
 }
