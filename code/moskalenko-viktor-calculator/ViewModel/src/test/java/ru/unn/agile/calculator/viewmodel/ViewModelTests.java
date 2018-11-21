@@ -85,7 +85,7 @@ public class ViewModelTests {
         viewModel.outputNumberSystemProperty().setValue(NumberSystem.OCTAL);
 
         assertEquals(true, viewModel.isCalculationDisabled());
-        assertEquals(Status.WAIT_FOR_INPUT.toString(), viewModel.getUserMessage());
+        assertEquals(UserMessages.WAIT_FOR_INPUT.toString(), viewModel.getUserMessage());
     }
 
     @Test
@@ -98,7 +98,34 @@ public class ViewModelTests {
         viewModel.outputNumberSystemProperty().setValue(NumberSystem.OCTAL);
 
         assertEquals(false, viewModel.isCalculationDisabled());
-        assertEquals(Status.READY.toString(), viewModel.getUserMessage());
+        assertEquals(UserMessages.READY.toString(), viewModel.getUserMessage());
+    }
+
+
+    @Test
+    public void testCalculationEnabledWithTrashInput() {
+        String a = "fasfdasdfasf";
+        String b = "bfafssafdadfd";
+
+        viewModel.number1Property().setValue(a);
+        viewModel.number2Property().setValue(b);
+
+        assertEquals(true, viewModel.isCalculationDisabled());
+        assertEquals(UserMessages.INPUT_INVALID.toString(), viewModel.getUserMessage());
+    }
+
+
+    @Test
+    public void testStatusAfterCalculate() {
+        String a = "xc";
+        String b = "o5";
+
+        viewModel.number1Property().setValue(a);
+        viewModel.number2Property().setValue(b);
+        viewModel.calculate();
+
+        assertEquals(false, viewModel.isCalculationDisabled());
+        assertEquals(UserMessages.SUCCESS.toString(), viewModel.getUserMessage());
     }
 
 

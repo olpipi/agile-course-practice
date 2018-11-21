@@ -46,7 +46,7 @@ public class ViewModel {
 
             @Override
             protected boolean computeValue() {
-                return getCurrentStatus() == Status.READY;
+                return checkInput() == UserMessages.READY;
             }
         };
         calculationDisabled.bind(couldCalculate.not());
@@ -66,15 +66,15 @@ public class ViewModel {
 
     }
 
-    private Status getCurrentStatus() {
+    private UserMessages checkInput() {
         String a = number1.get();
         String b = number2.get();
-        if("".equals(a) || "".equals(b)) return Status.WAIT_FOR_INPUT;
+        if("".equals(a) || "".equals(b)) return UserMessages.WAIT_FOR_INPUT;
         Integer parsedA = NumberConverter.tryParse(a);
         Integer parsedB = NumberConverter.tryParse(b);
-        if((parsedA == null) || (parsedB == null)) return Status.INPUT_INVALID;
+        if((parsedA == null) || (parsedB == null)) return UserMessages.INPUT_INVALID;
 
-        return Status.READY;
+        return UserMessages.READY;
     }
 
     public String getResult() {
@@ -110,6 +110,7 @@ public class ViewModel {
                 + buildMultResult(currentSystem, a, b)
                 + buildUnaryMinusResult(currentSystem, a, b);
         result.setValue(composedResult);
+        userMessage.setValue(UserMessages.SUCCESS.toString());
     }
 
     private String buildUnaryMinusResult(NumberSystem currentSystem, String a, String b) {
@@ -136,7 +137,7 @@ public class ViewModel {
         @Override
         public void changed(final ObservableValue<? extends String> observable,
                             final String oldValue, final String newValue) {
-            userMessage.set(getCurrentStatus().toString());
+            userMessage.set(checkInput().toString());
         }
     }
 }
