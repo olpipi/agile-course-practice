@@ -54,6 +54,7 @@ public class ViewModel {
         } catch (NumberFormatException nfe) {
             status = "Invalid array entered";
             arrayCorrect = false;
+            search = null;
         }
     }
 
