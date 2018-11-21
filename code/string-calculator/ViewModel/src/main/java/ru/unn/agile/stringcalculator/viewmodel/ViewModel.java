@@ -1,9 +1,7 @@
 package ru.unn.agile.stringcalculator.viewmodel;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -14,13 +12,12 @@ import ru.unn.agile.stringcalculator.model.errorhandling.NotANumberException;
 import ru.unn.agile.stringcalculator.viewmodel.actions.ActionFactory;
 import ru.unn.agile.stringcalculator.viewmodel.actions.abstraction.IAction;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ViewModel {
     private final StringProperty inputData = new SimpleStringProperty();
     private final StringProperty result = new SimpleStringProperty();
     private final StringProperty status = new SimpleStringProperty();
+
+    private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
 
     private final ObjectProperty<Operation> operation = new SimpleObjectProperty<>();
     private final ObjectProperty<ObservableList<Operation>> operations =
@@ -28,8 +25,11 @@ public class ViewModel {
 
     public ViewModel() {
         inputData.set("");
+        operation.set(Operation.ADD);
 
         inputData.addListener(new ValueChangeListener());
+
+        initCalculateButtonState();
 
         status.set(Status.WAITING.toString());
     }
@@ -50,23 +50,31 @@ public class ViewModel {
         return operation;
     }
 
+    public BooleanProperty calculationDisabledProperty() {
+        return calculationDisabled;
+    }
+
     public Operation getOperation() {
         return operation.get();
     }
 
-    public final ObservableList<Operation> getOperations() {
-        return operations.get();
+    public boolean isCalculationDisabled() {
+        return calculationDisabled.get();
     }
 
     private IAction createActionByOperation(Operation operation) {
         IAction action = ActionFactory.create(operation);;
         if (action == null) {
-            throw new RuntimeException("Actrion is null");
+            throw new RuntimeException("Action is null");
         }
         return ActionFactory.create(operation);
     }
 
     public void calculate() {
+        if (isCalculationDisabled()) {
+            return;
+        }
+
         Operation currentOperation = getOperation();
 
         int resultExpression = createActionByOperation(currentOperation).calculate(inputDataProperty().get());
@@ -87,6 +95,19 @@ public class ViewModel {
         }
 
         return inputStatus;
+    }
+
+    private void initCalculateButtonState() {
+        BooleanBinding couldCalculate = new BooleanBinding() {
+            {
+                super.bind(inputData);
+            }
+            @Override
+            protected boolean computeValue() {
+                return getInputStatus() == Status.READY;
+            }
+        };
+        calculationDisabled.bind(couldCalculate.not());
     }
 
     private class ValueChangeListener implements ChangeListener<String> {
