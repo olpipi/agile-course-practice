@@ -32,7 +32,7 @@ public class ViewModel {
 
     private StringProperty result = new SimpleStringProperty();
 
-    public StringProperty firstSegmentFirstPointCoordX() {
+    public StringProperty firstSegmentFirstPointCoordXProperty() {
         return firstSegmentFirstPointCoordX;
     }
     public String getFirstSegmentFirstPointCoordX() {
@@ -40,10 +40,9 @@ public class ViewModel {
     }
     public void setFirstSegmentFirstPointCoordX(final String coordX) {
         firstSegmentFirstPointCoordX.set(coordX);
-        checkIsFirstSegmentValid();
     }
 
-    public StringProperty firstSegmentFirstPointCoordY() {
+    public StringProperty firstSegmentFirstPointCoordYProperty() {
         return firstSegmentFirstPointCoordY;
     }
     public String getFirstSegmentFirstPointCoordY() {
@@ -51,10 +50,9 @@ public class ViewModel {
     }
     public void setFirstSegmentFirstPointCoordY(final String coordY) {
         firstSegmentFirstPointCoordY.set(coordY);
-        checkIsFirstSegmentValid();
     }
 
-    public StringProperty firstSegmentSecondPointCoordX() {
+    public StringProperty firstSegmentSecondPointCoordXProperty() {
         return firstSegmentSecondPointCoordX;
     }
     public String getFirstSegmentSecondPointCoordX() {
@@ -62,10 +60,9 @@ public class ViewModel {
     }
     public void setFirstSegmentSecondPointCoordX(final String coordX) {
         firstSegmentSecondPointCoordX.set(coordX);
-        checkIsFirstSegmentValid();
     }
 
-    public StringProperty firstSegmentSecondPointCoordY() {
+    public StringProperty firstSegmentSecondPointCoordYProperty() {
         return firstSegmentSecondPointCoordY;
     }
     public String getFirstSegmentSecondPointCoordY() {
@@ -73,10 +70,9 @@ public class ViewModel {
     }
     public void setFirstSegmentSecondPointCoordY(final String coordY) {
         firstSegmentSecondPointCoordY.set(coordY);
-        checkIsFirstSegmentValid();
     }
 
-    public StringProperty secondSegmentFirstPointCoordX() {
+    public StringProperty secondSegmentFirstPointCoordXProperty() {
         return secondSegmentFirstPointCoordX;
     }
     public String getSecondSegmentFirstPointCoordX() {
@@ -84,10 +80,9 @@ public class ViewModel {
     }
     public void setSecondSegmentFirstPointCoordX(final String coordX) {
         secondSegmentFirstPointCoordX.set(coordX);
-        checkIsSecondSegmentValid();
     }
 
-    public StringProperty secondSegmentFirstPointCoordY() {
+    public StringProperty secondSegmentFirstPointCoordYProperty() {
         return secondSegmentFirstPointCoordY;
     }
     public String getSecondSegmentFirstPointCoordY() {
@@ -95,10 +90,9 @@ public class ViewModel {
     }
     public void setSecondSegmentFirstPointCoordY(final String coordY) {
         secondSegmentFirstPointCoordY.set(coordY);
-        checkIsSecondSegmentValid();
     }
 
-    public StringProperty secondSegmentSecondPointCoordX() {
+    public StringProperty secondSegmentSecondPointCoordXProperty() {
         return secondSegmentSecondPointCoordX;
     }
     public String getSecondSegmentSecondPointCoordX() {
@@ -106,10 +100,9 @@ public class ViewModel {
     }
     public void setSecondSegmentSecondPointCoordX(final String coordX) {
         secondSegmentSecondPointCoordX.set(coordX);
-        checkIsSecondSegmentValid();
     }
 
-    public StringProperty secondSegmentSecondPointCoordY() {
+    public StringProperty secondSegmentSecondPointCoordYProperty() {
         return secondSegmentSecondPointCoordY;
     }
     public String getSecondSegmentSecondPointCoordY() {
@@ -117,24 +110,23 @@ public class ViewModel {
     }
     public void setSecondSegmentSecondPointCoordY(final String coordY) {
         secondSegmentSecondPointCoordY.set(coordY);
-        checkIsSecondSegmentValid();
     }
 
-    public StringProperty firstSegmentStatus() {
+    public StringProperty firstSegmentStatusProperty() {
         return firstSegmentStatus;
     }
     public String getFirstSegmentStatus() {
         return firstSegmentStatus.get();
     }
 
-    public StringProperty secondSegmentStatus() {
+    public StringProperty secondSegmentStatusProperty() {
         return secondSegmentStatus;
     }
     public String getSecondSegmentStatus() {
         return secondSegmentStatus.get();
     }
 
-    public StringProperty result() {
+    public StringProperty resultProperty() {
         return result;
     }
     public String getResult() {
@@ -146,6 +138,7 @@ public class ViewModel {
     }
 
     public void checkIntersection() {
+        checkIsSegmentsValid();
         if (!firstSegmentStatus.get().equals(SEGMENT_CORRECT_STATUS)
                 || !secondSegmentStatus.get().equals(SEGMENT_CORRECT_STATUS)) {
             result.set(RESULT_ERROR_STATUS);
@@ -230,5 +223,10 @@ public class ViewModel {
     private void checkIsSecondSegmentValid() {
         final List<String> secondSegmentCoords = createSecondSegmentCoordsList();
         checkIsSegmentValid(secondSegmentCoords, secondSegmentStatus);
+    }
+
+    private void checkIsSegmentsValid() {
+        checkIsFirstSegmentValid();
+        checkIsSecondSegmentValid();
     }
 }

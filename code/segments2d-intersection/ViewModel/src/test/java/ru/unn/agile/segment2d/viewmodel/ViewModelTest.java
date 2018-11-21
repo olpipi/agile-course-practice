@@ -62,6 +62,8 @@ public class ViewModelTest {
         viewModel.setFirstSegmentSecondPointCoordX("1");
         viewModel.setFirstSegmentSecondPointCoordY("1");
 
+        viewModel.checkIntersection();
+
         assertEquals("Segment is incorrect!", viewModel.getFirstSegmentStatus());
     }
 
@@ -72,6 +74,8 @@ public class ViewModelTest {
         viewModel.setSecondSegmentSecondPointCoordX("1");
         viewModel.setSecondSegmentSecondPointCoordY("1");
 
+        viewModel.checkIntersection();
+
         assertEquals("Segment is incorrect!", viewModel.getSecondSegmentStatus());
     }
 
@@ -81,6 +85,8 @@ public class ViewModelTest {
         viewModel.setFirstSegmentFirstPointCoordY("1");
         viewModel.setFirstSegmentSecondPointCoordX("1");
         viewModel.setFirstSegmentSecondPointCoordY("1");
+
+        viewModel.checkIntersection();
 
         assertEquals("Segment is incorrect! both Point2D can not be the same",
                 viewModel.getFirstSegmentStatus());
@@ -93,6 +99,8 @@ public class ViewModelTest {
         viewModel.setSecondSegmentSecondPointCoordX("1");
         viewModel.setSecondSegmentSecondPointCoordY("1");
 
+        viewModel.checkIntersection();
+
         assertEquals("Segment is incorrect! both Point2D can not be the same",
                 viewModel.getSecondSegmentStatus());
     }
@@ -104,6 +112,8 @@ public class ViewModelTest {
         viewModel.setFirstSegmentSecondPointCoordX("1");
         viewModel.setFirstSegmentSecondPointCoordY("1");
 
+        viewModel.checkIntersection();
+
         assertEquals("Segment is correct!", viewModel.getFirstSegmentStatus());
     }
 
@@ -113,6 +123,8 @@ public class ViewModelTest {
         viewModel.setSecondSegmentFirstPointCoordY("2");
         viewModel.setSecondSegmentSecondPointCoordX("1");
         viewModel.setSecondSegmentSecondPointCoordY("1");
+
+        viewModel.checkIntersection();
 
         assertEquals("Segment is correct!", viewModel.getSecondSegmentStatus());
     }
