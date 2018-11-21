@@ -179,6 +179,48 @@ public class ViewModel {
         result.set(String.valueOf(triangle.getLengthC()));
     }
 
+    public void getCABAngle() {
+        if (btnDisabled.get()) {
+            return;
+        }
+
+        Point pointA = new Point(aX.get(), aY.get());
+        Point pointB = new Point(bX.get(), bY.get());
+        Point pointC = new Point(cX.get(), cY.get());
+
+        Triangle triangle = new Triangle(pointA, pointB, pointC);
+
+        result.set(String.valueOf(triangle.getAngleBC()));
+    }
+
+    public void getABCAngle() {
+        if (btnDisabled.get()) {
+            return;
+        }
+
+        Point pointA = new Point(aX.get(), aY.get());
+        Point pointB = new Point(bX.get(), bY.get());
+        Point pointC = new Point(cX.get(), cY.get());
+
+        Triangle triangle = new Triangle(pointA, pointB, pointC);
+
+        result.set(String.valueOf(triangle.getAngleCA()));
+    }
+
+    public void getBCAAngle() {
+        if (btnDisabled.get()) {
+            return;
+        }
+
+        Point pointA = new Point(aX.get(), aY.get());
+        Point pointB = new Point(bX.get(), bY.get());
+        Point pointC = new Point(cX.get(), cY.get());
+
+        Triangle triangle = new Triangle(pointA, pointB, pointC);
+
+        result.set(String.valueOf(triangle.getAngleAB()));
+    }
+
     private Status getInputStatus() {
         Status inputStatus = Status.READY;
         if (aX.get().isEmpty() || aY.get().isEmpty()

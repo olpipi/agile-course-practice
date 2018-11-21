@@ -76,12 +76,14 @@
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin></Button>
-                        <Button fx:id="btnCalcSquare" defaultButton="true" disable="${viewModel.btnDisabled}"  maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Square" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnCalcSquare" defaultButton="true" disable="${viewModel.btnDisabled}" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Square" HBox.hgrow="ALWAYS" />
                         </children>
                 </HBox>
                 <HBox>
                     <children>
-                        <Button fx:id="btnCalcAngles" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="34.0" prefWidth="223.0" text="Angles" HBox.hgrow="ALWAYS">
+                        <Button fx:id="btnCalcAngleCAB" defaultButton="true" disable="${viewModel.btnDisabled}" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="34.0" prefWidth="223.0" text="Angle CAB" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnCalcAngleABC" defaultButton="true" disable="${viewModel.btnDisabled}" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="34.0" prefWidth="223.0" text="Angle ABC" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnCalcAngleBCA" defaultButton="true" disable="${viewModel.btnDisabled}" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="34.0" prefWidth="202.0" text="Angle BCA" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin></Button>

@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ViewModelTest {
+    private final double delta = 0.001;
     private ViewModel viewModel;
 
     @Before
@@ -103,5 +104,47 @@ public class ViewModelTest {
     @Test
     public void buttonIsDisabledInitially() {
         assertTrue(viewModel. btnDisabledProperty().get());
+    }
+
+    @Test
+    public void canCABAngle() {
+        viewModel.aXProperty().set("-4.0");
+        viewModel.aYProperty().set("-3.0");
+        viewModel.bXProperty().set("3.0");
+        viewModel.bYProperty().set("4.0");
+        viewModel.cXProperty().set("1.0");
+        viewModel.cYProperty().set("-1.0");
+
+        viewModel.getCABAngle();
+
+        assertEquals(2.331, Double.parseDouble(viewModel.getResult()), delta);
+    }
+
+    @Test
+    public void canABCAngle() {
+        viewModel.aXProperty().set("1.0");
+        viewModel.aYProperty().set("-1.0");
+        viewModel.bXProperty().set("-4.0");
+        viewModel.bYProperty().set("-3.0");
+        viewModel.cXProperty().set("3.0");
+        viewModel.cYProperty().set("4.0");
+
+        viewModel.getABCAngle();
+
+        assertEquals(2.331, Double.parseDouble(viewModel.getResult()), delta);
+    }
+
+    @Test
+    public void canBCAAngle() {
+        viewModel.aXProperty().set("3.0");
+        viewModel.aYProperty().set("4.0");
+        viewModel.bXProperty().set("1.0");
+        viewModel.bYProperty().set("-1.0");
+        viewModel.cXProperty().set("-4.0");
+        viewModel.cYProperty().set("-3.0");
+
+        viewModel.getBCAAngle();
+
+        assertEquals(2.331, Double.parseDouble(viewModel.getResult()), delta);
     }
 }

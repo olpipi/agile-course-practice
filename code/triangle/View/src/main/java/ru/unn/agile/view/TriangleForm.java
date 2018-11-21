@@ -32,6 +32,12 @@ public class TriangleForm {
     private Button btnCalcLengthBC;
     @FXML
     private Button btnCalcLengthCA;
+    @FXML
+    private Button btnCalcAngleCAB;
+    @FXML
+    private Button btnCalcAngleABC;
+    @FXML
+    private Button btnCalcAngleBCA;
 
     @FXML
     void initialize() {
@@ -77,6 +83,27 @@ public class TriangleForm {
             @Override
             public void handle(final ActionEvent event) {
                 viewModel.getLengthCA();
+            }
+        });
+
+        btnCalcAngleCAB.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                viewModel.getCABAngle();
+            }
+        })
+
+        ;btnCalcAngleABC.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                viewModel.getABCAngle();
+            }
+        });
+
+        btnCalcAngleBCA.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                viewModel.getBCAAngle();
             }
         });
     }
