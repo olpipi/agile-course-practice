@@ -147,4 +147,31 @@ public class ViewModelTest {
 
         assertEquals(2.331, Double.parseDouble(viewModel.getResult()), delta);
     }
+
+    @Test
+    public void qq() {
+        viewModel.aXProperty().set("");
+        viewModel.aYProperty().set("");
+        viewModel.bXProperty().set("");
+        viewModel.bYProperty().set("");
+        viewModel.cXProperty().set("");
+        viewModel.cYProperty().set("");
+
+        assertTrue(viewModel.btnDisabledProperty().get());
+    }
+
+    @Test
+    public void invalidTriangle() {
+        viewModel.aXProperty().set("0.0");
+        viewModel.aYProperty().set("0.0");
+        viewModel.bXProperty().set("0.0");
+        viewModel.bYProperty().set("0.0");
+        viewModel.cXProperty().set("5.0");
+        viewModel.cYProperty().set("12.0");
+
+        viewModel.getBCAAngle();
+
+        assertEquals("Invalid triangle", viewModel.getResult());
+
+    }
 }

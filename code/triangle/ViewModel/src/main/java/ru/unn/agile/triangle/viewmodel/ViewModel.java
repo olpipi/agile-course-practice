@@ -76,6 +76,7 @@ public class ViewModel {
     }
 
     public String getResult() {
+
         return result.get();
     }
 
@@ -132,9 +133,13 @@ public class ViewModel {
             return;
         }
 
-        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
-
-        result.set(String.valueOf(triangle.getPerimeter()));
+        try {
+            Triangle triangle;
+            triangle = new Triangle(getPointA(), getPointB(), getPointC());
+            result.set(String.valueOf(triangle.getPerimeter()));
+        } catch (IllegalArgumentException nfe) {
+            result.set("Invalid triangle");
+        }
     }
 
     public void square() {
@@ -142,9 +147,13 @@ public class ViewModel {
             return;
         }
 
-        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
-
-        result.set(String.valueOf(triangle.getSquare()));
+        try {
+            Triangle triangle;
+            triangle = new Triangle(getPointA(), getPointB(), getPointC());
+            result.set(String.valueOf(triangle.getSquare()));
+        } catch (IllegalArgumentException nfe) {
+            result.set("Invalid triangle");
+        }
     }
 
     public void getLengthAB() {
@@ -152,9 +161,13 @@ public class ViewModel {
             return;
         }
 
-        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
-
-        result.set(String.valueOf(triangle.getLengthA()));
+        try {
+            Triangle triangle;
+            triangle = new Triangle(getPointA(), getPointB(), getPointC());
+            result.set(String.valueOf(triangle.getLengthA()));
+        } catch (IllegalArgumentException nfe) {
+            result.set("Invalid triangle");
+        }
     }
 
     public void getLengthBC() {
@@ -162,9 +175,13 @@ public class ViewModel {
             return;
         }
 
-        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
-
-        result.set(String.valueOf(triangle.getLengthB()));
+        try {
+            Triangle triangle;
+            triangle = new Triangle(getPointA(), getPointB(), getPointC());
+            result.set(String.valueOf(triangle.getLengthB()));
+        } catch (IllegalArgumentException nfe) {
+            result.set("Invalid triangle");
+        }
     }
 
     public void getLengthCA() {
@@ -172,9 +189,13 @@ public class ViewModel {
             return;
         }
 
-        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
-
-        result.set(String.valueOf(triangle.getLengthC()));
+        try {
+            Triangle triangle;
+            triangle = new Triangle(getPointA(), getPointB(), getPointC());
+            result.set(String.valueOf(triangle.getLengthC()));
+        } catch (IllegalArgumentException nfe) {
+            result.set("Invalid triangle");
+        }
     }
 
     public void getCABAngle() {
@@ -182,9 +203,13 @@ public class ViewModel {
             return;
         }
 
-        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
-
-        result.set(String.valueOf(triangle.getAngleBC()));
+        try {
+            Triangle triangle;
+            triangle = new Triangle(getPointA(), getPointB(), getPointC());
+            result.set(String.valueOf(triangle.getAngleBC()));
+        } catch (IllegalArgumentException nfe) {
+            result.set("Invalid triangle");
+        }
     }
 
     public void getABCAngle() {
@@ -192,9 +217,13 @@ public class ViewModel {
             return;
         }
 
-        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
-
-        result.set(String.valueOf(triangle.getAngleCA()));
+        try {
+            Triangle triangle;
+            triangle = new Triangle(getPointA(), getPointB(), getPointC());
+            result.set(String.valueOf(triangle.getAngleCA()));
+        } catch (IllegalArgumentException nfe) {
+            result.set("Invalid triangle");
+        }
     }
 
     public void getBCAAngle() {
@@ -202,9 +231,13 @@ public class ViewModel {
             return;
         }
 
-        Triangle triangle = new Triangle(getPointA(), getPointB(), getPointC());
-
-        result.set(String.valueOf(triangle.getAngleAB()));
+        try {
+            Triangle triangle;
+            triangle = new Triangle(getPointA(), getPointB(), getPointC());
+            result.set(String.valueOf(triangle.getAngleAB()));
+        } catch (IllegalArgumentException nfe) {
+            result.set("Invalid triangle");
+        }
     }
 
     private Status getInputStatus() {
