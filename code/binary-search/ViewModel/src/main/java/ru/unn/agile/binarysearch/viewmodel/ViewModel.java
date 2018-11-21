@@ -55,6 +55,13 @@ public class ViewModel {
             valueChangedListeners.add(listener);
         }
     }
+    private class ValueChangeListener implements ChangeListener<String> {
+        @Override
+        public void changed(final ObservableValue<? extends String> observable,
+                            final String oldValue, final String newValue) {
+            status.set(getStatus().toString());
+        }
+    }
     public StringProperty arrayInputProperty() {
         return arrayInput;
     }
@@ -106,11 +113,8 @@ public class ViewModel {
         return result.get();
     }
 
-    public Status getInputStatus() {
-        Status inputStatus = Status.READY;
-        if (arrayInput.get().isEmpty() || elementInput.get().isEmpty()) {
-            inputStatus = Status.WAITING;
-        }
+    public Status getStatus() {
+        Status status = Status.READY;
         try {
             String[] split = arrayInput.get().split(",");
             int[] arr = new int[split.length];
@@ -120,33 +124,24 @@ public class ViewModel {
             arrayCorrect = true;
             search = new BinarySearch(arr);
         } catch (NumberFormatException nfe) {
-            inputStatus = Status.BAD_ARRAY_FORMAT;
+            status = Status.BAD_ARRAY_FORMAT;
         } catch (BadArrayException bae) {
-            inputStatus = Status.BAD_ARRAY_SORT;
+            status = Status.BAD_ARRAY_SORT;
         }
         try {
             key = Integer.parseInt(elementInput.get());
             elementCorrect = true;
         } catch (NumberFormatException nfe) {
-            inputStatus = Status.BAD_ELEMENT_FORMAT;
+            status = Status.BAD_ELEMENT_FORMAT;
         }
-        return inputStatus;
+        return status;
     }
     public boolean isSearchDisabled() {
         return searchDisabled.get();
     }
-
-    private class ValueChangeListener implements ChangeListener<String> {
-        @Override
-        public void changed(final ObservableValue<? extends String> observable,
-                            final String oldValue, final String newValue) {
-            status.set(getInputStatus().toString());
-        }
-    }
 }
 
 enum Status {
-    WAITING("Enter array and key to search"),
     READY("Press Search"),
     BAD_ARRAY_FORMAT("Enter array of ints, separated by commas"),
     BAD_ARRAY_SORT("Array must be sorted"),
