@@ -56,7 +56,7 @@ public class ViewModelTest {
     }
 
     @Test
-    public void canPrintRightFirstSegmentStatusForInvalidSegment() {
+    public void canPrintRightStatusForInvalidFirstSegmentCoordsInput() {
         viewModel.setFirstSegmentFirstPointCoordX("1");
         viewModel.setFirstSegmentFirstPointCoordY("d");
         viewModel.setFirstSegmentSecondPointCoordX("1");
@@ -66,7 +66,7 @@ public class ViewModelTest {
     }
 
     @Test
-    public void canPrintRightSecondSegmentStatusForInvalidSegment() {
+    public void canPrintRightStatusForInvalidSecondSegmentCoordsInput() {
         viewModel.setSecondSegmentFirstPointCoordX("1");
         viewModel.setSecondSegmentFirstPointCoordY("d");
         viewModel.setSecondSegmentSecondPointCoordX("1");

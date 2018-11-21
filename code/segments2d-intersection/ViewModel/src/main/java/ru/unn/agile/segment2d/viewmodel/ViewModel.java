@@ -7,6 +7,7 @@ import ru.unn.agile.segment2d.model.Segment2D;
 
 public class ViewModel {
     private static final String SEGMENT_ERROR_STATUS = "Segment is incorrect!";
+    private static final String SEGMENT_CORRECT_STATUS = "Segment is correct!";
 
     private StringProperty firstSegmentFirstPointCoordX = new SimpleStringProperty();
     private StringProperty firstSegmentFirstPointCoordY = new SimpleStringProperty();
