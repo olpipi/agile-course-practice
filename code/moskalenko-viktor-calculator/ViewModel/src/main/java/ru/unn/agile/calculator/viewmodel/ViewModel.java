@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ViewModel {
 
-    private final ObjectProperty<NumberSystem> inputNumberSystem = new SimpleObjectProperty<>();
+
     private final ObjectProperty<NumberSystem> outputNumberSystem = new SimpleObjectProperty<>();
     private final StringProperty result = new SimpleStringProperty();
     private final StringProperty userMessage = new SimpleStringProperty();
@@ -26,12 +26,8 @@ public class ViewModel {
 
     private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
 
-    public NumberSystem getInputNumberSystem() {
-        return inputNumberSystem.get();
-    }
-
     public ViewModel() {
-        inputNumberSystem.setValue(NumberSystem.BINARY);
+
         outputNumberSystem.setValue(NumberSystem.BINARY);
         result.setValue("");
         userMessage.setValue("");
@@ -64,17 +60,6 @@ public class ViewModel {
             valueChangedListeners.add(listener);
         }
 
-    }
-
-    private UserMessages checkInput() {
-        String a = number1.get();
-        String b = number2.get();
-        if("".equals(a) || "".equals(b)) return UserMessages.WAIT_FOR_INPUT;
-        Integer parsedA = NumberConverter.tryParse(a);
-        Integer parsedB = NumberConverter.tryParse(b);
-        if((parsedA == null) || (parsedB == null)) return UserMessages.INPUT_INVALID;
-
-        return UserMessages.READY;
     }
 
     public String getResult() {
@@ -113,18 +98,6 @@ public class ViewModel {
         userMessage.setValue(UserMessages.SUCCESS.toString());
     }
 
-    private String buildUnaryMinusResult(NumberSystem currentSystem, String a, String b) {
-        return "Minus: -a = " + Calculator.unaryMinus(a, currentSystem) + ", -b = " + Calculator.unaryMinus(b, currentSystem) + "\n";
-    }
-
-    private String buildMultResult(NumberSystem currentSystem, String a, String b) {
-        return "Mult: a*b = " + Calculator.multiply(a, b, currentSystem) + "\n";
-    }
-
-    private String buildSumResult(NumberSystem currentSystem, String a, String b) {
-        return "Sum: a+b = " + Calculator.add(a, b, currentSystem) + "\n";
-    }
-
     public NumberSystem getOutputNumberSystem() {
         return outputNumberSystem.get();
     }
@@ -139,5 +112,49 @@ public class ViewModel {
                             final String oldValue, final String newValue) {
             userMessage.set(checkInput().toString());
         }
+    }
+
+    private String buildUnaryMinusResult(final NumberSystem currentSystem,
+                                         final String a,
+                                         final String b) {
+        return "Minus: -a = "
+                + Calculator.unaryMinus(a, currentSystem)
+                + ", -b = "
+                + Calculator.unaryMinus(b, currentSystem)
+                + "\n";
+
+
+    }
+
+    private String buildMultResult(final NumberSystem currentSystem,
+                                   final String a,
+                                   final String b) {
+        return "Mult: a*b = "
+                + Calculator.multiply(a, b, currentSystem)
+                + "\n";
+    }
+
+    private String buildSumResult(final NumberSystem currentSystem,
+                                  final String a,
+                                  final String b) {
+        return "Sum: a+b = "
+                + Calculator.add(a, b, currentSystem)
+                + "\n";
+    }
+
+    private UserMessages checkInput() {
+        String a = number1.get();
+        String b = number2.get();
+        if ("".equals(a) || "".equals(b)) {
+            return UserMessages.WAIT_FOR_INPUT;
+        }
+
+        Integer parsedA = NumberConverter.tryParse(a);
+        Integer parsedB = NumberConverter.tryParse(b);
+        if ((parsedA == null) || (parsedB == null)) {
+            return UserMessages.INPUT_INVALID;
+        }
+
+        return UserMessages.READY;
     }
 }

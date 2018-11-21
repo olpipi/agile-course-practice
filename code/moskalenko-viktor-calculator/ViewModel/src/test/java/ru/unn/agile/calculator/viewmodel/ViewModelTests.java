@@ -26,7 +26,6 @@ public class ViewModelTests {
 
     @Test
     public void canSetDefaultValues() {
-        assertEquals(NumberSystem.BINARY, viewModel.getInputNumberSystem());
         assertEquals(NumberSystem.BINARY, viewModel.getOutputNumberSystem());
         assertEquals("", viewModel.getResult());
         assertEquals("", viewModel.getUserMessage());
@@ -44,8 +43,8 @@ public class ViewModelTests {
         viewModel.number2Property().setValue(b);
         viewModel.calculate();
 
-        String expectedResult = "Sum: a+b = " + Calculator.add(a,b, NumberSystem.BINARY) + "\n"
-                + "Mult: a*b = " + Calculator.multiply(a,b, NumberSystem.BINARY) + "\n"
+        String expectedResult = "Sum: a+b = " + Calculator.add(a, b, NumberSystem.BINARY) + "\n"
+                + "Mult: a*b = " + Calculator.multiply(a, b, NumberSystem.BINARY) + "\n"
                 + "Minus: -a = " + Calculator.unaryMinus(a, NumberSystem.BINARY)
                 + ", -b = " + Calculator.unaryMinus(b, NumberSystem.BINARY) + "\n";
 
@@ -65,14 +64,13 @@ public class ViewModelTests {
 
         viewModel.calculate();
 
-        String expectedResult = "Sum: a+b = " + Calculator.add(a,b, NumberSystem.OCTAL) + "\n"
-                + "Mult: a*b = " + Calculator.multiply(a,b, NumberSystem.OCTAL) + "\n"
+        String expectedResult = "Sum: a+b = " + Calculator.add(a, b, NumberSystem.OCTAL) + "\n"
+                + "Mult: a*b = " + Calculator.multiply(a, b, NumberSystem.OCTAL) + "\n"
                 + "Minus: -a = " + Calculator.unaryMinus(a, NumberSystem.OCTAL)
                 + ", -b = " + Calculator.unaryMinus(b, NumberSystem.OCTAL) + "\n";
 
         assertEquals(expectedResult, viewModel.getResult());
     }
-
 
 
     @Test
@@ -127,9 +125,6 @@ public class ViewModelTests {
         assertEquals(false, viewModel.isCalculationDisabled());
         assertEquals(UserMessages.SUCCESS.toString(), viewModel.getUserMessage());
     }
-
-
-
 
 
 }
