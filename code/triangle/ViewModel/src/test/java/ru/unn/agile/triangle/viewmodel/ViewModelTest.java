@@ -149,7 +149,7 @@ public class ViewModelTest {
     }
 
     @Test
-    public void qq() {
+    public void emptyForm() {
         viewModel.aXProperty().set("");
         viewModel.aYProperty().set("");
         viewModel.bXProperty().set("");
@@ -161,7 +161,7 @@ public class ViewModelTest {
     }
 
     @Test
-    public void invalidTriangle() {
+    public void invalidTriangleForBCAAngle() {
         viewModel.aXProperty().set("0.0");
         viewModel.aYProperty().set("0.0");
         viewModel.bXProperty().set("0.0");
@@ -172,6 +172,103 @@ public class ViewModelTest {
         viewModel.getBCAAngle();
 
         assertEquals("Invalid triangle", viewModel.getResult());
+    }
 
+    @Test
+    public void invalidTriangleForABCAngle() {
+        viewModel.aXProperty().set("1.0");
+        viewModel.aYProperty().set("1.0");
+        viewModel.bXProperty().set("1.0");
+        viewModel.bYProperty().set("1.0");
+        viewModel.cXProperty().set("5.0");
+        viewModel.cYProperty().set("5.0");
+
+        viewModel.getABCAngle();
+
+        assertEquals("Invalid triangle", viewModel.getResult());
+    }
+
+    @Test
+    public void invalidTriangleForCABAngle() {
+        viewModel.aXProperty().set("3.0");
+        viewModel.aYProperty().set("3.0");
+        viewModel.bXProperty().set("0.0");
+        viewModel.bYProperty().set("0.0");
+        viewModel.cXProperty().set("3.0");
+        viewModel.cYProperty().set("3.0");
+
+        viewModel.getCABAngle();
+
+        assertEquals("Invalid triangle", viewModel.getResult());
+    }
+
+    @Test
+    public void invalidTriangleForPerimeter() {
+        viewModel.aXProperty().set("3.0");
+        viewModel.aYProperty().set("3.0");
+        viewModel.bXProperty().set("3.0");
+        viewModel.bYProperty().set("3.0");
+        viewModel.cXProperty().set("3.0");
+        viewModel.cYProperty().set("3.0");
+
+        viewModel.perimeter();
+
+        assertEquals("Invalid triangle", viewModel.getResult());
+    }
+
+    @Test
+    public void invalidTriangleForSquare() {
+        viewModel.aXProperty().set("7.0");
+        viewModel.aYProperty().set("7.0");
+        viewModel.bXProperty().set("3.0");
+        viewModel.bYProperty().set("3.0");
+        viewModel.cXProperty().set("3.0");
+        viewModel.cYProperty().set("3.0");
+
+        viewModel.square();
+
+        assertEquals("Invalid triangle", viewModel.getResult());
+    }
+
+    @Test
+    public void invalidTriangleForLengthBC() {
+        viewModel.aXProperty().set("8.0");
+        viewModel.aYProperty().set("8.0");
+        viewModel.bXProperty().set("8.0");
+        viewModel.bYProperty().set("8.0");
+        viewModel.cXProperty().set("8.0");
+        viewModel.cYProperty().set("8.0");
+
+        viewModel.getLengthBC();
+
+        assertEquals("Invalid triangle", viewModel.getResult());
+    }
+
+    @Test
+    public void invalidTriangleForLengthAB() {
+        viewModel.aXProperty().set("2.0");
+        viewModel.aYProperty().set("5.0");
+        viewModel.bXProperty().set("5.0");
+        viewModel.bYProperty().set("2.0");
+        viewModel.cXProperty().set("2.0");
+        viewModel.cYProperty().set("5.0");
+
+        viewModel.getLengthAB();
+
+        assertEquals("Invalid triangle", viewModel.getResult());
+    }
+
+    @Test
+    public void invalidTriangleForLengthCA() {
+        viewModel.aXProperty().set("0.0");
+        viewModel.aYProperty().set("1.0");
+        viewModel.bXProperty().set("0.0");
+        viewModel.bYProperty().set("1.0");
+        viewModel.cXProperty().set("1.0");
+        viewModel.cYProperty().set("0.0");
+
+        viewModel.getLengthCA();
+
+        assertEquals("Invalid triangle", viewModel.getResult());
     }
 }
