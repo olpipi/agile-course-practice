@@ -63,8 +63,10 @@ public class ViewModelTest {
     @Test
     public void canAddPolynomial() {
         ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("1.0x^3-2.0x^2+3.0x-4.0");
+        viewModel.setSecondPolynomialStr("-1.0x^3-2.0x^2+3.0x-4.0");
 
-        viewModel.add("1.0x^3-2.0x^2+3.0x-4.0", "-1.0x^3-2.0x^2+3.0x-4.0");
+        viewModel.add();
 
         assertEquals("-4.0x^2 + 6.0x - 8.0", viewModel.resultStr());
     }
@@ -72,8 +74,10 @@ public class ViewModelTest {
     @Test
     public void canMultiplyByNumber() {
         ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("1.0x^3-2.0x^2+3.0x-4.0");
+        viewModel.setSecondPolynomialStr("5.0");
 
-        viewModel.multiply("1.0x^3-2.0x^2+3.0x-4.0", "5.0");
+        viewModel.multiply();
 
         assertEquals("5.0x^3 - 10.0x^2 + 15.0x - 20.0", viewModel.resultStr());
     }
@@ -81,8 +85,10 @@ public class ViewModelTest {
     @Test
     public void canSubtractPolynomial() {
         ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("1.0x^2+2.0x+4.0");
+        viewModel.setSecondPolynomialStr("1.0x^2-2.0x+3.0");
 
-        viewModel.subtract("1.0x^2+2.0x+4.0", "1.0x^2-2.0x+3.0");
+        viewModel.subtract();
 
         assertEquals("4.0x + 1.0", viewModel.resultStr());
     }
@@ -127,8 +133,10 @@ public class ViewModelTest {
     @Test
     public void canSubtractWrongFormatPolynomial() {
         ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("1.0x^2+2.0x+4.0");
+        viewModel.setSecondPolynomialStr("fghfg");
 
-        viewModel.subtract("1.0x^2+2.0x+4.0", "fghfg");
+        viewModel.subtract();
 
         assertEquals(ViewModel.FORMAT_ERROR +"2", viewModel.resultStr());
     }
@@ -136,8 +144,9 @@ public class ViewModelTest {
     @Test
     public void canAddWrongFormatPolynomial() {
         ViewModel viewModel = new ViewModel();
-
-        viewModel.add("dfgdfg", "1.0x^2+2.0x+4.0");
+        viewModel.setFirstPolynomialStr("dfgdfg");
+        viewModel.setSecondPolynomialStr("1.0x^2+2.0x+4.0");
+        viewModel.add();
 
         assertEquals(ViewModel.FORMAT_ERROR +"1", viewModel.resultStr());
     }
@@ -145,8 +154,10 @@ public class ViewModelTest {
     @Test
     public void canMultiplyWrongFormatPolynomial() {
         ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("fghfg");
+        viewModel.setSecondPolynomialStr("fghfg");
 
-        viewModel.multiply("fghfg", "fghfg");
+        viewModel.multiply();
 
         assertEquals(ViewModel.FORMAT_ERROR +"1 и 2", viewModel.resultStr());
     }

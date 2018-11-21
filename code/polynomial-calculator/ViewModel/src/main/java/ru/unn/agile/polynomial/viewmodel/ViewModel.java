@@ -90,25 +90,25 @@ public class ViewModel {
         return null;
     }
 
-    public void add(final String polynomialStr1, final String polynomialStr2) {
-        Polynomial p1 = parsePolynomial(polynomialStr1);
-        Polynomial p2 = parsePolynomial(polynomialStr2);
+    public void add() {
+        Polynomial p1 = parsePolynomial(firstPolynomialStr());
+        Polynomial p2 = parsePolynomial(secondPolynomialStr());
         if (checkError(p1, p2)) {
             setResultStr(p1.add(p2).toString());
         }
     }
 
-    public void subtract(final String polynomialStr1, final String polynomialStr2) {
-        Polynomial p1 = parsePolynomial(polynomialStr1);
-        Polynomial p2 = parsePolynomial(polynomialStr2);
+    public void subtract() {
+        Polynomial p1 = parsePolynomial(firstPolynomialStr());
+        Polynomial p2 = parsePolynomial(secondPolynomialStr());
         if (checkError(p1, p2)) {
             setResultStr(p1.subtract(p2).toString());
         }
     }
 
-    public void multiply(final String polynomialStr1, final String polynomialStr2) {
-        Polynomial p1 = parsePolynomial(polynomialStr1);
-        Polynomial p2 = parsePolynomial(polynomialStr2);
+    public void multiply() {
+        Polynomial p1 = parsePolynomial(firstPolynomialStr());
+        Polynomial p2 = parsePolynomial(secondPolynomialStr());
         if (checkError(p1, p2)) {
             setResultStr(p1.multiply(p2).toString());
         }
