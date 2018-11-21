@@ -6,12 +6,17 @@ public class BinarySearch {
     private int size;
 
 
-    public BinarySearch(final int[] arrayParam) {
+    public BinarySearch(final int[] arrayParam) throws BadArrayException {
         if (arrayParam.length != 0) {
             array = arrayParam;
             size = array.length;
         } else {
-            throw new NullPointerException("Размер массива равен нулю");
+            throw new BadArrayException("Размер массива равен нулю");
+        }
+        for (int i = 0; i < size - 1; i++) {
+            if (array[i] > array[i + 1]) {
+                throw new BadArrayException("Массив не отсортирован");
+            }
         }
     }
 
@@ -31,28 +36,25 @@ public class BinarySearch {
         int middle;
         int leftBorder = 0;
         int rightBorder = size - 1;
-
-        if (checkOrderedArray()) {
-            while ((leftBorder <= rightBorder)) {
-                middle = (leftBorder + rightBorder) / 2;
-                if (key > array[middle]) {
-                    leftBorder = middle + 1;
-                }
-                if (key < array[middle]) {
-                    rightBorder = middle - 1;
-                }
-                if (key == array[middle]) {
-                    return middle;
-                }
+        while ((leftBorder <= rightBorder)) {
+            middle = (leftBorder + rightBorder) / 2;
+            if (key > array[middle]) {
+                leftBorder = middle + 1;
+            }
+            if (key < array[middle]) {
+                rightBorder = middle - 1;
+            }
+            if (key == array[middle]) {
+                return middle;
             }
         }
         return -1;
     }
 
-    public boolean checkOrderedArray() {
-            for (int i = 0; i < size - 1; i++) {
+    public boolean checkOrderedArray() throws BadArrayException {
+        for (int i = 0; i < size - 1; i++) {
             if (array[i] > array[i + 1]) {
-                throw new NullPointerException("Массив не отсортирован");
+                throw new BadArrayException("Массив не отсортирован");
             }
         }
         return true;

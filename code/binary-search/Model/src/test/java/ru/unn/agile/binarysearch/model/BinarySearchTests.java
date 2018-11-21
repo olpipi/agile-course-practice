@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 public class BinarySearchTests {
 
     @Test
-    public void canInitializeBinarySearch() {
+    public void canInitializeBinarySearch() throws BadArrayException {
         int[] array = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         BinarySearch binarySearch = new BinarySearch(array);
 
@@ -16,7 +16,7 @@ public class BinarySearchTests {
     }
 
     @Test
-    public void isKeyLocateOnTheRightHalfOfTheArray() {
+    public void isKeyLocateOnTheRightHalfOfTheArray() throws BadArrayException {
         int[] array = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         int key = 8;
         BinarySearch binarySearch = new BinarySearch(array);
@@ -25,7 +25,7 @@ public class BinarySearchTests {
     }
 
     @Test
-    public void isKeyLocateOnTheLeftHalfOfTheArray() {
+    public void isKeyLocateOnTheLeftHalfOfTheArray() throws BadArrayException {
         int[] array = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         int key = 2;
         BinarySearch binarySearch = new BinarySearch(array);
@@ -34,7 +34,7 @@ public class BinarySearchTests {
     }
 
     @Test
-    public void canSearchKeyInArray() {
+    public void canSearchKeyInArray() throws BadArrayException {
         int[] array = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         int key = 7;
         BinarySearch binarySearch = new BinarySearch(array);
@@ -43,7 +43,7 @@ public class BinarySearchTests {
     }
 
     @Test
-    public void canSearchLastKeyInArray() {
+    public void canSearchLastKeyInArray() throws BadArrayException {
         int[] array = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         int key = 9;
         BinarySearch binarySearch = new BinarySearch(array);
@@ -52,7 +52,7 @@ public class BinarySearchTests {
     }
 
     @Test
-    public void canSearchMiddleKeyInArray() {
+    public void canSearchMiddleKeyInArray() throws BadArrayException {
         int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         int key = 5;
         BinarySearch binarySearch = new BinarySearch(array);
@@ -61,7 +61,7 @@ public class BinarySearchTests {
     }
 
     @Test
-    public void canSearchFirstKeyInArray() {
+    public void canSearchFirstKeyInArray() throws BadArrayException {
         int[] array = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         int key = 0;
         BinarySearch binarySearch = new BinarySearch(array);
@@ -70,7 +70,7 @@ public class BinarySearchTests {
     }
 
     @Test
-    public void canNotSearchKeyInArray() {
+    public void canNotSearchKeyInArray() throws BadArrayException {
         int[] array = {0, 1, 2, 3, 5, 6, 7, 8};
         int key = 4;
         BinarySearch binarySearch = new BinarySearch(array);
@@ -79,22 +79,22 @@ public class BinarySearchTests {
     }
 
     @Test
-    public void canToIdentifyAnOrderedArray() {
+    public void canToIdentifyAnOrderedArray() throws BadArrayException {
         int[] array = {0, 1, 2, 3, 5, 6, 7, 8};
         BinarySearch binarySearch = new BinarySearch(array);
 
         assertTrue(binarySearch.checkOrderedArray());
     }
 
-    @Test(expected = NullPointerException.class)
-    public void canExceptionAnEmptyArray() {
+    @Test(expected = BadArrayException.class)
+    public void canExceptionAnEmptyArray() throws BadArrayException {
         int[] array = {};
         BinarySearch binarySearch = new BinarySearch(array);
     }
 
 
-    @Test(expected = NullPointerException.class)
-    public void canToIdentifyAnUnorderedArray() {
+    @Test(expected = BadArrayException.class)
+    public void canToIdentifyAnUnorderedArray() throws BadArrayException {
         int[] array = {0, 2, 8, 3, 9, 6, 4, 7};
         BinarySearch binarySearch = new BinarySearch(array);
 
