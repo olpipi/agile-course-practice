@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.unn.agile.romannumberconverter.view.RomanNumberConverter">
+   <children>
+      <AnchorPane prefHeight="176.0" prefWidth="400.0">
+         <children>
+            <Label layoutX="44.0" layoutY="29.0" text="Арабские цифры" />
+            <Label layoutX="47.0" layoutY="115.0" text="Римские цифры" />
+            <Label layoutX="248.0" layoutY="60.0" text="=">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+            <TextField layoutX="185.0" layoutY="35.0" />
+            <TextField layoutX="185.0" layoutY="111.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="62.0" layoutY="50.0" text="(max 3999)" />
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
