@@ -28,7 +28,7 @@ public class ViewModel {
         isCalculateButtonEnabled = false;
     }
 
-    public abstract class Status {
+    public final class Status {
         public static final String COUNT_WAITING = "Please provide salary and count period";
         public static final String READY_CALCULATE = "Press 'Calculate' button";
         public static final String BAD_SALARY_FORMAT = "Salary must be more 0";
@@ -38,6 +38,10 @@ public class ViewModel {
         public static final String BAD_WORKED_HOURS_FORMAT =
                 "Worked houses must be between 1 and 500";
         public static final String CASH = "This your cash";
+
+        public Status(){
+            
+        }
     }
 
     public void checkCountFields() {
