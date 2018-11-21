@@ -5,6 +5,8 @@ import javafx.beans.property.StringProperty;
 
 import ru.unn.agile.segment2d.model.Segment2D;
 
+import java.awt.geom.Point2D;
+
 public class ViewModel {
     private static final String SEGMENT_ERROR_STATUS = "Segment is incorrect!";
     private static final String SEGMENT_CORRECT_STATUS = "Segment is correct!";
@@ -101,6 +103,20 @@ public class ViewModel {
         if (!firstSegmentStatus.get().equals(SEGMENT_CORRECT_STATUS) || !secondSegmentStatus.get().equals(SEGMENT_CORRECT_STATUS)) {
             result.set(RESULT_ERROR_STATUS);
             return;
+        }
+
+        Segment2D firstSegment = createSegment(firstSegmentFirstPointCoordX.get(), firstSegmentFirstPointCoordY.get(),
+                firstSegmentSecondPointCoordX.get(), firstSegmentSecondPointCoordY.get());
+        Segment2D secondSegment = createSegment(secondSegmentFirstPointCoordX.get(), secondSegmentFirstPointCoordY.get(),
+                secondSegmentSecondPointCoordX.get(), secondSegmentSecondPointCoordY.get());
+
+        Point2D inttersectionPoint = firstSegment.intersection(secondSegment);
+        if (inttersectionPoint != null) {
+            String coordX = Double.toString(inttersectionPoint.getX());
+            String coordY = Double.toString(inttersectionPoint.getY());
+            result.set(String.format(SEGMENT_INTERSECT_STATUS, coordX, coordY));
+        } else {
+            result.set(SEGMENT_NOT_INTERSECT_STATUS);
         }
     }
 

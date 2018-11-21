@@ -130,4 +130,20 @@ public class ViewModelTest {
 
         assertEquals("Can't resolve intersection! Check segments.", viewModel.getResult());
     }
+
+    @Test
+    public void canPrintRightResultForNotIntersectedSegments() {
+        viewModel.setSecondSegmentFirstPointCoordX("1");
+        viewModel.setSecondSegmentFirstPointCoordY("2");
+        viewModel.setSecondSegmentSecondPointCoordX("1");
+        viewModel.setSecondSegmentSecondPointCoordY("1");
+        viewModel.setFirstSegmentFirstPointCoordX("1");
+        viewModel.setFirstSegmentFirstPointCoordY("2");
+        viewModel.setFirstSegmentSecondPointCoordX("1");
+        viewModel.setFirstSegmentSecondPointCoordY("1");
+
+        viewModel.checkIntersection();
+
+        assertEquals("Segments don't intersect!", viewModel.getResult());
+    }
 }
