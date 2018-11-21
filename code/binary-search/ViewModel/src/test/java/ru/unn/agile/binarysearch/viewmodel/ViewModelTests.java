@@ -92,4 +92,13 @@ public class ViewModelTests {
         assertEquals(false, viewModel.isSearchEnabled());
     }
 
+    @Test
+    public void isSearchEnabledWithEmptyInput() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setArrayTextBoxValue("");
+        viewModel.setElementTextBoxValue("");
+
+        assertEquals(false, viewModel.isSearchEnabled());
+    }
 }
