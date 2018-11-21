@@ -73,24 +73,32 @@ public class ViewModelTest {
         assertEquals("4.0x + 1.0", resultPolynomialStr);
     }
 
+    //For parser2
     @Test
-    public void canParseFirstDegreeWithoutCoeff() {
+    public void canParseFirstDegreeWithoutFreeCoeff() {
         ViewModel viewModel = new ViewModel();
         Polynomial polynomial = viewModel.parsePolynomial2("1.0x");
         assertEquals("1.0x", polynomial.toString());
     }
 
     @Test
-    public void canParseFirstDegreeWithCoeffPlus() {
+    public void canParseFirstDegreeWithFreeCoeffPlus() {
         ViewModel viewModel = new ViewModel();
         Polynomial polynomial = viewModel.parsePolynomial2("1.0x+1.0");
         assertEquals("1.0x + 1.0", polynomial.toString());
     }
 
     @Test
-    public void canParseFirstDegreeWithCoeffMinus() {
+    public void canParseFirstDegreeWithFreeCoeffMinus() {
         ViewModel viewModel = new ViewModel();
         Polynomial polynomial = viewModel.parsePolynomial2("1.0x-1.0");
         assertEquals("1.0x - 1.0", polynomial.toString());
+    }
+
+    @Test
+    public void canParseSecondDegreeWithoutFreeCoeff() {
+        ViewModel viewModel = new ViewModel();
+        Polynomial polynomial = viewModel.parsePolynomial2("1.0x^2");
+        assertEquals("1.0x^2", polynomial.toString());
     }
 }

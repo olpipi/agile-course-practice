@@ -80,39 +80,47 @@ public class ViewModel {
 
     public Polynomial parsePolynomial2(final String polynomialStr) {
         ArrayList<Pair<Integer, Double>> array = new ArrayList<>();
-        double currentCoeff = 0;
-        int currentDegree = 0;
         String digitStr = "";
+        String degreeStr = "";
+        boolean degree = false;
         int i = 0;
         while (i < polynomialStr.length()) {
             if (polynomialStr.toCharArray()[i] == 'x') {
-                currentCoeff = Double.valueOf(digitStr);
-                currentDegree = 1;
+                degreeStr = "1";
                 i++;
             } else if (Character.isDigit(polynomialStr.toCharArray()[i])
                     || polynomialStr.toCharArray()[i] == '.') {
-                digitStr += polynomialStr.toCharArray()[i];
+                if (degree) {
+                    degreeStr += polynomialStr.toCharArray()[i];
+                } else {
+                    digitStr += polynomialStr.toCharArray()[i];
+                }
+
                 if (i < polynomialStr.length())
                     i++;
                 else
                     break;
                 continue;
             } else if (polynomialStr.toCharArray()[i] == '+') {
-                array.add(new Pair<>(currentDegree, currentCoeff));
-                currentDegree = 0;
-                currentCoeff =0.0;
+                array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
+                degreeStr = "0";
+                degree = false;
                 digitStr = "";
                 i++;
             } else if (polynomialStr.toCharArray()[i] == '-') {
-                array.add(new Pair<>(currentDegree, currentCoeff));
-                currentDegree = 0;
-                currentCoeff =0.0;
+                array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
+                degree = false;
+                degreeStr = "0";
                 digitStr = "-";
+                i++;
+            } else if (polynomialStr.toCharArray()[i] == '^') {
+                degree = true;
+                degreeStr = "";
                 i++;
             } else
                 return null;
         }
-        array.add(new Pair<>(currentDegree, Double.valueOf(digitStr)));
+        array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
         if (!array.isEmpty()) {
             double[] coeffs = new double[array.get(0).getKey() + 1];
             for (int j = 0; j < array.size(); j++) {
