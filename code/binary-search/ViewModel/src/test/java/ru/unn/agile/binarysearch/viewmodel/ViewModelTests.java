@@ -71,4 +71,25 @@ public class ViewModelTests {
 
         assertEquals(true, viewModel.isSearchEnabled());
     }
+
+    @Test
+    public void isSearchEnabledWithIncorrectArrayInput() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setArrayTextBoxValue("1yh,p2,_0w3");
+        viewModel.setElementTextBoxValue("2");
+
+        assertEquals(false, viewModel.isSearchEnabled());
+    }
+
+    @Test
+    public void isSearchEnabledWithIncorrectElementInput() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setArrayTextBoxValue("1,2,3");
+        viewModel.setElementTextBoxValue("h");
+
+        assertEquals(false, viewModel.isSearchEnabled());
+    }
+
 }
