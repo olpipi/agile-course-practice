@@ -15,6 +15,23 @@ public class PolynomialTest {
     }
 
     @Test
+    public void checkFirstDegreeWithCoeffPlus() {
+        double[] toInit = {1.0, 1.0};
+
+        Polynomial p = new Polynomial(toInit);
+
+        assertEquals("1.0x + 1.0", p.toString());
+    }
+
+    @Test
+    public void checkFirstDegreeWithCoeffMinus() {
+        double[] toInit = {1.0, -1.0};
+
+        Polynomial p = new Polynomial(toInit);
+
+        assertEquals("1.0x - 1.0", p.toString());
+    }
+    @Test
     public void checkInitWithFirstZero() {
         double[] toInit = {0.0, 0.0, 3.0};
         double[] result = {3.0};

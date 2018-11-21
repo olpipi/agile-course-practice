@@ -51,10 +51,13 @@ public class Polynomial {
             return "" + coeffs[0];
         } else if (degree == 1) {
             String s = coeffs[0] + "x";
-            if (coeffs[1] == 0.0)
+            if (coeffs[1] == 0.0) {
                 return s;
-            else
+            } else if (coeffs[1] > 0) {
                 return s + " + " + coeffs[1];
+            } else if (coeffs[1] < 0) {
+                return s + " - " + (-coeffs[1]);
+            }
         }
 
         String s = coeffs[0] + "x^" + degree;

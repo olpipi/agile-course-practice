@@ -81,9 +81,16 @@ public class ViewModelTest {
     }
 
     @Test
-    public void canParseFirstDegreeWithCoeff() {
+    public void canParseFirstDegreeWithCoeffPlus() {
         ViewModel viewModel = new ViewModel();
         Polynomial polynomial = viewModel.parsePolynomial2("1.0x+1.0");
         assertEquals("1.0x + 1.0", polynomial.toString());
+    }
+
+    @Test
+    public void canParseFirstDegreeWithCoeffMinus() {
+        ViewModel viewModel = new ViewModel();
+        Polynomial polynomial = viewModel.parsePolynomial2("1.0x-1.0");
+        assertEquals("1.0x - 1.0", polynomial.toString());
     }
 }

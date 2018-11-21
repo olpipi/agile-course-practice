@@ -103,6 +103,12 @@ public class ViewModel {
                 currentCoeff =0.0;
                 digitStr = "";
                 i++;
+            } else if (polynomialStr.toCharArray()[i] == '-') {
+                array.add(new Pair<>(currentDegree, currentCoeff));
+                currentDegree = 0;
+                currentCoeff =0.0;
+                digitStr = "-";
+                i++;
             } else
                 return null;
         }
