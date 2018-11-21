@@ -4,6 +4,7 @@ import javafx.util.Pair;
 import ru.unn.agile.polynomial.model.Polynomial;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PolynomialParser {
     private boolean degreeDetected = false;
@@ -11,7 +12,7 @@ public class PolynomialParser {
     private boolean symbolPlusDetected = false;
     private boolean symbolMinusDetected = false;
     private boolean pointDetected = false;
-    private ArrayList<Pair<Integer, Double>> array = new ArrayList<>();
+    private List<Pair<Integer, Double>> array = new ArrayList<>();
     private String digitStr = "";
     private String degreeStr = "0";
     public static final String FORMAT_ERROR = "Неверный формат полинома ";
@@ -77,7 +78,7 @@ public class PolynomialParser {
 
         if (symbol == '.') {
             pointDetected = true;
-        }else{
+        } else {
             pointDetected = false;
         }
 

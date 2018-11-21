@@ -8,6 +8,8 @@ public class ViewModel {
     private StringProperty firstPolynomialStr = new SimpleStringProperty();
     private StringProperty secondPolynomialStr = new SimpleStringProperty();
     private StringProperty resultStr = new SimpleStringProperty();
+    private Polynomial p1 = new Polynomial();
+    private Polynomial p2 = new Polynomial();
 
     public StringProperty firstPolynomialStrProperty() {
         return firstPolynomialStr;
@@ -54,58 +56,45 @@ public class ViewModel {
         return parser.parsePolynomial();
     }
 
-    public void add() {
-        Polynomial p1 = new Polynomial();
-        Polynomial p2 = new Polynomial();
+
+    public boolean parseInput() {
         try {
             p1 = parsePolynomial(getFirstPolynomialStr());
         } catch (ViewModelException exc) {
             setResultStr(PolynomialParser.FORMAT_ERROR + "1");
-            return;
+            return false;
         }
         try {
             p2 = parsePolynomial(getSecondPolynomialStr());
         } catch (ViewModelException exc) {
             setResultStr(PolynomialParser.FORMAT_ERROR + "2");
+            return false;
+        }
+        return true;
+    }
+
+    public void add() {
+        if (parseInput()) {
+            setResultStr(p1.add(p2).toString());
+        } else {
             return;
         }
-        setResultStr(p1.add(p2).toString());
     }
 
     public void subtract() {
-        Polynomial p1 = new Polynomial();
-        Polynomial p2 = new Polynomial();
-        try {
-            p1 = parsePolynomial(getFirstPolynomialStr());
-        } catch (ViewModelException exc) {
-            setResultStr(PolynomialParser.FORMAT_ERROR + "1");
+        if (parseInput()) {
+            setResultStr(p1.subtract(p2).toString());
+        } else {
             return;
         }
-        try {
-            p2 = parsePolynomial(getSecondPolynomialStr());
-        } catch (ViewModelException exc) {
-            setResultStr(PolynomialParser.FORMAT_ERROR + "2");
-            return;
-        }
-        setResultStr(p1.subtract(p2).toString());
     }
 
     public void multiply() {
-        Polynomial p1 = new Polynomial();
-        Polynomial p2 = new Polynomial();
-        try {
-            p1 = parsePolynomial(getFirstPolynomialStr());
-        } catch (ViewModelException exc) {
-            setResultStr(PolynomialParser.FORMAT_ERROR + "1");
+        if (parseInput()) {
+            setResultStr(p1.multiply(p2).toString());
+        } else {
             return;
         }
-        try {
-            p2 = parsePolynomial(getSecondPolynomialStr());
-        } catch (ViewModelException exc) {
-            setResultStr(PolynomialParser.FORMAT_ERROR + "2");
-            return;
-        }
-        setResultStr(p1.multiply(p2).toString());
     }
 
     private void initDefaultFields() {

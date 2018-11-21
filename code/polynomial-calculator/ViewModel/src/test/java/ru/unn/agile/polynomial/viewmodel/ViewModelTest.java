@@ -183,4 +183,15 @@ public class ViewModelTest {
 
         assertEquals(PolynomialParser.FORMAT_ERROR + "1", viewModel.getResultStr());
     }
+
+    @Test
+    public void canSubtractDifficultPolynomial() {
+        ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("5.9x^6-78x^5-9");
+        viewModel.setSecondPolynomialStr("x+x+5");
+
+        viewModel.subtract();
+
+        assertEquals("5.9x^6 - 78.0x^5 - 2.0x - 14.0", viewModel.getResultStr());
+    }
 }
