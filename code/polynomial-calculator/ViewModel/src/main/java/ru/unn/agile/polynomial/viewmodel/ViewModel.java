@@ -12,24 +12,26 @@ public class ViewModel {
     private final StringProperty secondPolynomialStr = new SimpleStringProperty();
     private final StringProperty resultStr = new SimpleStringProperty();
 
-    public StringProperty firstPolynomialStrProperty() {
-        return firstPolynomialStr;
+    public static final String FORMAT_ERROR = "Неверный формат полинома ";
+
+    public String firstPolynomialStr() {
+        return firstPolynomialStr.get();
     }
 
     public void setFirstPolynomialStr(final String firstPolynomialStr) {
         this.firstPolynomialStr.set(firstPolynomialStr);
     }
 
-    public StringProperty secondPolynomialStrProperty() {
-        return secondPolynomialStr;
+    public String secondPolynomialStr() {
+        return secondPolynomialStr.get();
     }
 
     public void setSecondPolynomialStr(final String secondPolynomialStr) {
         this.secondPolynomialStr.set(secondPolynomialStr);
     }
 
-    public StringProperty resultStrProperty() {
-        return resultStr;
+    public String resultStr() {
+        return resultStr.get();
     }
 
     public void setResultStr(final String resultStr) {
@@ -88,16 +90,42 @@ public class ViewModel {
         return null;
     }
 
-    public String add(final String polynomialStr1, final String polynomialStr2) {
-        return parsePolynomial(polynomialStr1).add(parsePolynomial(polynomialStr2)).toString();
+    public void add(final String polynomialStr1, final String polynomialStr2) {
+        Polynomial p1 = parsePolynomial(polynomialStr1);
+        Polynomial p2 = parsePolynomial(polynomialStr2);
+        if (checkError(p1, p2)) {
+            setResultStr(p1.add(p2).toString());
+        }
     }
 
-    public String subtract(final String polynomialStr1, final String polynomialStr2) {
-        return parsePolynomial(polynomialStr1).subtract(parsePolynomial(polynomialStr2)).toString();
+    public void subtract(final String polynomialStr1, final String polynomialStr2) {
+        Polynomial p1 = parsePolynomial(polynomialStr1);
+        Polynomial p2 = parsePolynomial(polynomialStr2);
+        if (checkError(p1, p2)) {
+            setResultStr(p1.subtract(p2).toString());
+        }
     }
 
-    public String multiply(final String polynomialStr1, final String polynomialStr2) {
-        return parsePolynomial(polynomialStr1).multiply(parsePolynomial(polynomialStr2)).toString();
+    public void multiply(final String polynomialStr1, final String polynomialStr2) {
+        Polynomial p1 = parsePolynomial(polynomialStr1);
+        Polynomial p2 = parsePolynomial(polynomialStr2);
+        if (checkError(p1, p2)) {
+            setResultStr(p1.multiply(p2).toString());
+        }
+    }
+
+    private boolean checkError(Polynomial p1, Polynomial p2) {
+        if (p1 == null && p2 == null) {
+            setResultStr(FORMAT_ERROR + "1 и 2");
+            return false;
+        } else if (p1 == null) {
+            setResultStr(FORMAT_ERROR + "1");
+            return false;
+        } else if (p2 == null) {
+            setResultStr(FORMAT_ERROR + "2");
+            return false;
+        }
+        return true;
     }
 
     private void initDefaultFields() {
