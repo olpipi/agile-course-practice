@@ -182,8 +182,7 @@ public class ViewModel {
         result.set("");
     }
 
-    private List<String> createFirstSegmentCoordsList()
-    {
+    private List<String> createFirstSegmentCoordsList() {
         return new ArrayList<String>() { {
             add(firstSegmentFirstPointCoordX.get());
             add(firstSegmentFirstPointCoordY.get());
@@ -192,8 +191,7 @@ public class ViewModel {
         } };
     }
 
-    private List<String> createSecondSegmentCoordsList()
-    {
+    private List<String> createSecondSegmentCoordsList() {
         return new ArrayList<String>() { {
             add(secondSegmentFirstPointCoordX.get());
             add(secondSegmentFirstPointCoordY.get());
@@ -206,7 +204,7 @@ public class ViewModel {
         double firstPointCoordX = Double.parseDouble(coords.get(0));
         double firstPointCoordY = Double.parseDouble(coords.get(1));
         double secondPointCoordX = Double.parseDouble(coords.get(2));
-        double secondPointCoordY = Double.parseDouble(coords.get(3));
+        double secondPointCoordY = Double.parseDouble(coords.get(coords.size() - 1));
 
         return new Segment2D(firstPointCoordX, firstPointCoordY,
                 secondPointCoordX, secondPointCoordY);
