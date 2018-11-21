@@ -50,4 +50,16 @@ public class ViewModelTests {
         assertEquals(expected, viewModel.getElementTextBoxValue());
     }
 
+    @Test
+    public void canFindExistingKey() {
+        ViewModel viewModel = new ViewModel();
+        String expected = "Found key, index 1";
+
+        viewModel.setArrayTextBoxValue("1,2,3");
+        viewModel.setElementTextBoxValue("2");
+        viewModel.search();
+
+        assertEquals(expected, viewModel.getStatus());
+    }
+
 }
