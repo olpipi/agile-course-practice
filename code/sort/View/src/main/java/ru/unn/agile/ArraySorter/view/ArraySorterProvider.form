@@ -39,9 +39,9 @@
                   <grid row="0" column="1" row-span="2" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="cad1b" class="javax.swing.JTextField" binding="addElementField">
+              <component id="cad1b" class="javax.swing.JTextField" binding="inputValueField">
                 <constraints>
-                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="1" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
                   </grid>
                 </constraints>
@@ -68,9 +68,9 @@
                   <text value="Clear array"/>
                 </properties>
               </component>
-              <component id="e8d9" class="javax.swing.JLabel" binding="outputSourceArray">
+              <component id="e8d9" class="javax.swing.JLabel" binding="sourceArrayLabel">
                 <constraints>
-                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="2" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="SourceArray"/>
@@ -92,9 +92,9 @@
                   <text value="Status:"/>
                 </properties>
               </component>
-              <component id="97486" class="javax.swing.JLabel" binding="outputStatusLabel">
+              <component id="97486" class="javax.swing.JLabel" binding="statusLabel">
                 <constraints>
-                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Label"/>
@@ -160,7 +160,7 @@
                 </properties>
                 <border type="none"/>
                 <children>
-                  <component id="17677" class="javax.swing.JTextArea" binding="outputSortedArrayArea">
+                  <component id="17677" class="javax.swing.JTextArea" binding="sortedArrayArea">
                     <constraints/>
                     <properties>
                       <editable value="false"/>

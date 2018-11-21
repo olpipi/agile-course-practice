@@ -12,13 +12,13 @@ public final class ArraySorterProvider {
 
     private ViewModel viewModel;
     private JPanel mainPanel;
-    private JTextField addElementField;
+    private JTextField inputValueField;
     private JButton addElementButton;
     private JButton clearArrayButton;
     private JButton sortArrayButton;
-    private JTextArea outputSortedArrayArea;
-    private JLabel outputStatusLabel;
-    private JLabel outputSourceArray;
+    private JTextArea sortedArrayArea;
+    private JLabel statusLabel;
+    private JLabel sourceArrayLabel;
 
     public static void main(final String[] args) {
         JFrame frame = new JFrame("ArraySorterProvider");
@@ -36,7 +36,7 @@ public final class ArraySorterProvider {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 bind();
-                ArraySorterProvider.this.viewModel.add();
+                ArraySorterProvider.this.viewModel.addProcess();
                 backBind();
             }
         });
@@ -54,7 +54,7 @@ public final class ArraySorterProvider {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 bind();
-                ArraySorterProvider.this.viewModel.clear();
+                ArraySorterProvider.this.viewModel.clearProcess();
                 backBind();
             }
         });
@@ -68,11 +68,11 @@ public final class ArraySorterProvider {
             }
         };
 
-        addElementField.addKeyListener(keyListener);
+        inputValueField.addKeyListener(keyListener);
     }
 
     private void bind() {
-        viewModel.setElemArray(addElementField.getText());
+        viewModel.setInputValue(inputValueField.getText());
     }
 
     private void backBind() {
@@ -80,8 +80,8 @@ public final class ArraySorterProvider {
         sortArrayButton.setEnabled(viewModel.isSortButtonEnabled());
         clearArrayButton.setEnabled(viewModel.isClearButtonEnabled());
 
-        outputSourceArray.setText(viewModel.getOutputSourceArray());
-        outputSortedArrayArea.setText(viewModel.getOutputArray());
-        outputStatusLabel.setText(viewModel.getCurrentState());
+        sourceArrayLabel.setText(viewModel.getSortedArrayStringRepresentation());
+        sortedArrayArea.setText(viewModel.getInputArrayStringRepresentation());
+        statusLabel.setText(viewModel.getCurrentState());
     }
 }

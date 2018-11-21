@@ -6,22 +6,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewModel {
-    private String elemArray;
-    private String outputArray;
-    private String outputSourceArray;
+    private String inputValue;
+    private String sortedArrayStringRepresentation;
+    private String inputArrayStringRepresentation;
     private String status;
 
     private boolean isAddButtonEnabled;
     private boolean isClearButtonEnabled;
     private boolean isSortButtonEnabled;
 
-    private List<Double> array = new ArrayList<Double>();
-    private List<Double> sourceArray = new ArrayList<Double>();
+    private List<Double> sortedArray = new ArrayList<Double>();
+    private List<Double> inputArray = new ArrayList<Double>();
 
     public ViewModel() {
-        elemArray = "";
-        outputArray = "";
-        outputSourceArray = "";
+        inputValue = "";
+        sortedArrayStringRepresentation = "";
+        inputArrayStringRepresentation = "";
         status = Status.WAITING;
 
         isAddButtonEnabled = false;
@@ -29,62 +29,62 @@ public class ViewModel {
         isSortButtonEnabled = false;
     }
 
-    public String getOutputArray() {
-        return outputArray;
+    public String getSortedArrayStringRepresentation() {
+        return sortedArrayStringRepresentation;
     }
 
-    public String getOutputSourceArray() {
-        return outputSourceArray;
+    public String getInputArrayStringRepresentation() {
+        return inputArrayStringRepresentation;
     }
 
     public String getElemArray() {
-        return elemArray;
+        return inputValue;
     }
 
-    public void setElemArray(final String elemArray) {
-        if (elemArray.equals(this.elemArray)) {
+    public void setInputValue(final String inputValue) {
+        if (inputValue.equals(this.inputValue)) {
             return;
         }
 
-        this.elemArray = elemArray;
+        this.inputValue = inputValue;
     }
 
-    public void add() {
+    public void addProcess() {
         if (!parseInput()) {
             return;
         }
 
-        double value = Double.parseDouble(elemArray);
-        array.add(value);
-        sourceArray.add(value);
-        changeEnabledButtons();
+        double value = Double.parseDouble(inputValue);
+        sortedArray.add(value);
+        inputArray.add(value);
+        changeButtonsEnabling();
 
-        outputSourceArray = array.toString();
+        inputArrayStringRepresentation = sortedArray.toString();
     }
 
-    public void clear() {
-        array.clear();
-        sourceArray.clear();
-        changeEnabledButtons();
+    public void clearProcess() {
+        sortedArray.clear();
+        inputArray.clear();
+        changeButtonsEnabling();
 
-        outputArray = array.toString();
-        outputSourceArray = sourceArray.toString();
+        sortedArrayStringRepresentation = sortedArray.toString();
+        inputArrayStringRepresentation = inputArray.toString();
     }
 
     public void sort() {
-        Double[] nativeArray = new Double[array.size()];
-        array.toArray(nativeArray);
+        Double[] nativeArray = new Double[sortedArray.size()];
+        sortedArray.toArray(nativeArray);
 
         ArraySorter.sort(nativeArray);
 
-        for (int i = 0; i < nativeArray.length; i++) {
-            array.set(i, nativeArray[i]);
+        for (int i = 0; i < nativeArray.length; ++i) {
+            sortedArray.set(i, nativeArray[i]);
         }
 
-        changeEnabledButtons();
+        changeButtonsEnabling();
         status = Status.SUCCESSFUL;
 
-        outputArray =  array.toString();
+        sortedArrayStringRepresentation =  sortedArray.toString();
     }
 
     public String getCurrentState() {
@@ -105,16 +105,17 @@ public class ViewModel {
     }
 
     private boolean parseInput() {
+
+        if (inputValue.isEmpty()) {
+            status = Status.WAITING;
+            isAddButtonEnabled = false;
+            return isAddButtonEnabled;
+        }
+
         try {
-            if (elemArray.isEmpty()) {
-                status = Status.WAITING;
-                isAddButtonEnabled = false;
-                return isAddButtonEnabled;
-            } else {
-                Double.parseDouble(elemArray);
-                status = Status.READY;
-                isAddButtonEnabled = true;
-            }
+            Double.parseDouble(inputValue);
+            status = Status.READY;
+            isAddButtonEnabled = true;
         } catch (Exception e) {
             status = Status.BAD_FORMAT;
             isAddButtonEnabled = false;
@@ -136,8 +137,8 @@ public class ViewModel {
         return isSortButtonEnabled;
     }
 
-    private void changeEnabledButtons() {
-        if (array.isEmpty()) {
+    private void changeButtonsEnabling() {
+        if (sortedArray.isEmpty()) {
             isSortButtonEnabled = false;
             isClearButtonEnabled = false;
         } else {
