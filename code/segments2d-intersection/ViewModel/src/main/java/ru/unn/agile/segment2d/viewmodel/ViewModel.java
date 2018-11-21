@@ -9,6 +9,10 @@ public class ViewModel {
     private static final String SEGMENT_ERROR_STATUS = "Segment is incorrect!";
     private static final String SEGMENT_CORRECT_STATUS = "Segment is correct!";
 
+    private static final String RESULT_ERROR_STATUS = "Can't resolve intersection! Check segments.";
+    private static final String SEGMENT_INTERSECT_STATUS = "Segments intersect in point (%s, %s)!";
+    private static final String SEGMENT_NOT_INTERSECT_STATUS = "Segments don't intersect!";
+
     private StringProperty firstSegmentFirstPointCoordX = new SimpleStringProperty();
     private StringProperty firstSegmentFirstPointCoordY = new SimpleStringProperty();
     private StringProperty firstSegmentSecondPointCoordX = new SimpleStringProperty();
@@ -93,6 +97,13 @@ public class ViewModel {
         init();
     }
 
+    public void checkIntersection() {
+        if (!firstSegmentStatus.get().equals(SEGMENT_CORRECT_STATUS) || !secondSegmentStatus.get().equals(SEGMENT_CORRECT_STATUS)) {
+            result.set(RESULT_ERROR_STATUS);
+            return;
+        }
+    }
+
     private void init() {
         firstSegmentFirstPointCoordX.set("");
         firstSegmentFirstPointCoordY.set("");
@@ -107,15 +118,18 @@ public class ViewModel {
         result.set("");
     }
 
+    private Segment2D createSegment(String firstCoordX, String firstCoordY, String secondCoordX, String secondCoordY){
+        double firstPointCoordX = Double.parseDouble(firstCoordX);
+        double firstPointCoordY = Double.parseDouble(firstCoordY);
+        double secondPointCoordX = Double.parseDouble(secondCoordX);
+        double secondPointCoordY = Double.parseDouble(secondCoordY);
+
+        return new Segment2D (firstPointCoordX, firstPointCoordY, secondPointCoordX, secondPointCoordY);
+    }
+
     private void checkIsSegmentValid(String firstCoordX, String firstCoordY, String secondCoordX, String secondCoordY, StringProperty status) {
         try {
-            double firstPointCoordX = Double.parseDouble(firstCoordX);
-            double firstPointCoordY = Double.parseDouble(firstCoordY);
-            double secondPointCoordX = Double.parseDouble(secondCoordX);
-            double secondPointCoordY = Double.parseDouble(secondCoordY);
-
-            Segment2D segment = new Segment2D (firstPointCoordX, firstPointCoordY, secondPointCoordX, secondPointCoordY);
-
+            createSegment(firstCoordX, firstCoordY, secondCoordX, secondCoordY);
             status.set(SEGMENT_CORRECT_STATUS);
         } catch (NumberFormatException e) {
             status.set(SEGMENT_ERROR_STATUS);

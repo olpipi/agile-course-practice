@@ -114,4 +114,20 @@ public class ViewModelTest {
 
         assertEquals("Segment is correct!", viewModel.getSecondSegmentStatus());
     }
+
+    @Test
+    public void canPrintRightResultForInvalidSegments() {
+        viewModel.setSecondSegmentFirstPointCoordX("1");
+        viewModel.setSecondSegmentFirstPointCoordY("1");
+        viewModel.setSecondSegmentSecondPointCoordX("1");
+        viewModel.setSecondSegmentSecondPointCoordY("1");
+        viewModel.setFirstSegmentFirstPointCoordX("1");
+        viewModel.setFirstSegmentFirstPointCoordY("2");
+        viewModel.setFirstSegmentSecondPointCoordX("1");
+        viewModel.setFirstSegmentSecondPointCoordY("1");
+
+        viewModel.checkIntersection();
+
+        assertEquals("Can't resolve intersection! Check segments.", viewModel.getResult());
+    }
 }
