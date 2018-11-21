@@ -28,7 +28,7 @@ public class ViewModel {
         isCalculateButtonEnabled = false;
     }
 
-    public final class Status {
+    public abstract class Status {
         public static final String COUNT_WAITING = "Please provide salary and count period";
         public static final String READY_CALCULATE = "Press 'Calculate' button";
         public static final String BAD_SALARY_FORMAT = "Salary must be more 0";
@@ -38,9 +38,6 @@ public class ViewModel {
         public static final String BAD_WORKED_HOURS_FORMAT =
                 "Worked houses must be between 1 and 500";
         public static final String CASH = "This your cash";
-
-        private Status() {
-        }
     }
 
     public void checkCountFields() {
@@ -92,23 +89,14 @@ public class ViewModel {
 
 
     public void setWorkedHours(final String inWorkedHours) {
-        if (inWorkedHours.equals(this.workedHours)) {
-            return;
-        }
         this.workedHours = inWorkedHours;
     }
 
     public void setCountMonth(final String inCountMonth) {
-        if (inCountMonth.equals(this.countMonth)) {
-            return;
-        }
         this.countMonth = inCountMonth;
     }
 
     public void setCountYear(final String inCountYear) {
-        if (inCountYear.equals(this.countYear)) {
-            return;
-        }
         this.countYear = inCountYear;
     }
 
