@@ -3,6 +3,7 @@ package ru.unn.agile.quadraticequation.viewmodel;
 import ru.unn.agile.quadraticequation.model.QuadraticEquation;
 import ru.unn.agile.quadraticequation.model.QuadraticEquationSolverException;
 import javafx.beans.property.*;
+
 import java.util.Arrays;
 
 public class ViewModel {
@@ -27,16 +28,13 @@ public class ViewModel {
                     Double.parseDouble(a.get()),
                     Double.parseDouble(b.get()),
                     Double.parseDouble(c.get()));
-        }
-        catch (Exception e) {
-            if (e.getClass() == IllegalArgumentException.class)
-            {
+        } catch (Exception e) {
+            if (e.getClass() == IllegalArgumentException.class) {
                 roots.set("Enter quadratic coefficient");
                 return;
             }
 
-            if (e.getClass() == NumberFormatException.class)
-            {
+            if (e.getClass() == NumberFormatException.class) {
                 roots.set("Coefficients must be numeric");
                 return;
             }
@@ -47,8 +45,7 @@ public class ViewModel {
         double[] equationRoots;
         try {
             equationRoots = quadraticEquation.solve();
-        }
-        catch (QuadraticEquationSolverException e) {
+        } catch (QuadraticEquationSolverException e) {
             roots.set("No roots");
             return;
         }
@@ -59,12 +56,15 @@ public class ViewModel {
     public StringProperty aProperty() {
         return a;
     }
+
     public StringProperty bProperty() {
         return b;
     }
+
     public StringProperty cProperty() {
         return c;
     }
+
     public StringProperty rootsProperty() {
         return roots;
     }
