@@ -74,4 +74,24 @@ public class ViewModelTest {
 
         assertEquals("Segment is incorrect!", viewModel.getSecondSegmentStatus());
     }
+
+    @Test
+    public void canPrintRightStatusForInvalidFirstSegment() {
+        viewModel.setFirstSegmentFirstPointCoordX("1");
+        viewModel.setFirstSegmentFirstPointCoordY("1");
+        viewModel.setFirstSegmentSecondPointCoordX("1");
+        viewModel.setFirstSegmentSecondPointCoordY("1");
+
+        assertEquals("Segment is incorrect! both Point2D can not be the same", viewModel.getFirstSegmentStatus());
+    }
+
+    @Test
+    public void canPrintRightStatusForInvalidSecondSegment() {
+        viewModel.setSecondSegmentFirstPointCoordX("1");
+        viewModel.setSecondSegmentFirstPointCoordY("1");
+        viewModel.setSecondSegmentSecondPointCoordX("1");
+        viewModel.setSecondSegmentSecondPointCoordY("1");
+
+        assertEquals("Segment is incorrect! both Point2D can not be the same", viewModel.getSecondSegmentStatus());
+    }
 }

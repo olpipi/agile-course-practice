@@ -107,26 +107,30 @@ public class ViewModel {
         result.set("");
     }
 
-    private void checkCoordCanBeParsedToDouble(String coord, StringProperty status) {
-        double parsedCoord;
+    private void checkIsSegmentValid(String firstCoordX, String firstCoordY, String secondCoordX, String secondCoordY, StringProperty status) {
         try {
-            parsedCoord = Double.parseDouble(coord);
+            double firstPointCoordX = Double.parseDouble(firstCoordX);
+            double firstPointCoordY = Double.parseDouble(firstCoordY);
+            double secondPointCoordX = Double.parseDouble(secondCoordX);
+            double secondPointCoordY = Double.parseDouble(secondCoordY);
+
+            Segment2D segment = new Segment2D (firstPointCoordX, firstPointCoordY, secondPointCoordX, secondPointCoordY);
+
+            status.set(SEGMENT_CORRECT_STATUS);
         } catch (NumberFormatException e) {
             status.set(SEGMENT_ERROR_STATUS);
+        } catch (ArithmeticException e) {
+            status.set(SEGMENT_ERROR_STATUS + " " + e.getMessage());
         }
     }
 
     private void checkIsFirstSegmentValid() {
-        checkCoordCanBeParsedToDouble(firstSegmentFirstPointCoordX.get(), firstSegmentStatus);
-        checkCoordCanBeParsedToDouble(firstSegmentFirstPointCoordY.get(), firstSegmentStatus);
-        checkCoordCanBeParsedToDouble(firstSegmentSecondPointCoordX.get(), firstSegmentStatus);
-        checkCoordCanBeParsedToDouble(firstSegmentSecondPointCoordY.get(), firstSegmentStatus);
+        checkIsSegmentValid(firstSegmentFirstPointCoordX.get(), firstSegmentFirstPointCoordY.get(),
+                firstSegmentSecondPointCoordX.get(), firstSegmentSecondPointCoordY.get(), firstSegmentStatus);
     }
 
     private void checkIsSecondSegmentValid() {
-        checkCoordCanBeParsedToDouble(secondSegmentFirstPointCoordX.get(), secondSegmentStatus);
-        checkCoordCanBeParsedToDouble(secondSegmentFirstPointCoordY.get(), secondSegmentStatus);
-        checkCoordCanBeParsedToDouble(secondSegmentSecondPointCoordX.get(), secondSegmentStatus);
-        checkCoordCanBeParsedToDouble(secondSegmentSecondPointCoordY.get(), secondSegmentStatus);
+        checkIsSegmentValid(secondSegmentFirstPointCoordX.get(), secondSegmentFirstPointCoordY.get(),
+                secondSegmentSecondPointCoordX.get(), secondSegmentSecondPointCoordY.get(), secondSegmentStatus);
     }
 }
