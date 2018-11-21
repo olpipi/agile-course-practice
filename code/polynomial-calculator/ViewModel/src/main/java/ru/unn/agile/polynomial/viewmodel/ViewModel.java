@@ -8,13 +8,17 @@ import ru.unn.agile.polynomial.model.Polynomial;
 import java.util.ArrayList;
 
 public class ViewModel {
-    private final StringProperty firstPolynomialStr = new SimpleStringProperty();
-    private final StringProperty secondPolynomialStr = new SimpleStringProperty();
-    private final StringProperty resultStr = new SimpleStringProperty();
+    private StringProperty firstPolynomialStr = new SimpleStringProperty();
+    private StringProperty secondPolynomialStr = new SimpleStringProperty();
+    private StringProperty resultStr = new SimpleStringProperty();
 
     public static final String FORMAT_ERROR = "Неверный формат полинома ";
 
-    public String firstPolynomialStr() {
+    public StringProperty firstPolynomialStrProperty() {
+        return firstPolynomialStr;
+    }
+
+    public String getFirstPolynomialStr() {
         return firstPolynomialStr.get();
     }
 
@@ -22,7 +26,11 @@ public class ViewModel {
         this.firstPolynomialStr.set(firstPolynomialStr);
     }
 
-    public String secondPolynomialStr() {
+    public StringProperty secondPolynomialStrProperty() {
+        return secondPolynomialStr;
+    }
+
+    public String getSecondPolynomialStr() {
         return secondPolynomialStr.get();
     }
 
@@ -30,7 +38,11 @@ public class ViewModel {
         this.secondPolynomialStr.set(secondPolynomialStr);
     }
 
-    public String resultStr() {
+    public StringProperty resultStrProperty() {
+        return resultStr;
+    }
+
+    public String getResultStr() {
         return resultStr.get();
     }
 
@@ -42,73 +54,112 @@ public class ViewModel {
         initDefaultFields();
     }
 
-    public Polynomial parsePolynomial(final String polynomialStr) {
-        if (!polynomialStr.isEmpty()) {
-            ArrayList<Pair<Integer, Double>> array = new ArrayList<>();
-            String digitStr = "";
-            String degreeStr = "0";
-            boolean degree = false;
-            for (int i = 0; i < polynomialStr.length(); i++) {
-                if (polynomialStr.toCharArray()[i] == 'x') {
-                    degreeStr = "1";
-                } else if (Character.isDigit(polynomialStr.toCharArray()[i])
-                        || polynomialStr.toCharArray()[i] == '.') {
-                    if (degree) {
-                        degreeStr += polynomialStr.toCharArray()[i];
-                    } else {
-                        digitStr += polynomialStr.toCharArray()[i];
-                    }
-                } else if (polynomialStr.toCharArray()[i] == '-'
-                        || polynomialStr.toCharArray()[i] == '+') {
-                    if (i != 0) {
-                        array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
-                    }
-                    degree = false;
-                    degreeStr = "0";
-                    if (polynomialStr.toCharArray()[i] == '-') {
-                        digitStr = "-";
-                    } else {
-                        digitStr = "";
-                    }
-                } else if (polynomialStr.toCharArray()[i] == '^') {
-                    degree = true;
+    public Polynomial parsePolynomial(final String polynomialStrSource) {
+        String polynomialStr = polynomialStrSource.replaceAll("\\s+", "");
+        if (polynomialStr.isEmpty()) {
+            return null;
+        }
+        ArrayList<Pair<Integer, Double>> array = new ArrayList<>();
+        String digitStr = "";
+        String degreeStr = "0";
+        boolean degreeDetected = false;
+        boolean xDetected = false;
+        boolean symbolPlusDetected = false;
+        boolean symbolMinusDetected = false;
+        boolean pointDetected = false;
+        for (int i = 0; i < polynomialStr.length(); i++) {
+            if (polynomialStr.toCharArray()[i] == 'x') {
+                if (symbolMinusDetected) {
+                    digitStr = "-1";
+                } else if (symbolPlusDetected || i == 0) {
+                    digitStr = "1";
+                }
+                symbolMinusDetected = false;
+                symbolPlusDetected = false;
+                xDetected = true;
+                degreeStr = "1";
+            } else if (Character.isDigit(polynomialStr.toCharArray()[i])
+                    || polynomialStr.toCharArray()[i] == '.') {
+                if (!Character.isDigit(polynomialStr.toCharArray()[i])
+                        && (xDetected || symbolMinusDetected || symbolPlusDetected)) {
+                    return null;
+                } else {
+                    xDetected = false;
+                    symbolMinusDetected = false;
+                    symbolPlusDetected = false;
+                }
+
+                if (polynomialStr.toCharArray()[i] == '.') {
+                    pointDetected = true;
+                }
+
+                if (degreeDetected) {
+                    degreeStr += polynomialStr.toCharArray()[i];
+                } else {
+                    digitStr += polynomialStr.toCharArray()[i];
+                }
+            } else if (polynomialStr.toCharArray()[i] == '-'
+                    || polynomialStr.toCharArray()[i] == '+') {
+                if (symbolMinusDetected || symbolPlusDetected) {
+                    return null;
+                }
+                if (i != 0) {
+                    array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
+                }
+
+                degreeDetected = false;
+                degreeStr = "0";
+                if (polynomialStr.toCharArray()[i] == '-') {
+                    symbolMinusDetected = true;
+                    digitStr = "-";
+                } else {
+                    symbolPlusDetected = true;
+                    digitStr = "";
+                }
+            } else if (polynomialStr.toCharArray()[i] == '^') {
+                if (xDetected) {
+                    degreeDetected = true;
                     degreeStr = "";
+                    xDetected = false;
                 } else {
                     return null;
                 }
-            }
-            array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
-            if (!array.isEmpty()) {
-                double[] coeffs = new double[array.get(0).getKey() + 1];
-                for (int i = 0; i < array.size(); i++) {
-                    coeffs[coeffs.length - 1 - array.get(i).getKey().intValue()]
-                            = array.get(i).getValue().doubleValue();
-                }
-                return new Polynomial(coeffs);
+            } else {
+                return null;
             }
         }
+        array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
+        if (!array.isEmpty()) {
+            double[] coeffs = new double[array.get(0).getKey() + 1];
+            for (int i = 0; i < array.size(); i++) {
+                coeffs[coeffs.length - 1 - array.get(i).getKey().intValue()]
+                        += array.get(i).getValue().doubleValue();
+            }
+            return new Polynomial(coeffs);
+        }
+
         return null;
     }
 
     public void add() {
-        Polynomial p1 = parsePolynomial(firstPolynomialStr());
-        Polynomial p2 = parsePolynomial(secondPolynomialStr());
+        Polynomial p1 = parsePolynomial(getFirstPolynomialStr());
+        Polynomial p2 = parsePolynomial(getSecondPolynomialStr());
         if (checkError(p1, p2)) {
             setResultStr(p1.add(p2).toString());
         }
     }
 
     public void subtract() {
-        Polynomial p1 = parsePolynomial(firstPolynomialStr());
-        Polynomial p2 = parsePolynomial(secondPolynomialStr());
+        Polynomial p1 = parsePolynomial(getFirstPolynomialStr());
+        Polynomial p2 = parsePolynomial(getSecondPolynomialStr());
         if (checkError(p1, p2)) {
             setResultStr(p1.subtract(p2).toString());
         }
     }
 
     public void multiply() {
-        Polynomial p1 = parsePolynomial(firstPolynomialStr());
-        Polynomial p2 = parsePolynomial(secondPolynomialStr());
+        Polynomial p1 = parsePolynomial(getFirstPolynomialStr());
+        Polynomial p2 = parsePolynomial(getSecondPolynomialStr());
         if (checkError(p1, p2)) {
             setResultStr(p1.multiply(p2).toString());
         }

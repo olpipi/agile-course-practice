@@ -10,9 +10,9 @@ public class ViewModelTest {
     public void createViewModelWithDefaultFields() {
         ViewModel viewModel = new ViewModel();
 
-        assertEquals("", viewModel.firstPolynomialStr());
-        assertEquals("", viewModel.secondPolynomialStr());
-        assertEquals("", viewModel.resultStr());
+        assertEquals("", viewModel.getFirstPolynomialStr());
+        assertEquals("", viewModel.getSecondPolynomialStr());
+        assertEquals("", viewModel.getResultStr());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class ViewModelTest {
 
         viewModel.add();
 
-        assertEquals("-4.0x^2 + 6.0x - 8.0", viewModel.resultStr());
+        assertEquals("-4.0x^2 + 6.0x - 8.0", viewModel.getResultStr());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class ViewModelTest {
 
         viewModel.multiply();
 
-        assertEquals("5.0x^3 - 10.0x^2 + 15.0x - 20.0", viewModel.resultStr());
+        assertEquals("5.0x^3 - 10.0x^2 + 15.0x - 20.0", viewModel.getResultStr());
     }
 
     @Test
@@ -90,7 +90,7 @@ public class ViewModelTest {
 
         viewModel.subtract();
 
-        assertEquals("4.0x + 1.0", viewModel.resultStr());
+        assertEquals("4.0x + 1.0", viewModel.getResultStr());
     }
 
     //For parser2
@@ -138,7 +138,7 @@ public class ViewModelTest {
 
         viewModel.subtract();
 
-        assertEquals(ViewModel.FORMAT_ERROR +"2", viewModel.resultStr());
+        assertEquals(ViewModel.FORMAT_ERROR +"2", viewModel.getResultStr());
     }
 
     @Test
@@ -148,7 +148,7 @@ public class ViewModelTest {
         viewModel.setSecondPolynomialStr("1.0x^2+2.0x+4.0");
         viewModel.add();
 
-        assertEquals(ViewModel.FORMAT_ERROR +"1", viewModel.resultStr());
+        assertEquals(ViewModel.FORMAT_ERROR +"1", viewModel.getResultStr());
     }
 
     @Test
@@ -159,6 +159,17 @@ public class ViewModelTest {
 
         viewModel.multiply();
 
-        assertEquals(ViewModel.FORMAT_ERROR +"1 и 2", viewModel.resultStr());
+        assertEquals(ViewModel.FORMAT_ERROR +"1 и 2", viewModel.getResultStr());
+    }
+
+    @Test
+    public void canMultiplyPolynomialWithTwoFreeCoeff() {
+        ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("x + 2.0 + 4.0");
+        viewModel.setSecondPolynomialStr("2.0x -2.0+4.0");
+
+        viewModel.multiply();
+
+        assertEquals("2.0x^2 + 14.0x + 12.0", viewModel.getResultStr());
     }
 }
