@@ -13,21 +13,21 @@ public class ViewModelTests {
     public void canInitializeArrayValue() {
         ViewModel viewModel = new ViewModel();
 
-        assertEquals("", viewModel.getArrayTextBoxValue());
+        assertEquals("", viewModel.getArrayInputProperty());
     }
 
     @Test
     public void canInitializeElementValue() {
         ViewModel viewModel = new ViewModel();
 
-        assertEquals("", viewModel.getElementTextBoxValue());
+        assertEquals("", viewModel.getElementInputProperty());
     }
 
     @Test
     public void canInitializeStatus() {
         ViewModel viewModel = new ViewModel();
 
-        assertEquals("", viewModel.getStatus());
+        assertEquals("", viewModel.getStatusProperty());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class ViewModelTests {
         ViewModel viewModel = new ViewModel();
         int[] expected = new int[] {1, 2, 3};
 
-        viewModel.setArrayTextBoxValue("1,2,3");
+        viewModel.setArrayInputProperty("1,2,3");
 
         assertArrayEquals(expected, viewModel.getBinarySearchArray());
     }
@@ -45,9 +45,9 @@ public class ViewModelTests {
         ViewModel viewModel = new ViewModel();
         String expected = "2";
 
-        viewModel.setElementTextBoxValue("2");
+        viewModel.setElementInputProperty("2");
 
-        assertEquals(expected, viewModel.getElementTextBoxValue());
+        assertEquals(expected, viewModel.getElementInputProperty());
     }
 
     @Test
@@ -55,50 +55,59 @@ public class ViewModelTests {
         ViewModel viewModel = new ViewModel();
         String expected = "Found key, index 1";
 
-        viewModel.setArrayTextBoxValue("1,2,3");
-        viewModel.setElementTextBoxValue("2");
+        viewModel.setArrayInputProperty("1,2,3");
+        viewModel.setElementInputProperty("2");
         viewModel.search();
 
-        assertEquals(expected, viewModel.getStatus());
+        assertEquals(expected, viewModel.getResultProperty());
     }
 
     @Test
     public void isSearchEnabledWithCorrectInput() {
         ViewModel viewModel = new ViewModel();
 
-        viewModel.setArrayTextBoxValue("1,2,3");
-        viewModel.setElementTextBoxValue("2");
+        viewModel.setArrayInputProperty("1,2,3");
+        viewModel.setElementInputProperty("2");
 
-        assertEquals(true, viewModel.isSearchEnabled());
+        assertEquals(false, viewModel.isSearchDisabled());
     }
 
     @Test
     public void isSearchEnabledWithIncorrectArrayInput() {
         ViewModel viewModel = new ViewModel();
 
-        viewModel.setArrayTextBoxValue("1yh,p2,_0w3");
-        viewModel.setElementTextBoxValue("2");
+        viewModel.setArrayInputProperty("1yh,p2,_0w3");
+        viewModel.setElementInputProperty("2");
 
-        assertEquals(false, viewModel.isSearchEnabled());
+        assertEquals(true, viewModel.isSearchDisabled());
     }
 
     @Test
     public void isSearchEnabledWithIncorrectElementInput() {
         ViewModel viewModel = new ViewModel();
 
-        viewModel.setArrayTextBoxValue("1,2,3");
-        viewModel.setElementTextBoxValue("h");
+        viewModel.setArrayInputProperty("1,2,3");
+        viewModel.setElementInputProperty("h");
 
-        assertEquals(false, viewModel.isSearchEnabled());
+        assertEquals(true, viewModel.isSearchDisabled());
     }
 
     @Test
     public void isSearchEnabledWithEmptyInput() {
         ViewModel viewModel = new ViewModel();
 
-        viewModel.setArrayTextBoxValue("");
-        viewModel.setElementTextBoxValue("");
+        viewModel.setArrayInputProperty("");
+        viewModel.setElementInputProperty("");
 
-        assertEquals(false, viewModel.isSearchEnabled());
+        assertEquals(true, viewModel.isSearchDisabled());
+    }
+
+    @Test
+    public void isSearchEnabledWithUnsortedArray() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setArrayInputProperty("1,0,-1");
+
+        assertEquals(true, viewModel.isSearchDisabled());
     }
 }

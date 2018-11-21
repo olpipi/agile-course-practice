@@ -1,92 +1,162 @@
 package ru.unn.agile.binarysearch.viewmodel;
 
-//import javafx.beans.binding.BooleanBinding;
-//import javafx.beans.property.*;
-//import javafx.beans.value.ChangeListener;
-//import javafx.beans.value.ObservableValue;
-//import javafx.collections.FXCollections;
-//import javafx.collections.ObservableList;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.StringProperty;
+import ru.unn.agile.binarysearch.model.BadArrayException;
 import ru.unn.agile.binarysearch.model.BinarySearch;
 
-//import java.util.ArrayList;
-//import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ViewModel {
 
-    private String arrayTextBoxValue;
-    private String elementTextBoxValue;
-    private String status;
+    private final StringProperty arrayInput = new SimpleStringProperty();
+    private final StringProperty elementInput = new SimpleStringProperty();
+    private final StringProperty status = new SimpleStringProperty();
+    private final StringProperty result = new SimpleStringProperty();
+    private final BooleanProperty searchDisabled = new SimpleBooleanProperty();
     private BinarySearch search;
+    private int key;
     private boolean arrayCorrect;
     private boolean elementCorrect;
+    private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
 
     public ViewModel() {
-        arrayTextBoxValue = "";
-        elementTextBoxValue = "";
-        status = "";
+        arrayInput.set("");
+        elementInput.set("");
+        status.set("");
+        result.set("");
         search = null;
         arrayCorrect = false;
         elementCorrect = false;
-    }
+        BooleanBinding couldSearch = new BooleanBinding() {
+            {
+                super.bind(arrayInput, elementInput);
+            }
+            @Override
+            protected boolean computeValue() {
+                return arrayCorrect && elementCorrect;
+            }
+        };
+        searchDisabled.bind(couldSearch.not());
 
-    public String getArrayTextBoxValue() {
-        return arrayTextBoxValue;
+        final List<StringProperty> fields = new ArrayList<StringProperty>() { {
+            add(arrayInput);
+            add(elementInput);
+        }};
+        for (StringProperty field: fields) {
+            final ValueChangeListener listener = new ValueChangeListener();
+            field.addListener(listener);
+            valueChangedListeners.add(listener);
+        }
     }
-
-    public String getElementTextBoxValue() {
-        return elementTextBoxValue;
+    public StringProperty arrayInputProperty() {
+        return arrayInput;
     }
-
-    public String getStatus() {
+    public StringProperty elementInputProperty() {
+        return elementInput;
+    }
+    public StringProperty statusProperty() {
         return status;
     }
+    public StringProperty resultProperty() {
+        return result;
+    }
+    public String getArrayInputProperty() {
+        return arrayInput.get();
+    }
 
-    public void setArrayTextBoxValue(final String input) {
-        try {
-            String[] split = input.split(",");
-            int[] arr = new int[split.length];
-            for (int i = 0; i < split.length; i++) {
-                arr[i] = Integer.parseInt(split[i]);
-            }
-            arrayCorrect = true;
-            search = new BinarySearch(arr);
+    public String getElementInputProperty() {
+        return elementInput.get();
+    }
 
-        } catch (NumberFormatException nfe) {
-            status = "Invalid array entered";
-            arrayCorrect = false;
-            search = null;
-        }
+    public String getStatusProperty() {
+        return status.get();
+    }
+
+    public void setArrayInputProperty(final String input) {
+        arrayInput.set(input);
     }
 
     public int[] getBinarySearchArray() {
         return search.getArray();
     }
 
-    public void setElementTextBoxValue(final String input) {
-        try {
-            Integer.parseInt(input);
-            elementCorrect = true;
-            elementTextBoxValue = input;
-        } catch (NumberFormatException nfe) {
-            status = "Invalid element entered";
-            elementCorrect = false;
-        }
+    public void setElementInputProperty(final String input) {
+        elementInput.set(input);
     }
-
     public void search() {
-        if (isSearchEnabled()) {
-            int key = Integer.parseInt(elementTextBoxValue);
-            int index = search.search(key);
-            if (index == -1) {
-                status = "Key not found";
-            } else {
-                status = "Found key, index " + Integer.toString(index);
-            }
+        if (searchDisabled.get()) {
+            return;
+        }
+        int index = search.search(key);
+        if (index == -1) {
+            result.set("Key not found");
+        } else {
+            result.set("Found key, index " + Integer.toString(index));
         }
     }
 
-    public boolean isSearchEnabled() {
-        return arrayCorrect && elementCorrect;
+    public String getResultProperty() {
+        return result.get();
     }
 
+    public Status getInputStatus() {
+        Status inputStatus = Status.READY;
+        if (arrayInput.get().isEmpty() || elementInput.get().isEmpty()) {
+            inputStatus = Status.WAITING;
+        }
+        try {
+            String[] split = arrayInput.get().split(",");
+            int[] arr = new int[split.length];
+            for (int i = 0; i < split.length; i++) {
+                arr[i] = Integer.parseInt(split[i]);
+            }
+            arrayCorrect = true;
+            search = new BinarySearch(arr);
+        } catch (NumberFormatException nfe) {
+            inputStatus = Status.BAD_ARRAY_FORMAT;
+        } catch (BadArrayException bae) {
+            inputStatus = Status.BAD_ARRAY_SORT;
+        }
+        try {
+            key = Integer.parseInt(elementInput.get());
+            elementCorrect = true;
+        } catch (NumberFormatException nfe) {
+            inputStatus = Status.BAD_ELEMENT_FORMAT;
+        }
+        return inputStatus;
+    }
+    public boolean isSearchDisabled() {
+        return searchDisabled.get();
+    }
+
+    private class ValueChangeListener implements ChangeListener<String> {
+        @Override
+        public void changed(final ObservableValue<? extends String> observable,
+                            final String oldValue, final String newValue) {
+            status.set(getInputStatus().toString());
+        }
+    }
+}
+
+enum Status {
+    WAITING("Enter array and key to search"),
+    READY("Press Search"),
+    BAD_ARRAY_FORMAT("Enter array of ints, separated by commas"),
+    BAD_ARRAY_SORT("Array must be sorted"),
+    BAD_ELEMENT_FORMAT("Enter key to be searched");
+
+    private final String name;
+    Status(final String name) {
+        this.name = name;
+    }
+    public String toString() {
+        return name;
+    }
 }

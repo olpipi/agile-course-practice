@@ -16,18 +16,21 @@ public class Search {
     @FXML
     private TextField elementInput;
     @FXML
-    private Button btn;
+    private Button button;
     @FXML
     private Label labelStatus;
+    @FXML
+    private Label labelResult;
     @FXML
     void initialize() {
         arrayInput.textProperty().bindBidirectional(viewModel.arrayInputProperty());
         elementInput.textProperty().bindBidirectional(viewModel.elementInputProperty());
         labelStatus.textProperty().bindBidirectional(viewModel.statusProperty());
+        labelResult.textProperty().bindBidirectional(viewModel.resultProperty());
 
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+        button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(final ActionEvent event) {
                 viewModel.search();
             }
         });
