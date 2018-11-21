@@ -64,4 +64,14 @@ public class ViewModelTest {
 
         assertEquals("Segment is incorrect!", viewModel.getFirstSegmentStatus());
     }
+
+    @Test
+    public void canPrintRightSecondSegmentStatusForInvalidSegment() {
+        viewModel.setSecondSegmentFirstPointCoordX("1");
+        viewModel.setSecondSegmentFirstPointCoordY("d");
+        viewModel.setSecondSegmentSecondPointCoordX("1");
+        viewModel.setSecondSegmentSecondPointCoordY("1");
+
+        assertEquals("Segment is incorrect!", viewModel.getSecondSegmentStatus());
+    }
 }
