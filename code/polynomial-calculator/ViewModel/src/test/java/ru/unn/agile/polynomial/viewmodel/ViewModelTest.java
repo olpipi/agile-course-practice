@@ -138,7 +138,7 @@ public class ViewModelTest {
 
         viewModel.subtract();
 
-        assertEquals(ViewModel.FORMAT_ERROR +"2", viewModel.getResultStr());
+        assertEquals(PolynomialParser.FORMAT_ERROR + "2", viewModel.getResultStr());
     }
 
     @Test
@@ -148,7 +148,7 @@ public class ViewModelTest {
         viewModel.setSecondPolynomialStr("1.0x^2+2.0x+4.0");
         viewModel.add();
 
-        assertEquals(ViewModel.FORMAT_ERROR +"1", viewModel.getResultStr());
+        assertEquals(PolynomialParser.FORMAT_ERROR + "1", viewModel.getResultStr());
     }
 
     @Test
@@ -159,7 +159,7 @@ public class ViewModelTest {
 
         viewModel.multiply();
 
-        assertEquals(ViewModel.FORMAT_ERROR +"1 и 2", viewModel.getResultStr());
+        assertEquals(PolynomialParser.FORMAT_ERROR + "1", viewModel.getResultStr());
     }
 
     @Test
@@ -171,5 +171,16 @@ public class ViewModelTest {
         viewModel.multiply();
 
         assertEquals("2.0x^2 + 14.0x + 12.0", viewModel.getResultStr());
+    }
+
+    @Test
+    public void canMultiplyWrongFormatPolynomialPoint() {
+        ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("2.x -2.0+4.0");
+        viewModel.setSecondPolynomialStr("2.0x^2 + 14.0x + 12.0");
+
+        viewModel.multiply();
+
+        assertEquals(PolynomialParser.FORMAT_ERROR + "1", viewModel.getResultStr());
     }
 }
