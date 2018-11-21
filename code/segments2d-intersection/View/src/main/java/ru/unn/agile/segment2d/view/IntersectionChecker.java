@@ -35,23 +35,23 @@ public class IntersectionChecker {
 
     @FXML
     void initialize() {
-        firstSegmentFirstPointCoordX.textProperty().bindBidirectional
-                (viewModel.firstSegmentFirstPointCoordXProperty());
-        firstSegmentFirstPointCoordY.textProperty().bindBidirectional
-                (viewModel.firstSegmentFirstPointCoordYProperty());
-        firstSegmentSecondPointCoordX.textProperty().bindBidirectional
-                (viewModel.firstSegmentSecondPointCoordXProperty());
-        firstSegmentSecondPointCoordY.textProperty().bindBidirectional
-                (viewModel.firstSegmentSecondPointCoordYProperty());
+        firstSegmentFirstPointCoordX.textProperty().bindBidirectional(
+                viewModel.firstSegmentFirstPointCoordXProperty());
+        firstSegmentFirstPointCoordY.textProperty().bindBidirectional(
+                viewModel.firstSegmentFirstPointCoordYProperty());
+        firstSegmentSecondPointCoordX.textProperty().bindBidirectional(
+                viewModel.firstSegmentSecondPointCoordXProperty());
+        firstSegmentSecondPointCoordY.textProperty().bindBidirectional(
+                viewModel.firstSegmentSecondPointCoordYProperty());
 
-        secondSegmentFirstPointCoordX.textProperty().bindBidirectional
-                (viewModel.secondSegmentFirstPointCoordXProperty());
-        secondSegmentFirstPointCoordY.textProperty().bindBidirectional
-                (viewModel.secondSegmentFirstPointCoordYProperty());
-        secondSegmentSecondPointCoordX.textProperty().bindBidirectional
-                (viewModel.secondSegmentSecondPointCoordXProperty());
-        secondSegmentSecondPointCoordY.textProperty().bindBidirectional
-                (viewModel.secondSegmentSecondPointCoordYProperty());
+        secondSegmentFirstPointCoordX.textProperty().bindBidirectional(
+                viewModel.secondSegmentFirstPointCoordXProperty());
+        secondSegmentFirstPointCoordY.textProperty().bindBidirectional(
+                viewModel.secondSegmentFirstPointCoordYProperty());
+        secondSegmentSecondPointCoordX.textProperty().bindBidirectional(
+                viewModel.secondSegmentSecondPointCoordXProperty());
+        secondSegmentSecondPointCoordY.textProperty().bindBidirectional(
+                viewModel.secondSegmentSecondPointCoordYProperty());
 
         buttonCheckIntersection.setOnAction(new EventHandler<ActionEvent>() {
             @Override
