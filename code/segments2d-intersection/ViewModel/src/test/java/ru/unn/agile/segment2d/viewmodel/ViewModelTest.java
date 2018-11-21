@@ -146,4 +146,20 @@ public class ViewModelTest {
 
         assertEquals("Segments don't intersect!", viewModel.getResult());
     }
+
+    @Test
+    public void canPrintRightResultForIntersectedSegments() {
+        viewModel.setSecondSegmentFirstPointCoordX("1");
+        viewModel.setSecondSegmentFirstPointCoordY("2");
+        viewModel.setSecondSegmentSecondPointCoordX("1");
+        viewModel.setSecondSegmentSecondPointCoordY("1");
+        viewModel.setFirstSegmentFirstPointCoordX("0");
+        viewModel.setFirstSegmentFirstPointCoordY("1.5");
+        viewModel.setFirstSegmentSecondPointCoordX("2");
+        viewModel.setFirstSegmentSecondPointCoordY("1.5");
+
+        viewModel.checkIntersection();
+
+        assertEquals("Segments intersect in point (1.0, 1.5)", viewModel.getResult());
+    }
 }
