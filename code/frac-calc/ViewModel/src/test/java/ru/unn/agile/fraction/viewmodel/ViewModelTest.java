@@ -98,4 +98,59 @@ public class ViewModelTest {
         assertFalse(viewModel.calculationDisabledProperty().get());
     }
 
+    @Test
+    public void canSetAddOperation() {
+        viewModel.operationProperty().set(Operation.ADD);
+
+        assertEquals(Operation.ADD, viewModel.operationProperty().get());
+    }
+
+    @Test
+    public void addIsDefaultOperation() {
+        assertEquals(Operation.ADD, viewModel.operationProperty().get());
+    }
+
+    @Test
+    public void canCalculateWithEmptyFieldsAndStatusWaiting() {
+        viewModel.calculate();
+
+        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void operationAddHasCorrectResult() {
+        viewModel.firstNumeratorProperty().set("1");
+        viewModel.firstDenominatorProperty().set("2");
+        viewModel.secondNumeratorProperty().set("1");
+        viewModel.secondDenominatorProperty().set("3");
+
+        viewModel.calculate();
+
+        assertEquals("5", viewModel.resultNumeratorProperty().get());
+        assertEquals("6", viewModel.resultDenominatorProperty().get());
+    }
+
+    @Test
+    public void canSetSuccessMessage() {
+        setInputData();
+
+        viewModel.calculate();
+
+        assertEquals(Status.SUCCESS.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void canSetBadFormatMessage() {
+        viewModel.secondNumeratorProperty().set("c");
+
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void statusIsReadyWhenSetCorrectData() {
+        setInputData();
+
+        assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
+    }
+
 }

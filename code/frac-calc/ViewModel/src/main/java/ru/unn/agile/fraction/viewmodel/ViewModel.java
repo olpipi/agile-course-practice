@@ -152,6 +152,22 @@ public class ViewModel {
             status.set(getInputStatus().toString());
         }
     }
+
+    public void calculate() {
+        if (calculationDisabled.get()) {
+            return;
+        }
+
+        Fraction f1 = new Fraction(Integer.parseInt(firstNumerator.get()),
+                Integer.parseInt(firstDenominator.get()));
+        Fraction f2 = new Fraction(Integer.parseInt(secondNumerator.get()),
+                Integer.parseInt(secondDenominator.get()));
+        Fraction res = operation.get().apply(f1, f2);
+
+        resultNumerator.set(String.valueOf(res.getNumerator()));
+        resultDenominator.set(String.valueOf(res.getDenominator()));
+        status.set(Status.SUCCESS.toString());
+    }
 }
 
 enum Status {
