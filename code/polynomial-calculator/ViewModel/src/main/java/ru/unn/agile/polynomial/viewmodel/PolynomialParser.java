@@ -26,11 +26,14 @@ public class PolynomialParser {
         if (pointDetected || degreeDetected) {
             throw new ViewModelException(FORMAT_ERROR);
         }
+
         if (symbolMinusDetected) {
             digitStr = "-1";
         } else if (symbolPlusDetected || index == 0) {
             digitStr = "1";
         }
+
+        degreeDetected = false;
         symbolMinusDetected = false;
         symbolPlusDetected = false;
         xDetected = true;
@@ -39,8 +42,8 @@ public class PolynomialParser {
 
     private void convertDegree() {
         if (xDetected) {
-            degreeDetected = true;
             degreeStr = "";
+            degreeDetected = true;
             xDetected = false;
         } else {
             throw new ViewModelException(FORMAT_ERROR);
@@ -54,9 +57,7 @@ public class PolynomialParser {
         if (index != 0) {
             array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
         }
-        xDetected = false;
-        degreeDetected = false;
-        degreeStr = "0";
+
         if (symbol == '-') {
             symbolMinusDetected = true;
             digitStr = "-";
@@ -64,6 +65,10 @@ public class PolynomialParser {
             symbolPlusDetected = true;
             digitStr = "";
         }
+
+        degreeStr = "0";
+        xDetected = false;
+        degreeDetected = false;
     }
 
     private void convertPointOrDigit(final char symbol) {
@@ -76,28 +81,30 @@ public class PolynomialParser {
                 throw new ViewModelException(FORMAT_ERROR);
             }
         }
-        xDetected = false;
-        symbolMinusDetected = false;
-        symbolPlusDetected = false;
-
-        if (symbol == '.') {
-            pointDetected = true;
-        } else {
-            pointDetected = false;
-        }
 
         if (degreeDetected) {
             degreeStr += symbol;
         } else {
             digitStr += symbol;
         }
+
+        if (symbol == '.') {
+            pointDetected = true;
+        } else {
+            pointDetected = false;
+        }
+        degreeDetected = false;
+        xDetected = false;
+        symbolMinusDetected = false;
+        symbolPlusDetected = false;
     }
 
     public Polynomial parsePolynomial() {
         String polynomialStr = polynomialStrSource.replaceAll("\\s+", "");
         if (polynomialStr.isEmpty()) {
-            return null;
+            throw new ViewModelException(FORMAT_ERROR);
         }
+
         for (int i = 0; i < polynomialStr.length(); i++) {
             if (polynomialStr.toCharArray()[i] == 'x') {
                 convertX(i);
@@ -113,6 +120,7 @@ public class PolynomialParser {
                 throw new ViewModelException(FORMAT_ERROR);
             }
         }
+
         array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
         if (!array.isEmpty()) {
             double[] coeffs = new double[array.get(0).getKey() + 1];
@@ -122,6 +130,7 @@ public class PolynomialParser {
             }
             return new Polynomial(coeffs);
         }
+
         throw new ViewModelException(FORMAT_ERROR);
     }
 }

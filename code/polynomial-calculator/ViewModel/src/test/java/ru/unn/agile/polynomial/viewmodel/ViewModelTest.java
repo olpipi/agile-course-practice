@@ -52,12 +52,15 @@ public class ViewModelTest {
     }
 
     @Test
-    public void canParseZeroPolynomial() {
+    public void canAddZeroPolynomial() {
         ViewModel viewModel = new ViewModel();
 
-        Polynomial polynomial = viewModel.parsePolynomial("");
+        viewModel.setFirstPolynomialStr("");
+        viewModel.setSecondPolynomialStr("");
 
-        assertEquals(null, polynomial);
+        viewModel.add();
+
+        assertEquals(PolynomialParser.FORMAT_ERROR + "1", viewModel.getResultStr());
     }
 
     @Test
@@ -229,9 +232,31 @@ public class ViewModelTest {
     }
 
     @Test
-    public void caAddWrongFormatPolynomialDigetAfterX() {
+    public void caAddWrongFormatPolynomialDigitAfterX() {
         ViewModel viewModel = new ViewModel();
         viewModel.setFirstPolynomialStr("2.0x2 + 14.0x + 12.0");
+        viewModel.setSecondPolynomialStr("2.0x^2 + 14.0x + 12.0");
+
+        viewModel.add();
+
+        assertEquals(PolynomialParser.FORMAT_ERROR + "1", viewModel.getResultStr());
+    }
+
+    @Test
+    public void caAddWrongFormatPolynomialPointAfterX() {
+        ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("2.0x. + 14.0x + 12.0");
+        viewModel.setSecondPolynomialStr("2.0x^2 + 14.0x + 12.0");
+
+        viewModel.add();
+
+        assertEquals(PolynomialParser.FORMAT_ERROR + "1", viewModel.getResultStr());
+    }
+
+    @Test
+    public void caAddWrongFormatPolynomialDegreeAfterPoint() {
+        ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("2.^2 + 14.0x + 12.0");
         viewModel.setSecondPolynomialStr("2.0x^2 + 14.0x + 12.0");
 
         viewModel.add();
