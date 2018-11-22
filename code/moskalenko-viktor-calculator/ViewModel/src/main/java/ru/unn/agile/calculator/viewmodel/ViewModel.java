@@ -4,12 +4,10 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import ru.unn.agile.calculator.model.Calculator;
 import ru.unn.agile.calculator.model.NumberConverter;
 import ru.unn.agile.calculator.model.NumberSystem;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,11 +23,9 @@ public class ViewModel {
     private final StringProperty number2 = new SimpleStringProperty();
     private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
     private final List<NumberSystem> numberSystems =
-            FXCollections.observableList(Arrays.stream(NumberSystem.values())
+            Arrays.stream(NumberSystem.values())
                     .filter(s -> !NumberSystem.UNKNOWN.equals(s))
-                    .collect(Collectors.toList()));
-
-    private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
+                    .collect(Collectors.toList());
 
     public ViewModel() {
 
@@ -57,7 +53,6 @@ public class ViewModel {
         for (StringProperty field : fields) {
             final ValueChangeListener listener = new ValueChangeListener();
             field.addListener(listener);
-            valueChangedListeners.add(listener);
         }
 
     }
