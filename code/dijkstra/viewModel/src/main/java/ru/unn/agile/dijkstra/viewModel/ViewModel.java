@@ -67,7 +67,6 @@ public class ViewModel {
 
     public Graph graphInit() {
         try {
-
             List<Edge> edges = mapper.readValue(matrix.get(),
                 mapper.getTypeFactory().constructCollectionType(List.class, Edge.class));
 

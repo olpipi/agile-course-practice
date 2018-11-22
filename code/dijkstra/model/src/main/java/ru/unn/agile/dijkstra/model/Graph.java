@@ -20,7 +20,6 @@ public class Graph {
         this.vertexes = vertexes.stream().distinct().collect(Collectors.toList());
         this.edges = edges;
         this.ways = initWays(vertexes);
-
     }
 
     public Graph(final int[][] matrix) {

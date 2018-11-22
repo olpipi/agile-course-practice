@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import ru.unn.agile.dijkstra.viewModel.*?>
 
-<AnchorPane minWidth="309.0" prefHeight="211.0" prefWidth="309.0" scaleX="1.0" scaleY="1.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.unn.agile.dijkstra.view.DijkstraController">
+<AnchorPane minWidth="309.0" prefHeight="211.0" prefWidth="309.0" scaleX="1.0" scaleY="1.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.unn.agile.dijkstra.view.DijkstraView">
   <fx:define>
     <ViewModel fx:id="viewModel"/>
   </fx:define>
