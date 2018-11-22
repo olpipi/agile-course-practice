@@ -92,4 +92,38 @@ public class Fraction {
     public String toString() {
         return String.format("%d/%d", numerator, denominator);
     }
+
+    public enum Operation {
+        ADD(" + ") {
+            public Fraction apply(final Fraction l, final Fraction r) {
+                return l.add(r);
+            }
+        },
+        SUBSTRACT(" - ") {
+            public Fraction apply(final Fraction l, final Fraction r) {
+                return l.substract(r);
+            }
+        },
+        MULTIPLY(" * ") {
+            public Fraction apply(final Fraction l, final Fraction r) {
+                return l.multiply(r);
+            }
+        },
+        DIVIDE(" / ") {
+            public Fraction apply(final Fraction l, final Fraction r) {
+                return l.divide(r);
+            }
+        };
+    
+        private final String name;
+        Operation(final String name) {
+            this.name = name;
+        }
+        @Override
+        public String toString() {
+            return name;
+        }
+
+        public abstract Fraction apply(Fraction l, Fraction r);
+    }
 }
