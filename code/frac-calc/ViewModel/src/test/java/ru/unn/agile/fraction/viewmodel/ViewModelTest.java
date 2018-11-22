@@ -100,14 +100,19 @@ public class ViewModelTest {
 
     @Test
     public void canSetAddOperation() {
-        viewModel.operationProperty().set(Operation.ADD);
+        Operation addOperation = Operation.ADD;
 
-        assertEquals(Operation.ADD, viewModel.operationProperty().get());
+        viewModel.operationProperty().set(addOperation);
+
+        assertEquals(addOperation, viewModel.operationProperty().get());
     }
 
     @Test
     public void addIsDefaultOperation() {
-        assertEquals(Operation.ADD, viewModel.operationProperty().get());
+        Operation defaultOperation = Operation.ADD;
+        Operation initOperation = viewModel.operationProperty().get();
+
+        assertEquals(defaultOperation, initOperation);
     }
 
     @Test

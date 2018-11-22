@@ -28,7 +28,7 @@ public class ViewModel {
     private StringProperty resultDenominator = new SimpleStringProperty();
 
     private final StringProperty status = new SimpleStringProperty();
-    private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
+    private final List<InputValueChanger> valueChangedListeners = new ArrayList<>();
 
     public ViewModel() {
         initDefaultFields();
@@ -67,7 +67,7 @@ public class ViewModel {
         };
 
         for (StringProperty field : fields) {
-            final ValueChangeListener listener = new ValueChangeListener();
+            final InputValueChanger listener = new InputValueChanger();
             field.addListener(listener);
             valueChangedListeners.add(listener);
         }
@@ -121,25 +121,37 @@ public class ViewModel {
         return status.get();
     }
 
+    private class InputValueChanger implements ChangeListener<String> {
+        @Override
+        public void changed(final ObservableValue<? extends String> obs,
+                            final String prevVal,
+                            final String nextVal) {
+            status.set(getInputStatus().toString());
+        }
+    }
+
     private Status getInputStatus() {
         Status inputStatus = Status.READY;
+        boolean fn = firstNumerator.get().isEmpty();
+        boolean fd = firstDenominator.get().isEmpty();
+        boolean sn = secondNumerator.get().isEmpty();
+        boolean sd = secondDenominator.get().isEmpty();
 
-        if (firstNumerator.get().isEmpty() || firstDenominator.get().isEmpty()
-                || secondNumerator.get().isEmpty() || secondDenominator.get().isEmpty()) {
+        if (fn || fd || sn || sd) {
             inputStatus = Status.WAITING;
         }
 
         try {
-            if (!firstNumerator.get().isEmpty()) {
+            if (!fn) {
                 Integer.parseInt(firstNumerator.get());
             }
-            if (!firstDenominator.get().isEmpty()) {
+            if (!fd) {
                 Integer.parseInt(firstDenominator.get());
             }
-            if (!secondNumerator.get().isEmpty()) {
+            if (!sn) {
                 Integer.parseInt(secondNumerator.get());
             }
-            if (!secondDenominator.get().isEmpty()) {
+            if (!sd) {
                 Integer.parseInt(secondDenominator.get());
             }
         } catch (NumberFormatException nfe) {
@@ -147,14 +159,6 @@ public class ViewModel {
         }
 
         return inputStatus;
-    }
-
-    private class ValueChangeListener implements ChangeListener<String> {
-        @Override
-        public void changed(final ObservableValue<? extends String> observable,
-                            final String oldValue, final String newValue) {
-            status.set(getInputStatus().toString());
-        }
     }
 
     public void calculate() {
