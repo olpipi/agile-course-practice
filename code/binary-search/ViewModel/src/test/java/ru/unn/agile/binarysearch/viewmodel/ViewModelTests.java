@@ -1,6 +1,7 @@
 package ru.unn.agile.binarysearch.viewmodel;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class ViewModelTests {
