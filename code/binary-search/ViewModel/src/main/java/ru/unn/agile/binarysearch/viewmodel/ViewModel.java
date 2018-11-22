@@ -31,7 +31,6 @@ public class ViewModel {
         elementInput.set("");
         status.set("");
         result.set("");
-        search = null;
         arrayCorrect = false;
         elementCorrect = false;
         BooleanBinding couldSearch = new BooleanBinding() {
