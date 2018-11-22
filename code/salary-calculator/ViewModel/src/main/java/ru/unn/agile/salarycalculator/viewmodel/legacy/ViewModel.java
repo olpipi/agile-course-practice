@@ -38,6 +38,8 @@ public class ViewModel {
         public static final String BAD_WORKED_HOURS_FORMAT =
                 "Worked houses must be between 1 and 500";
         public static final String CASH = "This your cash";
+
+        private Status(){}
     }
 
     public void checkCountFields() {
