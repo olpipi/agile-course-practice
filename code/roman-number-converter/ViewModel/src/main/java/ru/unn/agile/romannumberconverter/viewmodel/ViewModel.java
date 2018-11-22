@@ -3,6 +3,7 @@ package ru.unn.agile.romannumberconverter.viewmodel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import ru.unn.agile.romannumberconverter.model.RomanNumberConverter;
+import ru.unn.agile.romannumberconverter.model.errorhandling.RomanIncorrectValueExeption;
 
 public class ViewModel {
     private static final String ERR_WRONG_ROMAN_VALUE = "Римское число введено неверно!";
@@ -40,6 +41,17 @@ public class ViewModel {
         }
         catch(NumberFormatException ex) {
             convertStatus.set(ERR_WRONG_ARABIC_VALUE);
+        }
+    }
+
+    public void convertRomanToArabic() {
+        try {
+            int intArabic = RomanNumberConverter.convertToArabic(getArabicValueStr());
+            setArabicValueStr(Integer.toString(intArabic));
+            convertStatus.set(SUCCESSFUL_STATUS);
+        }
+        catch(RomanIncorrectValueExeption ex) {
+            convertStatus.set(ERR_WRONG_ROMAN_VALUE);
         }
     }
 }

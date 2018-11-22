@@ -52,4 +52,22 @@ public class ViewModelTest {
 
         assertEquals("Арабское число введено неверно!", viewModel.getConvertStatus());
     }
+
+    @Test
+    public void canConvertRomanToArabicValidValue() {
+        viewModel.setArabicValueStr("IX");
+
+        viewModel.convertRomanToArabic();
+
+        assertEquals("9",viewModel.getArabicValueStr());
+    }
+
+    @Test
+    public void canConvertRomanToArabicInvalidValue() {
+        viewModel.setArabicValueStr("test");
+
+        viewModel.convertRomanToArabic();
+
+        assertEquals("Римское число введено неверно!", viewModel.getConvertStatus());
+    }
 }
