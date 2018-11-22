@@ -51,7 +51,8 @@ public class PolynomialParser {
     }
 
     private void convertPlusMinus(final char symbol, final int index) {
-        if (symbolMinusDetected || symbolPlusDetected || pointDetected) {
+        if (symbolMinusDetected || symbolPlusDetected
+                || pointDetected || degreeDetected) {
             throw new ViewModelException(FORMAT_ERROR);
         }
         if (index != 0) {

@@ -263,4 +263,15 @@ public class ViewModelTest {
 
         assertEquals(PolynomialParser.FORMAT_ERROR + "1", viewModel.getResultStr());
     }
+
+    @Test
+    public void caAddWrongFormatPolynomialMinusAfterDegree() {
+        ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("2x^-2 + 14.0x + 12.0");
+        viewModel.setSecondPolynomialStr("2.0x^2 + 14.0x + 12.0");
+
+        viewModel.add();
+
+        assertEquals(PolynomialParser.FORMAT_ERROR + "1", viewModel.getResultStr());
+    }
 }
