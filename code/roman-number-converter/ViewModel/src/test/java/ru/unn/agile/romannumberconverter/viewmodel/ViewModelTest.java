@@ -55,7 +55,7 @@ public class ViewModelTest {
 
     @Test
     public void canConvertRomanToArabicValidValue() {
-        viewModel.setArabicValueStr("IX");
+        viewModel.setRomanValueStr("IX");
 
         viewModel.convertRomanToArabic();
 
@@ -64,7 +64,7 @@ public class ViewModelTest {
 
     @Test
     public void canConvertRomanToArabicInvalidValue() {
-        viewModel.setArabicValueStr("test");
+        viewModel.setRomanValueStr("test");
 
         viewModel.convertRomanToArabic();
 

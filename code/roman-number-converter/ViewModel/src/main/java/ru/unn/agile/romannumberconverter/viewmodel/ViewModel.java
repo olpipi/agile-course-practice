@@ -46,7 +46,7 @@ public class ViewModel {
 
     public void convertRomanToArabic() {
         try {
-            int intArabic = RomanNumberConverter.convertToArabic(getArabicValueStr());
+            int intArabic = RomanNumberConverter.convertToArabic(getRomanValueStr());
             setArabicValueStr(Integer.toString(intArabic));
             convertStatus.set(SUCCESSFUL_STATUS);
         }
