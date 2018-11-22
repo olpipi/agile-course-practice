@@ -10,10 +10,11 @@ public class ViewModel {
     public String getArabicValueStr() {
         return arabicValueStr.get();
     }
+    public void setArabicValueStr(final String arabicNewVal) { arabicValueStr.set(arabicNewVal); }
 
-    public String getRomanValueStr() {
-        return romanValueStr.get();
-    }
+    public String getRomanValueStr() { return romanValueStr.get(); }
+    public void setRomanValueStr(final String romanNewVal) { romanValueStr.set(romanNewVal); }
+
 
     public ViewModel() {
         initialize();
