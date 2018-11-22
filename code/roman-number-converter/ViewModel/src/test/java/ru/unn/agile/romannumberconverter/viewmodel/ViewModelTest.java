@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.After;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 
 public class ViewModelTest {
     private ViewModel viewModel;
@@ -41,7 +40,7 @@ public class ViewModelTest {
 
         viewModel.convertArabicToRoman();
 
-        assertEquals("XI",viewModel.getRomanValueStr());
+        assertEquals("XI", viewModel.getRomanValueStr());
     }
 
     @Test
@@ -50,7 +49,8 @@ public class ViewModelTest {
 
         viewModel.convertArabicToRoman();
 
-        assertEquals("Арабское число введено неверно!", viewModel.getConvertStatus());
+        assertEquals("Арабское число введено неверно!",
+                viewModel.getConvertStatus());
     }
 
     @Test
@@ -59,7 +59,7 @@ public class ViewModelTest {
 
         viewModel.convertRomanToArabic();
 
-        assertEquals("9",viewModel.getArabicValueStr());
+        assertEquals("9", viewModel.getArabicValueStr());
     }
 
     @Test
@@ -68,7 +68,8 @@ public class ViewModelTest {
 
         viewModel.convertRomanToArabic();
 
-        assertEquals("Римское число введено неверно!", viewModel.getConvertStatus());
+        assertEquals("Римское число введено неверно!",
+                viewModel.getConvertStatus());
     }
 
     @Test
@@ -77,7 +78,8 @@ public class ViewModelTest {
 
         viewModel.convertArabicToRoman();
 
-        assertEquals("Введено число не из интервала от 1 до 3999!", viewModel.getConvertStatus());
+        assertEquals("Введено число не из интервала от 1 до 3999!",
+                viewModel.getConvertStatus());
     }
 
     @Test
@@ -86,6 +88,7 @@ public class ViewModelTest {
 
         viewModel.convertArabicToRoman();
 
-        assertEquals("Введено число не из интервала от 1 до 3999!", viewModel.getConvertStatus());
+        assertEquals("Введено число не из интервала от 1 до 3999!",
+                viewModel.getConvertStatus());
     }
 }
