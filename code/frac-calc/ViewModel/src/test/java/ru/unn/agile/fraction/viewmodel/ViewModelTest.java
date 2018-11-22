@@ -153,4 +153,45 @@ public class ViewModelTest {
         assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
     }
 
+    @Test
+    public void operationSubstractHasCorrectResult() {
+        viewModel.firstNumeratorProperty().set("4");
+        viewModel.firstDenominatorProperty().set("5");
+        viewModel.secondNumeratorProperty().set("5");
+        viewModel.secondDenominatorProperty().set("13");
+        viewModel.operationProperty().set(Operation.SUBSTRACT);
+
+        viewModel.calculate();
+
+        assertEquals("27", viewModel.resultNumeratorProperty().get());
+        assertEquals("65", viewModel.resultDenominatorProperty().get());
+    }
+
+    @Test
+    public void operationMultiplyHasCorrectResult() {
+        viewModel.firstNumeratorProperty().set("3");
+        viewModel.firstDenominatorProperty().set("4");
+        viewModel.secondNumeratorProperty().set("2");
+        viewModel.secondDenominatorProperty().set("7");
+        viewModel.operationProperty().set(Operation.MULTIPLY);
+
+        viewModel.calculate();
+
+        assertEquals("3", viewModel.resultNumeratorProperty().get());
+        assertEquals("14", viewModel.resultDenominatorProperty().get());
+    }
+
+    @Test
+    public void operationDivideHasCorrectResult() {
+        viewModel.firstNumeratorProperty().set("13");
+        viewModel.firstDenominatorProperty().set("44");
+        viewModel.secondNumeratorProperty().set("23");
+        viewModel.secondDenominatorProperty().set("22");
+        viewModel.operationProperty().set(Operation.DIVIDE);
+
+        viewModel.calculate();
+
+        assertEquals("13", viewModel.resultNumeratorProperty().get());
+        assertEquals("46", viewModel.resultDenominatorProperty().get());
+    }
 }

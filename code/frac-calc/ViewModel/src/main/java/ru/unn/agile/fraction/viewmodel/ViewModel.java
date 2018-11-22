@@ -96,7 +96,7 @@ public class ViewModel {
     public StringProperty resultDenominatorProperty() {
         return resultDenominator;
     }
-    
+
     public final ObservableList<Operation> getOperations() {
         return operations.get();
     }
