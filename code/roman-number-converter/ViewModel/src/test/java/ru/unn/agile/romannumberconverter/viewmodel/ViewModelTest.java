@@ -91,4 +91,24 @@ public class ViewModelTest {
         assertEquals("Введено число не из интервала от 1 до 3999!",
                 viewModel.getConvertStatus());
     }
+
+    @Test
+    public void canConvertEmptyArabicValue() {
+        viewModel.setArabicValueStr("");
+
+        viewModel.convertArabicToRoman();
+
+        assertEquals("Арабское число введено неверно!",
+                viewModel.getConvertStatus());
+    }
+
+    @Test
+    public void canConvertEmptyRomanValue() {
+        viewModel.setRomanValueStr("");
+
+        viewModel.convertRomanToArabic();
+
+        assertEquals("Римское число введено неверно!",
+                viewModel.getConvertStatus());
+    }
 }

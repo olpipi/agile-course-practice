@@ -1,5 +1,6 @@
 package ru.unn.agile.romannumberconverter.model;
 
+import com.sun.istack.internal.Nullable;
 import ru.unn.agile.romannumberconverter.model.errorhandling.ArabicOutOfRangeException;
 import ru.unn.agile.romannumberconverter.model.errorhandling.RomanIncorrectValueExeption;
 
@@ -47,6 +48,9 @@ public final class RomanNumberConverter {
             i += step;
         }
 
+        if (arabicNumber == 0) {
+            throw new RomanIncorrectValueExeption();
+        }
         checkTheNumberOfRomanSymbolsIsEqualsToArabicNumber(romanNumber, arabicNumber);
 
         return arabicNumber;
@@ -72,7 +76,6 @@ public final class RomanNumberConverter {
             romanNumber = BASE_NUMBER_MAP.get(nearestKey)
                     + doConvertToRoman(arabicNumber - nearestKey);
         }
-
         return romanNumber;
     }
 
