@@ -20,6 +20,7 @@ public class ViewModel {
     private StringProperty bY = new SimpleStringProperty();
     private StringProperty cY = new SimpleStringProperty();
     private StringProperty result = new SimpleStringProperty();
+    private final StringProperty status = new SimpleStringProperty();
 
     private final BooleanProperty btnDisabled = new SimpleBooleanProperty();
 
@@ -76,8 +77,11 @@ public class ViewModel {
     }
 
     public String getResult() {
-
         return result.get();
+    }
+
+    public String getStatus() {
+        return status.get();
     }
 
     public BooleanProperty btnDisabledProperty() {
@@ -96,6 +100,7 @@ public class ViewModel {
         bY.set("");
         cY.set("");
         result.set("");
+        status.set(Status.READY.toString());
 
         BooleanBinding couldCalculate = new BooleanBinding() {
             {
@@ -104,23 +109,20 @@ public class ViewModel {
             @Override
             protected boolean computeValue() {
                 return getInputStatus() == Status.READY;
-        };
+            };
         };
         btnDisabled.bind(couldCalculate.not());
     }
 
     public Point getPointA() {
-
         return new Point(getAx(), getAy());
     }
 
     public Point getPointB() {
-
         return new Point(getBx(), getBy());
     }
 
     public Point getPointC() {
-
         return new Point(getCx(), getCy());
     }
 
@@ -232,15 +234,12 @@ public class ViewModel {
 
         for (StringProperty field : pointArray) {
 
-            if (field.get().isEmpty()) {
-                inputStatus = Status.WAITING;
-            }
             try {
                 if (field.get().isEmpty()) {
                     Double.parseDouble(field.get());
                 }
             } catch (NumberFormatException nfe) {
-                inputStatus = Status.BAD_FORMAT;
+                result.set("Invalid triangle");
             }
         }
 
@@ -249,14 +248,14 @@ public class ViewModel {
 }
 
 enum Status {
-    WAITING("Please provide input data"),
-    READY("Press 'Calculate' or Enter"),
-    BAD_FORMAT("Bad format");
+    READY("Press 'Calculate' or Enter");
 
     private final String name;
+
     Status(final String name) {
         this.name = name;
     }
+
     public String toString() {
         return name;
     }

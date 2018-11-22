@@ -144,18 +144,6 @@ public class ViewModelTest {
     }
 
     @Test
-    public void emptyForm() {
-        viewModel.aXProperty().set("");
-        viewModel.aYProperty().set("");
-        viewModel.bXProperty().set("");
-        viewModel.bYProperty().set("");
-        viewModel.cXProperty().set("");
-        viewModel.cYProperty().set("");
-
-        assertTrue(viewModel.btnDisabledProperty().get());
-    }
-
-    @Test
     public void invalidTriangleForBCAAngle() {
         viewModel.aXProperty().set("0.0");
         viewModel.aYProperty().set("0.0");
@@ -265,5 +253,17 @@ public class ViewModelTest {
         viewModel.getLengthCA();
 
         assertEquals("Invalid triangle", viewModel.getResult());
+    }
+
+    @Test
+    public void statusIsReadyWhenFieldsAreFill() {
+        viewModel.aXProperty().set("9.0");
+        viewModel.aYProperty().set("9.0");
+        viewModel.bXProperty().set("9.0");
+        viewModel.bYProperty().set("5.0");
+        viewModel.cXProperty().set("1.0");
+        viewModel.cYProperty().set("2.0");
+
+        assertEquals(Status.READY.toString(), viewModel.getStatus());
     }
 }
