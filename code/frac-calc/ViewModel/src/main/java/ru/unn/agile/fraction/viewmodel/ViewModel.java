@@ -28,7 +28,6 @@ public class ViewModel {
     private StringProperty resultDenominator = new SimpleStringProperty();
 
     private final StringProperty status = new SimpleStringProperty();
-    private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
 
     public ViewModel() {
         initDefaultFields();
@@ -44,109 +43,30 @@ public class ViewModel {
         resultDenominator.set("");
         status.set(Status.WAITING.toString());
 
-        BooleanBinding couldCalculate = new BooleanBinding() {
-            {
-                super.bind(firstNumerator, firstDenominator,
-                        secondNumerator, secondDenominator);
-            }
-
-            @Override
-            protected boolean computeValue() {
-                return getInputStatus() == Status.READY;
-            }
-        };
-        calculationDisabled.bind(couldCalculate.not());
-
-        final List<StringProperty> fields = new ArrayList<StringProperty>() {
-            {
-                add(firstNumerator);
-                add(firstDenominator);
-                add(secondNumerator);
-                add(secondDenominator);
-            }
-        };
-
-        for (StringProperty field : fields) {
-            final ValueChangeListener listener = new ValueChangeListener();
-            field.addListener(listener);
-            valueChangedListeners.add(listener);
-        }
-    }
-
-    public String getFirstNumerator() {
-        return firstNumerator.get();
-    }
-
-    public void setFirstNumerator(final String newfirstNumerator) {
-        firstNumerator.set(newfirstNumerator);
     }
 
     public StringProperty firstNumeratorProperty() {
         return firstNumerator;
     }
 
-    public String getFirstDenominator() {
-        return firstDenominator.get();
-    }
-
-    public void setFirstDenominator(final String newfirstDenominator) {
-        firstDenominator.set(newfirstDenominator);
-    }
-
     public StringProperty firstDenominatorProperty() {
         return firstDenominator;
-    }
-
-    public String getSecondNumerator() {
-        return secondNumerator.get();
-    }
-
-    public void setSecondNumerator(final String newSecondNumerator) {
-        secondNumerator.set(newSecondNumerator);
     }
 
     public StringProperty secondNumeratorProperty() {
         return secondNumerator;
     }
 
-    public String getSecondDenominator() {
-        return secondDenominator.get();
-    }
-
-    public void setSecondDenominator(final String newSecondDenominator) {
-        secondDenominator.set(newSecondDenominator);
-    }
-
     public StringProperty secondDenominatorProperty() {
         return secondDenominator;
-    }
-
-    public String getResultNumerator() {
-        return resultNumerator.get();
-    }
-
-    public void setResultNumerator(final String newResultNumerator) {
-        resultNumerator.set(newResultNumerator);
     }
 
     public StringProperty resultNumeratorProperty() {
         return resultNumerator;
     }
 
-    public String getResultDenominator() {
-        return resultDenominator.get();
-    }
-
-    public void setResultDenominator(final String newResultDenominator) {
-        resultDenominator.set(newResultDenominator);
-    }
-
     public StringProperty resultDenominatorProperty() {
         return resultDenominator;
-    }
-
-    public ObjectProperty<ObservableList<Operation>> operationsProperty() {
-        return operations;
     }
 
     public final ObservableList<Operation> getOperations() {
@@ -157,10 +77,6 @@ public class ViewModel {
         return operation;
     }
 
-    public BooleanProperty calculationDisabledProperty() {
-        return calculationDisabled;
-    }
-
     public final boolean isCalculationDisabled() {
         return calculationDisabled.get();
     }
@@ -169,61 +85,6 @@ public class ViewModel {
         return status;
     }
 
-    public final String getStatus() {
-        return status.get();
-    }
-
-    private Status getInputStatus() {
-        Status inputStatus = Status.READY;
-
-        if (firstNumerator.get().isEmpty() || firstDenominator.get().isEmpty()
-                || secondNumerator.get().isEmpty() || secondDenominator.get().isEmpty()) {
-            inputStatus = Status.WAITING;
-        }
-
-        try {
-            if (!firstNumerator.get().isEmpty()) {
-                Integer.parseInt(firstNumerator.get());
-            }
-            if (!firstDenominator.get().isEmpty()) {
-                Integer.parseInt(firstDenominator.get());
-            }
-            if (!secondNumerator.get().isEmpty()) {
-                Integer.parseInt(secondNumerator.get());
-            }
-            if (!secondDenominator.get().isEmpty()) {
-                Integer.parseInt(secondDenominator.get());
-            }
-        } catch (NumberFormatException nfe) {
-            inputStatus = Status.BAD_FORMAT;
-        }
-
-        return inputStatus;
-    }
-
-    private class ValueChangeListener implements ChangeListener<String> {
-        @Override
-        public void changed(final ObservableValue<? extends String> observable,
-                            final String oldValue, final String newValue) {
-            status.set(getInputStatus().toString());
-        }
-    }
-
-    public void calculate() {
-        if (calculationDisabled.get()) {
-            return;
-        }
-
-        Fraction f1 = new Fraction(Integer.parseInt(firstNumerator.get()),
-                Integer.parseInt(firstDenominator.get()));
-        Fraction f2 = new Fraction(Integer.parseInt(secondNumerator.get()),
-                Integer.parseInt(secondDenominator.get()));
-        Fraction res = operation.get().apply(f1, f2);
-
-        resultNumerator.set(String.valueOf(res.getNumerator()));
-        resultDenominator.set(String.valueOf(res.getDenominator()));
-        status.set(Status.SUCCESS.toString());
-    }
 }
 
 enum Status {
