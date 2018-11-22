@@ -1,6 +1,5 @@
 package ru.unn.agile.romannumberconverter.model;
 
-import com.sun.istack.internal.Nullable;
 import ru.unn.agile.romannumberconverter.model.errorhandling.ArabicOutOfRangeException;
 import ru.unn.agile.romannumberconverter.model.errorhandling.RomanIncorrectValueExeption;
 
