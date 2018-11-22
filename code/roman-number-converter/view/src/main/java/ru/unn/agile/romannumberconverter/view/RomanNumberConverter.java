@@ -17,9 +17,6 @@ public class RomanNumberConverter {
     private TextField arabicNumber;
 
     @FXML
-    private Label convertStatus;
-
-    @FXML
     private Button buttonConvertToArabic;
 
     @FXML
@@ -29,7 +26,6 @@ public class RomanNumberConverter {
     void initialize() {
         romanNumber.textProperty().bindBidirectional(viewModel.romanValueStrProperty());
         arabicNumber.textProperty().bindBidirectional(viewModel.arabicValueStrProperty());
-        convertStatus.textProperty().bindBidirectional(viewModel.convertStatusProperty());
 
         buttonConvertToArabic.setOnAction(event -> viewModel.convertRomanToArabic());
         buttonConvertToRoman.setOnAction(event -> viewModel.convertArabicToRoman());

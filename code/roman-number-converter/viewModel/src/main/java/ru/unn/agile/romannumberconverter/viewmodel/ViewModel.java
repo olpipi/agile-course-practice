@@ -27,21 +27,25 @@ public class ViewModel {
         return arabicValueStr.get();
     }
     public void setArabicValueStr(final String arabicNewVal) {
-        arabicValueStr.set(arabicNewVal); }
+        arabicValueStr.set(arabicNewVal);
+    }
 
     public StringProperty romanValueStrProperty() {
         return romanValueStr;
     }
     public String getRomanValueStr() {
-        return romanValueStr.get(); }
+        return romanValueStr.get();
+    }
     public void setRomanValueStr(final String romanNewVal) {
-        romanValueStr.set(romanNewVal); }
+        romanValueStr.set(romanNewVal);
+    }
 
     public StringProperty convertStatusProperty() {
         return convertStatus;
     }
     public String getConvertStatus() {
-        return convertStatus.get(); }
+        return convertStatus.get();
+    }
 
     public ViewModel() {
         initialize();
@@ -50,6 +54,7 @@ public class ViewModel {
     private void initialize() {
         arabicValueStr.set("");
         romanValueStr.set("");
+        convertStatus.set("");
     }
 
     public void convertArabicToRoman() {
