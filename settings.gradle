@@ -31,8 +31,12 @@ include "code/shadrunov-artem-bit-array"
 project(":code/shadrunov-artem-bit-array").name = "shadrunov-artem-bit-array"
 
 // Anikina Olga
-include "code/dikstry"
-project(":code/dikstry").name = "dikstry-Model"
+include "code/dijkstra/model"
+project(":code/dijkstra/model").name = "dijkstra-Model"
+include "code/dijkstra/viewModel"
+project(":code/dijkstra/viewModel").name = "dijkstra-ViewModel"
+include "code/dijkstra/view"
+project(":code/dijkstra/view").name = "dijkstra-View"
 
 // Ivanova Olga, lab1
 include "code/prime-number"
@@ -118,9 +122,13 @@ project(":code/vector3d/ViewModel").name = "vector3d-ViewModel"
 include "code/vector3d/View"
 project(":code/vector3d/View").name = "vector3d-View"
 
-// Magazinnik Ivan, string-calculator
-include "code/string-calculator"
-project(":code/string-calculator").name = "string-calculator"
+// string-calculator
+include "code/string-calculator/Model"
+project(":code/string-calculator/Model").name = "string-calculator-Model"
+include "code/string-calculator/ViewModel"
+project(":code/string-calculator/ViewModel").name = "string-calculator-ViewModel"
+include "code/string-calculator/View"
+project(":code/string-calculator/View").name = "string-calculator-View"
 
 // Stack
 include "code/stack"
@@ -206,9 +214,13 @@ project(":code/podchishchaeva-rb-tree").name = "podchishchaeva-rb-tree"
 include "code/golovanova-tatyana-converter-temperatures"
 project(":code/golovanova-tatyana-converter-temperatures").name = "golovanova-tatyana-converter-temperatures"
 
-// Polynomial Calculator
-include "code/polynomial-calculator"
-project(":code/polynomial-calculator").name = "polynomial-calculator"
+// Shiryaeva Ekaterina, Kochuev Andrey Polynomial Calculator
+include "code/polynomial-calculator/Model"
+project(":code/polynomial-calculator/Model").name = "polynomial-calculator-Model"
+include "code/polynomial-calculator/ViewModel"
+project(":code/polynomial-calculator/ViewModel").name = "polynomial-calculator-ViewModel"
+include "code/polynomial-calculator/View"
+project(":code/polynomial-calculator/View").name = "polynomial-calculator-View"
 
 // Sheptunov Vladislav, BinarySearchTree
 include "code/binary-search-tree"
