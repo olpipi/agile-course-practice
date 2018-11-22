@@ -16,6 +16,15 @@ public class ViewModelTest {
     }
 
     @Test
+    public void createViewModelWithDefaultFieldsProperty() {
+        ViewModel viewModel = new ViewModel();
+
+        assertEquals("", viewModel.firstPolynomialStrProperty().get());
+        assertEquals("", viewModel.secondPolynomialStrProperty().get());
+        assertEquals("", viewModel.resultStrProperty().get());
+    }
+
+    @Test
     public void canParsePolynomial() {
         ViewModel viewModel = new ViewModel();
 
