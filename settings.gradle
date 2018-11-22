@@ -31,8 +31,12 @@ include "code/shadrunov-artem-bit-array"
 project(":code/shadrunov-artem-bit-array").name = "shadrunov-artem-bit-array"
 
 // Anikina Olga
-include "code/dikstry"
-project(":code/dikstry").name = "dikstry-Model"
+include "code/dijkstra/model"
+project(":code/dijkstra/model").name = "dijkstra-Model"
+include "code/dijkstra/viewModel"
+project(":code/dijkstra/viewModel").name = "dijkstra-ViewModel"
+include "code/dijkstra/view"
+project(":code/dijkstra/view").name = "dijkstra-View"
 
 // Ivanova Olga, lab1
 include "code/prime-number"
