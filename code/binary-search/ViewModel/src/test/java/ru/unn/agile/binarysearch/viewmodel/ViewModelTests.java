@@ -1,12 +1,6 @@
 package ru.unn.agile.binarysearch.viewmodel;
 
-//import org.junit.After;
-//import org.junit.Before;
 import org.junit.Test;
-//import ru.unn.agile.binarysearch.model.BinarySearch;
-
-import javax.swing.text.View;
-
 import static org.junit.Assert.*;
 
 public class ViewModelTests {
