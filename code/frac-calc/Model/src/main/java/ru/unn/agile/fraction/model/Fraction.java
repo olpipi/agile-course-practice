@@ -114,11 +114,13 @@ public class Fraction {
                 return l.divide(r);
             }
         };
-    
+
         private final String name;
+
         Operation(final String name) {
             this.name = name;
         }
+
         @Override
         public String toString() {
             return name;
