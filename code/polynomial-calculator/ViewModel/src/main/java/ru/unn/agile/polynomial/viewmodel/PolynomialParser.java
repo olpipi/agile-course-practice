@@ -23,7 +23,7 @@ public class PolynomialParser {
     }
 
     private void convertX(final int index) {
-        if (pointDetected || degreeDetected) {
+        if (pointDetected || degreeDetected || xDetected) {
             throw new ViewModelException(FORMAT_ERROR);
         }
 

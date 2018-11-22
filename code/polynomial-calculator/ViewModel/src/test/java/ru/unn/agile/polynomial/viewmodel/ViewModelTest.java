@@ -282,4 +282,15 @@ public class ViewModelTest {
 
         assertEquals(PolynomialParser.FORMAT_ERROR + "1", viewModel.getResultStr());
     }
+
+    @Test
+    public void caAddWrongFormatPolynomialXAfterX() {
+        ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("xx+1");
+        viewModel.setSecondPolynomialStr("2.0x^2 + 14.0x + 12.0");
+
+        viewModel.add();
+
+        assertEquals(PolynomialParser.FORMAT_ERROR + "1", viewModel.getResultStr());
+    }
 }
