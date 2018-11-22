@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.After;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class ViewModelTest {
     private ViewModel viewModel;
@@ -32,5 +33,23 @@ public class ViewModelTest {
 
         assertEquals("1", viewModel.getArabicValueStr());
         assertEquals("1", viewModel.getRomanValueStr());
+    }
+
+    @Test
+    public void canConvertArabicToRomanValidValue() {
+        viewModel.setArabicValueStr("11");
+
+        viewModel.convertArabicToRoman();
+
+        assertEquals("XI",viewModel.getRomanValueStr());
+    }
+
+    @Test
+    public void canConvertArabicToRomanInvalidValue() {
+        viewModel.setArabicValueStr("test");
+
+        viewModel.convertArabicToRoman();
+
+        assertEquals("Арабское число введено неверно!", viewModel.getConvertStatus());
     }
 }
