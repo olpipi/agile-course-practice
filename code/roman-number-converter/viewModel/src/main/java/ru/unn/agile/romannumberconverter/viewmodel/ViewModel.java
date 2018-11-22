@@ -40,9 +40,6 @@ public class ViewModel {
         romanValueStr.set(romanNewVal);
     }
 
-    public StringProperty convertStatusProperty() {
-        return convertStatus;
-    }
     public String getConvertStatus() {
         return convertStatus.get();
     }
