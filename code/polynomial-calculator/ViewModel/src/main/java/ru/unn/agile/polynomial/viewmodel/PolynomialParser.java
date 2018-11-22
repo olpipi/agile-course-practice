@@ -54,7 +54,7 @@ public class PolynomialParser {
         if (index != 0) {
             array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
         }
-
+        xDetected = false;
         degreeDetected = false;
         degreeStr = "0";
         if (symbol == '-') {
@@ -67,14 +67,18 @@ public class PolynomialParser {
     }
 
     private void convertPointOrDigit(final char symbol) {
-        if (!Character.isDigit(symbol)
-                && (xDetected || symbolMinusDetected || symbolPlusDetected)) {
-            throw new ViewModelException(FORMAT_ERROR);
+        if (!Character.isDigit(symbol)) {
+            if (xDetected || symbolMinusDetected || symbolPlusDetected) {
+                throw new ViewModelException(FORMAT_ERROR);
+            }
         } else {
-            xDetected = false;
-            symbolMinusDetected = false;
-            symbolPlusDetected = false;
+            if (xDetected) {
+                throw new ViewModelException(FORMAT_ERROR);
+            }
         }
+        xDetected = false;
+        symbolMinusDetected = false;
+        symbolPlusDetected = false;
 
         if (symbol == '.') {
             pointDetected = true;

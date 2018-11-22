@@ -194,4 +194,48 @@ public class ViewModelTest {
 
         assertEquals("5.9x^6 - 78.0x^5 - 2.0x - 14.0", viewModel.getResultStr());
     }
+
+    @Test
+    public void canMultiplyWrongFormatPolynomialXDetectedAfterDegree() {
+        ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("2.0x^x -2.0+4.0");
+        viewModel.setSecondPolynomialStr("2.0x^2 + 14.0x + 12.0");
+
+        viewModel.multiply();
+
+        assertEquals(PolynomialParser.FORMAT_ERROR + "1", viewModel.getResultStr());
+    }
+
+    @Test
+    public void canAddPolynomialSymbolMinusBeforeX() {
+        ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("-x -2.0");
+        viewModel.setSecondPolynomialStr("2.0x^2 + 2.0x + 12.0");
+
+        viewModel.add();
+
+        assertEquals("2.0x^2 + 1.0x + 10.0", viewModel.getResultStr());
+    }
+
+    @Test
+    public void caAddWrongFormatPolynomialSymbolMinusAfterPlus() {
+        ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("2.0x^2 + 14.0x + 12.0");
+        viewModel.setSecondPolynomialStr("2.0x^2 +- 14.0x + 12.0");
+
+        viewModel.add();
+
+        assertEquals(PolynomialParser.FORMAT_ERROR + "2", viewModel.getResultStr());
+    }
+
+    @Test
+    public void caAddWrongFormatPolynomialDigetAfterX() {
+        ViewModel viewModel = new ViewModel();
+        viewModel.setFirstPolynomialStr("2.0x2 + 14.0x + 12.0");
+        viewModel.setSecondPolynomialStr("2.0x^2 + 14.0x + 12.0");
+
+        viewModel.add();
+
+        assertEquals(PolynomialParser.FORMAT_ERROR + "1", viewModel.getResultStr());
+    }
 }
