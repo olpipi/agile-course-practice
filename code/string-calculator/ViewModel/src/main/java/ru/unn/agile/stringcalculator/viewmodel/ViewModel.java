@@ -12,6 +12,8 @@ import ru.unn.agile.stringcalculator.model.errorhandling.NotANumberException;
 import ru.unn.agile.stringcalculator.viewmodel.actions.ActionFactory;
 import ru.unn.agile.stringcalculator.viewmodel.actions.abstraction.IAction;
 
+import java.util.List;
+
 public class ViewModel {
     private final StringProperty inputData = new SimpleStringProperty();
     private final StringProperty result = new SimpleStringProperty();
@@ -98,7 +100,9 @@ public class ViewModel {
             inputStatus = Status.WAITING;
         }
         try {
-            StringCalculator.validate(inputData.get());
+            List<String> separatedNumbers =
+                    StringCalculator.getSeparatedNumbersFromString(inputData.get());
+            StringCalculator.checkAllNumbersAreValid(separatedNumbers);
         } catch (NotANumberException | NegativeNumberException e) {
             inputStatus = Status.BAD_FORMAT;
         }

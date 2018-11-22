@@ -25,7 +25,10 @@ public final class StringCalculator {
         if ("".equals(numbers)) {
             return numbersSum;
         }
-        List<String> singleNumbers = validate(numbers);
+
+        List<String> singleNumbers = getSeparatedNumbersFromString(numbers);
+        checkAllNumbersAreValid(singleNumbers);
+
         for (String number : singleNumbers) {
             numbersSum += Integer.parseInt(number);
         }
@@ -71,7 +74,7 @@ public final class StringCalculator {
         return number.matches(VALID_NUMBER_PATTERN);
     }
 
-    private static void checkAllNumbersAreValid(final List<String> numbers) {
+    public static void checkAllNumbersAreValid(final List<String> numbers) {
         List<String> negativeNumbersList = new ArrayList<>();
         for (String number : numbers) {
             if (!isNumber(number)) {
@@ -87,10 +90,8 @@ public final class StringCalculator {
         }
     }
 
-    public static List<String> validate(final String numbers) {
+    public static List<String> getSeparatedNumbersFromString(final String numbers) {
         String commaSeparatedNumbers = normalizeDelimiters(numbers);
-        List<String> singleNumbers = getNumbersArrayFromString(commaSeparatedNumbers);
-        checkAllNumbersAreValid(singleNumbers);
-        return singleNumbers;
+        return getNumbersArrayFromString(commaSeparatedNumbers);
     }
 }
