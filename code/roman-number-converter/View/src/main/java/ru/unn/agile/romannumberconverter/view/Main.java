@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("RomanNumberConverter.fxml"));
-        primaryStage.setTitle("Roman Number Converter");
+        primaryStage.setTitle("Конвертер римских и арабских чисел");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
