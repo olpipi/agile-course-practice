@@ -5,7 +5,6 @@ import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import ru.unn.agile.calculator.model.Calculator;
 import ru.unn.agile.calculator.model.NumberConverter;
 import ru.unn.agile.calculator.model.NumberSystem;
@@ -25,11 +24,10 @@ public class ViewModel {
     private final StringProperty number1 = new SimpleStringProperty();
     private final StringProperty number2 = new SimpleStringProperty();
     private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
-    private final ObjectProperty<ObservableList<NumberSystem>> numberSystems =
-            new SimpleObjectProperty<>(
-                    FXCollections.observableList(Arrays.stream(NumberSystem.values())
+    private final List<NumberSystem> numberSystems =
+            FXCollections.observableList(Arrays.stream(NumberSystem.values())
                     .filter(s -> !NumberSystem.UNKNOWN.equals(s))
-                    .collect(Collectors.toList())));
+                    .collect(Collectors.toList()));
 
     private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
 
@@ -54,12 +52,7 @@ public class ViewModel {
         };
         calculationDisabled.bind(couldCalculate.not());
 
-        final List<StringProperty> fields = new ArrayList<StringProperty>() {
-            {
-                add(number1);
-                add(number2);
-            }
-        };
+        final List<StringProperty> fields = Arrays.asList(number1, number2);
 
         for (StringProperty field : fields) {
             final ValueChangeListener listener = new ValueChangeListener();
@@ -93,11 +86,8 @@ public class ViewModel {
         return number2;
     }
 
-    public ObjectProperty<ObservableList<NumberSystem>> numberSystemspProperty() {
+    public final List<NumberSystem> getNumberSystems() {
         return numberSystems;
-    }
-    public final ObservableList<NumberSystem> getNumberSystems() {
-        return numberSystems.get();
     }
 
     public void calculate() {
@@ -145,8 +135,6 @@ public class ViewModel {
                 + ", -b = "
                 + Calculator.unaryMinus(b, currentSystem)
                 + "\n";
-
-
     }
 
     private String buildMultResult(final NumberSystem currentSystem,
