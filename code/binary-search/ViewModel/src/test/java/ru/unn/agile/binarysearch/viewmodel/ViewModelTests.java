@@ -5,6 +5,8 @@ package ru.unn.agile.binarysearch.viewmodel;
 import org.junit.Test;
 //import ru.unn.agile.binarysearch.model.BinarySearch;
 
+import javax.swing.text.View;
+
 import static org.junit.Assert.*;
 
 public class ViewModelTests {
@@ -109,5 +111,63 @@ public class ViewModelTests {
         viewModel.setArrayInputProperty("1,0,-1");
 
         assertEquals(true, viewModel.isSearchDisabled());
+    }
+
+    @Test
+    public void isSearchSkippedWhenDisabled() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.search();
+
+        assertEquals("", viewModel.getResultProperty());
+    }
+
+    @Test
+    public void canSearchFindMissingKey() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setArrayInputProperty("1,2,3");
+        viewModel.setElementInputProperty("4");
+        viewModel.search();
+
+        assertEquals("Key not found", viewModel.getResultProperty());
+    }
+
+    @Test
+    public void canGetArrayInputProperty() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setArrayInputProperty("1,2,3");
+
+        assertEquals(viewModel.getArrayInputProperty(), viewModel.arrayInputProperty().get());
+    }
+
+    @Test
+    public void canGetElementInputProperty() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setElementInputProperty("1");
+
+        assertEquals(viewModel.getElementInputProperty(), viewModel.elementInputProperty().get());
+    }
+
+    @Test
+    public void canGetStatusProperty() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setElementInputProperty("bad string");
+
+        assertEquals(viewModel.getStatusProperty(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void canGetResultProperty() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setArrayInputProperty("1,2,3");
+        viewModel.setElementInputProperty("3");
+        viewModel.search();
+
+        assertEquals(viewModel.getResultProperty(), viewModel.resultProperty().get());
     }
 }
