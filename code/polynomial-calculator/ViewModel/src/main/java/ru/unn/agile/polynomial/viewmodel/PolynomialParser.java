@@ -107,15 +107,15 @@ public class PolynomialParser {
         }
 
         for (int i = 0; i < polynomialStr.length(); i++) {
-            if (polynomialStr.toCharArray()[i] == 'x') {
+            if (polynomialStr.charAt(i) == 'x') {
                 convertX(i);
-            } else if (Character.isDigit(polynomialStr.toCharArray()[i])
-                    || polynomialStr.toCharArray()[i] == '.') {
-                convertPointOrDigit(polynomialStr.toCharArray()[i]);
-            } else if (polynomialStr.toCharArray()[i] == '-'
-                    || polynomialStr.toCharArray()[i] == '+') {
-                convertPlusMinus(polynomialStr.toCharArray()[i], i);
-            } else if (polynomialStr.toCharArray()[i] == '^') {
+            } else if (Character.isDigit(polynomialStr.charAt(i))
+                    || polynomialStr.charAt(i) == '.') {
+                convertPointOrDigit(polynomialStr.charAt(i));
+            } else if (polynomialStr.charAt(i) == '-'
+                    || polynomialStr.charAt(i) == '+') {
+                convertPlusMinus(polynomialStr.charAt(i), i);
+            } else if (polynomialStr.charAt(i) == '^') {
                 convertDegree();
             } else {
                 throw new ViewModelException(FORMAT_ERROR);

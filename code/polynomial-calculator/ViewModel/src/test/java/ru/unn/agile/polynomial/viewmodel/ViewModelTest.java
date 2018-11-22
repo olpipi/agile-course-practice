@@ -105,7 +105,6 @@ public class ViewModelTest {
         assertEquals("4.0x + 1.0", viewModel.getResultStr());
     }
 
-    //For parser2
     @Test
     public void canParseFirstDegreeWithoutFreeCoeff() {
         ViewModel viewModel = new ViewModel();
