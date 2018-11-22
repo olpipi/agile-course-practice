@@ -6,13 +6,21 @@ project(":code/bevzuk-anton").name = "bevzuk-anton-Model"
 include "code/oleneva-intersect-line-and-plane"
 project(":code/oleneva-intersect-line-and-plane").name = "code/oleneva-intersect-line-and-plane"
 
-// Pozdiaev Valerii
-include "code/pozdiaev-valerii-currency-converter"
-project(":code/pozdiaev-valerii-currency-converter").name = "pozdiaev-valerii-currency-converter"
+// Currency Converter
+include "code/currency-converter/Model"
+project(":code/currency-converter/Model").name = "currency-converter-Model"
+include "code/currency-converter/ViewModel"
+project(":code/currency-converter/ViewModel").name = "currency-converter-ViewModel"
+include "code/currency-converter/View"
+project(":code/currency-converter/View").name = "currency-converter-View"
 
-// nickshevr
-include("code/nickshevr-numerical-integration")
-project(":code/nickshevr-numerical-integration").name = "nickshevr-numerical-integration"
+// nickshevr, Zhiltsov Max
+include "code/numerical-integration/Model"
+project(":code/numerical-integration/Model").name = "numerical-integration-Model-legacy"
+include "code/numerical-integration/ViewModel"
+project(":code/numerical-integration/ViewModel").name = "numerical-integration-ViewModel-legacy"
+include "code/numerical-integration/View"
+project(":code/numerical-integration/View").name = "numerical-integration-View-legacy"
 
 // Korniakov Kirill, lab1
 include "code/korniakov-kirill-lab1"
@@ -42,9 +50,13 @@ project(":code/andreev-vlad-triangle").name = "andreev-vlad-triangle-Model"
 include "code/abstract-set"
 project(":code/abstract-set").name = "abstract-set-Model"
 
-// Zhiltsov Max, lab 1
-include "code/vector-distance"
-project(":code/vector-distance").name = "vector-distance-Model"
+// Vector distance
+include "code/vector-distance/Model"
+project(":code/vector-distance/Model").name = "vector-distance-Model"
+include "code/vector-distance/ViewModel"
+project(":code/vector-distance/ViewModel").name = "vector-distance-ViewModel"
+include "code/vector-distance/View"
+project(":code/vector-distance/View").name = "vector-distance-View"
 
 // Korniakov Kirill, lab2-legacy
 include "code/korniakov-kirill-lab2-legacy/Model"
@@ -82,6 +94,10 @@ project(":code/korniakov-kirill-lab3/View").name = "korniakov-kirill-lab3-View"
 include "code/korniakov-kirill-lab3/Infrastructure"
 project(":code/korniakov-kirill-lab3/Infrastructure").name = "korniakov-kirill-lab3-Infrastructure"
 
+// Anfimov Vlad, lab1
+include "code/anfimov-vlad-reverse-polish-notation"
+project(":code/anfimov-vlad-reverse-polish-notation").name = "anfimov-vlad-reverse-polish-notation-Model"
+
 // Gladkov Dmitry, Huffman code
 include "code/gladkov-dmitry-huffman"
 project(":code/gladkov-dmitry-huffman").name = "gladkov-dmitry-huffman"
@@ -90,9 +106,13 @@ project(":code/gladkov-dmitry-huffman").name = "gladkov-dmitry-huffman"
 include "code/polyakov-igor-sort"
 project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
 
-// Rumyantsev Alexander, Vector3D
-include "code/rumyantsev-alexander-vector3d"
-project(":code/rumyantsev-alexander-vector3d").name = "rumyantsev-alexander-vector3d"
+// Vector3D
+include "code/vector3d/Model"
+project(":code/vector3d/Model").name = "vector3d-Model"
+include "code/vector3d/ViewModel"
+project(":code/vector3d/ViewModel").name = "vector3d-ViewModel"
+include "code/vector3d/View"
+project(":code/vector3d/View").name = "vector3d-View"
 
 // Magazinnik Ivan, string-calculator
 include "code/string-calculator"
@@ -142,13 +162,25 @@ project(":code/binary-search/ViewModel").name = "binary-search-ViewModel"
 include "code/caesar-cipher"
 project(":code/caesar-cipher").name = "caesar-cipher"
 
-// Podolov Kirill, Queue
-include "code/queue"
-project(":code/queue").name = "queue-Model"
+// Krutoberezskaya Irina, numbers-in-words
+include "code/numbers-in-words"
+project(":code/numbers-in-words").name = "numbers-in-words"
 
-// Flegontov Alexander, math-statistics
-include "code/math-statistics"
-project(":code/math-statistics").name = "math-statistics"
+// Podolov Kirill & Flegontov Alexander, Queue
+include "code/queue/Model"
+project(":code/queue/Model").name = "queue-Model"
+include "code/queue/ViewModel"
+project(":code/queue/ViewModel").name = "queue-ViewModel"
+include "code/queue/View"
+project(":code/queue/View").name = "queue-View"
+
+// Flegontov Alexander and Polyakov Igor, math-statistics
+include "code/math-statistics/Model"
+project(":code/math-statistics/Model").name = "math-statistics-Model"
+include "code/math-statistics/ViewModel"
+project(":code/math-statistics/ViewModel").name = "math-statistics-ViewModel"
+include "code/math-statistics/View"
+project(":code/math-statistics/View").name = "math-statistics-View"
 
 // Fytov Aleksandr, Fraction calculator
 include "code/fytov-aleksandr-frac-calc"
@@ -170,6 +202,10 @@ project(":code/podchishchaeva-rb-tree").name = "podchishchaeva-rb-tree"
 include "code/golovanova-tatyana-converter-temperatures"
 project(":code/golovanova-tatyana-converter-temperatures").name = "golovanova-tatyana-converter-temperatures"
 
+// Polynomial Calculator
+include "code/polynomial-calculator"
+project(":code/polynomial-calculator").name = "polynomial-calculator"
+
 // Sheptunov Vladislav, BinarySearchTree
 include "code/binary-search-tree"
 project(":code/binary-search-tree").name = "binary-search-tree"
@@ -186,6 +222,14 @@ project(":code/nakhimovich-dmitry-segments2d").name = "nakhimovich-dmitry-segmen
 include "code/mitrokhina-julia-harrypotter"
 project(":code/mitrokhina-julia-harrypotter").name = "mitrokhina-julia-harrypotter-Model"
 
-// Akhmedzhanov Dmitry, Conway Game of Life
-include "code/akhmedzhanov-dmitry-conway-game"
-project(":code/akhmedzhanov-dmitry-conway-game").name = "akhmedzhanov-dmitry-conway-game-Model"
+// Conway Game of Life
+include "code/conway-game/View"
+project(":code/conway-game/View").name = "conway-game-View"
+include "code/conway-game/Model"
+project(":code/conway-game/Model").name = "conway-game-Model"
+include "code/conway-game/ViewModel"
+project(":code/conway-game/ViewModel").name = "conway-game-ViewModel"
+
+// Moskalenko Viktor, Calculator
+include "code/moskalenko-viktor-calculator"
+project(":code/moskalenko-viktor-calculator").name = "moskalenko-viktor-calculator"
