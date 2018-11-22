@@ -1,6 +1,5 @@
 package ru.unn.agile.dijkstra.model;
 
-
 public class Edge {
 
     private int weight;
