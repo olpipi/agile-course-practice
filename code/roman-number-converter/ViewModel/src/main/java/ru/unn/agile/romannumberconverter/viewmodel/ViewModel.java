@@ -20,17 +20,26 @@ public class ViewModel {
     private StringProperty romanValueStr = new SimpleStringProperty();
     private StringProperty convertStatus = new SimpleStringProperty();
 
+    public StringProperty arabicValueStrProperty() {
+        return arabicValueStr;
+    }
     public String getArabicValueStr() {
         return arabicValueStr.get();
     }
     public void setArabicValueStr(final String arabicNewVal) {
         arabicValueStr.set(arabicNewVal); }
 
+    public StringProperty romanValueStrProperty() {
+        return romanValueStr;
+    }
     public String getRomanValueStr() {
         return romanValueStr.get(); }
     public void setRomanValueStr(final String romanNewVal) {
         romanValueStr.set(romanNewVal); }
 
+    public StringProperty convertStatusProperty() {
+        return convertStatus;
+    }
     public String getConvertStatus() {
         return convertStatus.get(); }
 

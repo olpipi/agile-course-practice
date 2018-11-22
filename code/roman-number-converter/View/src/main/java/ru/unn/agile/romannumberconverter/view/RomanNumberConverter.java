@@ -1,4 +1,39 @@
 package ru.unn.agile.romannumberconverter.view;
 
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import ru.unn.agile.romannumberconverter.viewmodel.ViewModel;
+
 public class RomanNumberConverter {
+    @FXML
+    private ViewModel viewModel;
+
+    @FXML
+    private TextField romanNumber;
+
+    @FXML
+    private TextField arabicNumber;
+
+    @FXML
+    private Label convertStatus;
+
+    @FXML
+    private Button buttonConvertToArabic;
+
+    @FXML
+    private Button buttonConvertToRoman;
+
+    @FXML
+    void initialize() {
+        romanNumber.textProperty().bindBidirectional(viewModel.romanValueStrProperty());
+        arabicNumber.textProperty().bindBidirectional(viewModel.arabicValueStrProperty());
+        convertStatus.textProperty().bindBidirectional(viewModel.convertStatusProperty());
+
+        buttonConvertToArabic.setOnAction(event -> viewModel.convertRomanToArabic());
+        buttonConvertToRoman.setOnAction(event -> viewModel.convertArabicToRoman());
+    }
 }
