@@ -122,15 +122,11 @@ public class PolynomialParser {
         }
 
         array.add(new Pair<>(Integer.valueOf(degreeStr), Double.valueOf(digitStr)));
-        if (!array.isEmpty()) {
-            double[] coeffs = new double[array.get(0).getKey() + 1];
-            for (int i = 0; i < array.size(); i++) {
-                coeffs[coeffs.length - 1 - array.get(i).getKey().intValue()]
-                        += array.get(i).getValue().doubleValue();
-            }
-            return new Polynomial(coeffs);
+        double[] coeffs = new double[array.get(0).getKey() + 1];
+        for (int i = 0; i < array.size(); i++) {
+            coeffs[coeffs.length - 1 - array.get(i).getKey().intValue()]
+                    += array.get(i).getValue().doubleValue();
         }
-
-        throw new ViewModelException(FORMAT_ERROR);
+        return new Polynomial(coeffs);
     }
 }
