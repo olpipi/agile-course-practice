@@ -39,7 +39,9 @@ public class ViewModel {
                 "Worked houses must be between 1 and 500";
         public static final String CASH = "This your cash";
 
-        private Status(){}
+        private Status(){
+
+        }
     }
 
     public void checkCountFields() {
