@@ -70,4 +70,22 @@ public class ViewModelTest {
 
         assertEquals("Римское число введено неверно!", viewModel.getConvertStatus());
     }
+
+    @Test
+    public void canConvertOutOfRangeTopArabicValue() {
+        viewModel.setArabicValueStr("4025");
+
+        viewModel.convertArabicToRoman();
+
+        assertEquals("Введено число не из интервала от 1 до 3999!", viewModel.getConvertStatus());
+    }
+
+    @Test
+    public void canConvertOutOfRangeBottomArabicValue() {
+        viewModel.setArabicValueStr("-65");
+
+        viewModel.convertArabicToRoman();
+
+        assertEquals("Введено число не из интервала от 1 до 3999!", viewModel.getConvertStatus());
+    }
 }
