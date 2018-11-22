@@ -78,26 +78,16 @@ public class BinarySearchTests {
         assertEquals(-1, binarySearch.search(key));
     }
 
-    @Test
-    public void canToIdentifyAnOrderedArray() throws BadArrayException {
-        int[] array = {0, 1, 2, 3, 5, 6, 7, 8};
-        BinarySearch binarySearch = new BinarySearch(array);
-
-        assertTrue(binarySearch.checkOrderedArray());
-    }
-
     @Test(expected = BadArrayException.class)
-    public void canExceptionAnEmptyArray() throws BadArrayException {
+    public void throwsExceptionWithEmptyArray() throws BadArrayException {
         int[] array = {};
         BinarySearch binarySearch = new BinarySearch(array);
     }
 
 
     @Test(expected = BadArrayException.class)
-    public void canToIdentifyAnUnorderedArray() throws BadArrayException {
+    public void throwsExceptionWithUnorderedArray() throws BadArrayException {
         int[] array = {0, 2, 8, 3, 9, 6, 4, 7};
         BinarySearch binarySearch = new BinarySearch(array);
-
-        binarySearch.checkOrderedArray();
     }
 }

@@ -50,13 +50,4 @@ public class BinarySearch {
         }
         return -1;
     }
-
-    public boolean checkOrderedArray() throws BadArrayException {
-        for (int i = 0; i < size - 1; i++) {
-            if (array[i] > array[i + 1]) {
-                throw new BadArrayException("Массив не отсортирован");
-            }
-        }
-        return true;
-    }
 }
