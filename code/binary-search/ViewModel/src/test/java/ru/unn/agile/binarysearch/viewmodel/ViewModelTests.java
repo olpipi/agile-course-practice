@@ -70,23 +70,23 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isSearchEnabledWithIncorrectArrayInput() {
+    public void isStatusSetToBadArrayFormatWithIncorrectArrayInput() {
         ViewModel viewModel = new ViewModel();
 
         viewModel.setArrayInputProperty("1yh,p2,_0w3");
         viewModel.setElementInputProperty("2");
 
-        assertEquals(true, viewModel.isSearchDisabled());
+        assertEquals(Status.BAD_ARRAY_FORMAT.toString(), viewModel.getStatusProperty());
     }
 
     @Test
-    public void isSearchEnabledWithIncorrectElementInput() {
+    public void isStatusSetToBadElementFormatWithIncorrectElementInput() {
         ViewModel viewModel = new ViewModel();
 
         viewModel.setArrayInputProperty("1,2,3");
         viewModel.setElementInputProperty("h");
 
-        assertEquals(true, viewModel.isSearchDisabled());
+        assertEquals(Status.BAD_ELEMENT_FORMAT.toString(), viewModel.getStatusProperty());
     }
 
     @Test
@@ -100,12 +100,13 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isSearchEnabledWithUnsortedArray() {
+    public void isStatusSetToBadArraySortWithUnsortedArray() {
         ViewModel viewModel = new ViewModel();
 
-        viewModel.setArrayInputProperty("1,0,-1");
+        viewModel.setArrayInputProperty("3,2,1");
+        viewModel.setElementInputProperty("1");
 
-        assertEquals(true, viewModel.isSearchDisabled());
+        assertEquals(Status.BAD_ARRAY_SORT.toString(), viewModel.getStatusProperty());
     }
 
     @Test
