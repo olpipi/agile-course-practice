@@ -31,8 +31,12 @@ include "code/shadrunov-artem-bit-array"
 project(":code/shadrunov-artem-bit-array").name = "shadrunov-artem-bit-array"
 
 // Anikina Olga
-include "code/dikstry"
-project(":code/dikstry").name = "dikstry-Model"
+include "code/dijkstra/model"
+project(":code/dijkstra/model").name = "dijkstra-Model"
+include "code/dijkstra/viewModel"
+project(":code/dijkstra/viewModel").name = "dijkstra-ViewModel"
+include "code/dijkstra/view"
+project(":code/dijkstra/view").name = "dijkstra-View"
 
 // Ivanova Olga, lab1
 include "code/prime-number"
@@ -98,13 +102,21 @@ project(":code/korniakov-kirill-lab3/Infrastructure").name = "korniakov-kirill-l
 include "code/anfimov-vlad-reverse-polish-notation"
 project(":code/anfimov-vlad-reverse-polish-notation").name = "anfimov-vlad-reverse-polish-notation-Model"
 
-// Gladkov Dmitry, Huffman code
-include "code/gladkov-dmitry-huffman"
-project(":code/gladkov-dmitry-huffman").name = "gladkov-dmitry-huffman"
+// Huffman
+include "code/huffman/Model"
+project(":code/huffman/Model").name = "huffman-Model"
+include "code/huffman/ViewModel"
+project(":code/huffman/ViewModel").name = "huffman-ViewModel"
+include "code/huffman/View"
+project(":code/huffman/View").name = "huffman-View"
 
-// Polyakov Igor, sort
-include "code/polyakov-igor-sort"
-project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
+// Polyakov Igor & Podolov Kirill, sort
+include "code/sort/Model"
+project(":code/sort/Model").name = "sort-Model"
+include "code/sort/ViewModel"
+project(":code/sort/ViewModel").name = "sort-ViewModel"
+include "code/sort/View"
+project(":code/sort/View").name = "sort-View"
 
 // Vector3D
 include "code/vector3d/Model"
@@ -114,17 +126,25 @@ project(":code/vector3d/ViewModel").name = "vector3d-ViewModel"
 include "code/vector3d/View"
 project(":code/vector3d/View").name = "vector3d-View"
 
-// Magazinnik Ivan, string-calculator
-include "code/string-calculator"
-project(":code/string-calculator").name = "string-calculator"
+// string-calculator
+include "code/string-calculator/Model"
+project(":code/string-calculator/Model").name = "string-calculator-Model"
+include "code/string-calculator/ViewModel"
+project(":code/string-calculator/ViewModel").name = "string-calculator-ViewModel"
+include "code/string-calculator/View"
+project(":code/string-calculator/View").name = "string-calculator-View"
 
 // Stack
 include "code/stack"
 project(":code/stack").name = "stack"
 
-// Chekodaev Oleg
-include "code/chekodaev-oleg-roman-number-converter"
-project(":code/chekodaev-oleg-roman-number-converter").name = "chekodaev-oleg-roman-number-converter"
+// Roman number converter
+include "code/roman-number-converter/model"
+project(":code/roman-number-converter/model").name = "roman-number-converter-Model"
+include "code/roman-number-converter/viewModel"
+project(":code/roman-number-converter/viewModel").name = "roman-number-converter-ViewModel"
+include "code/roman-number-converter/view"
+project(":code/roman-number-converter/view").name = "roman-number-converter-View"
 
 // Metelev Evgenii
 include "code/metelev-evgenii-mortgage-calculator"
@@ -202,9 +222,13 @@ project(":code/podchishchaeva-rb-tree").name = "podchishchaeva-rb-tree"
 include "code/golovanova-tatyana-converter-temperatures"
 project(":code/golovanova-tatyana-converter-temperatures").name = "golovanova-tatyana-converter-temperatures"
 
-// Polynomial Calculator
-include "code/polynomial-calculator"
-project(":code/polynomial-calculator").name = "polynomial-calculator"
+// Shiryaeva Ekaterina, Kochuev Andrey Polynomial Calculator
+include "code/polynomial-calculator/Model"
+project(":code/polynomial-calculator/Model").name = "polynomial-calculator-Model"
+include "code/polynomial-calculator/ViewModel"
+project(":code/polynomial-calculator/ViewModel").name = "polynomial-calculator-ViewModel"
+include "code/polynomial-calculator/View"
+project(":code/polynomial-calculator/View").name = "polynomial-calculator-View"
 
 // Sheptunov Vladislav, BinarySearchTree
 include "code/binary-search-tree"
@@ -214,9 +238,13 @@ project(":code/binary-search-tree").name = "binary-search-tree"
 include "code/pipikin-oleg-matrix"
 project(":code/pipikin-oleg-matrix").name = "pipikin-oleg-matrix"
 
-// Nakhimovich Dmitry, Segments2D
-include "code/nakhimovich-dmitry-segments2d"
-project(":code/nakhimovich-dmitry-segments2d").name = "nakhimovich-dmitry-segments2d"
+// Segments2D Intersection
+include "code/segments2d-intersection/Model"
+project(":code/segments2d-intersection/Model").name = "segments2d-intersection-Model"
+include "code/segments2d-intersection/ViewModel"
+project(":code/segments2d-intersection/ViewModel").name = "segments2d-intersection-ViewModel"
+include "code/segments2d-intersection/View"
+project(":code/segments2d-intersection/View").name = "segments2d-intersection-View"
 
 // Mitrokhina Julia, Harry Potter Books
 include "code/mitrokhina-julia-harrypotter"
