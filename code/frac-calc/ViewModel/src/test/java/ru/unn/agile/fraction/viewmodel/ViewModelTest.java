@@ -19,7 +19,7 @@ public class ViewModelTest {
         viewModel.secondDenominatorProperty().set(sd);
     }
 
-    private void assertFarction(String rn, String rd) {
+    private void assertFarction(final String rn, final String rd) {
         assertEquals(rn, viewModel.resultNumeratorProperty().get());
         assertEquals(rd, viewModel.resultDenominatorProperty().get());
     }
