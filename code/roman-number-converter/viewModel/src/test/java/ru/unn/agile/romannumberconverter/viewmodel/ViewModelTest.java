@@ -26,11 +26,16 @@ public class ViewModelTest {
     }
 
     @Test
-    public void canAllFieldsBeSetted() {
+    public void canArabicNumberFieldBeSetted() {
         viewModel.setArabicValueStr("1");
-        viewModel.setRomanValueStr("1");
 
         assertEquals("1", viewModel.getArabicValueStr());
+    }
+
+    @Test
+    public void canRomanNumberFieldBeSetted() {
+        viewModel.setRomanValueStr("1");
+
         assertEquals("1", viewModel.getRomanValueStr());
     }
 
