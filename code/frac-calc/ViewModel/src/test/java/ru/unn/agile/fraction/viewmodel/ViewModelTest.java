@@ -11,11 +11,17 @@ import static org.junit.Assert.*;
 public class ViewModelTest {
     private ViewModel viewModel;
 
-    private void setInputData() {
-        viewModel.firstNumeratorProperty().set("1");
-        viewModel.firstDenominatorProperty().set("2");
-        viewModel.secondNumeratorProperty().set("3");
-        viewModel.secondDenominatorProperty().set("4");
+    private void setInputData(String fn, String fd,
+                              String sn, String sd) {
+        viewModel.firstNumeratorProperty().set(fn);
+        viewModel.firstDenominatorProperty().set(fd);
+        viewModel.secondNumeratorProperty().set(sn);
+        viewModel.secondDenominatorProperty().set(sd);
+    }
+
+    private void assertFarction(String rn, String rd) {
+        assertEquals(rn, viewModel.resultNumeratorProperty().get());
+        assertEquals(rd, viewModel.resultDenominatorProperty().get());
     }
 
     @Before
@@ -52,7 +58,7 @@ public class ViewModelTest {
 
     @Test
     public void statusIsReadyWhenFieldsAreFill() {
-        setInputData();
+        setInputData("1", "2", "3", "4");
 
         assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
     }
@@ -78,7 +84,7 @@ public class ViewModelTest {
 
     @Test
     public void calculateButtonIsDisabledWhenFormatIsBad() {
-        setInputData();
+        setInputData("4", "5", "6", "7");
         viewModel.firstNumeratorProperty().set("b");
 
         assertTrue(viewModel.calculationDisabledProperty().get());
@@ -93,7 +99,7 @@ public class ViewModelTest {
 
     @Test
     public void calculateButtonIsEnabledWithCorrectInput() {
-        setInputData();
+        setInputData("1", "2", "3", "4");
 
         assertFalse(viewModel.calculationDisabledProperty().get());
     }
@@ -124,20 +130,16 @@ public class ViewModelTest {
 
     @Test
     public void operationAddHasCorrectResult() {
-        viewModel.firstNumeratorProperty().set("1");
-        viewModel.firstDenominatorProperty().set("2");
-        viewModel.secondNumeratorProperty().set("1");
-        viewModel.secondDenominatorProperty().set("3");
+        setInputData("1", "2", "1", "3");
 
         viewModel.calculate();
 
-        assertEquals("5", viewModel.resultNumeratorProperty().get());
-        assertEquals("6", viewModel.resultDenominatorProperty().get());
+        assertFarction("5", "6");
     }
 
     @Test
     public void canSetSuccessMessage() {
-        setInputData();
+        setInputData("1", "2", "6", "8");
 
         viewModel.calculate();
 
@@ -153,50 +155,38 @@ public class ViewModelTest {
 
     @Test
     public void statusIsReadyWhenSetCorrectData() {
-        setInputData();
+        setInputData("12", "23", "11", "30");
 
         assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
     }
 
     @Test
     public void operationSubstractHasCorrectResult() {
-        viewModel.firstNumeratorProperty().set("4");
-        viewModel.firstDenominatorProperty().set("5");
-        viewModel.secondNumeratorProperty().set("5");
-        viewModel.secondDenominatorProperty().set("13");
+        setInputData("4", "5", "5", "13");
         viewModel.operationProperty().set(Operation.SUBSTRACT);
 
         viewModel.calculate();
 
-        assertEquals("27", viewModel.resultNumeratorProperty().get());
-        assertEquals("65", viewModel.resultDenominatorProperty().get());
+        assertFarction("27", "65");
     }
 
     @Test
     public void operationMultiplyHasCorrectResult() {
-        viewModel.firstNumeratorProperty().set("3");
-        viewModel.firstDenominatorProperty().set("4");
-        viewModel.secondNumeratorProperty().set("2");
-        viewModel.secondDenominatorProperty().set("7");
+        setInputData("3", "4", "2", "7");
         viewModel.operationProperty().set(Operation.MULTIPLY);
 
         viewModel.calculate();
 
-        assertEquals("3", viewModel.resultNumeratorProperty().get());
-        assertEquals("14", viewModel.resultDenominatorProperty().get());
+        assertFarction("3", "14");
     }
 
     @Test
     public void operationDivideHasCorrectResult() {
-        viewModel.firstNumeratorProperty().set("13");
-        viewModel.firstDenominatorProperty().set("44");
-        viewModel.secondNumeratorProperty().set("23");
-        viewModel.secondDenominatorProperty().set("22");
+        setInputData("13", "44", "23", "22");
         viewModel.operationProperty().set(Operation.DIVIDE);
 
         viewModel.calculate();
 
-        assertEquals("13", viewModel.resultNumeratorProperty().get());
-        assertEquals("46", viewModel.resultDenominatorProperty().get());
+        assertFarction("13", "46");
     }
 }
