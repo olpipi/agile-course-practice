@@ -1,5 +1,5 @@
 apply from:   rootDir.getAbsolutePath() + '/config/scripts/javafx.plugin'
 
 dependencies {
-    compile project(':moskalenko-viktor-calculator-ViewModel')
+    compile project(':number-systems-calculator-ViewModel')
 }

@@ -15,8 +15,6 @@ import java.util.stream.Collectors;
 
 
 public class ViewModel {
-
-
     private final ObjectProperty<NumberSystem> outputNumberSystem = new SimpleObjectProperty<>();
     private final StringProperty result = new SimpleStringProperty();
     private final StringProperty userMessage = new SimpleStringProperty();

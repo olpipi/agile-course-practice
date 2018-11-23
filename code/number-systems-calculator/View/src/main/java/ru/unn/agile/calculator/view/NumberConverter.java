@@ -24,7 +24,6 @@ public class NumberConverter {
 
     @FXML
     void initialize() {
-        // Two-way binding hasn't supported by FXML yet, so place it in code-behind
         txtNumber1.textProperty().bindBidirectional(viewModel.number1Property());
         txtNumber2.textProperty().bindBidirectional(viewModel.number2Property());
         outputSystem.valueProperty().bindBidirectional(viewModel.outputNumberSystemProperty());

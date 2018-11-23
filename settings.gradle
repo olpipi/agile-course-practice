@@ -212,10 +212,10 @@ project(":code/conway-game/ViewModel").name = "conway-game-ViewModel"
 
 // Moskalenko Viktor, Calculator
 
-include "code/moskalenko-viktor-calculator/Model"
-project(":code/moskalenko-viktor-calculator/Model").name = "moskalenko-viktor-calculator-Model"
-include "code/moskalenko-viktor-calculator/ViewModel"
-project(":code/moskalenko-viktor-calculator/ViewModel").name = "moskalenko-viktor-calculator-ViewModel"
-include "code/moskalenko-viktor-calculator/View"
-project(":code/moskalenko-viktor-calculator/View").name = "moskalenko-viktor-calculator-View"
+include "code/number-systems-calculator/Model"
+project(":code/number-systems-calculator/Model").name = "number-systems-calculator-Model"
+include "code/number-systems-calculator/ViewModel"
+project(":code/number-systems-calculator/ViewModel").name = "number-systems-calculator-ViewModel"
+include "code/number-systems-calculator/View"
+project(":code/number-systems-calculator/View").name = "number-systems-calculator-View"
 
