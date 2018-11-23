@@ -32,7 +32,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           </rowConstraints>
         </GridPane>
-        <Label fx:id="labelStatus" prefWidth="186.0" text="Enter array and key to search" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label fx:id="labelStatus" prefWidth="172.0" text="Enter array and key to search" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.vgrow="ALWAYS" />
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
