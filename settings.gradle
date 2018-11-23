@@ -138,9 +138,13 @@ project(":code/string-calculator/View").name = "string-calculator-View"
 include "code/stack"
 project(":code/stack").name = "stack"
 
-// Chekodaev Oleg
-include "code/chekodaev-oleg-roman-number-converter"
-project(":code/chekodaev-oleg-roman-number-converter").name = "chekodaev-oleg-roman-number-converter"
+// Roman number converter
+include "code/roman-number-converter/model"
+project(":code/roman-number-converter/model").name = "roman-number-converter-Model"
+include "code/roman-number-converter/viewModel"
+project(":code/roman-number-converter/viewModel").name = "roman-number-converter-ViewModel"
+include "code/roman-number-converter/view"
+project(":code/roman-number-converter/view").name = "roman-number-converter-View"
 
 // Metelev Evgenii
 include "code/metelev-evgenii-mortgage-calculator"
