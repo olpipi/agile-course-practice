@@ -31,29 +31,29 @@ public class ViewModelTests {
 
     @Test
     public void isSearchButtonEnabledWhenInputOnlyLeftBound() {
-        viewModel.leftBoundProperty().set("1");
+        viewModel.setLeftBound("1");
 
         assertEquals(true, viewModel.searchDisabledProperty().get());
     }
 
     @Test
     public void isSearchButtonEnabledWhenInputOnlyRightBound() {
-        viewModel.rightBoundProperty().set("2");
+        viewModel.setRightBound("2");
 
         assertEquals(true, viewModel.searchDisabledProperty().get());
     }
 
     @Test
     public void isSearchButtonEnabledWhenInputNotNumberInLeftBound() {
-        viewModel.leftBoundProperty().set("a");
-        viewModel.rightBoundProperty().set("2");
+        viewModel.setLeftBound("a");
+        viewModel.setRightBound("2");
 
         assertEquals(true, viewModel.searchDisabledProperty().get());
     }
 
     @Test
     public void isStatusOfEmptyValueRight() {
-        viewModel.rightBoundProperty().set("");
+        viewModel.setRightBound("");
 
         viewModel.searchPrimeNumber();
 
@@ -69,16 +69,16 @@ public class ViewModelTests {
 
     @Test
     public void isSearchButtonEnabledWhenInputNotNumberInRightBound() {
-        viewModel.leftBoundProperty().set("1");
-        viewModel.rightBoundProperty().set("b");
+        viewModel.setLeftBound("1");
+        viewModel.setRightBound("b");
 
         assertEquals(true, viewModel.searchDisabledProperty().get());
     }
 
     @Test
     public void isStatusCorrectOnInvalidRightValue() {
-        viewModel.leftBoundProperty().set("1");
-        viewModel.rightBoundProperty().set("b");
+        viewModel.setLeftBound("1");
+        viewModel.setRightBound("b");
 
         viewModel.searchDisabledProperty().get();
 
@@ -87,8 +87,8 @@ public class ViewModelTests {
 
     @Test
     public void isStatusCorrectOnInvalidLeftValue() {
-        viewModel.leftBoundProperty().set("zxc");
-        viewModel.rightBoundProperty().set("12");
+        viewModel.setLeftBound("zxc");
+        viewModel.setRightBound("12");
 
         viewModel.searchDisabledProperty().get();
 
@@ -97,8 +97,8 @@ public class ViewModelTests {
 
     @Test
     public void isStatusCorrectOnInvalidBothValue() {
-        viewModel.leftBoundProperty().set("a");
-        viewModel.rightBoundProperty().set("b");
+        viewModel.setLeftBound("a");
+        viewModel.setRightBound("b");
 
         viewModel.searchDisabledProperty().get();
 
@@ -117,16 +117,16 @@ public class ViewModelTests {
 
     @Test
     public void isSearchButtonEnabledWhenBoundersInput() {
-        viewModel.leftBoundProperty().set("1");
-        viewModel.rightBoundProperty().set("2");
+        viewModel.setLeftBound("1");
+        viewModel.setRightBound("2");
 
         assertEquals(false, viewModel.searchDisabledProperty().get());
     }
 
     @Test
     public void isResultOfSearchCorrect() {
-        viewModel.leftBoundProperty().set("1");
-        viewModel.rightBoundProperty().set("10");
+        viewModel.setLeftBound("1");
+        viewModel.setRightBound("10");
 
         viewModel.searchPrimeNumber();
 
@@ -135,8 +135,8 @@ public class ViewModelTests {
 
     @Test
     public void isStatusOfSearchCorrect() {
-        viewModel.leftBoundProperty().set("1");
-        viewModel.rightBoundProperty().set("10");
+        viewModel.setLeftBound("1");
+        viewModel.setRightBound("10");
 
         viewModel.searchPrimeNumber();
 
@@ -145,8 +145,8 @@ public class ViewModelTests {
 
     @Test
     public void isStatusInvalidValueCorrect() {
-        viewModel.leftBoundProperty().set("10");
-        viewModel.rightBoundProperty().set("1");
+        viewModel.setLeftBound("10");
+        viewModel.setRightBound("1");
 
         viewModel.searchPrimeNumber();
 
@@ -155,8 +155,8 @@ public class ViewModelTests {
 
     @Test
     public void isResultOfEqualsValueCorrect() {
-        viewModel.leftBoundProperty().set("2");
-        viewModel.rightBoundProperty().set("2");
+        viewModel.setLeftBound("2");
+        viewModel.setRightBound("2");
 
         viewModel.searchPrimeNumber();
 
@@ -165,8 +165,8 @@ public class ViewModelTests {
 
     @Test
     public void isStatusOfNotFoundNumbersCorrect() {
-        viewModel.leftBoundProperty().set("14");
-        viewModel.rightBoundProperty().set("16");
+        viewModel.setLeftBound("14");
+        viewModel.setRightBound("16");
 
         viewModel.searchPrimeNumber();
 
@@ -175,8 +175,8 @@ public class ViewModelTests {
 
     @Test
     public void isStatusCorrectOnNegativeValue() {
-        viewModel.leftBoundProperty().set("-1");
-        viewModel.rightBoundProperty().set("10");
+        viewModel.setLeftBound("-1");
+        viewModel.setRightBound("10");
 
         viewModel.searchPrimeNumber();
 
@@ -193,8 +193,8 @@ public class ViewModelTests {
 
     @Test
     public void isResultPropertyCorrect() {
-        viewModel.leftBoundProperty().set("1");
-        viewModel.rightBoundProperty().set("2");
+        viewModel.setLeftBound("1");
+        viewModel.setRightBound("2");
 
         viewModel.searchPrimeNumber();
 
@@ -203,7 +203,7 @@ public class ViewModelTests {
 
     @Test
     public void isGetRightBoundCorrect() {
-        viewModel.rightBoundProperty().set("2");
+        viewModel.setRightBound("2");
 
         viewModel.searchPrimeNumber();
 
@@ -212,7 +212,7 @@ public class ViewModelTests {
 
     @Test
     public void isGetLeftBoundCorrect() {
-        viewModel.leftBoundProperty().set("2");
+        viewModel.setLeftBound("2");
 
         viewModel.searchPrimeNumber();
 

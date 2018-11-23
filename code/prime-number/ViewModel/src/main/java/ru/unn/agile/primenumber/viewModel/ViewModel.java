@@ -64,7 +64,7 @@ public class ViewModel {
         return leftBound;
     }
 
-    private void setLeftBound(final String leftBound) {
+    public void setLeftBound(final String leftBound) {
         this.leftBound.set(leftBound);
     }
 
@@ -76,7 +76,7 @@ public class ViewModel {
         return rightBound;
     }
 
-    private void setRightBound(final String rightBound) {
+    public void setRightBound(final String rightBound) {
         this.rightBound.set(rightBound);
     }
 
