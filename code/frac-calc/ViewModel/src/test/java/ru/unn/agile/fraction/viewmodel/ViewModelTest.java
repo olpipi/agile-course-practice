@@ -11,8 +11,8 @@ import static org.junit.Assert.*;
 public class ViewModelTest {
     private ViewModel viewModel;
 
-    private void setInputData(String fn, String fd,
-                              String sn, String sd) {
+    private void setInputData(final String fn, final String fd,
+                              final String sn, final String sd) {
         viewModel.firstNumeratorProperty().set(fn);
         viewModel.firstDenominatorProperty().set(fd);
         viewModel.secondNumeratorProperty().set(sn);
