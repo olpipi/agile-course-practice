@@ -19,7 +19,7 @@ public class ViewModelTest {
         viewModel.secondDenominatorProperty().set(sd);
     }
 
-    private void assertFarction(final String rn, final String rd) {
+    private void assertFraction(final String rn, final String rd) {
         assertEquals(rn, viewModel.resultNumeratorProperty().get());
         assertEquals(rd, viewModel.resultDenominatorProperty().get());
     }
@@ -134,7 +134,7 @@ public class ViewModelTest {
 
         viewModel.calculate();
 
-        assertFarction("5", "6");
+        assertFraction("5", "6");
     }
 
     @Test
@@ -167,7 +167,7 @@ public class ViewModelTest {
 
         viewModel.calculate();
 
-        assertFarction("27", "65");
+        assertFraction("27", "65");
     }
 
     @Test
@@ -177,7 +177,7 @@ public class ViewModelTest {
 
         viewModel.calculate();
 
-        assertFarction("3", "14");
+        assertFraction("3", "14");
     }
 
     @Test
@@ -187,6 +187,6 @@ public class ViewModelTest {
 
         viewModel.calculate();
 
-        assertFarction("13", "46");
+        assertFraction("13", "46");
     }
 }
