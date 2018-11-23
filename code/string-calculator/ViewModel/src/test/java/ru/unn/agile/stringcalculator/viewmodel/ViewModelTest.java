@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class ViewModelTest {
@@ -13,7 +15,9 @@ public class ViewModelTest {
 
     @Before
     public void setUp() {
-        viewModel = new ViewModel();
+        if (viewModel == null) {
+            viewModel = new ViewModel(new FakeLogger());
+        }
     }
 
     @After
@@ -33,10 +37,9 @@ public class ViewModelTest {
         assertEquals(Operation.ADD, viewModel.operationProperty().get());
     }
 
-
     @Test
     public void hasAddOperationCorrectResultWhenInputDataIsCorrect() {
-        viewModel.inputDataProperty().set("31,8");
+        setInputData("31,8");
 
         viewModel.calculate();
 
@@ -45,7 +48,7 @@ public class ViewModelTest {
 
     @Test
     public void isItImpossibleToCalculateWhenButtonInActive() {
-        viewModel.inputDataProperty().set("31.8");
+        setInputData("21.8");
 
         viewModel.calculate();
 
@@ -68,7 +71,7 @@ public class ViewModelTest {
 
     @Test
     public void statusIsBadFormatWhenInputDataIsNotCorrect() {
-        viewModel.inputDataProperty().set("31.8,5");
+        setInputData("31.8,5");
 
         StringProperty expectedStatus = viewModel.statusProperty();
         assertEquals(Status.BAD_FORMAT.toString(), expectedStatus.get());
@@ -76,15 +79,15 @@ public class ViewModelTest {
 
     @Test
     public void statusIsReadyWhenInputDataIsCorrect() {
-        viewModel.inputDataProperty().set("31,8");
+        setInputData("66,8");
 
         StringProperty expectedStatus = viewModel.statusProperty();
         assertEquals(Status.READY.toString(), expectedStatus.get());
     }
 
     @Test
-    public void statusIsSuccesWhenCalculationPerformedSuccessfully() {
-        viewModel.inputDataProperty().set("31,8");
+    public void statusIsSuccessWhenCalculationPerformedSuccessfully() {
+        setInputData("71,8");
 
         viewModel.calculate();
 
@@ -99,16 +102,91 @@ public class ViewModelTest {
 
     @Test
     public void isCalculateButtonNotActiveWhenStatusIsBadFormat() {
-        viewModel.inputDataProperty().set("31.8,5");
+        setInputData("31.8,5");
 
         assertTrue(viewModel.calculationDisabledProperty().get());
     }
 
     @Test
     public void isCalculateButtonActiveWhenStatusIsReady() {
-        viewModel.inputDataProperty().set("31,8");
+        setInputData("31,8");
 
         assertFalse(viewModel.calculationDisabledProperty().get());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void viewModelConstructorThrowsExceptionWithNullLogger() {
+        new ViewModel(null);
+    }
+
+    @Test
+    public void logIsEmptyInTheBeginning() {
+        List<String> log = viewModel.getLog();
+
+        assertTrue(log.isEmpty());
+    }
+
+    @Test
+    public void logContainsProperMessageAfterCalculation() {
+        setInputData("2,1");
+        viewModel.calculate();
+        String message = viewModel.getLog().get(0);
+
+        assertTrue(message.matches(LogMessages.CALCULATE_WAS_PRESSED + ".*"));
+    }
+
+    @Test
+    public void logContainsInputStringAfterCalculation() {
+        setInputData("25");
+
+        viewModel.calculate();
+
+        String message = viewModel.getLog().get(0);
+        assertTrue(message.matches(".*" + viewModel.inputDataProperty().get()));
+    }
+
+    @Test
+    public void stringInputIsProperlyFormatted() {
+        setInputData("12,1");
+
+        viewModel.calculate();
+
+        String message = viewModel.getLog().get(0);
+        assertTrue(message.matches(".*String: " + viewModel.inputDataProperty().get() + ".*"));
+    }
+
+    @Test
+    public void typeDefaultOperationIsCorrectlyMentionedInLog() {
+        setInputData("13");
+
+        viewModel.calculate();
+
+        String message = viewModel.getLog().get(0);
+        assertTrue(message.matches(".*ADD.*"));
+    }
+
+    @Test
+    public void canPutSeveralLogMessages() {
+        setInputData("33");
+        viewModel.calculate();
+
+        setInputData("88");
+        viewModel.calculate();
+
+        setInputData("4");
+        viewModel.calculate();
+
+        assertEquals(3, viewModel.getLog().size());
+    }
+
+    @Test
+    public void loggingDoesNotOccurWhenButtonIsDisabled() {
+        viewModel.calculate();
+
+        assertTrue(viewModel.getLog().isEmpty());
+    }
+
+    private void setInputData(final String str) {
+        viewModel.inputDataProperty().set(str);
+    }
 }
