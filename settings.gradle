@@ -110,9 +110,13 @@ project(":code/huffman/ViewModel").name = "huffman-ViewModel"
 include "code/huffman/View"
 project(":code/huffman/View").name = "huffman-View"
 
-// Polyakov Igor, sort
-include "code/polyakov-igor-sort"
-project(":code/polyakov-igor-sort").name = "polyakov-igor-sort-Model"
+// Polyakov Igor & Podolov Kirill, sort
+include "code/sort/Model"
+project(":code/sort/Model").name = "sort-Model"
+include "code/sort/ViewModel"
+project(":code/sort/ViewModel").name = "sort-ViewModel"
+include "code/sort/View"
+project(":code/sort/View").name = "sort-View"
 
 // Vector3D
 include "code/vector3d/Model"
@@ -230,9 +234,13 @@ project(":code/binary-search-tree").name = "binary-search-tree"
 include "code/pipikin-oleg-matrix"
 project(":code/pipikin-oleg-matrix").name = "pipikin-oleg-matrix"
 
-// Nakhimovich Dmitry, Segments2D
-include "code/nakhimovich-dmitry-segments2d"
-project(":code/nakhimovich-dmitry-segments2d").name = "nakhimovich-dmitry-segments2d"
+// Segments2D Intersection
+include "code/segments2d-intersection/Model"
+project(":code/segments2d-intersection/Model").name = "segments2d-intersection-Model"
+include "code/segments2d-intersection/ViewModel"
+project(":code/segments2d-intersection/ViewModel").name = "segments2d-intersection-ViewModel"
+include "code/segments2d-intersection/View"
+project(":code/segments2d-intersection/View").name = "segments2d-intersection-View"
 
 // Mitrokhina Julia, Harry Potter Books
 include "code/mitrokhina-julia-harrypotter"
