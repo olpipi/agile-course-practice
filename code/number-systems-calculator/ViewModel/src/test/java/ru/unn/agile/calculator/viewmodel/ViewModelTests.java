@@ -3,8 +3,8 @@ package ru.unn.agile.calculator.viewmodel;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ru.unn.agile.calculator.model.Calculator;
-import ru.unn.agile.calculator.model.NumberSystem;
+import ru.unn.agile.calculator.model.RadixCalculator;
+import ru.unn.agile.calculator.model.NumeralSystem;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,7 +24,7 @@ public class ViewModelTests {
 
     @Test
     public void canSetDefaultValues() {
-        assertEquals(NumberSystem.BINARY, viewModel.getOutputNumberSystem());
+        assertEquals(NumeralSystem.BINARY, viewModel.getOutputNumberSystem());
         assertEquals("", viewModel.getResult());
         assertEquals(UserMessages.WAIT_FOR_INPUT.toString(), viewModel.getUserMessage());
         assertEquals(true, viewModel.isCalculationDisabled());
@@ -41,10 +41,14 @@ public class ViewModelTests {
         viewModel.number2Property().setValue(b);
         viewModel.calculate();
 
-        String expectedResult = "Sum: a+b = " + Calculator.add(a, b, NumberSystem.BINARY) + "\n"
-                + "Mult: a*b = " + Calculator.multiply(a, b, NumberSystem.BINARY) + "\n"
-                + "Minus: -a = " + Calculator.unaryMinus(a, NumberSystem.BINARY)
-                + ", -b = " + Calculator.unaryMinus(b, NumberSystem.BINARY) + "\n";
+        String expectedResult = "Sum: a+b = "
+                + RadixCalculator.add(a, b, NumeralSystem.BINARY) + "\n"
+                + "Mult: a*b = "
+                + RadixCalculator.multiply(a, b, NumeralSystem.BINARY) + "\n"
+                + "Minus: -a = "
+                + RadixCalculator.unaryMinus(a, NumeralSystem.BINARY)
+                + ", -b = "
+                + RadixCalculator.unaryMinus(b, NumeralSystem.BINARY) + "\n";
 
         assertEquals(expectedResult, viewModel.getResult());
     }
@@ -57,15 +61,16 @@ public class ViewModelTests {
 
         viewModel.number1Property().setValue(a);
         viewModel.number2Property().setValue(b);
-        viewModel.outputNumberSystemProperty().setValue(NumberSystem.OCTAL);
-
-
+        viewModel.outputNumberSystemProperty().setValue(NumeralSystem.OCTAL);
         viewModel.calculate();
-
-        String expectedResult = "Sum: a+b = " + Calculator.add(a, b, NumberSystem.OCTAL) + "\n"
-                + "Mult: a*b = " + Calculator.multiply(a, b, NumberSystem.OCTAL) + "\n"
-                + "Minus: -a = " + Calculator.unaryMinus(a, NumberSystem.OCTAL)
-                + ", -b = " + Calculator.unaryMinus(b, NumberSystem.OCTAL) + "\n";
+        String expectedResult = "Sum: a+b = "
+                + RadixCalculator.add(a, b, NumeralSystem.OCTAL) + "\n"
+                + "Mult: a*b = "
+                + RadixCalculator.multiply(a, b, NumeralSystem.OCTAL) + "\n"
+                + "Minus: -a = "
+                + RadixCalculator.unaryMinus(a, NumeralSystem.OCTAL)
+                + ", -b = "
+                + RadixCalculator.unaryMinus(b, NumeralSystem.OCTAL) + "\n";
 
         assertEquals(expectedResult, viewModel.getResult());
     }
@@ -78,7 +83,7 @@ public class ViewModelTests {
 
         viewModel.number1Property().setValue(a);
         viewModel.number2Property().setValue(b);
-        viewModel.outputNumberSystemProperty().setValue(NumberSystem.OCTAL);
+        viewModel.outputNumberSystemProperty().setValue(NumeralSystem.OCTAL);
 
         assertEquals(true, viewModel.isCalculationDisabled());
         assertEquals(UserMessages.WAIT_FOR_INPUT.toString(), viewModel.getUserMessage());
@@ -91,7 +96,7 @@ public class ViewModelTests {
 
         viewModel.number1Property().setValue(a);
         viewModel.number2Property().setValue(b);
-        viewModel.outputNumberSystemProperty().setValue(NumberSystem.OCTAL);
+        viewModel.outputNumberSystemProperty().setValue(NumeralSystem.OCTAL);
 
         assertEquals(false, viewModel.isCalculationDisabled());
         assertEquals(UserMessages.READY.toString(), viewModel.getUserMessage());

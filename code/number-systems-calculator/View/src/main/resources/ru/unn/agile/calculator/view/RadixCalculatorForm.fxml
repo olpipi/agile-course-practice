@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <?import ru.unn.agile.calculator.viewmodel.ViewModel?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.unn.agile.calculator.view.NumberConverter">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.unn.agile.calculator.view.RadixCalculatorForm">
    <fx:define>
         <ViewModel fx:id="viewModel" />
     </fx:define>
@@ -58,7 +58,7 @@
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <ComboBox fx:id="outputSystem" items="${viewModel.numberSystems}" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="outputSystem" items="${viewModel.numeralSystems}" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </children>

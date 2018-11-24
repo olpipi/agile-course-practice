@@ -10,8 +10,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("NumberConverter.fxml"));
-        primaryStage.setTitle("NumberConverter");
+        Parent root = FXMLLoader.load(getClass().getResource("RadixCalculatorForm.fxml"));
+        primaryStage.setTitle("RadixCalculatorForm");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

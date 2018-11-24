@@ -1,6 +1,6 @@
 package ru.unn.agile.calculator.model;
 
-public enum NumberSystem {
+public enum NumeralSystem {
     BINARY,
     OCTAL,
     HEXADECIMAL,

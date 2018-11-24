@@ -5,9 +5,9 @@ import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import ru.unn.agile.calculator.model.Calculator;
-import ru.unn.agile.calculator.model.NumberConverter;
-import ru.unn.agile.calculator.model.NumberSystem;
+import ru.unn.agile.calculator.model.RadixCalculator;
+import ru.unn.agile.calculator.model.NumeralSystemConverter;
+import ru.unn.agile.calculator.model.NumeralSystem;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,20 +15,20 @@ import java.util.stream.Collectors;
 
 
 public class ViewModel {
-    private final ObjectProperty<NumberSystem> outputNumberSystem = new SimpleObjectProperty<>();
+    private final ObjectProperty<NumeralSystem> outputNumberSystem = new SimpleObjectProperty<>();
     private final StringProperty result = new SimpleStringProperty();
     private final StringProperty userMessage = new SimpleStringProperty();
     private final StringProperty number1 = new SimpleStringProperty();
     private final StringProperty number2 = new SimpleStringProperty();
     private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
-    private final List<NumberSystem> numberSystems =
-            FXCollections.observableList(Arrays.stream(NumberSystem.values())
-                    .filter(s -> !NumberSystem.UNKNOWN.equals(s))
+    private final List<NumeralSystem> numeralSystems =
+            FXCollections.observableList(Arrays.stream(NumeralSystem.values())
+                    .filter(s -> !NumeralSystem.UNKNOWN.equals(s))
                     .collect(Collectors.toList()));
 
     public ViewModel() {
 
-        outputNumberSystem.setValue(NumberSystem.BINARY);
+        outputNumberSystem.setValue(NumeralSystem.BINARY);
         result.set("");
         userMessage.set(UserMessages.WAIT_FOR_INPUT.toString());
         calculationDisabled.set(true);
@@ -80,12 +80,12 @@ public class ViewModel {
         return number2;
     }
 
-    public final List<NumberSystem> getNumberSystems() {
-        return numberSystems;
+    public final List<NumeralSystem> getNumeralSystems() {
+        return numeralSystems;
     }
 
     public void calculate() {
-        NumberSystem currentSystem = getOutputNumberSystem();
+        NumeralSystem currentSystem = getOutputNumberSystem();
         String a = number1.get();
         String b = number2.get();
 
@@ -96,11 +96,11 @@ public class ViewModel {
         userMessage.set(UserMessages.SUCCESS.toString());
     }
 
-    public NumberSystem getOutputNumberSystem() {
+    public NumeralSystem getOutputNumberSystem() {
         return outputNumberSystem.get();
     }
 
-    public ObjectProperty<NumberSystem> outputNumberSystemProperty() {
+    public ObjectProperty<NumeralSystem> outputNumberSystemProperty() {
         return outputNumberSystem;
     }
 
@@ -121,29 +121,29 @@ public class ViewModel {
         }
     }
 
-    private String buildUnaryMinusResult(final NumberSystem currentSystem,
+    private String buildUnaryMinusResult(final NumeralSystem currentSystem,
                                          final String a,
                                          final String b) {
         return "Minus: -a = "
-                + Calculator.unaryMinus(a, currentSystem)
+                + RadixCalculator.unaryMinus(a, currentSystem)
                 + ", -b = "
-                + Calculator.unaryMinus(b, currentSystem)
+                + RadixCalculator.unaryMinus(b, currentSystem)
                 + "\n";
     }
 
-    private String buildMultResult(final NumberSystem currentSystem,
+    private String buildMultResult(final NumeralSystem currentSystem,
                                    final String a,
                                    final String b) {
         return "Mult: a*b = "
-                + Calculator.multiply(a, b, currentSystem)
+                + RadixCalculator.multiply(a, b, currentSystem)
                 + "\n";
     }
 
-    private String buildSumResult(final NumberSystem currentSystem,
+    private String buildSumResult(final NumeralSystem currentSystem,
                                   final String a,
                                   final String b) {
         return "Sum: a+b = "
-                + Calculator.add(a, b, currentSystem)
+                + RadixCalculator.add(a, b, currentSystem)
                 + "\n";
     }
 
@@ -154,8 +154,8 @@ public class ViewModel {
             return UserMessages.WAIT_FOR_INPUT;
         }
 
-        Integer parsedA = NumberConverter.tryParse(a);
-        Integer parsedB = NumberConverter.tryParse(b);
+        Integer parsedA = NumeralSystemConverter.tryParse(a);
+        Integer parsedB = NumeralSystemConverter.tryParse(b);
         if ((parsedA == null) || (parsedB == null)) {
             return UserMessages.INPUT_INVALID;
         }

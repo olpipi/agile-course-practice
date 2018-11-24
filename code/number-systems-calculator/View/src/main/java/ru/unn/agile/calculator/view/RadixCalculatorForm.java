@@ -6,11 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import ru.unn.agile.calculator.model.NumberSystem;
+import ru.unn.agile.calculator.model.NumeralSystem;
 import ru.unn.agile.calculator.viewmodel.ViewModel;
 
 
-public class NumberConverter {
+public class RadixCalculatorForm {
     @FXML
     private ViewModel viewModel;
     @FXML
@@ -18,7 +18,7 @@ public class NumberConverter {
     @FXML
     private TextField txtNumber2;
     @FXML
-    private ComboBox<NumberSystem> outputSystem;
+    private ComboBox<NumeralSystem> outputSystem;
     @FXML
     private Button btnCalc;
 

@@ -3,14 +3,14 @@ package ru.unn.agile.calculator.model;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public final class CalculatorTest {
+public final class RadixCalculatorTest {
     @Test
     public void canAddTwoAndTwoBinary() {
         String n1 = "b10";
         String n2 = "b10";
 
         String expected = "b100";
-        String result = Calculator.add(n1, n2, NumberSystem.BINARY);
+        String result = RadixCalculator.add(n1, n2, NumeralSystem.BINARY);
 
         assertEquals(expected, result);
     }
@@ -21,7 +21,7 @@ public final class CalculatorTest {
         String n2 = "b10";
 
         String expected = "b101";
-        String result = Calculator.add(n1, n2, NumberSystem.BINARY);
+        String result = RadixCalculator.add(n1, n2, NumeralSystem.BINARY);
 
         assertEquals(expected, result);
     }
@@ -32,7 +32,7 @@ public final class CalculatorTest {
         String n2 = "o2";
 
         String expected = "b100";
-        String result = Calculator.add(n1, n2, NumberSystem.BINARY);
+        String result = RadixCalculator.add(n1, n2, NumeralSystem.BINARY);
 
         assertEquals(expected, result);
     }
@@ -43,7 +43,7 @@ public final class CalculatorTest {
         String n2 = "b1111";
 
         String expected = "o37";
-        String result = Calculator.add(n1, n2, NumberSystem.OCTAL);
+        String result = RadixCalculator.add(n1, n2, NumeralSystem.OCTAL);
 
         assertEquals(expected, result);
     }
@@ -53,8 +53,8 @@ public final class CalculatorTest {
         String n1 = "x10";
         String n2 = "b1111";
 
-        String x = Calculator.add(n1, n2, NumberSystem.OCTAL);
-        String y = Calculator.add(n2, n1, NumberSystem.OCTAL);
+        String x = RadixCalculator.add(n1, n2, NumeralSystem.OCTAL);
+        String y = RadixCalculator.add(n2, n1, NumeralSystem.OCTAL);
 
         assertEquals(x, y);
     }
@@ -65,10 +65,10 @@ public final class CalculatorTest {
         String n2 = "b1111";
         String n3 = "o12";
 
-        String x = Calculator.add(
-                (Calculator.add(n1, n2, NumberSystem.BINARY)), n3, NumberSystem.OCTAL);
-        String y = Calculator.add(
-                n1, (Calculator.add(n2, n3, NumberSystem.BINARY)), NumberSystem.OCTAL);
+        String x = RadixCalculator.add(
+                (RadixCalculator.add(n1, n2, NumeralSystem.BINARY)), n3, NumeralSystem.OCTAL);
+        String y = RadixCalculator.add(
+                n1, (RadixCalculator.add(n2, n3, NumeralSystem.BINARY)), NumeralSystem.OCTAL);
 
         assertEquals(x, y);
     }
@@ -79,7 +79,7 @@ public final class CalculatorTest {
         String n2 = "b10";
 
         String expected = "b100";
-        String result = Calculator.multiply(n1, n2, NumberSystem.BINARY);
+        String result = RadixCalculator.multiply(n1, n2, NumeralSystem.BINARY);
 
         assertEquals(expected, result);
     }
@@ -90,7 +90,7 @@ public final class CalculatorTest {
         String n2 = "b10";
 
         String expected = "b110";
-        String result = Calculator.multiply(n1, n2, NumberSystem.BINARY);
+        String result = RadixCalculator.multiply(n1, n2, NumeralSystem.BINARY);
 
         assertEquals(expected, result);
     }
@@ -101,7 +101,7 @@ public final class CalculatorTest {
         String n2 = "o2";
 
         String expected = "b100";
-        String result = Calculator.multiply(n1, n2, NumberSystem.BINARY);
+        String result = RadixCalculator.multiply(n1, n2, NumeralSystem.BINARY);
 
         assertEquals(expected, result);
     }
@@ -111,8 +111,8 @@ public final class CalculatorTest {
         String n1 = "x10";
         String n2 = "b1111";
 
-        String x = Calculator.multiply(n1, n2, NumberSystem.OCTAL);
-        String y = Calculator.multiply(n2, n1, NumberSystem.OCTAL);
+        String x = RadixCalculator.multiply(n1, n2, NumeralSystem.OCTAL);
+        String y = RadixCalculator.multiply(n2, n1, NumeralSystem.OCTAL);
 
         assertEquals(x, y);
     }
@@ -123,10 +123,10 @@ public final class CalculatorTest {
         String n2 = "b1111";
         String n3 = "o12";
 
-        String x = Calculator.multiply(
-                (Calculator.multiply(n1, n2, NumberSystem.BINARY)), n3, NumberSystem.OCTAL);
-        String y = Calculator.multiply(
-                n1, (Calculator.multiply(n2, n3, NumberSystem.BINARY)), NumberSystem.OCTAL);
+        String x = RadixCalculator.multiply(
+                (RadixCalculator.multiply(n1, n2, NumeralSystem.BINARY)), n3, NumeralSystem.OCTAL);
+        String y = RadixCalculator.multiply(
+                n1, (RadixCalculator.multiply(n2, n3, NumeralSystem.BINARY)), NumeralSystem.OCTAL);
 
         assertEquals(x, y);
     }
@@ -136,7 +136,7 @@ public final class CalculatorTest {
         String number = "b10";
 
         String expected = "b-10";
-        String result = Calculator.unaryMinus(number, NumberSystem.BINARY);
+        String result = RadixCalculator.unaryMinus(number, NumeralSystem.BINARY);
 
         assertEquals(expected, result);
     }
@@ -147,7 +147,7 @@ public final class CalculatorTest {
         String n2 = "b-1111";
 
         String expected = "o360";
-        String result = Calculator.multiply(n1, n2, NumberSystem.OCTAL);
+        String result = RadixCalculator.multiply(n1, n2, NumeralSystem.OCTAL);
 
         assertEquals(expected, result);
     }
@@ -157,7 +157,7 @@ public final class CalculatorTest {
         String number = "b11";
 
         String expected = "b-11";
-        String result = Calculator.unaryMinus(number, NumberSystem.BINARY);
+        String result = RadixCalculator.unaryMinus(number, NumeralSystem.BINARY);
 
         assertEquals(expected, result);
     }
@@ -167,7 +167,7 @@ public final class CalculatorTest {
         String number = "x-0";
 
         String expected = "o0";
-        String result = Calculator.unaryMinus(number, NumberSystem.OCTAL);
+        String result = RadixCalculator.unaryMinus(number, NumeralSystem.OCTAL);
 
         assertEquals(expected, result);
     }
@@ -176,19 +176,19 @@ public final class CalculatorTest {
     public void canNotAddWithInvalidArgument() {
         String n1 = "10";
         String n2 = "b1111";
-        Calculator.add(n1, n2, NumberSystem.OCTAL);
+        RadixCalculator.add(n1, n2, NumeralSystem.OCTAL);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void canNotMultiplyWithInvalidArgument() {
         String n1 = "10";
         String n2 = "b1111";
-        Calculator.multiply(n1, n2, NumberSystem.OCTAL);
+        RadixCalculator.multiply(n1, n2, NumeralSystem.OCTAL);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void canNotUnaryMinusInvalidArgument() {
         String number = "10";
-        Calculator.unaryMinus(number, NumberSystem.OCTAL);
+        RadixCalculator.unaryMinus(number, NumeralSystem.OCTAL);
     }
 }

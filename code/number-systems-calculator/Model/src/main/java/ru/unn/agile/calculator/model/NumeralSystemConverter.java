@@ -1,6 +1,6 @@
 package ru.unn.agile.calculator.model;
 
-public final class NumberConverter {
+public final class NumeralSystemConverter {
 
     private static final String UNKNOWN_NUMBER_LENGTH = "Unknown number length";
     private static final String UNKNOWN_NUMBER_SYSTEM = "Unknown number system";
@@ -44,7 +44,7 @@ public final class NumberConverter {
         }
     }
 
-    public static String format(final int number, final NumberSystem system) {
+    public static String format(final int number, final NumeralSystem system) {
         final boolean isNegative = number < 0;
         final int numberModule = Math.abs(number);
         String result;
@@ -69,7 +69,7 @@ public final class NumberConverter {
         return result;
     }
 
-    private NumberConverter() {
+    private NumeralSystemConverter() {
         // no instance for class
     }
 }
