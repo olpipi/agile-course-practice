@@ -106,6 +106,8 @@ project(":code/korniakov-kirill-lab3/Infrastructure").name = "korniakov-kirill-l
 // Infix To Postfix Notation Converter
 include "code/infix-to-postfix-notation-converter/Model"
 project(":code/infix-to-postfix-notation-converter/Model").name = "infix-to-postfix-notation-converter-Model"
+include "code/infix-to-postfix-notation-converter/View"
+project(":code/infix-to-postfix-notation-converter/View").name = "infix-to-postfix-notation-converter-View"
 
 // Huffman
 include "code/huffman/Model"
