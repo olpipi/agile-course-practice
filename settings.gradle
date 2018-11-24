@@ -210,7 +210,7 @@ project(":code/conway-game/Model").name = "conway-game-Model"
 include "code/conway-game/ViewModel"
 project(":code/conway-game/ViewModel").name = "conway-game-ViewModel"
 
-// Moskalenko Viktor, Calculator
+// Numeral Systems and Radix Calculator
 
 include "code/number-systems-calculator/Model"
 project(":code/number-systems-calculator/Model").name = "number-systems-calculator-Model"
