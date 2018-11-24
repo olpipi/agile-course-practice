@@ -30,5 +30,15 @@ public class Converter {
         postfixExpression.textProperty().bindBidirectional(viewModel.postfixExpressionProperty());
         expressionResult.textProperty().bindBidirectional(viewModel.expressionResultProperty());
         status.textProperty().bindBidirectional(viewModel.statusProperty());
+
+        convertAndCalculateButton.disableProperty().bindBidirectional(
+                viewModel.convertButtonDisabledProperty());
+
+        convertAndCalculateButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                viewModel.convertAndCalculate();
+            }
+        });
     }
 }
