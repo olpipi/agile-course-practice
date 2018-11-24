@@ -103,9 +103,9 @@ project(":code/korniakov-kirill-lab3/View").name = "korniakov-kirill-lab3-View"
 include "code/korniakov-kirill-lab3/Infrastructure"
 project(":code/korniakov-kirill-lab3/Infrastructure").name = "korniakov-kirill-lab3-Infrastructure"
 
-// Anfimov Vlad, lab1
-include "code/anfimov-vlad-reverse-polish-notation"
-project(":code/anfimov-vlad-reverse-polish-notation").name = "anfimov-vlad-reverse-polish-notation-Model"
+// Infix To Postfix Notation Converter
+include "code/infix-to-postfix-notation-converter/Model"
+project(":code/infix-to-postfix-notation-converter/Model").name = "infix-to-postfix-notation-converter-Model"
 
 // Huffman
 include "code/huffman/Model"
