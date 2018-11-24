@@ -1,3 +1,0 @@
-dependencies {
-    compile project(':krutoberezhskaya-number-in-words-ViewModel')
-}

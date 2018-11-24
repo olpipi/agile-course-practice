@@ -191,10 +191,6 @@ project(":code/binary-search/ViewModel").name = "binary-search-ViewModel"
 include "code/caesar-cipher"
 project(":code/caesar-cipher").name = "caesar-cipher"
 
-// Krutoberezskaya Irina, numbers-in-words
-include "code/numbers-in-words"
-project(":code/numbers-in-words").name = "numbers-in-words"
-
 // Podolov Kirill & Flegontov Alexander, Queue
 include "code/queue/Model"
 project(":code/queue/Model").name = "queue-Model"
