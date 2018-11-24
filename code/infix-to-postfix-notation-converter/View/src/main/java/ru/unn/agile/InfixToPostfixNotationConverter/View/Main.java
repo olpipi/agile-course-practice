@@ -9,9 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(
-                Thread.currentThread().getContextClassLoader().getResource("Converter.fxml")
-        );
+        Parent root = FXMLLoader.load(getClass().getResource("Converter.fxml"));
         primaryStage.setTitle("Converter");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
