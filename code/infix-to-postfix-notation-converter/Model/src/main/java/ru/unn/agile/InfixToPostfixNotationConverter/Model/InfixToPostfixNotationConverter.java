@@ -60,10 +60,6 @@ public final class InfixToPostfixNotationConverter {
             output += stack.pop().concat(" ");
         }
 
-        if (!stack.empty()) {
-            throw new RuntimeException();
-        }
-
         return output.split(WHITESPACE_PATTERN);
     }
 

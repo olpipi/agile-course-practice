@@ -62,4 +62,14 @@ public class InfixToPostfixNotationConverterTest {
 
         assertArrayEquals(expected, result);
     }
+
+    @Test
+    public void canCalculateMultipleOperaionsInARow() {
+        String expression = "1+1+1";
+        String[] expected = {"1", "1", "+", "1", "+"};
+
+        String[] result = InfixToPostfixNotationConverter.convert(expression);
+
+        assertArrayEquals(expected, result);
+    }
 }
