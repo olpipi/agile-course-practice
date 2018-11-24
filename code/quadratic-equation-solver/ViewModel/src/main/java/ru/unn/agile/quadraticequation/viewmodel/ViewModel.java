@@ -7,9 +7,9 @@ import javafx.beans.property.*;
 import java.util.Arrays;
 
 public class ViewModel {
-    public static final String noQuadraticCoefficientErr = "Enter quadratic coefficient";
-    public static final String nonNumericCoefficientsErr = "Coefficients must be numeric";
-    public static final String noRootsMessage = "No roots";
+    public static final String NO_QUADRATIC_COEFFICIENT_ERR = "Enter quadratic coefficient";
+    public static final String NON_NUMERIC_COEFFICIENTS_ERR = "Coefficients must be numeric";
+    public static final String NO_ROOTS_MESSAGE = "No roots";
 
     private final StringProperty a = new SimpleStringProperty();
     private final StringProperty b = new SimpleStringProperty();
@@ -40,15 +40,15 @@ public class ViewModel {
         return rootsProperty().get();
     }
 
-    public void setA(String value) {
+    public void setA(final String value) {
         aProperty().set(value);
     }
 
-    public void setB(String value) {
+    public void setB(final String value) {
         bProperty().set(value);
     }
 
-    public void setC(String value) {
+    public void setC(final String value) {
         cProperty().set(value);
     }
 
@@ -61,17 +61,17 @@ public class ViewModel {
                     Double.parseDouble(b.get()),
                     Double.parseDouble(c.get()));
         } catch (NumberFormatException e) {
-            roots.set(nonNumericCoefficientsErr);
+            roots.set(NON_NUMERIC_COEFFICIENTS_ERR);
             return;
         } catch (IllegalArgumentException e) {
-            roots.set(noQuadraticCoefficientErr);
+            roots.set(NO_QUADRATIC_COEFFICIENT_ERR);
             return;
         }
         double[] equationRoots;
         try {
             equationRoots = quadraticEquation.solve();
         } catch (QuadraticEquationSolverException e) {
-            roots.set(noRootsMessage);
+            roots.set(NO_ROOTS_MESSAGE);
             return;
         }
 

@@ -52,14 +52,14 @@ public class ViewModelTest {
 
         viewModel.solve();
 
-        assertEquals(viewModel.noRootsMessage, viewModel.getRoots());
+        assertEquals(viewModel.NO_ROOTS_MESSAGE, viewModel.getRoots());
     }
 
     @Test
     public void canSolveWithoutSetRoots() {
         viewModel.solve();
 
-        assertEquals(ViewModel.noQuadraticCoefficientErr, viewModel.getRoots());
+        assertEquals(ViewModel.NO_QUADRATIC_COEFFICIENT_ERR, viewModel.getRoots());
     }
 
     @Test
@@ -70,6 +70,6 @@ public class ViewModelTest {
 
         viewModel.solve();
 
-        assertEquals(ViewModel.nonNumericCoefficientsErr, viewModel.getRoots());
+        assertEquals(ViewModel.NON_NUMERIC_COEFFICIENTS_ERR, viewModel.getRoots());
     }
 }
