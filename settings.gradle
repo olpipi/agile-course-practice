@@ -180,8 +180,12 @@ include "code/salary-calculator"
 project(":code/salary-calculator").name = "salary-calculator"
 
 // Gladkova Tatiana, Binary Search
-include "code/gladkova-tatiana-binary-search"
-project(":code/gladkova-tatiana-binary-search").name = "gladkova-tatiana-binary-search"
+include "code/binary-search/Model"
+project(":code/binary-search/Model").name = "binary-search"
+include "code/binary-search/View"
+project(":code/binary-search/View").name = "binary-search-View"
+include "code/binary-search/ViewModel"
+project(":code/binary-search/ViewModel").name = "binary-search-ViewModel"
 
 // Kryukova Polina, caesar-cipher
 include "code/caesar-cipher"
