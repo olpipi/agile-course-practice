@@ -7,6 +7,10 @@ import javafx.beans.property.*;
 import java.util.Arrays;
 
 public class ViewModel {
+    public static final String noQuadraticCoefficientErr = "Enter quadratic coefficient";
+    public static final String nonNumericCoefficientsErr = "Coefficients must be numeric";
+    public static final String noRootsMessage = "No roots";
+
     private final StringProperty a = new SimpleStringProperty();
     private final StringProperty b = new SimpleStringProperty();
     private final StringProperty c = new SimpleStringProperty();
@@ -20,6 +24,34 @@ public class ViewModel {
         roots.set("");
     }
 
+    public String getA() {
+        return aProperty().get();
+    }
+
+    public String getB() {
+        return bProperty().get();
+    }
+
+    public String getC() {
+        return cProperty().get();
+    }
+
+    public String getRoots() {
+        return rootsProperty().get();
+    }
+
+    public void setA(String value) {
+        aProperty().set(value);
+    }
+
+    public void setB(String value) {
+        bProperty().set(value);
+    }
+
+    public void setC(String value) {
+        cProperty().set(value);
+    }
+
     public void solve() {
         QuadraticEquation quadraticEquation;
 
@@ -28,25 +60,18 @@ public class ViewModel {
                     Double.parseDouble(a.get()),
                     Double.parseDouble(b.get()),
                     Double.parseDouble(c.get()));
-        } catch (Exception e) {
-            if (e.getClass() == IllegalArgumentException.class) {
-                roots.set("Enter quadratic coefficient");
-                return;
-            }
-
-            if (e.getClass() == NumberFormatException.class) {
-                roots.set("Coefficients must be numeric");
-                return;
-            }
-
-            throw e;
+        } catch (NumberFormatException e) {
+            roots.set(nonNumericCoefficientsErr);
+            return;
+        } catch (IllegalArgumentException e) {
+            roots.set(noQuadraticCoefficientErr);
+            return;
         }
-
         double[] equationRoots;
         try {
             equationRoots = quadraticEquation.solve();
         } catch (QuadraticEquationSolverException e) {
-            roots.set("No roots");
+            roots.set(noRootsMessage);
             return;
         }
 
