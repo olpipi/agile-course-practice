@@ -4,5 +4,5 @@ public enum NumeralSystem {
     BINARY,
     OCTAL,
     HEXADECIMAL,
-    UNKNOWN
+    UNKNOWN,
 }

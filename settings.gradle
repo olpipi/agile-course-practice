@@ -212,10 +212,10 @@ project(":code/conway-game/ViewModel").name = "conway-game-ViewModel"
 
 // Numeral Systems and Radix Calculator
 
-include "code/number-systems-calculator/Model"
-project(":code/number-systems-calculator/Model").name = "number-systems-calculator-Model"
-include "code/number-systems-calculator/ViewModel"
-project(":code/number-systems-calculator/ViewModel").name = "number-systems-calculator-ViewModel"
-include "code/number-systems-calculator/View"
-project(":code/number-systems-calculator/View").name = "number-systems-calculator-View"
+include "code/numeral-systems-calculator/Model"
+project(":code/numeral-systems-calculator/Model").name = "numeral-systems-calculator-Model"
+include "code/numeral-systems-calculator/ViewModel"
+project(":code/numeral-systems-calculator/ViewModel").name = "numeral-systems-calculator-ViewModel"
+include "code/numeral-systems-calculator/View"
+project(":code/numeral-systems-calculator/View").name = "numeral-systems-calculator-View"
 
