@@ -114,10 +114,6 @@ project(":code/metelev-evgenii-mortgage-calculator").name = "metelev-evgenii-Mod
 include "code/kochuev-andrey-length-converter"
 project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-converter"
 
-// Beresneva Julia, LCD Digits
-include "code/beresneva-julia-lcd-digits"
-project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
-
 // Osechkin Sergey, DepositCalculator
 include "code/osechkin-deposit-calculator"
 project(":code/osechkin-deposit-calculator").name = "osechkin-deposit-calculator"
@@ -193,3 +189,11 @@ project(":code/conway-game/ViewModel").name = "conway-game-ViewModel"
 // Moskalenko Viktor, Calculator
 include "code/moskalenko-viktor-calculator"
 project(":code/moskalenko-viktor-calculator").name = "moskalenko-viktor-calculator"
+
+// Lcd Digits. Beresneva Julia, Mitrokhina Julia
+include "code/lcd-digits/View"
+project(":code/lcd-digits/View").name = "lcd-digits-View"
+include "code/lcd-digits/Model"
+project(":code/lcd-digits/Model").name = "lcd-digits-Model"
+include "code/lcd-digits/ViewModel"
+project(":code/lcd-digits/ViewModel").name = "lcd-digits-ViewModel"
