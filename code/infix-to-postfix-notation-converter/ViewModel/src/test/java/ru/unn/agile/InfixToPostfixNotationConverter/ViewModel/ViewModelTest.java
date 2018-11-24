@@ -78,6 +78,15 @@ public class ViewModelTest {
     }
 
     @Test
+    public void afterRemovingInputDataStatusIsWaiting() {
+        viewModel.infixExpressionProperty().set("1+1");
+
+        viewModel.infixExpressionProperty().set("");
+
+        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
     public void canProduceCorrectOutputForSumOfTwoNumbers() {
         viewModel.infixExpressionProperty().set("123+321");
         String expectedPostfixNotation = "[123, 321, +]";
