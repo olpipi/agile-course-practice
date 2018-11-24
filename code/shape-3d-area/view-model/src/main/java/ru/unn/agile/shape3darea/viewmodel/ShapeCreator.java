@@ -14,7 +14,7 @@ class ShapeCreator {
         for (int i = 0; i < parameters.size(); i++) {
             ShapeParameter parameter = parameters.get(i);
             Class<?> type = parameter.getType();
-            String value = parameter.getValue();
+            String value = parameter.valueProperty().get();
 
             parameterTypes[i] = type;
 
@@ -23,7 +23,7 @@ class ShapeCreator {
             } else if (type.equals(int.class)) {
                 parameterValues[i] = Integer.parseInt(value);
             } else {
-                throw new UnsupportedOperationException("Unknown type " + type);
+                throw new IllegalArgumentException("Parameter type " + type + " not supported");
             }
         }
 
@@ -34,11 +34,7 @@ class ShapeCreator {
         } catch (NoSuchMethodException | IllegalAccessException | InstantiationException e) {
             throw new IllegalArgumentException("Can't find constructor for supplied parameters", e);
         } catch (InvocationTargetException e) {
-            if (e.getCause() instanceof RuntimeException) {
-                throw (RuntimeException) e.getCause();
-            } else {
-                throw new IllegalArgumentException(e);
-            }
+            throw (RuntimeException) e.getCause();
         }
     }
 }

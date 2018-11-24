@@ -4,9 +4,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class ShapeParameter {
+    public static final String INITIAL_VALUE = "0";
+
     private final Class<?> type;
     private final String name;
-    private final StringProperty value = new SimpleStringProperty("0");
+    private final StringProperty value = new SimpleStringProperty(INITIAL_VALUE);
 
     public ShapeParameter(final Class<?> type, final String name) {
         this.type = type;
@@ -25,11 +27,4 @@ public class ShapeParameter {
         return value;
     }
 
-    public String getValue() {
-        return value.get();
-    }
-
-    public void setValue(final String value) {
-        this.value.set(value);
-    }
 }

@@ -40,7 +40,7 @@ public class ShapeCreatorTest {
     @Test
     public void canCreateShapeWithDoubleParameter() {
         ShapeParameter param = new ShapeParameter(double.class, "param");
-        param.setValue("42");
+        param.valueProperty().set("42");
 
         Shape shape = creator.create(DoubleParamShape.class, singletonList(param));
 
@@ -51,7 +51,7 @@ public class ShapeCreatorTest {
     @Test
     public void canCreateShapeWithIntParameter() {
         ShapeParameter param = new ShapeParameter(int.class, "param");
-        param.setValue("10");
+        param.valueProperty().set("10");
 
         Shape shape = creator.create(IntParamShape.class, singletonList(param));
 
@@ -63,8 +63,8 @@ public class ShapeCreatorTest {
     public void canCreateSquarePyramid() {
         ShapeParameter squareSide = new ShapeParameter(double.class, "squareSide");
         ShapeParameter triangleSide = new ShapeParameter(double.class, "triangleSide");
-        squareSide.setValue("1");
-        triangleSide.setValue("1");
+        squareSide.valueProperty().set("1");
+        triangleSide.valueProperty().set("1");
         List<ShapeParameter> parameters = Arrays.asList(squareSide, triangleSide);
 
         Shape shape = creator.create(SquarePyramid.class, parameters);
@@ -72,10 +72,10 @@ public class ShapeCreatorTest {
         assertTrue(shape instanceof SquarePyramid);
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void canNotCreateShapeWithStringParameter() {
         ShapeParameter param = new ShapeParameter(String.class, "param");
-        param.setValue("10");
+        param.valueProperty().set("10");
 
         creator.create(StringParamShape.class, singletonList(param));
     }
@@ -83,7 +83,7 @@ public class ShapeCreatorTest {
     @Test(expected = IllegalArgumentException.class)
     public void canNotCreateShapeWithInvalidNumber() {
         ShapeParameter param = new ShapeParameter(double.class, "param");
-        param.setValue("10test");
+        param.valueProperty().set("10test");
 
         creator.create(DoubleParamShape.class, singletonList(param));
     }
