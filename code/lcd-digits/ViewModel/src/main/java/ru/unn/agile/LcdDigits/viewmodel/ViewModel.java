@@ -113,7 +113,8 @@ public class ViewModel {
 
     private class ValueChangeListener implements ChangeListener<String> {
         @Override
-        public void changed(final ObservableValue<? extends String> observable, final String oldValue, final String newValue) {
+        public void changed(final ObservableValue<? extends String> observable,
+                            final String oldValue, final String newValue) {
             status.set(geteEntranceStatus().toString());
         }
     }
