@@ -3,8 +3,6 @@ package ru.unn.agile.salarycalculator.view.legacy;
 import ru.unn.agile.salarycalculator.viewmodel.legacy.ViewModel;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -25,28 +23,8 @@ public final class SalaryCalculatorView {
     private SalaryCalculatorView(final ViewModel viewModelArg) {
         this.viewModel = viewModelArg;
         backBind();
-        calculateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent actionEvent) {
-                bind();
-                viewModel.calculateSalary();
-                backBind();
-            }
-        });
-
-        KeyAdapter whenInCountType = new KeyAdapter() {
-            @Override
-            public void keyReleased(final KeyEvent e) {
-                bind();
-                viewModel.checkCountFields();
-                backBind();
-            }
-        };
-
-        txtSalary.addKeyListener(whenInCountType);
-        txtWorkedHours.addKeyListener(whenInCountType);
-        txtCountMonth.addKeyListener(whenInCountType);
-        txtCountYear.addKeyListener(whenInCountType);
+        SalaryCalculatorActionListener();
+        SalaryCalculatorKeyAdapter();
     }
 
     public static void main(final String[] args) {
@@ -68,5 +46,29 @@ public final class SalaryCalculatorView {
         calculateButton.setEnabled(viewModel.isCalculateButtonEnable());
         txtResult.setText(viewModel.getResult());
         lbStatus.setText(viewModel.getStatus());
+    }
+
+    private void SalaryCalculatorActionListener(){
+        calculateButton.addActionListener(actionEvent -> {
+            bind();
+            viewModel.calculateSalary();
+            backBind();
+        });
+    }
+
+    private void SalaryCalculatorKeyAdapter(){
+        KeyAdapter whenInCountType = new KeyAdapter() {
+            @Override
+            public void keyReleased(final KeyEvent e) {
+                bind();
+                viewModel.checkCountFields();
+                backBind();
+            }
+        };
+
+        txtSalary.addKeyListener(whenInCountType);
+        txtWorkedHours.addKeyListener(whenInCountType);
+        txtCountMonth.addKeyListener(whenInCountType);
+        txtCountYear.addKeyListener(whenInCountType);
     }
 }

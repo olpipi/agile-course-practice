@@ -10,6 +10,7 @@ public class ViewModel {
     private static final int MAX_YEAR = 2019;
     private static final int MIN_YEAR = 2000;
     private static final int MAX_WORKED_HOURS = 500;
+    private static final int MAX_COUNT_CHARACTERS_SALARY = 20;
     private String salary;
     private String workedHours;
     private String countMonth;
@@ -31,7 +32,8 @@ public class ViewModel {
     public final class Status {
         public static final String COUNT_WAITING = "Please provide salary and count period";
         public static final String READY_CALCULATE = "Press 'Calculate' button";
-        public static final String BAD_SALARY_FORMAT = "Salary must be more 0";
+        public static final String BAD_SALARY_FORMAT_SIGN = "Salary must be more 0";
+        public static final String BAD_SALARY_FORMAT_NUMBERS = "Salary too much";
         public static final String BAD_COUNT_FORMAT = "Wrong format of count input";
         public static final String BAD_MONTH_FORMAT = "Month must be between 1 and 12";
         public static final String BAD_YEAR_FORMAT = "Year must be between 2000 and 2019";
@@ -46,17 +48,28 @@ public class ViewModel {
 
     public void checkCountFields() {
         status = Status.READY_CALCULATE;
-        isCalculateButtonEnabled = isCountInputAvailable()
-                && isDateCorrect()
+        isCalculateButtonEnabled = isCurrentYearNumberCorrect()
+                && isCurrentMonthNumberCorrect()
                 && isWorkedHoursCorrect()
                 && isSalaryCorrect();
     }
 
     private boolean isSalaryCorrect() {
-        if (Double.parseDouble(salary) < 0) {
-            status = Status.BAD_SALARY_FORMAT;
+        if (salary.length() > MAX_COUNT_CHARACTERS_SALARY){
+            status = Status.BAD_SALARY_FORMAT_NUMBERS;
             return false;
         }
+        try {
+            if (Double.parseDouble(salary) < 0) {
+                status = Status.BAD_SALARY_FORMAT_SIGN;
+                return false;
+            }
+        }
+        catch (NumberFormatException e) {
+        status = Status.BAD_COUNT_FORMAT;
+        return false;
+    }
+
         return true;
     }
 
@@ -64,15 +77,15 @@ public class ViewModel {
         if (!isCalculateButtonEnabled) {
             return;
         }
-        SalaryCalculator countPeriod = new SalaryCalculator();
+        SalaryCalculator calculator = new SalaryCalculator();
 
-        countPeriod.setSalary(Double.parseDouble(salary));
+        calculator.setSalary(Double.parseDouble(salary));
 
-        countPeriod.setWorkedHourInMonth(Integer.parseInt(workedHours));
+        calculator.setWorkedHourInMonth(Integer.parseInt(workedHours));
 
-        countPeriod.setCountingMonth(LocalDate.of(Integer.parseInt(countYear),
+        calculator.setCountingMonth(LocalDate.of(Integer.parseInt(countYear),
                 Integer.parseInt(countMonth), 1));
-        result = getMoneyFormatInCashValue(countPeriod);
+        result = getMoneyFormatInCashValue(calculator);
         status = Status.CASH;
     }
 
@@ -85,9 +98,6 @@ public class ViewModel {
     }
 
     public void setSalary(final String inSalary) {
-        if (inSalary.equals(this.salary)) {
-            return;
-        }
         this.salary = inSalary;
     }
 
@@ -113,48 +123,58 @@ public class ViewModel {
     }
 
     private boolean isWorkedHoursCorrect() {
-        int hours = Integer.parseInt(workedHours);
+        int hours;
+        try {
+            hours = Integer.parseInt(workedHours);
+        }
+        catch (NumberFormatException e){
+            status = Status.BAD_WORKED_HOURS_FORMAT;
+            return false;
+        }
+
         if (hours <= MAX_WORKED_HOURS && hours > 0) {
             return true;
         }
-        status = Status.BAD_WORKED_HOURS_FORMAT;
-        return false;
+        else{
+            status = Status.BAD_WORKED_HOURS_FORMAT;
+            return false;
+        }
     }
 
-    private boolean isDateCorrect() {
-        int checkingValue = Integer.parseInt(countMonth);
-        if (!isCurrentMonthNumber(checkingValue)) {
+    private boolean isCurrentMonthNumberCorrect() {
+        int checkingMonth;
+        try{
+            checkingMonth = Integer.parseInt(countMonth);
+            }
+        catch (NumberFormatException e){
             status = Status.BAD_MONTH_FORMAT;
             return false;
         }
-        checkingValue = Integer.parseInt(countYear);
-        if (!isCurrentYearNumber(checkingValue)) {
+        if (checkingMonth <= MAX_MONTH && checkingMonth > 0){
+            return true;
+        }
+        else{
+            status = Status.BAD_MONTH_FORMAT;
+            return false;
+        }
+    }
+
+    private boolean isCurrentYearNumberCorrect(){
+        int checkingYear;
+        try{
+            checkingYear = Integer.parseInt(countYear);
+        }
+        catch (NumberFormatException e){
             status = Status.BAD_YEAR_FORMAT;
             return false;
         }
-        return true;
-    }
-
-    private boolean isCurrentMonthNumber(final int checkingMonth) {
-        return checkingMonth <= MAX_MONTH && checkingMonth > 0;
-    }
-
-    private boolean isCurrentYearNumber(final int checkingYear) {
-        return checkingYear <= MAX_YEAR && checkingYear > MIN_YEAR;
-    }
-
-
-    private boolean isCountInputAvailable() {
-        try {
-            Double.parseDouble(salary);
-            Integer.parseInt(workedHours);
-            Integer.parseInt(countMonth);
-            Integer.parseInt(countYear);
-        } catch (NumberFormatException e) {
-            status = Status.BAD_COUNT_FORMAT;
+        if (checkingYear <= MAX_YEAR && checkingYear > MIN_YEAR){
+            return true;
+        }
+        else{
+            status = Status.BAD_YEAR_FORMAT;
             return false;
         }
-        return true;
     }
 
     public String getSalary() {
