@@ -1,10 +1,10 @@
-package ru.unn.agile.InfixToPostfixNotationConverter.ViewModel;
+package ru.unn.agile.InfixToPostfixNotationConverter.viewmodel;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.property.*;
 
-import ru.unn.agile.InfixToPostfixNotationConverter.Model.InfixToPostfixNotationConverter;
+import ru.unn.agile.InfixToPostfixNotationConverter.model.InfixToPostfixNotationConverter;
 
 import java.util.Arrays;
 

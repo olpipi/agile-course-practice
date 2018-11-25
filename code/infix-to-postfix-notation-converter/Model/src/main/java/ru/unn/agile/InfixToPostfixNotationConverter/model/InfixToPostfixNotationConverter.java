@@ -1,4 +1,4 @@
-package ru.unn.agile.InfixToPostfixNotationConverter.Model;
+package ru.unn.agile.InfixToPostfixNotationConverter.model;
 
 import java.util.*;
 

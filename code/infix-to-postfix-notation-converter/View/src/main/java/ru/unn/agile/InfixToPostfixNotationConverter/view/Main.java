@@ -1,4 +1,4 @@
-package ru.unn.agile.InfixToPostfixNotationConverter.View;
+package ru.unn.agile.InfixToPostfixNotationConverter.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -1,4 +1,4 @@
-package ru.unn.agile.InfixToPostfixNotationConverter.View;
+package ru.unn.agile.InfixToPostfixNotationConverter.view;
 
 import org.junit.Ignore;
 import org.junit.Test;

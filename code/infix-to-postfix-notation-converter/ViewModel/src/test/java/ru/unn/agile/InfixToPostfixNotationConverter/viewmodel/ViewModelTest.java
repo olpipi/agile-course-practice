@@ -1,4 +1,4 @@
-package ru.unn.agile.InfixToPostfixNotationConverter.ViewModel;
+package ru.unn.agile.InfixToPostfixNotationConverter.viewmodel;
 
 import org.junit.After;
 import org.junit.Before;
