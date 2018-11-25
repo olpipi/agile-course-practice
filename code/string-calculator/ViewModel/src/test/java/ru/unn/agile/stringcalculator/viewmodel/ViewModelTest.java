@@ -1,7 +1,7 @@
 package ru.unn.agile.stringcalculator.viewmodel;
 
 import javafx.beans.property.StringProperty;
-import javafx.collections.ObservableList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,9 +9,15 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class ViewModelTest {
     private ViewModel viewModel;
+
+    public void setExternalViewModel(final ViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
 
     @Before
     public void setUp() {
@@ -34,7 +40,7 @@ public class ViewModelTest {
 
     @Test
     public void canSetAddOperation() {
-        assertEquals(Operation.ADD, viewModel.operationProperty().get());
+        assertEquals(Operation.ADD, viewModel.getOperation());
     }
 
     @Test
@@ -43,7 +49,7 @@ public class ViewModelTest {
 
         viewModel.calculate();
 
-        assertEquals("39", viewModel.resultProperty().get());
+        assertEquals("39", viewModel.getResult());
     }
 
     @Test
@@ -56,33 +62,32 @@ public class ViewModelTest {
     }
 
     @Test
-    public void operationsListContainsOnlyAddOperation() {
-        ObservableList operationsList = viewModel.getOperations();
+    public void operationsListIsNotNull() {
+        assertNotNull(viewModel.operationProperty());
+    }
 
-        assertEquals(Operation.ADD, operationsList.get(0));
+    @Test
+    public void operationsListContainsOnlyAddOperation() {
+        assertEquals(Operation.ADD, viewModel.getOperations().get(0));
     }
 
     @Test
     public void statusIsWaitingWhenInputFieldIsEmpty() {
-        StringProperty expectedStatus = viewModel.statusProperty();
-
-        assertEquals(Status.WAITING.toString(), expectedStatus.get());
+        assertEquals(Status.WAITING.toString(), viewModel.getStatus());
     }
 
     @Test
     public void statusIsBadFormatWhenInputDataIsNotCorrect() {
         setInputData("31.8,5");
 
-        StringProperty expectedStatus = viewModel.statusProperty();
-        assertEquals(Status.BAD_FORMAT.toString(), expectedStatus.get());
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
     }
 
     @Test
     public void statusIsReadyWhenInputDataIsCorrect() {
         setInputData("66,8");
 
-        StringProperty expectedStatus = viewModel.statusProperty();
-        assertEquals(Status.READY.toString(), expectedStatus.get());
+        assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
     }
 
     @Test
@@ -91,13 +96,12 @@ public class ViewModelTest {
 
         viewModel.calculate();
 
-        StringProperty expectedStatus = viewModel.statusProperty();
-        assertEquals(Status.SUCCESS.toString(), expectedStatus.get());
+        assertEquals(Status.SUCCESS.toString(), viewModel.statusProperty().get());
     }
 
     @Test
     public void isCalculateButtonNotActiveWhenStatusIsWaiting() {
-        assertTrue(viewModel.calculationDisabledProperty().get());
+        assertTrue(viewModel.isCalculationDisabled());
     }
 
     @Test
@@ -111,7 +115,7 @@ public class ViewModelTest {
     public void isCalculateButtonActiveWhenStatusIsReady() {
         setInputData("31,8");
 
-        assertFalse(viewModel.calculationDisabledProperty().get());
+        assertFalse(viewModel.isCalculationDisabled());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -130,9 +134,9 @@ public class ViewModelTest {
     public void logContainsProperMessageAfterCalculation() {
         setInputData("2,1");
         viewModel.calculate();
-        String message = viewModel.getLog().get(0);
+        String logMsg = viewModel.getLog().get(0);
 
-        assertTrue(message.matches(LogMessages.CALCULATE_WAS_PRESSED + ".*"));
+        assertTrue(logMsg.matches(".*" + LogMessages.CALCULATE_WAS_PRESSED.toString() + ".*"));
     }
 
     @Test
@@ -141,8 +145,8 @@ public class ViewModelTest {
 
         viewModel.calculate();
 
-        String message = viewModel.getLog().get(0);
-        assertTrue(message.matches(".*" + viewModel.inputDataProperty().get()));
+        String logMsg = viewModel.getLog().get(0);
+        assertTrue(logMsg.matches(".*" + viewModel.inputDataProperty().get()));
     }
 
     @Test
@@ -151,8 +155,8 @@ public class ViewModelTest {
 
         viewModel.calculate();
 
-        String message = viewModel.getLog().get(0);
-        assertTrue(message.matches(".*String: " + viewModel.inputDataProperty().get() + ".*"));
+        String logMsg = viewModel.getLog().get(0);
+        assertTrue(logMsg.matches(".*String: " + viewModel.inputDataProperty().get() + ".*"));
     }
 
     @Test
@@ -161,8 +165,8 @@ public class ViewModelTest {
 
         viewModel.calculate();
 
-        String message = viewModel.getLog().get(0);
-        assertTrue(message.matches(".*ADD.*"));
+        String logMsg = viewModel.getLog().get(0);
+        assertTrue(logMsg.matches(".*ADD.*"));
     }
 
     @Test
@@ -184,6 +188,52 @@ public class ViewModelTest {
         viewModel.calculate();
 
         assertTrue(viewModel.getLog().isEmpty());
+    }
+
+    @Test
+    public void areaLogIsEmptyWhenButtonIsDisabled() {
+        viewModel.calculate();
+
+        assertNull(viewModel.areaLogProperty().get());
+    }
+
+    @Test
+    public void argumentsAreCorrectlyLogged() {
+        setInputData("6,3");
+
+        viewModel.subsChanged(Boolean.TRUE, Boolean.FALSE);
+
+        String logMsg = viewModel.getLog().get(0);
+        assertTrue(logMsg.matches(".*" + LogMessages.EDITING_FINISHED
+                + "Input string: \\[ " + viewModel.inputDataProperty().get() + " \\]"));
+    }
+
+    @Test
+    public void areaLogContainsLogMessagesAfterCalculation() {
+        setInputData("3,3");
+
+        viewModel.calculate();
+
+        assertFalse(viewModel.getAreaLog().isEmpty());
+    }
+
+    @Test
+    public void areaLogMessageIsEqualsLogMessage() {
+        setInputData("5,6");
+
+        viewModel.calculate();
+
+        assertEquals(viewModel.getLog().get(0) + "\n", viewModel.getAreaLog());
+    }
+
+    @Test
+    public void doNotLogSameParametersTwice() {
+        setInputData("12");
+        viewModel.subsChanged(Boolean.TRUE, Boolean.FALSE);
+        setInputData("12");
+        viewModel.subsChanged(Boolean.TRUE, Boolean.FALSE);
+
+        assertEquals(1, viewModel.getLog().size());
     }
 
     private void setInputData(final String str) {

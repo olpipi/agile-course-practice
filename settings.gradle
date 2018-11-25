@@ -46,7 +46,6 @@ project(":code/prime-number/view").name = "prime-number-View"
 include "code/prime-number/ViewModel"
 project(":code/prime-number/ViewModel").name = "prime-number-ViewModel"
 
-
 // Marchenko Andrey
 include "code/marchenko-andrey-complex-number"
 project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-complex-number"
@@ -148,6 +147,8 @@ include "code/string-calculator/ViewModel"
 project(":code/string-calculator/ViewModel").name = "string-calculator-ViewModel"
 include "code/string-calculator/View"
 project(":code/string-calculator/View").name = "string-calculator-View"
+include "code/string-calculator/Infrastructure"
+project(":code/string-calculator/Infrastructure").name = "string-calculator-Infrastructure"
 
 // Stack
 include "code/stack"
@@ -306,4 +307,3 @@ include "code/numbers-in-words/ViewModel"
 project(":code/numbers-in-words/ViewModel").name = "numbers-in-words-ViewModel"
 include "code/numbers-in-words/View"
 project(":code/numbers-in-words/View").name = "numbers-in-words-View"
-
