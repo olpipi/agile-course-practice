@@ -23,8 +23,8 @@ public final class SalaryCalculatorView {
     private SalaryCalculatorView(final ViewModel viewModelArg) {
         this.viewModel = viewModelArg;
         backBind();
-        SalaryCalculatorActionListener();
-        SalaryCalculatorKeyAdapter();
+        salaryCalculatorActionListener();
+        salaryCalculatorKeyAdapter();
     }
 
     public static void main(final String[] args) {
@@ -48,7 +48,7 @@ public final class SalaryCalculatorView {
         lbStatus.setText(viewModel.getStatus());
     }
 
-    private void SalaryCalculatorActionListener() {
+    private void salaryCalculatorActionListener() {
         calculateButton.addActionListener(actionEvent -> {
             bind();
             viewModel.calculateSalary();
@@ -56,7 +56,7 @@ public final class SalaryCalculatorView {
         });
     }
 
-    private void SalaryCalculatorKeyAdapter() {
+    private void salaryCalculatorKeyAdapter() {
         KeyAdapter whenInCountType = new KeyAdapter() {
             @Override
             public void keyReleased(final KeyEvent e) {
