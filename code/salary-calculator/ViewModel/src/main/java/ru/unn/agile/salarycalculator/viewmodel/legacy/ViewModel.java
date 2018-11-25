@@ -55,7 +55,7 @@ public class ViewModel {
     }
 
     private boolean isSalaryCorrect() {
-        if (salary.length() > MAX_COUNT_CHARACTERS_SALARY){
+        if (salary.length() > MAX_COUNT_CHARACTERS_SALARY) {
             status = Status.BAD_SALARY_FORMAT_NUMBERS;
             return false;
         }
@@ -64,11 +64,10 @@ public class ViewModel {
                 status = Status.BAD_SALARY_FORMAT_SIGN;
                 return false;
             }
+        } catch (NumberFormatException e) {
+            status = Status.BAD_COUNT_FORMAT;
+            return false;
         }
-        catch (NumberFormatException e) {
-        status = Status.BAD_COUNT_FORMAT;
-        return false;
-    }
 
         return true;
     }
@@ -126,16 +125,14 @@ public class ViewModel {
         int hours;
         try {
             hours = Integer.parseInt(workedHours);
-        }
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             status = Status.BAD_WORKED_HOURS_FORMAT;
             return false;
         }
 
         if (hours <= MAX_WORKED_HOURS && hours > 0) {
             return true;
-        }
-        else{
+        } else {
             status = Status.BAD_WORKED_HOURS_FORMAT;
             return false;
         }
@@ -143,35 +140,31 @@ public class ViewModel {
 
     private boolean isCurrentMonthNumberCorrect() {
         int checkingMonth;
-        try{
+        try {
             checkingMonth = Integer.parseInt(countMonth);
-            }
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             status = Status.BAD_MONTH_FORMAT;
             return false;
         }
-        if (checkingMonth <= MAX_MONTH && checkingMonth > 0){
+        if (checkingMonth <= MAX_MONTH && checkingMonth > 0) {
             return true;
-        }
-        else{
+        } else {
             status = Status.BAD_MONTH_FORMAT;
             return false;
         }
     }
 
-    private boolean isCurrentYearNumberCorrect(){
+    private boolean isCurrentYearNumberCorrect() {
         int checkingYear;
-        try{
+        try {
             checkingYear = Integer.parseInt(countYear);
-        }
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             status = Status.BAD_YEAR_FORMAT;
             return false;
         }
-        if (checkingYear <= MAX_YEAR && checkingYear > MIN_YEAR){
+        if (checkingYear <= MAX_YEAR && checkingYear > MIN_YEAR) {
             return true;
-        }
-        else{
+        } else {
             status = Status.BAD_YEAR_FORMAT;
             return false;
         }

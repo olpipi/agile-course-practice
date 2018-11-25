@@ -44,14 +44,14 @@ public class ViewModelTests {
     }
 
     @Test
-    public void checkStatusWhenReadyCalculate(){
+    public void checkStatusWhenReadyCalculate() {
         viewModel.checkCountFields();
 
         assertEquals(Status.READY_CALCULATE, viewModel.getStatus());
     }
 
     @Test
-    public void checkStatusCash(){
+    public void checkStatusCash() {
         viewModel.checkCountFields();
         viewModel.calculateSalary();
 
@@ -59,7 +59,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isLengthCharactersSalaryNotCorrect(){
+    public void isLengthCharactersSalaryNotCorrect() {
         viewModel.setSalary("1000000000000000000000000");
         viewModel.checkCountFields();
 

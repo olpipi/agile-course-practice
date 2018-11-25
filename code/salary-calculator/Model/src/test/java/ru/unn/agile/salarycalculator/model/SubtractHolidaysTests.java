@@ -102,4 +102,16 @@ public class SubtractHolidaysTests {
 
         assertEquals(8, countMonth.getHolidaysInVacation());
     }
+
+    @Test
+    public void checkSubtractionDayWhenAllMonthInVacation() {
+        SubtractHolidays countMonth = new SubtractHolidays();
+
+        countMonth.setCheckMonth(LocalDate.of(2018, Month.JULY, 1));
+        countMonth.setStartVacation(LocalDate.of(2018, Month.JUNE, 19));
+        countMonth.setLengthVacation(50);
+
+        assertEquals(22, countMonth.getHolidaysInVacation());
+    }
+
 }
