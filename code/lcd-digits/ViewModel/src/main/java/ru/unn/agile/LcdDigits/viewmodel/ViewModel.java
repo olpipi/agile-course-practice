@@ -36,7 +36,7 @@ public class ViewModel {
 
             @Override
             protected boolean computeValue() {
-                return getInputStatus() == Status.READY;
+                return geteEntranceStatus() == Status.READY;
             }
         };
         transferringDisabled.bind(couldTransfer.not());
@@ -57,19 +57,19 @@ public class ViewModel {
         }
     }
 
-    private Status getInputStatus() {
-        Status inputStatus = Status.READY;
+    private Status geteEntranceStatus() {
+        Status entranceStatus = Status.READY;
         if (digits.get().isEmpty()) {
-            inputStatus = Status.WAITING;
+            entranceStatus = Status.WAITING;
         }
         try {
             if (!digits.get().isEmpty()) {
                 Integer.parseInt(digits.get());
             }
         } catch (NumberFormatException nfe) {
-            inputStatus = Status.BAD_FORMAT;
+            entranceStatus = Status.BAD_FORMAT;
         }
-        return inputStatus;
+        return entranceStatus;
     }
 
     public void transformLcdDigits() {
@@ -114,7 +114,7 @@ public class ViewModel {
     private class ValueChangeListener implements ChangeListener<String> {
         @Override
         public void changed(final ObservableValue<? extends String> observable, final String oldValue, final String newValue) {
-            status.set(getInputStatus().toString());
+            status.set(geteEntranceStatus().toString());
         }
     }
 }
