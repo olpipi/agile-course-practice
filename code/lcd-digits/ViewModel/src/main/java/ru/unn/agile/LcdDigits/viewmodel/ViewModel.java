@@ -99,6 +99,18 @@ public class ViewModel {
         return transferringDisabled;
     }
 
+    public final String getResult() {
+        return result.get();
+    }
+
+    public final String getStatus() {
+        return status.get();
+    }
+
+    public final boolean isTransferringDisabled() {
+        return transferringDisabled.get();
+    }
+
     private class ValueChangeListener implements ChangeListener<String> {
         @Override
         public void changed(final ObservableValue<? extends String> observable,
