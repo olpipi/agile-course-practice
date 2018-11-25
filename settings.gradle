@@ -191,10 +191,6 @@ project(":code/binary-search/ViewModel").name = "binary-search-ViewModel"
 include "code/caesar-cipher"
 project(":code/caesar-cipher").name = "caesar-cipher"
 
-// Krutoberezskaya Irina, numbers-in-words
-include "code/numbers-in-words"
-project(":code/numbers-in-words").name = "numbers-in-words"
-
 // Podolov Kirill & Flegontov Alexander, Queue
 include "code/queue/Model"
 project(":code/queue/Model").name = "queue-Model"
@@ -276,11 +272,19 @@ include "code/conway-game/ViewModel"
 project(":code/conway-game/ViewModel").name = "conway-game-ViewModel"
 
 // Numeral Systems and Radix Calculator
-
 include "code/numeral-systems-calculator/Model"
 project(":code/numeral-systems-calculator/Model").name = "numeral-systems-calculator-Model"
 include "code/numeral-systems-calculator/ViewModel"
 project(":code/numeral-systems-calculator/ViewModel").name = "numeral-systems-calculator-ViewModel"
 include "code/numeral-systems-calculator/View"
 project(":code/numeral-systems-calculator/View").name = "numeral-systems-calculator-View"
+
+// Krutoberezskaya Irina, numbers-in-words
+include "code/numbers-in-words/Model"
+project(":code/numbers-in-words/Model").name = "numbers-in-words-Model"
+include "code/numbers-in-words/ViewModel"
+project(":code/numbers-in-words/ViewModel").name = "numbers-in-words-ViewModel"
+include "code/numbers-in-words/View"
+project(":code/numbers-in-words/View").name = "numbers-in-words-View"
+
 

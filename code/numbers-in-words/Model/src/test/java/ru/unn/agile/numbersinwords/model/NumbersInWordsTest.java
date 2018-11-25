@@ -1,4 +1,4 @@
-package ru.unn.agile.numbers_in_words.model;
+package ru.unn.agile.numbersinwords.model;
 
 import org.junit.Test;
 
@@ -21,19 +21,18 @@ public class NumbersInWordsTest {
     }
 
     @Test
-    public void canConvertMultiplesOfTen() {
-        String convertString = NumbersInWords.convert(80);
-
-        assertEquals("Eighty", convertString);
-    }
-
-    @Test
     public void canConvertNumbersToHundreds() {
         String convertString = NumbersInWords.convert(54);
 
         assertEquals("Fifty Four", convertString);
     }
 
+    @Test
+    public void canConvertMultiplesOfTen() {
+        String convertString = NumbersInWords.convert(80);
+
+        assertEquals("Eighty", convertString);
+    }
     @Test
     public void canConvertMultiplesOfHundred() {
         String convertString = NumbersInWords.convert(200);
