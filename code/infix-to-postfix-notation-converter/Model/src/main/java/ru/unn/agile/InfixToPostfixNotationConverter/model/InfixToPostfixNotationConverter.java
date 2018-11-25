@@ -4,7 +4,7 @@ import java.util.*;
 
 public final class InfixToPostfixNotationConverter {
 
-    private static final String OPERATORS = "+-*/^";
+    private static final String OPERATORS = "-+*/";
     private static final String WHITESPACE_PATTERN = "\\s+";
 
     private InfixToPostfixNotationConverter() { }
@@ -13,7 +13,7 @@ public final class InfixToPostfixNotationConverter {
         final String positiveNumber = "\\d+";
         final String negativeNumber = "[(]-\\d+[)]";
         final String number = "(" + positiveNumber + "|" + negativeNumber + ")";
-        final String arithmeticOperation = "[-+*/]";
+        final String arithmeticOperation = "[" + OPERATORS + "]";
         final String expressionPattern = number + "(" + arithmeticOperation + number + "){0,}";
 
         String stripped = expression.replaceAll(WHITESPACE_PATTERN, "");
