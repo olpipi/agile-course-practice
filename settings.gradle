@@ -184,8 +184,12 @@ include "code/shape-3d-area/view"
 project(":code/shape-3d-area/view").name = "shape-3d-area-view"
 
 //Stepanov Nikolay, Salary calculator
-include "code/salary-calculator"
-project(":code/salary-calculator").name = "salary-calculator"
+include "code/salary-calculator/Model"
+project(":code/salary-calculator/Model").name = "salary-calculator-Model"
+include "code/salary-calculator/View"
+project(":code/salary-calculator/View").name = "salary-calculator-View"
+include "code/salary-calculator/ViewModel"
+project(":code/salary-calculator/ViewModel").name = "salary-calculator-ViewModel"
 
 // Gladkova Tatiana, Binary Search
 include "code/binary-search/Model"

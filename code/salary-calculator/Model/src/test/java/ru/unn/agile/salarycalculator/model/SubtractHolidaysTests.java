@@ -113,4 +113,5 @@ public class SubtractHolidaysTests {
 
         assertEquals(22, countMonth.getHolidaysInVacation());
     }
+
 }
