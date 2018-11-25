@@ -64,7 +64,7 @@ public class InfixToPostfixNotationConverterTest {
     }
 
     @Test
-    public void canCalculateMultipleOperaionsInARow() {
+    public void canCalculateMultipleOperationsInARow() {
         String expression = "1+1+1";
         String[] expected = {"1", "1", "+", "1", "+"};
 
