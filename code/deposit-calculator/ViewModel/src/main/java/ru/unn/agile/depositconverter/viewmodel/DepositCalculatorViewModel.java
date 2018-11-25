@@ -33,19 +33,18 @@ public class DepositCalculatorViewModel {
         return calculatorButtonEnabled;
     }
 
-    public void setDepositAmount(final String stringDepositAmount) {
-        try {
-            if ("".equals(stringDepositAmount)) {
-                calculatorButtonEnabled = false;
-                return;
-            }
-            depositAmountViewModel = Double.parseDouble(stringDepositAmount);
-            calculatorButtonEnabled = true;
-        } catch (Exception e) {
-            System.out.println("Error. Некорректная сумма");
+    public void setDepositAmount(final String tmpDepositAmount) {
+        if ("".equals(tmpDepositAmount)) {
             calculatorButtonEnabled = false;
+            return;
         }
-
+        if (!tmpDepositAmount.matches("\\d+")) {
+            calculatorButtonEnabled = false;
+            throw new NumberFormatException("Error. Некорректная сумма");
+        } else {
+            depositAmountViewModel = Double.parseDouble(tmpDepositAmount);
+            calculatorButtonEnabled = true;
+        }
     }
 
     public void calculate() {
@@ -71,17 +70,16 @@ public class DepositCalculatorViewModel {
     }
 
     public void setTermPlacement(final String tmpTermPlacement) {
-        try {
-            if ("".equals(tmpTermPlacement)) {
-                calculatorButtonEnabled = false;
-                return;
-            }
+        if ("".equals(tmpTermPlacement)) {
+            calculatorButtonEnabled = false;
+            return;
+        }
+        if (!tmpTermPlacement.matches("\\d+")) {
+            calculatorButtonEnabled = false;
+            throw new NumberFormatException("Error. Некорроктный срок");
+        } else {
             termPlacemantViewModel = Integer.parseInt(tmpTermPlacement);
             calculatorButtonEnabled = true;
-
-        } catch (Exception e) {
-            System.out.println("Error. Некорроктный срок");
-            calculatorButtonEnabled = false;
         }
     }
 
@@ -90,17 +88,16 @@ public class DepositCalculatorViewModel {
     }
 
     public void setInterestRate(final String tmpInterestRate) {
-        try {
-            if ("".equals(tmpInterestRate)) {
-                calculatorButtonEnabled = false;
-                return;
-            }
+        if ("".equals(tmpInterestRate)) {
+            calculatorButtonEnabled = false;
+            return;
+        }
+        if (!tmpInterestRate.matches("\\d+")) {
+            calculatorButtonEnabled = false;
+            throw new NumberFormatException("Error. Некорроктный процент");
+        } else {
             interestRateViewModel = Double.parseDouble(tmpInterestRate);
             calculatorButtonEnabled = true;
-
-        } catch (Exception e) {
-            System.out.println("Error. Некорроктный процент");
-            calculatorButtonEnabled = false;
         }
     }
 
@@ -134,9 +131,9 @@ public class DepositCalculatorViewModel {
             case "halfYear":
                 frequencyOfCapitalizationViewModel = FrequencyOfCapitalization.halfYear;
                 break;
-                default:
-                    frequencyOfCapitalizationViewModel = FrequencyOfCapitalization.onceMonth;
-                    break;
+            default:
+                frequencyOfCapitalizationViewModel = FrequencyOfCapitalization.onceMonth;
+                break;
         }
 
     }

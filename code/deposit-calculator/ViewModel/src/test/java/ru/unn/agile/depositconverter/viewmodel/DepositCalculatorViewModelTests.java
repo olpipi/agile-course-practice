@@ -98,7 +98,32 @@ public class DepositCalculatorViewModelTests {
     public void frequencyOfCapitalizationIsOnceInMonth() {
         DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setFrequencyOfCapitalization("onceInMonth");
-        assertEquals(FrequencyOfCapitalization.onceMonth, viewModel.getFrequencyOfCapitalization());
+        assertEquals(FrequencyOfCapitalization.onceMonth,
+                viewModel.getFrequencyOfCapitalization());
+    }
+
+    @Test
+    public void frequencyOfCapitalizationIsOnceTwoMonth() {
+        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
+        viewModel.setFrequencyOfCapitalization("onceTwoMonth");
+        assertEquals(FrequencyOfCapitalization.onceTwoMonth,
+                viewModel.getFrequencyOfCapitalization());
+    }
+
+    @Test
+    public void frequencyOfCapitalizationIsQuarterly() {
+        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
+        viewModel.setFrequencyOfCapitalization("quarterly");
+        assertEquals(FrequencyOfCapitalization.quarterly,
+                viewModel.getFrequencyOfCapitalization());
+    }
+
+    @Test
+    public void frequencyOfCapitalizationIsHalfYear() {
+        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
+        viewModel.setFrequencyOfCapitalization("halfYear");
+        assertEquals(FrequencyOfCapitalization.halfYear,
+                viewModel.getFrequencyOfCapitalization());
     }
 
     @Test
@@ -115,4 +140,24 @@ public class DepositCalculatorViewModelTests {
         assertEquals("58099.65", viewModel.getIncomeViewModel());
     }
 
+    @Test(expected = NumberFormatException.class)
+    public void isExceptionWhenDepositAmountIncorrectConvert() {
+        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
+        viewModel.setDepositAmount("String");
+        viewModel.calculate();
+    }
+
+    @Test(expected = NumberFormatException.class)
+    public void isExceptionWhenTermPlacementIncorrectConvert() {
+        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
+        viewModel.setTermPlacement("String");
+        viewModel.calculate();
+    }
+
+    @Test(expected = NumberFormatException.class)
+    public void isExceptionWhenInterestRateIncorrectConvert() {
+        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
+        viewModel.setInterestRate("String");
+        viewModel.calculate();
+    }
 }
