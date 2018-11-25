@@ -279,10 +279,6 @@ project(":code/numeral-systems-calculator/ViewModel").name = "numeral-systems-ca
 include "code/numeral-systems-calculator/View"
 project(":code/numeral-systems-calculator/View").name = "numeral-systems-calculator-View"
 
-// Akhmedzhanov Dmitry, Conway Game of Life
-include "code/akhmedzhanov-dmitry-conway-game"
-project(":code/akhmedzhanov-dmitry-conway-game").name = "akhmedzhanov-dmitry-conway-game-Model"
-
 // Krutoberezskaya Irina, numbers-in-words
 include "code/numbers-in-words/Model"
 project(":code/numbers-in-words/Model").name = "numbers-in-words-Model"
