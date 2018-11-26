@@ -23,54 +23,55 @@ public class ViewModelTests {
     public void canSetDefaultValues() {
         assertEquals("", viewModel.digitsProperty().get());
         assertEquals("", viewModel.resultProperty().get());
-        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.getStatus());
     }
 
     @Test
     public void statusIsWaitingWhenFieldIsEmpty() {
         viewModel.transformLcdDigits();
 
-        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.getStatus());
     }
 
     @Test
     public void statusIsReadyWhenFieldIsFilled() {
         setInputDigits();
 
-        assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.READY.toString(), viewModel.getStatus());
     }
 
     @Test
     public void canRecognizeBadFormat() {
         viewModel.digitsProperty().set("qwerty");
 
-        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatus());
     }
 
     @Test
     public void transferringButtonIsDisabledInitially() {
-        assertTrue(viewModel.transferringDisabledProperty().get());
+
+        assertTrue(viewModel.isTransferringDisabled());
     }
 
     @Test
     public void transferringButtonIsDisabledWhenFieldIsEmpty() {
         viewModel.digitsProperty().set("");
 
-        assertTrue(viewModel.transferringDisabledProperty().get());
+        assertTrue(viewModel.isTransferringDisabled());
     }
 
     @Test
     public void transferringButtonIsDisabledWhenFormatIsBad() {
         viewModel.digitsProperty().set("trash");
 
-        assertTrue(viewModel.transferringDisabledProperty().get());
+        assertTrue(viewModel.isTransferringDisabled());
     }
 
     @Test
     public void transferringButtonIsEnabledWithCorrectInput() {
         setInputDigits();
 
-        assertFalse(viewModel.transferringDisabledProperty().get());
+        assertFalse(viewModel.isTransferringDisabled());
     }
 
     @Test
@@ -79,7 +80,7 @@ public class ViewModelTests {
 
         viewModel.transformLcdDigits();
 
-        assertFalse(viewModel.transferringDisabledProperty().get());
+        assertFalse(viewModel.isTransferringDisabled());
     }
 
     @Test
@@ -88,7 +89,7 @@ public class ViewModelTests {
 
         viewModel.transformLcdDigits();
 
-        assertEquals(Status.SUCCESS.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.SUCCESS.toString(), viewModel.getStatus());
     }
 
     @Test
@@ -97,7 +98,7 @@ public class ViewModelTests {
 
         viewModel.transformLcdDigits();
 
-        assertEquals("._. \n._| \n._| \n", viewModel.resultProperty().get());
+        assertEquals("._. \n._| \n._| \n", viewModel.getResult());
     }
 
     @Test
@@ -108,7 +109,7 @@ public class ViewModelTests {
 
         assertEquals("... ._. ._. ... ._. ._. ._. ._. ._. ._. \n"
                 + "..| ._| ._| |_| |_. |_. ..| |_| |_| |.| \n"
-                + "..| |_. ._| ..| ._| |_| ..| |_| ..| |_| \n", viewModel.resultProperty().get());
+                + "..| |_. ._| ..| ._| |_| ..| |_| ..| |_| \n", viewModel.getResult());
     }
 
     private void setInputDigits() {
