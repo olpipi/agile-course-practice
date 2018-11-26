@@ -1,5 +1,6 @@
 package ru.unn.agile.Queue.view;
 
+import ru.unn.agile.queue.viewmodel.FakeLogger;
 import ru.unn.agile.queue.viewmodel.ViewModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -64,7 +65,7 @@ public final class QueueProvider {
 
     public static void main(final String[] args) {
         JFrame frame = new JFrame("QueueProvider");
-        frame.setContentPane(new QueueProvider(new ViewModel()).mainPanel);
+        frame.setContentPane(new QueueProvider(new ViewModel(new FakeLogger())).mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

@@ -14,8 +14,15 @@ public class ViewModel {
     private boolean isRemoveButtonEnabled;
     private boolean isClearButtonEnabled;
 
+    ILogger logger;
 
-    public ViewModel() {
+
+    public ViewModel(final ILogger logger) {
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger parameter can't be null");
+        }
+        this.logger = logger;
+
         queue = new Queue<Double>();
 
         inputElem = "";
