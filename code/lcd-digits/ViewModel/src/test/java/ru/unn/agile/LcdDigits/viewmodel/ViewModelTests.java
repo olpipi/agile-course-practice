@@ -21,8 +21,8 @@ public class ViewModelTests {
 
     @Test
     public void canSetDefaultValues() {
-        assertEquals("", viewModel.digitsProperty().get());
-        assertEquals("", viewModel.resultProperty().get());
+        assertEquals("", viewModel.getDigits());
+        assertEquals("", viewModel.getResult());
         assertEquals(Status.WAITING.toString(), viewModel.getStatus());
     }
 

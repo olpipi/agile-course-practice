@@ -36,7 +36,7 @@ public class ViewModel {
 
             @Override
             protected boolean computeValue() {
-                return geteEntranceStatus() == Status.READY;
+                return getEntranceStatus() == Status.READY;
             }
         };
         transferringDisabled.bind(couldTransfer.not());
@@ -57,7 +57,7 @@ public class ViewModel {
         }
     }
 
-    private Status geteEntranceStatus() {
+    private Status getEntranceStatus() {
         Status entranceStatus = Status.READY;
         if (digits.get().isEmpty()) {
             entranceStatus = Status.WAITING;
@@ -107,6 +107,10 @@ public class ViewModel {
         return status.get();
     }
 
+    public final String getDigits() {
+        return digits.get();
+    }
+
     public final boolean isTransferringDisabled() {
         return transferringDisabled.get();
     }
@@ -115,7 +119,7 @@ public class ViewModel {
         @Override
         public void changed(final ObservableValue<? extends String> observable,
                             final String oldValue, final String newValue) {
-            status.set(geteEntranceStatus().toString());
+            status.set(getEntranceStatus().toString());
         }
     }
 }
