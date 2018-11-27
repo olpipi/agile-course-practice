@@ -277,4 +277,15 @@ public class ViewModelTests {
 
         assertEquals("", log);
     }
+
+    @Test
+    public void isLogContainsInfoAboutAddedElement() {
+        double inputValue = 5.5;
+        viewModel.setInputElem(Double.toString(inputValue));
+        viewModel.addProcess();
+        List<String> log = viewModel.getLog();
+
+        String message = viewModel.getLog().get(0);
+        assertTrue(message.matches("(.*)" + viewModel.getInputElem() + "(.*)"));
+    }
 }

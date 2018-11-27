@@ -58,6 +58,8 @@ public class ViewModel {
         queue.push(Double.parseDouble(inputElem));
         queueStringRepresentation = queue.toString();
         changeButtonsEnabling();
+
+        logger.log("Added " + inputElem + " to queue");
     }
 
     public void removeProcess() {
