@@ -41,6 +41,10 @@ public class ViewModel {
         return logger.getLog();
     }
 
+    public ViewModel() {
+        init();
+    }
+
     public ViewModel(final ILogger logger) {
         setLogger(logger);
         init();
@@ -123,6 +127,10 @@ public class ViewModel {
         result.set(Integer.toString(resultExpression));
         status.set(Status.SUCCESS.toString());
 
+        if (logger == null) {
+            return;
+        }
+
         StringBuilder logStr = new StringBuilder(LogMessages.CALCULATE_WAS_PRESSED.toString());
         logStr.append("String: ").append(inputData.get())
                 .append("; Default operation ").append(operation.get().toString())
@@ -192,9 +200,6 @@ public class ViewModel {
         @Override
         public void changed(final ObservableValue<? extends String> observable,
                             final String oldValue, final String newValue) {
-            if (oldValue.equals(newValue)) {
-                return;
-            }
             status.set(getInputDataStatus().toString());
             curValue = newValue;
         }

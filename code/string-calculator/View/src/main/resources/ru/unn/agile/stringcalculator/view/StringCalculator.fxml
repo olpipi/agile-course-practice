@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import ru.unn.agile.stringcalculator.viewmodel.ViewModel?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.unn.agile.stringcalculator.view.StringCalculator">
     <fx:define>
         <ViewModel fx:id="viewModel"/>

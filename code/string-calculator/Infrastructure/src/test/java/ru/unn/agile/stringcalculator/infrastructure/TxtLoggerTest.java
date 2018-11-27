@@ -38,6 +38,26 @@ public class TxtLoggerTest {
         }
     }
 
+    @Test(expected = Test.None.class)
+    public void noThrowExceptionWhenCreateTxtLoggerWithIncorrectPathToFile() {
+        TxtLogger logger = new TxtLogger("");
+    }
+
+    @Test(expected = Test.None.class)
+    public void noThrowExceptionWhenRecordingToTxtLoggerWithIncorrectPathToFile() {
+        TxtLogger logger = new TxtLogger("");
+
+        logger.log("message");
+    }
+
+    @Test(expected = Test.None.class)
+    public void noThrowExceptionWhenGetLogFromTxtLoggerWithIncorrectPathToFile() {
+        TxtLogger logger = new TxtLogger("");
+        logger.log("message");
+
+        logger.getLog();
+    }
+
     @Test
     public void checkDateAndTimeFormat() {
         txtLogger.log("Logging string");
