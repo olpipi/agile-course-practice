@@ -49,7 +49,6 @@ public class ViewModelTests {
 
     @Test
     public void transferringButtonIsDisabledInitially() {
-
         assertTrue(viewModel.isTransferringDisabled());
     }
 
