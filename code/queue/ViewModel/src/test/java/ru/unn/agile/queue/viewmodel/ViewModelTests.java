@@ -7,6 +7,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import ru.unn.agile.queue.viewmodel.ViewModel.*;
 
+import java.util.List;
+
 public class ViewModelTests {
     private ViewModel viewModel;
 
@@ -268,5 +270,11 @@ public class ViewModelTests {
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCreateViewModelWithNullLogger() {
         ViewModel viewModel = new ViewModel(null);
+    }
+
+    public void isLogEmptyWhenStartup() {
+        List<String> log = viewModel.getLog();
+
+        assertEquals("", log);
     }
 }
