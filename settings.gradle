@@ -167,10 +167,6 @@ project(":code/metelev-evgenii-mortgage-calculator").name = "metelev-evgenii-Mod
 include "code/kochuev-andrey-length-converter"
 project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-converter"
 
-// Beresneva Julia, LCD Digits
-include "code/beresneva-julia-lcd-digits"
-project(":code/beresneva-julia-lcd-digits").name = "beresneva-julia-lcd-digits-Model"
-
 // Osechkin Sergey, DepositCalculator
 include "code/osechkin-deposit-calculator"
 project(":code/osechkin-deposit-calculator").name = "osechkin-deposit-calculator"
@@ -283,6 +279,14 @@ project(":code/conway-game/Model").name = "conway-game-Model"
 include "code/conway-game/ViewModel"
 project(":code/conway-game/ViewModel").name = "conway-game-ViewModel"
 
+// Lcd Digits. Beresneva Julia, Mitrokhina Julia
+include "code/lcd-digits/View"
+project(":code/lcd-digits/View").name = "lcd-digits-View"
+include "code/lcd-digits/Model"
+project(":code/lcd-digits/Model").name = "lcd-digits-Model"
+include "code/lcd-digits/ViewModel"
+project(":code/lcd-digits/ViewModel").name = "lcd-digits-ViewModel"
+
 // Numeral Systems and Radix Calculator
 include "code/numeral-systems-calculator/Model"
 project(":code/numeral-systems-calculator/Model").name = "numeral-systems-calculator-Model"
@@ -298,5 +302,4 @@ include "code/numbers-in-words/ViewModel"
 project(":code/numbers-in-words/ViewModel").name = "numbers-in-words-ViewModel"
 include "code/numbers-in-words/View"
 project(":code/numbers-in-words/View").name = "numbers-in-words-View"
-
 
