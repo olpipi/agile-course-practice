@@ -257,4 +257,16 @@ public class ViewModelTests {
         assertEquals(false, viewModel.isRemoveButtonEnabled());
     }
 
+    @Test
+    public void canCreateViewModelWithLogger() {
+        FakeLogger logger = new FakeLogger();
+        ViewModel viewModelLogged = new ViewModel(logger);
+
+        assertNotNull(viewModelLogged);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsWhenCreateViewModelWithNullLogger() {
+        ViewModel viewModel = new ViewModel(null);
+    }
 }
