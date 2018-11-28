@@ -6,7 +6,7 @@ public class AVLTree<K extends Comparable<K>, V extends Comparable<V>> {
         this.root = root;
     }
 
-    void insert(final Node<K, V> node) {
+    public void insert(final Node<K, V> node) {
         if (node == null) {
             return;
         }
@@ -37,6 +37,7 @@ public class AVLTree<K extends Comparable<K>, V extends Comparable<V>> {
         } else if (cmp > 0) {
             parent.setRight(node);
         }
+
     }
 
     public Node<K, V> find(final K key) {

@@ -40,4 +40,24 @@ public class AVLTreeTest {
         assertEquals(tree.find(nodeToFind.getKey()), nodeToFind);
     }
 
+
+    @Test
+    public void insertAndFindInSequenceEqualKeys() {
+        AVLTree<Integer, String> tree = new AVLTree<>(null);
+
+        Node<Integer, String> nodeToFind = new Node<>(77777, "FFFFFF");
+        tree.insert(new Node<Integer, String>(77777, "F"));
+        tree.insert(new Node<Integer, String>(77777, "FF"));
+        tree.insert(new Node<Integer, String>(77777, "FFF"));
+        tree.insert(new Node<Integer, String>(77777, "FFFF"));
+        tree.insert(new Node<Integer, String>(77777, "FFFFF"));
+        tree.insert(new Node<Integer, String>(77777, "FFFFFF"));
+        tree.insert(new Node<Integer, String>(77777, "FFFFFFF"));
+        tree.insert(new Node<Integer, String>(77777, "FFFFFFFF"));
+        tree.insert(nodeToFind);
+        tree.insert(new Node<Integer, String>(977, "G"));
+        tree.insert(new Node<Integer, String>(455678, "H"));
+
+        assertEquals(tree.find(nodeToFind.getKey()).getValue(), nodeToFind.getValue());
+    }
 }
