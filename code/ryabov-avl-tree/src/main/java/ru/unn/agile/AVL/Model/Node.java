@@ -2,12 +2,9 @@ package ru.unn.agile.AVL.Model;
 
 public class Node<K extends Comparable<K>, V extends Comparable<V>> {
 
-    public Node(final K key, final V value, final int height, final Node left, final Node right) {
+    public Node(final K key, final V value) {
         this.key = key;
         this.value = value;
-        this.height = height;
-        this.left = left;
-        this.right = right;
     }
 
     public K getKey() {
@@ -34,25 +31,25 @@ public class Node<K extends Comparable<K>, V extends Comparable<V>> {
         this.height = height;
     }
 
-    public Node getLeft() {
+    public Node<K, V> getLeft() {
         return left;
     }
 
-    public void setLeft(final Node left) {
+    public void setLeft(final Node<K, V> left) {
         this.left = left;
     }
 
-    public Node getRight() {
+    public Node<K, V> getRight() {
         return right;
     }
 
-    public void setRight(final Node right) {
+    public void setRight(final Node<K, V> right) {
         this.right = right;
     }
 
-    private K         key;
-    private V         value;
-    private int       height;
-    private Node      left;
-    private Node      right;
+    private K          key    = null;
+    private V          value  = null;
+    private int        height = 0;
+    private Node<K, V> left   = null;
+    private Node<K, V> right  = null;
 }

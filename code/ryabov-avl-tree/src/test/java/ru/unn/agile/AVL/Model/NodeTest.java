@@ -7,7 +7,7 @@ import static org.junit.Assert.assertNotNull;
 public class NodeTest {
     @Test
     public void creatingANode() {
-        Node<Integer, Integer> node = new Node<>(0, 0, 0, null, null);
+        Node<Integer, Integer> node = new Node<>(0, 0);
 
         assertNotNull(node);
     }
