@@ -283,9 +283,22 @@ public class ViewModelTests {
         double inputValue = 5.5;
         viewModel.setInputElem(Double.toString(inputValue));
         viewModel.addProcess();
+
         List<String> log = viewModel.getLog();
 
         String message = viewModel.getLog().get(0);
-        assertTrue(message.matches("(.*)" + viewModel.getInputElem() + "(.*)"));
+        assertTrue(message.matches(".*" + viewModel.getInputElem() + ".*"));
+    }
+
+    @Test
+    public void isLogContainsInfoAboutClearingInputArray() {
+        double inputValue = 5.5;
+        viewModel.setInputElem(Double.toString(inputValue));
+        viewModel.addProcess();
+        viewModel.clear();
+
+        List<String> log = viewModel.getLog();
+
+        assertEquals(2, log.size());
     }
 }

@@ -72,6 +72,8 @@ public class ViewModel {
         queue.clear();
         queueStringRepresentation = queue.toString();
         changeButtonsEnabling();
+
+        logger.log("Input array has been cleared");
     }
 
     public void processingAddField() {
