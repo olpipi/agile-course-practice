@@ -28,7 +28,7 @@ public final class QueueProvider {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 bind();
-                QueueProvider.this.viewModel.addProcess();
+                QueueProvider.this.viewModel.pushProcess();
                 backBind();
             }
         });
@@ -37,7 +37,7 @@ public final class QueueProvider {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 bind();
-                QueueProvider.this.viewModel.removeProcess();
+                QueueProvider.this.viewModel.popProcess();
                 backBind();
             }
         });

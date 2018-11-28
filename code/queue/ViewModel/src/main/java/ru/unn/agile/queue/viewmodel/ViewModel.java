@@ -19,7 +19,7 @@ public class ViewModel {
 
     public ViewModel(final ILogger logger) {
         if (logger == null) {
-            throw new IllegalArgumentException("Logger parameter can't be null");
+            throw new IllegalArgumentException("Logger should be initialized");
         }
         this.logger = logger;
 
@@ -50,7 +50,7 @@ public class ViewModel {
         this.inputElem = inputElem;
     }
 
-    public void addProcess() {
+    public void pushProcess() {
         if (!parseInput()) {
             return;
         }
@@ -59,13 +59,16 @@ public class ViewModel {
         queueStringRepresentation = queue.toString();
         changeButtonsEnabling();
 
-        logger.log("Added " + inputElem + " to queue");
+        logger.log("Push " + inputElem + " element to queue");
     }
 
-    public void removeProcess() {
-        queue.pop();
+    public void popProcess() {
+        Double head = queue.pop();
+
         queueStringRepresentation = queue.toString();
         changeButtonsEnabling();
+
+        logger.log("Pop " + head + " head element from queue");
     }
 
     public void clear() {
@@ -73,7 +76,7 @@ public class ViewModel {
         queueStringRepresentation = queue.toString();
         changeButtonsEnabling();
 
-        logger.log("Input array has been cleared");
+        logger.log("Queue has been cleared");
     }
 
     public void processingAddField() {
@@ -111,6 +114,7 @@ public class ViewModel {
         if (inputElem.isEmpty()) {
             statusMessage = State.WAITING_FOR_INPUT;
             isAddButtonEnabled = false;
+
             return isAddButtonEnabled;
         }
 
@@ -119,11 +123,15 @@ public class ViewModel {
         } catch (Exception e) {
             statusMessage = State.INVALID_FORMAT;
             isAddButtonEnabled = false;
+
+            logger.log(inputElem + " input value is incorrect. Should be Double");
+
             return isAddButtonEnabled;
         }
 
         statusMessage = State.READY_TO_ADD;
         isAddButtonEnabled = true;
+
         return isAddButtonEnabled;
     }
 

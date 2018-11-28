@@ -33,7 +33,7 @@ public class ViewModelTests {
     @Test
     public void canAddOneElemToQueue() {
         viewModel.setInputElem("5.43");
-        viewModel.addProcess();
+        viewModel.pushProcess();
 
         assertEquals("[5.43]", viewModel.getQueueStringRepresentation());
     }
@@ -41,17 +41,17 @@ public class ViewModelTests {
     @Test
     public void canAddMoreElemsToQueue() {
         viewModel.setInputElem("1.6");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("-6.3");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("0.0");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("-4.9");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("8");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("92");
-        viewModel.addProcess();
+        viewModel.pushProcess();
 
         assertEquals("[1.6, -6.3, 0.0, -4.9, 8.0, 92.0]", viewModel.getQueueStringRepresentation());
     }
@@ -59,13 +59,13 @@ public class ViewModelTests {
     @Test
     public void canRemoveHeadFromQueue() {
         viewModel.setInputElem("53");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("63.2");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("-4.2");
-        viewModel.addProcess();
+        viewModel.pushProcess();
 
-        viewModel.removeProcess();
+        viewModel.popProcess();
 
         assertEquals("[63.2, -4.2]", viewModel.getQueueStringRepresentation());
     }
@@ -73,13 +73,13 @@ public class ViewModelTests {
     @Test
     public void canClearQueue() {
         viewModel.setInputElem("33");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("11.3");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("2.5");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("6.2");
-        viewModel.addProcess();
+        viewModel.pushProcess();
 
         viewModel.clear();
 
@@ -190,9 +190,9 @@ public class ViewModelTests {
     @Test
     public void isClearButtonEnabledWhenQueueIsNotEmpty() {
         viewModel.setInputElem("5");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("8");
-        viewModel.addProcess();
+        viewModel.pushProcess();
 
         assertEquals(true, viewModel.isClearButtonEnabled());
     }
@@ -200,9 +200,9 @@ public class ViewModelTests {
     @Test
     public void isRemoveButtonEnabledWhenQueueIsNotEmpty() {
         viewModel.setInputElem("4");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("1");
-        viewModel.addProcess();
+        viewModel.pushProcess();
 
         assertEquals(true, viewModel.isRemoveButtonEnabled());
     }
@@ -210,13 +210,13 @@ public class ViewModelTests {
     @Test
     public void canClearDisableClearButton() {
         viewModel.setInputElem("6");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("2");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("8");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("11");
-        viewModel.addProcess();
+        viewModel.pushProcess();
 
         viewModel.clear();
 
@@ -226,13 +226,13 @@ public class ViewModelTests {
     @Test
     public void canClearDisableRemoveButton() {
         viewModel.setInputElem("23");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("1");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("5");
-        viewModel.addProcess();
+        viewModel.pushProcess();
         viewModel.setInputElem("3");
-        viewModel.addProcess();
+        viewModel.pushProcess();
 
         viewModel.clear();
 
@@ -242,9 +242,9 @@ public class ViewModelTests {
     @Test
     public void canRemoveDisableClearButton() {
         viewModel.setInputElem("20");
-        viewModel.addProcess();
+        viewModel.pushProcess();
 
-        viewModel.removeProcess();
+        viewModel.popProcess();
 
         assertEquals(false, viewModel.isClearButtonEnabled());
     }
@@ -252,9 +252,9 @@ public class ViewModelTests {
     @Test
     public void canRemoveDisableRemoveButton() {
         viewModel.setInputElem("13");
-        viewModel.addProcess();
+        viewModel.pushProcess();
 
-        viewModel.removeProcess();
+        viewModel.popProcess();
 
         assertEquals(false, viewModel.isRemoveButtonEnabled());
     }
@@ -279,10 +279,22 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isLogContainsInfoAboutAddedElement() {
+    public void isLogContainsInfoAboutIncorrectInputElement() {
+        String inputValue = "abc";
+        viewModel.setInputElem(inputValue);
+        viewModel.processingAddField();
+
+        List<String> log = viewModel.getLog();
+
+        String message = viewModel.getLog().get(0);
+        assertTrue(message.matches(".*" + inputValue + ".*"));
+    }
+
+    @Test
+    public void isLogContainsInfoAboutTailPushing() {
         double inputValue = 5.5;
         viewModel.setInputElem(Double.toString(inputValue));
-        viewModel.addProcess();
+        viewModel.pushProcess();
 
         List<String> log = viewModel.getLog();
 
@@ -291,14 +303,24 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isLogContainsInfoAboutClearingInputArray() {
+    public void isLogContainsInfoAboutHeadPopping() {
         double inputValue = 5.5;
         viewModel.setInputElem(Double.toString(inputValue));
-        viewModel.addProcess();
+        viewModel.pushProcess();
+        viewModel.popProcess();
+
+        List<String> log = viewModel.getLog();
+
+        String message = viewModel.getLog().get(1);
+        assertTrue(message.matches(".*" + viewModel.getInputElem() + ".*"));
+    }
+
+    @Test
+    public void isLogContainsInfoAboutClearingInputArray() {
         viewModel.clear();
 
         List<String> log = viewModel.getLog();
 
-        assertEquals(2, log.size());
+        assertEquals(1, log.size());
     }
 }
