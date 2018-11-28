@@ -40,11 +40,19 @@ public class AVLTree<K extends Comparable<K>, V extends Comparable<V>> {
     }
 
     public Node<K, V> find(final K key) {
-        if (key == null) {
-            return null;
+        Node<K, V> current = root;
+        while (current != null) {
+            int cmp = key.compareTo(current.getKey());
+            if (cmp < 0) {
+                current = current.getLeft();
+            } else if (cmp > 0) {
+                current = current.getRight();
+            } else {
+                return current;
+            }
         }
 
-        return root;
+        return null;
     }
 
     public Node<K, V> getRoot() {
