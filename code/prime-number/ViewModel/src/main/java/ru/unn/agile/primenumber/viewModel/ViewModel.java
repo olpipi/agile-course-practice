@@ -5,6 +5,8 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import ru.unn.agile.primenumber.infrastructure.Logger;
+import ru.unn.agile.primenumber.infrastructure.LoggerFactory;
 import ru.unn.agile.primenumber.model.PrimeNumber;
 
 import java.util.List;
@@ -19,11 +21,15 @@ public class ViewModel {
     private final StringProperty result = new SimpleStringProperty();
     private final StringProperty status = new SimpleStringProperty();
 
+    private final StringProperty logs = new SimpleStringProperty();
+    private final Logger logger;
+
     public ViewModel() {
         leftBound.set("");
         rightBound.set("");
         result.set("");
         status.set("");
+        logs.set("");
         BooleanBinding couldSearch = new BooleanBinding() {
             {
                 super.bind(leftBound, rightBound);
@@ -35,6 +41,17 @@ public class ViewModel {
             }
         };
         search.bind(couldSearch.not());
+
+        LoggerFactory factory = new LoggerFactory();
+        logger = factory.getLogger();
+        logger.log("Application is started");
+
+        updateLogState();
+    }
+
+    private void updateLogState() {
+        List<String> listLogs = logger.getLogs();
+        listLogs.stream().collect(Collectors.joining("\n"));
     }
 
     private boolean isValid() {
@@ -102,6 +119,18 @@ public class ViewModel {
 
     public BooleanProperty searchDisabledProperty() {
         return search;
+    }
+
+    public String getLogs() {
+        return logs.get();
+    }
+
+    public StringProperty logsProperty() {
+        return logs;
+    }
+
+    public void setLogs(final String logs) {
+        this.logs.set(logs);
     }
 
     public void searchPrimeNumber() {

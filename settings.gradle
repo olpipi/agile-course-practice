@@ -43,6 +43,8 @@ include "code/prime-number/model"
 project(":code/prime-number/model").name = "prime-number-Model"
 include "code/prime-number/view"
 project(":code/prime-number/view").name = "prime-number-View"
+include "code/prime-number/Infrastructure"
+project(":code/prime-number/Infrastructure").name = "prime-number-Infrastructure"
 include "code/prime-number/ViewModel"
 project(":code/prime-number/ViewModel").name = "prime-number-ViewModel"
 
