@@ -123,14 +123,6 @@ public class ViewModel {
         return logs.get();
     }
 
-    public StringProperty logsProperty() {
-        return logs;
-    }
-
-    public void setLogs(final String logs) {
-        this.logs.set(logs);
-    }
-
     public final void setLogger(final LoggerFactory factory) {
         if (factory == null) {
             throw new IllegalArgumentException("Logger Factory parameter can't be null");
