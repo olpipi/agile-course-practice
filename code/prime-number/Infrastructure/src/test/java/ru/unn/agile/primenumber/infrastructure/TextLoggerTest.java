@@ -44,4 +44,14 @@ public class TextLoggerTest {
         assertEquals("Log2", logger.getLogs().get(1));
     }
 
+    @Test
+    public void canLogTwoLoggerStringValue() {
+        Logger logger1 = factory.getLogger();
+        Logger logger2 = factory.getLogger();
+        logger1.log("Log1");
+        logger2.log("Log2");
+
+        assertEquals("Log2", logger2.getLogs().get(0));
+    }
+
 }
