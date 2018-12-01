@@ -154,6 +154,10 @@ public class ViewModel {
         this.logger = logger;
     }
 
+    public ViewModel() {
+        init();
+    }
+
     public ViewModel(final ILogger logger) {
         setLogger(logger);
         init();

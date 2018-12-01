@@ -452,6 +452,15 @@ public class ViewModelTest {
     }
 
     @Test
+    public void canCreateViewModelWithoutLogger() {
+        // Arrange, Act
+        ViewModel vm = new ViewModel();
+
+        // Assert
+        assertNotNull(vm);
+    }
+
+    @Test
     public void gettingStatusWithWrongNameReturnsNull() {
         // Arrange, Act
         ViewModel.Status status = ViewModel.Status.getByName("BAD NAME");
