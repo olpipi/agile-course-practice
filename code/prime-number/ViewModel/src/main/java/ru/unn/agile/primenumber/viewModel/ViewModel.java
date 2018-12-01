@@ -45,9 +45,6 @@ public class ViewModel {
     }
 
     private void updateLogState() {
-        if (logger == null) {
-            throw new IllegalArgumentException("Logger parameter can't be null");
-        }
         List<String> listLogs = logger.getLogs();
         logs.set(listLogs.stream().collect(Collectors.joining("\n")));
     }

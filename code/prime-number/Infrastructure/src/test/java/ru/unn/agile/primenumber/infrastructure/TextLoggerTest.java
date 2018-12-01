@@ -9,6 +9,8 @@ import java.util.List;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
 
 public class TextLoggerTest {
 
@@ -98,4 +100,19 @@ public class TextLoggerTest {
         assertArrayEquals(expectedList.toArray(), logger2.getLogs().toArray());
     }
 
+    @Test(expected = RuntimeException.class)
+    public void canLogToNotFile() {
+        TextLogger logger = mock(TextLogger.class);
+        doCallRealMethod().when(logger).log(any(String.class));
+
+        logger.log("real");
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void canGetLogsFromNotFile() {
+        TextLogger logger = mock(TextLogger.class);
+        when(logger.getLogs()).thenCallRealMethod();
+
+        logger.getLogs();
+    }
 }

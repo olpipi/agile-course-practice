@@ -5,7 +5,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.List;
 
-public final class TextLogger implements Logger {
+public class TextLogger implements Logger {
 
     private BufferedWriter writer;
     private String fileName;
@@ -21,7 +21,7 @@ public final class TextLogger implements Logger {
             writer.write(s);
             writer.newLine();
             writer.flush();
-        }  catch (IOException e) {
+        }  catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
