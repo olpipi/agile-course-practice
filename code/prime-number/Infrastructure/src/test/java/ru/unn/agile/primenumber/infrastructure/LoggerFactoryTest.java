@@ -42,14 +42,6 @@ public class LoggerFactoryTest {
                     .build();
     }
 
-    @Test(expected = FileNotFoundException.class)
-    public void canInitiateTextLoggerBuilderWithIncorrectString() throws IOException {
-        new TextLogger
-                .TextLoggerBuilder()
-                .setFileName("  ")
-                .build();
-    }
-
     @Test(expected = IllegalStateException.class)
     public void canInitiateTextLoggerBuilderWithoutFileName() {
         new TextLogger
