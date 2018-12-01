@@ -66,12 +66,12 @@ public class ViewModelTest {
         String emptyString = "";
 
         // Act
-        StringProperty defaultMultCoeff = viewModel.multiplicationCoeffProperty();
-        StringProperty defaultResult = viewModel.resultProperty();
+        String defaultMultCoeff = viewModel.getMultiplicationCoeff();
+        String defaultResult = viewModel.getResult();
 
         // Assert
-        assertEquals(emptyString, defaultMultCoeff.get());
-        assertEquals(emptyString, defaultResult.get());
+        assertEquals(emptyString, defaultMultCoeff);
+        assertEquals(emptyString, defaultResult);
     }
 
 
@@ -84,6 +84,7 @@ public class ViewModelTest {
         // Assert
         assertEquals(Operation.ADD, defaultOperation.get());
         assertEquals(ViewModel.Status.WAITING.toString(), defaultStatus.get());
+        assertNotNull(viewModel.getOperations());
     }
 
     @Test
@@ -448,6 +449,15 @@ public class ViewModelTest {
             expectedLog.append(line).append("\n");
         }
         assertTrue(viewModel.logProperty().get().contains(expectedLog.toString()));
+    }
+
+    @Test
+    public void gettingStatusWithWrongNameReturnsNull() {
+        // Arrange, Act
+        ViewModel.Status status = ViewModel.Status.getByName("BAD NAME");
+
+        // Assert
+        assertNull(status);
     }
 
     private void setInputData() {

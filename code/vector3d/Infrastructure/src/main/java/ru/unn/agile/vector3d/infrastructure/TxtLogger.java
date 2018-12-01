@@ -20,7 +20,7 @@ public class TxtLogger implements ILogger {
 
         try {
             writer = new FileWriter(fileName);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -32,7 +32,7 @@ public class TxtLogger implements ILogger {
         try {
             writer.write(timeStamp + " - " + s + "\n");
             writer.flush();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

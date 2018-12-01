@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.io.File;
 import java.util.List;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 
@@ -69,5 +70,38 @@ public class TxtLoggerTest {
         for (int i = 0; i < log.size(); i++) {
             assertTrue(log.get(i).matches(RE_LOG_LINE + messages[i]));
         }
+    }
+
+    @Test
+    public void creatingTxtLoggerWithIncorrectFileNameThrowsExc() {
+        // Arrange, Act
+        TxtLogger emptyLogger = new TxtLogger("");
+
+        // Assert
+        assertEquals(0, emptyLogger.getLog().size());
+    }
+
+    @Test
+    public void writingToTxtLoggerWithIncorrectFileNameThrowsExc() {
+        // Arrange
+        TxtLogger emptyLogger = new TxtLogger("");
+
+        // Act
+        emptyLogger.log("Message");
+
+        // Assert
+        assertEquals(0, emptyLogger.getLog().size());
+    }
+
+    @Test
+    public void readingFromTxtLoggerWithIncorrectFileNameThrowsExc() {
+        // Arrange
+        TxtLogger emptyLogger = new TxtLogger("");
+
+        // Act
+        List<String> log = emptyLogger.getLog();
+
+        // Assert
+        assertEquals(0, log.size());
     }
 }

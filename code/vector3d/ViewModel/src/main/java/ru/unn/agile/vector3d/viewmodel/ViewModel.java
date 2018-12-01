@@ -154,10 +154,6 @@ public class ViewModel {
         this.logger = logger;
     }
 
-    public ViewModel() {
-        init();
-    }
-
     public ViewModel(final ILogger logger) {
         setLogger(logger);
         init();
@@ -318,7 +314,7 @@ public class ViewModel {
         }
     }
 
-    public final class LogMessages {
+    public static final class LogMessages {
         public static final String VECTORS_WERE_CHANGED =
                 "Vectors were changed: (%s, %s, %s) - (%s, %s, %s)";
         public static final String MULT_COEF_WAS_CHANGED =
@@ -326,8 +322,5 @@ public class ViewModel {
         public static final String OPERATION_WAS_CHANGED = "Operation was changed to %s";
         public static final String CALCULATE_WAS_PRESSED =
                 "Calculate. Arguments: (%s, %s, %s) - (%s, %s, %s), coef = %s, op = %s";
-
-        private LogMessages() {
-        }
     }
 }
