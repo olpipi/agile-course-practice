@@ -8,6 +8,8 @@ import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class LoggerFactoryTest {
 
@@ -69,4 +71,15 @@ public class LoggerFactoryTest {
             assertEquals("File name should be set", e.getMessage());
         }
     }
+
+    @Test(expected = RuntimeException.class)
+    public void canInitFactoryWithIncorrectPath() {
+        LoggerFactory factory = mock(LoggerFactory.class);
+        when(factory.buildPath()).thenReturn("");
+        when(factory.getLogger()).thenCallRealMethod();
+        when(factory.resetLogger()).thenCallRealMethod();
+
+        factory.resetLogger();
+    }
+
 }

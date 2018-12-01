@@ -26,7 +26,7 @@ public class LoggerFactory {
         }
     }
 
-    private String buildPath() {
+    public String buildPath() {
         Date currentDate = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat(STRING_FORMAT);
         return PATH_LOG_FILE
