@@ -147,15 +147,19 @@ public class ViewModel {
         return log;
     }
 
+    public final void setLogger(final ILogger logger) {
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger can't be null");
+        }
+        this.logger = logger;
+    }
+
     public ViewModel() {
         init();
     }
 
     public ViewModel(final ILogger logger) {
-        if (logger == null) {
-            throw new IllegalArgumentException("Logger can't be null");
-        }
-        this.logger = logger;
+        setLogger(logger);
         init();
     }
 
