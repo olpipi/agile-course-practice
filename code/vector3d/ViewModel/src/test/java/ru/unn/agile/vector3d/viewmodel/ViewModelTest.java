@@ -7,6 +7,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class ViewModelTest {
@@ -14,7 +16,7 @@ public class ViewModelTest {
 
     @Before
     public void setUp() {
-        viewModel = new ViewModel();
+        viewModel = new ViewModel(new FakeLogger());
     }
 
     @After
@@ -323,6 +325,140 @@ public class ViewModelTest {
 
         // Assert
         assertFalse(viewModel.isCalculationDisabled());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void viewModelConstructorThrowsExceptionWithNullLogger() {
+        // Act
+        new ViewModel(null);
+    }
+
+    @Test
+    public void logIsEmptyAfterInit() {
+        // Arrange, Act
+        List<String> log = viewModel.getLogList();
+
+        // Assert
+        assertTrue(log.isEmpty());
+    }
+
+    @Test
+    public void logContainsOperationChangedMessage() {
+        // Arrange, Act
+        viewModel.operationProperty().setValue(Operation.NORMALIZE);
+
+        // Assert
+        String message = viewModel.getLogList().get(0);
+        String expectedMessage = String.format(ViewModel.LogMessages.OPERATION_WAS_CHANGED, Operation.NORMALIZE);
+        assertTrue(message.contains(expectedMessage));
+    }
+
+    @Test
+    public void operationIsNotLoggedIfNotChanged() {
+        // Arrange
+        viewModel.operationProperty().setValue(Operation.NORMALIZE);
+
+        // Act
+        viewModel.operationProperty().setValue(Operation.NORMALIZE);
+
+        // Assert
+        assertEquals(1, viewModel.getLogList().size());
+    }
+
+    @Test
+    public void logContainsMultCoefChangedMessage() {
+        // Arrange, Act
+        viewModel.multiplicationCoeffProperty().setValue("2.0");
+
+        // Assert
+        String message = viewModel.getLogList().get(0);
+        String expectedMessage = String.format(ViewModel.LogMessages.MULT_COEF_WAS_CHANGED, "2.0");
+        assertTrue(message.contains(expectedMessage));
+    }
+
+    @Test
+    public void logContainsVectorsChangedMessageOnSingleFieldChange() {
+        // Arrange, Act
+        viewModel.vectorXProperty().setValue("1.0");
+
+        // Assert
+        String message = viewModel.getLogList().get(0);
+        String expectedMessage = String.format(ViewModel.LogMessages.VECTORS_WERE_CHANGED,
+                viewModel.vectorXProperty().get(),
+                viewModel.vectorYProperty().get(),
+                viewModel.vectorZProperty().get(),
+                viewModel.otherVectorXProperty().get(),
+                viewModel.otherVectorYProperty().get(),
+                viewModel.otherVectorZProperty().get());
+        assertTrue(message.contains(expectedMessage));
+    }
+
+    @Test
+    public void logContainsMultipleVectorChangedMessages() {
+        // Arrange, Act
+        setInputData();
+
+        // Assert
+        List<String> log = viewModel.getLogList();
+        assertEquals(log.size(), 6);
+
+        String message = viewModel.getLogList().get(5);
+        String expectedMessage = String.format(ViewModel.LogMessages.VECTORS_WERE_CHANGED,
+                viewModel.vectorXProperty().get(),
+                viewModel.vectorYProperty().get(),
+                viewModel.vectorZProperty().get(),
+                viewModel.otherVectorXProperty().get(),
+                viewModel.otherVectorYProperty().get(),
+                viewModel.otherVectorZProperty().get());
+        assertTrue(message.contains(expectedMessage));
+    }
+
+    @Test
+    public void logContainsCalculateMessage() {
+        // Arrange
+        setInputData();
+        viewModel.operationProperty().setValue(Operation.DOT);
+
+        // Act
+        viewModel.calculate();
+
+        // Assert
+        String message = viewModel.getLogList().get(viewModel.getLogList().size() - 1);
+        String expectedMessage = String.format(ViewModel.LogMessages.CALCULATE_WAS_PRESSED,
+                viewModel.vectorXProperty().get(),
+                viewModel.vectorYProperty().get(),
+                viewModel.vectorZProperty().get(),
+                viewModel.otherVectorXProperty().get(),
+                viewModel.otherVectorYProperty().get(),
+                viewModel.otherVectorZProperty().get(),
+                viewModel.multiplicationCoeffProperty().get(),
+                viewModel.operationProperty().get());
+        assertTrue(message.contains(expectedMessage));
+    }
+
+    @Test
+    public void logPropertyIsEmptyAfterInit() {
+        // Assert
+        assertEquals("", viewModel.getLog());
+        assertEquals("", viewModel.logProperty().get());
+    }
+
+    @Test
+    public void logPropertyMirrorsLog() {
+        // Arrange
+        setInputData();
+        viewModel.operationProperty().setValue(Operation.CROSS);
+
+        // Act
+        viewModel.calculate();
+
+        // Assert
+        List<String> log = viewModel.getLogList();
+        StringBuilder expectedLog = new StringBuilder();
+        for (String line : log) {
+            expectedLog.append(line).append("\n");
+        }
+        assertTrue(viewModel.logProperty().get().contains(expectedLog.toString()));
     }
 
     private void setInputData() {
