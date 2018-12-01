@@ -239,9 +239,9 @@ project(":code/polynomial-calculator/View").name = "polynomial-calculator-View"
 include "code/binary-search-tree"
 project(":code/binary-search-tree").name = "binary-search-tree"
 
-//Pipikin Oleg, Matrix
-include "code/pipikin-oleg-matrix"
-project(":code/pipikin-oleg-matrix").name = "pipikin-oleg-matrix"
+// Matrix
+include "code/matrix/Model"
+project(":code/matrix/Model").name = "matrix-Model"
 
 // Segments2D Intersection
 include "code/segments2d-intersection/Model"
