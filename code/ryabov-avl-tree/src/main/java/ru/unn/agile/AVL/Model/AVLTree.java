@@ -38,6 +38,7 @@ public class AVLTree<K extends Comparable<K>, V extends Comparable<V>> {
             parent.setRight(node);
         }
 
+        root.balanceNode();
     }
 
     public Node<K, V> find(final K key) {
