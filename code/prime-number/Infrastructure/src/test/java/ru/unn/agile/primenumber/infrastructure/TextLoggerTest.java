@@ -3,6 +3,10 @@ package ru.unn.agile.primenumber.infrastructure;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -23,6 +27,38 @@ public class TextLoggerTest {
     }
 
     @Test
+    public void canResetFileLogger() {
+        Logger logger = factory.resetLogger();
+
+        assertTrue(logger.getLogs().isEmpty());
+    }
+
+    @Test
+    public void canResetFileLoggerTwice() {
+        Logger logger = factory.getLogger();
+        logger.log("Log1");
+
+        Logger newLogger = factory.resetLogger();
+        assertTrue(newLogger.getLogs().isEmpty());
+    }
+
+    @Test
+    public void isSingletonLogger() {
+        Logger logger = factory.getLogger();
+
+        Logger newLogger = factory.getLogger();
+        assertTrue(logger == newLogger);
+    }
+
+    @Test
+    public void isLoggerReset() {
+        Logger logger = factory.getLogger();
+
+        Logger newLogger = factory.resetLogger();
+        assertTrue(logger != newLogger);
+    }
+
+    @Test
     public void canLoginString() {
         Logger logger = factory.getLogger();
         logger.log("Log1");
@@ -39,6 +75,7 @@ public class TextLoggerTest {
     @Test
     public void canLoginTwoStringValue() {
         Logger logger = factory.getLogger();
+
         logger.log("Log1");
         logger.log("Log2");
         assertEquals("Log2", logger.getLogs().get(1));
@@ -51,7 +88,14 @@ public class TextLoggerTest {
         logger1.log("Log1");
         logger2.log("Log2");
 
-        assertEquals("Log2", logger2.getLogs().get(0));
+        List expectedList = new LinkedList<String>() {
+            {
+                add("Log1");
+                add("Log2");
+            }
+        };
+
+        assertArrayEquals(expectedList.toArray(), logger2.getLogs().toArray());
     }
 
 }

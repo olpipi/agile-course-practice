@@ -10,10 +10,6 @@ public final class TextLogger implements Logger {
     private BufferedWriter writer;
     private String fileName;
 
-    private TextLogger() {
-        writer = null;
-    }
-
     private void setLoggerFile(final String fileName) throws IOException {
         this.fileName = fileName;
         writer = new BufferedWriter(new FileWriter(fileName));
@@ -26,7 +22,7 @@ public final class TextLogger implements Logger {
             writer.newLine();
             writer.flush();
         }  catch (IOException e) {
-            throw new RuntimeException("Infrastructure is incorrect configured");
+            throw new RuntimeException(e);
         }
     }
 
@@ -35,7 +31,7 @@ public final class TextLogger implements Logger {
         try {
             return Files.readAllLines(new File(fileName).toPath(), Charset.defaultCharset());
         } catch (Exception e) {
-            throw new RuntimeException("Infrastructure is incorrect configured");
+            throw new RuntimeException(e);
         }
     }
 

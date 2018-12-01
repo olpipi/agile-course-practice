@@ -1,33 +1,26 @@
 package ru.unn.agile.primenumber.infrastructure;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class LoggerFactoryTest {
 
-    private LoggerFactory factory;
-
-    @Before
-    public void initFactory() {
-        factory = new LoggerFactory();
-    }
-
     @Test
     public void canInitiateLogger() {
-        Logger logger = factory.getLogger();
+        Logger logger = new LoggerFactory().getLogger();
 
-        assertTrue(logger.getLogs().isEmpty());
+        assertNotNull(logger.getLogs());
     }
 
     @Test
     public void canInitiateTextLogger() {
-        Logger logger = factory.getLogger();
+        Logger logger = new LoggerFactory().getLogger();
 
         assertTrue(logger instanceof TextLogger);
     }
@@ -70,6 +63,16 @@ public class LoggerFactoryTest {
             new TextLogger
                     .TextLoggerBuilder()
                     .build();
+        } catch (IllegalStateException e) {
+            assertEquals("File name should be set", e.getMessage());
+        }
+    }
+
+    @Test
+    public void canResetLogger() {
+        try {
+            LoggerFactory factory = new LoggerFactory();
+            factory.resetLogger();
         } catch (IllegalStateException e) {
             assertEquals("File name should be set", e.getMessage());
         }
