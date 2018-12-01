@@ -5,11 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import ru.unn.agile.vector3d.viewmodel.ILogger;
 
 public class TxtLogger implements ILogger {
-    private final static String TS_FORMAT = "dd.MM.yyyy HH:mm:ss";
+    private static final String TS_FORMAT = "dd.MM.yyyy HH:mm:ss";
 
     private final String fileName;
     private FileWriter writer;
@@ -25,7 +26,7 @@ public class TxtLogger implements ILogger {
     }
 
     @Override
-    public void log(String s) {
+    public void log(final String s) {
         String timeStamp = new SimpleDateFormat(TS_FORMAT).format(new Date());
 
         try {
@@ -43,12 +44,7 @@ public class TxtLogger implements ILogger {
 
         try {
             reader = new BufferedReader(new FileReader(fileName));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                log.add(line);
-            }
-
+            reader.lines().collect(Collectors.toCollection(() -> log));
             reader.close();
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,6 +1,5 @@
 package ru.unn.agile.vector3d.viewmodel;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
@@ -261,7 +260,7 @@ public class ViewModel {
         log.set(EMPTY_STRING);
     }
 
-    private void appendLog(String s) {
+    private void appendLog(final String s) {
         logger.log(s);
 
         StringBuilder logMsg = new StringBuilder();
@@ -323,5 +322,8 @@ public class ViewModel {
         public static final String OPERATION_WAS_CHANGED = "Operation was changed to %s";
         public static final String CALCULATE_WAS_PRESSED =
                 "Calculate. Arguments: (%s, %s, %s) - (%s, %s, %s), coef = %s, op = %s";
+
+        private LogMessages() {
+        }
     }
 }

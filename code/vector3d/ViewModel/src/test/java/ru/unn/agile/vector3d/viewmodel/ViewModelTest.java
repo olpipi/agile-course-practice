@@ -24,7 +24,7 @@ public class ViewModelTest {
         viewModel = null;
     }
 
-    protected void setExternalViewModel(ViewModel viewModel) {
+    protected void setExternalViewModel(final ViewModel viewModel) {
         this.viewModel = viewModel;
     }
 
@@ -353,7 +353,8 @@ public class ViewModelTest {
 
         // Assert
         String message = viewModel.getLogList().get(0);
-        String expectedMessage = String.format(ViewModel.LogMessages.OPERATION_WAS_CHANGED, Operation.NORMALIZE);
+        String expectedMessage = String.format(ViewModel.LogMessages.OPERATION_WAS_CHANGED,
+                Operation.NORMALIZE);
         assertTrue(message.contains(expectedMessage));
     }
 
@@ -387,13 +388,7 @@ public class ViewModelTest {
 
         // Assert
         String message = viewModel.getLogList().get(0);
-        String expectedMessage = String.format(ViewModel.LogMessages.VECTORS_WERE_CHANGED,
-                viewModel.vectorXProperty().get(),
-                viewModel.vectorYProperty().get(),
-                viewModel.vectorZProperty().get(),
-                viewModel.otherVectorXProperty().get(),
-                viewModel.otherVectorYProperty().get(),
-                viewModel.otherVectorZProperty().get());
+        String expectedMessage = getExpectedVectorsChangedMessage();
         assertTrue(message.contains(expectedMessage));
     }
 
@@ -407,13 +402,7 @@ public class ViewModelTest {
         assertEquals(log.size(), 6);
 
         String message = viewModel.getLogList().get(5);
-        String expectedMessage = String.format(ViewModel.LogMessages.VECTORS_WERE_CHANGED,
-                viewModel.vectorXProperty().get(),
-                viewModel.vectorYProperty().get(),
-                viewModel.vectorZProperty().get(),
-                viewModel.otherVectorXProperty().get(),
-                viewModel.otherVectorYProperty().get(),
-                viewModel.otherVectorZProperty().get());
+        String expectedMessage = getExpectedVectorsChangedMessage();
         assertTrue(message.contains(expectedMessage));
     }
 
@@ -429,14 +418,10 @@ public class ViewModelTest {
         // Assert
         String message = viewModel.getLogList().get(viewModel.getLogList().size() - 1);
         String expectedMessage = String.format(ViewModel.LogMessages.CALCULATE_WAS_PRESSED,
-                viewModel.vectorXProperty().get(),
-                viewModel.vectorYProperty().get(),
-                viewModel.vectorZProperty().get(),
-                viewModel.otherVectorXProperty().get(),
-                viewModel.otherVectorYProperty().get(),
-                viewModel.otherVectorZProperty().get(),
-                viewModel.multiplicationCoeffProperty().get(),
-                viewModel.operationProperty().get());
+                viewModel.getVectorX(), viewModel.getVectorY(), viewModel.getVectorZ(),
+                viewModel.getOtherVectorX(), viewModel.getOtherVectorY(),
+                viewModel.getOtherVectorZ(), viewModel.getMultiplicationCoeff(),
+                viewModel.getOperation());
         assertTrue(message.contains(expectedMessage));
     }
 
@@ -473,5 +458,15 @@ public class ViewModelTest {
         viewModel.otherVectorXProperty().set("1");
         viewModel.otherVectorYProperty().set("2");
         viewModel.otherVectorZProperty().set("3");
+    }
+
+    private String getExpectedVectorsChangedMessage() {
+        return String.format(ViewModel.LogMessages.VECTORS_WERE_CHANGED,
+                viewModel.vectorXProperty().get(),
+                viewModel.vectorYProperty().get(),
+                viewModel.vectorZProperty().get(),
+                viewModel.otherVectorXProperty().get(),
+                viewModel.otherVectorYProperty().get(),
+                viewModel.otherVectorZProperty().get());
     }
 }
