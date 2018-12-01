@@ -242,6 +242,8 @@ project(":code/binary-search-tree").name = "binary-search-tree"
 // Matrix
 include "code/matrix/Model"
 project(":code/matrix/Model").name = "matrix-Model"
+include "code/matrix/View"
+project(":code/matrix/View").name = "matrix-View"
 
 // Segments2D Intersection
 include "code/segments2d-intersection/Model"

@@ -48,6 +48,7 @@ public class Matrix {
     public float getVal(final int row, final int coll) {
         return pMatrix[row][coll];
     }
+
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
