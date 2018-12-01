@@ -24,6 +24,10 @@ public class ViewModelTest {
         viewModel = null;
     }
 
+    protected void setExternalViewModel(ViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
+
     @Test
     public void canSetInitialVectorValues() {
         // Arrange
