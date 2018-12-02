@@ -133,4 +133,22 @@ public class ViewModelTest {
         assertEquals("Correct input", viewModel.getLineStatus());
     }
 
+    @Test
+    public void canNotAddNullValueForPlaneCoordinates() {
+        viewModel.setCoordXFirstPlanePoint("");
+        viewModel.setCoordYFirstPlanePoint("2");
+        viewModel.setCoordZFirstPlanePoint("1");
+
+        viewModel.setCoordXSecondPlanePoint("2");
+        viewModel.setCoordYSecondPlanePoint("1");
+        viewModel.setCoordZSecondPlanePoint("2");
+
+        viewModel.setCoordXThirdPlanePoint("1");
+        viewModel.setCoordYThirdPlanePoint("0");
+        viewModel.setCoordZThirdPlanePoint("1");
+
+        viewModel.createPlane();
+
+        assertEquals("Input error", viewModel.getPlaneStatus());
+    }
 }
