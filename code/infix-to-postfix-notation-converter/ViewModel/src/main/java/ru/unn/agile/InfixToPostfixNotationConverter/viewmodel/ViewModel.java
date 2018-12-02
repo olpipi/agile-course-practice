@@ -16,14 +16,22 @@ public class ViewModel {
     private final BooleanProperty convertButtonDisabled = new SimpleBooleanProperty();
     private final ValueChangeListener valueChangeListener = new ValueChangeListener();
 
+    private ILogger logger;
+
+
     public ViewModel() {
         infixExpression.set("");
         postfixExpression.set("");
         expressionResult.set("");
         status.set(Status.WAITING.toString());
         convertButtonDisabled.set(true);
+        logger = null;
 
         infixExpression.addListener(valueChangeListener);
+    }
+
+    public void setLogger(final ILogger logger) {
+        this.logger = logger;
     }
 
     public StringProperty infixExpressionProperty() {

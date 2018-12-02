@@ -97,5 +97,30 @@ public class ViewModelTest {
         assertEquals(expectedPostfixNotation, viewModel.postfixExpressionProperty().get());
         assertEquals(expectedResult, viewModel.expressionResultProperty().get());
     }
-}
 
+    @Test
+    public void canSetLogger() {
+        ILogger logger = new DummyLogger();
+
+        boolean success = true;
+        try {
+            viewModel.setLogger(logger);
+        } catch (Exception e) {
+            success = false;
+        }
+
+        assertTrue(success);
+    }
+
+    @Test
+    public void canSetNullLogger() {
+        boolean success = true;
+        try {
+            viewModel.setLogger(null);
+        } catch (Exception e) {
+            success = false;
+        }
+
+        assertTrue(success);
+    }
+}
