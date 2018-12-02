@@ -151,4 +151,19 @@ public class ViewModelTest {
 
         assertEquals("Input error", viewModel.getPlaneStatus());
     }
+
+    @Test
+    public void canNotAddNullValueForLineCoordinates() {
+        viewModel.setCoordXFirstLinePoint("");
+        viewModel.setCoordYFirstLinePoint("2");
+        viewModel.setCoordZFirstLinePoint("3");
+
+        viewModel.setCoordXSecondLinePoint("2");
+        viewModel.setCoordYSecondLinePoint("3");
+        viewModel.setCoordZSecondLinePoint("4");
+
+        viewModel.createLine();
+
+        assertEquals("Input error", viewModel.getLineStatus());
+    }
 }
