@@ -1,6 +1,6 @@
-package ru.unn.agile.shapevolume;
+package ru.unn.agile.shapevolume.model;
 
-import static ru.unn.agile.shapevolume.ShapeVolumeConstants.ERROR_SIZE_MUST_BE_NOT_NEGATIVE;
+import static ru.unn.agile.shapevolume.model.ShapeVolumeConstants.ERROR_SIZE_MUST_BE_NOT_NEGATIVE;
 
 public class RegularPolygonPrism {
     private static final String ERROR_INCORRECT_BASE_SIDES_COUNT

@@ -1,6 +1,7 @@
 package ru.unn.agile.shapevolume;
 
 import org.junit.Test;
+import ru.unn.agile.shapevolume.model.RegularPolygonPrism;
 
 import static org.junit.Assert.assertEquals;
 import static ru.unn.agile.shapevolume.TestConstants.EPSILON;
