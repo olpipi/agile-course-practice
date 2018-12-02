@@ -234,4 +234,58 @@ public class ViewModelTest {
 
         assertEquals("Input error: points must not have identical coordinates", viewModel.getLineStatus());
     }
+
+    @Test
+    public void canPrintRightStatusForNonIntersection() {
+        viewModel.setCoordXFirstPlanePoint("1");
+        viewModel.setCoordYFirstPlanePoint("94");
+        viewModel.setCoordZFirstPlanePoint("0");
+
+        viewModel.setCoordXSecondPlanePoint("56");
+        viewModel.setCoordYSecondPlanePoint("2");
+        viewModel.setCoordZSecondPlanePoint("0");
+
+        viewModel.setCoordXThirdPlanePoint("10");
+        viewModel.setCoordYThirdPlanePoint("1");
+        viewModel.setCoordZThirdPlanePoint("0");
+
+        viewModel.setCoordXFirstLinePoint("1");
+        viewModel.setCoordYFirstLinePoint("-87");
+        viewModel.setCoordZFirstLinePoint("15");
+
+        viewModel.setCoordXSecondLinePoint("2");
+        viewModel.setCoordYSecondLinePoint("2");
+        viewModel.setCoordZSecondLinePoint("15");
+
+        viewModel.checkLineAndPlaneIntersection();
+
+        assertEquals("Do not intersect", viewModel.getResult());
+    }
+
+    @Test
+    public void canPrintRightStatusForIntersection() {
+        viewModel.setCoordXFirstPlanePoint("1");
+        viewModel.setCoordYFirstPlanePoint("-2");
+        viewModel.setCoordZFirstPlanePoint("3");
+
+        viewModel.setCoordXSecondPlanePoint("7");
+        viewModel.setCoordYSecondPlanePoint("-1");
+        viewModel.setCoordZSecondPlanePoint("5");
+
+        viewModel.setCoordXThirdPlanePoint("0");
+        viewModel.setCoordYThirdPlanePoint("2");
+        viewModel.setCoordZThirdPlanePoint("10");
+
+        viewModel.setCoordXFirstLinePoint("1");
+        viewModel.setCoordYFirstLinePoint("2");
+        viewModel.setCoordZFirstLinePoint("3");
+
+        viewModel.setCoordXSecondLinePoint("-1");
+        viewModel.setCoordYSecondLinePoint("0");
+        viewModel.setCoordZSecondLinePoint("6");
+
+        viewModel.checkLineAndPlaneIntersection();
+
+        assertEquals("Intersect", viewModel.getResult());
+    }
 }

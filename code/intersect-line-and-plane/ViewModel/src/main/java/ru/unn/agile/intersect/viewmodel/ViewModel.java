@@ -16,6 +16,9 @@ public class ViewModel {
     private static final String OK_STATUS = "Correct input";
     private static final String ERROR_STATUS = "Input error";
 
+    private static final String INTERSECT_STATUS = "Intersect";
+    private static final String NOT_INTERSECT_STATUS = "Do not intersect";
+
     private StringProperty coordXFirstPlanePoint = new SimpleStringProperty();
     private StringProperty coordYFirstPlanePoint = new SimpleStringProperty();
     private StringProperty coordZFirstPlanePoint = new SimpleStringProperty();
@@ -323,7 +326,7 @@ public class ViewModel {
         return result;
     }
 
-    public void createPlane() {
+    public Plane createPlane() {
         Map<String, List<String>> planeCoordinates = createPlaneCoordMap();
         Point pointA, pointB, pointC;
 
@@ -333,12 +336,14 @@ public class ViewModel {
             pointC = new Point(Double.valueOf(planeCoordinates.get("C").get(0)), Double.valueOf(planeCoordinates.get("C").get(1)), Double.valueOf(planeCoordinates.get("C").get(2)));
             Plane plane = new Plane(pointA, pointB, pointC);
             planeStatus.set(OK_STATUS);
+            return plane;
         } catch (NumberFormatException | ArithmeticException ex) {
             planeStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase());
+            return null;
         }
     }
 
-    public void createLine() {
+    public Line createLine() {
         Map<String, List<String>> lineCoordinates = createLineCoordMap();
         Point pointX, pointY;
 
@@ -347,7 +352,28 @@ public class ViewModel {
             pointY = new Point(Double.valueOf(lineCoordinates.get("Y").get(0)), Double.valueOf(lineCoordinates.get("Y").get(1)), Double.valueOf(lineCoordinates.get("Y").get(2)));
             Line line = new Line(pointX, pointY);
             lineStatus.set(OK_STATUS);
+            return line;
         } catch (NumberFormatException | ArithmeticException ex) {
+            lineStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase());
+            return null;
+        }
+    }
+
+    public void checkLineAndPlaneIntersection() {
+        Plane plane = createPlane();
+        Line line = createLine();
+        try {
+            if (getPlaneStatus().equals(OK_STATUS) && getLineStatus().equals(OK_STATUS)) {
+                LineIntersectPlane intersection = new LineIntersectPlane(plane, line);
+                if (intersection.checkIntersection()) {
+                    result.set(INTERSECT_STATUS);
+                } else {
+                    result.set(NOT_INTERSECT_STATUS);
+                }
+            } else {
+                result.set(ERROR_STATUS);
+            }
+        } catch (ArithmeticException ex) {
             lineStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase());
         }
     }

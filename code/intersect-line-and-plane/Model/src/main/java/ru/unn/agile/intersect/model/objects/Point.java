@@ -1,7 +1,6 @@
 package ru.unn.agile.intersect.model.objects;
 
 public final class Point {
-    public static final double EPSILON = 0.000001;
     private double coordinateX, coordinateY, coordinateZ;
 
     public Point(final double x1, final double y1, final double z1) {
@@ -26,11 +25,7 @@ public final class Point {
         double x = this.getX() - pointA.getX();
         double y = this.getY() - pointA.getY();
         double z = this.getZ() - pointA.getZ();
-
-        if (calculateDistance(pointA) > EPSILON) {
-            return new Point(x, y, z);
-        }
-        return null;
+        return new Point(x, y, z);
     }
 
     public Point vectorProduct(final Point pointA) {
@@ -44,11 +39,6 @@ public final class Point {
         double scalarProduct = pointA.getX() * this.getX();
         scalarProduct += pointA.getY() * this.getY() + pointA.getZ() * this.getZ();
         return scalarProduct;
-    }
-
-    public double calculateDistance(final Point pointA) {
-        double norm = Math.pow(pointA.getX() - this.getX(), 2) + Math.pow(pointA.getY() - this.getY(), 2) + Math.pow(pointA.getZ() - this.getZ(), 2);
-        return Math.sqrt(norm);
     }
 
     public Point normalizePoint() {
