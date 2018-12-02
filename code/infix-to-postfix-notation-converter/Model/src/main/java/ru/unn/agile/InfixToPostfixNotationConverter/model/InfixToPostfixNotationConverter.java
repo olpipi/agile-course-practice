@@ -25,7 +25,6 @@ public final class InfixToPostfixNotationConverter {
 
         stripped = stripped.replaceAll(expressionPattern, "");
         stripped = stripped.replaceAll("[(]", "").replaceAll("[)]", "");
-        System.out.println(stripped);
 
         return stripped.isEmpty();
     }
