@@ -306,7 +306,6 @@ public class ViewModel {
 
     public Map<String, List<String>> createLineCoordMap() {
         Map<String, List<String>> result = new HashMap<String, List<String>>();
-
         List<String> coordinatesX = new ArrayList<String>();
         List<String> coordinatesY = new ArrayList<String>();
 
@@ -327,13 +326,12 @@ public class ViewModel {
     public void createPlane() {
         Map<String, List<String>> planeCoordinates = createPlaneCoordMap();
         Point pointA, pointB, pointC;
-        Plane plane = null;
 
         try {
             pointA = new Point(Double.valueOf(planeCoordinates.get("A").get(0)), Double.valueOf(planeCoordinates.get("A").get(1)), Double.valueOf(planeCoordinates.get("A").get(2)));
             pointB = new Point(Double.valueOf(planeCoordinates.get("B").get(0)), Double.valueOf(planeCoordinates.get("B").get(1)), Double.valueOf(planeCoordinates.get("B").get(2)));
             pointC = new Point(Double.valueOf(planeCoordinates.get("C").get(0)), Double.valueOf(planeCoordinates.get("C").get(1)), Double.valueOf(planeCoordinates.get("C").get(2)));
-            plane = new Plane(pointA, pointB, pointC);
+            Plane plane = new Plane(pointA, pointB, pointC);
             planeStatus.set(OK_STATUS);
         } catch (NumberFormatException ex) {
             planeStatus.set(ERROR_STATUS);
@@ -343,12 +341,11 @@ public class ViewModel {
     public void createLine() {
         Map<String, List<String>> lineCoordinates = createLineCoordMap();
         Point pointX, pointY;
-        Line line = null;
 
         try {
             pointX = new Point(Double.valueOf(lineCoordinates.get("X").get(0)), Double.valueOf(lineCoordinates.get("X").get(1)), Double.valueOf(lineCoordinates.get("X").get(2)));
             pointY = new Point(Double.valueOf(lineCoordinates.get("Y").get(0)), Double.valueOf(lineCoordinates.get("Y").get(1)), Double.valueOf(lineCoordinates.get("Y").get(2)));
-            line = new Line(pointX, pointY);
+            Line line = new Line(pointX, pointY);
             lineStatus.set(OK_STATUS);
         } catch (NumberFormatException ex) {
             lineStatus.set(ERROR_STATUS);
