@@ -9,6 +9,9 @@ import ru.unn.agile.InfixToPostfixNotationConverter.model.InfixToPostfixNotation
 import java.util.Arrays;
 
 public class ViewModel {
+    public static final String LOG_MESSAGE_COMPUTE_BUTTON_CLICKED = "Compute button clicked";
+    public static final String LOG_MESSAGE_INPUT_EXPRESSION_CHANGED = "Input expression changed";
+
     private final StringProperty infixExpression = new SimpleStringProperty();
     private final StringProperty postfixExpression = new SimpleStringProperty();
     private final StringProperty expressionResult = new SimpleStringProperty();
@@ -72,6 +75,12 @@ public class ViewModel {
         postfixExpression.set(getConversionResultAsString(converted));
         expressionResult.set(result.toString());
         status.set(Status.SUCCESS.toString());
+
+        StringBuilder logMessage = new StringBuilder(LOG_MESSAGE_COMPUTE_BUTTON_CLICKED)
+                .append(", expression: '").append(infixExpression.get()).append("'")
+                .append(", converted: '").append(String.join(" ", converted)).append("'")
+                .append(", result: '").append(expressionResult.get()).append("'");
+        log(logMessage.toString());
     }
 
     private String getConversionResultAsString(final String[] conversionResult) {
@@ -88,6 +97,17 @@ public class ViewModel {
                             final String oldValue, final String newValue) {
             status.set(getInputStatus().toString());
             convertButtonDisabled.set(!canConvert());
+
+            StringBuilder logMessage = new StringBuilder(LOG_MESSAGE_INPUT_EXPRESSION_CHANGED)
+                    .append(", new value: '").append(newValue).append("'")
+                    .append(", status: ").append(status.get());
+            log(logMessage.toString());
+        }
+    }
+
+    private void log(final String message) {
+        if (logger != null) {
+            logger.log(message);
         }
     }
 }
