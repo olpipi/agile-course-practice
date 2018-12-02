@@ -77,63 +77,63 @@ public class ViewModel {
         lineStatus.set(WAITING_STATUS);
     }
 
-    public void setCoordXFirstPlanePoint(String coordXFirstPlanePoint) {
+    public void setCoordXFirstPlanePoint(final String coordXFirstPlanePoint) {
         this.coordXFirstPlanePoint.set(coordXFirstPlanePoint);
     }
 
-    public void setCoordYFirstPlanePoint(String coordYFirstPlanePoint) {
+    public void setCoordYFirstPlanePoint(final String coordYFirstPlanePoint) {
         this.coordYFirstPlanePoint.set(coordYFirstPlanePoint);
     }
 
-    public void setCoordZFirstPlanePoint(String coordZFirstPlanePoint) {
+    public void setCoordZFirstPlanePoint(final String coordZFirstPlanePoint) {
         this.coordZFirstPlanePoint.set(coordZFirstPlanePoint);
     }
 
-    public void setCoordXSecondPlanePoint(String coordXSecondPlanePoint) {
+    public void setCoordXSecondPlanePoint(final String coordXSecondPlanePoint) {
         this.coordXSecondPlanePoint.set(coordXSecondPlanePoint);
     }
 
-    public void setCoordYSecondPlanePoint(String coordYSecondPlanePoint) {
+    public void setCoordYSecondPlanePoint(final String coordYSecondPlanePoint) {
         this.coordYSecondPlanePoint.set(coordYSecondPlanePoint);
     }
 
-    public void setCoordZSecondPlanePoint(String coordZSecondPlanePoint) {
+    public void setCoordZSecondPlanePoint(final String coordZSecondPlanePoint) {
         this.coordZSecondPlanePoint.set(coordZSecondPlanePoint);
     }
 
-    public void setCoordXThirdPlanePoint(String coordXThirdPlanePoint) {
+    public void setCoordXThirdPlanePoint(final String coordXThirdPlanePoint) {
         this.coordXThirdPlanePoint.set(coordXThirdPlanePoint);
     }
 
-    public void setCoordYThirdPlanePoint(String coordYThirdPlanePoint) {
+    public void setCoordYThirdPlanePoint(final String coordYThirdPlanePoint) {
         this.coordYThirdPlanePoint.set(coordYThirdPlanePoint);
     }
 
-    public void setCoordZThirdPlanePoint(String coordZThirdPlanePoint) {
+    public void setCoordZThirdPlanePoint(final String coordZThirdPlanePoint) {
         this.coordZThirdPlanePoint.set(coordZThirdPlanePoint);
     }
 
-    public void setCoordXFirstLinePoint(String coordXFirstLinePoint) {
+    public void setCoordXFirstLinePoint(final String coordXFirstLinePoint) {
         this.coordXFirstLinePoint.set(coordXFirstLinePoint);
     }
 
-    public void setCoordYFirstLinePoint(String coordYFirstLinePoint) {
+    public void setCoordYFirstLinePoint(final String coordYFirstLinePoint) {
         this.coordYFirstLinePoint.set(coordYFirstLinePoint);
     }
 
-    public void setCoordZFirstLinePoint(String coordZFirstLinePoint) {
+    public void setCoordZFirstLinePoint(final String coordZFirstLinePoint) {
         this.coordZFirstLinePoint.set(coordZFirstLinePoint);
     }
 
-    public void setCoordXSecondLinePoint(String coordXSecondLinePoint) {
+    public void setCoordXSecondLinePoint(final String coordXSecondLinePoint) {
         this.coordXSecondLinePoint.set(coordXSecondLinePoint);
     }
 
-    public void setCoordYSecondLinePoint(String coordYSecondLinePoint) {
+    public void setCoordYSecondLinePoint(final String coordYSecondLinePoint) {
         this.coordYSecondLinePoint.set(coordYSecondLinePoint);
     }
 
-    public void setCoordZSecondLinePoint(String coordZSecondLinePoint) {
+    public void setCoordZSecondLinePoint(final String coordZSecondLinePoint) {
         this.coordZSecondLinePoint.set(coordZSecondLinePoint);
     }
 

@@ -42,7 +42,8 @@ public final class Point {
     }
 
     public Point normalizePoint() {
-        double norm = Math.pow(this.getX(), 2) + Math.pow(this.getY(), 2) + Math.pow(this.getZ(), 2);
+        double norm;
+        norm = Math.pow(this.getX(), 2) + Math.pow(this.getY(), 2) + Math.pow(this.getZ(), 2);
         norm = Math.sqrt(norm);
         return new Point(this.getX() / norm, this.getY() / norm, this.getZ() / norm);
     }

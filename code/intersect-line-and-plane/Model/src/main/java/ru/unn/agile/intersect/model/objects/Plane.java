@@ -4,7 +4,7 @@ public final class Plane {
     private Point pointA, pointB, pointC;
 
     public Plane(final Point pointA1, final Point pointB1, final Point pointC1) {
-        if (checkNonZeroPointsDistance(pointA1, pointB1, pointC1)) {
+        if (checkNonZeroDist(pointA1, pointB1, pointC1)) {
             this.pointA = pointA1;
             this.pointB = pointB1;
             this.pointC = pointC1;
@@ -37,10 +37,10 @@ public final class Plane {
         return normalN.scalarProduct(vectorV);
     }
 
-    public boolean checkNonZeroPointsDistance(final Point pointA, final Point pointB, final Point pointC) throws ArithmeticException{
-            Line ab = new Line(pointA, pointB);
-            Line ac = new Line(pointA, pointC);
-            Line bc = new Line(pointB, pointC);
-            return true;
+    public boolean checkNonZeroDist(final Point pointA, final Point pointB, final Point pointC) {
+        Line ab = new Line(pointA, pointB);
+        Line ac = new Line(pointA, pointC);
+        Line bc = new Line(pointB, pointC);
+        return (ab != null && ac != null && bc != null);
     }
 }
