@@ -47,4 +47,8 @@ public final class Point {
         return new Point(this.getX() / norm, this.getY() / norm, this.getZ() / norm);
     }
 
+    @Override
+    public String toString() {
+        return ("(" + coordinateX + ", " + coordinateY + ", " + coordinateZ + ")");
+    }
 }

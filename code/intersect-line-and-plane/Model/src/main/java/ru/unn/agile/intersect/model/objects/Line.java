@@ -22,7 +22,10 @@ public final class Line {
     }
 
     public double calculateDistance(final Point pointA, final Point pointB) {
-        double norm = Math.pow(pointA.getX() - pointB.getX(), 2) + Math.pow(pointA.getY() - pointB.getY(), 2) + Math.pow(pointA.getZ() - pointB.getZ(), 2);
+        double x = pointA.getX() - pointB.getX();
+        double y = pointA.getY() - pointB.getY();
+        double z = pointA.getZ() - pointB.getZ();
+        double norm = Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2);
         return Math.sqrt(norm);
     }
 }

@@ -10,7 +10,7 @@ public class LineIntersectPlane {
         this.pointO = new Point(coordX, coordY, coordZ);
     }
 
-    private Point getPointO() {
+    public Point getPointO() {
         return this.pointO;
     }
 

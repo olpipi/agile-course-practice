@@ -49,48 +49,48 @@ public class ViewModelTest {
 
     @Test
     public void canSetPlaneCoordinates() {
-        viewModel.setCoordXFirstPlanePoint("0");
-        viewModel.setCoordYFirstPlanePoint("0");
-        viewModel.setCoordZFirstPlanePoint("0");
+        viewModel.setCoordXFirstPlanePoint("0.0");
+        viewModel.setCoordYFirstPlanePoint("0.0");
+        viewModel.setCoordZFirstPlanePoint("0.0");
 
-        viewModel.setCoordXSecondPlanePoint("0");
-        viewModel.setCoordYSecondPlanePoint("0");
-        viewModel.setCoordZSecondPlanePoint("0");
+        viewModel.setCoordXSecondPlanePoint("0.0");
+        viewModel.setCoordYSecondPlanePoint("0.0");
+        viewModel.setCoordZSecondPlanePoint("0.0");
 
-        viewModel.setCoordXThirdPlanePoint("0");
-        viewModel.setCoordYThirdPlanePoint("0");
-        viewModel.setCoordZThirdPlanePoint("0");
+        viewModel.setCoordXThirdPlanePoint("0.0");
+        viewModel.setCoordYThirdPlanePoint("0.0");
+        viewModel.setCoordZThirdPlanePoint("0.0");
 
-        assertEquals("0", viewModel.getCoordXFirstPlanePoint());
-        assertEquals("0", viewModel.getCoordYFirstPlanePoint());
-        assertEquals("0", viewModel.getCoordZFirstPlanePoint());
+        assertEquals("0.0", viewModel.getCoordXFirstPlanePoint());
+        assertEquals("0.0", viewModel.getCoordYFirstPlanePoint());
+        assertEquals("0.0", viewModel.getCoordZFirstPlanePoint());
 
-        assertEquals("0", viewModel.getCoordXSecondPlanePoint());
-        assertEquals("0", viewModel.getCoordYSecondPlanePoint());
-        assertEquals("0", viewModel.getCoordZSecondPlanePoint());
+        assertEquals("0.0", viewModel.getCoordXSecondPlanePoint());
+        assertEquals("0.0", viewModel.getCoordYSecondPlanePoint());
+        assertEquals("0.0", viewModel.getCoordZSecondPlanePoint());
 
-        assertEquals("0", viewModel.getCoordXThirdPlanePoint());
-        assertEquals("0", viewModel.getCoordYThirdPlanePoint());
-        assertEquals("0", viewModel.getCoordZThirdPlanePoint());
+        assertEquals("0.0", viewModel.getCoordXThirdPlanePoint());
+        assertEquals("0.0", viewModel.getCoordYThirdPlanePoint());
+        assertEquals("0.0", viewModel.getCoordZThirdPlanePoint());
     }
 
     @Test
     public void canSetLineCoordinates() {
-        viewModel.setCoordXFirstLinePoint("0");
-        viewModel.setCoordYFirstLinePoint("0");
-        viewModel.setCoordZFirstLinePoint("0");
+        viewModel.setCoordXFirstLinePoint("0.0");
+        viewModel.setCoordYFirstLinePoint("0.0");
+        viewModel.setCoordZFirstLinePoint("0.0");
 
-        viewModel.setCoordXSecondLinePoint("0");
-        viewModel.setCoordYSecondLinePoint("0");
-        viewModel.setCoordZSecondLinePoint("0");
+        viewModel.setCoordXSecondLinePoint("0.0");
+        viewModel.setCoordYSecondLinePoint("0.0");
+        viewModel.setCoordZSecondLinePoint("0.0");
 
-        assertEquals("0", viewModel.getCoordXFirstLinePoint());
-        assertEquals("0", viewModel.getCoordYFirstLinePoint());
-        assertEquals("0", viewModel.getCoordZFirstLinePoint());
+        assertEquals("0.0", viewModel.getCoordXFirstLinePoint());
+        assertEquals("0.0", viewModel.getCoordYFirstLinePoint());
+        assertEquals("0.0", viewModel.getCoordZFirstLinePoint());
 
-        assertEquals("0", viewModel.getCoordXSecondLinePoint());
-        assertEquals("0", viewModel.getCoordYSecondLinePoint());
-        assertEquals("0", viewModel.getCoordZSecondLinePoint());
+        assertEquals("0.0", viewModel.getCoordXSecondLinePoint());
+        assertEquals("0.0", viewModel.getCoordYSecondLinePoint());
+        assertEquals("0.0", viewModel.getCoordZSecondLinePoint());
     }
 
     @Test
@@ -101,17 +101,17 @@ public class ViewModelTest {
 
     @Test
     public void canCreatePlane() {
-        viewModel.setCoordXFirstPlanePoint("1");
-        viewModel.setCoordYFirstPlanePoint("2");
-        viewModel.setCoordZFirstPlanePoint("1");
+        viewModel.setCoordXFirstPlanePoint("1.0");
+        viewModel.setCoordYFirstPlanePoint("2.0");
+        viewModel.setCoordZFirstPlanePoint("1.0");
 
-        viewModel.setCoordXSecondPlanePoint("2");
-        viewModel.setCoordYSecondPlanePoint("1");
-        viewModel.setCoordZSecondPlanePoint("2");
+        viewModel.setCoordXSecondPlanePoint("2.0");
+        viewModel.setCoordYSecondPlanePoint("1.0");
+        viewModel.setCoordZSecondPlanePoint("2.0");
 
-        viewModel.setCoordXThirdPlanePoint("3");
-        viewModel.setCoordYThirdPlanePoint("0");
-        viewModel.setCoordZThirdPlanePoint("1");
+        viewModel.setCoordXThirdPlanePoint("3.0");
+        viewModel.setCoordYThirdPlanePoint("0.0");
+        viewModel.setCoordZThirdPlanePoint("1.0");
 
         viewModel.createPlane();
 
@@ -120,13 +120,13 @@ public class ViewModelTest {
 
     @Test
     public void canCreateLine() {
-        viewModel.setCoordXFirstLinePoint("1");
-        viewModel.setCoordYFirstLinePoint("2");
-        viewModel.setCoordZFirstLinePoint("3");
+        viewModel.setCoordXFirstLinePoint("1.0");
+        viewModel.setCoordYFirstLinePoint("2.0");
+        viewModel.setCoordZFirstLinePoint("3.0");
 
-        viewModel.setCoordXSecondLinePoint("2");
-        viewModel.setCoordYSecondLinePoint("3");
-        viewModel.setCoordZSecondLinePoint("4");
+        viewModel.setCoordXSecondLinePoint("2.0");
+        viewModel.setCoordYSecondLinePoint("3.0");
+        viewModel.setCoordZSecondLinePoint("4.0");
 
         viewModel.createLine();
 
@@ -136,16 +136,16 @@ public class ViewModelTest {
     @Test
     public void canNotAddNullValueForPlaneCoordinates() {
         viewModel.setCoordXFirstPlanePoint("");
-        viewModel.setCoordYFirstPlanePoint("2");
-        viewModel.setCoordZFirstPlanePoint("1");
+        viewModel.setCoordYFirstPlanePoint("2.0");
+        viewModel.setCoordZFirstPlanePoint("1.0");
 
-        viewModel.setCoordXSecondPlanePoint("2");
-        viewModel.setCoordYSecondPlanePoint("1");
-        viewModel.setCoordZSecondPlanePoint("2");
+        viewModel.setCoordXSecondPlanePoint("2.0");
+        viewModel.setCoordYSecondPlanePoint("-1.0");
+        viewModel.setCoordZSecondPlanePoint("2.0");
 
-        viewModel.setCoordXThirdPlanePoint("1");
-        viewModel.setCoordYThirdPlanePoint("0");
-        viewModel.setCoordZThirdPlanePoint("1");
+        viewModel.setCoordXThirdPlanePoint("-1.0");
+        viewModel.setCoordYThirdPlanePoint("0.0");
+        viewModel.setCoordZThirdPlanePoint("1.0");
 
         viewModel.createPlane();
 
@@ -155,12 +155,12 @@ public class ViewModelTest {
     @Test
     public void canNotAddNullValueForLineCoordinates() {
         viewModel.setCoordXFirstLinePoint("");
-        viewModel.setCoordYFirstLinePoint("2");
-        viewModel.setCoordZFirstLinePoint("3");
+        viewModel.setCoordYFirstLinePoint("2.0");
+        viewModel.setCoordZFirstLinePoint("3.0");
 
-        viewModel.setCoordXSecondLinePoint("2");
-        viewModel.setCoordYSecondLinePoint("3");
-        viewModel.setCoordZSecondLinePoint("4");
+        viewModel.setCoordXSecondLinePoint("2.0");
+        viewModel.setCoordYSecondLinePoint("3.0");
+        viewModel.setCoordZSecondLinePoint("4.0");
 
         viewModel.createLine();
 
@@ -170,16 +170,16 @@ public class ViewModelTest {
     @Test
     public void canNotAddInvalidValueForPlaneCoordinates() {
         viewModel.setCoordXFirstPlanePoint("aa");
-        viewModel.setCoordYFirstPlanePoint("2");
-        viewModel.setCoordZFirstPlanePoint("1");
+        viewModel.setCoordYFirstPlanePoint("2.0");
+        viewModel.setCoordZFirstPlanePoint("1.0");
 
-        viewModel.setCoordXSecondPlanePoint("2");
-        viewModel.setCoordYSecondPlanePoint("1");
-        viewModel.setCoordZSecondPlanePoint("2");
+        viewModel.setCoordXSecondPlanePoint("2.0");
+        viewModel.setCoordYSecondPlanePoint("1.0");
+        viewModel.setCoordZSecondPlanePoint("2.0");
 
-        viewModel.setCoordXThirdPlanePoint("1");
-        viewModel.setCoordYThirdPlanePoint("0");
-        viewModel.setCoordZThirdPlanePoint("1");
+        viewModel.setCoordXThirdPlanePoint("1.0");
+        viewModel.setCoordYThirdPlanePoint("0.0");
+        viewModel.setCoordZThirdPlanePoint("1.0");
 
         viewModel.createPlane();
 
@@ -189,11 +189,11 @@ public class ViewModelTest {
     @Test
     public void canNotAddInvalidValueForLineCoordinates() {
         viewModel.setCoordXFirstLinePoint("bb");
-        viewModel.setCoordYFirstLinePoint("2");
-        viewModel.setCoordZFirstLinePoint("3");
+        viewModel.setCoordYFirstLinePoint("2.0");
+        viewModel.setCoordZFirstLinePoint("3.0");
 
-        viewModel.setCoordXSecondLinePoint("2");
-        viewModel.setCoordYSecondLinePoint("3");
+        viewModel.setCoordXSecondLinePoint("2.0");
+        viewModel.setCoordYSecondLinePoint("3.0");
         viewModel.setCoordZSecondLinePoint("dd");
 
         viewModel.createLine();
@@ -203,17 +203,17 @@ public class ViewModelTest {
 
     @Test
     public void canNotAddIdenticalPointCoordinatesForPlane() {
-        viewModel.setCoordXFirstPlanePoint("1");
-        viewModel.setCoordYFirstPlanePoint("2");
-        viewModel.setCoordZFirstPlanePoint("3");
+        viewModel.setCoordXFirstPlanePoint("1.0");
+        viewModel.setCoordYFirstPlanePoint("2.0");
+        viewModel.setCoordZFirstPlanePoint("3.0");
 
-        viewModel.setCoordXSecondPlanePoint("1");
-        viewModel.setCoordYSecondPlanePoint("2");
-        viewModel.setCoordZSecondPlanePoint("3");
+        viewModel.setCoordXSecondPlanePoint("1.0");
+        viewModel.setCoordYSecondPlanePoint("2.0");
+        viewModel.setCoordZSecondPlanePoint("3.0");
 
-        viewModel.setCoordXThirdPlanePoint("1");
-        viewModel.setCoordYThirdPlanePoint("2");
-        viewModel.setCoordZThirdPlanePoint("3");
+        viewModel.setCoordXThirdPlanePoint("1.0");
+        viewModel.setCoordYThirdPlanePoint("2.0");
+        viewModel.setCoordZThirdPlanePoint("3.0");
 
         viewModel.createPlane();
 
@@ -222,13 +222,13 @@ public class ViewModelTest {
 
     @Test
     public void canNotAddIdenticalPointCoordinatesForLine() {
-        viewModel.setCoordXFirstLinePoint("1");
-        viewModel.setCoordYFirstLinePoint("2");
-        viewModel.setCoordZFirstLinePoint("3");
+        viewModel.setCoordXFirstLinePoint("1.0");
+        viewModel.setCoordYFirstLinePoint("2.0");
+        viewModel.setCoordZFirstLinePoint("3.0");
 
-        viewModel.setCoordXSecondLinePoint("1");
-        viewModel.setCoordYSecondLinePoint("2");
-        viewModel.setCoordZSecondLinePoint("3");
+        viewModel.setCoordXSecondLinePoint("1.0");
+        viewModel.setCoordYSecondLinePoint("2.0");
+        viewModel.setCoordZSecondLinePoint("3.0");
 
         viewModel.createLine();
 
@@ -237,25 +237,25 @@ public class ViewModelTest {
 
     @Test
     public void canPrintRightStatusForNonIntersection() {
-        viewModel.setCoordXFirstPlanePoint("1");
-        viewModel.setCoordYFirstPlanePoint("94");
-        viewModel.setCoordZFirstPlanePoint("0");
+        viewModel.setCoordXFirstPlanePoint("1.0");
+        viewModel.setCoordYFirstPlanePoint("94.0");
+        viewModel.setCoordZFirstPlanePoint("0.0");
 
-        viewModel.setCoordXSecondPlanePoint("56");
-        viewModel.setCoordYSecondPlanePoint("2");
-        viewModel.setCoordZSecondPlanePoint("0");
+        viewModel.setCoordXSecondPlanePoint("56.0");
+        viewModel.setCoordYSecondPlanePoint("2.0");
+        viewModel.setCoordZSecondPlanePoint("0.0");
 
-        viewModel.setCoordXThirdPlanePoint("10");
-        viewModel.setCoordYThirdPlanePoint("1");
-        viewModel.setCoordZThirdPlanePoint("0");
+        viewModel.setCoordXThirdPlanePoint("10.0");
+        viewModel.setCoordYThirdPlanePoint("1.0");
+        viewModel.setCoordZThirdPlanePoint("0.0");
 
-        viewModel.setCoordXFirstLinePoint("1");
-        viewModel.setCoordYFirstLinePoint("-87");
-        viewModel.setCoordZFirstLinePoint("15");
+        viewModel.setCoordXFirstLinePoint("1.0");
+        viewModel.setCoordYFirstLinePoint("-87.0");
+        viewModel.setCoordZFirstLinePoint("15.0");
 
-        viewModel.setCoordXSecondLinePoint("2");
-        viewModel.setCoordYSecondLinePoint("2");
-        viewModel.setCoordZSecondLinePoint("15");
+        viewModel.setCoordXSecondLinePoint("2.0");
+        viewModel.setCoordYSecondLinePoint("2.0");
+        viewModel.setCoordZSecondLinePoint("15.0");
 
         viewModel.checkLineAndPlaneIntersection();
 
@@ -263,29 +263,29 @@ public class ViewModelTest {
     }
 
     @Test
-    public void canPrintRightStatusForIntersection() {
-        viewModel.setCoordXFirstPlanePoint("1");
-        viewModel.setCoordYFirstPlanePoint("-2");
-        viewModel.setCoordZFirstPlanePoint("3");
+    public void canPrintRightStatusResultForIntersection() {
+        viewModel.setCoordXFirstPlanePoint("0.0");
+        viewModel.setCoordYFirstPlanePoint("1.0");
+        viewModel.setCoordZFirstPlanePoint("5.0");
 
-        viewModel.setCoordXSecondPlanePoint("7");
-        viewModel.setCoordYSecondPlanePoint("-1");
-        viewModel.setCoordZSecondPlanePoint("5");
+        viewModel.setCoordXSecondPlanePoint("2.0");
+        viewModel.setCoordYSecondPlanePoint("0.0");
+        viewModel.setCoordZSecondPlanePoint("0.0");
 
-        viewModel.setCoordXThirdPlanePoint("0");
-        viewModel.setCoordYThirdPlanePoint("2");
-        viewModel.setCoordZThirdPlanePoint("10");
+        viewModel.setCoordXThirdPlanePoint("1.0");
+        viewModel.setCoordYThirdPlanePoint("1.0");
+        viewModel.setCoordZThirdPlanePoint("3.0");
 
-        viewModel.setCoordXFirstLinePoint("1");
-        viewModel.setCoordYFirstLinePoint("2");
-        viewModel.setCoordZFirstLinePoint("3");
+        viewModel.setCoordXFirstLinePoint("13.0");
+        viewModel.setCoordYFirstLinePoint("9.0");
+        viewModel.setCoordZFirstLinePoint("17.0");
 
-        viewModel.setCoordXSecondLinePoint("-1");
-        viewModel.setCoordYSecondLinePoint("0");
-        viewModel.setCoordZSecondLinePoint("6");
+        viewModel.setCoordXSecondLinePoint("0.0");
+        viewModel.setCoordYSecondLinePoint("2.5");
+        viewModel.setCoordZSecondLinePoint("-2.5");
 
         viewModel.checkLineAndPlaneIntersection();
 
-        assertEquals("Intersect", viewModel.getResult());
+        assertEquals("Intersect: (3.0, 4.0, 2.0)", viewModel.getResult());
     }
 }

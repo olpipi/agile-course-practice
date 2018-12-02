@@ -329,7 +329,6 @@ public class ViewModel {
     public Plane createPlane() {
         Map<String, List<String>> planeCoordinates = createPlaneCoordMap();
         Point pointA, pointB, pointC;
-
         try {
             pointA = new Point(Double.valueOf(planeCoordinates.get("A").get(0)), Double.valueOf(planeCoordinates.get("A").get(1)), Double.valueOf(planeCoordinates.get("A").get(2)));
             pointB = new Point(Double.valueOf(planeCoordinates.get("B").get(0)), Double.valueOf(planeCoordinates.get("B").get(1)), Double.valueOf(planeCoordinates.get("B").get(2)));
@@ -346,7 +345,6 @@ public class ViewModel {
     public Line createLine() {
         Map<String, List<String>> lineCoordinates = createLineCoordMap();
         Point pointX, pointY;
-
         try {
             pointX = new Point(Double.valueOf(lineCoordinates.get("X").get(0)), Double.valueOf(lineCoordinates.get("X").get(1)), Double.valueOf(lineCoordinates.get("X").get(2)));
             pointY = new Point(Double.valueOf(lineCoordinates.get("Y").get(0)), Double.valueOf(lineCoordinates.get("Y").get(1)), Double.valueOf(lineCoordinates.get("Y").get(2)));
@@ -366,7 +364,7 @@ public class ViewModel {
             if (getPlaneStatus().equals(OK_STATUS) && getLineStatus().equals(OK_STATUS)) {
                 LineIntersectPlane intersection = new LineIntersectPlane(plane, line);
                 if (intersection.checkIntersection()) {
-                    result.set(INTERSECT_STATUS);
+                    result.set(INTERSECT_STATUS + ": " + intersection.getPointO().toString());
                 } else {
                     result.set(NOT_INTERSECT_STATUS);
                 }
