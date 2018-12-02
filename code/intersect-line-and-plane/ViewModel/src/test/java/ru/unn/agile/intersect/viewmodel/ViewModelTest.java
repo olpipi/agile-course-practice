@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class ViewModelTest {
     private ViewModel viewModel;
@@ -37,6 +38,32 @@ public class ViewModelTest {
         assertEquals("", viewModel.getCoordYSecondLinePoint());
         assertEquals("", viewModel.getCoordZSecondLinePoint());
         assertEquals("", viewModel.getResult());
+    }
+
+    @Test
+    public void viewCoordPropertiesAreInitialized() {
+        assertNotEquals(null, viewModel.getCoordXFirstPlanePointProperty());
+        assertNotEquals(null, viewModel.getCoordYFirstPlanePointProperty());
+        assertNotEquals(null, viewModel.getCoordZFirstPlanePointProperty());
+        assertNotEquals(null, viewModel.getCoordXSecondPlanePointProperty());
+        assertNotEquals(null, viewModel.getCoordYSecondPlanePointProperty());
+        assertNotEquals(null, viewModel.getCoordZSecondPlanePointProperty());
+        assertNotEquals(null, viewModel.getCoordXThirdPlanePointProperty());
+        assertNotEquals(null, viewModel.getCoordYThirdPlanePointProperty());
+        assertNotEquals(null, viewModel.getCoordZThirdPlanePointProperty());
+        assertNotEquals(null, viewModel.getCoordXFirstLinePointProperty());
+        assertNotEquals(null, viewModel.getCoordYFirstLinePointProperty());
+        assertNotEquals(null, viewModel.getCoordZFirstLinePointProperty());
+        assertNotEquals(null, viewModel.getCoordXSecondLinePointProperty());
+        assertNotEquals(null, viewModel.getCoordYSecondLinePointProperty());
+        assertNotEquals(null, viewModel.getCoordZSecondLinePointProperty());
+    }
+
+    @Test
+    public void viewStatusAndResultPropertiesAreInitialized() {
+        assertNotEquals(null, viewModel.getPlaneStatusProperty());
+        assertNotEquals(null, viewModel.getLineStatusProperty());
+        assertNotEquals(null, viewModel.getResultProperty());
     }
 
     @Test
@@ -221,7 +248,7 @@ public class ViewModelTest {
     }
 
     @Test
-    public void canPrintRightStatusForNonIntersection() {
+    public void canPrintRightResultForNonIntersection() {
         viewModel.setCoordXFirstPlanePoint("1.0");
         viewModel.setCoordYFirstPlanePoint("94.0");
         viewModel.setCoordZFirstPlanePoint("0.0");
@@ -243,7 +270,7 @@ public class ViewModelTest {
     }
 
     @Test
-    public void canPrintRightStatusResultForIntersection() {
+    public void canPrintRightResultForIntersection() {
         viewModel.setCoordXFirstPlanePoint("0.0");
         viewModel.setCoordYFirstPlanePoint("1.0");
         viewModel.setCoordZFirstPlanePoint("5.0");
@@ -262,5 +289,27 @@ public class ViewModelTest {
         viewModel.checkLineAndPlaneIntersection();
 
         assertEquals("Intersect: (3.0, 4.0, 2.0)", viewModel.getResult());
+    }
+
+    @Test
+    public void canPrintRightResultForInvalidIntersection() {
+        viewModel.setCoordXFirstPlanePoint("");
+        viewModel.setCoordYFirstPlanePoint("8.0");
+        viewModel.setCoordZFirstPlanePoint("4.0");
+        viewModel.setCoordXSecondPlanePoint("6.0");
+        viewModel.setCoordYSecondPlanePoint("-2.0");
+        viewModel.setCoordZSecondPlanePoint("5.0");
+        viewModel.setCoordXThirdPlanePoint("4.0");
+        viewModel.setCoordYThirdPlanePoint("8.0");
+        viewModel.setCoordZThirdPlanePoint("0.0");
+        viewModel.setCoordXFirstLinePoint("4.0");
+        viewModel.setCoordYFirstLinePoint("-55.0");
+        viewModel.setCoordZFirstLinePoint("1.0");
+        viewModel.setCoordXSecondLinePoint("a");
+        viewModel.setCoordYSecondLinePoint("-2.0");
+        viewModel.setCoordZSecondLinePoint("-15.0");
+        viewModel.checkLineAndPlaneIntersection();
+
+        assertEquals("Input error", viewModel.getResult());
     }
 }

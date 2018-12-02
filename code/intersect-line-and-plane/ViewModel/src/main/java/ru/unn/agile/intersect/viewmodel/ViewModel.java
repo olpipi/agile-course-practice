@@ -341,19 +341,23 @@ public class ViewModel {
     public void checkLineAndPlaneIntersection() {
         Plane plane = createPlane();
         Line line = createLine();
-        try {
-            if (getPlaneStatus().equals(OK_STATUS) && getLineStatus().equals(OK_STATUS)) {
-                LineIntersectPlane intersection = new LineIntersectPlane(plane, line);
-                if (intersection.checkIntersection()) {
-                    result.set(INTERSECT_STATUS + ": " + intersection.getPointO().toString());
+        if (plane != null && line != null) {
+            try {
+                if (getPlaneStatus().equals(OK_STATUS) && getLineStatus().equals(OK_STATUS)) {
+                    LineIntersectPlane intersection = new LineIntersectPlane(plane, line);
+                    if (intersection.checkIntersection()) {
+                        result.set(INTERSECT_STATUS + ": " + intersection.getPointO().toString());
+                    } else {
+                        result.set(NOT_INTERSECT_STATUS);
+                    }
                 } else {
-                    result.set(NOT_INTERSECT_STATUS);
+                    result.set(ERROR_STATUS);
                 }
-            } else {
-                result.set(ERROR_STATUS);
+            } catch (ArithmeticException ex) {
+                lineStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase(Locale.ENGLISH));
             }
-        } catch (ArithmeticException ex) {
-            lineStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase(Locale.ENGLISH));
+        } else {
+            result.set(ERROR_STATUS);
         }
     }
 }
