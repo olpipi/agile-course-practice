@@ -1,4 +1,4 @@
-package ru.unn.agile.matrix.exceptions;
+package ru.unn.agile.matrix.model.exceptions;
 
 public class IncompatibleSizeMatrixException extends RuntimeException {
     public IncompatibleSizeMatrixException() {

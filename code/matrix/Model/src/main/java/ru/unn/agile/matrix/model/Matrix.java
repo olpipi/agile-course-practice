@@ -1,6 +1,6 @@
-package ru.unn.agile.matrix;
+package ru.unn.agile.matrix.model;
 
-import ru.unn.agile.matrix.exceptions.*;
+import ru.unn.agile.matrix.model.exceptions.*;
 
 public class Matrix {
     private int rows;
@@ -95,7 +95,7 @@ public class Matrix {
         return matrixAddition(this, m2, false);
     }
 
-    Matrix multiply(final Matrix m2) {
+    public Matrix multiply(final Matrix m2) {
         if (this.colls != m2.rows) {
             throw new IncompatibleSizeMatrixException();
         }

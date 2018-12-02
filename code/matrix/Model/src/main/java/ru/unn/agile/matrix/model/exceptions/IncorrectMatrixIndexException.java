@@ -1,4 +1,4 @@
-package ru.unn.agile.matrix.exceptions;
+package ru.unn.agile.matrix.model.exceptions;
 
 public class IncorrectMatrixIndexException extends RuntimeException {
     public IncorrectMatrixIndexException() {

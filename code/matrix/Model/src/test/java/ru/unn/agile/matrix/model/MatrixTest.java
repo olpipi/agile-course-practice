@@ -1,7 +1,7 @@
-package ru.unn.agile.matrix;
+package ru.unn.agile.matrix.model;
 
 import org.junit.Test;
-import ru.unn.agile.matrix.exceptions.*;
+import ru.unn.agile.matrix.model.exceptions.*;
 
 import static org.junit.Assert.*;
 
