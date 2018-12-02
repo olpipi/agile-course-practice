@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.property.*;
 
+import javafx.collections.FXCollections;
 import ru.unn.agile.InfixToPostfixNotationConverter.model.InfixToPostfixNotationConverter;
 
 import java.util.Arrays;
@@ -18,6 +19,7 @@ public class ViewModel {
     private final StringProperty status = new SimpleStringProperty();
     private final BooleanProperty convertButtonDisabled = new SimpleBooleanProperty();
     private final ValueChangeListener valueChangeListener = new ValueChangeListener();
+    private final ListProperty<String> logLines = new SimpleListProperty<>();
 
     private ILogger logger;
 
@@ -55,6 +57,10 @@ public class ViewModel {
 
     public BooleanProperty convertButtonDisabledProperty() {
         return convertButtonDisabled;
+    }
+
+    public ListProperty<String> logLinesProperty() {
+        return logLines;
     }
 
     public Status getInputStatus() {
@@ -108,7 +114,12 @@ public class ViewModel {
     private void log(final String message) {
         if (logger != null) {
             logger.log(message);
+            updateLog();
         }
+    }
+
+    private void updateLog() {
+        logLines.setValue(FXCollections.observableArrayList(logger.getMessages()));
     }
 }
 
@@ -126,4 +137,3 @@ enum Status {
         return name;
     }
 }
-
