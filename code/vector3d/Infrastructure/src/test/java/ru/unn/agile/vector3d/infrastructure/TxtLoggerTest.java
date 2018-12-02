@@ -29,43 +29,34 @@ public class TxtLoggerTest {
 
     @Test
     public void canCreateLoggerWithFileName() {
-        // Assert
         assertNotNull(txtLogger);
     }
 
     @Test
     public void canCreateLogFile() {
-        // Act
         File f = new File(FILE_NAME);
 
-        // Assert
         assertTrue(f.exists());
     }
 
     @Test
     public void canWriteLogMessage() {
-        // Arrange
         String message = "This is a test message";
 
-        // Act
         txtLogger.log(message);
 
-        // Assert
         String logMessage = txtLogger.getLog().get(0);
         assertTrue(logMessage.matches(RE_LOG_LINE + message));
     }
 
     @Test
     public void canWriteMultipleMessages() {
-        // Arrange
         String[] messages = {"Test message 1", "Test message 1"};
 
-        // Act
         for (String message : messages) {
             txtLogger.log(message);
         }
 
-        // Assert
         List<String> log = txtLogger.getLog();
         for (int i = 0; i < log.size(); i++) {
             assertTrue(log.get(i).matches(RE_LOG_LINE + messages[i]));
@@ -74,34 +65,26 @@ public class TxtLoggerTest {
 
     @Test
     public void creatingTxtLoggerWithIncorrectFileNameThrowsExc() {
-        // Arrange, Act
         TxtLogger emptyLogger = new TxtLogger("");
 
-        // Assert
         assertEquals(0, emptyLogger.getLog().size());
     }
 
     @Test
     public void writingToTxtLoggerWithIncorrectFileNameThrowsExc() {
-        // Arrange
         TxtLogger emptyLogger = new TxtLogger("");
 
-        // Act
         emptyLogger.log("Message");
 
-        // Assert
         assertEquals(0, emptyLogger.getLog().size());
     }
 
     @Test
     public void readingFromTxtLoggerWithIncorrectFileNameThrowsExc() {
-        // Arrange
         TxtLogger emptyLogger = new TxtLogger("");
 
-        // Act
         List<String> log = emptyLogger.getLog();
 
-        // Assert
         assertEquals(0, log.size());
     }
 }
