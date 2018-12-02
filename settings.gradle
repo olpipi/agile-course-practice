@@ -114,6 +114,8 @@ include "code/infix-to-postfix-notation-converter/View"
 project(":code/infix-to-postfix-notation-converter/View").name = "infix-to-postfix-notation-converter-View"
 include "code/infix-to-postfix-notation-converter/ViewModel"
 project(":code/infix-to-postfix-notation-converter/ViewModel").name = "infix-to-postfix-notation-converter-ViewModel"
+include "code/infix-to-postfix-notation-converter/Infrastructure"
+project(":code/infix-to-postfix-notation-converter/Infrastructure").name = "infix-to-postfix-notation-converter-Infrastructure"
 
 // Huffman
 include "code/huffman/Model"
