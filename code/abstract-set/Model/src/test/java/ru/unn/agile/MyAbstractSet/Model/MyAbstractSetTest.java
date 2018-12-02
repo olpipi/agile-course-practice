@@ -1,4 +1,4 @@
-package ru.unn.agile.myabstractset.model;
+package ru.unn.agile.MyAbstractSet.Model;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

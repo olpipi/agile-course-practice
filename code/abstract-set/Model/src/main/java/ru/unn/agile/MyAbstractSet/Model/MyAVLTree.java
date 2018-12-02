@@ -1,4 +1,4 @@
-package ru.unn.agile.myabstractset.model;
+package ru.unn.agile.MyAbstractSet.Model;
 
 import java.util.List;
 import java.util.ArrayList;

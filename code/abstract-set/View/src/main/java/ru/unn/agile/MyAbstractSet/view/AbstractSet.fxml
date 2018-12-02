@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-background-color 0xfffb99ff?>
+
+<AnchorPane prefHeight="531.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.unn.agile.MyAbstractSet.view.AbstractSet">
+  <children>
+    <Label layoutX="241.0" layoutY="14.0" prefHeight="55.0" prefWidth="219.0" text="Abstract set" textAlignment="CENTER" textFill="#1400ff">
+      <font>
+        <Font name="Harrington" size="40.0" />
+      </font>
+    </Label>
+    <TextArea fx:id="firstSetTextArea" layoutX="34.0" layoutY="126.0" prefHeight="89.99990844726562" prefWidth="273.0000999999975" wrapText="true" />
+    <TextArea id="SecondSetTextArea" fx:id="secondSetTextArea" layoutX="365.0" layoutY="126.0" prefHeight="90.0" prefWidth="274.0" wrapText="true" />
+    <TextArea fx:id="resultTextArea" layoutX="266.0" layoutY="357.0" prefHeight="133.0" prefWidth="373.0" wrapText="true" />
+    <Label layoutX="266.0" layoutY="309.0" prefWidth="113.0" text="Result">
+      <font>
+        <Font name="Arial Bold" size="30.0" />
+      </font>
+    </Label>
+    <Button fx:id="uniteButton" layoutX="147.0" layoutY="357.0" mnemonicParsing="false" text="unite" />
+    <Button fx:id="intersectButton" layoutX="147.0" layoutY="411.0" mnemonicParsing="false" text="intersect" />
+  </children>
+</AnchorPane>

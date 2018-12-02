@@ -1,4 +1,4 @@
-package ru.unn.agile.myabstractset.model;
+package ru.unn.agile.MyAbstractSet.Model;
 
 class Node<T> implements Comparable<Node> {
     private final T key;
