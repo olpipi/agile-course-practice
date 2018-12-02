@@ -4,9 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Locale;
 
 import ru.unn.agile.intersect.model.LineIntersectPlane;
 import ru.unn.agile.intersect.model.objects.*;
@@ -281,78 +280,60 @@ public class ViewModel {
         return result;
     }
 
-    public Map<String, List<String>> createPlaneCoordMap() {
-        Map<String, List<String>> result = new HashMap<String, List<String>>();
+    public void formPlaneCrdList(final List<Double> a, final List<Double> b, final List<Double> c) {
+        a.add(Double.valueOf(getCoordXFirstPlanePoint()));
+        a.add(Double.valueOf(getCoordYFirstPlanePoint()));
+        a.add(Double.valueOf(getCoordZFirstPlanePoint()));
 
-        List<String> coordinatesA = new ArrayList<String>();
-        List<String> coordinatesB = new ArrayList<String>();
-        List<String> coordinatesC = new ArrayList<String>();
+        b.add(Double.valueOf(getCoordXSecondPlanePoint()));
+        b.add(Double.valueOf(getCoordYSecondPlanePoint()));
+        b.add(Double.valueOf(getCoordZSecondPlanePoint()));
 
-        coordinatesA.add(coordXFirstPlanePoint.get());
-        coordinatesA.add(coordYFirstPlanePoint.get());
-        coordinatesA.add(coordZFirstPlanePoint.get());
-
-        coordinatesB.add(coordXSecondPlanePoint.get());
-        coordinatesB.add(coordYSecondPlanePoint.get());
-        coordinatesB.add(coordZSecondPlanePoint.get());
-
-        coordinatesC.add(coordXThirdPlanePoint.get());
-        coordinatesC.add(coordYThirdPlanePoint.get());
-        coordinatesC.add(coordZThirdPlanePoint.get());
-
-        result.put("A", coordinatesA);
-        result.put("B", coordinatesB);
-        result.put("C", coordinatesC);
-
-        return result;
+        c.add(Double.valueOf(getCoordXThirdPlanePoint()));
+        c.add(Double.valueOf(getCoordYThirdPlanePoint()));
+        c.add(Double.valueOf(getCoordZThirdPlanePoint()));
     }
 
-    public Map<String, List<String>> createLineCoordMap() {
-        Map<String, List<String>> result = new HashMap<String, List<String>>();
-        List<String> coordinatesX = new ArrayList<String>();
-        List<String> coordinatesY = new ArrayList<String>();
+    public void formLineCrdList(final List<Double> x, final List<Double> y) {
+        x.add(Double.valueOf(getCoordXFirstLinePoint()));
+        x.add(Double.valueOf(getCoordYFirstLinePoint()));
+        x.add(Double.valueOf(getCoordZFirstLinePoint()));
 
-        coordinatesX.add(coordXFirstLinePoint.get());
-        coordinatesX.add(coordYFirstLinePoint.get());
-        coordinatesX.add(coordZFirstLinePoint.get());
-
-        coordinatesY.add(coordXSecondLinePoint.get());
-        coordinatesY.add(coordYSecondLinePoint.get());
-        coordinatesY.add(coordZSecondLinePoint.get());
-
-        result.put("X", coordinatesX);
-        result.put("Y", coordinatesY);
-
-        return result;
+        y.add(Double.valueOf(getCoordXSecondLinePoint()));
+        y.add(Double.valueOf(getCoordYSecondLinePoint()));
+        y.add(Double.valueOf(getCoordZSecondLinePoint()));
     }
 
     public Plane createPlane() {
-        Map<String, List<String>> planeCoordinates = createPlaneCoordMap();
-        Point pointA, pointB, pointC;
+        List<Double> coordinatesA = new ArrayList<Double>();
+        List<Double> coordinatesB = new ArrayList<Double>();
+        List<Double> coordinatesC = new ArrayList<Double>();
         try {
-            pointA = new Point(Double.valueOf(planeCoordinates.get("A").get(0)), Double.valueOf(planeCoordinates.get("A").get(1)), Double.valueOf(planeCoordinates.get("A").get(2)));
-            pointB = new Point(Double.valueOf(planeCoordinates.get("B").get(0)), Double.valueOf(planeCoordinates.get("B").get(1)), Double.valueOf(planeCoordinates.get("B").get(2)));
-            pointC = new Point(Double.valueOf(planeCoordinates.get("C").get(0)), Double.valueOf(planeCoordinates.get("C").get(1)), Double.valueOf(planeCoordinates.get("C").get(2)));
+            formPlaneCrdList(coordinatesA, coordinatesB, coordinatesC);
+            Point pointA = new Point(coordinatesA.get(0), coordinatesA.get(1), coordinatesA.get(2));
+            Point pointB = new Point(coordinatesB.get(0), coordinatesB.get(1), coordinatesB.get(2));
+            Point pointC = new Point(coordinatesC.get(0), coordinatesC.get(1), coordinatesC.get(2));
             Plane plane = new Plane(pointA, pointB, pointC);
             planeStatus.set(OK_STATUS);
             return plane;
         } catch (NumberFormatException | ArithmeticException ex) {
-            planeStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase());
+            planeStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase(Locale.ENGLISH));
             return null;
         }
     }
 
     public Line createLine() {
-        Map<String, List<String>> lineCoordinates = createLineCoordMap();
-        Point pointX, pointY;
+        List<Double> coordinatesX = new ArrayList<Double>();
+        List<Double> coordinatesY = new ArrayList<Double>();
         try {
-            pointX = new Point(Double.valueOf(lineCoordinates.get("X").get(0)), Double.valueOf(lineCoordinates.get("X").get(1)), Double.valueOf(lineCoordinates.get("X").get(2)));
-            pointY = new Point(Double.valueOf(lineCoordinates.get("Y").get(0)), Double.valueOf(lineCoordinates.get("Y").get(1)), Double.valueOf(lineCoordinates.get("Y").get(2)));
+            formLineCrdList(coordinatesX, coordinatesY);
+            Point pointX = new Point(coordinatesX.get(0), coordinatesX.get(1), coordinatesX.get(2));
+            Point pointY = new Point(coordinatesY.get(0), coordinatesY.get(1), coordinatesY.get(2));
             Line line = new Line(pointX, pointY);
             lineStatus.set(OK_STATUS);
             return line;
         } catch (NumberFormatException | ArithmeticException ex) {
-            lineStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase());
+            lineStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase(Locale.ENGLISH));
             return null;
         }
     }
@@ -372,7 +353,7 @@ public class ViewModel {
                 result.set(ERROR_STATUS);
             }
         } catch (ArithmeticException ex) {
-            lineStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase());
+            lineStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase(Locale.ENGLISH));
         }
     }
 }
