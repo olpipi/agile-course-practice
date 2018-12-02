@@ -166,4 +166,38 @@ public class ViewModelTest {
 
         assertEquals("Input error", viewModel.getLineStatus());
     }
+
+    @Test
+    public void canNotAddInvalidValueForPlaneCoordinates() {
+        viewModel.setCoordXFirstPlanePoint("aa");
+        viewModel.setCoordYFirstPlanePoint("2");
+        viewModel.setCoordZFirstPlanePoint("1");
+
+        viewModel.setCoordXSecondPlanePoint("2");
+        viewModel.setCoordYSecondPlanePoint("1");
+        viewModel.setCoordZSecondPlanePoint("2");
+
+        viewModel.setCoordXThirdPlanePoint("1");
+        viewModel.setCoordYThirdPlanePoint("0");
+        viewModel.setCoordZThirdPlanePoint("1");
+
+        viewModel.createPlane();
+
+        assertEquals("Input error", viewModel.getPlaneStatus());
+    }
+
+    @Test
+    public void canNotAddInvalidValueForLineCoordinates() {
+        viewModel.setCoordXFirstLinePoint("bb");
+        viewModel.setCoordYFirstLinePoint("2");
+        viewModel.setCoordZFirstLinePoint("3");
+
+        viewModel.setCoordXSecondLinePoint("2");
+        viewModel.setCoordYSecondLinePoint("3");
+        viewModel.setCoordZSecondLinePoint("dd");
+
+        viewModel.createLine();
+
+        assertEquals("Input error", viewModel.getLineStatus());
+    }
 }
