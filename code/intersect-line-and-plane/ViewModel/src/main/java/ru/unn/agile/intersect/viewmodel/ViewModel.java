@@ -333,8 +333,8 @@ public class ViewModel {
             pointC = new Point(Double.valueOf(planeCoordinates.get("C").get(0)), Double.valueOf(planeCoordinates.get("C").get(1)), Double.valueOf(planeCoordinates.get("C").get(2)));
             Plane plane = new Plane(pointA, pointB, pointC);
             planeStatus.set(OK_STATUS);
-        } catch (NumberFormatException ex) {
-            planeStatus.set(ERROR_STATUS);
+        } catch (NumberFormatException | ArithmeticException ex) {
+            planeStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase());
         }
     }
 
@@ -347,8 +347,8 @@ public class ViewModel {
             pointY = new Point(Double.valueOf(lineCoordinates.get("Y").get(0)), Double.valueOf(lineCoordinates.get("Y").get(1)), Double.valueOf(lineCoordinates.get("Y").get(2)));
             Line line = new Line(pointX, pointY);
             lineStatus.set(OK_STATUS);
-        } catch (NumberFormatException ex) {
-            lineStatus.set(ERROR_STATUS);
+        } catch (NumberFormatException | ArithmeticException ex) {
+            lineStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase());
         }
     }
 }

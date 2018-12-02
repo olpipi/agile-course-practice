@@ -149,7 +149,7 @@ public class ViewModelTest {
 
         viewModel.createPlane();
 
-        assertEquals("Input error", viewModel.getPlaneStatus());
+        assertEquals("Input error: empty string", viewModel.getPlaneStatus());
     }
 
     @Test
@@ -164,7 +164,7 @@ public class ViewModelTest {
 
         viewModel.createLine();
 
-        assertEquals("Input error", viewModel.getLineStatus());
+        assertEquals("Input error: empty string", viewModel.getLineStatus());
     }
 
     @Test
@@ -183,7 +183,7 @@ public class ViewModelTest {
 
         viewModel.createPlane();
 
-        assertEquals("Input error", viewModel.getPlaneStatus());
+        assertEquals("Input error: for input string: \"aa\"", viewModel.getPlaneStatus());
     }
 
     @Test
@@ -198,6 +198,40 @@ public class ViewModelTest {
 
         viewModel.createLine();
 
-        assertEquals("Input error", viewModel.getLineStatus());
+        assertEquals("Input error: for input string: \"bb\"", viewModel.getLineStatus());
+    }
+
+    @Test
+    public void canNotAddIdenticalPointCoordinatesForPlane() {
+        viewModel.setCoordXFirstPlanePoint("1");
+        viewModel.setCoordYFirstPlanePoint("2");
+        viewModel.setCoordZFirstPlanePoint("3");
+
+        viewModel.setCoordXSecondPlanePoint("1");
+        viewModel.setCoordYSecondPlanePoint("2");
+        viewModel.setCoordZSecondPlanePoint("3");
+
+        viewModel.setCoordXThirdPlanePoint("1");
+        viewModel.setCoordYThirdPlanePoint("2");
+        viewModel.setCoordZThirdPlanePoint("3");
+
+        viewModel.createPlane();
+
+        assertEquals("Input error: points must not have identical coordinates", viewModel.getPlaneStatus());
+    }
+
+    @Test
+    public void canNotAddIdenticalPointCoordinatesForLine() {
+        viewModel.setCoordXFirstLinePoint("1");
+        viewModel.setCoordYFirstLinePoint("2");
+        viewModel.setCoordZFirstLinePoint("3");
+
+        viewModel.setCoordXSecondLinePoint("1");
+        viewModel.setCoordYSecondLinePoint("2");
+        viewModel.setCoordZSecondLinePoint("3");
+
+        viewModel.createLine();
+
+        assertEquals("Input error: points must not have identical coordinates", viewModel.getLineStatus());
     }
 }

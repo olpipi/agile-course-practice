@@ -4,9 +4,13 @@ public final class Plane {
     private Point pointA, pointB, pointC;
 
     public Plane(final Point pointA1, final Point pointB1, final Point pointC1) {
-        this.pointA = pointA1;
-        this.pointB = pointB1;
-        this.pointC = pointC1;
+        if(pointA1.createVector(pointB1) != null && pointA1.createVector(pointC1) != null && pointB1.createVector(pointC1) != null) {
+            this.pointA = pointA1;
+            this.pointB = pointB1;
+            this.pointC = pointC1;
+        } else {
+            throw new ArithmeticException("Points must not have identical coordinates");
+        }
     }
 
     public Point getA() {
