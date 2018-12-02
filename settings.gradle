@@ -138,6 +138,8 @@ include "code/vector3d/ViewModel"
 project(":code/vector3d/ViewModel").name = "vector3d-ViewModel"
 include "code/vector3d/View"
 project(":code/vector3d/View").name = "vector3d-View"
+include "code/vector3d/Infrastructure"
+project(":code/vector3d/Infrastructure").name = "vector3d-Infrastructure"
 
 // string-calculator
 include "code/string-calculator/Model"
