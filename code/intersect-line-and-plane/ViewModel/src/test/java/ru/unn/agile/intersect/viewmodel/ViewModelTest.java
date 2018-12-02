@@ -4,6 +4,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 public class ViewModelTest {
@@ -92,6 +95,42 @@ public class ViewModelTest {
 
     @Test
     public void canSetDefaultStatus() {
-        assertEquals("Waiting for input", viewModel.getStatus());
+        assertEquals("Waiting for input", viewModel.getPlaneStatus());
+        assertEquals("Waiting for input", viewModel.getLineStatus());
     }
+
+    @Test
+    public void canCreatePlane() {
+        viewModel.setCoordXFirstPlanePoint("1");
+        viewModel.setCoordYFirstPlanePoint("2");
+        viewModel.setCoordZFirstPlanePoint("1");
+
+        viewModel.setCoordXSecondPlanePoint("2");
+        viewModel.setCoordYSecondPlanePoint("1");
+        viewModel.setCoordZSecondPlanePoint("2");
+
+        viewModel.setCoordXThirdPlanePoint("3");
+        viewModel.setCoordYThirdPlanePoint("0");
+        viewModel.setCoordZThirdPlanePoint("1");
+
+        viewModel.createPlane();
+
+        assertEquals("Correct input", viewModel.getPlaneStatus());
+    }
+
+    @Test
+    public void canCreateLine() {
+        viewModel.setCoordXFirstLinePoint("1");
+        viewModel.setCoordYFirstLinePoint("2");
+        viewModel.setCoordZFirstLinePoint("3");
+
+        viewModel.setCoordXSecondLinePoint("2");
+        viewModel.setCoordYSecondLinePoint("3");
+        viewModel.setCoordZSecondLinePoint("4");
+
+        viewModel.createLine();
+
+        assertEquals("Correct input", viewModel.getLineStatus());
+    }
+
 }

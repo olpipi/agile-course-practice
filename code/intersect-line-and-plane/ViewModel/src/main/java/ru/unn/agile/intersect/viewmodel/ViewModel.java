@@ -3,10 +3,17 @@ package ru.unn.agile.intersect.viewmodel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import ru.unn.agile.intersect.model.LineIntersectPlane;
+import ru.unn.agile.intersect.model.objects.*;
 
 public class ViewModel {
     private static final String WAITING_STATUS = "Waiting for input";
+    private static final String OK_STATUS = "Correct input";
 
     private StringProperty coordXFirstPlanePoint = new SimpleStringProperty();
     private StringProperty coordYFirstPlanePoint = new SimpleStringProperty();
@@ -28,12 +35,13 @@ public class ViewModel {
     private StringProperty coordYSecondLinePoint = new SimpleStringProperty();
     private StringProperty coordZSecondLinePoint = new SimpleStringProperty();
 
-    private StringProperty status = new SimpleStringProperty();
+    private StringProperty planeStatus = new SimpleStringProperty();
+    private StringProperty lineStatus = new SimpleStringProperty();
     private StringProperty result = new SimpleStringProperty();
 
     public ViewModel() {
         initCoordinatesAndResult();
-        initStatus();
+        initStatuses();
     }
 
     private void initCoordinatesAndResult() {
@@ -60,8 +68,9 @@ public class ViewModel {
         result.set("");
     }
 
-    private void initStatus() {
-        status.set(WAITING_STATUS);
+    private void initStatuses() {
+        planeStatus.set(WAITING_STATUS);
+        lineStatus.set(WAITING_STATUS);
     }
 
     public void setCoordXFirstPlanePoint(String coordXFirstPlanePoint) {
@@ -184,8 +193,12 @@ public class ViewModel {
         return coordZSecondLinePoint.get();
     }
 
-    public String getStatus() {
-        return status.get();
+    public String getPlaneStatus() {
+        return planeStatus.get();
+    }
+
+    public String getLineStatus() {
+        return lineStatus.get();
     }
 
     public String getResult() {
@@ -252,11 +265,90 @@ public class ViewModel {
         return coordZSecondLinePoint;
     }
 
-    public StringProperty getStatusProperty() {
-        return status;
+    public StringProperty getPlaneStatusProperty() {
+        return planeStatus;
+    }
+
+    public StringProperty getLineStatusProperty() {
+        return lineStatus;
     }
 
     public StringProperty getResultProperty() {
         return result;
+    }
+
+    public Map<String, List<Double>> createPlaneCoordMap() {
+        Map<String, List<Double>> result = new HashMap<String, List<Double>>();
+
+        List<Double> coordinatesA = new ArrayList<Double>();
+        List<Double> coordinatesB = new ArrayList<Double>();
+        List<Double> coordinatesC = new ArrayList<Double>();
+
+        coordinatesA.add(Double.valueOf(coordXFirstPlanePoint.get()));
+        coordinatesA.add(Double.valueOf(coordYFirstPlanePoint.get()));
+        coordinatesA.add(Double.valueOf(coordZFirstPlanePoint.get()));
+
+        coordinatesB.add(Double.valueOf(coordXSecondPlanePoint.get()));
+        coordinatesB.add(Double.valueOf(coordYSecondPlanePoint.get()));
+        coordinatesB.add(Double.valueOf(coordZSecondPlanePoint.get()));
+
+        coordinatesC.add(Double.valueOf(coordXThirdPlanePoint.get()));
+        coordinatesC.add(Double.valueOf(coordYThirdPlanePoint.get()));
+        coordinatesC.add(Double.valueOf(coordZThirdPlanePoint.get()));
+
+        result.put("A", coordinatesA);
+        result.put("B", coordinatesB);
+        result.put("C", coordinatesC);
+
+        return result;
+    }
+
+    public Map<String, List<Double>> createLineCoordMap() {
+        Map<String, List<Double>> result = new HashMap<String, List<Double>>();
+
+        List<Double> coordinatesX = new ArrayList<Double>();
+        List<Double> coordinatesY = new ArrayList<Double>();
+
+        coordinatesX.add(Double.valueOf(coordXFirstLinePoint.get()));
+        coordinatesX.add(Double.valueOf(coordYFirstLinePoint.get()));
+        coordinatesX.add(Double.valueOf(coordZFirstLinePoint.get()));
+
+        coordinatesY.add(Double.valueOf(coordXSecondLinePoint.get()));
+        coordinatesY.add(Double.valueOf(coordYSecondLinePoint.get()));
+        coordinatesY.add(Double.valueOf(coordZSecondLinePoint.get()));
+
+        result.put("X", coordinatesX);
+        result.put("Y", coordinatesY);
+
+        return result;
+    }
+
+    public Plane createPlane() {
+        Map<String, List<Double>> planeCoordinates = createPlaneCoordMap();
+
+        Point pointA = new Point(planeCoordinates.get("A").get(0), planeCoordinates.get("A").get(1), planeCoordinates.get("A").get(2));
+        Point pointB = new Point(planeCoordinates.get("B").get(0), planeCoordinates.get("B").get(1), planeCoordinates.get("B").get(2));
+        Point pointC = new Point(planeCoordinates.get("C").get(0), planeCoordinates.get("C").get(1), planeCoordinates.get("C").get(2));
+
+        Plane plane = new Plane(pointA, pointB, pointC);
+        if (plane != null) {
+            planeStatus.set(OK_STATUS);
+        }
+
+        return new Plane(pointA, pointB, pointC);
+    }
+
+    public Line createLine() {
+        Map<String, List<Double>> lineCoordinates = createLineCoordMap();
+
+        Point pointX = new Point(lineCoordinates.get("X").get(0), lineCoordinates.get("X").get(1), lineCoordinates.get("X").get(2));
+        Point pointY = new Point(lineCoordinates.get("Y").get(0), lineCoordinates.get("Y").get(1), lineCoordinates.get("Y").get(2));
+
+        Line line = new Line(pointX, pointY);
+        if (line != null) {
+            lineStatus.set(OK_STATUS);
+        }
+
+        return line;
     }
 }
