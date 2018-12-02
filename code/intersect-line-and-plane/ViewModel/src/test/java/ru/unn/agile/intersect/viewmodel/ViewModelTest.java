@@ -89,4 +89,9 @@ public class ViewModelTest {
         assertEquals("0", viewModel.getCoordYSecondLinePoint());
         assertEquals("0", viewModel.getCoordZSecondLinePoint());
     }
+
+    @Test
+    public void canSetDefaultStatus() {
+        assertEquals("Waiting for input", viewModel.getStatus());
+    }
 }

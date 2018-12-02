@@ -6,6 +6,8 @@ import javafx.beans.property.StringProperty;
 import ru.unn.agile.intersect.model.LineIntersectPlane;
 
 public class ViewModel {
+    private static final String WAITING_STATUS = "Waiting for input";
+
     private StringProperty coordXFirstPlanePoint = new SimpleStringProperty();
     private StringProperty coordYFirstPlanePoint = new SimpleStringProperty();
     private StringProperty coordZFirstPlanePoint = new SimpleStringProperty();
@@ -26,13 +28,15 @@ public class ViewModel {
     private StringProperty coordYSecondLinePoint = new SimpleStringProperty();
     private StringProperty coordZSecondLinePoint = new SimpleStringProperty();
 
+    private StringProperty status = new SimpleStringProperty();
     private StringProperty result = new SimpleStringProperty();
 
     public ViewModel() {
-        init();
+        initCoordinatesAndResult();
+        initStatus();
     }
 
-    private void init() {
+    private void initCoordinatesAndResult() {
         coordXFirstPlanePoint.set("");
         coordYFirstPlanePoint.set("");
         coordZFirstPlanePoint.set("");
@@ -54,6 +58,10 @@ public class ViewModel {
         coordZSecondLinePoint.set("");
 
         result.set("");
+    }
+
+    private void initStatus() {
+        status.set(WAITING_STATUS);
     }
 
     public void setCoordXFirstPlanePoint(String coordXFirstPlanePoint) {
@@ -176,6 +184,10 @@ public class ViewModel {
         return coordZSecondLinePoint.get();
     }
 
+    public String getStatus() {
+        return status.get();
+    }
+
     public String getResult() {
         return result.get();
     }
@@ -238,6 +250,10 @@ public class ViewModel {
 
     public StringProperty getCoordZSecondLinePointProperty() {
         return coordZSecondLinePoint;
+    }
+
+    public StringProperty getStatusProperty() {
+        return status;
     }
 
     public StringProperty getResultProperty() {
