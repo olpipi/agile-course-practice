@@ -469,6 +469,15 @@ public class ViewModelTest {
         assertNull(status);
     }
 
+    @Test
+    public void canCreateLogMessage() {
+        // Arrange, Act
+        ViewModel.LogMessages logMsg = new ViewModel.LogMessages();
+
+        // Assert
+        assertNotNull(logMsg);
+    }
+
     private void setInputData() {
         viewModel.vectorXProperty().set("3.1");
         viewModel.vectorYProperty().set("-3.9");
