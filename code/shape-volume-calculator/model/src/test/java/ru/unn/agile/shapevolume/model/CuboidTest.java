@@ -1,10 +1,9 @@
-package ru.unn.agile.shapevolume;
+package ru.unn.agile.shapevolume.model;
 
 import org.junit.Test;
-import ru.unn.agile.shapevolume.model.Cuboid;
 
 import static org.junit.Assert.assertEquals;
-import static ru.unn.agile.shapevolume.TestConstants.EPSILON;
+import static ru.unn.agile.shapevolume.model.TestConstants.EPSILON;
 
 public class CuboidTest {
 

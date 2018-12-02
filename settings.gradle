@@ -224,8 +224,8 @@ include "code/frac-calc/View"
 project(":code/frac-calc/View").name = "frac-calc-View"
 
 // 3D shapes volume
-include "code/shape-volume-calculator"
-project(":code/shape-volume-calculator").name = "shape-volume-calculator"
+include "code/shape-volume-calculator/Model"
+project(":code/shape-volume-calculator/Model").name = "shape-volume-calculator-Model"
 
 // Rumiantseva Maria, Quadratic Equation Solver
 include "code/quadratic-equation-solver/Model"
