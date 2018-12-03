@@ -36,13 +36,13 @@ project(":code/dijkstra/model").name = "dijkstra-Model"
 include "code/dijkstra/viewModel"
 project(":code/dijkstra/viewModel").name = "dijkstra-ViewModel"
 include "code/dijkstra/view"
-project(":code/dijkstra/view").name = "dijkstra-View"
+project(":code/dijkstra/view").name = "dijkstra-view"
 
 // Ivanova Olga, lab1
 include "code/prime-number/model"
 project(":code/prime-number/model").name = "prime-number-Model"
 include "code/prime-number/view"
-project(":code/prime-number/view").name = "prime-number-View"
+project(":code/prime-number/view").name = "prime-number-view"
 include "code/prime-number/ViewModel"
 project(":code/prime-number/ViewModel").name = "prime-number-ViewModel"
 
@@ -157,7 +157,7 @@ project(":code/roman-number-converter/model").name = "roman-number-converter-Mod
 include "code/roman-number-converter/viewModel"
 project(":code/roman-number-converter/viewModel").name = "roman-number-converter-ViewModel"
 include "code/roman-number-converter/view"
-project(":code/roman-number-converter/view").name = "roman-number-converter-View"
+project(":code/roman-number-converter/view").name = "roman-number-converter-view"
 
 // Metelev Evgenii
 include "code/metelev-evgenii-mortgage-calculator"
@@ -174,8 +174,8 @@ project(":code/osechkin-deposit-calculator").name = "osechkin-deposit-calculator
 // Three dimensional shapes area calculation
 include "code/shape-3d-area/model"
 project(":code/shape-3d-area/model").name = "shape-3d-area-model"
-include "code/shape-3d-area/view-model"
-project(":code/shape-3d-area/view-model").name = "shape-3d-area-view-model"
+include "code/shape-3d-area/View-model"
+project(":code/shape-3d-area/View-model").name = "shape-3d-area-View-model"
 include "code/shape-3d-area/view"
 project(":code/shape-3d-area/view").name = "shape-3d-area-view"
 
@@ -267,9 +267,13 @@ project(":code/segments2d-intersection/ViewModel").name = "segments2d-intersecti
 include "code/segments2d-intersection/View"
 project(":code/segments2d-intersection/View").name = "segments2d-intersection-View"
 
-// Mitrokhina Julia, Harry Potter Books
-include "code/mitrokhina-julia-harrypotter"
-project(":code/mitrokhina-julia-harrypotter").name = "mitrokhina-julia-harrypotter-Model"
+// Harry Potter Book Store
+include "code/book-store/Model"
+project(":code/book-store/Model").name = "book-store-Model"
+include "code/book-store/View"
+project(":code/book-store/View").name = "book-store-View"
+include "code/book-store/ViewModel"
+project(":code/book-store/ViewModel").name = "book-store-ViewModel"
 
 // Conway Game of Life
 include "code/conway-game/View"
