@@ -45,16 +45,16 @@ public class ViewModel {
 
 
     public ViewModel() {
-        firstArgumentName.set(CUBE_FIRST_SIDE);
-        secondArgumentName.set(CUBE_SECOND_SIDE);
-        thirdArgumentName.set(CUBE_THIRD_SIDE);
+        firstArgumentName.set(DEFAULT_VALUE);
+        secondArgumentName.set(DEFAULT_VALUE);
+        thirdArgumentName.set(DEFAULT_VALUE);
 
-        currentShape.set(Shape.CUBE);
+        currentShape.set(Shape.UNKNOWN);
         firstArgumentValue.set(DEFAULT_VALUE);
         secondArgumentValue.set(DEFAULT_VALUE);
         thirdArgumentValue.set(DEFAULT_VALUE);
 
-        result.set(WAITING);
+        result.set(INVALID_ARGUMENTS);
 
         currentShape.addListener((ObservableValue<? extends Shape> observable,
                                   Shape oldValue, Shape newValue) -> {

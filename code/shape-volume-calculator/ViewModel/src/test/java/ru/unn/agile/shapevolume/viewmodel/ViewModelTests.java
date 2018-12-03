@@ -24,10 +24,10 @@ public class ViewModelTests {
         assertEquals(ViewModel.DEFAULT_VALUE, viewModel.secondArgumentValueProperty().get());
         assertEquals(ViewModel.DEFAULT_VALUE, viewModel.thirdArgumentValueProperty().get());
 
-        assertEquals(Shape.CUBE, viewModel.currentShapeProperty().get());
-        assertEquals(ViewModel.CUBE_FIRST_SIDE, viewModel.getFirstArgumentName());
-        assertEquals(ViewModel.CUBE_SECOND_SIDE, viewModel.getSecondArgumentName());
-        assertEquals(ViewModel.CUBE_THIRD_SIDE, viewModel.getThirdArgumentName());
+        assertEquals(Shape.UNKNOWN, viewModel.currentShapeProperty().get());
+        assertEquals(ViewModel.DEFAULT_VALUE, viewModel.getFirstArgumentName());
+        assertEquals(ViewModel.DEFAULT_VALUE, viewModel.getSecondArgumentName());
+        assertEquals(ViewModel.DEFAULT_VALUE, viewModel.getThirdArgumentName());
     }
 
     @Test
@@ -147,5 +147,51 @@ public class ViewModelTests {
         viewModel.secondArgumentValueProperty().set("2");
         viewModel.thirdArgumentValueProperty().set("3");
         assertEquals(ViewModel.INVALID_ARGUMENTS, viewModel.getResult());
+    }
+
+    @Test
+    public void checkSwitchShapes() {
+        viewModel.currentShapeProperty().set(Shape.REGULAR_POLYGON_PRISM);
+        viewModel.currentShapeProperty().set(Shape.CUBE);
+    }
+
+    @Test
+    public void checkUnknownShapes() {
+        viewModel.currentShapeProperty().set(Shape.UNKNOWN);
+    }
+
+    @Test
+    public void canGetShapesProperty() {
+        viewModel.shapesProperty();
+    }
+
+    @Test
+    public void canGetResultProperty() {
+        viewModel.resultProperty();
+    }
+
+    @Test
+    public void canGetShapes() {
+        viewModel.getShapes();
+    }
+
+    @Test
+    public void canGetFirstArgumentNameProperty() {
+        viewModel.getFirstArgumentName();
+    }
+
+    @Test
+    public void canGetSecondArgumentNameProperty() {
+        viewModel.getSecondArgumentName();
+    }
+
+    @Test
+    public void canGetThirdArgumentNameProperty() {
+        viewModel.getThirdArgumentName();
+    }
+
+    @Test
+    public void checkShapeToString() {
+        assertEquals("Куб", Shape.CUBE.toString());
     }
 }
