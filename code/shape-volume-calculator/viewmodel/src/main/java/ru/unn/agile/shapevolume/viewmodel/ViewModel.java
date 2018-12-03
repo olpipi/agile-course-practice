@@ -1,5 +1,7 @@
 package ru.unn.agile.shapevolume.viewmodel;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import ru.unn.agile.shapevolume.model.Cuboid;
 
 import javafx.beans.property.ObjectProperty;
@@ -12,21 +14,6 @@ import ru.unn.agile.shapevolume.model.RegularPolygonPrism;
 import java.util.Arrays;
 import java.util.List;
 
-
-enum Shapes {
-    CUBE("Куб"),
-    REGULAR_POLYGON_PRISM("Правильная призма");
-
-    private final String name;
-    Shapes(final String name) {
-        this.name = name;
-    }
-    public String toString() {
-        return name;
-    }
-}
-
-
 public class ViewModel {
     private final StringProperty firstArgumentName = new SimpleStringProperty();
     private final StringProperty secondArgumentName = new SimpleStringProperty();
@@ -36,8 +23,11 @@ public class ViewModel {
     private final StringProperty secondArgumentValue = new SimpleStringProperty();
     private final StringProperty thirdArgumentValue = new SimpleStringProperty();
 
-    private final ObjectProperty<Shapes> currentShape = new SimpleObjectProperty<>();
+    private final ObjectProperty<Shape> currentShape = new SimpleObjectProperty<>();
     private final StringProperty result = new SimpleStringProperty();
+
+    private final ObjectProperty<ObservableList<Shape>> shapes =
+            new SimpleObjectProperty<>(FXCollections.observableArrayList(Shape.values()));
 
     public static final String CUBE_FIRST_SIDE = "a";
     public static final String CUBE_SECOND_SIDE = "b";
@@ -58,15 +48,15 @@ public class ViewModel {
         secondArgumentName.set(CUBE_SECOND_SIDE);
         thirdArgumentName.set(CUBE_THIRD_SIDE);
 
-        currentShape.set(Shapes.CUBE);
+        currentShape.set(Shape.CUBE);
         firstArgumentValue.set(DEFAULT_VALUE);
         secondArgumentValue.set(DEFAULT_VALUE);
         thirdArgumentValue.set(DEFAULT_VALUE);
 
         result.set(WAITING);
 
-        currentShape.addListener((ObservableValue<? extends Shapes> observable,
-                                  Shapes oldValue, Shapes newValue) -> {
+        currentShape.addListener((ObservableValue<? extends Shape> observable,
+                                  Shape oldValue, Shape newValue) -> {
             if (!oldValue.equals(newValue)) {
                 switch (newValue) {
                     case CUBE:
@@ -86,6 +76,7 @@ public class ViewModel {
                         result.set(INVALID_ARGUMENTS);
                         break;
                 }
+                calculate();
             }
         });
 
@@ -95,70 +86,71 @@ public class ViewModel {
             argument.addListener((ObservableValue<? extends String> observable,
                                String oldValue, String newValue) -> {
                 if (!oldValue.equals(newValue)) {
-                    String firstArgumentString = firstArgumentValue.get();
-                    String secondArgumentString = secondArgumentValue.get();
-                    String thirdArgumentString = thirdArgumentValue.get();
-                    if ("".equals(firstArgumentString) || "".equals(secondArgumentString)
-                            || "".equals(thirdArgumentString)) {
-                        result.set(WAITING);
-                        return;
-                    }
-
-                    int first, second, third;
-                    try {
-                        first = Integer.parseInt(firstArgumentString);
-                        second = Integer.parseInt(secondArgumentString);
-                        third = Integer.parseInt(thirdArgumentString);
-                    } catch (NumberFormatException nfe) {
-                        result.set(INVALID_ARGUMENTS);
-                        return;
-                    }
-
-                    if ((first < 0) || (second < 0) || (third < 0)) {
-                        result.set(INVALID_ARGUMENTS);
-                        return;
-                    }
-
-                    double volume;
-                    switch (currentShape.get()) {
-                        case CUBE:
-                            volume = new Cuboid(first, second, third).getVolume();
-                            break;
-                        case REGULAR_POLYGON_PRISM:
-                            volume = new RegularPolygonPrism(first, second, third).getVolume();
-                            break;
-                        default:
-                            result.set(INVALID_ARGUMENTS);
-                            return;
-                    }
-                    result.set(String.format("%.3f", volume));
+                    calculate();
                 }
             });
         }
     }
 
-    public StringProperty firstArgumentNameProperty() {
-        return firstArgumentName;
+    private void calculate() {
+        String firstArgumentString = firstArgumentValue.get();
+        String secondArgumentString = secondArgumentValue.get();
+        String thirdArgumentString = thirdArgumentValue.get();
+        if ("".equals(firstArgumentString) || "".equals(secondArgumentString)
+                || "".equals(thirdArgumentString)) {
+            result.set(WAITING);
+            return;
+        }
+
+        int first, second, third;
+        try {
+            first = Integer.parseInt(firstArgumentString);
+            second = Integer.parseInt(secondArgumentString);
+            third = Integer.parseInt(thirdArgumentString);
+        } catch (NumberFormatException nfe) {
+            result.set(INVALID_ARGUMENTS);
+            return;
+        }
+
+
+        try {
+            double volume;
+            switch (currentShape.get()) {
+                case CUBE:
+                    volume = new Cuboid(first, second, third).getVolume();
+                    break;
+                case REGULAR_POLYGON_PRISM:
+                    volume = new RegularPolygonPrism(first, second, third).getVolume();
+                    break;
+                default:
+                    result.set(INVALID_ARGUMENTS);
+                    return;
+            }
+            result.set(String.format("%.3f", volume));
+        } catch (Exception ex) {
+            result.set(INVALID_ARGUMENTS);
+        }
     }
-    public StringProperty secondArgumentNameProperty() {
-        return secondArgumentName;
+
+    public StringProperty firstArgumentValueProperty() { return firstArgumentValue; }
+    public StringProperty secondArgumentValueProperty() { return secondArgumentValue; }
+    public StringProperty thirdArgumentValueProperty() { return thirdArgumentValue; }
+
+    public StringProperty firstArgumentNameProperty() { return firstArgumentName; }
+    public StringProperty secondArgumentNameProperty() { return secondArgumentName; }
+    public StringProperty thirdArgumentNameProperty() { return thirdArgumentName; }
+    public String getFirstArgumentName() { return firstArgumentName.get(); }
+    public String getSecondArgumentName() { return secondArgumentName.get(); }
+    public String getThirdArgumentName() { return thirdArgumentName.get(); }
+
+    public ObjectProperty<Shape> currentShapeProperty() { return currentShape; }
+
+    public ObjectProperty<ObservableList<Shape>> shapesProperty() {
+        return shapes;
     }
-    public StringProperty thirdArgumentNameProperty() {
-        return thirdArgumentName;
-    }
-    public StringProperty firstArgumentValueProperty() {
-        return firstArgumentValue;
-    }
-    public StringProperty secondArgumentValueProperty() {
-        return secondArgumentValue;
-    }
-    public StringProperty thirdArgumentValueProperty() {
-        return thirdArgumentValue;
-    }
-    public ObjectProperty<Shapes> currentShapeProperty() {
-        return currentShape;
-    }
-    public StringProperty resultProperty() {
-        return result;
-    }
+    public final ObservableList<Shape> getShapes() { return shapes.get(); }
+
+    public StringProperty resultProperty() { return result; }
+    public String getResult() { return result.get(); }
 }
+
