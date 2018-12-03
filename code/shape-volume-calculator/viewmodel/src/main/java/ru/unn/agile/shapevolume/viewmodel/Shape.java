@@ -5,6 +5,10 @@ public enum Shape {
     REGULAR_POLYGON_PRISM("Правильная призма");
 
     private final String name;
-    Shape(final String name) { this.name = name; }
-    public String toString() { return name; }
+    Shape(final String name) {
+        this.name = name;
+    }
+    public String toString() {
+        return name;
+    }
 }

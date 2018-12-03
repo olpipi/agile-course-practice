@@ -132,25 +132,51 @@ public class ViewModel {
         }
     }
 
-    public StringProperty firstArgumentValueProperty() { return firstArgumentValue; }
-    public StringProperty secondArgumentValueProperty() { return secondArgumentValue; }
-    public StringProperty thirdArgumentValueProperty() { return thirdArgumentValue; }
+    public StringProperty firstArgumentValueProperty() {
+        return firstArgumentValue;
+    }
+    public StringProperty secondArgumentValueProperty() {
+        return secondArgumentValue;
+    }
+    public StringProperty thirdArgumentValueProperty() {
+        return thirdArgumentValue;
+    }
 
-    public StringProperty firstArgumentNameProperty() { return firstArgumentName; }
-    public StringProperty secondArgumentNameProperty() { return secondArgumentName; }
-    public StringProperty thirdArgumentNameProperty() { return thirdArgumentName; }
-    public String getFirstArgumentName() { return firstArgumentName.get(); }
-    public String getSecondArgumentName() { return secondArgumentName.get(); }
-    public String getThirdArgumentName() { return thirdArgumentName.get(); }
+    public StringProperty firstArgumentNameProperty() {
+        return firstArgumentName;
+    }
+    public StringProperty secondArgumentNameProperty() {
+        return secondArgumentName;
+    }
+    public StringProperty thirdArgumentNameProperty() {
+        return thirdArgumentName;
+    }
+    public String getFirstArgumentName() {
+        return firstArgumentName.get();
+    }
+    public String getSecondArgumentName() {
+        return secondArgumentName.get();
+    }
+    public String getThirdArgumentName() {
+        return thirdArgumentName.get();
+    }
 
-    public ObjectProperty<Shape> currentShapeProperty() { return currentShape; }
+    public ObjectProperty<Shape> currentShapeProperty() {
+        return currentShape;
+    }
 
     public ObjectProperty<ObservableList<Shape>> shapesProperty() {
         return shapes;
     }
-    public final ObservableList<Shape> getShapes() { return shapes.get(); }
+    public final ObservableList<Shape> getShapes() {
+        return shapes.get();
+    }
 
-    public StringProperty resultProperty() { return result; }
-    public String getResult() { return result.get(); }
+    public StringProperty resultProperty() {
+        return result;
+    }
+    public String getResult() {
+        return result.get();
+    }
 }
 
