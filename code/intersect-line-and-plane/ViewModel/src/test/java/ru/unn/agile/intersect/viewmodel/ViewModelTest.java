@@ -272,23 +272,23 @@ public class ViewModelTest {
     @Test
     public void canPrintRightResultForIntersection() {
         viewModel.setCoordXFirstPlanePoint("0.0");
-        viewModel.setCoordYFirstPlanePoint("1.0");
-        viewModel.setCoordZFirstPlanePoint("5.0");
-        viewModel.setCoordXSecondPlanePoint("2.0");
+        viewModel.setCoordYFirstPlanePoint("2.0");
+        viewModel.setCoordZFirstPlanePoint("-1.0");
+        viewModel.setCoordXSecondPlanePoint("3.0");
         viewModel.setCoordYSecondPlanePoint("0.0");
-        viewModel.setCoordZSecondPlanePoint("0.0");
+        viewModel.setCoordZSecondPlanePoint("6.0");
         viewModel.setCoordXThirdPlanePoint("1.0");
-        viewModel.setCoordYThirdPlanePoint("1.0");
-        viewModel.setCoordZThirdPlanePoint("3.0");
-        viewModel.setCoordXFirstLinePoint("13.0");
-        viewModel.setCoordYFirstLinePoint("9.0");
-        viewModel.setCoordZFirstLinePoint("17.0");
-        viewModel.setCoordXSecondLinePoint("0.0");
-        viewModel.setCoordYSecondLinePoint("2.5");
-        viewModel.setCoordZSecondLinePoint("-2.5");
+        viewModel.setCoordYThirdPlanePoint("2.0");
+        viewModel.setCoordZThirdPlanePoint("0.0");
+        viewModel.setCoordXFirstLinePoint("-3.0");
+        viewModel.setCoordYFirstLinePoint("0.0");
+        viewModel.setCoordZFirstLinePoint("-2.0");
+        viewModel.setCoordXSecondLinePoint("-4.0");
+        viewModel.setCoordYSecondLinePoint("-3.0");
+        viewModel.setCoordZSecondLinePoint("1.0");
         viewModel.checkLineAndPlaneIntersection();
 
-        assertEquals("Intersect: (3,00; 4,00; 2,00)", viewModel.getResult());
+        assertEquals("Intersect: (-2,00; 3,00; -5,00)", viewModel.getResult());
     }
 
     @Test

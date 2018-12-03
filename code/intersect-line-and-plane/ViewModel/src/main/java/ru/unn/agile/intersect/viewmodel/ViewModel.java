@@ -346,7 +346,7 @@ public class ViewModel {
                 if (getPlaneStatus().equals(OK_STATUS) && getLineStatus().equals(OK_STATUS)) {
                     LineIntersectPlane intersection = new LineIntersectPlane(plane, line);
                     if (intersection.checkIntersection()) {
-                        result.set(INTERSECT_STATUS + ": " + intersection.getPointO().toString());
+                        result.set(INTERSECT_STATUS + ": " + intersection.getPointO());
                     } else {
                         result.set(NOT_INTERSECT_STATUS);
                     }
