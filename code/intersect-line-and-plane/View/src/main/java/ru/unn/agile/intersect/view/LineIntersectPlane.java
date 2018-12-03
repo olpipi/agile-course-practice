@@ -53,39 +53,39 @@ public class LineIntersectPlane {
     @FXML
     void initialize() {
         coordXFirstPlanePoint.textProperty().bindBidirectional(
-                viewModel.getCoordXFirstPlanePointProperty());
+                viewModel.coordXFirstPlanePointProperty());
         coordYFirstPlanePoint.textProperty().bindBidirectional(
-                viewModel.getCoordYFirstPlanePointProperty());
+                viewModel.coordYFirstPlanePointProperty());
         coordZFirstPlanePoint.textProperty().bindBidirectional(
-                viewModel.getCoordZFirstPlanePointProperty());
+                viewModel.coordZFirstPlanePointProperty());
 
         coordXSecondPlanePoint.textProperty().bindBidirectional(
-                viewModel.getCoordXSecondPlanePointProperty());
+                viewModel.coordXSecondPlanePointProperty());
         coordYSecondPlanePoint.textProperty().bindBidirectional(
-                viewModel.getCoordYSecondPlanePointProperty());
+                viewModel.coordYSecondPlanePointProperty());
         coordZSecondPlanePoint.textProperty().bindBidirectional(
-                viewModel.getCoordZSecondPlanePointProperty());
+                viewModel.coordZSecondPlanePointProperty());
 
         coordXThirdPlanePoint.textProperty().bindBidirectional(
-                viewModel.getCoordXThirdPlanePointProperty());
+                viewModel.coordXThirdPlanePointProperty());
         coordYThirdPlanePoint.textProperty().bindBidirectional(
-                viewModel.getCoordYThirdPlanePointProperty());
+                viewModel.coordYThirdPlanePointProperty());
         coordZThirdPlanePoint.textProperty().bindBidirectional(
-                viewModel.getCoordZThirdPlanePointProperty());
+                viewModel.coordZThirdPlanePointProperty());
 
         coordXFirstLinePoint.textProperty().bindBidirectional(
-                viewModel.getCoordXFirstLinePointProperty());
+                viewModel.coordXFirstLinePointProperty());
         coordYFirstLinePoint.textProperty().bindBidirectional(
-                viewModel.getCoordYFirstLinePointProperty());
+                viewModel.coordYFirstLinePointProperty());
         coordZFirstLinePoint.textProperty().bindBidirectional(
-                viewModel.getCoordZFirstLinePointProperty());
+                viewModel.coordZFirstLinePointProperty());
 
         coordXSecondLinePoint.textProperty().bindBidirectional(
-                viewModel.getCoordXSecondLinePointProperty());
+                viewModel.coordXSecondLinePointProperty());
         coordYSecondLinePoint.textProperty().bindBidirectional(
-                viewModel.getCoordYSecondLinePointProperty());
+                viewModel.coordYSecondLinePointProperty());
         coordZSecondLinePoint.textProperty().bindBidirectional(
-                viewModel.getCoordZSecondLinePointProperty());
+                viewModel.coordZSecondLinePointProperty());
 
         checkIntersectionButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override

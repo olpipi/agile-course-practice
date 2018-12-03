@@ -42,28 +42,28 @@ public class ViewModelTest {
 
     @Test
     public void viewCoordPropertiesAreInitialized() {
-        assertNotEquals(null, viewModel.getCoordXFirstPlanePointProperty());
-        assertNotEquals(null, viewModel.getCoordYFirstPlanePointProperty());
-        assertNotEquals(null, viewModel.getCoordZFirstPlanePointProperty());
-        assertNotEquals(null, viewModel.getCoordXSecondPlanePointProperty());
-        assertNotEquals(null, viewModel.getCoordYSecondPlanePointProperty());
-        assertNotEquals(null, viewModel.getCoordZSecondPlanePointProperty());
-        assertNotEquals(null, viewModel.getCoordXThirdPlanePointProperty());
-        assertNotEquals(null, viewModel.getCoordYThirdPlanePointProperty());
-        assertNotEquals(null, viewModel.getCoordZThirdPlanePointProperty());
-        assertNotEquals(null, viewModel.getCoordXFirstLinePointProperty());
-        assertNotEquals(null, viewModel.getCoordYFirstLinePointProperty());
-        assertNotEquals(null, viewModel.getCoordZFirstLinePointProperty());
-        assertNotEquals(null, viewModel.getCoordXSecondLinePointProperty());
-        assertNotEquals(null, viewModel.getCoordYSecondLinePointProperty());
-        assertNotEquals(null, viewModel.getCoordZSecondLinePointProperty());
+        assertNotEquals(null, viewModel.coordXFirstPlanePointProperty());
+        assertNotEquals(null, viewModel.coordYFirstPlanePointProperty());
+        assertNotEquals(null, viewModel.coordZFirstPlanePointProperty());
+        assertNotEquals(null, viewModel.coordXSecondPlanePointProperty());
+        assertNotEquals(null, viewModel.coordYSecondPlanePointProperty());
+        assertNotEquals(null, viewModel.coordZSecondPlanePointProperty());
+        assertNotEquals(null, viewModel.coordXThirdPlanePointProperty());
+        assertNotEquals(null, viewModel.coordYThirdPlanePointProperty());
+        assertNotEquals(null, viewModel.coordZThirdPlanePointProperty());
+        assertNotEquals(null, viewModel.coordXFirstLinePointProperty());
+        assertNotEquals(null, viewModel.coordYFirstLinePointProperty());
+        assertNotEquals(null, viewModel.coordZFirstLinePointProperty());
+        assertNotEquals(null, viewModel.coordXSecondLinePointProperty());
+        assertNotEquals(null, viewModel.coordYSecondLinePointProperty());
+        assertNotEquals(null, viewModel.coordZSecondLinePointProperty());
     }
 
     @Test
     public void viewStatusAndResultPropertiesAreInitialized() {
-        assertNotEquals(null, viewModel.getPlaneStatusProperty());
-        assertNotEquals(null, viewModel.getLineStatusProperty());
-        assertNotEquals(null, viewModel.getResultProperty());
+        assertNotEquals(null, viewModel.planeStatusProperty());
+        assertNotEquals(null, viewModel.lineStatusProperty());
+        assertNotEquals(null, viewModel.resultProperty());
     }
 
     @Test
@@ -288,7 +288,7 @@ public class ViewModelTest {
         viewModel.setCoordZSecondLinePoint("-2.5");
         viewModel.checkLineAndPlaneIntersection();
 
-        assertEquals("Intersect: (3.0, 4.0, 2.0)", viewModel.getResult());
+        assertEquals("Intersect: (3,00; 4,00; 2,00)", viewModel.getResult());
     }
 
     @Test

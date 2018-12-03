@@ -208,75 +208,75 @@ public class ViewModel {
         return result.get();
     }
 
-    public StringProperty getCoordXFirstPlanePointProperty() {
+    public StringProperty coordXFirstPlanePointProperty() {
         return coordXFirstPlanePoint;
     }
 
-    public StringProperty getCoordYFirstPlanePointProperty() {
+    public StringProperty coordYFirstPlanePointProperty() {
         return coordYFirstPlanePoint;
     }
 
-    public StringProperty getCoordZFirstPlanePointProperty() {
+    public StringProperty coordZFirstPlanePointProperty() {
         return coordZFirstPlanePoint;
     }
 
-    public StringProperty getCoordXSecondPlanePointProperty() {
+    public StringProperty coordXSecondPlanePointProperty() {
         return coordXSecondPlanePoint;
     }
 
-    public StringProperty getCoordYSecondPlanePointProperty() {
+    public StringProperty coordYSecondPlanePointProperty() {
         return coordYSecondPlanePoint;
     }
 
-    public StringProperty getCoordZSecondPlanePointProperty() {
+    public StringProperty coordZSecondPlanePointProperty() {
         return coordZSecondPlanePoint;
     }
 
-    public StringProperty getCoordXThirdPlanePointProperty() {
+    public StringProperty coordXThirdPlanePointProperty() {
         return coordXThirdPlanePoint;
     }
 
-    public StringProperty getCoordYThirdPlanePointProperty() {
+    public StringProperty coordYThirdPlanePointProperty() {
         return coordYThirdPlanePoint;
     }
 
-    public StringProperty getCoordZThirdPlanePointProperty() {
+    public StringProperty coordZThirdPlanePointProperty() {
         return coordZThirdPlanePoint;
     }
 
-    public StringProperty getCoordXFirstLinePointProperty() {
+    public StringProperty coordXFirstLinePointProperty() {
         return coordXFirstLinePoint;
     }
 
-    public StringProperty getCoordYFirstLinePointProperty() {
+    public StringProperty coordYFirstLinePointProperty() {
         return coordYFirstLinePoint;
     }
 
-    public StringProperty getCoordZFirstLinePointProperty() {
+    public StringProperty coordZFirstLinePointProperty() {
         return coordZFirstLinePoint;
     }
 
-    public StringProperty getCoordXSecondLinePointProperty() {
+    public StringProperty coordXSecondLinePointProperty() {
         return coordXSecondLinePoint;
     }
 
-    public StringProperty getCoordYSecondLinePointProperty() {
+    public StringProperty coordYSecondLinePointProperty() {
         return coordYSecondLinePoint;
     }
 
-    public StringProperty getCoordZSecondLinePointProperty() {
+    public StringProperty coordZSecondLinePointProperty() {
         return coordZSecondLinePoint;
     }
 
-    public StringProperty getPlaneStatusProperty() {
+    public StringProperty planeStatusProperty() {
         return planeStatus;
     }
 
-    public StringProperty getLineStatusProperty() {
+    public StringProperty lineStatusProperty() {
         return lineStatus;
     }
 
-    public StringProperty getResultProperty() {
+    public StringProperty resultProperty() {
         return result;
     }
 
@@ -355,6 +355,8 @@ public class ViewModel {
                 }
             } catch (ArithmeticException ex) {
                 lineStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase(Locale.ENGLISH));
+                planeStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase(Locale.ENGLISH));
+                result.set(ERROR_STATUS);
             }
         } else {
             result.set(ERROR_STATUS);
