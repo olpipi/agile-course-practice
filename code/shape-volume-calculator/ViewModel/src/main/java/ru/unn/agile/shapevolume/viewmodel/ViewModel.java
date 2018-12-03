@@ -13,6 +13,7 @@ import ru.unn.agile.shapevolume.model.RegularPolygonPrism;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class ViewModel {
     private final StringProperty firstArgumentName = new SimpleStringProperty();
@@ -126,7 +127,7 @@ public class ViewModel {
                     result.set(INVALID_ARGUMENTS);
                     return;
             }
-            result.set(String.format("%.3f", volume));
+            result.set(String.format(Locale.US, "%.3f", volume));
         } catch (Exception ex) {
             result.set(INVALID_ARGUMENTS);
         }

@@ -83,7 +83,7 @@ public class ViewModelTests {
         viewModel.firstArgumentValueProperty().set("2");
         viewModel.secondArgumentValueProperty().set("3");
         viewModel.thirdArgumentValueProperty().set("4");
-        assertEquals("24,000", viewModel.getResult());
+        assertEquals("24.000", viewModel.getResult());
     }
 
     @Test
@@ -92,7 +92,7 @@ public class ViewModelTests {
         viewModel.firstArgumentValueProperty().set("3");
         viewModel.secondArgumentValueProperty().set("4");
         viewModel.thirdArgumentValueProperty().set("5");
-        assertEquals("60,000", viewModel.getResult());
+        assertEquals("60.000", viewModel.getResult());
     }
 
     @Test
@@ -128,7 +128,7 @@ public class ViewModelTests {
         viewModel.firstArgumentValueProperty().set("1");
         viewModel.secondArgumentValueProperty().set("2");
         viewModel.thirdArgumentValueProperty().set("0");
-        assertEquals("0,000", viewModel.getResult());
+        assertEquals("0.000", viewModel.getResult());
     }
 
     @Test
@@ -137,7 +137,7 @@ public class ViewModelTests {
         viewModel.firstArgumentValueProperty().set("6");
         viewModel.secondArgumentValueProperty().set("1");
         viewModel.thirdArgumentValueProperty().set("2");
-        assertEquals("5,196", viewModel.getResult());
+        assertEquals("5.196", viewModel.getResult());
     }
 
     @Test
