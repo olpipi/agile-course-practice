@@ -52,21 +52,21 @@ public class MatrixTest {
         Matrix m1 = new Matrix();
         fillMatrix(m1);
 
-        assertEquals("0.0", m1.toString());
+        assertEquals("[0.0]", m1.toString());
     }
     @Test
     public void printMatrixIntoString1() {
         Matrix m1 = new Matrix(1, 2);
         fillMatrix(m1);
 
-        assertEquals("0.0 1.0", m1.toString());
+        assertEquals("[0.0 1.0]", m1.toString());
     }
     @Test
     public void printMatrixIntoString2() {
         Matrix m1 = new Matrix(2, 2);
         fillMatrix(m1);
 
-        assertEquals("0.0 1.0, 2.0 3.0", m1.toString());
+        assertEquals("[0.0 1.0][2.0 3.0]", m1.toString());
     }
     @Test
     public void printEmptyMatrixIntoString() {
@@ -83,7 +83,7 @@ public class MatrixTest {
 
         Matrix m3 = m1.add(m2);
 
-        assertEquals("2.0", m3.toString());
+        assertEquals("[2.0]", m3.toString());
     }
     @Test
     public void additionUnitMatrix2() {
@@ -94,7 +94,7 @@ public class MatrixTest {
 
         Matrix m3 = m1.add(m2);
 
-        assertEquals("4.0", m3.toString());
+        assertEquals("[4.0]", m3.toString());
     }
     @Test
     public void addition2x2Matrix() {
@@ -105,7 +105,7 @@ public class MatrixTest {
 
         Matrix m3 = m1.add(m2);
 
-        assertEquals("0.0 2.0, 4.0 6.0", m3.toString());
+        assertEquals("[0.0 2.0][4.0 6.0]", m3.toString());
     }
     @Test (expected = IncompatibleSizeMatrixException.class)
     public void cannotAdditionDifferentSizeMatrix() {
@@ -125,7 +125,7 @@ public class MatrixTest {
 
         Matrix m3 = m1.subtract(m2);
 
-        assertEquals("1.0", m3.toString());
+        assertEquals("[1.0]", m3.toString());
     }
     @Test
     public void canSubtract2x2Matrix() {
@@ -136,7 +136,7 @@ public class MatrixTest {
 
         Matrix m3 = m1.subtract(m2);
 
-        assertEquals("0.0 0.0, 0.0 0.0", m3.toString());
+        assertEquals("[0.0 0.0][0.0 0.0]", m3.toString());
     }
     @Test
     public void canDoubleSubtractMatrix() {
@@ -147,7 +147,7 @@ public class MatrixTest {
 
         Matrix m3 = m1.subtract(m2).subtract(m2);
 
-        assertEquals("0.0 -1.0, -2.0 -3.0", m3.toString());
+        assertEquals("[0.0 -1.0][-2.0 -3.0]", m3.toString());
     }
     @Test (expected = IncompatibleSizeMatrixException.class)
     public void cannotSubtractionDifferentSizeMatrix() {
@@ -167,7 +167,7 @@ public class MatrixTest {
 
         Matrix m3 = m1.multiply(m2);
 
-        assertEquals("6.0", m3.toString());
+        assertEquals("[6.0]", m3.toString());
     }
     @Test
     public void multiply2x2Matrix() {
@@ -178,7 +178,7 @@ public class MatrixTest {
 
         Matrix m3 = m1.multiply(m2);
 
-        assertEquals("2.0 3.0, 6.0 11.0", m3.toString());
+        assertEquals("[2.0 3.0][6.0 11.0]", m3.toString());
     }
     @Test
     public void canMultiplyDifferentSizeMatrix() {
@@ -189,7 +189,7 @@ public class MatrixTest {
 
         Matrix m3 = m1.multiply(m2);
 
-        assertEquals("20.0 23.0 26.0 29.0, 56.0 68.0 80.0 92.0", m3.toString());
+        assertEquals("[20.0 23.0 26.0 29.0][56.0 68.0 80.0 92.0]", m3.toString());
     }
     @Test (expected = IncompatibleSizeMatrixException.class)
     public void cannotMultiplyWrongSizeMatrix() {
@@ -243,7 +243,7 @@ public class MatrixTest {
 
         Matrix m2 = m1.invert();
 
-        assertEquals("0.5", m2.toString());
+        assertEquals("[0.5]", m2.toString());
     }
     @Test
     public void canInvert2x2Matrix() {
@@ -252,7 +252,7 @@ public class MatrixTest {
         m1.setVal(0, 0, 1);
         Matrix m2 = m1.invert();
 
-        assertEquals("3.0 -1.0, -2.0 1.0", m2.toString());
+        assertEquals("[3.0 -1.0][-2.0 1.0]", m2.toString());
     }
     @Test (expected = IncompatibleSizeMatrixException.class)
     public void cannotInvertNotSquareMatrix() {

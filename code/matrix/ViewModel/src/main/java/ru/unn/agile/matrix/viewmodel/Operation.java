@@ -19,16 +19,16 @@ public enum Operation {
         }
     };
 
-    private final String name;
-
     Operation(final String name) {
         this.name = name;
     }
+
+    public abstract Matrix apply(Matrix l, Matrix r);
 
     @Override
     public String toString() {
         return name;
     }
 
-    public abstract Matrix apply(Matrix l, Matrix r);
+    private final String name;
 }

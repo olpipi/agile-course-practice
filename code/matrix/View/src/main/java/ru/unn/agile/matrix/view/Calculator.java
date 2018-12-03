@@ -35,6 +35,7 @@ public class Calculator {
         operation.setItems(viewModel.operationsProperty().getValue());
         operation.valueProperty().bindBidirectional(viewModel.operationProperty());
         result.textProperty().bindBidirectional(viewModel.resultProperty());
+        status.textProperty().bindBidirectional(viewModel.statusProperty());
 
         calculateButton.disableProperty().bindBidirectional(
                 viewModel.calculateButtonDisabledProperty()

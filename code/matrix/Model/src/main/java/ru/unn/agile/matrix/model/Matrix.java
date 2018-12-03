@@ -50,19 +50,21 @@ public class Matrix {
     }
 
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-
         if (colls == 0 || rows == 0) {
             return "";
         }
-        for (int row = 0;  row < this.rows; row++) {
-            for (int col = 0;  col < this.colls; col++) {
-                builder.append(' ').append(pMatrix[row][col]);
+
+        StringBuilder builder = new StringBuilder();
+        for (int row = 0;  row < rows; row++) {
+            builder.append('[');
+            builder.append(pMatrix[row][0]);
+            for (int col = 1;  col < colls; col++) {
+                builder.append(" ").append(pMatrix[row][col]);
             }
-            builder.append(',');
+            builder.append(']');
         }
 
-        return builder.toString().substring(1, builder.length() - 1);
+        return builder.toString();
     }
 
     private Matrix matrixAddition(final Matrix m1, final Matrix m2, final boolean isPositive) {
