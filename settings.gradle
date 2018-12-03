@@ -283,6 +283,10 @@ project(":code/podchishchaeva-rb-tree").name = "podchishchaeva-rb-tree"
 // Converter From Celsius: Golovanova Tatyana, Shiryaeva Ekaterina
 include "code/converter-temperatures/Model"
 project(":code/converter-temperatures/Model").name = "converter-temperatures-Model"
+include "code/converter-temperatures/View"
+project(":code/converter-temperatures/View").name = "converter-temperatures-View"
+include "code/converter-temperatures/ViewModel"
+project(":code/converter-temperatures/ViewModel").name = "converter-temperatures-ViewModel"
 
 // Shiryaeva Ekaterina, Kochuev Andrey Polynomial Calculator
 include "code/polynomial-calculator/Model"

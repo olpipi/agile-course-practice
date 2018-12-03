@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField layoutX="62.0" layoutY="60.0" prefHeight="25.0" prefWidth="105.0" />
+      <TextField layoutX="62.0" layoutY="24.0" prefHeight="25.0" prefWidth="105.0" />
+      <ChoiceBox layoutX="177.0" layoutY="60.0" prefHeight="25.0" prefWidth="70.0" />
+      <ChoiceBox layoutX="177.0" layoutY="24.0" prefHeight="25.0" prefWidth="70.0" />
+      <Button layoutX="126.0" layoutY="97.0" mnemonicParsing="false" text="Convert" />
+   </children>
+</Pane>
