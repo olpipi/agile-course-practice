@@ -29,18 +29,19 @@ public class ViewModelTests {
 
     @Test
     public void canSetDefaultValues() {
-        assertEquals("0", viewModel.books1Property().get());
-        assertEquals("0", viewModel.books2Property().get());
-        assertEquals("0", viewModel.books3Property().get());
-        assertEquals("0", viewModel.books4Property().get());
-        assertEquals("0", viewModel.books5Property().get());
+        assertEquals("", viewModel.books1Property().get());
+        assertEquals("", viewModel.books2Property().get());
+        assertEquals("", viewModel.books3Property().get());
+        assertEquals("", viewModel.books4Property().get());
+        assertEquals("", viewModel.books5Property().get());
+        assertEquals("", viewModel.resultProperty().get());
     }
 
     @Test
-    public void statusIsSuccessWhenCalculateWithDefaultFields() {
+    public void statusIsWaitingWhenCalculateWithNonSetFields() {
         viewModel.calculate();
 
-        assertEquals(Status.SUCCESS.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
     }
 
     @Test
@@ -58,10 +59,37 @@ public class ViewModelTests {
     }
 
     @Test
-    public void statusIsReadyWhenSomeFieldsAreFill() {
+    public void statusIsWaitingWhenNotEnoughFieldsAreFill() {
         viewModel.books1Property().set("1");
 
-        assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void calculateButtonIsDisabledInitially() {
+        assertTrue(viewModel.calculationDisabledProperty().get());
+    }
+
+    @Test
+    public void calculateButtonIsDisabledWhenFormatIsBad() {
+        setInputData();
+        viewModel.books1Property().set("trash");
+
+        assertTrue(viewModel.calculationDisabledProperty().get());
+    }
+
+    @Test
+    public void calculateButtonIsDisabledWithIncompleteInput() {
+        viewModel.books1Property().set("1");
+
+        assertTrue(viewModel.calculationDisabledProperty().get());
+    }
+
+    @Test
+    public void calculateButtonIsEnabledWithCorrectInput() {
+        setInputData();
+
+        assertFalse(viewModel.calculationDisabledProperty().get());
     }
 
     @Test

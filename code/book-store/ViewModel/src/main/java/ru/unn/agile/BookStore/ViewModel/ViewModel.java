@@ -24,12 +24,12 @@ public class ViewModel {
 
     // FXML needs default c-tor for binding
     public ViewModel() {
-        books1.set("0");
-        books2.set("0");
-        books3.set("0");
-        books4.set("0");
-        books5.set("0");
-        result.set("0");
+        books1.set("");
+        books2.set("");
+        books3.set("");
+        books4.set("");
+        books5.set("");
+        result.set("");
         status.set(Status.WAITING.toString());
 
         BooleanBinding couldCalculate = new BooleanBinding() {
