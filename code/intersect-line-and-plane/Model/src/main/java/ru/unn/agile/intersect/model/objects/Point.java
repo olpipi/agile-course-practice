@@ -50,9 +50,9 @@ public final class Point {
 
     @Override
     public String toString() {
-        String xStr = String.format("%.2f", coordinateX);
-        String yStr = String.format("%.2f", coordinateY);
-        String zStr = String.format("%.2f", coordinateZ);
-        return ("(" + xStr + "; " + yStr + "; " + zStr + ")");
+        String xStr = Double.toString(coordinateX);
+        String yStr = Double.toString(coordinateY);
+        String zStr = Double.toString(coordinateZ);
+        return ("(" + xStr + ", " + yStr + ", " + zStr + ")");
     }
 }
