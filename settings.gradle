@@ -226,6 +226,8 @@ project(":code/frac-calc/View").name = "frac-calc-View"
 // 3D shapes volume
 include "code/shape-volume-calculator/Model"
 project(":code/shape-volume-calculator/Model").name = "shape-volume-calculator-Model"
+include "code/shape-volume-calculator/ViewModel"
+project(":code/shape-volume-calculator/ViewModel").name = "shape-volume-calculator-ViewModel"
 include "code/shape-volume-calculator/View"
 project(":code/shape-volume-calculator/View").name = "shape-volume-calculator-View"
 
