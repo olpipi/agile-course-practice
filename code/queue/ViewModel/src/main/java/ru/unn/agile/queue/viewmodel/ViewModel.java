@@ -15,7 +15,7 @@ public class ViewModel {
     private boolean isRemoveButtonEnabled;
     private boolean isClearButtonEnabled;
 
-    ILogger logger;
+    private ILogger logger;
 
     public ViewModel(final ILogger logger) {
         if (logger == null) {
