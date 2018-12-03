@@ -38,19 +38,14 @@ public class ViewModelTests {
     }
 
     @Test
-    public void checkCubeParametersNames() {
-        viewModel.currentShapeProperty().set(Shapes.CUBE);
-        assertEquals(ViewModel.CUBE_FIRST_SIDE, viewModel.firstArgumentNameProperty().get());
-        assertEquals(ViewModel.CUBE_SECOND_SIDE, viewModel.secondArgumentNameProperty().get());
-        assertEquals(ViewModel.CUBE_THIRD_SIDE, viewModel.thirdArgumentNameProperty().get());
-    }
-
-    @Test
     public void checkPrismParametersNames() {
         viewModel.currentShapeProperty().set(Shapes.REGULAR_POLYGON_PRISM);
-        assertEquals(ViewModel.POLYGON_BASE_SIDES_COUNT, viewModel.firstArgumentNameProperty().get());
-        assertEquals(ViewModel.POLYGON_BASE_SIDES_LENGTH, viewModel.secondArgumentNameProperty().get());
-        assertEquals(ViewModel.POLYGON_HEIGHT, viewModel.thirdArgumentNameProperty().get());
+        assertEquals(ViewModel.POLYGON_BASE_SIDES_COUNT,
+                viewModel.firstArgumentNameProperty().get());
+        assertEquals(ViewModel.POLYGON_BASE_SIDES_LENGTH,
+                viewModel.secondArgumentNameProperty().get());
+        assertEquals(ViewModel.POLYGON_HEIGHT,
+                viewModel.thirdArgumentNameProperty().get());
     }
 
     @Test

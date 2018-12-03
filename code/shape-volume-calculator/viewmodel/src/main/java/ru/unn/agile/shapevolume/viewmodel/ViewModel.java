@@ -10,6 +10,7 @@ import javafx.beans.value.ObservableValue;
 import ru.unn.agile.shapevolume.model.RegularPolygonPrism;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 enum Shapes {
@@ -47,7 +48,8 @@ public class ViewModel {
     public static final String POLYGON_HEIGHT = "Высота призмы";
 
     public static final String WAITING = "Ожидание ввода данных";
-    public static final String INVALID_ARGUMENTS = "Некорректные входные данные";
+    public static final String INVALID_ARGUMENTS =
+            "Некорректные входные данные";
     public static final String DEFAULT_VALUE = "";
 
 
@@ -67,31 +69,37 @@ public class ViewModel {
                                   Shapes oldValue, Shapes newValue) -> {
             if (!oldValue.equals(newValue)) {
                 switch (newValue) {
-                    case CUBE: {
+                    case CUBE:
                         firstArgumentName.set(CUBE_FIRST_SIDE);
                         secondArgumentName.set(CUBE_SECOND_SIDE);
                         thirdArgumentName.set(CUBE_THIRD_SIDE);
                         break;
-                    }
-                    case REGULAR_POLYGON_PRISM: {
+                    case REGULAR_POLYGON_PRISM:
                         firstArgumentName.set(POLYGON_BASE_SIDES_COUNT);
                         secondArgumentName.set(POLYGON_BASE_SIDES_LENGTH);
                         thirdArgumentName.set(POLYGON_HEIGHT);
                         break;
-                    }
+                    default:
+                        firstArgumentName.set(DEFAULT_VALUE);
+                        secondArgumentName.set(DEFAULT_VALUE);
+                        thirdArgumentName.set(DEFAULT_VALUE);
+                        result.set(INVALID_ARGUMENTS);
+                        break;
                 }
             }
         });
 
-        for (StringProperty value : Arrays.asList(firstArgumentValue, secondArgumentValue, thirdArgumentValue)) {
-            value.addListener((ObservableValue<? extends String> observable,
+        List<StringProperty> arguments =
+                Arrays.asList(firstArgumentValue, secondArgumentValue, thirdArgumentValue);
+        for (StringProperty argument : arguments) {
+            argument.addListener((ObservableValue<? extends String> observable,
                                String oldValue, String newValue) -> {
                 if (!oldValue.equals(newValue)) {
                     String firstArgumentString = firstArgumentValue.get();
                     String secondArgumentString = secondArgumentValue.get();
                     String thirdArgumentString = thirdArgumentValue.get();
-                    if (firstArgumentString.equals("") || secondArgumentString.equals("") ||
-                            thirdArgumentString.equals("")) {
+                    if ("".equals(firstArgumentString) || "".equals(secondArgumentString)
+                            || "".equals(thirdArgumentString)) {
                         result.set(WAITING);
                         return;
                     }
@@ -113,18 +121,15 @@ public class ViewModel {
 
                     double volume;
                     switch (currentShape.get()) {
-                        case CUBE: {
+                        case CUBE:
                             volume = new Cuboid(first, second, third).getVolume();
                             break;
-                        }
-                        case REGULAR_POLYGON_PRISM: {
+                        case REGULAR_POLYGON_PRISM:
                             volume = new RegularPolygonPrism(first, second, third).getVolume();
                             break;
-                        }
-                        default: {
+                        default:
                             result.set(INVALID_ARGUMENTS);
                             return;
-                        }
                     }
                     result.set(String.format("%.3f", volume));
                 }
