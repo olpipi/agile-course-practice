@@ -23,7 +23,7 @@ public class LoggerTest {
 
     @Test
     public void canInitiateViewModel() {
-        assertEquals("Application is Started", viewModel.getLogs());
+        assertEquals(LogMessage.APPLICATION_STARTED.toString(), viewModel.getLogs());
     }
 
     @Test
@@ -41,9 +41,11 @@ public class LoggerTest {
 
         viewModel.onFocusChanged(true, false);
 
-        assertEquals("Application is Started\n"
-                + "Current Sate: left bound = ,"
-                + " right bound = a",
+        assertEquals(
+                LogMessage.APPLICATION_STARTED + "\n"
+                        + String.format(
+                        LogMessage.STATE_OF_OPERANDS_MESSAGE.toString(),
+                        "", "a"),
                 viewModel.getLogs());
     }
 
@@ -54,9 +56,10 @@ public class LoggerTest {
         viewModel.onFocusChanged(true, false);
 
         assertEquals(
-                "Application is Started\n"
-                        + "Current Sate: left bound = 1,"
-                        + " right bound = ",
+                LogMessage.APPLICATION_STARTED + "\n"
+                        + String.format(
+                            LogMessage.STATE_OF_OPERANDS_MESSAGE.toString(),
+                            "1", ""),
                 viewModel.getLogs());
     }
 
@@ -68,12 +71,13 @@ public class LoggerTest {
         viewModel.searchPrimeNumber();
 
         assertEquals(
-                "Application is Started\n"
-                        + "Calculation is started with parameters:"
-                        + " left bound = 1 ,"
-                        + " right bound = 4\n"
-                        + "Calculation is finished with: status:"
-                        + " Success and result: 2, 3",
+                LogMessage.APPLICATION_STARTED + "\n"
+                        + String.format(
+                        LogMessage.CALCULATION_IS_STARTED_MESSAGE.toString(),
+                        "1", "4") + "\n"
+                        + String.format(
+                        LogMessage.CALCULATION_IS_FINISHED_MESSAGE.toString(),
+                        "Success", "2, 3"),
                 viewModel.getLogs());
     }
 
@@ -85,13 +89,16 @@ public class LoggerTest {
         viewModel.searchPrimeNumber();
 
         assertEquals(
-                "Application is Started\n"
-                        + "Current Sate:"
-                        + " left bound = 2, right bound = 5\n"
-                        + "Calculation is started with parameters:"
-                        + " left bound = 2 , right bound = 5\n"
-                        + "Calculation is finished with:"
-                        + " status: Success and result: 2, 3, 5",
+                LogMessage.APPLICATION_STARTED + "\n"
+                        + String.format(
+                        LogMessage.STATE_OF_OPERANDS_MESSAGE.toString(),
+                        "2", "5") + "\n"
+                        + String.format(
+                        LogMessage.CALCULATION_IS_STARTED_MESSAGE.toString(),
+                        "2", "5") + "\n"
+                        + String.format(
+                        LogMessage.CALCULATION_IS_FINISHED_MESSAGE.toString(),
+                        "Success", "2, 3, 5"),
                 viewModel.getLogs());
     }
 
@@ -104,20 +111,21 @@ public class LoggerTest {
         viewModel.searchPrimeNumber();
 
         assertEquals(
-                "Application is Started\n"
-                        + "Current Sate:"
-                        + " left bound = 2,"
-                        + " right bound = a\n"
-                        + "Calculation is started with parameters:"
-                        + " left bound = 2 ,"
-                        + " right bound = a\n"
-                        + "Calculation is finished with: status:"
-                        + " For input string: \"a\" and result: ",
+                LogMessage.APPLICATION_STARTED + "\n"
+                        + String.format(
+                                LogMessage.STATE_OF_OPERANDS_MESSAGE.toString(),
+                                "2", "a") + "\n"
+                        + String.format(
+                                LogMessage.CALCULATION_IS_STARTED_MESSAGE.toString(),
+                                "2", "a") + "\n"
+                        + String.format(
+                                LogMessage.CALCULATION_IS_FINISHED_MESSAGE.toString(),
+                                "For input string: \"a\"", ""),
                 viewModel.getLogs());
     }
 
     @Test
-    public void canLoggingE2EWithIncorrectInterval() {
+    public void canLogE2EWithIncorrectInterval() {
         viewModel.setLeftBound("4");
         viewModel.setRightBound("1");
 
@@ -125,13 +133,16 @@ public class LoggerTest {
         viewModel.searchPrimeNumber();
 
         assertEquals(
-                "Application is Started\n"
-                        + "Current Sate: left bound = 4, right bound = 1\n"
-                        + "Calculation is started with parameters:"
-                        + " left bound = 4 ,"
-                        + " right bound = 1\n"
-                        + "Calculation is finished with: status:"
-                        + " Last value must be more or equal to first value! and result: ",
+                LogMessage.APPLICATION_STARTED + "\n"
+                        + String.format(
+                        LogMessage.STATE_OF_OPERANDS_MESSAGE.toString(),
+                        "4", "1") + "\n"
+                        + String.format(
+                        LogMessage.CALCULATION_IS_STARTED_MESSAGE.toString(),
+                        "4", "1") + "\n"
+                        + String.format(
+                        LogMessage.CALCULATION_IS_FINISHED_MESSAGE.toString(),
+                        "Last value must be more or equal to first value!", ""),
                 viewModel.getLogs());
     }
 }

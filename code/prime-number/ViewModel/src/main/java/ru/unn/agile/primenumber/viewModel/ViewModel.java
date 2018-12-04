@@ -12,7 +12,7 @@ import ru.unn.agile.primenumber.model.PrimeNumber;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ru.unn.agile.primenumber.viewModel.StringConstants.*;
+import static ru.unn.agile.primenumber.viewModel.LogMessage.*;
 
 public class ViewModel {
     private final StringProperty leftBound = new SimpleStringProperty();

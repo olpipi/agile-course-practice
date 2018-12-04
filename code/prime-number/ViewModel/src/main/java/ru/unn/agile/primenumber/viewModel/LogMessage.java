@@ -1,6 +1,6 @@
 package ru.unn.agile.primenumber.viewModel;
 
-public enum StringConstants {
+public enum LogMessage {
     APPLICATION_STARTED("Application is Started"),
     STATE_OF_OPERANDS_MESSAGE("Current Sate: left bound = %s, right bound = %s"),
     CALCULATION_IS_FINISHED_MESSAGE("Calculation is finished with: "
@@ -12,7 +12,7 @@ public enum StringConstants {
 
     private String message;
 
-    StringConstants(final String message) {
+    LogMessage(final String message) {
         this.message = message;
     }
 
