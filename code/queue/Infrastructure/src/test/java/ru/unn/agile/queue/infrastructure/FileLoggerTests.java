@@ -54,4 +54,24 @@ public class FileLoggerTests {
         String message = fileLogger.getLog().get(0);
         assertTrue(message.matches("^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} > .*"));
     }
+
+    @Test(expected = Test.None.class)
+    public void noThrowWhenCreateFileLoggerWithIncorrectPathToFile() {
+        fileLogger = new FileLogger("");
+    }
+
+    @Test(expected = Test.None.class)
+    public void noThrowWhenLogByFileLoggerWithIncorrectPathToFile() {
+        fileLogger = new FileLogger("");
+
+        fileLogger.log("abc");
+    }
+
+    @Test(expected = Test.None.class)
+    public void noThrowWhenGetLogFromFileLoggerWithIncorrectPathToFile() {
+        fileLogger = new FileLogger("");
+        fileLogger.log("abc");
+
+        fileLogger.getLog();
+    }
 }
