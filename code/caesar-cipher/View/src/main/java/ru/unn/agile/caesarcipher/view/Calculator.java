@@ -25,41 +25,41 @@ public final class Calculator {
     }
 
         Calculator() {
-            bind();
+            tie();
             code.addActionListener(e -> {
-                backBind();
+                tieback();
                 viewModel.codeCaesar();
-                bind();
+                tie();
             });
 
             offsetTextBox.getDocument().addDocumentListener(new DocumentListener() {
                 @Override
                 public void insertUpdate(final DocumentEvent e) {
-                    backBind();
-                    bind();
+                    tieback();
+                    tie();
                 }
 
                 @Override
                 public void removeUpdate(final DocumentEvent e) {
-                    backBind();
-                    bind();
+                    tieback();
+                    tie();
                 }
 
                 @Override
                 public void changedUpdate(final DocumentEvent e) {
-                    backBind();
-                    bind();
+                    tieback();
+                    tie();
                 }
             });
         }
 
-    private void bind() {
+    private void tie() {
         code.setEnabled(viewModel.isCodeButtonEnabled());
         resultTextBox.setText(viewModel.getCaesarCipher());
         statusTextBox.setText(viewModel.getStatus());
     }
 
-    private void backBind() {
+    private void tieback() {
         viewModel.setTextBoxs(inputTextBox.getText(), offsetTextBox.getText());
     }
 
