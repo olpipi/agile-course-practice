@@ -187,7 +187,7 @@ public class ViewModelTests {
 
     @Test
     public void canGetThirdArgumentNameProperty() {
-        viewModel.thirdArgumentValueProperty();
+        viewModel.thirdArgumentNameProperty();
     }
 
     @Test
@@ -197,6 +197,7 @@ public class ViewModelTests {
 
     @Test
     public void checkSwitchDefault() {
+        viewModel.currentShapeProperty().set(Shape.CUBE);
         viewModel.currentShapeProperty().set(Shape.UNKNOWN);
     }
 }
