@@ -46,6 +46,7 @@ project(":code/prime-number/view").name = "prime-number-View"
 include "code/prime-number/ViewModel"
 project(":code/prime-number/ViewModel").name = "prime-number-ViewModel"
 
+
 // Marchenko Andrey
 include "code/marchenko-andrey-complex-number"
 project(":code/marchenko-andrey-complex-number").name = "marchenko-andrey-complex-number"
@@ -196,13 +197,9 @@ project(":code/binary-search/View").name = "binary-search-View"
 include "code/binary-search/ViewModel"
 project(":code/binary-search/ViewModel").name = "binary-search-ViewModel"
 
-// Podolov Kirill, Queue
-include "code/queue"
-project(":code/queue").name = "queue-Model"
-
-// Fytov Aleksandr, Fraction calculator
-include "code/fytov-aleksandr-frac-calc"
-project(":code/fytov-aleksandr-frac-calc").name = "fytov-aleksandr-frac-calc"
+// Kryukova Polina, caesar-cipher
+include "code/caesar-cipher"
+project(":code/caesar-cipher").name = "caesar-cipher"
 
 // Podolov Kirill & Flegontov Alexander, Queue
 include "code/queue/Model"
@@ -276,18 +273,6 @@ project(":code/segments2d-intersection/View").name = "segments2d-intersection-Vi
 include "code/mitrokhina-julia-harrypotter"
 project(":code/mitrokhina-julia-harrypotter").name = "mitrokhina-julia-harrypotter-Model"
 
-// Akhmedzhanov Dmitry, Conway Game of Life
-include "code/akhmedzhanov-dmitry-conway-game"
-project(":code/akhmedzhanov-dmitry-conway-game").name = "akhmedzhanov-dmitry-conway-game-Model"
-
-// Kryukova Polina, caesar-cipher
-include "code/caesar-cipher/Model"
-project(":code/caesar-cipher/Model").name = "caesar-cipher-Model"
-include "code/caesar-cipher/ViewModel"
-project(":code/caesar-cipher/ViewModel").name = "caesar-cipher-ViewModel"
-include "code/caesar-cipher/View"
-project(":code/caesar-cipher/View").name = "caesar-cipher-View"
-
 // Conway Game of Life
 include "code/conway-game/View"
 project(":code/conway-game/View").name = "conway-game-View"
@@ -319,3 +304,11 @@ include "code/numbers-in-words/ViewModel"
 project(":code/numbers-in-words/ViewModel").name = "numbers-in-words-ViewModel"
 include "code/numbers-in-words/View"
 project(":code/numbers-in-words/View").name = "numbers-in-words-View"
+
+// Kryukova Polina, caesar-cipher 
+include "code/caesar-cipher/Model" 
+project(":code/caesar-cipher/Model").name = "caesar-cipher-Model" 
+include "code/caesar-cipher/ViewModel" 
+project(":code/caesar-cipher/ViewModel").name = "caesar-cipher-ViewModel" 
+include "code/caesar-cipher/View" 
+project(":code/caesar-cipher/View").name = "caesar-cipher-View" 
