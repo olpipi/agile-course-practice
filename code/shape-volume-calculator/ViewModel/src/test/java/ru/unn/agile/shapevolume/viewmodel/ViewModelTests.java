@@ -177,21 +177,26 @@ public class ViewModelTests {
 
     @Test
     public void canGetFirstArgumentNameProperty() {
-        viewModel.getFirstArgumentName();
+        viewModel.firstArgumentNameProperty();
     }
 
     @Test
     public void canGetSecondArgumentNameProperty() {
-        viewModel.getSecondArgumentName();
+        viewModel.secondArgumentNameProperty();
     }
 
     @Test
     public void canGetThirdArgumentNameProperty() {
-        viewModel.getThirdArgumentName();
+        viewModel.thirdArgumentValueProperty();
     }
 
     @Test
     public void checkShapeToString() {
         assertEquals("Куб", Shape.CUBE.toString());
+    }
+
+    @Test
+    public void checkSwitchDefault() {
+        viewModel.currentShapeProperty().set(Shape.UNKNOWN);
     }
 }
