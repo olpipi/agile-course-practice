@@ -39,7 +39,7 @@ public class ViewModel {
     }
 
     public void setTextBoxs(final String inputValue, final String offsetValue) {
-        if ("".equals(offsetValue)) { //offsetValue.equals("")
+        if ("".equals(offsetValue)) {
             codeButtonEnabled = false;
             status = "Input offset value";
             return;

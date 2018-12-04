@@ -32,26 +32,6 @@ public final class Calculator {
                 bind();
             });
 
-//            inputTextBox.getDocument().addDocumentListener(new DocumentListener() {
-//                @Override
-//                public void insertUpdate(final DocumentEvent e) {
-//                    backBind();
-//                    bind();
-//                }
-//
-//                @Override
-//                public void removeUpdate(final DocumentEvent e) {
-//                    backBind();
-//                    bind();
-//                }
-//
-//                @Override
-//                public void changedUpdate(final DocumentEvent e) {
-//                    backBind();
-//                    bind();
-//                }
-//            });
-
             offsetTextBox.getDocument().addDocumentListener(new DocumentListener() {
                 @Override
                 public void insertUpdate(final DocumentEvent e) {
