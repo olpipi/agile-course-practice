@@ -1,33 +1,90 @@
 package ru.unn.agile.caesarcipher.viewmodel;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import ru.unn.agile.caesarcipher.model.CaesarCipher.Operation;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ViewModelTests {
     @Test
-    public void canInitializeArrayValue()
-    {
+    public void canRecognizeThatButtonIsDisabled() {
         ViewModel viewModel = new ViewModel();
-        assertEquals("", viewModel.getInputTextBoxValue);
+        assertFalse(viewModel.isCodeButtonEnabled());
     }
 
     @Test
-    public void canInitializeArrayValue()
-    {
+    public void canRecognizeThatButtonIsEnabledWhenEnter() {
         ViewModel viewModel = new ViewModel();
-        assertEquals("", viewModel.getOffsetTextBoxValua);
+
+        viewModel.setTextBoxs("ABC", "2");
+
+        assertTrue(viewModel.isCodeButtonEnabled());
     }
 
     @Test
-    public void canInitializeArrayValue()
-    {
+    public void canDisableButtonIfAllDataHasBeenEntered() {
         ViewModel viewModel = new ViewModel();
-        assertEquals("", viewModel.gatStatus);
+
+        viewModel.setTextBoxs("ABC", "");
+
+        assertFalse(viewModel.isCodeButtonEnabled());
     }
 
+    @Test
+    public void canEnableButtonWhenClearInputTextBox() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setTextBoxs("ABC", "");
+        viewModel.setTextBoxs("", "");
+
+        assertFalse(viewModel.isCodeButtonEnabled());
+    }
+
+    @Test
+    public void canEnableButtonWhenClearOffsetTextBox() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setTextBoxs("", "1");
+        viewModel.setTextBoxs("", "");
+
+        assertFalse(viewModel.isCodeButtonEnabled());
+    }
+
+    @Test
+    public void canOffsetByGivenNumber() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setTextBoxs("ABC", "1");
+        viewModel.codeCaesar();
+
+        assertEquals("BCD", viewModel.getCaesarCipher());
+    }
+
+    @Test
+    public void canDisplayErrorWithIncompleteData() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setTextBoxs("ABC", "");
+
+        assertEquals("Input offset value", viewModel.getStatus());
+    }
+
+    @Test
+    public void canDisplayErrorWithIncorrectData() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setTextBoxs("ABC", "abc");
+
+        assertEquals("Input correct value", viewModel.getStatus());
+    }
+
+    @Test
+    public void canDisplayStatus() {
+        ViewModel viewModel = new ViewModel();
+
+        viewModel.setTextBoxs("ABC", "1");
+
+        assertEquals("Correct", viewModel.getStatus());
+    }
 }
-

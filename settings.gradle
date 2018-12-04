@@ -134,16 +134,6 @@ project(":code/salary-calculator").name = "salary-calculator"
 include "code/gladkova-tatiana-binary-search"
 project(":code/gladkova-tatiana-binary-search").name = "gladkova-tatiana-binary-search"
 
-// Kryukova Polina, caesar-cipher
-//include "code/caesar-cipher"
-//project(":code/caesar-cipher").name = "caesar-cipher"
-include "code/caesar-cipher/Model"
-project(":code/caesar-cipher/Model").name = "caesar-cipher"
-include "code/caesar-cipher/ViewModel"
-project(":code/caesar-cipher/ViewModel").name = "caesar-cipher-ViewModel"
-include "code/caesar-cipher/View"
-project(":code/caesar-cipher/View").name = "caesar-cipher-View"
-
 // Podolov Kirill, Queue
 include "code/queue"
 project(":code/queue").name = "queue-Model"
@@ -191,3 +181,12 @@ project(":code/mitrokhina-julia-harrypotter").name = "mitrokhina-julia-harrypott
 // Akhmedzhanov Dmitry, Conway Game of Life
 include "code/akhmedzhanov-dmitry-conway-game"
 project(":code/akhmedzhanov-dmitry-conway-game").name = "akhmedzhanov-dmitry-conway-game-Model"
+
+// Kryukova Polina, caesar-cipher
+include "code/caesar-cipher/Model"
+project(":code/caesar-cipher/Model").name = "caesar-cipher-Model"
+include "code/caesar-cipher/ViewModel"
+project(":code/caesar-cipher/ViewModel").name = "caesar-cipher-ViewModel"
+include "code/caesar-cipher/View"
+project(":code/caesar-cipher/View").name = "caesar-cipher-View"
+
