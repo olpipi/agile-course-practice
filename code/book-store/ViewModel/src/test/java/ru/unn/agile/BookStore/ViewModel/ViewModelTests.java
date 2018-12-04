@@ -29,45 +29,45 @@ public class ViewModelTests {
 
     @Test
     public void canSetDefaultValues() {
-        assertEquals("", viewModel.books1Property().get());
-        assertEquals("", viewModel.books2Property().get());
-        assertEquals("", viewModel.books3Property().get());
-        assertEquals("", viewModel.books4Property().get());
-        assertEquals("", viewModel.books5Property().get());
-        assertEquals("", viewModel.resultProperty().get());
+        assertEquals("", viewModel.getBooks1());
+        assertEquals("", viewModel.getBooks2());
+        assertEquals("", viewModel.getBooks3());
+        assertEquals("", viewModel.getBooks4());
+        assertEquals("", viewModel.getBooks5());
+        assertEquals("", viewModel.getResult());
     }
 
     @Test
     public void statusIsWaitingWhenCalculateWithNonSetFields() {
         viewModel.calculate();
 
-        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.getStatus());
     }
 
     @Test
     public void statusIsReadyWhenFieldsAreFill() {
         setInputData();
 
-        assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.READY.toString(), viewModel.getStatus());
     }
 
     @Test
     public void canReportBadFormat() {
         viewModel.books1Property().set("a");
 
-        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatus());
     }
 
     @Test
     public void statusIsWaitingWhenNotEnoughFieldsAreFill() {
         viewModel.books1Property().set("1");
 
-        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.getStatus());
     }
 
     @Test
     public void calculateButtonIsDisabledInitially() {
-        assertTrue(viewModel.calculationDisabledProperty().get());
+        assertTrue(viewModel.isCalculationDisabled());
     }
 
     @Test
@@ -75,21 +75,21 @@ public class ViewModelTests {
         setInputData();
         viewModel.books1Property().set("trash");
 
-        assertTrue(viewModel.calculationDisabledProperty().get());
+        assertTrue(viewModel.isCalculationDisabled());
     }
 
     @Test
     public void calculateButtonIsDisabledWithIncompleteInput() {
         viewModel.books1Property().set("1");
 
-        assertTrue(viewModel.calculationDisabledProperty().get());
+        assertTrue(viewModel.isCalculationDisabled());
     }
 
     @Test
     public void calculateButtonIsEnabledWithCorrectInput() {
         setInputData();
 
-        assertFalse(viewModel.calculationDisabledProperty().get());
+        assertFalse(viewModel.isCalculationDisabled());
     }
 
     @Test
@@ -98,7 +98,7 @@ public class ViewModelTests {
 
         viewModel.calculate();
 
-        assertEquals(Status.SUCCESS.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.SUCCESS.toString(), viewModel.getStatus());
     }
 
     @Test
@@ -111,13 +111,13 @@ public class ViewModelTests {
 
         viewModel.calculate();
 
-        assertEquals("82.8", viewModel.resultProperty().get());
+        assertEquals("82.8", viewModel.getResult());
     }
 
     @Test
     public void canSetBadFormatMessage() {
         viewModel.books5Property().set("#selfie");
 
-        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatus());
     }
 }

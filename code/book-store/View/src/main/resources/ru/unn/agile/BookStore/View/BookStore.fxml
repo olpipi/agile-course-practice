@@ -11,7 +11,7 @@
       <ViewModel fx:id="viewModel" />
    </fx:define>
    <children>
-      <Button fx:id="btnCalculate" disable="${viewModel.calculationDisabled}" layoutX="173.0" layoutY="325.0" mnemonicParsing="false" text="Calculate" />
+      <Button fx:id="btnCalculate" defaultButton="true" disable="${viewModel.calculationDisabled}" layoutX="173.0" layoutY="325.0" mnemonicParsing="false" text="Calculate" />
       <Label layoutX="83.0" layoutY="82.0" prefHeight="14.0" prefWidth="65.0" text="Book #1" />
       <Label layoutX="77.0" layoutY="365.0" prefHeight="14.0" prefWidth="65.0" />
       <Label layoutX="83.0" layoutY="111.0" prefHeight="14.0" prefWidth="65.0" text="Book #2" />

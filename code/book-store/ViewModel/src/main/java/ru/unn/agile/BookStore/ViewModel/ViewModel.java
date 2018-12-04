@@ -76,35 +76,42 @@ public class ViewModel {
     public StringProperty books1Property() {
         return books1;
     }
+    public final String getBooks1() {
+        return books1.get();
+    }
     public StringProperty books2Property() {
         return books2;
+    }
+    public final String getBooks2() {
+        return books2.get();
     }
     public StringProperty books3Property() {
         return books3;
     }
+    public final String getBooks3() {
+        return books3.get();
+    }
     public StringProperty books4Property() {
         return books4;
+    }
+    public final String getBooks4() {
+        return books4.get();
     }
     public StringProperty books5Property() {
         return books5;
     }
-
-    public StringProperty resultProperty() {
-        return result;
+    public final String getBooks5() {
+        return books5.get();
     }
+
     public final String getResult() {
         return result.get();
     }
-    public StringProperty statusProperty() {
-        return status;
-    }
+
     public final String getStatus() {
         return status.get();
     }
 
-    public BooleanProperty calculationDisabledProperty() {
-        return calculationDisabled;
-    }
     public final boolean isCalculationDisabled() {
         return calculationDisabled.get();
     }
@@ -146,7 +153,6 @@ public class ViewModel {
         }
     }
 }
-
 
 enum Status {
     WAITING("Please provide input data"),
