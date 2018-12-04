@@ -11,12 +11,12 @@ import ru.unn.agile.intersect.model.LineIntersectPlane;
 import ru.unn.agile.intersect.model.objects.*;
 
 public class ViewModel {
-    private static final String WAITING_STATUS = "Waiting for input";
-    private static final String OK_STATUS = "Correct input";
-    private static final String ERROR_STATUS = "Input error";
+    private static final String WAITING = "Waiting for input";
+    private static final String OK = "Correct input";
+    private static final String ERROR = "Input error";
 
-    private static final String INTERSECT_STATUS = "Intersect";
-    private static final String NOT_INTERSECT_STATUS = "Do not intersect";
+    private static final String INTERSECT = "Intersect";
+    private static final String NOT_INTERSECT = "Do not intersect";
 
     private StringProperty coordXFirstPlanePoint = new SimpleStringProperty();
     private StringProperty coordYFirstPlanePoint = new SimpleStringProperty();
@@ -72,8 +72,8 @@ public class ViewModel {
     }
 
     private void initStatuses() {
-        planeStatus.set(WAITING_STATUS);
-        lineStatus.set(WAITING_STATUS);
+        planeStatus.set(WAITING);
+        lineStatus.set(WAITING);
     }
 
     public void setCoordXFirstPlanePoint(final String coordXFirstPlanePoint) {
@@ -280,60 +280,71 @@ public class ViewModel {
         return result;
     }
 
-    public void formPlaneCrdList(final List<Double> a, final List<Double> b, final List<Double> c) {
-        a.add(Double.valueOf(getCoordXFirstPlanePoint()));
-        a.add(Double.valueOf(getCoordYFirstPlanePoint()));
-        a.add(Double.valueOf(getCoordZFirstPlanePoint()));
-
-        b.add(Double.valueOf(getCoordXSecondPlanePoint()));
-        b.add(Double.valueOf(getCoordYSecondPlanePoint()));
-        b.add(Double.valueOf(getCoordZSecondPlanePoint()));
-
-        c.add(Double.valueOf(getCoordXThirdPlanePoint()));
-        c.add(Double.valueOf(getCoordYThirdPlanePoint()));
-        c.add(Double.valueOf(getCoordZThirdPlanePoint()));
+    public boolean checkStatusValidity() {
+        return (getLineStatus().equals(OK) && getPlaneStatus().equals(OK));
     }
 
-    public void formLineCrdList(final List<Double> x, final List<Double> y) {
-        x.add(Double.valueOf(getCoordXFirstLinePoint()));
-        x.add(Double.valueOf(getCoordYFirstLinePoint()));
-        x.add(Double.valueOf(getCoordZFirstLinePoint()));
+    public List<Point> formPlaneCoordinateList() {
+        List<Point> planeCoordinates = new ArrayList<Point>();
+        double x, y, z;
 
-        y.add(Double.valueOf(getCoordXSecondLinePoint()));
-        y.add(Double.valueOf(getCoordYSecondLinePoint()));
-        y.add(Double.valueOf(getCoordZSecondLinePoint()));
+        x = Double.valueOf(getCoordXFirstPlanePoint());
+        y = Double.valueOf(getCoordYFirstPlanePoint());
+        z = Double.valueOf(getCoordZFirstPlanePoint());
+        planeCoordinates.add(new Point(x, y, z));
+
+        x = Double.valueOf(getCoordXSecondPlanePoint());
+        y = Double.valueOf(getCoordYSecondPlanePoint());
+        z = Double.valueOf(getCoordZSecondPlanePoint());
+        planeCoordinates.add(new Point(x, y, z));
+
+        x = Double.valueOf(getCoordXThirdPlanePoint());
+        y = Double.valueOf(getCoordYThirdPlanePoint());
+        z = Double.valueOf(getCoordZThirdPlanePoint());
+        planeCoordinates.add(new Point(x, y, z));
+
+        return planeCoordinates;
+    }
+
+    public List<Point> formLineCoordinateList() {
+        List<Point> lineCoordinates = new ArrayList<Point>();
+        double x, y, z;
+
+        x = Double.valueOf(getCoordXFirstLinePoint());
+        y = Double.valueOf(getCoordYFirstLinePoint());
+        z = Double.valueOf(getCoordZFirstLinePoint());
+        lineCoordinates.add(new Point(x, y, z));
+
+        x = Double.valueOf(getCoordXSecondLinePoint());
+        y = Double.valueOf(getCoordYSecondLinePoint());
+        z = Double.valueOf(getCoordZSecondLinePoint());
+        lineCoordinates.add(new Point(x, y, z));
+
+        return lineCoordinates;
     }
 
     public Plane createPlane() {
-        List<Double> coordinatesA = new ArrayList<Double>();
-        List<Double> coordinatesB = new ArrayList<Double>();
-        List<Double> coordinatesC = new ArrayList<Double>();
         try {
-            formPlaneCrdList(coordinatesA, coordinatesB, coordinatesC);
-            Point pointA = new Point(coordinatesA.get(0), coordinatesA.get(1), coordinatesA.get(2));
-            Point pointB = new Point(coordinatesB.get(0), coordinatesB.get(1), coordinatesB.get(2));
-            Point pointC = new Point(coordinatesC.get(0), coordinatesC.get(1), coordinatesC.get(2));
-            Plane plane = new Plane(pointA, pointB, pointC);
-            planeStatus.set(OK_STATUS);
+            List<Point> coordinates = formPlaneCoordinateList();
+            Plane plane = new Plane(coordinates.get(0), coordinates.get(1), coordinates.get(2));
+            planeStatus.set(OK);
             return plane;
         } catch (NumberFormatException | ArithmeticException ex) {
-            planeStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase(Locale.ENGLISH));
+            planeStatus.set(ERROR + ": " + ex.getMessage().toLowerCase(Locale.ENGLISH));
+            result.set(ERROR);
             return null;
         }
     }
 
     public Line createLine() {
-        List<Double> coordinatesX = new ArrayList<Double>();
-        List<Double> coordinatesY = new ArrayList<Double>();
         try {
-            formLineCrdList(coordinatesX, coordinatesY);
-            Point pointX = new Point(coordinatesX.get(0), coordinatesX.get(1), coordinatesX.get(2));
-            Point pointY = new Point(coordinatesY.get(0), coordinatesY.get(1), coordinatesY.get(2));
-            Line line = new Line(pointX, pointY);
-            lineStatus.set(OK_STATUS);
+            List<Point> coordinates = formLineCoordinateList();
+            Line line = new Line(coordinates.get(0), coordinates.get(1));
+            lineStatus.set(OK);
             return line;
         } catch (NumberFormatException | ArithmeticException ex) {
-            lineStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase(Locale.ENGLISH));
+            lineStatus.set(ERROR + ": " + ex.getMessage().toLowerCase(Locale.ENGLISH));
+            result.set(ERROR);
             return null;
         }
     }
@@ -341,25 +352,13 @@ public class ViewModel {
     public void checkLineAndPlaneIntersection() {
         Plane plane = createPlane();
         Line line = createLine();
-        if (plane != null && line != null) {
-            try {
-                if (getPlaneStatus().equals(OK_STATUS) && getLineStatus().equals(OK_STATUS)) {
-                    LineIntersectPlane intersection = new LineIntersectPlane(plane, line);
-                    if (intersection.checkIntersection()) {
-                        result.set(INTERSECT_STATUS + ": " + intersection.getPointO());
-                    } else {
-                        result.set(NOT_INTERSECT_STATUS);
-                    }
-                } else {
-                    result.set(ERROR_STATUS);
-                }
-            } catch (ArithmeticException ex) {
-                lineStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase(Locale.ENGLISH));
-                planeStatus.set(ERROR_STATUS + ": " + ex.getMessage().toLowerCase(Locale.ENGLISH));
-                result.set(ERROR_STATUS);
+        if (checkStatusValidity()) {
+            LineIntersectPlane intersection = new LineIntersectPlane(plane, line);
+            if (intersection.checkIntersection()) {
+                result.set(INTERSECT + ": " + intersection.getPointO());
+            } else {
+                result.set(NOT_INTERSECT);
             }
-        } else {
-            result.set(ERROR_STATUS);
         }
     }
 }

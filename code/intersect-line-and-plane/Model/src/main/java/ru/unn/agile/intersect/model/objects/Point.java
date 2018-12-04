@@ -1,5 +1,7 @@
 package ru.unn.agile.intersect.model.objects;
 
+import java.util.Locale;
+
 public final class Point {
     private double coordinateX, coordinateY, coordinateZ;
 
@@ -50,9 +52,9 @@ public final class Point {
 
     @Override
     public String toString() {
-        String xStr = Double.toString(coordinateX);
-        String yStr = Double.toString(coordinateY);
-        String zStr = Double.toString(coordinateZ);
+        String xStr = String.format(Locale.ENGLISH, "%(.2f", coordinateX);
+        String yStr = String.format(Locale.ENGLISH, "%(.2f", coordinateY);
+        String zStr = String.format(Locale.ENGLISH, "%(.2f", coordinateZ);
         return ("(" + xStr + ", " + yStr + ", " + zStr + ")");
     }
 }

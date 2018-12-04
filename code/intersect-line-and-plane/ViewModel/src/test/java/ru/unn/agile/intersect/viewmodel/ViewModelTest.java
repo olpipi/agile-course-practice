@@ -41,7 +41,15 @@ public class ViewModelTest {
     }
 
     @Test
-    public void viewCoordPropertiesAreInitialized() {
+    public void initStatusesWithDefaultValues() {
+        String expectedMessage = "Waiting for input";
+
+        assertEquals(expectedMessage, viewModel.getPlaneStatus());
+        assertEquals(expectedMessage, viewModel.getLineStatus());
+    }
+
+    @Test
+    public void checkIfCoordinateAndResultPropertiesAreInitialized() {
         assertNotEquals(null, viewModel.coordXFirstPlanePointProperty());
         assertNotEquals(null, viewModel.coordYFirstPlanePointProperty());
         assertNotEquals(null, viewModel.coordZFirstPlanePointProperty());
@@ -57,13 +65,15 @@ public class ViewModelTest {
         assertNotEquals(null, viewModel.coordXSecondLinePointProperty());
         assertNotEquals(null, viewModel.coordYSecondLinePointProperty());
         assertNotEquals(null, viewModel.coordZSecondLinePointProperty());
+        assertNotEquals(null, viewModel.resultProperty());
     }
 
     @Test
-    public void viewStatusAndResultPropertiesAreInitialized() {
-        assertNotEquals(null, viewModel.planeStatusProperty());
-        assertNotEquals(null, viewModel.lineStatusProperty());
-        assertNotEquals(null, viewModel.resultProperty());
+    public void checkIfStatusPropertiesAreInitialized() {
+        String expectedMessage = "Waiting for input";
+
+        assertEquals(expectedMessage, viewModel.planeStatusProperty().get());
+        assertEquals(expectedMessage, viewModel.lineStatusProperty().get());
     }
 
     @Test
@@ -90,8 +100,6 @@ public class ViewModelTest {
 
     @Test
     public void canSetLineCoordinates() {
-        String expectedResult = "0.0";
-
         viewModel.setCoordXFirstLinePoint("0.0");
         viewModel.setCoordYFirstLinePoint("0.0");
         viewModel.setCoordZFirstLinePoint("0.0");
@@ -99,26 +107,16 @@ public class ViewModelTest {
         viewModel.setCoordYSecondLinePoint("0.0");
         viewModel.setCoordZSecondLinePoint("0.0");
 
-        assertEquals(expectedResult, viewModel.getCoordXFirstLinePoint());
-        assertEquals(expectedResult, viewModel.getCoordYFirstLinePoint());
-        assertEquals(expectedResult, viewModel.getCoordZFirstLinePoint());
-        assertEquals(expectedResult, viewModel.getCoordXSecondLinePoint());
-        assertEquals(expectedResult, viewModel.getCoordYSecondLinePoint());
-        assertEquals(expectedResult, viewModel.getCoordZSecondLinePoint());
-    }
-
-    @Test
-    public void canSetDefaultStatus() {
-        String expectedMessage = "Waiting for input";
-
-        assertEquals(expectedMessage, viewModel.getPlaneStatus());
-        assertEquals(expectedMessage, viewModel.getLineStatus());
+        assertEquals("0.0", viewModel.getCoordXFirstLinePoint());
+        assertEquals("0.0", viewModel.getCoordYFirstLinePoint());
+        assertEquals("0.0", viewModel.getCoordZFirstLinePoint());
+        assertEquals("0.0", viewModel.getCoordXSecondLinePoint());
+        assertEquals("0.0", viewModel.getCoordYSecondLinePoint());
+        assertEquals("0.0", viewModel.getCoordZSecondLinePoint());
     }
 
     @Test
     public void canCreatePlane() {
-        String expectedMessage = "Correct input";
-
         viewModel.setCoordXFirstPlanePoint("1.0");
         viewModel.setCoordYFirstPlanePoint("2.0");
         viewModel.setCoordZFirstPlanePoint("1.0");
@@ -130,13 +128,11 @@ public class ViewModelTest {
         viewModel.setCoordZThirdPlanePoint("1.0");
         viewModel.createPlane();
 
-        assertEquals(expectedMessage, viewModel.getPlaneStatus());
+        assertEquals("Correct input", viewModel.getPlaneStatus());
     }
 
     @Test
     public void canCreateLine() {
-        String expectedMessage = "Correct input";
-
         viewModel.setCoordXFirstLinePoint("1.0");
         viewModel.setCoordYFirstLinePoint("-2.0");
         viewModel.setCoordZFirstLinePoint("3.0");
@@ -145,13 +141,11 @@ public class ViewModelTest {
         viewModel.setCoordZSecondLinePoint("4.0");
         viewModel.createLine();
 
-        assertEquals(expectedMessage, viewModel.getLineStatus());
+        assertEquals("Correct input", viewModel.getLineStatus());
     }
 
     @Test
     public void canNotAddNullValueForPlaneCoordinates() {
-        String expectedMessage = "Input error: empty string";
-
         viewModel.setCoordXFirstPlanePoint("");
         viewModel.setCoordYFirstPlanePoint("2.0");
         viewModel.setCoordZFirstPlanePoint("1.0");
@@ -161,30 +155,35 @@ public class ViewModelTest {
         viewModel.setCoordXThirdPlanePoint("-1.0");
         viewModel.setCoordYThirdPlanePoint("0.0");
         viewModel.setCoordZThirdPlanePoint("1.0");
-        viewModel.createPlane();
+        viewModel.checkLineAndPlaneIntersection();
 
-        assertEquals(expectedMessage, viewModel.getPlaneStatus());
+        assertEquals("Input error: empty string", viewModel.getPlaneStatus());
     }
 
     @Test
     public void canNotAddNullValueForLineCoordinates() {
-        String expectedMessage = "Input error: empty string";
-
+        viewModel.setCoordXFirstPlanePoint("3.0");
+        viewModel.setCoordYFirstPlanePoint("-3.0");
+        viewModel.setCoordZFirstPlanePoint("7.0");
+        viewModel.setCoordXSecondPlanePoint("8.0");
+        viewModel.setCoordYSecondPlanePoint("5.0");
+        viewModel.setCoordZSecondPlanePoint("2.0");
+        viewModel.setCoordXThirdPlanePoint("17.0");
+        viewModel.setCoordYThirdPlanePoint("6.0");
+        viewModel.setCoordZThirdPlanePoint("-4.0");
         viewModel.setCoordXFirstLinePoint("");
         viewModel.setCoordYFirstLinePoint("2.0");
         viewModel.setCoordZFirstLinePoint("3.0");
         viewModel.setCoordXSecondLinePoint("2.0");
         viewModel.setCoordYSecondLinePoint("3.0");
         viewModel.setCoordZSecondLinePoint("4.0");
-        viewModel.createLine();
+        viewModel.checkLineAndPlaneIntersection();
 
-        assertEquals(expectedMessage, viewModel.getLineStatus());
+        assertEquals("Input error: empty string", viewModel.getLineStatus());
     }
 
     @Test
     public void canNotAddInvalidValueForPlaneCoordinates() {
-        String expectedMessage = "Input error: for input string: \"aa\"";
-
         viewModel.setCoordXFirstPlanePoint("aa");
         viewModel.setCoordYFirstPlanePoint("2.0");
         viewModel.setCoordZFirstPlanePoint("1.0");
@@ -194,24 +193,31 @@ public class ViewModelTest {
         viewModel.setCoordXThirdPlanePoint("1.0");
         viewModel.setCoordYThirdPlanePoint("0.0");
         viewModel.setCoordZThirdPlanePoint("1.0");
-        viewModel.createPlane();
+        viewModel.checkLineAndPlaneIntersection();
 
-        assertEquals(expectedMessage, viewModel.getPlaneStatus());
+        assertEquals("Input error: for input string: \"aa\"", viewModel.getPlaneStatus());
     }
 
     @Test
     public void canNotAddInvalidValueForLineCoordinates() {
-        String expectedMessage = "Input error: for input string: \"bb\"";
-
+        viewModel.setCoordXFirstPlanePoint("-1.0");
+        viewModel.setCoordYFirstPlanePoint("5.0");
+        viewModel.setCoordZFirstPlanePoint("3.0");
+        viewModel.setCoordXSecondPlanePoint("2.0");
+        viewModel.setCoordYSecondPlanePoint("7.0");
+        viewModel.setCoordZSecondPlanePoint("8.0");
+        viewModel.setCoordXThirdPlanePoint("0.0");
+        viewModel.setCoordYThirdPlanePoint("-1.0");
+        viewModel.setCoordZThirdPlanePoint("1.0");
         viewModel.setCoordXFirstLinePoint("bb");
         viewModel.setCoordYFirstLinePoint("2.0");
         viewModel.setCoordZFirstLinePoint("3.0");
         viewModel.setCoordXSecondLinePoint("2.0");
         viewModel.setCoordYSecondLinePoint("3.0");
         viewModel.setCoordZSecondLinePoint("dd");
-        viewModel.createLine();
+        viewModel.checkLineAndPlaneIntersection();
 
-        assertEquals(expectedMessage, viewModel.getLineStatus());
+        assertEquals("Input error: for input string: \"bb\"", viewModel.getLineStatus());
     }
 
     @Test
@@ -227,7 +233,7 @@ public class ViewModelTest {
         viewModel.setCoordXThirdPlanePoint("1.0");
         viewModel.setCoordYThirdPlanePoint("2.0");
         viewModel.setCoordZThirdPlanePoint("3.0");
-        viewModel.createPlane();
+        viewModel.checkLineAndPlaneIntersection();
 
         assertEquals(expectedMessage, viewModel.getPlaneStatus());
     }
@@ -235,15 +241,22 @@ public class ViewModelTest {
     @Test
     public void canNotAddIdenticalPointCoordinatesForLine() {
         String expectedMessage = "Input error: points must not have identical coordinates";
-
+        viewModel.setCoordXFirstPlanePoint("4.0");
+        viewModel.setCoordYFirstPlanePoint("3.0");
+        viewModel.setCoordZFirstPlanePoint("6.0");
+        viewModel.setCoordXSecondPlanePoint("-3.0");
+        viewModel.setCoordYSecondPlanePoint("-1.0");
+        viewModel.setCoordZSecondPlanePoint("5.0");
+        viewModel.setCoordXThirdPlanePoint("1.0");
+        viewModel.setCoordYThirdPlanePoint("1.0");
+        viewModel.setCoordZThirdPlanePoint("2.0");
         viewModel.setCoordXFirstLinePoint("1.0");
         viewModel.setCoordYFirstLinePoint("2.0");
         viewModel.setCoordZFirstLinePoint("3.0");
         viewModel.setCoordXSecondLinePoint("1.0");
         viewModel.setCoordYSecondLinePoint("2.0");
         viewModel.setCoordZSecondLinePoint("3.0");
-        viewModel.createLine();
-
+        viewModel.checkLineAndPlaneIntersection();
         assertEquals(expectedMessage, viewModel.getLineStatus());
     }
 
@@ -288,7 +301,7 @@ public class ViewModelTest {
         viewModel.setCoordZSecondLinePoint("-2.5");
         viewModel.checkLineAndPlaneIntersection();
 
-        assertEquals("Intersect: (3.0, 4.0, 2.0)", viewModel.getResult());
+        assertEquals("Intersect: (3.00, 4.00, 2.00)", viewModel.getResult());
     }
 
     @Test
