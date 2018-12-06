@@ -1,20 +1,28 @@
-package ru.unn.agile.InfixToPostfixNotationConverter.viewmodel;
+package ru.unn.agile.infixtopostfixnotationconverter.viewmodel;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.property.*;
 
-import ru.unn.agile.InfixToPostfixNotationConverter.model.InfixToPostfixNotationConverter;
+import javafx.collections.FXCollections;
+import ru.unn.agile.infixtopostfixnotationconverter.model.InfixToPostfixNotationConverter;
 
 import java.util.Arrays;
 
 public class ViewModel {
+    public static final String LOG_MESSAGE_COMPUTE_BUTTON_CLICKED = "Compute button clicked";
+    public static final String LOG_MESSAGE_INPUT_EXPRESSION_CHANGED = "Input expression changed";
+
     private final StringProperty infixExpression = new SimpleStringProperty();
     private final StringProperty postfixExpression = new SimpleStringProperty();
     private final StringProperty expressionResult = new SimpleStringProperty();
     private final StringProperty status = new SimpleStringProperty();
     private final BooleanProperty convertButtonDisabled = new SimpleBooleanProperty();
     private final ValueChangeListener valueChangeListener = new ValueChangeListener();
+    private final ListProperty<String> logLines = new SimpleListProperty<>();
+
+    private ILogger logger;
+
 
     public ViewModel() {
         infixExpression.set("");
@@ -22,8 +30,13 @@ public class ViewModel {
         expressionResult.set("");
         status.set(Status.WAITING.toString());
         convertButtonDisabled.set(true);
+        logger = null;
 
         infixExpression.addListener(valueChangeListener);
+    }
+
+    public void setLogger(final ILogger logger) {
+        this.logger = logger;
     }
 
     public StringProperty infixExpressionProperty() {
@@ -46,6 +59,10 @@ public class ViewModel {
         return convertButtonDisabled;
     }
 
+    public ListProperty<String> logLinesProperty() {
+        return logLines;
+    }
+
     public Status getInputStatus() {
         if (infixExpression.get().isEmpty()) {
             return Status.WAITING;
@@ -64,6 +81,12 @@ public class ViewModel {
         postfixExpression.set(getConversionResultAsString(converted));
         expressionResult.set(result.toString());
         status.set(Status.SUCCESS.toString());
+
+        StringBuilder logMessage = new StringBuilder(LOG_MESSAGE_COMPUTE_BUTTON_CLICKED)
+                .append(", expression: '").append(infixExpression.get()).append("'")
+                .append(", converted: '").append(String.join(" ", converted)).append("'")
+                .append(", result: '").append(expressionResult.get()).append("'");
+        log(logMessage.toString());
     }
 
     private String getConversionResultAsString(final String[] conversionResult) {
@@ -80,7 +103,23 @@ public class ViewModel {
                             final String oldValue, final String newValue) {
             status.set(getInputStatus().toString());
             convertButtonDisabled.set(!canConvert());
+
+            StringBuilder logMessage = new StringBuilder(LOG_MESSAGE_INPUT_EXPRESSION_CHANGED)
+                    .append(", new value: '").append(newValue).append("'")
+                    .append(", status: ").append(status.get());
+            log(logMessage.toString());
         }
+    }
+
+    private void log(final String message) {
+        if (logger != null) {
+            logger.log(message);
+            updateLog();
+        }
+    }
+
+    private void updateLog() {
+        logLines.setValue(FXCollections.observableArrayList(logger.getMessages()));
     }
 }
 
@@ -98,4 +137,3 @@ enum Status {
         return name;
     }
 }
-

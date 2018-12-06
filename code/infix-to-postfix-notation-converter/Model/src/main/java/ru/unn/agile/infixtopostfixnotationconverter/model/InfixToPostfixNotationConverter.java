@@ -1,4 +1,4 @@
-package ru.unn.agile.InfixToPostfixNotationConverter.model;
+package ru.unn.agile.infixtopostfixnotationconverter.model;
 
 import java.util.*;
 
@@ -25,7 +25,6 @@ public final class InfixToPostfixNotationConverter {
 
         stripped = stripped.replaceAll(expressionPattern, "");
         stripped = stripped.replaceAll("[(]", "").replaceAll("[)]", "");
-        System.out.println(stripped);
 
         return stripped.isEmpty();
     }
