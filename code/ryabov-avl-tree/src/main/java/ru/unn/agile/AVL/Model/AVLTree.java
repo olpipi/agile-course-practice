@@ -2,6 +2,8 @@ package ru.unn.agile.AVL.Model;
 
 public class AVLTree<K extends Comparable<K>, V extends Comparable<V>> {
 
+    private enum ChildType { Left, Right }
+
     public void insert(final K key, final V value) {
 
         if (root == null) {
@@ -11,45 +13,48 @@ public class AVLTree<K extends Comparable<K>, V extends Comparable<V>> {
 
         Node<K, V> current = root;
         Node<K, V> parent  = current;
+
+        ChildType[] parents = new ChildType[root.getHeight()];
+        int parentsCount = 0;
         while (current != null) {
             parent = current;
             int cmp = key.compareTo(current.getKey());
             if (cmp < 0) {
                 current = current.getLeft();
+                parents[parentsCount] = ChildType.Left;
             } else if (cmp > 0) {
                 current = current.getRight();
+                parents[parentsCount] = ChildType.Right;
             } else {
                 current.setValue(value);
                 return;
             }
+            parentsCount++;
         }
 
+        current = new Node<>(key, value);
         int cmp = key.compareTo(parent.getKey());
         if (cmp < 0) {
-            parent.setLeft(new Node<>(key, value));
+            parent.setLeft(current);
         } else if (cmp > 0) {
-            parent.setRight(new Node<>(key, value));
+            parent.setRight(current);
         }
 
-        while (parent != null) {
-            Node<K, V> parentOfParent = parent.getParent();
-            current = balanceNode(parent);
 
-            if (parentOfParent != null) {
-                cmp = current.getKey().compareTo(parentOfParent.getKey());
-                if (cmp < 0) {
-                    parentOfParent.setLeft(current);
-                } else if (cmp > 0) {
-                    parentOfParent.setRight(current);
-                }
+        for (int i = parentsCount - 1; i > 0; i--) {
+            current = parent;
+            parent  = parent.getParent();
+            current = balanceNode(current);
+
+            if (parents[i] == ChildType.Left) {
+                parent.setLeft(current);
             } else {
-                current.setParent(null);
+                parent.setRight(current);
             }
-
-            parent = parentOfParent;
         }
 
-        root = current;
+        root = balanceNode(parent);
+        root.setParent(null);
     }
 
     public Node<K, V> find(final K key) {

@@ -16,7 +16,7 @@ public class AVLTreeTest {
     }
 
     @Test
-    public void FindNull() {
+    public void findNull() {
         AVLTree<Integer, Integer> tree = new AVLTree<>();
         assertEquals(tree.find(null), null);
     }
@@ -58,36 +58,6 @@ public class AVLTreeTest {
 
         Node<Integer, String> foundNode = tree.find(nodeToFind.getKey());
         assertEquals(nodeToFind.getValue(), foundNode != null ? foundNode.getValue() : null);
-    }
-
-    @Test
-    public void insertAndFindUphillNumberSequence() {
-        int[] sequence = java.util.stream.IntStream.rangeClosed(0, 100).toArray();
-
-        AVLTree<Integer, Integer> tree = new AVLTree<>();
-        for (Integer number : sequence) {
-            tree.insert(number, number);
-        }
-
-        for (Integer number : sequence) {
-            Node<Integer, Integer> foundNode = tree.find(number);
-            assertEquals(number, foundNode != null ? foundNode.getValue() : null);
-        }
-    }
-
-    @Test
-    public void insertAndFindDownhillNumberSequence() {
-        int[] sequence = java.util.stream.IntStream.rangeClosed(100, 0).toArray();
-
-        AVLTree<Integer, Integer> tree = new AVLTree<>();
-        for (Integer number : sequence) {
-            tree.insert(number, number);
-        }
-
-        for (Integer number : sequence) {
-            Node<Integer, Integer> foundNode = tree.find(number);
-            assertEquals(number, foundNode != null ? foundNode.getValue() : null);
-        }
     }
 
     @Test
