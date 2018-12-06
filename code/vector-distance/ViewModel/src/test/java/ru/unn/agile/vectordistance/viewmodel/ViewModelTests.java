@@ -10,6 +10,9 @@ import ru.unn.agile.vectordistance.model.VectorDistance.Distance;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static ru.unn.agile.vectordistance.viewmodel.ViewModel.CALCULATE_RESULT_ERROR_MESSAGE;
+import static ru.unn.agile.vectordistance.viewmodel.ViewModel.CALCULATE_RESULT_SUCCESS_MESSAGE;
+import static ru.unn.agile.vectordistance.viewmodel.ViewModel.CALCULATE_STATUS_MESSAGE;
 
 public class ViewModelTests {
     private ViewModel viewModel;
@@ -51,7 +54,7 @@ public class ViewModelTests {
 
         List<String> log = viewModel.getLog();
 
-        assertEquals("Result was successfully set to 9.0", log.get(0));
+        assertEquals(CALCULATE_RESULT_SUCCESS_MESSAGE + "9.0", log.get(0));
     }
 
     @Test
@@ -61,7 +64,7 @@ public class ViewModelTests {
 
         List<String> log = viewModel.getLog();
 
-        assertEquals("Status was set to " + Status.SUCCESS.toString(), log.get(1));
+        assertEquals(CALCULATE_STATUS_MESSAGE + Status.SUCCESS.toString(), log.get(1));
     }
 
     @Test
@@ -73,7 +76,7 @@ public class ViewModelTests {
 
         List<String> log = viewModel.getLog();
 
-        assertEquals("Exception was thrown with message: " +
+        assertEquals(CALCULATE_RESULT_ERROR_MESSAGE +
                 VectorDistance.EXPECTED_VECTORS_OF_SAME_LENGTH_EXCEPTION_MESSAGE, log.get(0));
     }
 

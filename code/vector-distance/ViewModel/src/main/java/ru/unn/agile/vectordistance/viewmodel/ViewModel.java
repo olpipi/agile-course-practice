@@ -26,6 +26,10 @@ public class ViewModel {
 
     private ILogger logger;
 
+    public static final String CALCULATE_RESULT_SUCCESS_MESSAGE = "Result was successfully set to ";
+    public static final String CALCULATE_RESULT_ERROR_MESSAGE = "Exception was thrown with message: ";
+    public static final String CALCULATE_STATUS_MESSAGE = "Status was set to ";
+
     public final ObservableList<Distance> getDistances() {
         return distances.get();
     }
@@ -88,13 +92,13 @@ public class ViewModel {
             String value = String.valueOf(distance.get().apply(a, b));
 
             result.set(String.valueOf(value));
-            logger.log("Result was successfully set to " + value);
+            logger.log(CALCULATE_RESULT_SUCCESS_MESSAGE + value);
         } catch (Exception e) {
             result.set(e.getMessage());
-            logger.log("Exception was thrown with message: " + e.getMessage());
+            logger.log(CALCULATE_RESULT_ERROR_MESSAGE + e.getMessage());
         }
         status.set(Status.SUCCESS.toString());
-        logger.log("Status was set to " + Status.SUCCESS.toString());
+        logger.log(CALCULATE_STATUS_MESSAGE + Status.SUCCESS.toString());
     }
 
     public ObjectProperty<Distance> distanceProperty() {
