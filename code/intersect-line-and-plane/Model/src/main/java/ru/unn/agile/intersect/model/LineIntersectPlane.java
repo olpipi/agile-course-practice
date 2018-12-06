@@ -10,7 +10,7 @@ public class LineIntersectPlane {
         this.pointO = new Point(coordX, coordY, coordZ);
     }
 
-    private Point getPointO() {
+    public Point getPointO() {
         return this.pointO;
     }
 
@@ -26,7 +26,7 @@ public class LineIntersectPlane {
         return this.intersection;
     }
 
-    public LineIntersectPlane(final Plane planeP, final Line lineL) {
+    public LineIntersectPlane(final Plane planeP, final Line lineL) throws ArithmeticException {
         Point normalN = planeP.countNormalToPlane();
         double distance = planeP.countToNormalDistance(lineL);
         Point vectorW = lineL.getY().createVector(lineL.getX());
@@ -52,5 +52,4 @@ public class LineIntersectPlane {
             this.setIntersectionFalse();
         }
     }
-
 }

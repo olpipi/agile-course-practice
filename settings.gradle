@@ -2,9 +2,13 @@
 include "code/bevzuk-anton"
 project(":code/bevzuk-anton").name = "bevzuk-anton-Model"
 
-//Oleneva Maria
-include "code/oleneva-intersect-line-and-plane"
-project(":code/oleneva-intersect-line-and-plane").name = "code/oleneva-intersect-line-and-plane"
+// Intersect line and plane
+include "code/intersect-line-and-plane/View"
+project(":code/intersect-line-and-plane/View").name = "intersect-line-and-plane-View"
+include "code/intersect-line-and-plane/Model"
+project(":code/intersect-line-and-plane/Model").name = "intersect-line-and-plane-Model"
+include "code/intersect-line-and-plane/ViewModel"
+project(":code/intersect-line-and-plane/ViewModel").name = "intersect-line-and-plane-ViewModel"
 
 // Currency Converter
 include "code/currency-converter/Model"
