@@ -24,6 +24,8 @@ public class ViewModel {
             new SimpleObjectProperty<>(FXCollections.observableArrayList(Distance.values()));
     private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
 
+    private ILogger logger;
+
     public final ObservableList<Distance> getDistances() {
         return distances.get();
     }
@@ -54,7 +56,14 @@ public class ViewModel {
         return calculationDisabledProperty().get();
     }
 
-    public ViewModel() {
+    public ViewModel(final ILogger logger) {
+
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger should be initialized");
+        }
+
+        this.logger = logger;
+
         vectorX.set("");
         vectorY.set("");
         result.set("");
