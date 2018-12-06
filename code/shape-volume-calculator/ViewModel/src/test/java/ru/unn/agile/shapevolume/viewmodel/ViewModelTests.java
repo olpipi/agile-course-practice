@@ -50,7 +50,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void resultNoWaitingWhenFieldsAreCorrect() {
+    public void resultNoWaitingWhenFieldsAreFilled() {
         viewModel.firstArgumentValueProperty().set("1");
         viewModel.secondArgumentValueProperty().set("2");
         viewModel.thirdArgumentValueProperty().set("3");
