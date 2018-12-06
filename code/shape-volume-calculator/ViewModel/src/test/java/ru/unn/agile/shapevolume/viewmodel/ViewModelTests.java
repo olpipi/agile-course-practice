@@ -18,31 +18,35 @@ public class ViewModelTests {
         viewModel = null;
     }
 
+    private void checkParametersNames(final Shape shape) {
+        String[] parametersNames = ViewModel.SHAPE_TO_PARAMETERS_NAMES.get(shape);
+        assertEquals(parametersNames[0], viewModel.firstArgumentNameProperty().get());
+        assertEquals(parametersNames[1], viewModel.secondArgumentNameProperty().get());
+        assertEquals(parametersNames[2], viewModel.thirdArgumentNameProperty().get());
+    }
+
     @Test
     public void canSetDefaultValues() {
-        assertEquals(ViewModel.DEFAULT_VALUE, viewModel.firstArgumentValueProperty().get());
-        assertEquals(ViewModel.DEFAULT_VALUE, viewModel.secondArgumentValueProperty().get());
-        assertEquals(ViewModel.DEFAULT_VALUE, viewModel.thirdArgumentValueProperty().get());
+        assertEquals(ViewModel.DEFAULT_VALUE, viewModel.firstArgumentNameProperty().get());
+        assertEquals(ViewModel.DEFAULT_VALUE, viewModel.secondArgumentNameProperty().get());
+        assertEquals(ViewModel.DEFAULT_VALUE, viewModel.thirdArgumentNameProperty().get());
+    }
 
+    @Test
+    public void canSetDefaultNames() {
+        checkParametersNames(Shape.UNKNOWN);
+    }
+
+    @Test
+    public void canSetDefaultShape() {
         assertEquals(Shape.UNKNOWN, viewModel.currentShapeProperty().get());
-        assertEquals(ViewModel.DEFAULT_VALUE, viewModel.getFirstArgumentName());
-        assertEquals(ViewModel.DEFAULT_VALUE, viewModel.getSecondArgumentName());
-        assertEquals(ViewModel.DEFAULT_VALUE, viewModel.getThirdArgumentName());
     }
 
     @Test
     public void resultWaitingWhenThirdFieldIsEmpty() {
         viewModel.firstArgumentValueProperty().set("1");
         viewModel.secondArgumentValueProperty().set("2");
-        assertEquals(ViewModel.WAITING, viewModel.getResult());
-    }
-
-    @Test
-    public void checkPrismParametersNames() {
-        viewModel.currentShapeProperty().set(Shape.REGULAR_POLYGON_PRISM);
-        assertEquals(ViewModel.POLYGON_BASE_SIDES_COUNT, viewModel.getFirstArgumentName());
-        assertEquals(ViewModel.POLYGON_BASE_SIDES_LENGTH, viewModel.getSecondArgumentName());
-        assertEquals(ViewModel.POLYGON_HEIGHT, viewModel.getThirdArgumentName());
+        assertEquals(Status.WAITING.toString(), viewModel.getResult());
     }
 
     @Test
@@ -50,7 +54,7 @@ public class ViewModelTests {
         viewModel.firstArgumentValueProperty().set("1");
         viewModel.secondArgumentValueProperty().set("2");
         viewModel.thirdArgumentValueProperty().set("3");
-        assertNotEquals(ViewModel.WAITING, viewModel.getResult());
+        assertNotEquals(Status.WAITING.toString(), viewModel.getResult());
     }
 
     @Test
@@ -58,7 +62,7 @@ public class ViewModelTests {
         viewModel.firstArgumentValueProperty().set("1");
         viewModel.secondArgumentValueProperty().set("test");
         viewModel.thirdArgumentValueProperty().set("3");
-        assertEquals(ViewModel.INVALID_ARGUMENTS, viewModel.getResult());
+        assertEquals(Status.INVALID_ARGUMENTS.toString(), viewModel.getResult());
     }
 
     @Test
@@ -66,7 +70,7 @@ public class ViewModelTests {
         viewModel.firstArgumentValueProperty().set("another test");
         viewModel.secondArgumentValueProperty().set("2");
         viewModel.thirdArgumentValueProperty().set("3");
-        assertEquals(ViewModel.INVALID_ARGUMENTS, viewModel.getResult());
+        assertEquals(Status.INVALID_ARGUMENTS.toString(), viewModel.getResult());
     }
 
     @Test
@@ -74,7 +78,7 @@ public class ViewModelTests {
         viewModel.firstArgumentValueProperty().set("stub one");
         viewModel.secondArgumentValueProperty().set("2");
         viewModel.thirdArgumentValueProperty().set("stub 3");
-        assertEquals(ViewModel.INVALID_ARGUMENTS, viewModel.getResult());
+        assertEquals(Status.INVALID_ARGUMENTS.toString(), viewModel.getResult());
     }
 
     @Test
@@ -101,7 +105,7 @@ public class ViewModelTests {
         viewModel.firstArgumentValueProperty().set("1");
         viewModel.secondArgumentValueProperty().set("2.0");
         viewModel.thirdArgumentValueProperty().set("3");
-        assertEquals(ViewModel.INVALID_ARGUMENTS, viewModel.getResult());
+        assertEquals(Status.INVALID_ARGUMENTS.toString(), viewModel.getResult());
     }
 
     @Test
@@ -110,7 +114,7 @@ public class ViewModelTests {
         viewModel.firstArgumentValueProperty().set("-1");
         viewModel.secondArgumentValueProperty().set("2");
         viewModel.thirdArgumentValueProperty().set("3");
-        assertEquals(ViewModel.INVALID_ARGUMENTS, viewModel.getResult());
+        assertEquals(Status.INVALID_ARGUMENTS.toString(), viewModel.getResult());
     }
 
     @Test
@@ -119,7 +123,7 @@ public class ViewModelTests {
         viewModel.firstArgumentValueProperty().set("1");
         viewModel.secondArgumentValueProperty().set("-2");
         viewModel.thirdArgumentValueProperty().set("3");
-        assertEquals(ViewModel.INVALID_ARGUMENTS, viewModel.getResult());
+        assertEquals(Status.INVALID_ARGUMENTS.toString(), viewModel.getResult());
     }
 
     @Test
@@ -144,60 +148,33 @@ public class ViewModelTests {
     public void canNotCalculateRegularPolygonPrismVolumeWithFirstNegativeArgument() {
         viewModel.currentShapeProperty().set(Shape.REGULAR_POLYGON_PRISM);
         viewModel.firstArgumentValueProperty().set("-1");
-        viewModel.secondArgumentValueProperty().set("2");
-        viewModel.thirdArgumentValueProperty().set("3");
-        assertEquals(ViewModel.INVALID_ARGUMENTS, viewModel.getResult());
+        viewModel.secondArgumentValueProperty().set("3");
+        viewModel.thirdArgumentValueProperty().set("4");
+        assertEquals(Status.INVALID_ARGUMENTS.toString(), viewModel.getResult());
     }
 
     @Test
-    public void checkSwitchShapes() {
-        viewModel.currentShapeProperty().set(Shape.REGULAR_POLYGON_PRISM);
+    public void checkSwitchToCube() {
         viewModel.currentShapeProperty().set(Shape.CUBE);
+        checkParametersNames(Shape.CUBE);
+    }
+
+
+    @Test
+    public void checkSwitchToPrism() {
+        viewModel.currentShapeProperty().set(Shape.REGULAR_POLYGON_PRISM);
+        checkParametersNames(Shape.REGULAR_POLYGON_PRISM);
     }
 
     @Test
-    public void checkUnknownShapes() {
+    public void checkSwitchBackToUnknown() {
+        viewModel.currentShapeProperty().set(Shape.CUBE);
         viewModel.currentShapeProperty().set(Shape.UNKNOWN);
-    }
-
-    @Test
-    public void canGetShapesProperty() {
-        viewModel.shapesProperty();
-    }
-
-    @Test
-    public void canGetResultProperty() {
-        viewModel.resultProperty();
-    }
-
-    @Test
-    public void canGetShapes() {
-        viewModel.getShapes();
-    }
-
-    @Test
-    public void canGetFirstArgumentNameProperty() {
-        viewModel.firstArgumentNameProperty();
-    }
-
-    @Test
-    public void canGetSecondArgumentNameProperty() {
-        viewModel.secondArgumentNameProperty();
-    }
-
-    @Test
-    public void canGetThirdArgumentNameProperty() {
-        viewModel.thirdArgumentNameProperty();
+        checkParametersNames(Shape.UNKNOWN);
     }
 
     @Test
     public void checkShapeToString() {
         assertEquals("Куб", Shape.CUBE.toString());
-    }
-
-    @Test
-    public void checkSwitchDefault() {
-        viewModel.currentShapeProperty().set(Shape.CUBE);
-        viewModel.currentShapeProperty().set(Shape.UNKNOWN);
     }
 }

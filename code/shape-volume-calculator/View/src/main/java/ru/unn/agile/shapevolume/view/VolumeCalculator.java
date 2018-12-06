@@ -20,7 +20,6 @@ public class VolumeCalculator {
 
     @FXML
     void initialize() {
-        // Two-way binding hasn't supported by FXML yet, so place it in code-behind
         txtFirstArgument.textProperty().bindBidirectional(viewModel.firstArgumentValueProperty());
         txtSecondArgument.textProperty().bindBidirectional(viewModel.secondArgumentValueProperty());
         txtThirdArgument.textProperty().bindBidirectional(viewModel.thirdArgumentValueProperty());
