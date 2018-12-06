@@ -7,6 +7,8 @@ import org.junit.Test;
 import ru.unn.agile.vectordistance.model.VectorDistance;
 import ru.unn.agile.vectordistance.model.VectorDistance.Distance;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class ViewModelTests {
@@ -33,6 +35,46 @@ public class ViewModelTests {
     @Test(expected = IllegalArgumentException.class)
     public void throwsWhenCreateViewModelWithNullLogger() {
         new ViewModel(null);
+    }
+
+    @Test
+    public void isLogEmptyWhenStartup() {
+        List<String> log = viewModel.getLog();
+
+        assertEquals("", log);
+    }
+
+    @Test
+    public void doesLogContainInfoAboutSuccessfulResult() {
+        setInputData();
+        viewModel.calculate();
+
+        List<String> log = viewModel.getLog();
+
+        assertEquals("Result was successfully set to 9.0", log.get(0));
+    }
+
+    @Test
+    public void doesLogContainInfoAboutSuccessfulStatus() {
+        setInputData();
+        viewModel.calculate();
+
+        List<String> log = viewModel.getLog();
+
+        assertEquals("Status was set to " + Status.SUCCESS.toString(), log.get(1));
+    }
+
+    @Test
+    public void doesLogContainInfoExceptionWhileCalculating() {
+        setInputData();
+        viewModel.vectorXProperty().set("1 2");
+
+        viewModel.calculate();
+
+        List<String> log = viewModel.getLog();
+
+        assertEquals("Exception was thrown with message: " +
+                VectorDistance.EXPECTED_VECTORS_OF_SAME_LENGTH_EXCEPTION_MESSAGE, log.get(0));
     }
 
     @Test

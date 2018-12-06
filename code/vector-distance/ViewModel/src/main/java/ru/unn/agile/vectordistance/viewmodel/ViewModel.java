@@ -73,6 +73,10 @@ public class ViewModel {
         addListenersToInputData();
     }
 
+    public List<String> getLog() {
+        return logger.getLog();
+    }
+
     public void calculate() {
         if (calculationDisabled.get()) {
             return;
@@ -81,11 +85,16 @@ public class ViewModel {
         FloatVector a = getVectorFromInputString(vectorX.get());
         FloatVector b = getVectorFromInputString(vectorY.get());
         try {
-            result.set(String.valueOf(distance.get().apply(a, b)));
+            String value = String.valueOf(distance.get().apply(a, b));
+
+            result.set(String.valueOf(value));
+            logger.log("Result was successfully set to " + value);
         } catch (Exception e) {
             result.set(e.getMessage());
+            logger.log("Exception was thrown with message: " + e.getMessage());
         }
         status.set(Status.SUCCESS.toString());
+        logger.log("Status was set to " + Status.SUCCESS.toString());
     }
 
     public ObjectProperty<Distance> distanceProperty() {
