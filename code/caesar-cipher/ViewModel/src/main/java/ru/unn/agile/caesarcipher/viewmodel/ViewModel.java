@@ -5,7 +5,6 @@ import ru.unn.agile.caesarcipher.model.CaesarCipher;
 public class ViewModel {
     private String inputTextBoxValue;
     private String offsetTextBoxValue;
-    private String outputTextBoxValue;
     private String status;
     private String caesarCipher = "";
 
@@ -14,20 +13,7 @@ public class ViewModel {
     public ViewModel() {
         inputTextBoxValue = "";
         offsetTextBoxValue = "";
-        outputTextBoxValue = "";
         status = "";
-    }
-
-    public String getOutputTextBoxValue() {
-        return outputTextBoxValue;
-    }
-
-    public void setInputTextBoxValue(final String value) {
-        inputTextBoxValue = value;
-    }
-
-    public void setOffsetTextBoxValue(final String value) {
-        offsetTextBoxValue = value;
     }
 
     public String getStatus() {
