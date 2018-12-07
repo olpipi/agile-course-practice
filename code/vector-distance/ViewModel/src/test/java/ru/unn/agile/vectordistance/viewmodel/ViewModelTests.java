@@ -27,6 +27,10 @@ public class ViewModelTests {
         viewModel = null;
     }
 
+    public void setViewModel(final ViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
+
     @Test
     public void canCreateViewModelWithLogger() {
         FakeLogger logger = new FakeLogger();
@@ -41,20 +45,14 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isLogEmptyWhenStartup() {
-        List<String> log = viewModel.getLog();
-
-        assertEquals("", log);
-    }
-
-    @Test
     public void doesLogContainInfoAboutSuccessfulResult() {
         setInputData();
         viewModel.calculate();
 
-        List<String> log = viewModel.getLog();
+        List<String> log = viewModel.getLogList();
 
-        assertEquals(CALCULATE_RESULT_SUCCESS_MESSAGE + "9.0", log.get(0));
+        assertTrue(log.get(0).matches(".*"
+                + CALCULATE_RESULT_SUCCESS_MESSAGE + "9.0" + ".*"));
     }
 
     @Test
@@ -62,9 +60,10 @@ public class ViewModelTests {
         setInputData();
         viewModel.calculate();
 
-        List<String> log = viewModel.getLog();
+        List<String> log = viewModel.getLogList();
 
-        assertEquals(CALCULATE_STATUS_MESSAGE + Status.SUCCESS.toString(), log.get(1));
+        assertTrue(log.get(1).matches(".*"
+                + CALCULATE_STATUS_MESSAGE + Status.SUCCESS.toString() + ".*"));
     }
 
     @Test
@@ -74,10 +73,11 @@ public class ViewModelTests {
 
         viewModel.calculate();
 
-        List<String> log = viewModel.getLog();
+        List<String> log = viewModel.getLogList();
 
-        assertEquals(CALCULATE_RESULT_ERROR_MESSAGE +
-                VectorDistance.EXPECTED_VECTORS_OF_SAME_LENGTH_EXCEPTION_MESSAGE, log.get(0));
+        assertTrue(log.get(0).matches(".*"
+                + CALCULATE_RESULT_ERROR_MESSAGE
+                + VectorDistance.EXPECTED_VECTORS_OF_SAME_LENGTH_EXCEPTION_MESSAGE + ".*"));
     }
 
     @Test

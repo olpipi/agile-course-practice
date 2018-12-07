@@ -23,18 +23,22 @@ public class ViewModel {
     private final ObjectProperty<ObservableList<Distance>> distances =
             new SimpleObjectProperty<>(FXCollections.observableArrayList(Distance.values()));
     private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
+    private final ObjectProperty<Distance> distance = new SimpleObjectProperty<>();
+
+    private final StringProperty log = new SimpleStringProperty();
 
     private ILogger logger;
 
-    public static final String CALCULATE_RESULT_SUCCESS_MESSAGE = "Result was successfully set to ";
-    public static final String CALCULATE_RESULT_ERROR_MESSAGE = "Exception was thrown with message: ";
-    public static final String CALCULATE_STATUS_MESSAGE = "Status was set to ";
+    public static final String CALCULATE_RESULT_SUCCESS_MESSAGE =
+            "Result was successfully set to ";
+    public static final String CALCULATE_RESULT_ERROR_MESSAGE =
+            "Exception was thrown with message: ";
+    public static final String CALCULATE_STATUS_MESSAGE =
+            "Status was set to ";
 
     public final ObservableList<Distance> getDistances() {
         return distances.get();
     }
-
-    private final ObjectProperty<Distance> distance = new SimpleObjectProperty<>();
 
     public Distance getDistanceProperty() {
         return distanceProperty().get();
@@ -60,6 +64,10 @@ public class ViewModel {
         return calculationDisabledProperty().get();
     }
 
+    public ViewModel() {
+        init();
+    }
+
     public ViewModel(final ILogger logger) {
 
         if (logger == null) {
@@ -68,6 +76,10 @@ public class ViewModel {
 
         this.logger = logger;
 
+        init();
+    }
+
+    private void init() {
         vectorX.set("");
         vectorY.set("");
         result.set("");
@@ -75,10 +87,19 @@ public class ViewModel {
         distance.set(Distance.L1);
         setCouldCalculateBinding();
         addListenersToInputData();
+        log.set("");
     }
 
-    public List<String> getLog() {
+    public StringProperty logProperty() {
+        return log;
+    }
+
+    public List<String> getLogList() {
         return logger.getLog();
+    }
+
+    public void setLogger(final ILogger logger) {
+        this.logger = logger;
     }
 
     public void calculate() {
@@ -99,6 +120,13 @@ public class ViewModel {
         }
         status.set(Status.SUCCESS.toString());
         logger.log(CALCULATE_STATUS_MESSAGE + Status.SUCCESS.toString());
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String line : logger.getLog()) {
+            stringBuilder.append(line).append("\n");
+        }
+
+        log.set(stringBuilder.toString());
     }
 
     public ObjectProperty<Distance> distanceProperty() {
