@@ -229,4 +229,19 @@ public class ViewModelTest {
 
         assertFraction("13", "46");
     }
+
+    @Test
+    public void logContainsFractionChangedMessageIfSingleFieldChanged() {
+        viewModel.firstNumeratorProperty().set("1");
+
+        List<String> logList = viewModel.getLogList();
+        String message = String.format(ViewModel.LogMessages.FRACTIONS_WERE_CHANGED,
+                viewModel.firstNumeratorProperty().get(),
+                viewModel.firstDenominatorProperty().get(),
+                viewModel.secondNumeratorProperty().get(),
+                viewModel.secondDenominatorProperty().get(),
+                viewModel.getStatus(),
+                viewModel.calculationDisabledProperty().get());
+        assertEquals(message, logList.get(1));
+    }
 }

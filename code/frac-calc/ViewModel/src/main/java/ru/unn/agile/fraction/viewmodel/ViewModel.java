@@ -42,7 +42,7 @@ public class ViewModel {
         }
         this.logger = logger;
         initDefaultFields();
-        logger.log(currentStateLogMessage());
+        logger.log(currentStateForAllFieldsLogMessage());
     }
 
     private void initDefaultFields() {
@@ -136,12 +136,15 @@ public class ViewModel {
         return logger.getLog();
     }
 
-    private class InputValueChanger implements ChangeListener<String> {
+    private class InputValueChanger implements ChangeListener<Object> {
         @Override
-        public void changed(final ObservableValue<? extends String> obs,
-                            final String prevVal,
-                            final String nextVal) {
+        public void changed(final ObservableValue<?> obs,
+                            final Object prevVal,
+                            final Object nextVal) {
             status.set(getInputStatus().toString());
+            if (obs != operation) {
+                logger.log(fractionsStateLogMessage());
+            }
         }
     }
 
@@ -176,7 +179,7 @@ public class ViewModel {
         return inputStatus;
     }
 
-    private String currentStateLogMessage() {
+    private String currentStateForAllFieldsLogMessage() {
         Operation currentOperation = operation.get();
         return String.format(LogMessages.CURRENT_STATE,
                 firstNumerator.get(),
@@ -189,6 +192,16 @@ public class ViewModel {
                 status.get(),
                 calculationDisabled.get(),
                 getOperations().toString());
+    }
+
+    private String fractionsStateLogMessage() {
+        return String.format(LogMessages.FRACTIONS_WERE_CHANGED,
+                firstNumerator.get(),
+                firstDenominator.get(),
+                secondNumerator.get(),
+                secondDenominator.get(),
+                status.get(),
+                calculationDisabled.get());
     }
 
     public void calculate() {
@@ -210,13 +223,19 @@ public class ViewModel {
     public static final class LogMessages {
         public static final String CURRENT_STATE =
                 "Current state: " +
-                "First fraction (%s/%s), " +
-                "Second fraction (%s/%s), " +
-                "Result fraction (%s/%s), " +
-                "Operation (%s), " +
-                "Status (%s), " +
-                "Calculate disabled (%s), " +
-                "All operations (%s).";
+                        "First fraction (%s/%s), " +
+                        "Second fraction (%s/%s), " +
+                        "Result fraction (%s/%s), " +
+                        "Operation (%s), " +
+                        "Status (%s), " +
+                        "Calculate disabled (%s), " +
+                        "All operations (%s).";
+        public static final String FRACTIONS_WERE_CHANGED =
+                "Fractions were changed: " +
+                        "First fraction (%s/%s), " +
+                        "Second fraction (%s/%s), " +
+                        "Status (%s), " +
+                        "Calculate disabled (%s).";
     }
     }
 
