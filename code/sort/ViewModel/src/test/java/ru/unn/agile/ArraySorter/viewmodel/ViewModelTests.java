@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ViewModelTests {
     private ViewModel viewModel;
@@ -292,5 +293,42 @@ public class ViewModelTests {
         List<String> log = viewModel.getLog();
 
         assertEquals(expected, log.size());
+    }
+
+    @Test
+    public void isLogUpdatedWhenAddToArray() {
+        viewModel.setInputValue("10");
+
+        viewModel.addProcess();
+
+        String message = viewModel.getLog().get(0);
+        assertTrue(message.matches(".*" + viewModel.getElemArray() + ".*"));
+    }
+
+    @Test
+    public void isLogUpdatedWhenClearArray() {
+        viewModel.clearProcess();
+
+        assertEquals(1, viewModel.getLog().size());
+    }
+
+    @Test
+    public void isLogUpdatedWhenSortArray() {
+        viewModel.setInputValue("10");
+        viewModel.addProcess();
+
+        viewModel.sort();
+
+        String message =viewModel.getLog().get(1);
+        assertTrue(message.matches(".*" + viewModel.getSortedArrayStringRepresentation()  + ".*"));
+    }
+
+    @Test
+    public void isLogUpdatedWhenNewInputElemHasBadFormat() {
+        viewModel.setInputValue("hello");
+        viewModel.processingAddField();
+
+        String message = viewModel.getLog().get(0);
+        assertTrue(message.matches(".*" + Status.BAD_FORMAT +". Should be double" + ".*"));
     }
 }
