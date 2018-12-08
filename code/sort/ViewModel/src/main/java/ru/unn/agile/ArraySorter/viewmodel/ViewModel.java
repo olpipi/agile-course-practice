@@ -15,10 +15,17 @@ public class ViewModel {
     private boolean isClearButtonEnabled;
     private boolean isSortButtonEnabled;
 
-    private List<Double> sortedArray = new ArrayList<Double>();
-    private List<Double> inputArray = new ArrayList<Double>();
+    private List<Double> sortedArray = new ArrayList<>();
+    private List<Double> inputArray = new ArrayList<>();
+    private ILogger logger;
 
-    public ViewModel() {
+    public ViewModel(final ILogger logger) {
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger parameter can't be null");
+        }
+
+        this.logger = logger;
+
         inputValue = "";
         sortedArrayStringRepresentation = "";
         inputArrayStringRepresentation = "";

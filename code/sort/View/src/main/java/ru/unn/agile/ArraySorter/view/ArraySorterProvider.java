@@ -1,5 +1,6 @@
 package ru.unn.agile.ArraySorter.view;
 
+import ru.unn.agile.ArraySorter.viewmodel.FakeLogger;
 import ru.unn.agile.ArraySorter.viewmodel.ViewModel;
 
 import javax.swing.*;
@@ -22,7 +23,8 @@ public final class ArraySorterProvider {
 
     public static void main(final String[] args) {
         JFrame frame = new JFrame("ArraySorterProvider");
-        frame.setContentPane(new ArraySorterProvider(new ViewModel()).mainPanel);
+        FakeLogger logger = new FakeLogger();
+        frame.setContentPane(new ArraySorterProvider(new ViewModel(logger)).mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -80,8 +82,8 @@ public final class ArraySorterProvider {
         sortArrayButton.setEnabled(viewModel.isSortButtonEnabled());
         clearArrayButton.setEnabled(viewModel.isClearButtonEnabled());
 
-        sourceArrayLabel.setText(viewModel.getSortedArrayStringRepresentation());
-        sortedArrayArea.setText(viewModel.getInputArrayStringRepresentation());
+        sourceArrayLabel.setText(viewModel.getInputArrayStringRepresentation());
+        sortedArrayArea.setText(viewModel.getSortedArrayStringRepresentation());
         statusLabel.setText(viewModel.getCurrentState());
     }
 }
