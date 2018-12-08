@@ -71,6 +71,7 @@ public class ViewModel {
         changeButtonsEnabling();
 
         inputArrayStringRepresentation = sortedArray.toString();
+        logger.log("Added new element to array. The element: " + inputValue);
     }
 
     public void clearProcess() {
@@ -80,6 +81,7 @@ public class ViewModel {
 
         sortedArrayStringRepresentation = sortedArray.toString();
         inputArrayStringRepresentation = inputArray.toString();
+        logger.log("Now input array is clean");
     }
 
     public void sort() {
@@ -96,6 +98,7 @@ public class ViewModel {
         status = Status.SUCCESSFUL;
 
         sortedArrayStringRepresentation =  sortedArray.toString();
+        logger.log("Sorted: " + sortedArrayStringRepresentation);
     }
 
     public String getCurrentState() {
@@ -130,6 +133,7 @@ public class ViewModel {
         } catch (Exception e) {
             status = Status.BAD_FORMAT;
             isAddButtonEnabled = false;
+            logger.log(status +". Should be double");
             return isAddButtonEnabled;
         }
 
