@@ -30,7 +30,17 @@ public class ViewModel {
     private final StringProperty status = new SimpleStringProperty();
     private final List<InputValueChanger> valueChangedListeners = new ArrayList<>();
 
+    private ILogger logger;
+
     public ViewModel() {
+        initDefaultFields();
+    }
+
+    public ViewModel(final ILogger logger) {
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger can't be null");
+        }
+        this.logger = logger;
         initDefaultFields();
     }
 

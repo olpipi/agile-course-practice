@@ -26,12 +26,24 @@ public class ViewModelTest {
 
     @Before
     public void setUp() {
-        viewModel = new ViewModel();
+        viewModel = new ViewModel(new FakeLogger());
     }
 
     @After
     public void tearDown() {
         viewModel = null;
+    }
+
+    @Test
+    public void canCreateViewModelWithoutLogger() {
+        ViewModel vm = new ViewModel();
+
+        assertNotNull(vm);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void viewModelConstructorThrowExceptionIfNullLoggerInArguments() {
+        new ViewModel(null);
     }
 
     @Test
