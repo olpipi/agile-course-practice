@@ -1,6 +1,6 @@
 package ru.unn.agile.ArraySorter.view;
 
-import ru.unn.agile.ArraySorter.viewmodel.FakeLogger;
+import ru.unn.agile.ArraySorter.infrastructure.TextLogger;
 import ru.unn.agile.ArraySorter.viewmodel.ViewModel;
 
 import javax.swing.*;
@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 public final class ArraySorterProvider {
 
@@ -20,10 +21,12 @@ public final class ArraySorterProvider {
     private JTextArea sortedArrayArea;
     private JLabel statusLabel;
     private JLabel sourceArrayLabel;
+    private JList listLog;
+    private static final String FILEPATH = "ArraySorter.log";
 
     public static void main(final String[] args) {
         JFrame frame = new JFrame("ArraySorterProvider");
-        FakeLogger logger = new FakeLogger();
+        TextLogger logger = new TextLogger(FILEPATH);
         frame.setContentPane(new ArraySorterProvider(new ViewModel(logger)).mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -85,5 +88,9 @@ public final class ArraySorterProvider {
         sourceArrayLabel.setText(viewModel.getInputArrayStringRepresentation());
         sortedArrayArea.setText(viewModel.getSortedArrayStringRepresentation());
         statusLabel.setText(viewModel.getCurrentState());
+
+        List<String> log = viewModel.getLog();
+        String[] items = log.toArray(new String[log.size()]);
+        listLog.setListData(items);
     }
 }
