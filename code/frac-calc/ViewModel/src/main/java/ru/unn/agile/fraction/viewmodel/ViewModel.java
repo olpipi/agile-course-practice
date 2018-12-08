@@ -216,6 +216,11 @@ public class ViewModel {
                 currentOperation.toString());
     }
 
+    private String stateAfterCalculateLogMessage() {
+        return LogMessages.CALCULATE_BUTTON_WAS_PRESSED + " " +
+                currentStateForAllFieldsLogMessage();
+    }
+
     public void calculate() {
         if (calculationDisabled.get()) {
             return;
@@ -230,6 +235,8 @@ public class ViewModel {
         resultNumerator.set(String.valueOf(res.getNumerator()));
         resultDenominator.set(String.valueOf(res.getDenominator()));
         status.set(Status.SUCCESS.toString());
+
+        logger.log(stateAfterCalculateLogMessage());
     }
 
     public static final class LogMessages {
@@ -251,6 +258,8 @@ public class ViewModel {
         public static final String OPEARTION_WAS_CHANGED =
                 "Operation was changed: " +
                         "Operation (%s).";
+        public static final String CALCULATE_BUTTON_WAS_PRESSED =
+                "Calculate button was pressed.";
     }
     }
 

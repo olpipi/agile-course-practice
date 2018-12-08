@@ -242,6 +242,7 @@ public class ViewModelTest {
                 viewModel.secondDenominatorProperty().get(),
                 viewModel.getStatus(),
                 viewModel.calculationDisabledProperty().get());
+
         assertEquals(message, logList.get(1));
     }
 
@@ -251,6 +252,7 @@ public class ViewModelTest {
         viewModel.firstNumeratorProperty().set("1");
 
         List<String> logList = viewModel.getLogList();
+
         assertEquals(2, logList.size());
     }
 
@@ -259,6 +261,7 @@ public class ViewModelTest {
         setInputData("13", "44", "23", "22");
 
         List<String> logList = viewModel.getLogList();
+
         assertEquals(5, logList.size());
     }
 
@@ -268,6 +271,7 @@ public class ViewModelTest {
         viewModel.operationProperty().set(Operation.MULTIPLY);
 
         List<String> logList = viewModel.getLogList();
+
         assertEquals(2, logList.size());
     }
 
@@ -279,6 +283,30 @@ public class ViewModelTest {
         Operation currentOperation = viewModel.operationProperty().get();
         String message = String.format(ViewModel.LogMessages.OPEARTION_WAS_CHANGED,
                 currentOperation.toString());
+
         assertEquals(message, logList.get(1));
+    }
+
+    @Test
+    public void logIncludesMessageAboutCalculateButtonPressed() {
+        setInputData("13", "44", "23", "22");
+        viewModel.calculate();
+
+        List<String> logList = viewModel.getLogList();
+        Operation currentOperation = viewModel.operationProperty().get();
+        String logMessage = ViewModel.LogMessages.CALCULATE_BUTTON_WAS_PRESSED + " " +
+                String.format(ViewModel.LogMessages.CURRENT_STATE,
+                        viewModel.firstNumeratorProperty().get(),
+                        viewModel.firstDenominatorProperty().get(),
+                        viewModel.secondNumeratorProperty().get(),
+                        viewModel.secondDenominatorProperty().get(),
+                        viewModel.resultNumeratorProperty().get(),
+                        viewModel.resultDenominatorProperty().get(),
+                        currentOperation.toString(),
+                        viewModel.getStatus(),
+                        viewModel.calculationDisabledProperty().get(),
+                        viewModel.getOperations().toString());
+
+        assertEquals(logMessage, logList.get(logList.size() - 1));
     }
 }
