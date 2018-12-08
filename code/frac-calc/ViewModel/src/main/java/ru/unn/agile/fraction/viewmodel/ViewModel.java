@@ -82,6 +82,10 @@ public class ViewModel {
             field.addListener(listener);
             valueChangedListeners.add(listener);
         }
+
+        final InputValueChanger listener = new InputValueChanger();
+        operation.addListener(listener);
+        valueChangedListeners.add(listener);
     }
 
     public StringProperty firstNumeratorProperty() {
@@ -142,7 +146,9 @@ public class ViewModel {
                             final Object prevVal,
                             final Object nextVal) {
             status.set(getInputStatus().toString());
-            if (obs != operation) {
+            if (obs == operation) {
+                logger.log(operationStateLogMessage());
+            } else {
                 logger.log(fractionsStateLogMessage());
             }
         }
@@ -204,6 +210,12 @@ public class ViewModel {
                 calculationDisabled.get());
     }
 
+    private String operationStateLogMessage() {
+        Operation currentOperation = operation.get();
+        return String.format(LogMessages.OPEARTION_WAS_CHANGED,
+                currentOperation.toString());
+    }
+
     public void calculate() {
         if (calculationDisabled.get()) {
             return;
@@ -236,6 +248,9 @@ public class ViewModel {
                         "Second fraction (%s/%s), " +
                         "Status (%s), " +
                         "Calculate disabled (%s).";
+        public static final String OPEARTION_WAS_CHANGED =
+                "Operation was changed: " +
+                        "Operation (%s).";
     }
     }
 

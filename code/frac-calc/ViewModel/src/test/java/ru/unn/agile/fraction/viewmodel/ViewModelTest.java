@@ -231,7 +231,7 @@ public class ViewModelTest {
     }
 
     @Test
-    public void logContainsFractionChangedMessageIfSingleFieldChanged() {
+    public void logContainsFractionChangedMessageIfSingleFieldWasChanged() {
         viewModel.firstNumeratorProperty().set("1");
 
         List<String> logList = viewModel.getLogList();
@@ -255,10 +255,30 @@ public class ViewModelTest {
     }
 
     @Test
-    public void logContainsFractionChangedMessagesIfAllFieldsChanged() {
+    public void logContainsFractionChangedMessagesIfAllFieldsWereChanged() {
         setInputData("13", "44", "23", "22");
 
         List<String> logList = viewModel.getLogList();
         assertEquals(5, logList.size());
+    }
+
+    @Test
+    public void logNotChangedIfOperationNotChanged() {
+        viewModel.operationProperty().set(Operation.MULTIPLY);
+        viewModel.operationProperty().set(Operation.MULTIPLY);
+
+        List<String> logList = viewModel.getLogList();
+        assertEquals(2, logList.size());
+    }
+
+    @Test
+    public void logContainsOperationChangedMessagesIfOperationWasChanged() {
+        viewModel.operationProperty().set(Operation.MULTIPLY);
+
+        List<String> logList = viewModel.getLogList();
+        Operation currentOperation = viewModel.operationProperty().get();
+        String message = String.format(ViewModel.LogMessages.OPEARTION_WAS_CHANGED,
+                currentOperation.toString());
+        assertEquals(message, logList.get(1));
     }
 }
