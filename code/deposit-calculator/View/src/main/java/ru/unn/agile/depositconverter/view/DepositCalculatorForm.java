@@ -35,17 +35,7 @@ public class DepositCalculatorForm extends JFrame {
     }
     DepositCalculatorForm() {
         super();
-        frequencyOfCapitalizationLabel.setText("FrequencyOfCapitalization");
-        revenueLabel.setText("Revenue");
-        incomeLabel.setText("Income");
-        depositAmountLabel.setText("depositAmount");
-        accruedInterestLabel.setText("AccruedInterest");
-        termPlacementLabel.setText("TermPlacement");
-        interestRateLabel.setText("InterestRate");
-        resultPanel.setBackground(Color.GREEN);
-        depositAmountTextField.setText(String.valueOf(calculatorViewModel.getDepositAmountView()));
-        termPlacemantTextField.setText(String.valueOf(calculatorViewModel.getTermPlacementView()));
-        interestRateTextField.setText(String.valueOf(calculatorViewModel.getInterestRateView()));
+        depositCalculatorFormDefaultValues();
         calculateButton.addActionListener(e -> {
             backBind();
             calculatorViewModel.calculate();
@@ -68,5 +58,23 @@ public class DepositCalculatorForm extends JFrame {
                 accruedInterestCombobox.getSelectedItem().toString());
         calculatorViewModel.setFrequencyOfCapitalization(
                 frequencyOfCapitalizationComboBox.getSelectedItem().toString());
+    }
+
+    private void depositCalculatorFormDefaultValues() {
+        depositCalculatorSetLabels();
+        resultPanel.setBackground(Color.GREEN);
+        depositAmountTextField.setText(String.valueOf(calculatorViewModel.getDepositAmountView()));
+        termPlacemantTextField.setText(String.valueOf(calculatorViewModel.getTermPlacementView()));
+        interestRateTextField.setText(String.valueOf(calculatorViewModel.getInterestRateView()));
+    }
+
+    private void depositCalculatorSetLabels() {
+        frequencyOfCapitalizationLabel.setText("FrequencyOfCapitalization");
+        revenueLabel.setText("Revenue");
+        incomeLabel.setText("Income");
+        depositAmountLabel.setText("depositAmount");
+        accruedInterestLabel.setText("AccruedInterest");
+        termPlacementLabel.setText("TermPlacement");
+        interestRateLabel.setText("InterestRate");
     }
 }

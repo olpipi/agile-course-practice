@@ -5,10 +5,10 @@ import ru.unn.agile.depositconverter.model.DepositCalculator;
 import ru.unn.agile.depositconverter.model.FrequencyOfCapitalization;
 
 public class DepositCalculatorViewModel {
-    private DepositCalculator model; // = new DepositCalculator();
-    private double depositAmountViewModel; //  = model.getDepositAmount();
-    private int termPlacemantViewModel; //  = model.getTermPlacementInMonths();
-    private double interestRateViewModel; // =model.getInterestRate();
+    private DepositCalculator model;
+    private double depositAmountViewModel;
+    private int termPlacemantViewModel;
+    private double interestRateViewModel;
     private AccruedInterest accruedInterestViewModel;
     private FrequencyOfCapitalization frequencyOfCapitalizationViewModel;
     private String revenueViewModel;
@@ -38,12 +38,13 @@ public class DepositCalculatorViewModel {
             calculatorButtonEnabled = false;
             return;
         }
-        if (!tmpDepositAmount.matches("\\d+")) {
-            calculatorButtonEnabled = false;
-            throw new NumberFormatException("Error. Некорректная сумма");
-        } else {
+        try {
             depositAmountViewModel = Double.parseDouble(tmpDepositAmount);
             calculatorButtonEnabled = true;
+        } catch (NumberFormatException e) {
+            calculatorButtonEnabled = false;
+            throw (NumberFormatException) new
+                    NumberFormatException("Error. Uncorrect DepositAmount").initCause(e);
         }
     }
 
@@ -74,12 +75,13 @@ public class DepositCalculatorViewModel {
             calculatorButtonEnabled = false;
             return;
         }
-        if (!tmpTermPlacement.matches("\\d+")) {
-            calculatorButtonEnabled = false;
-            throw new NumberFormatException("Error. Некорроктный срок");
-        } else {
+        try {
             termPlacemantViewModel = Integer.parseInt(tmpTermPlacement);
             calculatorButtonEnabled = true;
+        } catch (NumberFormatException e) {
+            calculatorButtonEnabled = false;
+            throw (NumberFormatException)
+                    new NumberFormatException("Error. Uncorrect TermPlacement").initCause(e);
         }
     }
 
@@ -92,12 +94,13 @@ public class DepositCalculatorViewModel {
             calculatorButtonEnabled = false;
             return;
         }
-        if (!tmpInterestRate.matches("\\d+")) {
-            calculatorButtonEnabled = false;
-            throw new NumberFormatException("Error. Некорроктный процент");
-        } else {
+        try {
             interestRateViewModel = Double.parseDouble(tmpInterestRate);
             calculatorButtonEnabled = true;
+        } catch (NumberFormatException e) {
+            calculatorButtonEnabled = false;
+            throw (NumberFormatException) new NumberFormatException("Error. Uncorrect percent")
+                    .initCause(e);
         }
     }
 
@@ -118,24 +121,11 @@ public class DepositCalculatorViewModel {
     }
 
     public void setFrequencyOfCapitalization(final String frequency) {
-        switch (frequency) {
-            case "onceMonth":
-                frequencyOfCapitalizationViewModel = FrequencyOfCapitalization.onceMonth;
-                break;
-            case "onceTwoMonth":
-                frequencyOfCapitalizationViewModel = FrequencyOfCapitalization.onceTwoMonth;
-                break;
-            case "quarterly":
-                frequencyOfCapitalizationViewModel = FrequencyOfCapitalization.quarterly;
-                break;
-            case "halfYear":
-                frequencyOfCapitalizationViewModel = FrequencyOfCapitalization.halfYear;
-                break;
-            default:
-                frequencyOfCapitalizationViewModel = FrequencyOfCapitalization.onceMonth;
-                break;
+        try {
+            frequencyOfCapitalizationViewModel = FrequencyOfCapitalization.valueOf(frequency);
+        } catch (IllegalArgumentException e) {
+            frequencyOfCapitalizationViewModel = model.getFrequencyOfCapitalization();
         }
-
     }
 
     public String getIncomeViewModel() {

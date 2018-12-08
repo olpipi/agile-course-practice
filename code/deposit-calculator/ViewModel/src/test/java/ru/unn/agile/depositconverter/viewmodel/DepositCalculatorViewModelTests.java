@@ -1,5 +1,7 @@
 package ru.unn.agile.depositconverter.viewmodel;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import ru.unn.agile.depositconverter.model.AccruedInterest;
 import ru.unn.agile.depositconverter.model.FrequencyOfCapitalization;
@@ -10,29 +12,30 @@ import static org.junit.Assert.assertFalse;
 
 public class DepositCalculatorViewModelTests {
     private final double delta = 0.001;
-
+    private DepositCalculatorViewModel viewModel;
+    @Before
+    public void beforeTestsDepositCalculator() {
+        viewModel = new DepositCalculatorViewModel();
+    }
     @Test
     public void byDefaultButtonCalculateDisabled() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         assertTrue(viewModel.isCalculatorButtonEnabled());
     }
 
     @Test
     public void byDefaultDepositAmountIs700000() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
+        viewModel = new DepositCalculatorViewModel();
         assertEquals(700000, viewModel.getDepositAmountView(), delta);
     }
 
     @Test
     public void whenDepositAmountEmptyButtonCalculateDisabled() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setDepositAmount("");
         assertFalse(viewModel.isCalculatorButtonEnabled());
     }
 
     @Test
     public void whenDepositAmountClearButtonCalculateDisabled() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setDepositAmount("700000");
         viewModel.setDepositAmount("");
         assertFalse(viewModel.isCalculatorButtonEnabled());
@@ -40,20 +43,17 @@ public class DepositCalculatorViewModelTests {
 
     @Test
     public void byDefaultTermPlacementIs12() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         assertEquals(12, viewModel.getTermPlacementView());
     }
 
     @Test
     public void whenTermPlacementEmptyButtonCalculateDisabled() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setTermPlacement("");
         assertFalse(viewModel.isCalculatorButtonEnabled());
     }
 
     @Test
     public void whenTermPlacementClearButtonCalculateDisabled() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setTermPlacement("12");
         viewModel.setTermPlacement("");
         assertFalse(viewModel.isCalculatorButtonEnabled());
@@ -61,42 +61,35 @@ public class DepositCalculatorViewModelTests {
 
     @Test
     public void byDefaultInterestRateIs8() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         assertEquals(8, viewModel.getInterestRateView(), delta);
     }
 
     @Test
     public void whenInterestRateEmptyButtonCalculateDisabled() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setInterestRate("");
         assertFalse(viewModel.isCalculatorButtonEnabled());
     }
 
     @Test
     public void whenInterestRateClearButtonCalculateDisabled() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
-        viewModel.setInterestRate("12");
         viewModel.setInterestRate("");
         assertFalse(viewModel.isCalculatorButtonEnabled());
     }
 
     @Test
     public void accruedInterestIsAddToDeposit() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setAccruedInterest("addToDeposit");
         assertEquals(AccruedInterest.addToDeposit, viewModel.getAccruedInterest());
     }
 
     @Test
     public void accruedInterestIsPayment() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setAccruedInterest("payOut");
         assertEquals(AccruedInterest.payOut, viewModel.getAccruedInterest());
     }
 
     @Test
     public void frequencyOfCapitalizationIsOnceInMonth() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setFrequencyOfCapitalization("onceInMonth");
         assertEquals(FrequencyOfCapitalization.onceMonth,
                 viewModel.getFrequencyOfCapitalization());
@@ -104,7 +97,6 @@ public class DepositCalculatorViewModelTests {
 
     @Test
     public void frequencyOfCapitalizationIsOnceTwoMonth() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setFrequencyOfCapitalization("onceTwoMonth");
         assertEquals(FrequencyOfCapitalization.onceTwoMonth,
                 viewModel.getFrequencyOfCapitalization());
@@ -112,7 +104,6 @@ public class DepositCalculatorViewModelTests {
 
     @Test
     public void frequencyOfCapitalizationIsQuarterly() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setFrequencyOfCapitalization("quarterly");
         assertEquals(FrequencyOfCapitalization.quarterly,
                 viewModel.getFrequencyOfCapitalization());
@@ -120,7 +111,6 @@ public class DepositCalculatorViewModelTests {
 
     @Test
     public void frequencyOfCapitalizationIsHalfYear() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setFrequencyOfCapitalization("halfYear");
         assertEquals(FrequencyOfCapitalization.halfYear,
                 viewModel.getFrequencyOfCapitalization());
@@ -128,36 +118,36 @@ public class DepositCalculatorViewModelTests {
 
     @Test
     public void whenCalculateDefaultValuesRevenueIsCorrect() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.calculate();
         assertEquals("758099.65", viewModel.getRevenueWhenAddToDeposit());
     }
 
     @Test
     public void whenCalculateDefaultValuesIncomeIsCorrect() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.calculate();
         assertEquals("58099.65", viewModel.getIncomeViewModel());
     }
 
     @Test(expected = NumberFormatException.class)
     public void isExceptionWhenDepositAmountIncorrectConvert() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setDepositAmount("String");
         viewModel.calculate();
     }
 
     @Test(expected = NumberFormatException.class)
     public void isExceptionWhenTermPlacementIncorrectConvert() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setTermPlacement("String");
         viewModel.calculate();
     }
 
     @Test(expected = NumberFormatException.class)
     public void isExceptionWhenInterestRateIncorrectConvert() {
-        DepositCalculatorViewModel viewModel = new DepositCalculatorViewModel();
         viewModel.setInterestRate("String");
         viewModel.calculate();
+    }
+
+    @After
+    public void afterTestsDepositCalculator() {
+        viewModel = null;
     }
 }
