@@ -13,16 +13,12 @@ import java.util.List;
 import java.util.Locale;
 
 public class TextLogger implements ILogger {
-
-    private static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
-
     private final BufferedWriter writer;
-
     private final String filepath;
+    private static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     public TextLogger(final String filepath) {
         this.filepath = filepath;
-
         BufferedWriter logWriter = null;
         try {
             FileWriter fileWriter = new FileWriter(filepath);
@@ -43,9 +39,7 @@ public class TextLogger implements ILogger {
     public void log(final String messageToLog) {
         try {
             writer.write(getCurrentDateTime() + " > " + messageToLog);
-
             writer.newLine();
-
             writer.flush();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -55,14 +49,10 @@ public class TextLogger implements ILogger {
     @Override
     public List<String> getLog() {
         ArrayList<String> logList = new ArrayList<>();
-
         try {
             FileReader fileReader = new FileReader(filepath);
-
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-
             String stringLine = bufferedReader.readLine();
-
             while (stringLine != null) {
                 logList.add(stringLine);
                 stringLine = bufferedReader.readLine();
@@ -70,7 +60,6 @@ public class TextLogger implements ILogger {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
         return logList;
     }
 }

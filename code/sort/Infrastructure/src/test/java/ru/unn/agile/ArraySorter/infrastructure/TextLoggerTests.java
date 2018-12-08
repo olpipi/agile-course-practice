@@ -70,4 +70,22 @@ public class TextLoggerTests {
             assertTrue(message.matches(".*" + messages[i] + "$"));
         }
     }
+
+    @Test(expected = Test.None.class)
+    public void noThrowCtorWhenInvalidFilenameIsSpecified() {
+        new TextLogger("");
+    }
+
+    @Test(expected = Test.None.class)
+    public void noThrowToLogWhenInvalidFilenameIsSpecified() {
+        TextLogger logger = new TextLogger("");
+        logger.log("hello");
+    }
+
+    @Test(expected = Test.None.class)
+    public void noThrowGetLogWhenInvalidFilenameIsSpecified() {
+        TextLogger logger = new TextLogger("");
+        logger.log("hello");
+        logger.getLog();
+    }
 }
