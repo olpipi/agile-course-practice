@@ -246,6 +246,8 @@ include "code/matrix/View"
 project(":code/matrix/View").name = "matrix-View"
 include "code/matrix/ViewModel"
 project(":code/matrix/ViewModel").name = "matrix-ViewModel"
+include "code/matrix/Infrastructure"
+project(":code/matrix/Infrastructure").name = "matrix-Infrastructure"
 
 // Segments2D Intersection
 include "code/segments2d-intersection/Model"

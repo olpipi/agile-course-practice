@@ -9,6 +9,7 @@ import javafx.scene.text.Text;
 import javafx.scene.control.ComboBox;
 import ru.unn.agile.matrix.viewmodel.Operation;
 import ru.unn.agile.matrix.viewmodel.ViewModel;
+import ru.unn.agile.matrix.infrastructure.TxtLogger;
 
 public class Calculator {
     @FXML
@@ -28,7 +29,7 @@ public class Calculator {
 
     @FXML
     void initialize() {
-        viewModel = new ViewModel();
+        viewModel = new ViewModel(new TxtLogger("./MatrixCalc.log"));
 
         matrixA.textProperty().bindBidirectional(viewModel.matrixAProperty());
         matrixB.textProperty().bindBidirectional(viewModel.matrixBProperty());

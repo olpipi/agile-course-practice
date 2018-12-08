@@ -10,10 +10,15 @@ import ru.unn.agile.matrix.viewmodel.ViewModel.LogMessages;
 public class ViewModelTest {
     private ViewModel viewModel;
 
+    public void setExternalViewModel(final ViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
+
     @Before
     public void setUp() {
-        FakeLogger logger = new FakeLogger();
-        viewModel = new ViewModel(logger);
+        if (viewModel == null) {
+            viewModel = new ViewModel(new FakeLogger());
+        }
     }
 
     @After
@@ -324,9 +329,8 @@ public class ViewModelTest {
         viewModel.matrixBProperty().set("[0]");
 
         String message = getLastLog();
-        assertTrue(message.equals(LogMessages.EDITING_FINISHED
-                + "A = " + viewModel.matrixAProperty().get() + "; "
-                + "B = " + viewModel.matrixBProperty().get()));
+        assertTrue(message.matches(".*" + LogMessages.EDITING_FINISHED
+                + "A = \\[1\\]; B = \\[0\\].*"));
     }
 
     @Test
