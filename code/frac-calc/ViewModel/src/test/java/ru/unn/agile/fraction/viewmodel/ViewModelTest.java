@@ -13,6 +13,21 @@ import static org.junit.Assert.*;
 public class ViewModelTest {
     private ViewModel viewModel;
 
+    private final String currentViewModelStateMessage() {
+        Operation currentOperation = viewModel.operationProperty().get();
+        return String.format(ViewModel.LogMessages.CURRENT_STATE,
+                viewModel.firstNumeratorProperty().get(),
+                viewModel.firstDenominatorProperty().get(),
+                viewModel.secondNumeratorProperty().get(),
+                viewModel.secondDenominatorProperty().get(),
+                viewModel.resultNumeratorProperty().get(),
+                viewModel.resultDenominatorProperty().get(),
+                currentOperation.toString(),
+                viewModel.getStatus(),
+                viewModel.calculationDisabledProperty().get(),
+                viewModel.getOperations().toString());
+    }
+
     private void setInputData(final String fn, final String fd,
                               final String sn, final String sd) {
         viewModel.firstNumeratorProperty().set(fn);
@@ -70,20 +85,8 @@ public class ViewModelTest {
     @Test
     public void logIncludesMessageWithInitStateForAllFields() {
         List<String> logList = viewModel.getLogList();
-        Operation currentOperation = viewModel.operationProperty().get();
-        String logMessage = String.format(ViewModel.LogMessages.CURRENT_STATE,
-                viewModel.firstNumeratorProperty().get(),
-                viewModel.firstDenominatorProperty().get(),
-                viewModel.secondNumeratorProperty().get(),
-                viewModel.secondDenominatorProperty().get(),
-                viewModel.resultNumeratorProperty().get(),
-                viewModel.resultDenominatorProperty().get(),
-                currentOperation.toString(),
-                viewModel.getStatus(),
-                viewModel.calculationDisabledProperty().get(),
-                viewModel.getOperations().toString());
 
-        assertEquals(logMessage, logList.get(0));
+        assertEquals(currentViewModelStateMessage(), logList.get(0));
     }
 
     @Test
@@ -295,17 +298,7 @@ public class ViewModelTest {
         List<String> logList = viewModel.getLogList();
         Operation currentOperation = viewModel.operationProperty().get();
         String logMessage = ViewModel.LogMessages.CALCULATE_BUTTON_WAS_PRESSED + " " +
-                String.format(ViewModel.LogMessages.CURRENT_STATE,
-                        viewModel.firstNumeratorProperty().get(),
-                        viewModel.firstDenominatorProperty().get(),
-                        viewModel.secondNumeratorProperty().get(),
-                        viewModel.secondDenominatorProperty().get(),
-                        viewModel.resultNumeratorProperty().get(),
-                        viewModel.resultDenominatorProperty().get(),
-                        currentOperation.toString(),
-                        viewModel.getStatus(),
-                        viewModel.calculationDisabledProperty().get(),
-                        viewModel.getOperations().toString());
+                currentViewModelStateMessage();
 
         assertEquals(logMessage, logList.get(logList.size() - 1));
     }
