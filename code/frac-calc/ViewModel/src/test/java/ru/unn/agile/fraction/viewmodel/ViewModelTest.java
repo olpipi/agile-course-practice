@@ -297,8 +297,8 @@ public class ViewModelTest {
 
         List<String> logList = viewModel.getLogList();
         Operation currentOperation = viewModel.operationProperty().get();
-        String logMessage = ViewModel.LogMessages.CALCULATE_BUTTON_WAS_PRESSED + " " +
-                currentViewModelStateMessage();
+        String logMessage = ViewModel.LogMessages.CALCULATE_BUTTON_WAS_PRESSED + " "
+                + currentViewModelStateMessage();
 
         assertEquals(logMessage, logList.get(logList.size() - 1));
     }

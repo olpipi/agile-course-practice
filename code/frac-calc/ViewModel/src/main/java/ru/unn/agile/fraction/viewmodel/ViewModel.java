@@ -217,8 +217,8 @@ public class ViewModel {
     }
 
     private String stateAfterCalculateLogMessage() {
-        return LogMessages.CALCULATE_BUTTON_WAS_PRESSED + " " +
-                currentStateForAllFieldsLogMessage();
+        return LogMessages.CALCULATE_BUTTON_WAS_PRESSED + " "
+                + currentStateForAllFieldsLogMessage();
     }
 
     public void calculate() {
@@ -241,23 +241,23 @@ public class ViewModel {
 
     public static final class LogMessages {
         public static final String CURRENT_STATE =
-                "Current state: " +
-                        "First fraction (%s/%s), " +
-                        "Second fraction (%s/%s), " +
-                        "Result fraction (%s/%s), " +
-                        "Operation (%s), " +
-                        "Status (%s), " +
-                        "Calculate disabled (%s), " +
-                        "All operations (%s).";
+                "Current state: "
+                        + "First fraction (%s/%s), "
+                        + "Second fraction (%s/%s), "
+                        + "Result fraction (%s/%s), "
+                        + "Operation (%s), "
+                        + "Status (%s), "
+                        + "Calculate disabled (%s), "
+                        + "All operations (%s).";
         public static final String FRACTIONS_WERE_CHANGED =
-                "Fractions were changed: " +
-                        "First fraction (%s/%s), " +
-                        "Second fraction (%s/%s), " +
-                        "Status (%s), " +
-                        "Calculate disabled (%s).";
+                "Fractions were changed: "
+                        + "First fraction (%s/%s), "
+                        + "Second fraction (%s/%s), "
+                        + "Status (%s), "
+                        + "Calculate disabled (%s).";
         public static final String OPEARTION_WAS_CHANGED =
-                "Operation was changed: " +
-                        "Operation (%s).";
+                "Operation was changed: "
+                        + "Operation (%s).";
         public static final String CALCULATE_BUTTON_WAS_PRESSED =
                 "Calculate button was pressed.";
     }
