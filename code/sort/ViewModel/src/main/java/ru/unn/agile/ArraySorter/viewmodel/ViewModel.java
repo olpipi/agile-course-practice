@@ -48,6 +48,10 @@ public class ViewModel {
         return inputValue;
     }
 
+    public List<String> getLog() {
+        return logger.getLog();
+    }
+
     public void setInputValue(final String inputValue) {
         if (inputValue.equals(this.inputValue)) {
             return;
@@ -107,7 +111,7 @@ public class ViewModel {
         private Status() { }
     }
 
-    public void processingAddField(final int keyCode) {
+    public void processingAddField() {
         parseInput();
     }
 

@@ -108,7 +108,7 @@ public class ViewModelTests {
     public void isWaitingStateWhenAddAndDelElemEmptyField() {
         viewModel.setInputValue("");
 
-        viewModel.processingAddField(1);
+        viewModel.processingAddField();
 
         assertEquals(Status.WAITING, viewModel.getCurrentState());
     }
@@ -117,7 +117,7 @@ public class ViewModelTests {
     public void isReadyStateWhenAddElemFieldIsWriteIn() {
         viewModel.setInputValue("6.1");
 
-        viewModel.processingAddField(1);
+        viewModel.processingAddField();
 
         assertEquals(Status.READY, viewModel.getCurrentState());
     }
@@ -126,7 +126,7 @@ public class ViewModelTests {
     public void canSetBadFormatMessage() {
         viewModel.setInputValue("b");
 
-        viewModel.processingAddField(1);
+        viewModel.processingAddField();
 
         assertEquals(Status.BAD_FORMAT, viewModel.getCurrentState());
     }
@@ -162,7 +162,7 @@ public class ViewModelTests {
     @Test
     public void isAddButtonEnabledAddElemFieldIsCorrect() {
         viewModel.setInputValue("1.2");
-        viewModel.processingAddField(1);
+        viewModel.processingAddField();
 
         assertEquals(true, viewModel.isAddButtonEnabled());
     }
@@ -170,7 +170,7 @@ public class ViewModelTests {
     @Test
     public void isAddButtonDisabledWhenAddElemFieldIsEmpty() {
         viewModel.setInputValue("");
-        viewModel.processingAddField(1);
+        viewModel.processingAddField();
 
         assertEquals(false, viewModel.isAddButtonEnabled());
     }
@@ -178,7 +178,7 @@ public class ViewModelTests {
     @Test
     public void isAddButtonDisabledWhenAddElemIsInvalid() {
         viewModel.setInputValue("ijijfdf");
-        viewModel.processingAddField(1);
+        viewModel.processingAddField();
 
         assertEquals(false, viewModel.isAddButtonEnabled());
     }
@@ -245,9 +245,9 @@ public class ViewModelTests {
     @Test
     public void canChangeStateIfAddElemFieldIsCorrect() {
         viewModel.setInputValue("test");
-        viewModel.processingAddField(1);
+        viewModel.processingAddField();
         viewModel.setInputValue("12.1");
-        viewModel.processingAddField(1);
+        viewModel.processingAddField();
 
         assertEquals(Status.READY, viewModel.getCurrentState());
     }
@@ -255,9 +255,9 @@ public class ViewModelTests {
     @Test
     public void canChangeStateIfAddElemFieldIsInvalid() {
         viewModel.setInputValue("12.1");
-        viewModel.processingAddField(1);
+        viewModel.processingAddField();
         viewModel.setInputValue("test");
-        viewModel.processingAddField(1);
+        viewModel.processingAddField();
 
         assertEquals(Status.BAD_FORMAT, viewModel.getCurrentState());
     }
@@ -265,9 +265,9 @@ public class ViewModelTests {
     @Test
     public void canChangeStateIfAddElemFieldIsEmpty() {
         viewModel.setInputValue("12.1");
-        viewModel.processingAddField(1);
+        viewModel.processingAddField();
         viewModel.setInputValue("");
-        viewModel.processingAddField(1);
+        viewModel.processingAddField();
 
         assertEquals(Status.WAITING, viewModel.getCurrentState());
     }
