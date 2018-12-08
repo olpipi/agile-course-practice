@@ -36,9 +36,9 @@ public class TextLogger implements ILogger {
     }
 
     @Override
-    public void log(final String message_to_log) {
+    public void log(final String messageToLog) {
         try {
-            writer.write(getCurrentDateTime() + " > " + message_to_log);
+            writer.write(getCurrentDateTime() + " > " + messageToLog);
             writer.newLine();
             writer.flush();
         } catch (Exception e) {

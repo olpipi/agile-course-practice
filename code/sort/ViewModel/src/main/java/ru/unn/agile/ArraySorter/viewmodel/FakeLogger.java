@@ -3,12 +3,12 @@ package ru.unn.agile.ArraySorter.viewmodel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FakeLogger implements ILogger{
-    private ArrayList<String> log = new ArrayList<>();
+public class FakeLogger implements ILogger {
+    private List<String> log = new ArrayList<>();
 
     @Override
-    public void log(final String message_to_log) {
-        log.add(message_to_log);
+    public void log(final String messageToLog) {
+        log.add(messageToLog);
     }
 
     @Override

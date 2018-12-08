@@ -21,7 +21,7 @@ public final class ArraySorterProvider {
     private JTextArea sortedArrayArea;
     private JLabel statusLabel;
     private JLabel sourceArrayLabel;
-    private JList listLog;
+    private JList<String> listLog;
     private static final String FILEPATH = "ArraySorter.log";
 
     public static void main(final String[] args) {

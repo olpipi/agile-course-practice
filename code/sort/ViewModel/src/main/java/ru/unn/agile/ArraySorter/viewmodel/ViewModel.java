@@ -133,7 +133,7 @@ public class ViewModel {
         } catch (Exception e) {
             status = Status.BAD_FORMAT;
             isAddButtonEnabled = false;
-            logger.log(status +". Should be double");
+            logger.log(status + ". Should be double");
             return isAddButtonEnabled;
         }
 

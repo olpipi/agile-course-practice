@@ -338,6 +338,6 @@ public class ViewModelTests {
         viewModel.processingAddField();
 
         String message = viewModel.getLog().get(0);
-        assertTrue(message.matches(".*" + Status.BAD_FORMAT +". Should be double" + ".*"));
+        assertTrue(message.matches(".*" + Status.BAD_FORMAT + ". Should be double" + ".*"));
     }
 }
