@@ -244,4 +244,21 @@ public class ViewModelTest {
                 viewModel.calculationDisabledProperty().get());
         assertEquals(message, logList.get(1));
     }
+
+    @Test
+    public void logNotChangedIfFractionsValueNotChanged() {
+        viewModel.firstNumeratorProperty().set("1");
+        viewModel.firstNumeratorProperty().set("1");
+
+        List<String> logList = viewModel.getLogList();
+        assertEquals(2, logList.size());
+    }
+
+    @Test
+    public void logContainsFractionChangedMessagesIfAllFieldsChanged() {
+        setInputData("13", "44", "23", "22");
+
+        List<String> logList = viewModel.getLogList();
+        assertEquals(5, logList.size());
+    }
 }
