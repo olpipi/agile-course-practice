@@ -20,7 +20,6 @@ public class BookStore {
     private TextField books4;
     @FXML
     private TextField books5;
-
     @FXML
     private Button btnCalculate;
 
