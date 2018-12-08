@@ -8,6 +8,8 @@ public class ViewModelWithTextLoggerTests extends ViewModelTests {
     @Override
     public void setUp() {
         TextLogger realLogger = new TextLogger("./ViewModelWithTextLoggerTests.log");
-        super.setViewModel(new ViewModel(realLogger));
+
+        ViewModel vm = new ViewModel(realLogger);
+        super.setViewModel(vm);
     }
 }

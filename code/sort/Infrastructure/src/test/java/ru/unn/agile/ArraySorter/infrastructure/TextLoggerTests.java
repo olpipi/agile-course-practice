@@ -3,6 +3,7 @@ package ru.unn.agile.ArraySorter.infrastructure;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -10,7 +11,7 @@ import java.io.FileReader;
 import java.util.List;
 
 import static junit.framework.TestCase.assertNotNull;
-import static org.junit.Assert.assertTrue;
+
 
 public class TextLoggerTests {
     private static final String DEFAULT_FILEPATH = "./TextLoggerTests.log";
