@@ -19,6 +19,7 @@ public class ViewModel {
     private final StringProperty result = new SimpleStringProperty();
     private final StringProperty status = new SimpleStringProperty();
     private ILogger logger;
+    private final ListProperty<String> log = new SimpleListProperty<>();
 
     public ViewModel(final ILogger logger) {
         if (logger == null) {
@@ -71,6 +72,10 @@ public class ViewModel {
         return calculateButtonDisabled;
     }
 
+    public ListProperty<String> logProperty() {
+        return log;
+    }
+
     public Status getInputStatus() {
         if (matrixA.get().isEmpty() || matrixB.get().isEmpty()) {
             return Status.WAITING;
@@ -112,6 +117,7 @@ public class ViewModel {
         status.setValue(Status.SUCCESS.toString());
 
         logger.log(calculateLogMessage());
+        updateLogProperty();
     }
 
     public List<String> getLog() {
@@ -136,6 +142,7 @@ public class ViewModel {
                 logger.log(LogMessages.EDITING_FINISHED
                         + "A = " + matrixA.get() + "; "
                         + "B = " + matrixB.get());
+                updateLogProperty();
             }
         }
     }
@@ -146,14 +153,19 @@ public class ViewModel {
                             final Operation oldValue, final Operation newValue) {
             updateStateWhenValuesChange();
             logger.log(LogMessages.OPERATION_CHANGED + operation.get().toString());
+            updateLogProperty();
         }
     }
 
     private String calculateLogMessage() {
         return LogMessages.CALCULATE_PRESSED
                 + matrixA.get()
-                + operation.toString()
+                + operation.get().toString()
                 + matrixB.get();
+    }
+
+    private void updateLogProperty() {
+        log.set(FXCollections.observableArrayList(logger.getLog()));
     }
 
     public final class LogMessages {

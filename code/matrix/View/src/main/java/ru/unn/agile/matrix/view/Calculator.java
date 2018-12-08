@@ -1,12 +1,8 @@
 package ru.unn.agile.matrix.view;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
-import javafx.scene.control.ComboBox;
 import ru.unn.agile.matrix.viewmodel.Operation;
 import ru.unn.agile.matrix.viewmodel.ViewModel;
 import ru.unn.agile.matrix.infrastructure.TxtLogger;
@@ -26,6 +22,8 @@ public class Calculator {
     private TextField result;
     @FXML
     private Text status;
+    @FXML
+    private ListView logView;
 
     @FXML
     void initialize() {
@@ -42,11 +40,8 @@ public class Calculator {
                 viewModel.calculateButtonDisabledProperty()
         );
 
-        calculateButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(final ActionEvent event) {
-                viewModel.calculate();
-            }
-        });
+        calculateButton.setOnAction(event -> viewModel.calculate());
+
+        logView.itemsProperty().bindBidirectional(viewModel.logProperty());
     }
 }
