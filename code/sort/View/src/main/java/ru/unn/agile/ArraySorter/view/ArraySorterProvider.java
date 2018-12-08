@@ -65,7 +65,7 @@ public final class ArraySorterProvider {
             @Override
             public void keyReleased(final KeyEvent e) {
                 bind();
-                ArraySorterProvider.this.viewModel.processingAddField(e.getKeyCode());
+                ArraySorterProvider.this.viewModel.processingAddField();
                 backBind();
             }
         };

@@ -14,6 +14,10 @@ import static org.junit.Assert.assertTrue;
 public class ViewModelTests {
     private ViewModel viewModel;
 
+    public void setViewModel(final ViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
+
     @Before
     public void setUp() {
         FakeLogger logger = new FakeLogger();
