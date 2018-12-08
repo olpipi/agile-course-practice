@@ -316,10 +316,15 @@ public class ViewModelTests {
     public void isLogUpdatedWhenSortArray() {
         viewModel.setInputValue("10");
         viewModel.addProcess();
+        viewModel.setInputValue("-3.4");
+        viewModel.addProcess();
+        viewModel.setInputValue("9");
+        viewModel.addProcess();
 
         viewModel.sort();
 
-        String message =viewModel.getLog().get(1);
+        List<String> log = viewModel.getLog();
+        String message = log.get(log.size() - 1);
         assertTrue(message.matches(".*" + viewModel.getSortedArrayStringRepresentation()  + ".*"));
     }
 
