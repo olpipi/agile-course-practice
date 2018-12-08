@@ -128,13 +128,15 @@ project(":code/huffman/ViewModel").name = "huffman-ViewModel"
 include "code/huffman/View"
 project(":code/huffman/View").name = "huffman-View"
 
-// Polyakov Igor & Podolov Kirill, sort
+// Polyakov Igor & Podolov Kirill & Flegontov Alexander, sort
 include "code/sort/Model"
 project(":code/sort/Model").name = "sort-Model"
 include "code/sort/ViewModel"
 project(":code/sort/ViewModel").name = "sort-ViewModel"
 include "code/sort/View"
 project(":code/sort/View").name = "sort-View"
+include "code/sort/Infrastructure"
+project(":code/sort/Infrastructure").name = "sort-Infrastructure"
 
 // Vector3D
 include "code/vector3d/Model"
