@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 public class ViewModelTest {
     private ViewModel viewModel;
 
-    private final String currentViewModelStateMessage() {
+    private String currentViewModelStateMessage() {
         Operation currentOperation = viewModel.operationProperty().get();
         return String.format(ViewModel.LogMessages.CURRENT_STATE,
                 viewModel.firstNumeratorProperty().get(),
