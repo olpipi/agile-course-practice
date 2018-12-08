@@ -64,25 +64,26 @@ public class ViewModelTest {
     public void logIncludesOnlyMessageWithInitStateForAllFields() {
         List<String> logList = viewModel.getLogList();
 
-        assertNotEquals(1, logList.get(0));
+        assertEquals(1, logList.size());
     }
 
     @Test
     public void logIncludesMessageWithInitStateForAllFields() {
         List<String> logList = viewModel.getLogList();
-        String logMessage = "Current state: " +
-                "First fraction (" + viewModel.firstNumeratorProperty().get() + "/" +
-                viewModel.firstDenominatorProperty().get() + "), " +
-                "Second fraction (" + viewModel.secondNumeratorProperty().get() + "/" +
-                viewModel.secondDenominatorProperty().get() + "), " +
-                "Result fraction (" + viewModel.resultNumeratorProperty().get() + "/" +
-                viewModel.resultDenominatorProperty().get() + "), " +
-                "Operation (" + viewModel.operationProperty().toString() + "), " +
-                "Status (" + viewModel.statusProperty().get() + "), " +
-                "Can calculate (" + viewModel.calculationDisabledProperty().get() + "), " +
-                "All operations (" + viewModel.getOperations().toString() + ").";
+        Operation currentOperation = viewModel.operationProperty().get();
+        String logMessage = String.format(ViewModel.LogMessages.CURRENT_STATE,
+                viewModel.firstNumeratorProperty().get(),
+                viewModel.firstDenominatorProperty().get(),
+                viewModel.secondNumeratorProperty().get(),
+                viewModel.secondDenominatorProperty().get(),
+                viewModel.resultNumeratorProperty().get(),
+                viewModel.resultDenominatorProperty().get(),
+                currentOperation.toString(),
+                viewModel.getStatus(),
+                viewModel.calculationDisabledProperty().get(),
+                viewModel.getOperations().toString());
 
-        assertNotEquals(logMessage, logList.get(0));
+        assertEquals(logMessage, logList.get(0));
     }
 
     @Test

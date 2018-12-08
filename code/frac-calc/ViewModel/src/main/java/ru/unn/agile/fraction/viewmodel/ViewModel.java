@@ -42,7 +42,7 @@ public class ViewModel {
         }
         this.logger = logger;
         initDefaultFields();
-        logger.log(stateLogMessage());
+        logger.log(currentStateLogMessage());
     }
 
     private void initDefaultFields() {
@@ -176,18 +176,19 @@ public class ViewModel {
         return inputStatus;
     }
 
-    private String stateLogMessage() {
-        return "Current state: " +
-                "First fraction (" + firstNumerator.get() + "/" +
-                firstDenominator.get() + "), " +
-                "Second fraction (" + secondNumerator.get() + "/" +
-                secondDenominator.get() + "), " +
-                "Result fraction (" + resultNumerator.get() + "/" +
-                resultDenominator.get() + "), " +
-                "Operation (" + operation.toString() + "), " +
-                "Status (" + status.get() + "), " +
-                "Calculate disabled (" + calculationDisabled.get() + "), " +
-                "All operations (" + operations.toString() + ").";
+    private String currentStateLogMessage() {
+        Operation currentOperation = operation.get();
+        return String.format(LogMessages.CURRENT_STATE,
+                firstNumerator.get(),
+                firstDenominator.get(),
+                secondNumerator.get(),
+                secondDenominator.get(),
+                resultNumerator.get(),
+                resultDenominator.get(),
+                currentOperation.toString(),
+                status.get(),
+                calculationDisabled.get(),
+                getOperations().toString());
     }
 
     public void calculate() {
@@ -205,7 +206,19 @@ public class ViewModel {
         resultDenominator.set(String.valueOf(res.getDenominator()));
         status.set(Status.SUCCESS.toString());
     }
-}
+
+    public static final class LogMessages {
+        public static final String CURRENT_STATE =
+                "Current state: " +
+                "First fraction (%s/%s), " +
+                "Second fraction (%s/%s), " +
+                "Result fraction (%s/%s), " +
+                "Operation (%s), " +
+                "Status (%s), " +
+                "Calculate disabled (%s), " +
+                "All operations (%s).";
+    }
+    }
 
 enum Status {
     WAITING("Please provide input data"),
