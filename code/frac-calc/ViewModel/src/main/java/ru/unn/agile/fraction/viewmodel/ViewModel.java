@@ -42,6 +42,7 @@ public class ViewModel {
         }
         this.logger = logger;
         initDefaultFields();
+        logger.log(stateLogMessage());
     }
 
     private void initDefaultFields() {
@@ -131,6 +132,10 @@ public class ViewModel {
         return status.get();
     }
 
+    public List<String> getLogList() {
+        return logger.getLog();
+    }
+
     private class InputValueChanger implements ChangeListener<String> {
         @Override
         public void changed(final ObservableValue<? extends String> obs,
@@ -169,6 +174,20 @@ public class ViewModel {
         }
 
         return inputStatus;
+    }
+
+    private String stateLogMessage() {
+        return "Current state: " +
+                "First fraction (" + firstNumerator.get() + "/" +
+                firstDenominator.get() + "), " +
+                "Second fraction (" + secondNumerator.get() + "/" +
+                secondDenominator.get() + "), " +
+                "Result fraction (" + resultNumerator.get() + "/" +
+                resultDenominator.get() + "), " +
+                "Operation (" + operation.toString() + "), " +
+                "Status (" + status.get() + "), " +
+                "Calculate disabled (" + calculationDisabled.get() + "), " +
+                "All operations (" + operations.toString() + ").";
     }
 
     public void calculate() {

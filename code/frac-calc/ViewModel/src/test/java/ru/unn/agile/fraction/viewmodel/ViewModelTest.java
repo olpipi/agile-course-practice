@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import ru.unn.agile.fraction.model.Fraction.Operation;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class ViewModelTest {
@@ -56,6 +58,31 @@ public class ViewModelTest {
         assertEquals("", viewModel.resultNumeratorProperty().get());
         assertEquals("", viewModel.resultDenominatorProperty().get());
         assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void logIncludesOnlyMessageWithInitStateForAllFields() {
+        List<String> logList = viewModel.getLogList();
+
+        assertNotEquals(1, logList.get(0));
+    }
+
+    @Test
+    public void logIncludesMessageWithInitStateForAllFields() {
+        List<String> logList = viewModel.getLogList();
+        String logMessage = "Current state: " +
+                "First fraction (" + viewModel.firstNumeratorProperty().get() + "/" +
+                viewModel.firstDenominatorProperty().get() + "), " +
+                "Second fraction (" + viewModel.secondNumeratorProperty().get() + "/" +
+                viewModel.secondDenominatorProperty().get() + "), " +
+                "Result fraction (" + viewModel.resultNumeratorProperty().get() + "/" +
+                viewModel.resultDenominatorProperty().get() + "), " +
+                "Operation (" + viewModel.operationProperty().toString() + "), " +
+                "Status (" + viewModel.statusProperty().get() + "), " +
+                "Can calculate (" + viewModel.calculationDisabledProperty().get() + "), " +
+                "All operations (" + viewModel.getOperations().toString() + ").";
+
+        assertNotEquals(logMessage, logList.get(0));
     }
 
     @Test
