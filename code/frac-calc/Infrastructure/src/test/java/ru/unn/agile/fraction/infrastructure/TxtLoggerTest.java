@@ -10,11 +10,11 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TxtLoggerTest {
     private static final String FILE_NAME = "./TxtLoggerTest.log";
-    private static final String DATE_TIME_LOG_LINE = "^\\d{2}.\\d{2}.\\d{4} \\d{2}:\\d{2}:\\d{2} -> ";
+    private static final String DATE_TIME_LOG_LINE =
+            "^\\d{2}.\\d{2}.\\d{4} \\d{2}:\\d{2}:\\d{2} -> ";
 
     private TxtLogger txtLogger;
 
@@ -29,19 +29,19 @@ public class TxtLoggerTest {
     }
 
     @Test
-    public void canCreateLoggerWithFileName() {
+    public void canCreateLoggerWithCorrectFileName() {
         assertNotNull(txtLogger);
     }
 
     @Test
-    public void canCreateLogFile() {
+    public void canCreateLogFileWithCorrectFileName() {
         File f = new File(FILE_NAME);
 
         assertTrue(f.exists());
     }
 
     @Test
-    public void canWriteLogMessage() {
+    public void canWriteLogMessageToLogger() {
         String message = "Test message";
 
         txtLogger.log(message);
@@ -51,7 +51,7 @@ public class TxtLoggerTest {
     }
 
     @Test
-    public void canWriteSeveralLogMessages() {
+    public void canWriteSeveralLogMessagesToLogger() {
         String[] messages = {"Test message 0", "Test message 1"};
 
         for (String message : messages) {

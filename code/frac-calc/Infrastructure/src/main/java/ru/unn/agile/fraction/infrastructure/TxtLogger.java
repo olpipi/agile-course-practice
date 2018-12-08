@@ -3,7 +3,6 @@ package ru.unn.agile.fraction.infrastructure;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import ru.unn.agile.fraction.viewmodel.ILogger;
 
@@ -43,18 +42,18 @@ public class TxtLogger implements ILogger {
     @Override
     public List<String> getLog() {
         BufferedReader reader;
-        ArrayList<String> log = new ArrayList<String>();
+        List<String> logList = new ArrayList<String>();
         try {
             reader = new BufferedReader(new FileReader(fileName));
             String line = reader.readLine();
             while (line != null) {
-                log.add(line);
+                logList.add(line);
                 line = reader.readLine();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return log;
+        return logList;
     }
 }

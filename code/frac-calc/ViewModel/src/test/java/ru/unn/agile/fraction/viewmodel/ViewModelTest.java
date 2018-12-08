@@ -90,7 +90,7 @@ public class ViewModelTest {
     public void logIncludesMessageWithInitStateForAllFields() {
         List<String> logList = viewModel.getLogList();
 
-        assertTrue(logList.get(0).contains (currentViewModelStateMessage()));
+        assertTrue(logList.get(0).contains(currentViewModelStateMessage()));
     }
 
     @Test
@@ -250,7 +250,7 @@ public class ViewModelTest {
                 viewModel.getStatus(),
                 viewModel.calculationDisabledProperty().get());
 
-        assertTrue(logList.get(1).contains (message));
+        assertTrue(logList.get(1).contains(message));
     }
 
     @Test
@@ -291,7 +291,7 @@ public class ViewModelTest {
         String message = String.format(ViewModel.LogMessages.OPEARTION_WAS_CHANGED,
                 currentOperation.toString());
 
-        assertTrue(logList.get(1).contains (message));
+        assertTrue(logList.get(1).contains(message));
     }
 
     @Test
@@ -304,6 +304,6 @@ public class ViewModelTest {
         String message = ViewModel.LogMessages.CALCULATE_BUTTON_WAS_PRESSED + " "
                 + currentViewModelStateMessage();
 
-        assertTrue(logList.get(logList.size() - 1).contains (message));
+        assertTrue(logList.get(logList.size() - 1).contains(message));
     }
 }
