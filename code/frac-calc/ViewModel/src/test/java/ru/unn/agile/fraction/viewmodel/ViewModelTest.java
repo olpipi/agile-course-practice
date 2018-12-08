@@ -13,6 +13,10 @@ import static org.junit.Assert.*;
 public class ViewModelTest {
     private ViewModel viewModel;
 
+    public void setViewModel(final ViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
+
     private String currentViewModelStateMessage() {
         Operation currentOperation = viewModel.operationProperty().get();
         return String.format(ViewModel.LogMessages.CURRENT_STATE,
@@ -86,7 +90,7 @@ public class ViewModelTest {
     public void logIncludesMessageWithInitStateForAllFields() {
         List<String> logList = viewModel.getLogList();
 
-        assertEquals(currentViewModelStateMessage(), logList.get(0));
+        assertTrue(logList.get(0).contains (currentViewModelStateMessage()));
     }
 
     @Test
@@ -246,7 +250,7 @@ public class ViewModelTest {
                 viewModel.getStatus(),
                 viewModel.calculationDisabledProperty().get());
 
-        assertEquals(message, logList.get(1));
+        assertTrue(logList.get(1).contains (message));
     }
 
     @Test
@@ -287,7 +291,7 @@ public class ViewModelTest {
         String message = String.format(ViewModel.LogMessages.OPEARTION_WAS_CHANGED,
                 currentOperation.toString());
 
-        assertEquals(message, logList.get(1));
+        assertTrue(logList.get(1).contains (message));
     }
 
     @Test
@@ -297,9 +301,9 @@ public class ViewModelTest {
 
         List<String> logList = viewModel.getLogList();
         Operation currentOperation = viewModel.operationProperty().get();
-        String logMessage = ViewModel.LogMessages.CALCULATE_BUTTON_WAS_PRESSED + " "
+        String message = ViewModel.LogMessages.CALCULATE_BUTTON_WAS_PRESSED + " "
                 + currentViewModelStateMessage();
 
-        assertEquals(logMessage, logList.get(logList.size() - 1));
+        assertTrue(logList.get(logList.size() - 1).contains (message));
     }
 }
