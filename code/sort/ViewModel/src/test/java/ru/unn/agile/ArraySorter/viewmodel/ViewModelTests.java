@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 public class ViewModelTests {
@@ -268,5 +270,27 @@ public class ViewModelTests {
         viewModel.processingAddField(1);
 
         assertEquals(Status.WAITING, viewModel.getCurrentState());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void throwsViewModelWhenLoggerIsNull() {
+        FakeLogger logger = null;
+
+        new ViewModel(logger);
+    }
+
+    @Test
+    public void canConstructViewModelWhenLoggerIsNotNull() {
+        FakeLogger logger = new FakeLogger();
+
+        new ViewModel(logger);
+    }
+
+    @Test
+    public void isLoggerEmptyWhenStartup() {
+        final int expected = 0;
+        List<String> log = viewModel.getLog();
+
+        assertEquals(expected, log.size());
     }
 }
