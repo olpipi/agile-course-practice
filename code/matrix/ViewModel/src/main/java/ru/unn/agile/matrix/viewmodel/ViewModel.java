@@ -7,6 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import ru.unn.agile.matrix.model.Matrix;
 
+import java.util.List;
+
 public class ViewModel {
     private final StringProperty matrixA = new SimpleStringProperty();
     private final StringProperty matrixB = new SimpleStringProperty();
@@ -16,8 +18,14 @@ public class ViewModel {
     private final BooleanProperty calculateButtonDisabled = new SimpleBooleanProperty();
     private final StringProperty result = new SimpleStringProperty();
     private final StringProperty status = new SimpleStringProperty();
+    private ILogger logger;
 
-    public ViewModel() {
+    public ViewModel(final ILogger logger) {
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger parameter can't be null");
+        }
+        this.logger = logger;
+
         matrixA.setValue("[1 2][3 4]");
         matrixB.setValue("[4 3][2 1]");
         operation.setValue(Operation.ADD);
@@ -92,12 +100,22 @@ public class ViewModel {
     }
 
     public void calculate() {
+        if (!canCalculate()) {
+            return;
+        }
+
         Matrix mA = StringToMatrixConverter.convertToMatrix(matrixA.get());
         Matrix mB = StringToMatrixConverter.convertToMatrix(matrixB.get());
         Matrix res = operation.getValue().apply(mA, mB);
 
         result.setValue(res.toString());
         status.setValue(Status.SUCCESS.toString());
+
+        logger.log(calculateLogMessage());
+    }
+
+    public List<String> getLog() {
+        return logger.getLog();
     }
 
     private boolean canCalculate() {
@@ -114,6 +132,11 @@ public class ViewModel {
         public void changed(final ObservableValue<? extends String> observable,
                             final String oldValue, final String newValue) {
             updateStateWhenValuesChange();
+            if (status.get() == Status.READY.toString()) {
+                logger.log(LogMessages.EDITING_FINISHED
+                        + "A = " + matrixA.get() + "; "
+                        + "B = " + matrixB.get());
+            }
         }
     }
 
@@ -122,7 +145,21 @@ public class ViewModel {
         public void changed(final ObservableValue<? extends Operation> observable,
                             final Operation oldValue, final Operation newValue) {
             updateStateWhenValuesChange();
+            logger.log(LogMessages.OPERATION_CHANGED + operation.get().toString());
         }
+    }
+
+    private String calculateLogMessage() {
+        return LogMessages.CALCULATE_PRESSED
+                + matrixA.get()
+                + operation.toString()
+                + matrixB.get();
+    }
+
+    public final class LogMessages {
+        public static final String CALCULATE_PRESSED = "Calculate ";
+        public static final String OPERATION_CHANGED = "Operation changed to ";
+        public static final String EDITING_FINISHED = "Input changed to ";
     }
 }
 
@@ -141,4 +178,3 @@ enum Status {
         return name;
     }
 }
-

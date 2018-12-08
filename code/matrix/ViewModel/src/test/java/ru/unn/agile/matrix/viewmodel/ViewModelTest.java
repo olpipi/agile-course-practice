@@ -3,14 +3,17 @@ package ru.unn.agile.matrix.viewmodel;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.List;
 import static org.junit.Assert.*;
+import ru.unn.agile.matrix.viewmodel.ViewModel.LogMessages;
 
 public class ViewModelTest {
     private ViewModel viewModel;
 
     @Before
     public void setUp() {
-        viewModel = new ViewModel();
+        FakeLogger logger = new FakeLogger();
+        viewModel = new ViewModel(logger);
     }
 
     @After
@@ -56,12 +59,21 @@ public class ViewModelTest {
     }
 
     private String setupMatrixMultiplicationAndGetResult() {
-        String matrix = "[1.0 0.0][0.0 1.0]";
+        String matrix = "[1 0][0 1]";
         viewModel.operationProperty().setValue(Operation.MULTIPLY);
         viewModel.matrixAProperty().setValue(matrix);
         viewModel.matrixBProperty().setValue(matrix);
 
-        return matrix;
+        return "[1.0 0.0][0.0 1.0]";
+    }
+
+    private String getLastLog() {
+        List<String> log = viewModel.getLog();
+        if (log.isEmpty()) {
+            return "";
+        } else {
+            return log.get(log.size() - 1);
+        }
     }
 
     @Test
@@ -204,6 +216,137 @@ public class ViewModelTest {
         viewModel.operationProperty().setValue(Operation.ADD);
 
         assertTrue(viewModel.calculateButtonDisabledProperty().get());
+    }
+
+    @Test
+    public void canCreateViewModelWithLogger() {
+        FakeLogger logger = new FakeLogger();
+        ViewModel viewModelLogged = new ViewModel(logger);
+
+        assertNotNull(viewModelLogged);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void viewModelConstructorThrowsExceptionWithNullLogger() {
+        new ViewModel(null);
+    }
+
+    @Test
+    public void logIsEmptyAtTheBeginning() {
+        List<String> log = viewModel.getLog();
+
+        assertEquals(0, log.size());
+    }
+
+    @Test
+    public void calculatePutsSomethingToLog() {
+        viewModel.calculate();
+
+        List<String> log = viewModel.getLog();
+        assertNotEquals(0, log.size());
+    }
+
+    @Test
+    public void logContainsProperMessageAfterCalculateButtonIsPressed() {
+        viewModel.calculate();
+        String message = getLastLog();
+
+        assertTrue(message.matches(".*" + LogMessages.CALCULATE_PRESSED + ".*"));
+    }
+
+    @Test
+    public void logContainsInputArgumentsAfterCalculateButtonIsPressed() {
+        setupMatrixAdditionAndGetResult();
+
+        viewModel.calculate();
+
+        String message = getLastLog();
+        assertTrue(message.matches(
+                ".*" + viewModel.matrixAProperty().get()
+                + ".*" + viewModel.matrixBProperty().get() + ".*"));
+    }
+
+    @Test
+    public void argumentsInfoIsProperlyFormattedAfterCalculateButtonIsPressed() {
+        setupMatrixAdditionAndGetResult();
+
+        viewModel.calculate();
+
+        String message = getLastLog();
+        assertTrue(message.matches(".*"
+                + viewModel.matrixAProperty().get()
+                + viewModel.operationProperty().get().toString()
+                + viewModel.matrixBProperty().get() + ".*"));
+    }
+
+    @Test
+    public void operationIsMentionedInTheLogAfterCalculateButtonIsPressed() {
+        setupMatrixAdditionAndGetResult();
+
+        viewModel.calculate();
+
+        String message = getLastLog();
+        assertTrue(message.matches(".*" + Operation.ADD.toString() + ".*"));
+    }
+
+    @Test
+    public void canLogSeveralMessages() {
+        viewModel.calculate();
+        viewModel.calculate();
+        viewModel.calculate();
+
+        assertEquals(3, viewModel.getLog().size());
+    }
+
+    @Test
+    public void operationIsLoggedWhenChanged() {
+        viewModel.operationProperty().set(Operation.ADD);
+
+        viewModel.operationProperty().set(Operation.MULTIPLY);
+
+        String message = getLastLog();
+        assertTrue(message.matches(
+                ".*" + LogMessages.OPERATION_CHANGED + Operation.MULTIPLY.toString() + ".*"));
+    }
+
+    @Test
+    public void operationIsNotLoggedIfNotChanged() {
+        viewModel.operationProperty().set(Operation.MULTIPLY);
+
+        viewModel.operationProperty().set(Operation.MULTIPLY);
+
+        assertEquals(1, viewModel.getLog().size());
+    }
+
+    @Test
+    public void argumentsAreCorrectlyLoggedAfterTheirEditing() {
+        viewModel.matrixAProperty().set("[1]");
+        viewModel.matrixBProperty().set("[0]");
+
+        String message = getLastLog();
+        assertTrue(message.equals(LogMessages.EDITING_FINISHED
+                + "A = " + viewModel.matrixAProperty().get() + "; "
+                + "B = " + viewModel.matrixBProperty().get()));
+    }
+
+    @Test
+    public void calculateIsNotCalledWhenButtonIsDisabled() {
+        enterIncompatibleSizeMatrices();
+
+        viewModel.calculate();
+
+        String message = getLastLog();
+        assertFalse(message.matches(".*" + LogMessages.CALCULATE_PRESSED + ".*"));
+    }
+
+    @Test
+    public void doNotLogSameInputParametersTwice() {
+        String matrix = "[42 24][123 321]";
+        viewModel.matrixAProperty().set(matrix);
+
+        viewModel.matrixAProperty().set(matrix);
+
+        assertEquals(1, viewModel.getLog().size());
     }
 }
 
