@@ -21,11 +21,11 @@ public class TxtLogger implements ILogger {
     @Override
     public void log(final String s) {
         try {
-            writer.write(now() + " > " + s);
+            writer.write(now() + " >> " + s);
             writer.newLine();
             writer.flush();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
@@ -36,15 +36,13 @@ public class TxtLogger implements ILogger {
         try {
             reader = new BufferedReader(new FileReader(filename));
             String line = reader.readLine();
-
             while (line != null) {
                 log.add(line);
                 line = reader.readLine();
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
-
         return log;
     }
 
