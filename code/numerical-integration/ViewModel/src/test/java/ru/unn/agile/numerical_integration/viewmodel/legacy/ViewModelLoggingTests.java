@@ -30,7 +30,13 @@ public class ViewModelLoggingTests {
 
     @Test
     public void canLogComputeClick() {
-        fail();
+        viewModel.setFunction("3*x*x");
+        viewModel.setLeftBorderValue("-2");
+        viewModel.setRightBorderValue("2");
+        viewModel.setSplitsNumber("10000");
+
+        viewModel.compute();
+        assertTrue(viewModel.getLogMessages().contains(ViewModel.LOG_COMPUTE_BUTTON_CLICKED));
     }
 
 }
