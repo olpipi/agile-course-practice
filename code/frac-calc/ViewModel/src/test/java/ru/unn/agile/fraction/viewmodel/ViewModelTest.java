@@ -77,6 +77,7 @@ public class ViewModelTest {
         assertEquals("", viewModel.resultNumeratorProperty().get());
         assertEquals("", viewModel.resultDenominatorProperty().get());
         assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+        assertTrue(viewModel.getLog().contains(currentViewModelStateMessage()));
     }
 
     @Test
@@ -101,6 +102,7 @@ public class ViewModelTest {
         assertNotEquals(null, viewModel.secondDenominatorProperty().get());
         assertNotEquals(null, viewModel.resultNumeratorProperty().get());
         assertNotEquals(null, viewModel.resultDenominatorProperty().get());
+        assertNotEquals(null, viewModel.logProperty().get());
     }
 
     @Test
@@ -305,5 +307,19 @@ public class ViewModelTest {
                 + currentViewModelStateMessage();
 
         assertTrue(logList.get(logList.size() - 1).contains(message));
+    }
+
+    @Test
+    public void logPropertySameAsRealLog() {
+        setInputData("13", "44", "23", "22");
+        viewModel.calculate();
+
+        List<String> logList = viewModel.getLogList();
+        StringBuilder logMessages = new StringBuilder();
+        for (String line : logList) {
+            logMessages.append(line).append("\n");
+        }
+
+        assertEquals(logMessages.toString(), viewModel.getLog());
     }
 }

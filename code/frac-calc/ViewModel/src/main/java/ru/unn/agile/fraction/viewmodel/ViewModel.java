@@ -30,6 +30,8 @@ public class ViewModel {
     private final StringProperty status = new SimpleStringProperty();
     private final List<InputValueChanger> valueChangedListeners = new ArrayList<>();
 
+    private final StringProperty log = new SimpleStringProperty();
+
     private ILogger logger;
 
     public ViewModel() {
@@ -37,12 +39,8 @@ public class ViewModel {
     }
 
     public ViewModel(final ILogger logger) {
-        if (logger == null) {
-            throw new IllegalArgumentException("Logger can't be null");
-        }
-        this.logger = logger;
         initDefaultFields();
-        logger.log(currentStateForAllFieldsLogMessage());
+        setLogger(logger);
     }
 
     private void initDefaultFields() {
@@ -54,6 +52,7 @@ public class ViewModel {
         resultNumerator.set("");
         resultDenominator.set("");
         status.set(Status.WAITING.toString());
+        log.set("");
 
         BooleanBinding couldCalculate = new BooleanBinding() {
             {
@@ -136,8 +135,24 @@ public class ViewModel {
         return status.get();
     }
 
+    public StringProperty logProperty() {
+        return log;
+    }
+
+    public final String getLog() {
+        return log.get();
+    }
+
     public List<String> getLogList() {
         return logger.getLog();
+    }
+
+    public void setLogger(final ILogger logger) {
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger can't be null");
+        }
+        this.logger = logger;
+        writeToLog(currentStateForAllFieldsLogMessage());
     }
 
     private class InputValueChanger implements ChangeListener<Object> {
@@ -147,9 +162,9 @@ public class ViewModel {
                             final Object nextVal) {
             status.set(getInputStatus().toString());
             if (obs == operation) {
-                logger.log(operationStateLogMessage());
+                writeToLog(operationStateLogMessage());
             } else {
-                logger.log(fractionsStateLogMessage());
+                writeToLog(fractionsStateLogMessage());
             }
         }
     }
@@ -183,6 +198,15 @@ public class ViewModel {
         }
 
         return inputStatus;
+    }
+
+    private void writeToLog(String message) {
+        logger.log(message);
+        StringBuilder logMessages = new StringBuilder();
+        for (String line : getLogList()) {
+            logMessages.append(line).append("\n");
+        }
+        log.set(logMessages.toString());
     }
 
     private String currentStateForAllFieldsLogMessage() {
@@ -236,7 +260,7 @@ public class ViewModel {
         resultDenominator.set(String.valueOf(res.getDenominator()));
         status.set(Status.SUCCESS.toString());
 
-        logger.log(stateAfterCalculateLogMessage());
+        writeToLog(stateAfterCalculateLogMessage());
     }
 
     public static final class LogMessages {
