@@ -24,11 +24,6 @@ public class ViewModelLoggingTests {
     }
 
     @Test
-    public void canSetLogger() {
-        assertNotEquals(viewModel.getLogger(), null);
-    }
-
-    @Test
     public void canLogComputeClick() {
         viewModel.compute();
 

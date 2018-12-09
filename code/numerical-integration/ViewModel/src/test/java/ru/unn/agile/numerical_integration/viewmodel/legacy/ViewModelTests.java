@@ -452,4 +452,19 @@ public class ViewModelTests {
 
         assertTrue(model.getOutputMessage().contains("\n"));
     }
+
+    @Test
+    public void canSetLogger() {
+        ViewModel model = new ViewModel();
+        ILogger logger = new FakeLogger();
+
+        boolean success = true;
+        try {
+            model.setLogger(logger);
+        } catch (Exception e) {
+            success = false;
+        }
+
+        assertTrue(success);
+    }
 }
