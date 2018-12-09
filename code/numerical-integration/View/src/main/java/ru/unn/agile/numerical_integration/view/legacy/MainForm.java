@@ -28,7 +28,7 @@ public final class MainForm {
     private JLabel leftBorderLabel;
     private JLabel rightBorderLabel;
     private JLabel helpText;
-    private JList logList;
+    private JTextArea logList;
 
     public static void main(final String[] args) {
         JFrame frame = new JFrame("MainForm");
@@ -98,10 +98,7 @@ public final class MainForm {
         splitsText.setText(model.getSplitsNumber());
         computeIntegralButton.setEnabled(model.canComputeFunction());
         outputText.setText(model.getOutputMessage());
-
-        List<String> log = model.getLogMessages();
-        String[] items = log.toArray(new String[log.size()]);
-        logList.setListData(items);
+        logList.setText(String.join("\n", model.getLogMessages()));
     }
 
     private static Object suppressUnused(final Object o) {

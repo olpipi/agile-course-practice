@@ -3,10 +3,7 @@ package ru.unn.agile.numerical_integration.viewmodel.legacy;
 import ru.unn.agile.numerical_integration.model.BaseDefinition;
 import ru.unn.agile.numerical_integration.model.Expression;
 
-import java.util.AbstractMap;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class ViewModel {
     public static final String LOG_COMPUTE_BUTTON_CLICKED = "Compute button clicked";
@@ -55,7 +52,9 @@ public class ViewModel {
         rightBorderText = "1.0";
         splitsNumberText = "1";
         outputMessage = "";
+        logMessages = new ArrayList<>();
         errorsList = new HashMap<>();
+        logger = null;
         checkErrors();
     }
 
