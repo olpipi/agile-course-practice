@@ -152,6 +152,8 @@ project(":code/string-calculator/View").name = "string-calculator-View"
 // Stack
 include "code/stack/Model"
 project(":code/stack/Model").name = "stack-Model"
+include "code/stack/ViewModel"
+project(":code/stack/ViewModel").name = "stack-ViewModel"
 include "code/stack/View"
 project(":code/stack/View").name = "stack-View"
 
