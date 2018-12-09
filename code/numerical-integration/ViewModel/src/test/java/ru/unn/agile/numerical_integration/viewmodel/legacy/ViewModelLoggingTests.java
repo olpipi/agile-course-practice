@@ -10,6 +10,10 @@ public class ViewModelLoggingTests {
     private ViewModel viewModel;
     private ILogger logger;
 
+    public void setLogger(final ILogger logger) {
+        this.logger = logger;
+    }
+
     @Before
     public void setUp() throws Exception {
         viewModel = new ViewModel();
