@@ -36,6 +36,7 @@ public class ViewModel {
     private String splitsNumberText;
     private String outputMessage;
     private AbstractMap<ErrorKind, String> errorsList;
+    private ILogger logger;
 
 
     public ViewModel() {
@@ -46,6 +47,14 @@ public class ViewModel {
         outputMessage = "";
         errorsList = new HashMap<>();
         checkErrors();
+    }
+
+    public void setLogger(final ILogger logger) {
+        this.logger = logger;
+    }
+
+    public ILogger getLogger() {
+        return logger;
     }
 
     public String getFunctionText() {
