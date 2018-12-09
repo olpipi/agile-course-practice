@@ -30,13 +30,42 @@ public class ViewModelLoggingTests {
 
     @Test
     public void canLogComputeClick() {
-        viewModel.setFunction("3*x*x");
-        viewModel.setLeftBorderValue("-2");
-        viewModel.setRightBorderValue("2");
-        viewModel.setSplitsNumber("10000");
-
         viewModel.compute();
-        assertTrue(viewModel.getLogMessages().contains(ViewModel.LOG_COMPUTE_BUTTON_CLICKED));
+
+        assertTrue(viewModel.getLogMessages().toString().contains(ViewModel.LOG_COMPUTE_BUTTON_CLICKED));
+    }
+
+    @Test
+    public void canLogFunctionTextFieldChanged() {
+        viewModel.setFunction("3*x*x");
+
+        assertTrue(viewModel.getLogMessages().toString()
+                .contains(ViewModel.LOG_FUNCTION_INPUT + " " + ViewModel.LOG_INPUT_EXPRESSION_CHANGED));
+    }
+
+    @Test
+    public void canLogLeftBorderTextFieldChanged() {
+        viewModel.setLeftBorderValue("-2");
+
+        assertTrue(viewModel.getLogMessages().toString()
+                .contains(ViewModel.LOG_LEFT_BORDER_INPUT + " " + ViewModel.LOG_INPUT_EXPRESSION_CHANGED));
+    }
+
+    @Test
+    public void canLogRightBorderTextFieldChanged() {
+        viewModel.setRightBorderValue("-2");
+
+        assertTrue(viewModel.getLogMessages().toString()
+                .contains(ViewModel.LOG_RIGHT_BORDER_INPUT + " " + ViewModel.LOG_INPUT_EXPRESSION_CHANGED));
+    }
+
+
+    @Test
+    public void canLogSplitsNumberTextFiledChanged() {
+        viewModel.setSplitsNumber("-2");
+
+        assertTrue(viewModel.getLogMessages().toString()
+                .contains(ViewModel.LOG_SPLITS_NUMBER_INPUT + " " + ViewModel.LOG_INPUT_EXPRESSION_CHANGED));
     }
 
 }

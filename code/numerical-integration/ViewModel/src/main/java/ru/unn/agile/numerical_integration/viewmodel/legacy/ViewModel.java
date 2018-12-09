@@ -10,7 +10,12 @@ import java.util.List;
 
 public class ViewModel {
     public static final String LOG_COMPUTE_BUTTON_CLICKED = "Compute button clicked";
-    public static final String LOG_INPUT_EXPRESSION_CHANGED = "Input expression changed";
+    public static final String LOG_INPUT_EXPRESSION_CHANGED = "input changed";
+    public static final String LOG_FUNCTION_INPUT = "Function";
+    public static final String LOG_LEFT_BORDER_INPUT = "Left Border";
+    public static final String LOG_RIGHT_BORDER_INPUT = "Right Border";
+    public static final String LOG_SPLITS_NUMBER_INPUT = "Splits Number";
+
 
     private static final String FLOAT_NUMBER_REGEX =
             "[+-]?((\\d+\\.?\\d*)|(\\d*\\.\\d+))";
@@ -86,24 +91,39 @@ public class ViewModel {
         return outputMessage;
     }
 
+    private String getInputFieldChangedLog(final String field, final String newValue, final String oldValue) {
+        StringBuilder message = new StringBuilder(field).append(" ").append(LOG_INPUT_EXPRESSION_CHANGED)
+                .append(". Previous Value: ").append(leftBorderText).append(", New value: ").append(newValue)
+                .append(", Status: ").append(outputMessage);
+        return message.toString();
+    }
+
     public void setLeftBorderValue(final String value) {
+        String oldValue = leftBorderText;
         leftBorderText = value;
         checkErrors();
+        log(getInputFieldChangedLog(LOG_LEFT_BORDER_INPUT, value, oldValue));
     }
 
     public void setRightBorderValue(final String value) {
+        String oldValue = rightBorderText;
         rightBorderText = value;
         checkErrors();
+        log(getInputFieldChangedLog(LOG_RIGHT_BORDER_INPUT, value, oldValue));
     }
 
     public void setSplitsNumber(final String value) {
+        String oldValue = splitsNumberText;
         splitsNumberText = value;
         checkErrors();
+        log(getInputFieldChangedLog(LOG_SPLITS_NUMBER_INPUT, value, oldValue));
     }
 
     public void setFunction(final String value) {
+        String oldValue = functionText;
         functionText = value;
         checkErrors();
+        log(getInputFieldChangedLog(LOG_FUNCTION_INPUT, value, oldValue));
     }
 
     public boolean canComputeFunction() {
@@ -114,8 +134,6 @@ public class ViewModel {
         if (!canComputeFunction()) {
             return;
         }
-        StringBuilder logMessage = new StringBuilder(LOG_COMPUTE_BUTTON_CLICKED);
-        log(logMessage.toString());
         MathExpression parser = new MathExpression(functionText);
         final Expression f = x -> {
             final boolean success = parser.eval(x);
@@ -133,6 +151,11 @@ public class ViewModel {
             addError(ErrorKind.Computation, e.toString());
             checkErrors();
         }
+        StringBuilder logMessage = new StringBuilder(LOG_COMPUTE_BUTTON_CLICKED).append(". Expression: ")
+                .append(functionText).append(", Left Border: ").append(leftBorderText).append(", Right Border: ")
+                .append(rightBorderText).append(", Split Numbers: ").append(splitsNumberText).append(", Result: ")
+                .append(outputMessage);
+        log(logMessage.toString());
     }
 
     private void log(final String message) {
