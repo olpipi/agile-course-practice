@@ -77,6 +77,7 @@ public class ViewModelTest {
         assertEquals("", viewModel.resultNumeratorProperty().get());
         assertEquals("", viewModel.resultDenominatorProperty().get());
         assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+        assertEquals(true, viewModel.calculationDisabledProperty().get());
         assertEquals("", viewModel.logProperty().get());
     }
 
@@ -233,6 +234,13 @@ public class ViewModelTest {
     }
 
     @Test
+    public void calculationEnabledAfterAllFractionFieldsAreCorrectlyFilled() {
+        setInputData("13", "44", "23", "22");
+
+        assertEquals(false, viewModel.isCalculationDisabled());
+    }
+
+    @Test
     public void logContainsFractionChangedMessageIfSingleFieldWasChanged() {
         viewModel.firstNumeratorProperty().set("1");
 
@@ -314,5 +322,12 @@ public class ViewModelTest {
         }
 
         assertEquals(logMessages.toString(), viewModel.getLog());
+    }
+
+    @Test
+    public void canCreateLogMessage() {
+        ViewModel.LogMessages logMessages = new ViewModel.LogMessages();
+
+        assertNotNull(logMessages);
     }
 }
