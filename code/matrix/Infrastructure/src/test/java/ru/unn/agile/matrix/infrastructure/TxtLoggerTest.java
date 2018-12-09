@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import static org.junit.Assert.*;
 
@@ -15,7 +16,11 @@ public class TxtLoggerTest {
 
     @Before
     public void setUp() {
-        txtLogger = new TxtLogger(FILENAME);
+        try {
+            txtLogger = new TxtLogger(FILENAME);
+        } catch (IOException exc) {
+            fail("Could not construct TxTLogger");
+        }
     }
 
     @Test

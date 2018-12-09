@@ -1,9 +1,6 @@
 package ru.unn.agile.matrix.infrastructure;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,16 +13,9 @@ public class TxtLogger implements ILogger {
     private final BufferedWriter writer;
     private final String filename;
 
-    public TxtLogger(final String filename) {
+    public TxtLogger(final String filename) throws IOException {
         this.filename = filename;
-
-        BufferedWriter logWriter = null;
-        try {
-            logWriter = new BufferedWriter(new FileWriter(filename));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        writer = logWriter;
+        writer = new BufferedWriter(new FileWriter(filename));
     }
 
     @Override

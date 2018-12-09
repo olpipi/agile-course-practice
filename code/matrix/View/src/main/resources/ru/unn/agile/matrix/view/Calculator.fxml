@@ -48,7 +48,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <ComboBox fx:id="operation" layoutX="628.0" layoutY="97.0" prefHeight="25.0" prefWidth="89.0" />
+      <ComboBox fx:id="operation" layoutX="618.0" layoutY="87.0" prefHeight="36.0" prefWidth="109.0" />
       <Text fx:id="status" fill="#9e9e9e" layoutX="13.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status">
          <font>
             <Font size="20.0" />

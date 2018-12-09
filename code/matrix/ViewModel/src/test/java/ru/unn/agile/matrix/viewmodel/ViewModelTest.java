@@ -4,8 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.List;
+import ru.unn.agile.matrix.viewmodel.ViewModel.Operation;
 import static org.junit.Assert.*;
-import ru.unn.agile.matrix.viewmodel.ViewModel.LogMessages;
 
 public class ViewModelTest {
     private ViewModel viewModel;

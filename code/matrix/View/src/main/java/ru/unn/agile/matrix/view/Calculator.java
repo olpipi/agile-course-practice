@@ -3,11 +3,16 @@ package ru.unn.agile.matrix.view;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
-import ru.unn.agile.matrix.viewmodel.Operation;
 import ru.unn.agile.matrix.viewmodel.ViewModel;
+import ru.unn.agile.matrix.viewmodel.ViewModel.Operation;
 import ru.unn.agile.matrix.infrastructure.TxtLogger;
 
+import java.io.IOException;
+import static java.lang.System.exit;
+
 public class Calculator {
+    private static final int EXIT_CODE_GENERAL_ERROR = 1;
+
     @FXML
     private ViewModel viewModel;
     @FXML
@@ -23,11 +28,18 @@ public class Calculator {
     @FXML
     private Text status;
     @FXML
-    private ListView logView;
+    private ListView<String> logView;
 
     @FXML
     void initialize() {
-        viewModel = new ViewModel(new TxtLogger("./MatrixCalc.log"));
+        logView.setStyle("-fx-font-size: 20;");
+        operation.setStyle("-fx-font-size: 15;");
+
+        try {
+            viewModel = new ViewModel(new TxtLogger("./MatrixCalc.log"));
+        } catch (IOException exc) {
+            exit(EXIT_CODE_GENERAL_ERROR);
+        }
 
         matrixA.textProperty().bindBidirectional(viewModel.matrixAProperty());
         matrixB.textProperty().bindBidirectional(viewModel.matrixBProperty());
