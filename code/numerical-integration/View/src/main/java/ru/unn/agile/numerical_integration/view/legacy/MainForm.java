@@ -1,6 +1,6 @@
 package ru.unn.agile.numerical_integration.view.legacy;
 
-import ru.unn.agile.numerical_integration.ViewModel.legacy.ViewModel;
+import ru.unn.agile.numerical_integration.viewmodel.legacy.ViewModel;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;

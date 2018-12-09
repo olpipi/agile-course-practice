@@ -1,7 +1,7 @@
-package ru.unn.agile.numerical_integration.ViewModel.legacy;
+package ru.unn.agile.numerical_integration.viewmodel.legacy;
 
-import ru.unn.agile.numerical_integration.Model.BaseDefinition;
-import ru.unn.agile.numerical_integration.Model.Expression;
+import ru.unn.agile.numerical_integration.model.BaseDefinition;
+import ru.unn.agile.numerical_integration.model.Expression;
 
 import java.util.AbstractMap;
 import java.util.HashMap;
