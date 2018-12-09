@@ -1,12 +1,19 @@
 package ru.unn.agile.numerical_integration.view.legacy;
 
 import ru.unn.agile.numerical_integration.viewmodel.legacy.ViewModel;
+import ru.unn.agile.numerical_integration.infrastructure.FileLogger;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.List;
+
+import static java.lang.System.exit;
 
 public final class MainForm {
+    private static final int EXIT_CODE_GENERAL_ERROR = 1;
+
     private final ViewModel model;
 
     private JPanel mainPanel;
@@ -21,6 +28,7 @@ public final class MainForm {
     private JLabel leftBorderLabel;
     private JLabel rightBorderLabel;
     private JLabel helpText;
+    private JList logList;
 
     public static void main(final String[] args) {
         JFrame frame = new JFrame("MainForm");
@@ -32,6 +40,13 @@ public final class MainForm {
 
     private MainForm(final ViewModel viewModel) {
         this.model = viewModel;
+
+        try {
+            viewModel.setLogger(new FileLogger("numerical_integration.log"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            exit(EXIT_CODE_GENERAL_ERROR);
+        }
 
         suppressUnused(mainPanel);
         suppressUnused(functionText);
@@ -45,6 +60,7 @@ public final class MainForm {
         suppressUnused(leftBorderLabel);
         suppressUnused(rightBorderLabel);
         suppressUnused(helpText);
+        suppressUnused(logList);
 
 
         computeIntegralButton.addActionListener(e -> {
@@ -82,6 +98,10 @@ public final class MainForm {
         splitsText.setText(model.getSplitsNumber());
         computeIntegralButton.setEnabled(model.canComputeFunction());
         outputText.setText(model.getOutputMessage());
+
+        List<String> log = model.getLogMessages();
+        String[] items = log.toArray(new String[log.size()]);
+        logList.setListData(items);
     }
 
     private static Object suppressUnused(final Object o) {
