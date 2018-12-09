@@ -147,7 +147,7 @@ public class ViewModel {
         return logger.getLog();
     }
 
-    public void setLogger(final ILogger logger) {
+    public final void setLogger(final ILogger logger) {
         if (logger == null) {
             throw new IllegalArgumentException("Logger can't be null");
         }
@@ -200,7 +200,7 @@ public class ViewModel {
         return inputStatus;
     }
 
-    private void writeToLog(String message) {
+    public final void writeToLog(final String message) {
         logger.log(message);
         StringBuilder logMessages = new StringBuilder();
         for (String line : getLogList()) {
