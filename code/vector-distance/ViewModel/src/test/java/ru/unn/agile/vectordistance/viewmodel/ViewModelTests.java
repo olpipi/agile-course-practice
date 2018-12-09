@@ -17,6 +17,8 @@ import static ru.unn.agile.vectordistance.viewmodel.ViewModel.CALCULATE_STATUS_M
 public class ViewModelTests {
     private ViewModel viewModel;
 
+    private static final String TEST_MESSAGE = "Test message";
+
     @Before
     public void setUp() {
         viewModel = new ViewModel(new FakeLogger());
@@ -29,6 +31,13 @@ public class ViewModelTests {
 
     public void setViewModel(final ViewModel viewModel) {
         this.viewModel = viewModel;
+    }
+
+    @Test
+    public void canCreateViewModel() {
+        ViewModel viewModel = new ViewModel();
+
+        assertNotNull(viewModel);
     }
 
     @Test
@@ -81,6 +90,26 @@ public class ViewModelTests {
     }
 
     @Test
+    public void canSetLogProperty() {
+        setInputData();
+
+        viewModel.logProperty().set(TEST_MESSAGE);
+
+        assertTrue(viewModel.logProperty().get().matches(".*" + TEST_MESSAGE + ".*"));
+    }
+
+    @Test
+    public void canSetLogger() {
+        setInputData();
+        ILogger logger = new FakeLogger();
+
+        viewModel.setLogger(logger);
+
+        assertEquals(logger, viewModel.getLogger());
+    }
+
+
+    @Test
     public void canSetDefaultValues() {
         assertEquals("", viewModel.getVectorXProperty());
         assertEquals("", viewModel.getVectorYProperty());
@@ -88,6 +117,7 @@ public class ViewModelTests {
         assertEquals("", viewModel.getResultProperty());
         assertEquals(Status.WAITING.toString(), viewModel.getStatusProperty());
         assertTrue(viewModel.isCalculationDisabledProperty());
+        assertTrue(viewModel.isCalculationDisabled());
     }
 
     @Test

@@ -102,6 +102,10 @@ public class ViewModel {
         this.logger = logger;
     }
 
+    public ILogger getLogger() {
+        return this.logger;
+    }
+
     public void calculate() {
         if (calculationDisabled.get()) {
             return;
