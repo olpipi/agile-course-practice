@@ -1,110 +1,146 @@
 package ru.unn.agile.stack.viewmodel;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import ru.unn.agile.stack.model.Stack;
 
 public class ViewModel {
     private Stack<Double> doubleStack;
-    private String stackIsEmptyStatus;
-    private String stackSize;
-    private String stackTopElement;
-    private String stackPopElement;
-    private String addingElement;
-    private String statusMessage;
 
-    private boolean isPopButtonVisible;
+    private StringProperty stackIsEmptyStatus = new SimpleStringProperty();
+    private StringProperty stackSize = new SimpleStringProperty();
+    private StringProperty stackTopElement = new SimpleStringProperty();
+    private StringProperty stackPopElement = new SimpleStringProperty();
+    private StringProperty addingElement = new SimpleStringProperty();
+    private StringProperty statusMessage = new SimpleStringProperty();
 
+    private BooleanProperty popButtonVisible = new SimpleBooleanProperty();
 
     public ViewModel() {
         doubleStack = new Stack<Double>();
-        stackIsEmptyStatus = "Stack is empty";
-        stackSize = "0";
-        stackTopElement = "None";
-        stackPopElement = "None";
-        addingElement = "";
+        stackIsEmptyStatus.set("Stack is empty");
+        stackSize.set("0");
+        stackTopElement.set("None");
+        stackPopElement.set("None");
+        addingElement.set("");
 
-        isPopButtonVisible = false;
+        popButtonVisible.set(false);
 
-        statusMessage = Status.WAITING_FOR_INPUT;
+        statusMessage.set(Status.WAITING_FOR_INPUT);
     }
 
-    public String getStackIsEmptyStatus() {
+    public StringProperty stackIsEmptyStatusProperty() {
         return stackIsEmptyStatus;
     }
 
-    public String getStackSize() {
+    public final String getStackIsEmptyStatus() {
+        return stackIsEmptyStatus.get();
+    }
+
+    public StringProperty stackSizeProperty() {
         return stackSize;
     }
 
-    public String getStackTopElement() {
+    public String getStackSize() {
+        return stackSize.get();
+    }
+
+    public StringProperty stackTopElementProperty() {
         return stackTopElement;
     }
 
-    public String getStackPopElement() {
+    public String getStackTopElement() {
+        return stackTopElement.get();
+    }
+
+    public StringProperty stackPopElementProperty() {
         return stackPopElement;
     }
 
-    public String getAddingElement() {
+    public String getStackPopElement() {
+        return stackPopElement.get();
+    }
+
+    public StringProperty addingElementProperty() {
         return addingElement;
     }
 
-    public String getStatusMessage() {
+    public String getAddingElement() {
+        return addingElement.get();
+    }
+
+    public StringProperty statusMessageProperty() {
         return statusMessage;
     }
 
+    public String getStatusMessage() {
+        return statusMessage.get();
+    }
+
     public boolean isPopButtonVisible() {
-        return isPopButtonVisible;
+        return popButtonVisible.get();
+    }
+
+    public BooleanProperty popButtonVisibleProperty() {
+        return popButtonVisible;
     }
 
     private void changePopButtonVisibleStatus() {
         if (doubleStack.empty()) {
-            isPopButtonVisible = false;
+            popButtonVisible.set(false);
         } else {
-            isPopButtonVisible = true;
+            popButtonVisible.set(true);
         }
     }
 
     private void changeStackEmptyStatus() {
         if (doubleStack.empty()) {
-            stackIsEmptyStatus = "Stack is empty";
+            stackIsEmptyStatus.set("Stack is empty");
         } else {
-            stackIsEmptyStatus = "Stack is not empty";
+            stackIsEmptyStatus.set("Stack is not empty");
         }
     }
 
     private void changeStackSize() {
         int doubleStackSize = doubleStack.size();
-        stackSize = Integer.toString(doubleStackSize);
+        stackSize.set(Integer.toString(doubleStackSize));
     }
 
     private void changeStackTopElement() {
         if (!doubleStack.empty()) {
-            stackTopElement = Double.toString((double) doubleStack.peek());
+            stackTopElement.set(Double.toString((double) doubleStack.peek()));
         } else {
-            stackTopElement = "None";
+            stackTopElement.set("None");
         }
     }
 
     private boolean checkElement(final String addElement) {
         if (addElement.isEmpty()) {
-            statusMessage = Status.WAITING_FOR_INPUT;
+            statusMessage.set(Status.WAITING_FOR_INPUT);
             return false;
         }
 
         try {
             Double.parseDouble(addElement);
         } catch (Exception e) {
-            statusMessage = Status.INVALID_FORMAT;
+            statusMessage.set(Status.INVALID_FORMAT);
             return false;
         }
 
-        statusMessage = Status.READY_TO_ADD;
+        statusMessage.set(Status.READY_TO_ADD);
         return true;
     }
 
-    public void addElement(final String addElement) {
-        if (checkElement(addElement)) {
-            addingElement = addElement;
-            doubleStack.push(Double.parseDouble(addElement));
+    public void setAddingElem(final String addElem) {
+        addingElement.set(addElem);
+    }
+
+
+    public void addElement() {
+        if (checkElement(addingElement.get())) {
+            doubleStack.push(Double.parseDouble(addingElement.get()));
             changeStackSize();
             changePopButtonVisibleStatus();
             changeStackEmptyStatus();
@@ -114,7 +150,7 @@ public class ViewModel {
 
     public void popElement() {
         if (!doubleStack.empty()) {
-            stackPopElement = Double.toString((double) doubleStack.pop());
+            stackPopElement.set(Double.toString((double) doubleStack.pop()));
             changePopButtonVisibleStatus();
             changeStackEmptyStatus();
             changeStackSize();
@@ -131,6 +167,3 @@ public class ViewModel {
         }
     }
 }
-
-
-

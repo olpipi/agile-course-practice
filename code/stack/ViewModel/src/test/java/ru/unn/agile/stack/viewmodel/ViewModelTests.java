@@ -40,7 +40,8 @@ public class ViewModelTests {
 
     @Test
     public void canAddNewElement() {
-        viewModel.addElement("1");
+        viewModel.setAddingElem("1");
+        viewModel.addElement();
 
         assertEquals("Stack is not empty", viewModel.getStackIsEmptyStatus());
         assertEquals("1", viewModel.getStackSize());
@@ -51,46 +52,56 @@ public class ViewModelTests {
 
     @Test
     public void isReadyToAddStatusWhenAddNewElement() {
-        viewModel.addElement("11");
+        viewModel.setAddingElem("11");
+        viewModel.addElement();
         assertEquals(ViewModel.Status.READY_TO_ADD, viewModel.getStatusMessage());
     }
 
     @Test
     public void isPopButtonIsVisibleAfterAddingElement() {
-        viewModel.addElement("105");
+        viewModel.setAddingElem("105");
+        viewModel.addElement();
         assertEquals(true, viewModel.isPopButtonVisible());
     }
 
     @Test
     public void doNotAddNonValidElement() {
-        viewModel.addElement("abc");
+        viewModel.setAddingElem("abc");
+        viewModel.addElement();
 
         assertEquals("Stack is empty", viewModel.getStackIsEmptyStatus());
         assertEquals("0", viewModel.getStackSize());
         assertEquals("None", viewModel.getStackTopElement());
         assertEquals("None", viewModel.getStackPopElement());
-        assertEquals("", viewModel.getAddingElement());
+        assertEquals("abc", viewModel.getAddingElement());
     }
 
     @Test
     public void isInvalidFormatStatusWhenAddInvalidElement() {
-        viewModel.addElement("abc");
+        viewModel.setAddingElem("abc");
+        viewModel.addElement();
         assertEquals(ViewModel.Status.INVALID_FORMAT, viewModel.getStatusMessage());
     }
 
     @Test
     public void isPopIsNotVisibleWhenAddInvalidElement() {
-        viewModel.addElement("abc");
+        viewModel.setAddingElem("dc");
+        viewModel.addElement();
         assertEquals(false, viewModel.isPopButtonVisible());
     }
 
     @Test
     public void canAddFewElements() {
-        viewModel.addElement("1");
-        viewModel.addElement("2");
-        viewModel.addElement("3.7");
-        viewModel.addElement("-4.9");
-        viewModel.addElement("5.95");
+        viewModel.setAddingElem("1");
+        viewModel.addElement();
+        viewModel.setAddingElem("2");
+        viewModel.addElement();
+        viewModel.setAddingElem("3.7");
+        viewModel.addElement();
+        viewModel.setAddingElem("-4.9");
+        viewModel.addElement();
+        viewModel.setAddingElem("5.95");
+        viewModel.addElement();
 
         assertEquals("Stack is not empty", viewModel.getStackIsEmptyStatus());
         assertEquals("5", viewModel.getStackSize());
@@ -101,27 +112,38 @@ public class ViewModelTests {
 
     @Test
     public void isReadyToAddStatusWhenAddFewElement() {
-        viewModel.addElement("-18");
-        viewModel.addElement("82.9");
-        viewModel.addElement("65.07");
-        viewModel.addElement("-14.09");
-        viewModel.addElement("-11.95");
+        viewModel.setAddingElem("-18");
+        viewModel.addElement();
+        viewModel.setAddingElem("38");
+        viewModel.addElement();
+        viewModel.setAddingElem("24.5");
+        viewModel.addElement();
+        viewModel.setAddingElem("-28.59");
+        viewModel.addElement();
+        viewModel.setAddingElem("21");
+        viewModel.addElement();
         assertEquals(ViewModel.Status.READY_TO_ADD, viewModel.getStatusMessage());
     }
 
     @Test
     public void isPopButtonIsVisibleAfterAddingFewElement() {
-        viewModel.addElement("-61");
-        viewModel.addElement("52");
-        viewModel.addElement("36.7");
-        viewModel.addElement("-3.96");
-        viewModel.addElement("5.9511");
+        viewModel.setAddingElem("-61");
+        viewModel.addElement();
+        viewModel.setAddingElem("41");
+        viewModel.addElement();
+        viewModel.setAddingElem("36.6");
+        viewModel.addElement();
+        viewModel.setAddingElem("-28.3");
+        viewModel.addElement();
+        viewModel.setAddingElem("28");
+        viewModel.addElement();
         assertEquals(true, viewModel.isPopButtonVisible());
     }
 
     @Test
     public void canAddAndPopElement() {
-        viewModel.addElement("1");
+        viewModel.setAddingElem("1");
+        viewModel.addElement();
         viewModel.popElement();
 
         assertEquals("Stack is empty", viewModel.getStackIsEmptyStatus());
@@ -133,29 +155,35 @@ public class ViewModelTests {
 
     @Test
     public void isPopButtonIsNotVisibleAfterAddAndPopElement() {
-        viewModel.addElement("-1");
+        viewModel.setAddingElem("-1");
+        viewModel.addElement();
         viewModel.popElement();
         assertEquals(false, viewModel.isPopButtonVisible());
     }
 
     @Test
     public void isReadyToAddStatusAfterAddAndPopElement() {
-        viewModel.addElement("11");
+        viewModel.setAddingElem("11");
+        viewModel.addElement();
         viewModel.popElement();
         assertEquals(ViewModel.Status.READY_TO_ADD, viewModel.getStatusMessage());
     }
 
     @Test
-    public void canAddAndPopElementFewTimes() {
-        viewModel.addElement("1");
+    public void canAddAndPopElementFewTim() {
+        viewModel.setAddingElem("1");
+        viewModel.addElement();
         viewModel.popElement();
-        viewModel.addElement("-53.7");
-        viewModel.addElement("11");
-        viewModel.addElement("65.8");
-        viewModel.addElement("100");
+        viewModel.setAddingElem("-53.7");
+        viewModel.addElement();
+        viewModel.setAddingElem("11");
+        viewModel.addElement();
+        viewModel.setAddingElem("65.8");
+        viewModel.addElement();
+        viewModel.setAddingElem("100");
+        viewModel.addElement();
         viewModel.popElement();
         viewModel.popElement();
-
         assertEquals("Stack is not empty", viewModel.getStackIsEmptyStatus());
         assertEquals("2", viewModel.getStackSize());
         assertEquals("11.0", viewModel.getStackTopElement());
@@ -165,35 +193,32 @@ public class ViewModelTests {
 
     @Test
     public void isPopButtonIsVisibleAfterAddAndPopElementFewTimes() {
-        viewModel.addElement("231");
+        viewModel.setAddingElem("231");
+        viewModel.addElement();
         viewModel.popElement();
-        viewModel.addElement("-763.7");
-        viewModel.addElement("134");
+        viewModel.setAddingElem("37");
+        viewModel.addElement();
+        viewModel.setAddingElem("1324");
+        viewModel.addElement();
         assertEquals(true, viewModel.isPopButtonVisible());
     }
 
     @Test
     public void isReadyToAddStatusAfterAddAndPopElementFewTimes() {
-        viewModel.addElement("11");
+        viewModel.setAddingElem("11");
+        viewModel.addElement();
         viewModel.popElement();
-        viewModel.addElement("-554.7");
-        viewModel.addElement("1");
-        viewModel.addElement("835.8");
-        viewModel.addElement("1420");
+        viewModel.setAddingElem("31");
+        viewModel.addElement();
+        viewModel.setAddingElem("1");
+        viewModel.addElement();
+        viewModel.setAddingElem("352");
+        viewModel.addElement();
+        viewModel.setAddingElem("452");
+        viewModel.addElement();
         viewModel.popElement();
         viewModel.popElement();
         assertEquals(ViewModel.Status.READY_TO_ADD, viewModel.getStatusMessage());
-    }
-
-    @Test
-    public void canNotPopFromEmptyStack() {
-        viewModel.popElement();
-
-        assertEquals("Stack is empty", viewModel.getStackIsEmptyStatus());
-        assertEquals("0", viewModel.getStackSize());
-        assertEquals("None", viewModel.getStackTopElement());
-        assertEquals("None", viewModel.getStackPopElement());
-        assertEquals("", viewModel.getAddingElement());
     }
 
     @Test
@@ -208,4 +233,3 @@ public class ViewModelTests {
         assertEquals(false, viewModel.isPopButtonVisible());
     }
 }
-
