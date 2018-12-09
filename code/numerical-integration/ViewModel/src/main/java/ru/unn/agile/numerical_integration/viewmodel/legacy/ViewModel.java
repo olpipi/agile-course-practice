@@ -6,8 +6,12 @@ import ru.unn.agile.numerical_integration.model.Expression;
 import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 public class ViewModel {
+    public static final String LOG_COMPUTE_BUTTON_CLICKED = "Compute button clicked";
+    public static final String LOG_INPUT_EXPRESSION_CHANGED = "Input expression changed";
+
     private static final String FLOAT_NUMBER_REGEX =
             "[+-]?((\\d+\\.?\\d*)|(\\d*\\.\\d+))";
 
@@ -35,6 +39,7 @@ public class ViewModel {
     private String rightBorderText;
     private String splitsNumberText;
     private String outputMessage;
+    private List<String> logMessages;
     private AbstractMap<ErrorKind, String> errorsList;
     private ILogger logger;
 
@@ -55,6 +60,10 @@ public class ViewModel {
 
     public ILogger getLogger() {
         return logger;
+    }
+
+    public List<String> getLogMessages() {
+        return logMessages;
     }
 
     public String getFunctionText() {
@@ -105,7 +114,8 @@ public class ViewModel {
         if (!canComputeFunction()) {
             return;
         }
-
+        StringBuilder logMessage = new StringBuilder(LOG_COMPUTE_BUTTON_CLICKED);
+        log(logMessage.toString());
         MathExpression parser = new MathExpression(functionText);
         final Expression f = x -> {
             final boolean success = parser.eval(x);
@@ -123,6 +133,17 @@ public class ViewModel {
             addError(ErrorKind.Computation, e.toString());
             checkErrors();
         }
+    }
+
+    private void log(final String message) {
+        if (logger != null) {
+            logger.log(message);
+            updateLog();
+        }
+    }
+
+    private void updateLog() {
+        logMessages = logger.getLog();
     }
 
     private void checkErrors() {
