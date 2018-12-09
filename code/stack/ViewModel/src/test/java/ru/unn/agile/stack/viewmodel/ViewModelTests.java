@@ -77,6 +77,18 @@ public class ViewModelTests {
     }
 
     @Test
+    public void doNotAddEmptyElement() {
+        viewModel.setAddingElem("");
+        viewModel.addElement();
+
+        assertEquals("None", viewModel.getStackTopElement());
+        assertEquals("None", viewModel.getStackPopElement());
+        assertEquals("Stack is empty", viewModel.getStackIsEmptyStatus());
+        assertEquals("0", viewModel.getStackSize());
+        assertEquals("", viewModel.getAddingElement());
+    }
+
+    @Test
     public void isInvalidFormatStatusWhenAddInvalidElement() {
         viewModel.setAddingElem("abc");
         viewModel.addElement();
@@ -231,5 +243,41 @@ public class ViewModelTests {
     public void isPopButtonIsNotVisibleWhenCanNotPopFromEmptyStack() {
         viewModel.popElement();
         assertEquals(false, viewModel.isPopButtonVisible());
+    }
+
+    @Test
+    public void correctDefaultStackIsEmptyStatus() {
+        assertEquals("Stack is empty", viewModel.stackIsEmptyStatusProperty().get());
+    }
+
+    @Test
+    public void correctDefaultStackSize() {
+        assertEquals("0", viewModel.stackSizeProperty().get());
+    }
+
+    @Test
+    public void correctDefaultTopElement() {
+        assertEquals("None", viewModel.stackTopElementProperty().get());
+    }
+
+    @Test
+    public void correctDefaultPopElement() {
+        assertEquals("None", viewModel.stackPopElementProperty().get());
+    }
+
+    @Test
+    public void correctAddingElement() {
+        viewModel.setAddingElem("11");
+        assertEquals("11", viewModel.addingElementProperty().get());
+    }
+
+    @Test
+    public void correctDefaultStatusMessage() {
+        assertEquals("Waiting for new element", viewModel.statusMessageProperty().get());
+    }
+
+    @Test
+    public void correctDefaultPopButtonVisible() {
+        assertEquals(false, viewModel.popButtonVisibleProperty().get());
     }
 }
