@@ -77,21 +77,14 @@ public class ViewModelTest {
         assertEquals("", viewModel.resultNumeratorProperty().get());
         assertEquals("", viewModel.resultDenominatorProperty().get());
         assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
-        assertTrue(viewModel.getLog().contains(currentViewModelStateMessage()));
+        assertEquals("", viewModel.logProperty().get());
     }
 
     @Test
-    public void logIncludesOnlyMessageWithInitStateForAllFields() {
+    public void logIsEmptyAfterInit() {
         List<String> logList = viewModel.getLogList();
 
-        assertEquals(1, logList.size());
-    }
-
-    @Test
-    public void logIncludesMessageWithInitStateForAllFields() {
-        List<String> logList = viewModel.getLogList();
-
-        assertTrue(logList.get(0).contains(currentViewModelStateMessage()));
+        assertEquals(0, logList.size());
     }
 
     @Test
@@ -252,7 +245,7 @@ public class ViewModelTest {
                 viewModel.getStatus(),
                 viewModel.calculationDisabledProperty().get());
 
-        assertTrue(logList.get(1).contains(message));
+        assertTrue(logList.get(0).contains(message));
     }
 
     @Test
@@ -262,7 +255,7 @@ public class ViewModelTest {
 
         List<String> logList = viewModel.getLogList();
 
-        assertEquals(2, logList.size());
+        assertEquals(1, logList.size());
     }
 
     @Test
@@ -271,7 +264,7 @@ public class ViewModelTest {
 
         List<String> logList = viewModel.getLogList();
 
-        assertEquals(5, logList.size());
+        assertEquals(4, logList.size());
     }
 
     @Test
@@ -281,7 +274,7 @@ public class ViewModelTest {
 
         List<String> logList = viewModel.getLogList();
 
-        assertEquals(2, logList.size());
+        assertEquals(1, logList.size());
     }
 
     @Test
@@ -293,7 +286,7 @@ public class ViewModelTest {
         String message = String.format(ViewModel.LogMessages.OPEARTION_WAS_CHANGED,
                 currentOperation.toString());
 
-        assertTrue(logList.get(1).contains(message));
+        assertTrue(logList.get(0).contains(message));
     }
 
     @Test

@@ -152,7 +152,6 @@ public class ViewModel {
             throw new IllegalArgumentException("Logger can't be null");
         }
         this.logger = logger;
-        writeToLog(currentStateForAllFieldsLogMessage());
     }
 
     private class InputValueChanger implements ChangeListener<Object> {
@@ -200,7 +199,7 @@ public class ViewModel {
         return inputStatus;
     }
 
-    public final void writeToLog(final String message) {
+    private void writeToLog(final String message) {
         logger.log(message);
         StringBuilder logMessages = new StringBuilder();
         for (String line : getLogList()) {
