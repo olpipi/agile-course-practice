@@ -13,6 +13,9 @@ import static org.mockito.Mockito.when;
 
 public class LoggerFactoryTest {
 
+    private static final String TEST_FILE_NAME = "build/logs.log";
+    private static final String ERROR_MESSAGE_TEXT = "File name should be set";
+
     @Test
     public void canInitiateLogger() {
         Logger logger = new LoggerFactory().getLogger();
@@ -31,7 +34,7 @@ public class LoggerFactoryTest {
     public void canInitiateTextLoggerBuilder() throws IOException {
         Logger logger = new TextLogger
                 .TextLoggerBuilder()
-                .setFileName("build/logs.log")
+                .setFileName(TEST_FILE_NAME)
                 .build();
         assertTrue(logger.getLogs().isEmpty());
     }
@@ -58,7 +61,7 @@ public class LoggerFactoryTest {
                     .TextLoggerBuilder()
                     .build();
         } catch (IllegalStateException e) {
-            assertEquals("File name should be set", e.getMessage());
+            assertEquals(ERROR_MESSAGE_TEXT, e.getMessage());
         }
     }
 
@@ -68,7 +71,7 @@ public class LoggerFactoryTest {
             LoggerFactory factory = new LoggerFactory();
             factory.resetLogger();
         } catch (IllegalStateException e) {
-            assertEquals("File name should be set", e.getMessage());
+            assertEquals(ERROR_MESSAGE_TEXT, e.getMessage());
         }
     }
 

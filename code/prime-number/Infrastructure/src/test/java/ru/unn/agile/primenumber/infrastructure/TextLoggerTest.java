@@ -14,6 +14,9 @@ import static org.mockito.Mockito.*;
 
 public class TextLoggerTest {
 
+    private static final String STRING_LOG_CONSTANT_1 = "Log1";
+    private static final String STRING_LOG_CONSTANT_2 = "2";
+
     private LoggerFactory factory;
 
     @Before
@@ -38,7 +41,7 @@ public class TextLoggerTest {
     @Test
     public void canResetFileLoggerTwice() {
         Logger logger = factory.getLogger();
-        logger.log("Log1");
+        logger.log(STRING_LOG_CONSTANT_1);
 
         Logger newLogger = factory.resetLogger();
         assertTrue(newLogger.getLogs().isEmpty());
@@ -63,37 +66,37 @@ public class TextLoggerTest {
     @Test
     public void canLoginString() {
         Logger logger = factory.getLogger();
-        logger.log("Log1");
+        logger.log(STRING_LOG_CONSTANT_1);
         assertTrue(logger.getLogs().size() == 1);
     }
 
     @Test
     public void canLoginStringValue() {
         Logger logger = factory.getLogger();
-        logger.log("Log1");
-        assertEquals("Log1", logger.getLogs().get(0));
+        logger.log(STRING_LOG_CONSTANT_1);
+        assertEquals(STRING_LOG_CONSTANT_1, logger.getLogs().get(0));
     }
 
     @Test
     public void canLoginTwoStringValue() {
         Logger logger = factory.getLogger();
 
-        logger.log("Log1");
-        logger.log("Log2");
-        assertEquals("Log2", logger.getLogs().get(1));
+        logger.log(STRING_LOG_CONSTANT_1);
+        logger.log(STRING_LOG_CONSTANT_2);
+        assertEquals(STRING_LOG_CONSTANT_2, logger.getLogs().get(1));
     }
 
     @Test
     public void canLogTwoLoggerStringValue() {
         Logger logger1 = factory.getLogger();
         Logger logger2 = factory.getLogger();
-        logger1.log("Log1");
-        logger2.log("Log2");
+        logger1.log(STRING_LOG_CONSTANT_1);
+        logger2.log(STRING_LOG_CONSTANT_2);
 
         List expectedList = new LinkedList<String>() {
             {
-                add("Log1");
-                add("Log2");
+                add(STRING_LOG_CONSTANT_1);
+                add(STRING_LOG_CONSTANT_2);
             }
         };
 
@@ -105,7 +108,7 @@ public class TextLoggerTest {
         TextLogger logger = mock(TextLogger.class);
         doCallRealMethod().when(logger).log(any(String.class));
 
-        logger.log("real");
+        logger.log(STRING_LOG_CONSTANT_1);
     }
 
     @Test(expected = RuntimeException.class)
