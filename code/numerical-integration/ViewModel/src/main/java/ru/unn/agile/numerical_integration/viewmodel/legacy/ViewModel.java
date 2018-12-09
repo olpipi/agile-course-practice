@@ -62,10 +62,6 @@ public class ViewModel {
         this.logger = logger;
     }
 
-    public ILogger getLogger() {
-        return logger;
-    }
-
     public List<String> getLogMessages() {
         return logMessages;
     }
