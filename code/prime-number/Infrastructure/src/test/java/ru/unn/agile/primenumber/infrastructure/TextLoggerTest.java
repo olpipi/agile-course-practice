@@ -41,9 +41,10 @@ public class TextLoggerTest {
     @Test
     public void canResetFileLoggerTwice() {
         Logger logger = factory.getLogger();
-        logger.log(STRING_LOG_CONSTANT_1);
 
+        logger.log(STRING_LOG_CONSTANT_1);
         Logger newLogger = factory.resetLogger();
+
         assertTrue(newLogger.getLogs().isEmpty());
     }
 
@@ -52,6 +53,7 @@ public class TextLoggerTest {
         Logger logger = factory.getLogger();
 
         Logger newLogger = factory.getLogger();
+
         assertTrue(logger == newLogger);
     }
 
@@ -60,20 +62,25 @@ public class TextLoggerTest {
         Logger logger = factory.getLogger();
 
         Logger newLogger = factory.resetLogger();
+
         assertTrue(logger != newLogger);
     }
 
     @Test
     public void canLoginString() {
         Logger logger = factory.getLogger();
+
         logger.log(STRING_LOG_CONSTANT_1);
+
         assertTrue(logger.getLogs().size() == 1);
     }
 
     @Test
     public void canLoginStringValue() {
         Logger logger = factory.getLogger();
+
         logger.log(STRING_LOG_CONSTANT_1);
+
         assertEquals(STRING_LOG_CONSTANT_1, logger.getLogs().get(0));
     }
 
@@ -90,9 +97,6 @@ public class TextLoggerTest {
     public void canLogTwoLoggerStringValue() {
         Logger logger1 = factory.getLogger();
         Logger logger2 = factory.getLogger();
-        logger1.log(STRING_LOG_CONSTANT_1);
-        logger2.log(STRING_LOG_CONSTANT_2);
-
         List expectedList = new LinkedList<String>() {
             {
                 add(STRING_LOG_CONSTANT_1);
@@ -100,12 +104,16 @@ public class TextLoggerTest {
             }
         };
 
+        logger1.log(STRING_LOG_CONSTANT_1);
+        logger2.log(STRING_LOG_CONSTANT_2);
+
         assertArrayEquals(expectedList.toArray(), logger2.getLogs().toArray());
     }
 
     @Test(expected = RuntimeException.class)
     public void canLogToNotFile() {
         TextLogger logger = mock(TextLogger.class);
+
         doCallRealMethod().when(logger).log(any(String.class));
 
         logger.log(STRING_LOG_CONSTANT_1);
