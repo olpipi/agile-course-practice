@@ -73,6 +73,8 @@ include "code/vector-distance/ViewModel"
 project(":code/vector-distance/ViewModel").name = "vector-distance-ViewModel"
 include "code/vector-distance/View"
 project(":code/vector-distance/View").name = "vector-distance-View"
+include "code/vector-distance/Infrastructure"
+project(":code/vector-distance/Infrastructure").name = "vector-distance-Infrastructure"
 
 // Korniakov Kirill, lab2-legacy
 include "code/korniakov-kirill-lab2-legacy/Model"
