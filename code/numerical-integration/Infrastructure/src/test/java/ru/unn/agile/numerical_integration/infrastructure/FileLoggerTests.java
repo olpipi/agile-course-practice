@@ -18,6 +18,13 @@ public class FileLoggerTests {
     private static final Path LOG_PATH = FileSystems.getDefault().getPath(LOG_NAME);
     private FileLogger logger;
 
+    public String getLineFromLog() throws IOException {
+        BufferedReader br = Files.newBufferedReader(LOG_PATH);
+        String line = br.readLine();
+        br.close();
+        return line;
+    }
+
     @Before
     public void setUp() throws IOException {
         Files.deleteIfExists(LOG_PATH);
@@ -51,16 +58,7 @@ public class FileLoggerTests {
     public void canLogMessage() throws IOException {
         logger.log("Ololo");
 
-        BufferedReader br = Files.newBufferedReader(LOG_PATH);
-
         assertTrue(getLineFromLog().contains("Ololo"));
-    }
-
-    public String getLineFromLog() throws IOException {
-        BufferedReader br = Files.newBufferedReader(LOG_PATH);
-        String line = br.readLine();
-        br.close();
-        return line;
     }
 
     @Test

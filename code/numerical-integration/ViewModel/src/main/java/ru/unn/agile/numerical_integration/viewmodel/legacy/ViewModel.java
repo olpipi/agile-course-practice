@@ -41,7 +41,6 @@ public class ViewModel {
     private String rightBorderText;
     private String splitsNumberText;
     private String outputMessage;
-    private List<String> logMessages;
     private AbstractMap<ErrorKind, String> errorsList;
     private ILogger logger;
 
@@ -52,7 +51,6 @@ public class ViewModel {
         rightBorderText = "1.0";
         splitsNumberText = "1";
         outputMessage = "";
-        logMessages = new ArrayList<>();
         errorsList = new HashMap<>();
         logger = null;
         checkErrors();
@@ -63,7 +61,7 @@ public class ViewModel {
     }
 
     public List<String> getLogMessages() {
-        return logMessages;
+        return logger.getLog();
     }
 
     public String getFunctionText() {
@@ -86,13 +84,14 @@ public class ViewModel {
         return outputMessage;
     }
 
-    private String getInputFieldChangedLog(final String field,
-                                           final String newValue,
-                                           final String oldValue) {
+    private String buildInputFieldChangedMessage(final String field,
+                                                 final String newValue,
+                                                 final String oldValue) {
         StringBuilder message = new StringBuilder(field).append(" ")
-                .append(LOG_INPUT_EXPRESSION_CHANGED).append(". Previous Value: ")
-                .append(oldValue).append(", New value: ").append(newValue).append(", Status: ")
-                .append(outputMessage);
+                .append(LOG_INPUT_EXPRESSION_CHANGED)
+                .append(". Previous Value: ").append(oldValue)
+                .append(", New value: ").append(newValue)
+                .append(", Status: ").append(outputMessage);
         return message.toString();
     }
 
@@ -100,28 +99,28 @@ public class ViewModel {
         String oldValue = leftBorderText;
         leftBorderText = value;
         checkErrors();
-        log(getInputFieldChangedLog(LOG_LEFT_BORDER_INPUT, value, oldValue));
+        log(buildInputFieldChangedMessage(LOG_LEFT_BORDER_INPUT, value, oldValue));
     }
 
     public void setRightBorderValue(final String value) {
         String oldValue = rightBorderText;
         rightBorderText = value;
         checkErrors();
-        log(getInputFieldChangedLog(LOG_RIGHT_BORDER_INPUT, value, oldValue));
+        log(buildInputFieldChangedMessage(LOG_RIGHT_BORDER_INPUT, value, oldValue));
     }
 
     public void setSplitsNumber(final String value) {
         String oldValue = splitsNumberText;
         splitsNumberText = value;
         checkErrors();
-        log(getInputFieldChangedLog(LOG_SPLITS_NUMBER_INPUT, value, oldValue));
+        log(buildInputFieldChangedMessage(LOG_SPLITS_NUMBER_INPUT, value, oldValue));
     }
 
     public void setFunction(final String value) {
         String oldValue = functionText;
         functionText = value;
         checkErrors();
-        log(getInputFieldChangedLog(LOG_FUNCTION_INPUT, value, oldValue));
+        log(buildInputFieldChangedMessage(LOG_FUNCTION_INPUT, value, oldValue));
     }
 
     public boolean canComputeFunction() {
@@ -150,22 +149,18 @@ public class ViewModel {
             checkErrors();
         }
         StringBuilder logMessage = new StringBuilder(LOG_COMPUTE_BUTTON_CLICKED)
-                .append(". Expression: ").append(functionText).append(", Left Border: ")
-                .append(leftBorderText).append(", Right Border: ").append(rightBorderText)
-                .append(", Split Numbers: ").append(splitsNumberText).append(", Result: ")
-                .append(outputMessage);
+                .append(". Expression: ").append(functionText)
+                .append(", Left Border: ").append(leftBorderText)
+                .append(", Right Border: ").append(rightBorderText)
+                .append(", Split Numbers: ").append(splitsNumberText)
+                .append(", Result: ").append(outputMessage);
         log(logMessage.toString());
     }
 
     private void log(final String message) {
         if (logger != null) {
             logger.log(message);
-            updateLog();
         }
-    }
-
-    private void updateLog() {
-        logMessages = logger.getLog();
     }
 
     private void checkErrors() {
