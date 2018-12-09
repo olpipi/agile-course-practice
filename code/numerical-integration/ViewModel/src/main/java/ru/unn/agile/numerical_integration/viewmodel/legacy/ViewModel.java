@@ -90,10 +90,13 @@ public class ViewModel {
         return outputMessage;
     }
 
-    private String getInputFieldChangedLog(final String field, final String newValue, final String oldValue) {
-        StringBuilder message = new StringBuilder(field).append(" ").append(LOG_INPUT_EXPRESSION_CHANGED)
-                .append(". Previous Value: ").append(leftBorderText).append(", New value: ").append(newValue)
-                .append(", Status: ").append(outputMessage);
+    private String getInputFieldChangedLog(final String field,
+                                           final String newValue,
+                                           final String oldValue) {
+        StringBuilder message = new StringBuilder(field).append(" ")
+                .append(LOG_INPUT_EXPRESSION_CHANGED).append(". Previous Value: ")
+                .append(oldValue).append(", New value: ").append(newValue).append(", Status: ")
+                .append(outputMessage);
         return message.toString();
     }
 
@@ -150,9 +153,10 @@ public class ViewModel {
             addError(ErrorKind.Computation, e.toString());
             checkErrors();
         }
-        StringBuilder logMessage = new StringBuilder(LOG_COMPUTE_BUTTON_CLICKED).append(". Expression: ")
-                .append(functionText).append(", Left Border: ").append(leftBorderText).append(", Right Border: ")
-                .append(rightBorderText).append(", Split Numbers: ").append(splitsNumberText).append(", Result: ")
+        StringBuilder logMessage = new StringBuilder(LOG_COMPUTE_BUTTON_CLICKED)
+                .append(". Expression: ").append(functionText).append(", Left Border: ")
+                .append(leftBorderText).append(", Right Border: ").append(rightBorderText)
+                .append(", Split Numbers: ").append(splitsNumberText).append(", Result: ")
                 .append(outputMessage);
         log(logMessage.toString());
     }

@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.util.List;
 
 import static java.lang.System.exit;
 
