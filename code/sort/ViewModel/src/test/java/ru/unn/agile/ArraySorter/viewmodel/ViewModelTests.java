@@ -307,14 +307,15 @@ public class ViewModelTests {
         viewModel.addProcess();
 
         String message = viewModel.getLog().get(0);
-        assertTrue(message.matches(".*" + viewModel.getElemArray() + ".*"));
+        assertTrue(message.matches(".*" + ViewModel.ADD_LOG + viewModel.getElemArray() + ".*"));
     }
 
     @Test
     public void isLogUpdatedWhenClearArray() {
         viewModel.clearProcess();
 
-        assertEquals(1, viewModel.getLog().size());
+        String message = viewModel.getLog().get(0);
+        assertTrue(message.matches(".*" + ViewModel.CLEAR_LOG + ".*"));
     }
 
     @Test
@@ -330,7 +331,7 @@ public class ViewModelTests {
 
         List<String> log = viewModel.getLog();
         String message = log.get(log.size() - 1);
-        assertTrue(message.matches(".*" + viewModel.getSortedArrayStringRepresentation()  + ".*"));
+        assertTrue(message.matches(".*" + viewModel.getSortedArrayStringRepresentation() + ".*"));
     }
 
     @Test
@@ -339,6 +340,6 @@ public class ViewModelTests {
         viewModel.processingAddField();
 
         String message = viewModel.getLog().get(0);
-        assertTrue(message.matches(".*" + Status.BAD_FORMAT + ". Should be double" + ".*"));
+        assertTrue(message.matches(".*" + Status.BAD_FORMAT + ".*"));
     }
 }
