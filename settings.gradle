@@ -41,6 +41,8 @@ project(":code/andreev-vlad-triangle").name = "andreev-vlad-triangle-Model"
 // abstract-set
 include "code/abstract-set/Model"
 project(":code/abstract-set/Model").name = "abstract-set-Model"
+include "code/abstract-set/ViewModel"
+project(":code/abstract-set/ViewModel").name = "abstract-set-ViewModel"
 include "code/abstract-set/View"
 project(":code/abstract-set/View").name = "abstract-set-View"
 
