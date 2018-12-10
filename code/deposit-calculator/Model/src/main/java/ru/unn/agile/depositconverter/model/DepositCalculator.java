@@ -60,6 +60,8 @@ public class DepositCalculator {
     public double calculateRevenue() {
         double incomeInMonth = 0;
         double gain = 0;
+        this.income = 0;
+
         double valuePercentPerMonth = this.interestRate / (MONTH_IN_YEAR * PERCENT);
         for (int i = 1; i < this.termPlacementInMonths + 1; ++i) {
             if (this.accruedInterest == AccruedInterest.addToDeposit) {

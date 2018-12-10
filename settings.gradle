@@ -181,8 +181,12 @@ include "code/kochuev-andrey-length-converter"
 project(":code/kochuev-andrey-length-converter").name = "kochuev-andrey-length-converter"
 
 // Osechkin Sergey, DepositCalculator
-include "code/osechkin-deposit-calculator"
-project(":code/osechkin-deposit-calculator").name = "osechkin-deposit-calculator"
+include "code/deposit-calculator/Model"
+project(":code/deposit-calculator/Model").name = "deposit-calculator-Model"
+include "code/deposit-calculator/ViewModel"
+project(":code/deposit-calculator/ViewModel").name = "deposit-calculator-ViewModel"
+include "code/deposit-calculator/View"
+project(":code/deposit-calculator/View").name = "deposit-calculator-View"
 
 // Three dimensional shapes area calculation
 include "code/shape-3d-area/model"
