@@ -77,7 +77,7 @@ public class ViewModelTest {
         assertEquals("", viewModel.resultNumeratorProperty().get());
         assertEquals("", viewModel.resultDenominatorProperty().get());
         assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
-        assertEquals(true, viewModel.calculationDisabledProperty().get());
+        assertTrue(viewModel.calculationDisabledProperty().get());
         assertEquals("", viewModel.logProperty().get());
     }
 
@@ -291,7 +291,7 @@ public class ViewModelTest {
 
         List<String> logList = viewModel.getLogList();
         Operation currentOperation = viewModel.operationProperty().get();
-        String message = String.format(ViewModel.LogMessages.OPEARTION_WAS_CHANGED,
+        String message = String.format(ViewModel.LogMessages.OPERATION_WAS_CHANGED,
                 currentOperation.toString());
 
         assertTrue(logList.get(0).contains(message));

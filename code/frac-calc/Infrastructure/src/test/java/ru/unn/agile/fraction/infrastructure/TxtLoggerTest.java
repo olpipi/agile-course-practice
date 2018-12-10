@@ -15,6 +15,7 @@ public class TxtLoggerTest {
     private static final String FILE_NAME = "./TxtLoggerTest.log";
     private static final String DATE_TIME_LOG_LINE =
             "^\\d{2}.\\d{2}.\\d{4} \\d{2}:\\d{2}:\\d{2} -> ";
+    private static final String TEST_MESSAGE = "Test message";
 
     private TxtLogger txtLogger;
 
@@ -42,17 +43,15 @@ public class TxtLoggerTest {
 
     @Test
     public void canWriteLogMessageToLogger() {
-        String message = "Test message";
-
-        txtLogger.log(message);
+        txtLogger.log(TEST_MESSAGE);
 
         List<String> logList = txtLogger.getLog();
-        assertTrue(logList.get(0).matches(DATE_TIME_LOG_LINE + message));
+        assertTrue(logList.get(0).matches(DATE_TIME_LOG_LINE + TEST_MESSAGE));
     }
 
     @Test
     public void canWriteSeveralLogMessagesToLogger() {
-        String[] messages = {"Test message 0", "Test message 1"};
+        String[] messages = {TEST_MESSAGE + " 0", TEST_MESSAGE + " 1"};
 
         for (String message : messages) {
             txtLogger.log(message);
@@ -64,24 +63,24 @@ public class TxtLoggerTest {
         }
     }
 
-    @Test
-    public void createTxtLoggerWithIncorrectFileNameCreatedEmptyLoggerAndThrowsException() {
+    @Test(expected = Test.None.class)
+    public void noThrowWhenCreateTxtLoggerWithIncorrectFileNameAndCreatedEmptyLogger() {
         TxtLogger emptyLogger = new TxtLogger("");
 
         assertEquals(0, emptyLogger.getLog().size());
     }
 
-    @Test
-    public void cantWriteToTxtLoggerWithIncorrectFileNameAndThrowsException() {
+    @Test(expected = Test.None.class)
+    public void noThrowWhenWriteToTxtLoggerWithIncorrectFileName() {
         TxtLogger emptyLogger = new TxtLogger("");
 
-        emptyLogger.log("Test message");
+        emptyLogger.log(TEST_MESSAGE);
 
         assertEquals(0, emptyLogger.getLog().size());
     }
 
-    @Test
-    public void readeFromTxtLoggerWithIncorrectFileNameThrowsException() {
+    @Test(expected = Test.None.class)
+    public void noThrowWhenReadFromTxtLoggerWithIncorrectFileName() {
         TxtLogger emptyLogger = new TxtLogger("");
 
         List<String> logList = emptyLogger.getLog();

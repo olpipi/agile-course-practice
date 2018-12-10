@@ -235,7 +235,7 @@ public class ViewModel {
 
     private String operationStateLogMessage() {
         Operation currentOperation = operation.get();
-        return String.format(LogMessages.OPEARTION_WAS_CHANGED,
+        return String.format(LogMessages.OPERATION_WAS_CHANGED,
                 currentOperation.toString());
     }
 
@@ -278,7 +278,7 @@ public class ViewModel {
                         + "Second fraction (%s/%s), "
                         + "Status (%s), "
                         + "Calculate disabled (%s).";
-        public static final String OPEARTION_WAS_CHANGED =
+        public static final String OPERATION_WAS_CHANGED =
                 "Operation was changed: "
                         + "Operation (%s).";
         public static final String CALCULATE_BUTTON_WAS_PRESSED =

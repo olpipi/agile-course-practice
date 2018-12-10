@@ -22,7 +22,7 @@ public class TxtLogger implements ILogger {
         BufferedWriter logWriter = null;
         try {
             logWriter = new BufferedWriter(new FileWriter(fileName));
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         writer = logWriter;
@@ -50,7 +50,7 @@ public class TxtLogger implements ILogger {
                 logList.add(line);
                 line = reader.readLine();
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
