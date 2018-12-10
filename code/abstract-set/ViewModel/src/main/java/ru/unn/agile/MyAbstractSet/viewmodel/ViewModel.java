@@ -81,8 +81,8 @@ public class ViewModel {
         }
     }
 
-    private boolean canExecuteOperation() {
-        return getInputStatus() == Status.READY;
+    private boolean canNotExecuteOperation() {
+        return getInputStatus() != Status.READY;
     }
 
     private class ValueChangeListener implements ChangeListener<String> {
@@ -90,7 +90,7 @@ public class ViewModel {
         public void changed(final ObservableValue<? extends String> observable,
                             final String oldValue, final String newValue) {
             status.set(getInputStatus().toString());
-            executeButtonDisabled.set(!canExecuteOperation());
+            executeButtonDisabled.set(canNotExecuteOperation());
         }
     }
 
