@@ -1,31 +1,50 @@
 package ru.unn.agile.MyAbstractSet.view;
 
 import javafx.fxml.FXML;
-/*import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;*/
+import javafx.scene.control.Button;
+import ru.unn.agile.MyAbstractSet.viewmodel.ViewModel;
+import ru.unn.agile.MyAbstractSet.viewmodel.ViewModel.Operation;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 
 public class AbstractSet {
+    @FXML
+    private ViewModel viewModel;
 
-    /*@FXML
-    private TextArea secondSetTextArea;
+    @FXML
+    private ComboBox<Operation> comboOperation;
 
     @FXML
     private TextArea firstSetTextArea;
 
     @FXML
-    private Button intersectButton;
+    private Button executeButton;
 
     @FXML
     private TextArea resultTextArea;
 
     @FXML
-    private Button uniteButton;*/
+    private TextArea secondSetTextArea;
 
+    @FXML
+    private Label status;
 
     @FXML
     void initialize() {
-        //empty
+        viewModel = new ViewModel();
+        firstSetTextArea.textProperty().bindBidirectional(viewModel.firstSetTextAreaProperty());
+        secondSetTextArea.textProperty().bindBidirectional(viewModel.secondSetTextAreaProperty());
+        resultTextArea.textProperty().bindBidirectional(viewModel.resultTextAreaProperty());
+        comboOperation.setItems(viewModel.operationsProperty().getValue());
+        comboOperation.valueProperty().bindBidirectional(viewModel.operationProperty());
+        status.textProperty().bindBidirectional(viewModel.statusProperty());
+
+        executeButton.disableProperty().bindBidirectional(
+                viewModel.executeButtonDisabledProperty());
+
+        executeButton.setOnAction(event -> viewModel.executeUniteOrIntersect());
     }
 
 }
