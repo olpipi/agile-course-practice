@@ -7,6 +7,14 @@ import javafx.beans.property.StringProperty;
 import ru.unn.agile.stack.model.Stack;
 
 public class ViewModel {
+    public static final String WAITING_FOR_INPUT = "Waiting for new element";
+    public static final String READY_TO_ADD = "Ready to add new element";
+    public static final String INVALID_FORMAT = "Adding element invalid format";
+
+    public static final String STACK_IS_EMPTY = "Stack is empty.";
+    public static final String STACK_IS_NOT_EMPTY = "Stack is not empty.";
+    public static final String NONE = "None";
+
     private Stack<Double> doubleStack;
 
     private StringProperty stackIsEmptyStatus = new SimpleStringProperty();
@@ -20,22 +28,22 @@ public class ViewModel {
 
     public ViewModel() {
         doubleStack = new Stack<Double>();
-        stackIsEmptyStatus.set("Stack is empty");
+        stackIsEmptyStatus.set(STACK_IS_EMPTY);
         stackSize.set("0");
-        stackTopElement.set("None");
-        stackPopElement.set("None");
+        stackTopElement.set(NONE);
+        stackPopElement.set(NONE);
         addingElement.set("");
 
         popButtonVisible.set(false);
 
-        statusMessage.set(Status.WAITING_FOR_INPUT);
+        statusMessage.set(WAITING_FOR_INPUT);
     }
 
     public StringProperty stackIsEmptyStatusProperty() {
         return stackIsEmptyStatus;
     }
 
-    public final String getStackIsEmptyStatus() {
+    public String getStackIsEmptyStatus() {
         return stackIsEmptyStatus.get();
     }
 
@@ -87,83 +95,43 @@ public class ViewModel {
         return popButtonVisible;
     }
 
-    private void changePopButtonVisibleStatus() {
-        if (doubleStack.empty()) {
-            popButtonVisible.set(false);
-        } else {
-            popButtonVisible.set(true);
-        }
-    }
-
-    private void changeStackEmptyStatus() {
-        if (doubleStack.empty()) {
-            stackIsEmptyStatus.set("Stack is empty");
-        } else {
-            stackIsEmptyStatus.set("Stack is not empty");
-        }
-    }
-
-    private void changeStackSize() {
-        int doubleStackSize = doubleStack.size();
-        stackSize.set(Integer.toString(doubleStackSize));
-    }
-
-    private void changeStackTopElement() {
-        if (!doubleStack.empty()) {
-            stackTopElement.set(Double.toString((double) doubleStack.peek()));
-        } else {
-            stackTopElement.set("None");
-        }
-    }
-
-    private boolean checkElement(final String addElement) {
-        if (addElement.isEmpty()) {
-            statusMessage.set(Status.WAITING_FOR_INPUT);
-            return false;
-        }
-
-        try {
-            Double.parseDouble(addElement);
-        } catch (Exception e) {
-            statusMessage.set(Status.INVALID_FORMAT);
-            return false;
-        }
-
-        statusMessage.set(Status.READY_TO_ADD);
-        return true;
-    }
-
     public void setAddingElem(final String addElem) {
         addingElement.set(addElem);
     }
 
-
     public void addElement() {
-        if (checkElement(addingElement.get())) {
-            doubleStack.push(Double.parseDouble(addingElement.get()));
-            changeStackSize();
-            changePopButtonVisibleStatus();
-            changeStackEmptyStatus();
-            changeStackTopElement();
+        try {
+            String addingElement = getAddingElement();
+            if (addingElement.isEmpty()) {
+                statusMessage.set(WAITING_FOR_INPUT);
+            } else {
+                doubleStack.push(Double.parseDouble(addingElement));
+                statusMessage.set(READY_TO_ADD);
+                changeStackProperties();
+            }
+        } catch (NumberFormatException e) {
+            statusMessage.set(INVALID_FORMAT);
+        }
+    }
+
+    private void changeStackProperties() {
+        int doubleStackSize = doubleStack.size();
+        stackSize.set(Integer.toString(doubleStackSize));
+        if (doubleStack.empty()) {
+            stackIsEmptyStatus.set(STACK_IS_EMPTY);
+            stackTopElement.set(NONE);
+            popButtonVisible.set(false);
+        } else {
+            stackIsEmptyStatus.set(STACK_IS_NOT_EMPTY);
+            stackTopElement.set(Double.toString(doubleStack.peek()));
+            popButtonVisible.set(true);
         }
     }
 
     public void popElement() {
         if (!doubleStack.empty()) {
-            stackPopElement.set(Double.toString((double) doubleStack.pop()));
-            changePopButtonVisibleStatus();
-            changeStackEmptyStatus();
-            changeStackSize();
-            changeStackTopElement();
-        }
-    }
-
-    public final class Status {
-        public static final String WAITING_FOR_INPUT = "Waiting for new element";
-        public static final String READY_TO_ADD = "Ready to add new element";
-        public static final String INVALID_FORMAT = "Invalid format of the adding element";
-
-        private Status() {
+            stackPopElement.set(Double.toString(doubleStack.pop()));
+            changeStackProperties();
         }
     }
 }
