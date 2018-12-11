@@ -1,4 +1,4 @@
-package ru.unn.agile.MyAbstractSet.Model;
+package ru.unn.agile.MyAbstractSet.model;
 
 import java.util.function.Consumer;
 

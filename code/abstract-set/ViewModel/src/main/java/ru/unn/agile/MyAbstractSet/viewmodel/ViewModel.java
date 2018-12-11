@@ -6,7 +6,7 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import ru.unn.agile.MyAbstractSet.Model.MyAbstractSet;
+import ru.unn.agile.MyAbstractSet.model.MyAbstractSet;
 
 public class ViewModel {
     private final StringProperty firstSetTextArea = new SimpleStringProperty();
