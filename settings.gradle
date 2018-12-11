@@ -18,13 +18,15 @@ project(":code/currency-converter/ViewModel").name = "currency-converter-ViewMod
 include "code/currency-converter/View"
 project(":code/currency-converter/View").name = "currency-converter-View"
 
-// nickshevr, Zhiltsov Max
+// Numerical Integration
 include "code/numerical-integration/Model"
 project(":code/numerical-integration/Model").name = "numerical-integration-Model-legacy"
 include "code/numerical-integration/ViewModel"
 project(":code/numerical-integration/ViewModel").name = "numerical-integration-ViewModel-legacy"
 include "code/numerical-integration/View"
 project(":code/numerical-integration/View").name = "numerical-integration-View-legacy"
+include "code/numerical-integration/Infrastructure"
+project(":code/numerical-integration/Infrastructure").name = "numerical-integration-Infrastructure-legacy"
 
 // Korniakov Kirill, lab1
 include "code/korniakov-kirill-lab1"
