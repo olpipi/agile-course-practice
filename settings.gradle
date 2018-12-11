@@ -165,8 +165,12 @@ include "code/string-calculator/Infrastructure"
 project(":code/string-calculator/Infrastructure").name = "string-calculator-Infrastructure"
 
 // Stack
-include "code/stack"
-project(":code/stack").name = "stack"
+include "code/stack/Model"
+project(":code/stack/Model").name = "stack-Model"
+include "code/stack/ViewModel"
+project(":code/stack/ViewModel").name = "stack-ViewModel"
+include "code/stack/View"
+project(":code/stack/View").name = "stack-View"
 
 // Roman number converter
 include "code/roman-number-converter/model"
