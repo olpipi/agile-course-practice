@@ -1,5 +1,7 @@
 package ru.unn.agile.mortgagecalculator.model;
 
+import java.util.Locale;
+
 public class MortgageCalculator {
     private static final String NOT_CORRECT_DATA =  "Not correct data";
     private double fullCostOfApartment;
@@ -120,7 +122,7 @@ public class MortgageCalculator {
     public  String[] getFullPriceArrayStrings() {
         String[] fullPriceArrayStrings = new String[dateOfMortgage];
         for (int i = 0; i < dateOfMortgage; i++) {
-            fullPriceArrayStrings[i] = String.format("%.2f", fullPriceAsArray[i]);
+            fullPriceArrayStrings[i] = String.format(Locale.ROOT, "%.2f", fullPriceAsArray[i]);
         }
         return fullPriceArrayStrings;
     }
@@ -128,7 +130,8 @@ public class MortgageCalculator {
     public String[] getAccruedInterestArrayStrings() {
         String[] accruedInterestArrayStrings = new String[dateOfMortgage];
         for (int i = 0; i < dateOfMortgage; i++) {
-            accruedInterestArrayStrings[i] = String.format("%.2f", accruedInterestAsArray[i]);
+            accruedInterestArrayStrings[i] =
+                    String.format(Locale.ROOT, "%.2f", accruedInterestAsArray[i]);
         }
         return accruedInterestArrayStrings;
     }

@@ -232,8 +232,8 @@ public class MortgageCalculatorTests {
     @Test
     public void checkFullPriceArrayStrings() {
         String[] actualPayments;
-        String[] expectedPaymentsStrings = {"100,00", "98,61", "97,22", "95,83",
-                "94,44", "93,05", "91,66", "90,27", "88,89", "87,50", "86,11", "84,72"};
+        String[] expectedPaymentsStrings = {"100.00", "98.61", "97.22", "95.83",
+                "94.44", "93.05", "91.66", "90.27", "88.89", "87.50", "86.11", "84.72"};
 
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
         myMortgageCalculator.setFullCostOfApartment(1000);
@@ -247,8 +247,8 @@ public class MortgageCalculatorTests {
 
     @Test
     public void checkAccruedInterestArrayStrings() {
-        String[] expectedPayments = {"16,67", "15,28", "13,89", "12,50",
-                "11,11", "9,72", "8,33", "6,94", "5,56", "4,17", "2,78", "1,39"};
+        String[] expectedPayments = {"16.67", "15.28", "13.89", "12.50",
+                "11.11", "9.72", "8.33", "6.94", "5.56", "4.17", "2.78", "1.39"};
         String[] actualInterest;
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
 
