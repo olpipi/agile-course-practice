@@ -59,7 +59,7 @@ public class ViewModel {
         return operation;
     }
 
-    public void executeUniteOrIntersect() {
+    public void execute() {
         Object[] firstSet = firstSetTextArea.get().replaceAll(WHITESPACE_PATTERN, "").split(",");
         Object[] secondSet = secondSetTextArea.get().replaceAll(WHITESPACE_PATTERN, "").split(",");
 

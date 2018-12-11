@@ -44,7 +44,7 @@ public class AbstractSet {
         executeButton.disableProperty().bindBidirectional(
                 viewModel.executeButtonDisabledProperty());
 
-        executeButton.setOnAction(event -> viewModel.executeUniteOrIntersect());
+        executeButton.setOnAction(event -> viewModel.execute());
     }
 
 }

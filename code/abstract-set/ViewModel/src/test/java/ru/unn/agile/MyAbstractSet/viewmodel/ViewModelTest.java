@@ -47,7 +47,7 @@ public class ViewModelTest {
 
     @Test
     public void statusIsSuccessWhenOperationExecute() {
-        viewModel.executeUniteOrIntersect();
+        viewModel.execute();
 
         assertEquals(Status.SUCCESS.toString(), viewModel.statusProperty().get());
     }
