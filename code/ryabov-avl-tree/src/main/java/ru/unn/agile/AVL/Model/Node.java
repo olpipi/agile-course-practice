@@ -11,10 +11,6 @@ public class Node<K extends Comparable<K>, V extends Comparable<V>> {
         return key;
     }
 
-    public void setKey(final K key) {
-        this.key = key;
-    }
-
     public V getValue() {
         return value;
     }

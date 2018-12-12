@@ -4,11 +4,11 @@ public class AVLTree<K extends Comparable<K>, V extends Comparable<V>> {
 
     private enum ChildType { Left, Right }
 
-    public void insert(final K key, final V value) {
+    public Node<K, V> insert(final K key, final V value) {
 
         if (root == null) {
             root = new Node<>(key, value);
-            return;
+            return root;
         }
 
         Node<K, V> current = root;
@@ -27,7 +27,7 @@ public class AVLTree<K extends Comparable<K>, V extends Comparable<V>> {
                 parents[parentsCount] = ChildType.Right;
             } else {
                 current.setValue(value);
-                return;
+                return current;
             }
             parentsCount++;
         }
@@ -40,21 +40,22 @@ public class AVLTree<K extends Comparable<K>, V extends Comparable<V>> {
             parent.setRight(current);
         }
 
-
+        Node<K, V> nodeToBalance;
         for (int i = parentsCount - 1; i > 0; i--) {
-            current = parent;
-            parent  = parent.getParent();
-            current = balanceNode(current);
+            nodeToBalance = parent;
+            parent        = parent.getParent();
+            nodeToBalance = balanceNode(nodeToBalance);
 
             if (parents[i] == ChildType.Left) {
-                parent.setLeft(current);
+                parent.setLeft(nodeToBalance);
             } else {
-                parent.setRight(current);
+                parent.setRight(nodeToBalance);
             }
         }
 
         root = balanceNode(parent);
         root.setParent(null);
+        return current;
     }
 
     public Node<K, V> find(final K key) {
@@ -73,17 +74,17 @@ public class AVLTree<K extends Comparable<K>, V extends Comparable<V>> {
         return null;
     }
 
-    private int height(final Node<K, V> node) {
+    private int getHeight(final Node<K, V> node) {
         return node != null ? node.getHeight() : 0;
     }
 
     private int getBalance(final Node<K, V> node) {
-        return height(node.getRight()) - height(node.getLeft());
+        return getHeight(node.getRight()) - getHeight(node.getLeft());
     }
 
     private void fixHeight(final Node<K, V> node) {
-        int leftHeight  = height(node.getLeft());
-        int rightHeight = height(node.getRight());
+        int leftHeight  = getHeight(node.getLeft());
+        int rightHeight = getHeight(node.getRight());
         node.setHeight((leftHeight > rightHeight ? leftHeight : rightHeight) + 1);
     }
 
