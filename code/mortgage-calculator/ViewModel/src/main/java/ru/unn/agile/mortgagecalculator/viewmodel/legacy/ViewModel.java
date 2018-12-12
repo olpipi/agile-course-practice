@@ -77,7 +77,6 @@ public class ViewModel {
                 "This your full price mortgage";
 
         private Status() {
-
         }
     }
 

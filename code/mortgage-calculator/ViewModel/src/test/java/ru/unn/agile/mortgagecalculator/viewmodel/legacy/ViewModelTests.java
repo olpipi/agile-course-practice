@@ -43,6 +43,13 @@ public class ViewModelTests {
     }
 
     @Test
+    public void isCalculateButtonEnabled() {
+        viewModel.checkCountFields();
+
+        assertEquals(true, viewModel.isCalculateButtonEnable());
+    }
+
+    @Test
     public void checkStatusWhenReadyCalculate() {
         viewModel.checkCountFields();
 
@@ -50,7 +57,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void checkStatusCash() {
+    public void checkStatusFullPriceMortgage() {
         viewModel.checkCountFields();
         viewModel.calculateFullPriceMortgage();
 
@@ -58,7 +65,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void isLengthCharactersSalaryNotCorrect() {
+    public void isLengthApartmentPriceNotCorrect() {
         viewModel.setApartmentPrice("1000000000000000000000000");
         viewModel.checkCountFields();
 
@@ -66,36 +73,104 @@ public class ViewModelTests {
     }
 
     @Test
-    public void checkStatusWhenOneOfCountFieldEmpty() {
-        viewModel.setTermMortgage("");
-
+    public void isLengthInitialPaymentNotCorrect() {
+        viewModel.setInitialPayment("1000000000000000000000000");
         viewModel.checkCountFields();
 
-        assertEquals(Status.BAD_TERM_FORMAT, viewModel.getStatus());
+        assertEquals(Status.BAD_INITIAL_PAYMENT_FORMAT_NUMBERS, viewModel.getStatus());
     }
 
     @Test
-    public void checkStatusWhenCountInputWithChar() {
-        viewModel.setInitialPayment("a");
-
-        viewModel.checkCountFields();
-
-        assertEquals(Status.BAD_INITIAL_PAYMENT_COUNT_FORMAT, viewModel.getStatus());
-    }
-
-    @Test
-    public void checkStatusWhenCountInputWithIncorrectMonth() {
-        viewModel.setInterestRate("50");
-
+    public void isLengthInitialRateNotCorrect() {
+        viewModel.setInterestRate("111");
         viewModel.checkCountFields();
 
         assertEquals(Status.BAD_INTEREST_RATE_FORMAT_NUMBERS, viewModel.getStatus());
     }
 
     @Test
-    public void checkStatusWhenCountInputWithIncorrectYear() {
-        viewModel.setTermMortgage("400");
+    public void  checkResultWithNegativeInitialRate() {
+        viewModel.setInterestRate("-10");
+        viewModel.checkCountFields();
 
+        assertEquals(Status.BAD_INTEREST_RATE_FORMAT_NUMBERS, viewModel.getStatus());
+    }
+
+    @Test
+    public void  checkResultWithNegativeTermMortgage() {
+        viewModel.setTermMortgage("-10");
+        viewModel.checkCountFields();
+
+        assertEquals(Status.BAD_TERM_FORMAT_NUMBERS, viewModel.getStatus());
+    }
+
+    @Test
+    public void isLengthApartmentPriceBigNotCorrect() {
+        viewModel.setApartmentPrice("10000000000");
+        viewModel.checkCountFields();
+
+        assertEquals(Status.BAD_APARTMENT_PRICE_FORMAT_NUMBERS, viewModel.getStatus());
+    }
+
+    @Test
+    public void isLengthTermMortgageNotCorrect() {
+        viewModel.setTermMortgage("1000");
+        viewModel.checkCountFields();
+
+        assertEquals(Status.BAD_TERM_FORMAT_NUMBERS, viewModel.getStatus());
+    }
+
+    @Test
+    public void checkStatusWhenOneOfCountFieldEmpty() {
+        viewModel.setTermMortgage("");
+        viewModel.checkCountFields();
+
+        assertEquals(Status.BAD_TERM_FORMAT, viewModel.getStatus());
+    }
+
+    @Test
+    public void checkStatusWhenInitialPaymentMoreApartmentPrice() {
+        viewModel.setInitialPayment("16001");
+        viewModel.checkCountFields();
+
+        assertEquals(Status.BAD_INITIAL_PAYMENT_FORMAT_NUMBERS, viewModel.getStatus());
+    }
+
+    @Test
+    public void checkStatusWhenCountInputWithCharInInitialPayment() {
+        viewModel.setInitialPayment("a");
+        viewModel.checkCountFields();
+
+        assertEquals(Status.BAD_INITIAL_PAYMENT_COUNT_FORMAT, viewModel.getStatus());
+    }
+
+    @Test
+    public void checkStatusWhenCountInputWithCharInApartmentPrice() {
+        viewModel.setApartmentPrice("b");
+        viewModel.checkCountFields();
+
+        assertEquals(Status.BAD_APARTMENT_PRICE_COUNT_FORMAT, viewModel.getStatus());
+    }
+
+    @Test
+    public void checkStatusWhenCountInputWithCharInInterestRate() {
+        viewModel.setInterestRate("c");
+        viewModel.checkCountFields();
+
+        assertEquals(Status.BAD_INTEREST_RATE_FORMAT, viewModel.getStatus());
+    }
+
+    @Test
+    public void checkStatusWhenCountInputWithIncorrectRate() {
+        viewModel.setInterestRate("50");
+        viewModel.checkCountFields();
+
+        assertEquals(Status.BAD_INTEREST_RATE_FORMAT_NUMBERS, viewModel.getStatus());
+    }
+
+    @Test
+    public void checkStatusWhenCountInputWithIncorrectTermMortgage() {
+        viewModel.setTermMortgage("400");
         viewModel.checkCountFields();
 
         assertEquals(Status.BAD_TERM_FORMAT_NUMBERS, viewModel.getStatus());
@@ -104,14 +179,13 @@ public class ViewModelTests {
     @Test
     public void checkResultWithNormalParameters() {
         viewModel.checkCountFields();
-
         viewModel.calculateFullPriceMortgage();
 
         assertEquals("11083.30", viewModel.getFullPriceMortgage());
     }
 
     @Test
-    public void checkResultWithOvertime() {
+    public void checkResultWithRate() {
         viewModel.setInterestRate("11");
         viewModel.checkCountFields();
 
@@ -121,7 +195,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void checkResultWithLessTime() {
+    public void checkResultWithTermMortgage() {
         viewModel.setTermMortgage("24");
         viewModel.checkCountFields();
 
@@ -132,7 +206,7 @@ public class ViewModelTests {
 
 
     @Test
-    public void checkResultWithNegativeWorkedHours() {
+    public void checkResultWithNegativeApartmentPrice() {
         viewModel.setApartmentPrice("-140004");
 
         viewModel.checkCountFields();
@@ -141,7 +215,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void checkResultWithNegativeSalary() {
+    public void checkResultWithNegativeInitialPayment() {
         viewModel.setInitialPayment("-100");
 
         viewModel.checkCountFields();
@@ -150,10 +224,12 @@ public class ViewModelTests {
     }
 
     @Test
-    public void checkStatusAndButtonWhenIncorrectDate() {
+    public void checkStatusAndButtonWhenIncorrectRate() {
         viewModel.setInterestRate("35");
         viewModel.checkCountFields();
 
         assertEquals(Status.BAD_INTEREST_RATE_FORMAT_NUMBERS, viewModel.getStatus());
     }
+
+
 }
