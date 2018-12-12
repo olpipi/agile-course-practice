@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.swing.table.DefaultTableModel;
+
 import static org.junit.Assert.assertEquals;
 
 public class ViewModelTests {
@@ -65,6 +67,17 @@ public class ViewModelTests {
     }
 
     @Test
+    public void checkStatusFullPriceMortgageWithIncorrectDate() {
+        viewModel.setInterestRate("50");
+        viewModel.checkCountFields();
+        viewModel.calculateFullPriceMortgage();
+
+        assertEquals(false, viewModel.isCalculateButtonEnable());
+        assertEquals(Status.BAD_INTEREST_RATE_FORMAT_NUMBERS, viewModel.getStatus());
+        assertEquals(null, viewModel.getFullPriceMortgage());
+    }
+
+    @Test
     public void isLengthApartmentPriceNotCorrect() {
         viewModel.setApartmentPrice("1000000000000000000000000");
         viewModel.checkCountFields();
@@ -78,6 +91,14 @@ public class ViewModelTests {
         viewModel.checkCountFields();
 
         assertEquals(Status.BAD_INITIAL_PAYMENT_FORMAT_NUMBERS, viewModel.getStatus());
+    }
+
+    @Test
+    public void isLengthInterestRateNotCorrect() {
+        viewModel.setInterestRate("14.700");
+        viewModel.checkCountFields();
+
+        assertEquals(Status.BAD_INTEREST_RATE_FORMAT_NUMBERS, viewModel.getStatus());
     }
 
     @Test
@@ -231,5 +252,24 @@ public class ViewModelTests {
         assertEquals(Status.BAD_INTEREST_RATE_FORMAT_NUMBERS, viewModel.getStatus());
     }
 
+    @Test
+    public void checkCorrectlyFilledTableModel() {
+        String[] expectedFullPriceStrings = {"1000.00", "986.11", "972.22", "958.33",
+                "944.44", "930.55", "916.66", "902.77", "888.89", "875.00", "861.11", "847.22"};
 
+        String[] expectedAccruedInterest = {"166.67", "152.78", "138.89", "125.00",
+                "111.11", "97.22", "83.33", "69.44", "55.56", "41.67", "27.78", "13.89"};
+
+        viewModel.checkCountFields();
+        viewModel.calculateFullPriceMortgage();
+
+        DefaultTableModel tableModel = viewModel.getTableModel();
+        for (int i = 0; i < 12; i++) {
+            assertEquals(String.valueOf(i + 1), tableModel.getValueAt(i, 0));
+            assertEquals(expectedAccruedInterest[i], tableModel.getValueAt(i, 1));
+            assertEquals(expectedFullPriceStrings[i], tableModel.getValueAt(i, 2));
+        }
+        assertEquals("Month", viewModel.getTableModel().getColumnName(0));
+
+    }
 }

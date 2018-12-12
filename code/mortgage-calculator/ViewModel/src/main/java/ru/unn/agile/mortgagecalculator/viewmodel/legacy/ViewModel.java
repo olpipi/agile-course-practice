@@ -11,7 +11,7 @@ public class ViewModel {
     private static final int MAX_TERM = 360;
     private static final int MAX_COUNT_CHAR_APARTMENT_PRICE = 13;
     private static final int MAX_COUNT_CHAR_TERM = 3;
-    private static final int MAX_COUNT_CHAR_RATE = 6;
+    private static final int MAX_COUNT_CHAR_RATE = 5;
 
     private String apartmentPrice;
     private String initialPayment;
@@ -33,6 +33,7 @@ public class ViewModel {
         termMortgage = "";
         status = Status.COUNT_WAITING;
         isCalculateButtonEnabled = false;
+        tableModel = new DefaultTableModel();
     }
 
 
@@ -107,12 +108,15 @@ public class ViewModel {
 
     public void fillingTableModelWithData(final MortgageCalculator isCalculator) {
         int numberRows = Integer.parseInt(termMortgage);
-        tableModel = new DefaultTableModel();
+
         String[] numbersRowsAsArray = new String[numberRows];
 
         for (int i = 0; i < numberRows; i++) {
             numbersRowsAsArray[i] = String.valueOf(i + 1);
         }
+
+        tableModel.setRowCount(0);
+        tableModel.setColumnCount(0);
 
         tableModel.addColumn(namesColumns[0], numbersRowsAsArray);
         tableModel.addColumn(namesColumns[1], isCalculator.getAccruedInterestArrayStrings());

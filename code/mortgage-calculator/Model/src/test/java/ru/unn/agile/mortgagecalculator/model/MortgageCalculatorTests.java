@@ -231,8 +231,8 @@ public class MortgageCalculatorTests {
 
     @Test
     public void checkFullPriceArrayStrings() {
-        String[] actualPayments;
-        String[] expectedPaymentsStrings = {"100.00", "98.61", "97.22", "95.83",
+        String[] actualFullPriceArray;
+        String[] expectedFullPriceStrings = {"100.00", "98.61", "97.22", "95.83",
                 "94.44", "93.05", "91.66", "90.27", "88.89", "87.50", "86.11", "84.72"};
 
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
@@ -240,25 +240,25 @@ public class MortgageCalculatorTests {
         myMortgageCalculator.setDateOfMortgage(12);
         myMortgageCalculator.setInterestRate(20);
         myMortgageCalculator.setFullPriceArray();
-        actualPayments = myMortgageCalculator.getFullPriceArrayStrings();
+        actualFullPriceArray = myMortgageCalculator.getFullPriceArrayStrings();
 
-        assertArrayEquals(expectedPaymentsStrings, actualPayments);
+        assertArrayEquals(expectedFullPriceStrings, actualFullPriceArray);
     }
 
     @Test
     public void checkAccruedInterestArrayStrings() {
-        String[] expectedPayments = {"16.67", "15.28", "13.89", "12.50",
+        String[] expectedAccruedInterest = {"16.67", "15.28", "13.89", "12.50",
                 "11.11", "9.72", "8.33", "6.94", "5.56", "4.17", "2.78", "1.39"};
-        String[] actualInterest;
+        String[] actualInterestArray;
         MortgageCalculator myMortgageCalculator = new MortgageCalculator();
 
         myMortgageCalculator.setFullCostOfApartment(1000);
         myMortgageCalculator.setDateOfMortgage(12);
         myMortgageCalculator.setInterestRate(20);
         myMortgageCalculator.setAccruedInterestArray();
-        actualInterest = myMortgageCalculator.getAccruedInterestArrayStrings();
+        actualInterestArray = myMortgageCalculator.getAccruedInterestArrayStrings();
 
-        assertArrayEquals(expectedPayments, actualInterest);
+        assertArrayEquals(expectedAccruedInterest, actualInterestArray);
     }
 
 
