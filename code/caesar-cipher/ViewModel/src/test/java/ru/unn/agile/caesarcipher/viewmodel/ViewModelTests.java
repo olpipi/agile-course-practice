@@ -67,7 +67,7 @@ public class ViewModelTests {
 
         viewModel.setTextBoxs("ABC", "");
 
-        assertEquals("Input offset value", viewModel.getStatus());
+        assertEquals("Input correct value", viewModel.getStatus());
     }
 
     @Test

@@ -8,6 +8,10 @@ public class ViewModel {
     private String status;
     private String caesarCipher = "";
 
+    private static final String DIGIT = "\\d+";
+    private static final String READY = "Correct";
+    private static final String BADINPUT = "Input correct value";
+
     private boolean codeButtonEnabled = false;
 
     public ViewModel() {
@@ -27,19 +31,19 @@ public class ViewModel {
     public void setTextBoxs(final String inputValue, final String offsetValue) {
         if ("".equals(offsetValue)) {
             codeButtonEnabled = false;
-            status = "Input offset value";
+            status = BADINPUT;
             return;
         }
-        if (!offsetValue.matches("\\d+")) {
+        if (!offsetValue.matches(DIGIT)) {
             codeButtonEnabled = false;
-            status = "Input correct value";
+            status = BADINPUT;
             return;
         }
 
         this.inputTextBoxValue = inputValue;
         this.offsetTextBoxValue = offsetValue;
         codeButtonEnabled = true;
-        status = "Correct";
+        status = READY;
     }
 
     public void codeCaesar() {
