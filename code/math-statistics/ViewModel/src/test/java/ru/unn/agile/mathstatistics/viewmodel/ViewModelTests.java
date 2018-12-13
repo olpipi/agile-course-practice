@@ -429,13 +429,13 @@ public class ViewModelTests {
 
     @Test
     public void canDetectIncorrectOffsetInCentralMomentCalculating() {
-        viewModel.setValueText("1");
+        viewModel.setValueText("3");
         viewModel.setProbabilityText("1.0");
         viewModel.setMomentOrderText("1");
-        viewModel.setMomentOffsetText("abc");
-        viewModel.addToDistributionProcess();
+        viewModel.setMomentOffsetText("gds");
         viewModel.setOperation(Operation.CENTRAL_MOMENT);
 
+        viewModel.addToDistributionProcess();
         viewModel.calculateProcess();
 
         String resultText = viewModel.getResultText();
@@ -445,7 +445,7 @@ public class ViewModelTests {
 
     @Test
     public void canDetectEmptyOffsetInCentralMomentCalculating() {
-        viewModel.setValueText("1");
+        viewModel.setValueText("7");
         viewModel.setProbabilityText("1.0");
         viewModel.setMomentOrderText("1");
         viewModel.setMomentOffsetText("");
@@ -494,7 +494,8 @@ public class ViewModelTests {
 
         final int lastIndex = viewModel.getLog().size() - 1;
         String mes = viewModel.getLog().get(lastIndex);
-        assertTrue(mes.matches(".*" + viewModel.STATUS + Status.BAD_MOMENT_OFFSET_FORMAT + ".*"));
+        assertTrue(
+                mes.matches(".*" + viewModel.STATUS + Status.BAD_MOMENT_OFFSET_FORMAT + ".*"));
     }
 
     @Test
@@ -506,7 +507,8 @@ public class ViewModelTests {
 
         final int lastIndex = viewModel.getLog().size() - 1;
         String mes = viewModel.getLog().get(lastIndex);
-        assertTrue(mes.matches(".*" + viewModel.STATUS + Status.BAD_DISTRIBUTION_UNIT_FORMAT + ".*"));
+        assertTrue(
+                mes.matches(".*" + viewModel.STATUS + Status.BAD_DISTRIBUTION_UNIT_FORMAT + ".*"));
     }
 
 
@@ -519,7 +521,8 @@ public class ViewModelTests {
 
         final int lastIndex = viewModel.getLog().size() - 1;
         String mes = viewModel.getLog().get(lastIndex);
-        assertTrue(mes.matches(".*" + viewModel.STATUS + Status.BAD_PROBABILITY_VALUE + ".*"));
+        assertTrue(
+                mes.matches(".*" + viewModel.STATUS + Status.BAD_PROBABILITY_VALUE + ".*"));
     }
 
     @Test
@@ -534,7 +537,8 @@ public class ViewModelTests {
 
         final int lastIndex = viewModel.getLog().size() - 1;
         String mes = viewModel.getLog().get(lastIndex);
-        assertTrue(mes.matches(".*" + viewModel.STATUS + Status.INCORRECT_PROBABILITIES_SUM + ".*"));
+        assertTrue(
+                mes.matches(".*" + viewModel.STATUS + Status.INCORRECT_PROBABILITIES_SUM + ".*"));
     }
 
     @Test
@@ -546,40 +550,35 @@ public class ViewModelTests {
 
         List<String> log = viewModel.getLog();
         String prevLastMes = log.get(log.size() - 2);
-        assertTrue(prevLastMes.matches(".*" + viewModel.STATUS + Status.ADD_TO_DISTRIBUTION_READY + ".*"));
+        assertTrue(prevLastMes.matches(
+                ".*" + viewModel.STATUS + Status.ADD_TO_DISTRIBUTION_READY + ".*"));
         String lastMes = log.get(log.size() - 1);
-        assertTrue(lastMes.matches(".*" + viewModel.STATUS + Status.ADD_TO_DISTRIBUTION_SUCCESS + ".*"));
-    }
-
-    @Test
-    public void canLoggerUpdatedWhenBadMomentOrderFormat() {
-        viewModel.setValueText("1");
-        viewModel.setProbabilityText("1.0");
-        viewModel.setMomentOrderText("abc");
-        viewModel.addToDistributionProcess();
-        viewModel.setOperation(Operation.INITIAL_MOMENT);
-
-        viewModel.calculateProcess();
-
-
-        final int lastIndex = viewModel.getLog().size() - 1;
-        String mes = viewModel.getLog().get(lastIndex);
-        assertTrue(mes.matches(".*" + viewModel.STATUS + Status.BAD_MOMENT_ORDER_FORMAT + ".*"));
+        assertTrue(lastMes.matches(
+                ".*" + viewModel.STATUS + Status.ADD_TO_DISTRIBUTION_SUCCESS + ".*"));
     }
 
     @Test
     public void canLoggerUpdatedWhenBadMomentOrderValue() {
-        viewModel.setValueText("5");
-        viewModel.setProbabilityText("1.0");
         viewModel.setMomentOrderText("0");
         viewModel.addToDistributionProcess();
         viewModel.setOperation(Operation.INITIAL_MOMENT);
-
         viewModel.calculateProcess();
 
         final int lastIndex = viewModel.getLog().size() - 1;
         String mes = viewModel.getLog().get(lastIndex);
         assertTrue(mes.matches(".*" + viewModel.STATUS + Status.BAD_MOMENT_ORDER_VALUE + ".*"));
+    }
+
+    @Test
+    public void canLoggerUpdatedWhenBadMomentOrderFormat() {
+        viewModel.setMomentOrderText("cas");
+        viewModel.setOperation(Operation.CENTRAL_MOMENT);
+        viewModel.addToDistributionProcess();
+        viewModel.calculateProcess();
+
+        final int lastIndex = viewModel.getLog().size() - 1;
+        String mes = viewModel.getLog().get(lastIndex);
+        assertTrue(mes.matches(".*" + viewModel.STATUS + Status.BAD_MOMENT_ORDER_FORMAT + ".*"));
     }
 
     @Test
@@ -608,6 +607,7 @@ public class ViewModelTests {
 
         final int lastIndex = viewModel.getLog().size() - 1;
         String mes = viewModel.getLog().get(lastIndex);
-        assertTrue(mes.matches(".*" + viewModel.SUCCESSFULL_CALCULAION + viewModel.getResultText() + ".*"));
+        assertTrue(mes.matches(
+                ".*" + viewModel.SUCCESSFULL_CALCULAION + viewModel.getResultText() + ".*"));
     }
 }

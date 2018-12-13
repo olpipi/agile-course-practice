@@ -16,7 +16,7 @@ public class TxtLogger implements ILogger {
     private final String fileName;
     private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
-    private static String GetActualTime() {
+    private static String getActualTime() {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH);
         return dateFormat.format(cal.getTime());
@@ -36,34 +36,35 @@ public class TxtLogger implements ILogger {
     }
 
     @Override
-    public void log(final String str) {
-        try {
-            writer.write(GetActualTime() + " > " + str);
-            writer.newLine();
-
-            writer.flush();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @Override
     public List<String> getLog() {
-        BufferedReader reader;
-        ArrayList<String> log = new ArrayList<String>();
+        BufferedReader bufferedReader;
+        ArrayList<String> logList = new ArrayList<String>();
         try {
-            reader = new BufferedReader(new FileReader(fileName));
+            bufferedReader = new BufferedReader(new FileReader(fileName));
 
-            String line;
+            String logLine = bufferedReader.readLine();
 
-            while ((line = reader.readLine()) != null) {
-                log.add(line);
+            while (logLine != null) {
+                logList.add(logLine);
+                logLine = bufferedReader.readLine();
             }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
-        return log;
+        return logList;
+    }
+
+    @Override
+    public void log(final String str) {
+        try {
+            writer.write(getActualTime() + " >> " + str);
+            writer.newLine();
+
+            writer.flush();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

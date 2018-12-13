@@ -30,7 +30,8 @@ public final class MathStatisticsCalculator {
 
     public static void main(final String[] args) {
         JFrame frame = new JFrame("MathStatisticsCalculator");
-        frame.setContentPane(new MathStatisticsCalculator(new ViewModel(new TxtLogger("MathStatistics.log"))).mainPanel);
+        frame.setContentPane(new MathStatisticsCalculator(
+                new ViewModel(new TxtLogger("MathStatistics.log"))).mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
