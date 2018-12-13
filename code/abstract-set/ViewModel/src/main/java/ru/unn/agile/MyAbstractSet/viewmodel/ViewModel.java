@@ -76,6 +76,8 @@ public class ViewModel {
         String secondSet = secondSetTextArea.get();
         if (firstSet.isEmpty() || secondSet.isEmpty()) {
             return Status.WAITING;
+        } else if (firstSet.matches(WHITESPACE_PATTERN) || secondSet.matches(WHITESPACE_PATTERN)) {
+            return Status.BAD_FORMAT;
         } else {
             return Status.READY;
         }
@@ -122,6 +124,7 @@ public class ViewModel {
 
 enum Status {
     WAITING("Waiting for input"),
+    BAD_FORMAT("Bad format"),
     READY("Press 'result' button"),
     SUCCESS("Success");
 
