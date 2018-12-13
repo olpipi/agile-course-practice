@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import ru.unn.agile.mathstatistics.viewmodel.FakeLogger;
 
 public final class MathStatisticsCalculator {
     private JTextField valueText;
@@ -28,8 +29,7 @@ public final class MathStatisticsCalculator {
 
     public static void main(final String[] args) {
         JFrame frame = new JFrame("MathStatisticsCalculator");
-        frame.setContentPane(
-                new MathStatisticsCalculator(new ViewModel()).mainPanel);
+        frame.setContentPane(new MathStatisticsCalculator(new ViewModel(new FakeLogger())).mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

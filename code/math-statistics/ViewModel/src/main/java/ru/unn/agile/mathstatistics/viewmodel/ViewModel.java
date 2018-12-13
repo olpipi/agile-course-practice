@@ -24,7 +24,15 @@ public class ViewModel {
 
     private boolean isCalculateButtonEnabled;
 
-    public ViewModel() {
+    private ILogger logger;
+
+    public ViewModel(final ILogger logger) {
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger's parameter can not be null");
+        }
+
+        this.logger = logger;
+
         values = new ArrayList<Number>();
         probabilities = new ArrayList<Double>();
         distributionUnits = new ArrayList<String>();

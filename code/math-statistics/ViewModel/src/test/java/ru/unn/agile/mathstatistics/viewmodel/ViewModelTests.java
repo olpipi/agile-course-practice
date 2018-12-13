@@ -9,17 +9,19 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 public class ViewModelTests {
-    private ViewModel viewModel;
-
-    @Before
-    public void setUp() {
-        viewModel = new ViewModel();
-    }
 
     @After
     public void tearDown() {
         viewModel = null;
     }
+
+    @Before
+    public void setUp() {
+        FakeLogger logger = new FakeLogger();
+        viewModel = new ViewModel(logger);
+    }
+
+    private ViewModel viewModel;
 
     @Test
     public void canSetDefaultValues() {
