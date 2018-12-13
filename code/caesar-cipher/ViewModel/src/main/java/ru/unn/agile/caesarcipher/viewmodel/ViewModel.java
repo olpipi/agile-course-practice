@@ -8,9 +8,9 @@ public class ViewModel {
     private String status;
     private String caesarCipher = "";
 
-    private static final String DIGIT = "\\d+";
+    private static final String DIGITS_ONLY_REGEX = "\\d+";
     private static final String READY = "Correct";
-    private static final String BADINPUT = "Input correct value";
+    private static final String BAD_INPUT = "Input correct value";
 
     private boolean codeButtonEnabled = false;
 
@@ -31,12 +31,12 @@ public class ViewModel {
     public void setTextBoxs(final String inputValue, final String offsetValue) {
         if ("".equals(offsetValue)) {
             codeButtonEnabled = false;
-            status = BADINPUT;
+            status = BAD_INPUT;
             return;
         }
-        if (!offsetValue.matches(DIGIT)) {
+        if (!offsetValue.matches(DIGITS_ONLY_REGEX)) {
             codeButtonEnabled = false;
-            status = BADINPUT;
+            status = BAD_INPUT;
             return;
         }
 
