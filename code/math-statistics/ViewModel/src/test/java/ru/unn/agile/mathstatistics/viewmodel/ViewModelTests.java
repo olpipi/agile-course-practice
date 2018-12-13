@@ -23,6 +23,10 @@ public class ViewModelTests {
 
     private ViewModel viewModel;
 
+    public void setViewModel(final ViewModel vModel) {
+        this.viewModel = vModel;
+    }
+
     @Test
     public void canSetDefaultValues() {
         assertEquals("", viewModel.getValueText());
