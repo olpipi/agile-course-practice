@@ -128,7 +128,7 @@ public class HashMapTest {
 		map.add("LOL", 5);
 		map.add("LOL", 5);
 		
-        assertTrue(GetListOfElemsByKey("LOL").size()== 4);
+        assertFalse(sizearray("LOL") == 4);
     } 
 	
 	
