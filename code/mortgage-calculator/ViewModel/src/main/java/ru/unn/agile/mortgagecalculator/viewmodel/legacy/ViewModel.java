@@ -107,18 +107,18 @@ public class ViewModel {
     }
 
     public void fillingTableModelWithData(final MortgageCalculator isCalculator) {
-        int numberRows = Integer.parseInt(termMortgage);
+        int numberOfMonths = Integer.parseInt(termMortgage);
 
-        String[] numbersRowsAsArray = new String[numberRows];
+        String[] monthsNumbersAsArray = new String[numberOfMonths];
 
-        for (int i = 0; i < numberRows; i++) {
-            numbersRowsAsArray[i] = String.valueOf(i + 1);
+        for (int indexMonth = 0; indexMonth  < numberOfMonths; indexMonth++) {
+            monthsNumbersAsArray[indexMonth] = String.valueOf(indexMonth + 1);
         }
 
         tableModel.setRowCount(0);
         tableModel.setColumnCount(0);
 
-        tableModel.addColumn(namesColumns[0], numbersRowsAsArray);
+        tableModel.addColumn(namesColumns[0], monthsNumbersAsArray);
         tableModel.addColumn(namesColumns[1], isCalculator.getAccruedInterestArrayStrings());
         tableModel.addColumn(namesColumns[2], isCalculator.getFullPriceArrayStrings());
     }
