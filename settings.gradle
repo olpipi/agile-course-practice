@@ -236,13 +236,15 @@ project(":code/queue/View").name = "queue-View"
 include "code/queue/Infrastructure"
 project(":code/queue/Infrastructure").name = "queue-Infrastructure"
 
-// Flegontov Alexander and Polyakov Igor, math-statistics
+// Flegontov Alexander & Polyakov Igor & Podolov Kirill, math-statistics
 include "code/math-statistics/Model"
 project(":code/math-statistics/Model").name = "math-statistics-Model"
 include "code/math-statistics/ViewModel"
 project(":code/math-statistics/ViewModel").name = "math-statistics-ViewModel"
 include "code/math-statistics/View"
 project(":code/math-statistics/View").name = "math-statistics-View"
+include "code/math-statistics/Infrastructure"
+project(":code/math-statistics/Infrastructure").name = "math-statistics-Infrastructure"
 
 // Fraction calculator
 include "code/frac-calc/Model"
