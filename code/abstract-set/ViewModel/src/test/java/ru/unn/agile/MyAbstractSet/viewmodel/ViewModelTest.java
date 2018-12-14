@@ -50,6 +50,14 @@ public class ViewModelTest {
         viewModel.firstSetTextAreaProperty().setValue("   ");
         viewModel.secondSetTextAreaProperty().setValue("3,7,4,9,3");
 
+        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void statusIsBadFormatWhenInvalidInput() {
+        viewModel.firstSetTextAreaProperty().setValue("rwtewt-$");
+        viewModel.secondSetTextAreaProperty().setValue("3,7,4,9,3");
+
         assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
     }
 
@@ -82,7 +90,7 @@ public class ViewModelTest {
 
     @Test
     public void executeButtonIsDisabledWhenBadFormatInput() {
-        viewModel.firstSetTextAreaProperty().setValue("    ");
+        viewModel.firstSetTextAreaProperty().setValue("fdsgd+");
         viewModel.secondSetTextAreaProperty().setValue("3,7,4,9,3");
 
         assertTrue(viewModel.executeButtonDisabledProperty().get());
