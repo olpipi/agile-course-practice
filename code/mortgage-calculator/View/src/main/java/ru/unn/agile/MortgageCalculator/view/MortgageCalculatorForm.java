@@ -27,8 +27,8 @@ public final class MortgageCalculatorForm {
     private static final int WIDTH_WINDOWS = 600;
 
 
-    private MortgageCalculatorForm(final ViewModel isViewModel) {
-        this.viewModel = isViewModel;
+    private MortgageCalculatorForm(final ViewModel viewModel) {
+        this.viewModel = viewModel;
         backBind();
         fullPriceMortgageCalculatorActionListener();
         fullPriceMortgageCalculatorAKeyAdapter();
