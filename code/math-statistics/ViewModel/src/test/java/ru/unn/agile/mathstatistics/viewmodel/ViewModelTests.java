@@ -495,7 +495,7 @@ public class ViewModelTests {
         final int lastIndex = viewModel.getLog().size() - 1;
         String mes = viewModel.getLog().get(lastIndex);
         assertTrue(
-                mes.matches(".*" + viewModel.STATUS + Status.BAD_MOMENT_OFFSET_FORMAT + ".*"));
+                mes.matches(".*" + Status.BAD_MOMENT_OFFSET_FORMAT + ".*"));
     }
 
     @Test
@@ -508,7 +508,7 @@ public class ViewModelTests {
         final int lastIndex = viewModel.getLog().size() - 1;
         String mes = viewModel.getLog().get(lastIndex);
         assertTrue(
-                mes.matches(".*" + viewModel.STATUS + Status.BAD_DISTRIBUTION_UNIT_FORMAT + ".*"));
+                mes.matches(".*" + Status.BAD_DISTRIBUTION_UNIT_FORMAT + ".*"));
     }
 
 
@@ -522,7 +522,7 @@ public class ViewModelTests {
         final int lastIndex = viewModel.getLog().size() - 1;
         String mes = viewModel.getLog().get(lastIndex);
         assertTrue(
-                mes.matches(".*" + viewModel.STATUS + Status.BAD_PROBABILITY_VALUE + ".*"));
+                mes.matches(".*" + Status.BAD_PROBABILITY_VALUE + ".*"));
     }
 
     @Test
@@ -538,7 +538,7 @@ public class ViewModelTests {
         final int lastIndex = viewModel.getLog().size() - 1;
         String mes = viewModel.getLog().get(lastIndex);
         assertTrue(
-                mes.matches(".*" + viewModel.STATUS + Status.INCORRECT_PROBABILITIES_SUM + ".*"));
+                mes.matches(".*" + Status.INCORRECT_PROBABILITIES_SUM + ".*"));
     }
 
     @Test
@@ -551,10 +551,10 @@ public class ViewModelTests {
         List<String> log = viewModel.getLog();
         String prevLastMes = log.get(log.size() - 2);
         assertTrue(prevLastMes.matches(
-                ".*" + viewModel.STATUS + Status.ADD_TO_DISTRIBUTION_READY + ".*"));
+                ".*" + Status.ADD_TO_DISTRIBUTION_READY + ".*"));
         String lastMes = log.get(log.size() - 1);
         assertTrue(lastMes.matches(
-                ".*" + viewModel.STATUS + Status.ADD_TO_DISTRIBUTION_SUCCESS + ".*"));
+                ".*" + Status.ADD_TO_DISTRIBUTION_SUCCESS + ".*"));
     }
 
     @Test
@@ -566,7 +566,7 @@ public class ViewModelTests {
 
         final int lastIndex = viewModel.getLog().size() - 1;
         String mes = viewModel.getLog().get(lastIndex);
-        assertTrue(mes.matches(".*" + viewModel.STATUS + Status.BAD_MOMENT_ORDER_VALUE + ".*"));
+        assertTrue(mes.matches(".*" + Status.BAD_MOMENT_ORDER_VALUE + ".*"));
     }
 
     @Test
@@ -578,7 +578,7 @@ public class ViewModelTests {
 
         final int lastIndex = viewModel.getLog().size() - 1;
         String mes = viewModel.getLog().get(lastIndex);
-        assertTrue(mes.matches(".*" + viewModel.STATUS + Status.BAD_MOMENT_ORDER_FORMAT + ".*"));
+        assertTrue(mes.matches(".*" + Status.BAD_MOMENT_ORDER_FORMAT + ".*"));
     }
 
     @Test
@@ -593,7 +593,7 @@ public class ViewModelTests {
 
         final int lastIndex = viewModel.getLog().size() - 1;
         String mes = viewModel.getLog().get(lastIndex);
-        assertTrue(mes.matches(".*" + viewModel.STATUS + Status.CALCULATE_READY + ".*"));
+        assertTrue(mes.matches(".*" + Status.CALCULATE_READY + ".*"));
     }
 
     @Test
