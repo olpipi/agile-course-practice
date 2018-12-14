@@ -19,6 +19,8 @@ public class ViewModel {
     private final ObjectProperty<Operation> operation = new SimpleObjectProperty<>();
     private final ValueChangeListener valueChangeListener = new ValueChangeListener();
     private static final String WHITESPACE_PATTERN = "\\s+";
+    private static final String INPUT_LETTERS_PATTERN = "[a-zA-Z]{2,}";
+    private static final String VALID_INPUT_PATTERN = "^-?[a-z A-z0-9,]+";
 
     public ViewModel() {
         firstSetTextArea.setValue("");
@@ -71,12 +73,17 @@ public class ViewModel {
         resultTextArea.setValue(res.toString());
     }
 
+    private boolean checkValidInput(final String input) {
+        return !input.matches(INPUT_LETTERS_PATTERN) && input.matches(VALID_INPUT_PATTERN);
+    }
+
     public Status getInputStatus() {
         String firstSet = firstSetTextArea.get();
         String secondSet = secondSetTextArea.get();
-        if (firstSet.isEmpty() || secondSet.isEmpty()) {
+        if ((firstSet.isEmpty() || firstSet.matches(WHITESPACE_PATTERN))
+                || (secondSet.isEmpty() || secondSet.matches(WHITESPACE_PATTERN))) {
             return Status.WAITING;
-        } else if (firstSet.matches(WHITESPACE_PATTERN) || secondSet.matches(WHITESPACE_PATTERN)) {
+        } else if (!checkValidInput(firstSet) || !checkValidInput(secondSet)) {
             return Status.BAD_FORMAT;
         } else {
             return Status.READY;

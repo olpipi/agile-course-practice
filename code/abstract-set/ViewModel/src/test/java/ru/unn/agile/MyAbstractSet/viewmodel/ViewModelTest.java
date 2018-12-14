@@ -46,8 +46,8 @@ public class ViewModelTest {
     }
 
     @Test
-    public void statusIsBadFormatWhenOneFieldIsWhiteSpace() {
-        viewModel.firstSetTextAreaProperty().setValue("   ");
+    public void statusIsBadFormatWhenInvalidInput() {
+        viewModel.firstSetTextAreaProperty().setValue("rwqrwq");
         viewModel.secondSetTextAreaProperty().setValue("3,7,4,9,3");
 
         assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
@@ -81,8 +81,16 @@ public class ViewModelTest {
     }
 
     @Test
-    public void executeButtonIsDisabledWhenBadFormatInput() {
+    public void executeButtonIsDisabledWhenInputWhitespace() {
         viewModel.firstSetTextAreaProperty().setValue("    ");
+        viewModel.secondSetTextAreaProperty().setValue("3,7,4,9,3");
+
+        assertTrue(viewModel.executeButtonDisabledProperty().get());
+    }
+
+    @Test
+    public void executeButtonIsDisabledWhenBadFormatInput() {
+        viewModel.firstSetTextAreaProperty().setValue("aabsfd+");
         viewModel.secondSetTextAreaProperty().setValue("3,7,4,9,3");
 
         assertTrue(viewModel.executeButtonDisabledProperty().get());
