@@ -82,11 +82,12 @@ public class ViewModel {
             int intArabic = Integer.parseInt(getArabicValueStr());
             setRomanValueStr(RomanNumberConverter.convertToRoman(intArabic));
             convertStatus.set(SUCCESSFUL_STATUS);
-            writeToLog(getRomanConvertededStateLogMessage());
         } catch (ArabicOutOfRangeException ex) {
             convertStatus.set(ERR_OUT_OF_RANGE);
         } catch (NumberFormatException ex) {
             convertStatus.set(ERR_WRONG_ARABIC_VALUE);
+        } finally {
+            writeToLog(getRomanConvertededStateLogMessage());
         }
     }
 
@@ -95,9 +96,10 @@ public class ViewModel {
             int intArabic = RomanNumberConverter.convertToArabic(getRomanValueStr());
             setArabicValueStr(Integer.toString(intArabic));
             convertStatus.set(SUCCESSFUL_STATUS);
-            writeToLog(getArabicConvertededStateLogMessage());
         } catch (RomanIncorrectValueExeption ex) {
             convertStatus.set(ERR_WRONG_ROMAN_VALUE);
+        } finally {
+            writeToLog(getArabicConvertededStateLogMessage());
         }
     }
 
