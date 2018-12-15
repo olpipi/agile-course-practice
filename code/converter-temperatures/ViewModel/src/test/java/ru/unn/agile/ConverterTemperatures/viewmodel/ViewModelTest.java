@@ -31,7 +31,7 @@ public class ViewModelTest {
     @Test
     public void canAddValueToConvert() {
         viewModel.convertFromProperty().set("10.0");
-        viewModel.updateInputValues();
+        viewModel.checkInputValues();
 
         assertEquals("10.0", viewModel.convertFromProperty().get());
         assertEquals(Status.READY.toString(), viewModel.getStatus());
@@ -40,7 +40,7 @@ public class ViewModelTest {
     @Test
     public void canProcessBadInputFormat() {
         viewModel.convertFromProperty().set("a");
-        viewModel.updateInputValues();
+        viewModel.checkInputValues();
 
         assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatus());
     }
@@ -49,7 +49,6 @@ public class ViewModelTest {
     public void canConvertToFahrenheit() {
         viewModel.convertFromProperty().set("20.0");
         viewModel.scaleProperty().setValue(TemperaturesUnit.FAHRENHEIT);
-        viewModel.updateInputValues();
 
         viewModel.convert();
 
@@ -61,7 +60,6 @@ public class ViewModelTest {
     public void canConvertToKelvin() {
         viewModel.convertFromProperty().set("20.0");
         viewModel.scaleProperty().setValue(TemperaturesUnit.KELVIN);
-        viewModel.updateInputValues();
 
         viewModel.convert();
 
@@ -73,7 +71,6 @@ public class ViewModelTest {
     public void canConvertToNewton() {
         viewModel.convertFromProperty().set("20.0");
         viewModel.scaleProperty().setValue(TemperaturesUnit.NEWTON);
-        viewModel.updateInputValues();
 
         viewModel.convert();
 
@@ -85,7 +82,6 @@ public class ViewModelTest {
     public void getExceptionFromConvert() {
         viewModel.convertFromProperty().set("-300.0");
         viewModel.scaleProperty().setValue(TemperaturesUnit.FAHRENHEIT);
-        viewModel.updateInputValues();
 
         viewModel.convert();
 

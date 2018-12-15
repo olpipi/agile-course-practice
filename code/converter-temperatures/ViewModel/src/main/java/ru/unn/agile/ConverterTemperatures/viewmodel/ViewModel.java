@@ -45,7 +45,7 @@ public class ViewModel {
         return status.get();
     }
 
-    public void updateInputValues() {
+    public void checkInputValues() {
         if (convertFrom.get().isEmpty()) {
             status.set(Status.WAITING.toString());
         }
@@ -60,6 +60,7 @@ public class ViewModel {
     }
 
     public void convert() {
+        checkInputValues();
         try {
             double result = TemperaturesConverter.convert(convertFrom.get(), scale.get());
             convertTo.set(String.valueOf(result));
