@@ -19,6 +19,8 @@ public class ViewModel {
     private StringProperty arabicValueStr = new SimpleStringProperty();
     private StringProperty romanValueStr = new SimpleStringProperty();
     private StringProperty convertStatus = new SimpleStringProperty();
+    private final StringProperty log = new SimpleStringProperty();
+    private ILogger logger;
 
     public StringProperty arabicValueStrProperty() {
         return arabicValueStr;
@@ -48,10 +50,16 @@ public class ViewModel {
         initialize();
     }
 
+    public ViewModel(final ILogger logger) {
+        initialize();
+        setLogger(logger);
+    }
+
     private void initialize() {
         arabicValueStr.set("");
         romanValueStr.set("");
         convertStatus.set("");
+        log.set("");
     }
 
     public void convertArabicToRoman() {
@@ -74,5 +82,12 @@ public class ViewModel {
         } catch (RomanIncorrectValueExeption ex) {
             convertStatus.set(ERR_WRONG_ROMAN_VALUE);
         }
+    }
+
+    public final void setLogger(final ILogger logger) {
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger can't be null");
+        }
+        this.logger = logger;
     }
 }
