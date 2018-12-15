@@ -6,6 +6,8 @@ import ru.unn.agile.romannumberconverter.model.RomanNumberConverter;
 import ru.unn.agile.romannumberconverter.model.errorhandling.ArabicOutOfRangeException;
 import ru.unn.agile.romannumberconverter.model.errorhandling.RomanIncorrectValueExeption;
 
+import java.util.List;
+
 public class ViewModel {
     private static final String ERR_WRONG_ROMAN_VALUE =
             "Римское число введено неверно!";
@@ -19,15 +21,18 @@ public class ViewModel {
     private StringProperty arabicValueStr = new SimpleStringProperty();
     private StringProperty romanValueStr = new SimpleStringProperty();
     private StringProperty convertStatus = new SimpleStringProperty();
-    private final StringProperty log = new SimpleStringProperty();
+    private StringProperty log = new SimpleStringProperty();
+
     private ILogger logger;
 
     public StringProperty arabicValueStrProperty() {
         return arabicValueStr;
     }
+
     public String getArabicValueStr() {
         return arabicValueStr.get();
     }
+
     public void setArabicValueStr(final String arabicNewVal) {
         arabicValueStr.set(arabicNewVal);
     }
@@ -35,15 +40,25 @@ public class ViewModel {
     public StringProperty romanValueStrProperty() {
         return romanValueStr;
     }
+
     public String getRomanValueStr() {
         return romanValueStr.get();
     }
+
     public void setRomanValueStr(final String romanNewVal) {
         romanValueStr.set(romanNewVal);
     }
 
     public String getConvertStatus() {
         return convertStatus.get();
+    }
+
+    public StringProperty logProperty() {
+        return log;
+    }
+
+    public String getLog() {
+        return log.get();
     }
 
     public ViewModel() {
@@ -84,10 +99,50 @@ public class ViewModel {
         }
     }
 
-    public final void setLogger(final ILogger logger) {
+    public void setLogger(final ILogger logger) {
         if (logger == null) {
             throw new IllegalArgumentException("Logger can't be null");
         }
         this.logger = logger;
+    }
+
+    public List<String> getLogList() {
+        return logger.getLog();
+    }
+
+    private void writeToLog(final String message) {
+        logger.log(message);
+        StringBuilder logMessages = new StringBuilder();
+
+        for (String line : getLogList()) {
+            logMessages.append(line).append("\n");
+        }
+
+        log.set(logMessages.toString());
+    }
+
+    private String getFormInputState() {
+        return String.format(
+                LogMessages.CURRENT_STATE,
+                arabicValueStr.get(),
+                romanValueStr.get(),
+                convertStatus.get()
+        );
+    }
+
+    public static final class LogMessages {
+        public static final String CURRENT_STATE =
+                "Current state: "
+                        + "Arabic number (%s), "
+                        + "Roman number (%s), "
+                        + "Status (%s).";
+        public static final String INPUT_CHANGED =
+                "Number were changed: "
+                        + "Arabic number (%s), "
+                        + "Roman number (%s).";
+        public static final String TO_ROMAN_PRESSED =
+                "ToRoman button was pressed.";
+        public static final String TO_ARABIC_PRESSED =
+                "ToArabic button was pressed.";
     }
 }
