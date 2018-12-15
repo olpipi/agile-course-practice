@@ -181,6 +181,8 @@ include "code/roman-number-converter/viewModel"
 project(":code/roman-number-converter/viewModel").name = "roman-number-converter-ViewModel"
 include "code/roman-number-converter/view"
 project(":code/roman-number-converter/view").name = "roman-number-converter-View"
+include "code/roman-number-converter/Infrastructure"
+project(":code/roman-number-converter/Infrastructure").name = "roman-number-converter-Infrastructure"
 
 // Metelev Evgenii
 include "code/metelev-evgenii-mortgage-calculator"
