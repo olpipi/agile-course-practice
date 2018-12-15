@@ -132,15 +132,6 @@ public class ViewModel {
         );
     }
 
-    private String getInputStateLogMessage() {
-        return String.format(
-                LogMessages.INPUT_CHANGED,
-                arabicValueStr.get(),
-                romanValueStr.get(),
-                convertStatus.get()
-        );
-    }
-
     private String getArabicConvertededStateLogMessage() {
         return LogMessages.TO_ARABIC_PRESSED + " "
                 + getFormStateLogMessage();
@@ -157,10 +148,6 @@ public class ViewModel {
                         + "Arabic number (%s), "
                         + "Roman number (%s), "
                         + "Status (%s).";
-        public static final String INPUT_CHANGED =
-                "Number were changed: "
-                        + "Arabic number (%s), "
-                        + "Roman number (%s).";
         public static final String TO_ROMAN_PRESSED =
                 "ToRoman button was pressed.";
         public static final String TO_ARABIC_PRESSED =
