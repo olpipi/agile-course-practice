@@ -82,6 +82,7 @@ public class ViewModel {
             int intArabic = Integer.parseInt(getArabicValueStr());
             setRomanValueStr(RomanNumberConverter.convertToRoman(intArabic));
             convertStatus.set(SUCCESSFUL_STATUS);
+            writeToLog(getRomanConvertededStateLogMessage());
         } catch (ArabicOutOfRangeException ex) {
             convertStatus.set(ERR_OUT_OF_RANGE);
         } catch (NumberFormatException ex) {
@@ -94,6 +95,7 @@ public class ViewModel {
             int intArabic = RomanNumberConverter.convertToArabic(getRomanValueStr());
             setArabicValueStr(Integer.toString(intArabic));
             convertStatus.set(SUCCESSFUL_STATUS);
+            writeToLog(getArabicConvertededStateLogMessage());
         } catch (RomanIncorrectValueExeption ex) {
             convertStatus.set(ERR_WRONG_ROMAN_VALUE);
         }
@@ -121,13 +123,32 @@ public class ViewModel {
         log.set(logMessages.toString());
     }
 
-    private String getFormInputState() {
+    private String getFormStateLogMessage() {
         return String.format(
                 LogMessages.CURRENT_STATE,
                 arabicValueStr.get(),
                 romanValueStr.get(),
                 convertStatus.get()
         );
+    }
+
+    private String getInputStateLogMessage() {
+        return String.format(
+                LogMessages.INPUT_CHANGED,
+                arabicValueStr.get(),
+                romanValueStr.get(),
+                convertStatus.get()
+        );
+    }
+
+    private String getArabicConvertededStateLogMessage() {
+        return LogMessages.TO_ARABIC_PRESSED + " "
+                + getFormStateLogMessage();
+    }
+
+    private String getRomanConvertededStateLogMessage() {
+        return LogMessages.TO_ROMAN_PRESSED + " "
+                + getFormStateLogMessage();
     }
 
     public static final class LogMessages {
