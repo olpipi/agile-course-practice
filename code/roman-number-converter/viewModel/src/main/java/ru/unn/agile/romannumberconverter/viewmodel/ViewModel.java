@@ -103,7 +103,7 @@ public class ViewModel {
 
     public void setLogger(final ILogger logger) {
         if (logger == null) {
-            throw new IllegalArgumentException("Logger can't be null");
+            throw new IllegalArgumentException("Logger must be set!");
         }
         this.logger = logger;
     }

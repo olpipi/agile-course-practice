@@ -11,7 +11,7 @@
         <ViewModel fx:id="viewModel"/>
     </fx:define>
    <children>
-      <AnchorPane prefHeight="176.0" prefWidth="400.0">
+      <AnchorPane prefHeight="220.0" prefWidth="600.0">
          <children>
             <Label layoutX="44.0" layoutY="29.0" text="Арабские цифры" />
             <Label layoutX="47.0" layoutY="115.0" text="Римские цифры" />
