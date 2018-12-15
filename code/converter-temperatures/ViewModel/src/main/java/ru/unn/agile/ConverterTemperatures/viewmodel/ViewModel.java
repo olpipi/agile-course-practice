@@ -4,6 +4,8 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import ru.unn.agile.ConverterTemperatures.model.TemperaturesConverter;
+import ru.unn.agile.ConverterTemperatures.model.TemperaturesConverterExceptions;
 import ru.unn.agile.ConverterTemperatures.model.TemperaturesUnit;
 
 public class ViewModel {
@@ -25,10 +27,13 @@ public class ViewModel {
     public StringProperty convertFromProperty() {
         return convertFrom;
     }
-    public StringProperty convertToProperty() {
-        return convertTo;
+    public final String getConvertTo() {
+        return convertTo.get();
     }
 
+    public ObjectProperty<TemperaturesUnit> scaleProperty() {
+        return scale;
+    }
     public TemperaturesUnit getScale() {
         return scale.get();
     }
@@ -52,7 +57,16 @@ public class ViewModel {
         } catch (NumberFormatException nfe) {
             status.set(Status.BAD_FORMAT.toString());
         }
+    }
 
+    public void convert() {
+        try {
+            double result = TemperaturesConverter.convert(convertFrom.get(), scale.get());
+            convertTo.set(String.valueOf(result));
+            status.set(Status.SUCCESS.toString());
+        } catch (TemperaturesConverterExceptions ex) {
+            status.set(Status.ERROR.toString());
+        }
     }
 }
 
@@ -60,6 +74,7 @@ enum Status {
     WAITING("Please provide input data"),
     READY("Press 'Convert' or Enter"),
     BAD_FORMAT("Bad format"),
+    ERROR("Converting error"),
     SUCCESS("Success");
 
     private final String name;

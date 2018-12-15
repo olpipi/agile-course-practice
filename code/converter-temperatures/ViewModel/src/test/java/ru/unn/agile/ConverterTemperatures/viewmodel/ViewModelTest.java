@@ -24,7 +24,7 @@ public class ViewModelTest {
     public void createEmptyViewModel() {
         assertEquals("", viewModel.convertFromProperty().get());
         assertEquals(TemperaturesUnit.FAHRENHEIT, viewModel.getScale());
-        assertEquals("", viewModel.convertToProperty().get());
+        assertEquals("", viewModel.getConvertTo());
         assertEquals(Status.READY.toString(), viewModel.getStatus());
     }
 
@@ -45,4 +45,50 @@ public class ViewModelTest {
         assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatus());
     }
 
+    @Test
+    public void canConvertToFahrenheit() {
+        viewModel.convertFromProperty().set("20.0");
+        viewModel.scaleProperty().setValue(TemperaturesUnit.FAHRENHEIT);
+        viewModel.updateInputValues();
+
+        viewModel.convert();
+
+        assertEquals("68.0", viewModel.getConvertTo());
+        assertEquals(Status.SUCCESS.toString(), viewModel.getStatus());
+    }
+
+    @Test
+    public void canConvertToKelvin() {
+        viewModel.convertFromProperty().set("20.0");
+        viewModel.scaleProperty().setValue(TemperaturesUnit.KELVIN);
+        viewModel.updateInputValues();
+
+        viewModel.convert();
+
+        assertEquals("293.15", viewModel.getConvertTo());
+        assertEquals(Status.SUCCESS.toString(), viewModel.getStatus());
+    }
+
+    @Test
+    public void canConvertToNewton() {
+        viewModel.convertFromProperty().set("20.0");
+        viewModel.scaleProperty().setValue(TemperaturesUnit.NEWTON);
+        viewModel.updateInputValues();
+
+        viewModel.convert();
+
+        assertEquals("6.6000000000000005", viewModel.getConvertTo());
+        assertEquals(Status.SUCCESS.toString(), viewModel.getStatus());
+    }
+
+    @Test
+    public void getExceptionFromConvert() {
+        viewModel.convertFromProperty().set("-300.0");
+        viewModel.scaleProperty().setValue(TemperaturesUnit.FAHRENHEIT);
+        viewModel.updateInputValues();
+
+        viewModel.convert();
+
+        assertEquals(Status.ERROR.toString(), viewModel.getStatus());
+    }
 }
