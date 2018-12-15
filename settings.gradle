@@ -68,9 +68,13 @@ project(":code/triangle/ViewModel").name = "triangle-ViewModel"
 include "code/triangle/View"
 project(":code/triangle/View").name = "triangle-View"
 
-// Moiseev Nikita, lab 1
-include "code/abstract-set"
-project(":code/abstract-set").name = "abstract-set-Model"
+// abstract-set
+include "code/abstract-set/Model"
+project(":code/abstract-set/Model").name = "abstract-set-Model"
+include "code/abstract-set/ViewModel"
+project(":code/abstract-set/ViewModel").name = "abstract-set-ViewModel"
+include "code/abstract-set/View"
+project(":code/abstract-set/View").name = "abstract-set-View"
 
 // Vector distance
 include "code/vector-distance/Model"
