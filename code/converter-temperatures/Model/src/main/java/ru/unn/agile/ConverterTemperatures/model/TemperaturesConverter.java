@@ -12,13 +12,4 @@ public final class TemperaturesConverter {
             return tempUnit.getCoef() * value + tempUnit.getOffset();
         }
     }
-
-    public static double convert(final String stringValue, final TemperaturesUnit tempUnit) {
-        double value = Double.parseDouble(stringValue);
-        if (value < ABS_MIN_TEMP) {
-            throw new TemperaturesConverterExceptions("Value less more abs min temperature");
-        } else {
-            return tempUnit.getCoef() * value + tempUnit.getOffset();
-        }
-    }
 }

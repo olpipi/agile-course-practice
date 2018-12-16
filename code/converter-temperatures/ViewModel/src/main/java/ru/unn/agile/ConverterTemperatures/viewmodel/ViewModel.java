@@ -78,7 +78,8 @@ public class ViewModel {
         }
 
         try {
-            double result = TemperaturesConverter.convert(convertFrom.get(), scale.get());
+            double valueToConvert = Double.parseDouble(convertFrom.get());
+            double result = TemperaturesConverter.convert(valueToConvert, scale.get());
             convertTo.set(String.valueOf(result));
             status.set(Status.SUCCESS.toString());
         } catch (TemperaturesConverterExceptions ex) {
