@@ -87,4 +87,14 @@ public class ViewModelTest {
 
         assertEquals(Status.ERROR.toString(), viewModel.getStatus());
     }
+
+    @Test
+    public void getCorrectStatusWithNullInput() {
+        viewModel.convertFromProperty().set("");
+        viewModel.scaleProperty().setValue(TemperaturesUnit.FAHRENHEIT);
+
+        viewModel.convert();
+
+        assertEquals(Status.WAITING.toString(), viewModel.getStatus());
+    }
 }

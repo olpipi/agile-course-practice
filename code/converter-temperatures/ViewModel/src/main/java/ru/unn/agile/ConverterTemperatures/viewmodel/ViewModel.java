@@ -64,8 +64,8 @@ public class ViewModel {
         try {
             if (!convertFrom.get().isEmpty()) {
                 Double.parseDouble(convertFrom.get());
+                status.set(Status.READY.toString());
             }
-            status.set(Status.READY.toString());
         } catch (NumberFormatException nfe) {
             status.set(Status.BAD_FORMAT.toString());
         }
@@ -73,6 +73,10 @@ public class ViewModel {
 
     public void convert() {
         checkInputValues();
+        if (status.get() != Status.READY.toString()) {
+            return;
+        }
+
         try {
             double result = TemperaturesConverter.convert(convertFrom.get(), scale.get());
             convertTo.set(String.valueOf(result));
