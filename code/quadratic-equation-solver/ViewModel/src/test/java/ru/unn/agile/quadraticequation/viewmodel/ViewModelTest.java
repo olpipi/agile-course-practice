@@ -3,15 +3,29 @@ package ru.unn.agile.quadraticequation.viewmodel;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class ViewModelTest {
 
     private ViewModel viewModel;
 
+    public static final String NO_QUADRATIC_COEFFICIENT_ERR = "Enter quadratic coefficient";
+    public static final String NON_NUMERIC_COEFFICIENTS_ERR = "Coefficients must be numeric";
+    public static final String EMPTY_COEFFICIENTS_ERR = "Coefficients must be not empty";
+    public static final String NO_ROOTS_MESSAGE = "No roots";
+    public static final String SOLVE_WAS_PRESSED = "Solved. ";
+
+
+    public void setViewModel(final ViewModel viewM) {
+        this.viewModel = viewM;
+    }
+
     @Before
     public void setUp() {
-        viewModel = new ViewModel();
+        FakeLogger fakeLogger = new FakeLogger();
+        viewModel = new ViewModel(fakeLogger);
     }
 
     @Test
@@ -72,4 +86,79 @@ public class ViewModelTest {
 
         assertEquals(ViewModel.NON_NUMERIC_COEFFICIENTS_ERR, viewModel.getRoots());
     }
+
+    @Test
+    public void isLogEmptyInTheBeginning() {
+        List<String> log = viewModel.getLog();
+
+        assertEquals(0, log.size());
+    }
+
+    @Test
+    public void canLogSomething() {
+        viewModel.solve();
+
+        List<String> log = viewModel.getLog();
+
+        assertNotEquals(0, log.size());
+    }
+
+    @Test
+    public void canLogEmptyCoefficients() {
+        viewModel.setC("");
+        viewModel.solve();
+
+        List<String> message = viewModel.getLog();
+
+        assertTrue(message.get(0).contains(EMPTY_COEFFICIENTS_ERR));
+    }
+
+    @Test
+    public void canLogNoNumericCoefficients() {
+        viewModel.setA("a");
+        viewModel.setB("4");
+        viewModel.setC("11");
+        viewModel.solve();
+
+        List<String> message = viewModel.getLog();
+
+        assertTrue(message.get(0).contains(NON_NUMERIC_COEFFICIENTS_ERR));
+    }
+
+    @Test
+    public void canLogNoQuadraticCoefficients() {
+        viewModel.setA("0");
+        viewModel.setB("3");
+        viewModel.setC("11");
+        viewModel.solve();
+
+        List<String> message = viewModel.getLog();
+
+        assertTrue(message.get(0).contains(NO_QUADRATIC_COEFFICIENT_ERR));
+    }
+
+    @Test
+    public void canLogNoRoots() {
+        viewModel.setA("7");
+        viewModel.setB("5");
+        viewModel.setC("11");
+        viewModel.solve();
+
+        List<String> message = viewModel.getLog();
+
+        assertTrue(message.get(0).contains(NO_ROOTS_MESSAGE));
+    }
+
+    @Test
+    public void canLogSolve() {
+        viewModel.setA("1");
+        viewModel.setB("0");
+        viewModel.setC("-11");
+        viewModel.solve();
+
+        List<String> message = viewModel.getLog();
+
+        assertTrue(message.get(0).contains(SOLVE_WAS_PRESSED));
+    }
+
 }
