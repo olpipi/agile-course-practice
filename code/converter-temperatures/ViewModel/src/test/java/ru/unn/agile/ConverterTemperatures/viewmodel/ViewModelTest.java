@@ -31,6 +31,7 @@ public class ViewModelTest {
     @Test
     public void canAddValueToConvert() {
         viewModel.convertFromProperty().set("10.0");
+
         viewModel.checkInputValues();
 
         assertEquals("10.0", viewModel.convertFromProperty().get());
@@ -40,6 +41,7 @@ public class ViewModelTest {
     @Test
     public void canProcessBadInputFormat() {
         viewModel.convertFromProperty().set("a");
+
         viewModel.checkInputValues();
 
         assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatus());
