@@ -177,6 +177,8 @@ include "code/stack/ViewModel"
 project(":code/stack/ViewModel").name = "stack-ViewModel"
 include "code/stack/View"
 project(":code/stack/View").name = "stack-View"
+include "code/stack/Infrastructure"
+project(":code/stack/Infrastructure").name = "stack-Infrastructure"
 
 // Roman number converter
 include "code/roman-number-converter/model"
