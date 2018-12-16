@@ -5,7 +5,10 @@ import org.junit.Before;
 import org.junit.Test;
 import ru.unn.agile.ConverterTemperatures.model.TemperaturesUnit;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ViewModelTest {
     private ViewModel viewModel;
@@ -13,11 +16,59 @@ public class ViewModelTest {
     @Before
     public void initViewModel() {
         viewModel = new ViewModel();
+        viewModel = new ViewModel(new FakeLogger());
     }
 
     @After
     public void nullViewModel() {
         viewModel = null;
+    }
+
+    @Test
+    public void logIsInit() {
+        List<String> log = viewModel.getLogList();
+
+        assertTrue(log.isEmpty());
+    }
+
+    @Test
+    public void logMessageCanConvertToFahrenheit() {
+        viewModel.convertFromProperty().set("20.0");
+        viewModel.scaleProperty().setValue(TemperaturesUnit.FAHRENHEIT);
+
+        viewModel.convert();
+
+        String message = viewModel.getLogList().get(0);
+        String expectedMessage = String.format(LogMessage.CONVERT_WAS_PRESSED,
+                viewModel.getConvertFrom(), "°C",
+                viewModel.getConvertTo(), TemperaturesUnit.FAHRENHEIT);
+        assertTrue(message.contains(expectedMessage));
+    }
+
+    @Test
+    public void logMessageGetNotCorrectValue() {
+        viewModel.convertFromProperty().set("-300.0");
+        viewModel.scaleProperty().setValue(TemperaturesUnit.FAHRENHEIT);
+
+        viewModel.convert();
+
+        String message = viewModel.getLogList().get(0);
+        String expectedMessage = String.format(LogMessage.VALUE_FROM_IS_NOT_CORRECT,
+                viewModel.getConvertFrom());
+        assertTrue(message.contains(expectedMessage));
+    }
+
+    @Test
+    public void logMessageGetNotCorrectSymbolValue() {
+        viewModel.convertFromProperty().set("sdf");
+        viewModel.scaleProperty().setValue(TemperaturesUnit.FAHRENHEIT);
+
+        viewModel.convert();
+
+        String message = viewModel.getLogList().get(0);
+        String expectedMessage = String.format(LogMessage.VALUE_FROM_IS_NOT_CORRECT,
+                viewModel.getConvertFrom());
+        assertTrue(message.contains(expectedMessage));
     }
 
     @Test
