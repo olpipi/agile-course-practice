@@ -24,7 +24,7 @@ public class QuadraticEquation {
 
     @FXML
     void initialize() {
-        viewModel.setLogger(new TxtLogger("./TxtLogger-lab3.log"));
+        viewModel.setLogger(new TxtLogger("./QuadraticEquation.log"));
 
         a.textProperty().bindBidirectional(viewModel.aProperty());
         b.textProperty().bindBidirectional(viewModel.bProperty());
