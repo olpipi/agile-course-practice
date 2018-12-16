@@ -55,7 +55,7 @@ public class TxtLoggerTest {
     }
 
     @Test(expected = Test.None.class)
-    public void noThrowWhenCreateTxtLoggerWithIncorrectFileNameAndCreatedEmptyLogger() {
+    public void noThrowWhenCreateTxtLoggerWithIncorrectFileName() {
         TxtLogger loggerEmpty = new TxtLogger("");
         assertEquals(0, loggerEmpty.getLog().size());
     }
