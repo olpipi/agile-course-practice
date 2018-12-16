@@ -26,17 +26,32 @@ public class ViewModel {
 
     private BooleanProperty popButtonVisible = new SimpleBooleanProperty();
 
+    private ILogger logger;
+
     public ViewModel() {
+        initDefaultValues();
+    }
+
+    public ViewModel(final ILogger logger) {
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger can not be null");
+        }
+        this.logger = logger;
+
+        initDefaultValues();
+    }
+
+    private void initDefaultValues() {
         doubleStack = new Stack<Double>();
+
         stackIsEmptyStatus.set(STACK_IS_EMPTY);
         stackSize.set("0");
         stackTopElement.set(NONE);
         stackPopElement.set(NONE);
         addingElement.set("");
+        statusMessage.set(WAITING_FOR_INPUT);
 
         popButtonVisible.set(false);
-
-        statusMessage.set(WAITING_FOR_INPUT);
     }
 
     public StringProperty stackIsEmptyStatusProperty() {
