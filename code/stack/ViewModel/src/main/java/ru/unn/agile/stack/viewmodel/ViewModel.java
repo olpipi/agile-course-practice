@@ -25,6 +25,7 @@ public class ViewModel {
     private StringProperty stackPopElement = new SimpleStringProperty();
     private StringProperty addingElement = new SimpleStringProperty();
     private StringProperty statusMessage = new SimpleStringProperty();
+    private StringProperty textLog = new SimpleStringProperty();
 
     private BooleanProperty popButtonVisible = new SimpleBooleanProperty();
 
@@ -35,11 +36,7 @@ public class ViewModel {
     }
 
     public ViewModel(final ILogger logger) {
-        if (logger == null) {
-            throw new IllegalArgumentException("Logger can not be null");
-        }
-        this.logger = logger;
-
+        setLogger(logger);
         initDefaultValues();
     }
 
@@ -52,6 +49,7 @@ public class ViewModel {
         stackPopElement.set(NONE);
         addingElement.set("");
         statusMessage.set(WAITING_FOR_INPUT);
+        textLog.set("");
 
         popButtonVisible.set(false);
     }
@@ -104,6 +102,14 @@ public class ViewModel {
         return statusMessage.get();
     }
 
+    public StringProperty textLogProperty() {
+        return textLog;
+    }
+
+    public String getTextLog() {
+        return textLog.get();
+    }
+
     public boolean isPopButtonVisible() {
         return popButtonVisible.get();
     }
@@ -120,6 +126,23 @@ public class ViewModel {
         return logger.getLog();
     }
 
+    public void setLogger(final ILogger logger) {
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger can not be null");
+        }
+        this.logger = logger;
+    }
+
+    private void writeLog(final String message) {
+        logger.log(message);
+        StringBuilder logMessages = new StringBuilder();
+        List<String> logList = getLogList();
+        for (String log : logList) {
+            logMessages.append(log).append("\n");
+        }
+        textLog.set(logMessages.toString());
+    }
+
     public void addElement() {
         String addingElement = getAddingElement();
         try {
@@ -129,11 +152,11 @@ public class ViewModel {
                 doubleStack.push(Double.parseDouble(addingElement));
                 statusMessage.set(READY_TO_ADD);
                 changeStackProperties();
-                logger.log("Add " + addingElement + " element into stack");
+                writeLog("Add " + addingElement + " element into stack");
             }
         } catch (NumberFormatException e) {
             statusMessage.set(INVALID_FORMAT);
-            logger.log("Adding element " + addingElement + " has invalid format");
+            writeLog("Adding element " + addingElement + " has invalid format");
         }
     }
 
@@ -155,7 +178,7 @@ public class ViewModel {
         if (!doubleStack.empty()) {
             stackPopElement.set(Double.toString(doubleStack.pop()));
             changeStackProperties();
-            logger.log("Pop " + getStackPopElement() + " element from stack");
+            writeLog("Pop " + getStackPopElement() + " element from stack");
         }
     }
 }

@@ -49,6 +49,7 @@ public class ViewModelTests {
         assertEquals(viewModel.NONE, viewModel.getStackTopElement());
         assertEquals(viewModel.NONE, viewModel.getStackPopElement());
         assertEquals("", viewModel.getAddingElement());
+        assertEquals("", viewModel.getTextLog());
     }
 
     @Test
@@ -314,6 +315,11 @@ public class ViewModelTests {
     @Test
     public void correctDefaultStatusMessage() {
         assertEquals(viewModel.WAITING_FOR_INPUT, viewModel.statusMessageProperty().get());
+    }
+
+    @Test
+    public void correctDefaultTextLog() {
+        assertEquals("", viewModel.textLogProperty().get());
     }
 
     @Test
