@@ -126,7 +126,7 @@ public class ViewModel {
         return logger.getLog();
     }
 
-    public void setLogger(final ILogger logger) {
+    public final void setLogger(final ILogger logger) {
         if (logger == null) {
             throw new IllegalArgumentException("Logger can not be null");
         }
@@ -148,6 +148,7 @@ public class ViewModel {
         try {
             if (addingElement.isEmpty()) {
                 statusMessage.set(WAITING_FOR_INPUT);
+                writeLog("Adding element is empty");
             } else {
                 doubleStack.push(Double.parseDouble(addingElement));
                 statusMessage.set(READY_TO_ADD);

@@ -338,6 +338,16 @@ public class ViewModelTests {
     }
 
     @Test
+    public void correctAddingEmptyElementLog() {
+        String textLog = "Adding element is empty";
+        viewModel.setAddingElem("");
+        viewModel.addElement();
+
+        String logMessage = viewModel.getLogList().get(0);
+        assertTrue(logMessage.matches("(.*)" + textLog + "(.*)"));
+    }
+
+    @Test
     public void correctAddingNonValidElementLog() {
         String element = "A";
         viewModel.setAddingElem(element);
