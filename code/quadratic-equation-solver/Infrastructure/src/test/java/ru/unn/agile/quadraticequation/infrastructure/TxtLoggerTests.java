@@ -13,9 +13,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 public class TxtLoggerTests {
-    private static final String TEST_MESSAGE = "Test message";
-    private static final String SECOND_TEST_MESSAGE = "Second test message";
-    private static final String  FILE_IS_NOT_FOUND = "is not found!";
+    private static final String TEST_MESSAGE_1 = "Test message";
+    private static final String TEST_MESSAGE_2 = "Second test message";
+    private static final String FILE_IS_NOT_FOUND = "is not found!";
 
     private static final String FILENAME = "./TxtLoggerTests-lab3.log";
     private TxtLogger txtLogger;
@@ -41,21 +41,21 @@ public class TxtLoggerTests {
 
     @Test
     public void canWriteLogMessageInLogFile() {
-        txtLogger.log(TEST_MESSAGE);
+        txtLogger.log(TEST_MESSAGE_1);
 
         List<String> message = txtLogger.getLog();
 
-        assertTrue(message.get(0).contains(TEST_MESSAGE));
+        assertTrue(message.get(0).contains(TEST_MESSAGE_1));
     }
 
     @Test
     public void canWriteFewLogMessageInLogFile() {
-        txtLogger.log(TEST_MESSAGE);
-        txtLogger.log(SECOND_TEST_MESSAGE);
+        txtLogger.log(TEST_MESSAGE_1);
+        txtLogger.log(TEST_MESSAGE_2);
 
         List<String> message = txtLogger.getLog();
 
-        assertTrue(message.get(0).contains(TEST_MESSAGE));
-        assertTrue(message.get(1).contains(SECOND_TEST_MESSAGE));
+        assertTrue(message.get(0).contains(TEST_MESSAGE_1));
+        assertTrue(message.get(1).contains(TEST_MESSAGE_2));
     }
 }

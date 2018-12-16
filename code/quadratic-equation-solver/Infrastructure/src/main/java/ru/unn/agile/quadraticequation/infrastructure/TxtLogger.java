@@ -1,6 +1,5 @@
 package ru.unn.agile.quadraticequation.infrastructure;
 
-
 import ru.unn.agile.quadraticequation.viewmodel.ILogger;
 
 import java.io.BufferedReader;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-
 
 public class TxtLogger implements ILogger {
     private static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
