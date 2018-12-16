@@ -24,6 +24,7 @@ public class ViewModelTests {
     private static final String NEGATIVE_VALUE_FOR_TESTS = "-10";
 
     private static final String INITIAL_PAYMENT_EXAMPLE = "6000";
+    private static final String EMPTY_STRING_FOR_TESTS = "";
 
     private ViewModel viewModel;
 
@@ -151,7 +152,7 @@ public class ViewModelTests {
 
     @Test
     public void checkStatusWhenOneOfCountFieldEmpty() {
-        viewModel.setTermMortgage("");
+        viewModel.setTermMortgage(EMPTY_STRING_FOR_TESTS);
         viewModel.checkCountFields();
 
         assertEquals(Status.BAD_TERM_FORMAT, viewModel.getStatus());
