@@ -24,6 +24,10 @@ public class ViewModelTest {
         viewModel = null;
     }
 
+    protected void setExternalViewModel(final ViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
+
     @Test
     public void logIsInit() {
         List<String> log = viewModel.getLogList();
@@ -32,30 +36,39 @@ public class ViewModelTest {
     }
 
     @Test
-    public void logMessageCanConvertToFahrenheit() {
+    public void logMessageCanConvertToKelvin() {
         viewModel.convertFromProperty().set("20.0");
-        viewModel.scaleProperty().setValue(TemperaturesUnit.FAHRENHEIT);
+        viewModel.scaleProperty().setValue(TemperaturesUnit.KELVIN);
 
         viewModel.convert();
 
         String message = viewModel.getLogList().get(0);
         String expectedMessage = String.format(LogMessage.CONVERT_WAS_PRESSED,
                 viewModel.getConvertFrom(), "°C",
-                viewModel.getConvertTo(), TemperaturesUnit.FAHRENHEIT);
+                viewModel.getConvertTo(), TemperaturesUnit.KELVIN);
         assertTrue(message.contains(expectedMessage));
     }
 
     @Test
-    public void logMessageGetNotCorrectValue() {
+    public void logMessageGetMultiStringsLog() {
         viewModel.convertFromProperty().set("-300.0");
+        viewModel.scaleProperty().setValue(TemperaturesUnit.KELVIN);
+
+        viewModel.convert();
+
+        viewModel.convertFromProperty().set("20.0");
         viewModel.scaleProperty().setValue(TemperaturesUnit.FAHRENHEIT);
 
         viewModel.convert();
 
         String message = viewModel.getLogList().get(0);
-        String expectedMessage = String.format(LogMessage.VALUE_FROM_IS_NOT_CORRECT,
-                viewModel.getConvertFrom());
+        String expectedMessage = String.format(LogMessage.VALUE_FROM_IS_NOT_CORRECT, "-300.0");
         assertTrue(message.contains(expectedMessage));
+
+        String message2 = viewModel.getLogList().get(1);
+        String expectedMessage2 = String.format(LogMessage.CONVERT_WAS_PRESSED,
+                "20.0", "°C", viewModel.getConvertTo(), TemperaturesUnit.FAHRENHEIT);
+        assertTrue(message2.contains(expectedMessage2));
     }
 
     @Test

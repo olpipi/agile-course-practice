@@ -19,7 +19,8 @@ public class ViewModel {
     private ILogger logger;
 
     private final ObjectProperty<ObservableList<TemperaturesUnit>> scales =
-            new SimpleObjectProperty<>(FXCollections.observableArrayList(TemperaturesUnit.values()));
+            new SimpleObjectProperty<>(
+                    FXCollections.observableArrayList(TemperaturesUnit.values()));
     private final ObjectProperty<TemperaturesUnit> unit =
             new SimpleObjectProperty<TemperaturesUnit>();
 
@@ -57,8 +58,8 @@ public class ViewModel {
         log.set(EMPTY_STRING);
     }
 
-    private void addLog(String s) {
-        logger.log(s);
+    private void addLog(final String message) {
+        logger.log(message);
         StringBuilder logMsg = new StringBuilder();
         for (String line : logger.getLog()) {
             logMsg.append(line).append("\n");
