@@ -43,11 +43,15 @@ public class ViewModel {
     }
 
     public ViewModel(final ILogger logger) {
+        setLogger(logger);
+        init();
+    }
+
+    public final void setLogger(final ILogger logger) {
         if (logger == null) {
             throw new IllegalArgumentException("Logger can't be null");
         }
         this.logger = logger;
-        init();
     }
 
     private void init() {
@@ -144,20 +148,3 @@ public class ViewModel {
     }
 }
 
-enum Status {
-    WAITING("Please provide input data"),
-    READY("Press 'Convert' or Enter"),
-    BAD_FORMAT("Bad format"),
-    ERROR("Converting error: input value out of range"),
-    SUCCESS("Success");
-
-    private final String name;
-
-    Status(final String name) {
-        this.name = name;
-    }
-
-    public String toString() {
-        return name;
-    }
-}
