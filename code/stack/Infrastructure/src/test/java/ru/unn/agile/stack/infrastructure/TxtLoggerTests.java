@@ -26,8 +26,32 @@ public class TxtLoggerTests {
     }
 
     @Test
-    public void canCreateLoggerWithFileName() {
+    public void canCreateTxtLoggerWithFileName() {
         assertNotNull(txtLogger);
+    }
+
+    @Test(expected = Test.None.class)
+    public void canCreateTxtLoggerWithEmptyFilename() {
+        TxtLogger testLogger = new TxtLogger("");
+
+        assertEquals(0, testLogger.getLog().size());
+    }
+
+    @Test(expected = Test.None.class)
+    public void canReadTxtLoggerWithEmptyFilename() {
+        TxtLogger testLogger = new TxtLogger("");
+
+        assertEquals(0, testLogger.getLog().size());
+    }
+
+    @Test(expected = Test.None.class)
+    public void canWriteIntoTxtLoggerWithEmptyFilename() {
+        TxtLogger testLogger = new TxtLogger("");
+        String testMessage = "Test message";
+
+        testLogger.log(testMessage);
+
+        assertEquals(0, testLogger.getLog().size());
     }
 
     @Test
@@ -62,12 +86,12 @@ public class TxtLoggerTests {
     @Test
     public void canWriteSeveralLogMessages() {
         String[] testMessages = {"Test message #1", "Test message #2"};
-
         for (String testMessage : testMessages) {
             txtLogger.log(testMessage);
         }
 
         List<String> logMessages = txtLogger.getLog();
+
         for (int i = 0; i < logMessages.size(); i++) {
             String logMessage = logMessages.get(i);
             assertTrue(logMessage.matches(".*" + logMessage + "$"));

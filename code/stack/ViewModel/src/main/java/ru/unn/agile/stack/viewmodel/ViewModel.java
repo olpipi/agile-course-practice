@@ -150,10 +150,11 @@ public class ViewModel {
                 statusMessage.set(WAITING_FOR_INPUT);
                 writeLog("Adding element is empty");
             } else {
-                doubleStack.push(Double.parseDouble(addingElement));
+                Double doubleElement = Double.parseDouble(addingElement);
+                doubleStack.push(doubleElement);
                 statusMessage.set(READY_TO_ADD);
                 changeStackProperties();
-                writeLog("Add " + addingElement + " element into stack");
+                writeLog("Add " + doubleElement + " element into stack");
             }
         } catch (NumberFormatException e) {
             statusMessage.set(INVALID_FORMAT);
