@@ -35,7 +35,15 @@ public class ViewModelTest {
         viewModel.checkInputValues();
 
         assertEquals("10.0", viewModel.convertFromProperty().get());
-        assertEquals(Status.READY.toString(), viewModel.getStatus());
+    }
+
+    @Test
+    public void canGetConvertToValue() {
+        viewModel.convertFromProperty().set("10.0");
+
+        viewModel.convert();
+
+        assertEquals("50.0", viewModel.convertToProperty().get());
     }
 
     @Test
@@ -93,10 +101,31 @@ public class ViewModelTest {
     @Test
     public void getCorrectStatusWithNullInput() {
         viewModel.convertFromProperty().set("");
-        viewModel.scaleProperty().setValue(TemperaturesUnit.FAHRENHEIT);
+        viewModel.scaleProperty().setValue(TemperaturesUnit.KELVIN);
 
         viewModel.convert();
 
         assertEquals(Status.WAITING.toString(), viewModel.getStatus());
+    }
+
+    @Test
+    public void fahrenheitIsSetByDefault() {
+        assertEquals(TemperaturesUnit.FAHRENHEIT, viewModel.getScale());
+    }
+
+    @Test
+    public void getCorrectStatusWithEmptyFields() {
+        viewModel.convert();
+
+        assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void getCorrectStatusWhenFillFields() {
+        viewModel.convertFromProperty().set("20.0");
+
+        viewModel.checkInputValues();
+
+        assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
     }
 }
