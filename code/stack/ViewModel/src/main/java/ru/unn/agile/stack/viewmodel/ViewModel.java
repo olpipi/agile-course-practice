@@ -154,6 +154,7 @@ public class ViewModel {
         if (!doubleStack.empty()) {
             stackPopElement.set(Double.toString(doubleStack.pop()));
             changeStackProperties();
+            logger.log("Pop " + getStackPopElement() + " element from stack");
         }
     }
 }

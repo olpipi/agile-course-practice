@@ -320,11 +320,20 @@ public class ViewModelTests {
 
     @Test
     public void correctAddingElementLog() {
-        String logMessage = "Add 11 element into stack";
-        viewModel.setAddingElem("11");
-
+        String logMessage = "Add 11.0 element into stack";
+        viewModel.setAddingElem("11.0");
         viewModel.addElement();
 
         assertEquals(logMessage, viewModel.getLogList().get(0));
+    }
+
+    @Test
+    public void correctPoppingElementLog() {
+        String logMessage = "Pop 10.0 element from stack";
+        viewModel.setAddingElem("10.0");
+        viewModel.addElement();
+        viewModel.popElement();
+
+        assertEquals(logMessage, viewModel.getLogList().get(1));
     }
 }
