@@ -10,6 +10,10 @@ import static org.junit.Assert.assertNotNull;
 public class ViewModelTests {
     private ViewModel viewModel;
 
+    public void setViewModel(ViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
+
     @Before
     public void setUp() {
         viewModel = new ViewModel(new FakeLogger());
