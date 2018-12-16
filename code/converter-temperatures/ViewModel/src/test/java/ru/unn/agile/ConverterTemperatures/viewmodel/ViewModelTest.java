@@ -7,6 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 import ru.unn.agile.ConverterTemperatures.model.TemperaturesUnit;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -233,5 +236,15 @@ public class ViewModelTest {
         viewModel.checkInputValues();
 
         assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void testConstructorIsPrivate()
+            throws NoSuchMethodException, IllegalAccessException,
+            InvocationTargetException, InstantiationException {
+        Constructor<LogMessage> constructor = LogMessage.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        constructor.newInstance();
     }
 }
