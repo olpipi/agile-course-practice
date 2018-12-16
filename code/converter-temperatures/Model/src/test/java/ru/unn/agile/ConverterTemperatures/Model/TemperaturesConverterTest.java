@@ -59,7 +59,7 @@ public class TemperaturesConverterTest {
         TemperaturesUnit tempUnit = TemperaturesUnit.FAHRENHEIT;
         double tempBefore = -273.16;
 
-        double calculatingTempAfter = TemperaturesConverter.convert(tempBefore, tempUnit);
+        TemperaturesConverter.convert(tempBefore, tempUnit);
     }
 
     @Test

@@ -18,7 +18,7 @@ public class ViewModel {
 
     private ILogger logger;
 
-    private final ObjectProperty<ObservableList<TemperaturesUnit>> scales =
+    private final ObjectProperty<ObservableList<TemperaturesUnit>> units =
             new SimpleObjectProperty<>(
                     FXCollections.observableArrayList(TemperaturesUnit.values()));
     private final ObjectProperty<TemperaturesUnit> unit =
@@ -87,19 +87,19 @@ public class ViewModel {
         return convertFrom.get();
     }
 
-    public ObjectProperty<ObservableList<TemperaturesUnit>> scalesProperty() {
-        return scales;
+    public ObjectProperty<ObservableList<TemperaturesUnit>> unitsProperty() {
+        return units;
     }
 
-    public final ObservableList<TemperaturesUnit> getScales() {
-        return scales.get();
+    public final ObservableList<TemperaturesUnit> getUnits() {
+        return units.get();
     }
 
-    public ObjectProperty<TemperaturesUnit> scaleProperty() {
+    public ObjectProperty<TemperaturesUnit> unitProperty() {
         return unit;
     }
 
-    public TemperaturesUnit getScale() {
+    public TemperaturesUnit getUnit() {
         return unit.get();
     }
 
