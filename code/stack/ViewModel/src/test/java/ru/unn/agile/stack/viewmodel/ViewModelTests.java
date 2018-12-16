@@ -336,4 +336,13 @@ public class ViewModelTests {
 
         assertEquals(logMessage, viewModel.getLogList().get(1));
     }
+
+    @Test
+    public void correctAddingNonValidElementLog() {
+        String logMessage = "Adding element A has invalid format";
+        viewModel.setAddingElem("A");
+        viewModel.addElement();
+
+        assertEquals(logMessage, viewModel.getLogList().get(0));
+    }
 }

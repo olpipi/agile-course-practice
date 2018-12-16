@@ -121,8 +121,8 @@ public class ViewModel {
     }
 
     public void addElement() {
+        String addingElement = getAddingElement();
         try {
-            String addingElement = getAddingElement();
             if (addingElement.isEmpty()) {
                 statusMessage.set(WAITING_FOR_INPUT);
             } else {
@@ -133,6 +133,7 @@ public class ViewModel {
             }
         } catch (NumberFormatException e) {
             statusMessage.set(INVALID_FORMAT);
+            logger.log("Adding element " + addingElement + " has invalid format");
         }
     }
 
