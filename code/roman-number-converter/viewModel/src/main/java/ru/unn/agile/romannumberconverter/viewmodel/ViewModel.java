@@ -116,13 +116,13 @@ public class ViewModel {
 
     private void writeToLog(final String message) {
         logger.log(message);
-        StringBuilder logMessages = new StringBuilder();
+        StringBuilder stringLogMessages = new StringBuilder();
 
         for (String line : getLogList()) {
-            logMessages.append(line).append("\n");
+            stringLogMessages.append(line).append("\n");
         }
 
-        log.set(logMessages.toString());
+        log.set(stringLogMessages.toString());
     }
 
     private String getFormStateLogMessage() {

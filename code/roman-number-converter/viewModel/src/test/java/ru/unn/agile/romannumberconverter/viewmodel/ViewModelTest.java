@@ -230,11 +230,11 @@ public class ViewModelTest {
         viewModel.convertRomanToArabic();
 
         List<String> logList = viewModel.getLogList();
-        StringBuilder logMessages = new StringBuilder();
+        StringBuilder stringLogMessages = new StringBuilder();
         for (String line : logList) {
-            logMessages.append(line).append("\n");
+            stringLogMessages.append(line).append("\n");
         }
 
-        assertEquals(logMessages.toString(), viewModel.getLog());
+        assertEquals(stringLogMessages.toString(), viewModel.getLog());
     }
 }
