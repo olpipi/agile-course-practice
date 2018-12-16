@@ -13,8 +13,8 @@ public class TxtLogger implements ILogger {
         this.filename = filename;
         try {
             writer = new BufferedWriter(new FileWriter(filename));
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception exc) {
+            System.out.println(exc.getMessage());
         }
     }
 

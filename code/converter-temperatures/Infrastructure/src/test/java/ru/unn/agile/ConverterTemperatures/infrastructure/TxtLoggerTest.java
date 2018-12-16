@@ -9,6 +9,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class TxtLoggerTest {
     private static final String FILE_NAME = "./TxtLogger.log";
@@ -59,5 +60,12 @@ public class TxtLoggerTest {
         for (int i = 0; i < log.size(); i++) {
             assertTrue(log.get(i).matches(messages[i]));
         }
+    }
+
+    @Test(expected = Test.None.class)
+    public void canCreateLogWithEmptyFilename() {
+        TxtLogger logger = new TxtLogger("");
+        logger.log("Value -300 is not corrected");
+        assertEquals(0, logger.getLog().size());
     }
 }
