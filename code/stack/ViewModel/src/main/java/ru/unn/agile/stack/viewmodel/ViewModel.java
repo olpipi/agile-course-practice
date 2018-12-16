@@ -17,6 +17,9 @@ public class ViewModel {
     public static final String STACK_IS_NOT_EMPTY = "Stack is not empty.";
     public static final String NONE = "None";
 
+    private static final String LOGGER_IS_NULL = "Logger can not be null";
+    private static final String EMPTY_ELEMENT = "Adding element is empty";
+
     private Stack<Double> doubleStack;
 
     private StringProperty stackIsEmptyStatus = new SimpleStringProperty();
@@ -128,7 +131,7 @@ public class ViewModel {
 
     public final void setLogger(final ILogger logger) {
         if (logger == null) {
-            throw new IllegalArgumentException("Logger can not be null");
+            throw new IllegalArgumentException(LOGGER_IS_NULL);
         }
         this.logger = logger;
     }
@@ -148,7 +151,7 @@ public class ViewModel {
         try {
             if (addingElement.isEmpty()) {
                 statusMessage.set(WAITING_FOR_INPUT);
-                writeLog("Adding element is empty");
+                writeLog(EMPTY_ELEMENT);
             } else {
                 Double doubleElement = Double.parseDouble(addingElement);
                 doubleStack.push(doubleElement);

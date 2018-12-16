@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 public class TxtLoggerTests {
     private static final String FILE_NAME = "./TxtLoggerTests.log";
     private static final String LOG_PATTERN = "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} > .*";
+    private static final String TEST_MESSAGE = "Test message";
 
     private TxtLogger txtLogger;
 
@@ -47,9 +48,8 @@ public class TxtLoggerTests {
     @Test(expected = Test.None.class)
     public void canWriteIntoTxtLoggerWithEmptyFilename() {
         TxtLogger testLogger = new TxtLogger("");
-        String testMessage = "Test message";
 
-        testLogger.log(testMessage);
+        testLogger.log(TEST_MESSAGE);
 
         assertEquals(0, testLogger.getLog().size());
     }
@@ -65,9 +65,7 @@ public class TxtLoggerTests {
 
     @Test
     public void areDateAndTimeContainedInLog() {
-        String testMessage = "Test message";
-
-        txtLogger.log(testMessage);
+        txtLogger.log(TEST_MESSAGE);
 
         String logMessage = txtLogger.getLog().get(0);
         assertTrue(logMessage.matches(LOG_PATTERN));
@@ -75,9 +73,7 @@ public class TxtLoggerTests {
 
     @Test
     public void canWriteOneLogMessage() {
-        String testMessage = "Test message";
-
-        txtLogger.log(testMessage);
+        txtLogger.log(TEST_MESSAGE);
 
         String logMessage = txtLogger.getLog().get(0);
         assertTrue(logMessage.matches(".*" + logMessage + "$"));
@@ -85,10 +81,8 @@ public class TxtLoggerTests {
 
     @Test
     public void canWriteSeveralLogMessages() {
-        String[] testMessages = {"Test message #1", "Test message #2"};
-        for (String testMessage : testMessages) {
-            txtLogger.log(testMessage);
-        }
+        txtLogger.log(TEST_MESSAGE.concat(" #1"));
+        txtLogger.log(TEST_MESSAGE.concat(" #2"));
 
         List<String> logMessages = txtLogger.getLog();
 

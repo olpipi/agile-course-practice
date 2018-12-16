@@ -24,9 +24,9 @@ public class TxtLogger implements ILogger {
     }
 
     @Override
-    public void log(final String msg) {
+    public void log(final String message) {
         try {
-            writer.write(now() + " > " + msg);
+            writer.write(now() + " > " + message);
             writer.newLine();
             writer.flush();
         } catch (Exception ex) {
@@ -51,9 +51,9 @@ public class TxtLogger implements ILogger {
     }
 
     private static String now() {
-        Calendar cal = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_TIME_FORMAT, Locale.ENGLISH);
-        return sdf.format(cal.getTime());
+        return sdf.format(calendar.getTime());
     }
 
 }
