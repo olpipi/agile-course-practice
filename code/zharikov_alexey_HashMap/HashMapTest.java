@@ -14,21 +14,20 @@ public class HashMapTest {
     }
 
     @Test(expected= NoSuchElementException.class)
-    public void testThrowsExceptionIfKeyDoesNotExist() {
+    public void testThrowsExceptionIfKeyDoesNotExist(){
         map.get("LOL");
     }
 
     @Test
-    public void testContainsKeyForExistingKey() {
+    public void testContainsKeyForExistingKey(){
         map.add("LOL", 5);
         assertTrue(map.containsKey("LOL"));
     }
 
     @Test
-    public void testRemoveDecrementsSize() {
+    public void testRemoveDecrementsSize(){
         map.add("LOL", 5);
         map.add("KEK", 6);
-        
         map.remove("LOL");
         
         assertEquals(1, map.size());
@@ -39,18 +38,19 @@ public class HashMapTest {
     }
 
     @Test
-    public void testAddMakesIsEmptyFalse() {
+    public void testAddMakesIsEmptyFalse(){
         map.add("LOL", 5);
+		
         assertFalse(map.isEmpty());
     }
 
     @Test
-    public void testSizeForNewMap() {
+    public void testSizeForNewMap(){
         assertEquals(0, map.size());
     }
 
     @Test
-    public void testSizeIncrementsWhenAddingElements() {
+    public void testSizeIncrementsWhenAddingElements(){
         map.add("LOL", 5);
         assertEquals(1, map.size());
         
@@ -59,15 +59,16 @@ public class HashMapTest {
     }
 
     @Test
-    public void testGetReturnsCorrectValue() {
+    public void testGetReturnsCorrectValue(){
         map.add("LOL", 5);
         map.add("KEK", 6);
+		
         assertEquals(5, map.get("LOL"));
         assertEquals(6, map.get("KEK"));
     }
 
     @Test
-    public void testReplacesValueWithSameKey() {
+    public void testReplacesValueWithSameKey(){
         map.add("LOL", 5);
         map.add("LOL", 6);
         
@@ -75,7 +76,7 @@ public class HashMapTest {
     }
 
     @Test
-    public void testDoesNotOverwriteSeperateKeysWithSameHash() {
+    public void testDoesNotOverwriteSeperateKeysWithSameHash(){
         map.add("Ea", 5);
         map.add("FB", 6);
         
@@ -84,14 +85,14 @@ public class HashMapTest {
     }
 
     @Test
-    public void testRemoveDoesNotEffectNewMap() {
+    public void testRemoveDoesNotEffectNewMap(){
         map.remove("LOL");
 
         assertEquals(0, map.size());
     }
 
     @Test(expected= NoSuchElementException.class)
-    public void testRemoveDeletesElement() {
+    public void testRemoveDeletesElement(){
         map.add("LOL", 5);
         map.remove("LOL");
         
@@ -99,30 +100,31 @@ public class HashMapTest {
     }
 
     @Test
-    public void testContainsKeyForKeyWithEquivalentHash() {
+    public void testContainsKeyForKeyWithEquivalentHash(){
         map.add("Ea", 5);
         
         assertFalse(map.containsKey("FB"));
     }
 
     @Test
-    public void testContainsKeyForNewMap() {
+    public void testContainsKeyForNewMap(){
         assertFalse(map.containsKey("LOL"));
     }
 
     @Test
-    public void testContainsKeyForNonExistingKey() {
+    public void testContainsKeyForNonExistingKey(){
         map.add("LOL", 5);
+		
         assertFalse(map.containsKey("KEK"));
     }
 
     @Test
-    public void testIsEmptyForNewMap() {
+    public void testIsEmptyForNewMap(){
         assertTrue(map.isEmpty());
     }
 
     @Test
-    public void testCollisionResolution() {
+    public void testCollisionResolution(){
 		map.add("LOL", 5);
 		map.add("LOL", 5);
 		map.add("LOL", 5);
