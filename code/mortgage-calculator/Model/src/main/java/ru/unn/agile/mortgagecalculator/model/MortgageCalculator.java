@@ -46,7 +46,7 @@ public class MortgageCalculator {
 
     public void setDateOfMortgage(final int date) {
         if (date > 0) {
-            this.dateOfMortgage = date;
+            dateOfMortgage = date;
         } else {
             throw new NullPointerException("Date is negative!");
         }

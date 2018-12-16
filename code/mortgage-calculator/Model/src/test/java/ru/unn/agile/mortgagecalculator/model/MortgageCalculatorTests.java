@@ -8,15 +8,33 @@ import static org.junit.Assert.*;
 public class MortgageCalculatorTests {
 
     private static final double  EPSILON = 0.1;
+    private static final double FULL_COST_OF_APARTMENT_FOR_TESTS = 1000;
+    private static final double FULL_COST_OF_APARTMENT_FIVE_HUNDRED_FOR_TESTS = 500;
+
+    private static final int TERM_MORTGAGE_YEAR_FOR_TESTS = 12;
+    private static final int TERM_MORTGAGE_ONE_FOR_TESTS = 1;
+    private static final int TERM_MORTGAGE_SIX_FOR_TESTS = 6;
+    private static final int TERM_MORTGAGE_TEN_FOR_TESTS = 10;
+
+    private static final double INTEREST_RATE_FOR_TESTS = 20.0;
+    private static final double INTEREST_RATE_TEN_FOR_TESTS = 10.0;
+
+    private static final int NEGATIVE_VALUE_FOR_TESTS = -10;
+
+    private static final double INITIAL_PAYMENT_FOR_TESTS = 100;
+
+    private static final int ZERO_VALUE_FOR_TESTS = 0;
+
     private MortgageCalculator myMortgageCalculator;
+
 
     @Before
     public void setUpEmptyExample() {
         myMortgageCalculator = new MortgageCalculator();
 
-        myMortgageCalculator.setFullCostOfApartment(1000);
-        myMortgageCalculator.setDateOfMortgage(12);
-        myMortgageCalculator.setInterestRate(20);
+        myMortgageCalculator.setFullCostOfApartment(FULL_COST_OF_APARTMENT_FOR_TESTS);
+        myMortgageCalculator.setDateOfMortgage(TERM_MORTGAGE_YEAR_FOR_TESTS);
+        myMortgageCalculator.setInterestRate(INTEREST_RATE_FOR_TESTS);
     }
 
     @After
@@ -26,90 +44,85 @@ public class MortgageCalculatorTests {
 
     @Test
     public void checkThatFullCostOfApartmentCorrectInitialized() {
-        myMortgageCalculator.setFullCostOfApartment(100000.12);
-
-        assertEquals(100000.12, myMortgageCalculator.getFullCostOfApartment(), EPSILON);
+        assertEquals(FULL_COST_OF_APARTMENT_FOR_TESTS,
+                myMortgageCalculator.getFullCostOfApartment(), EPSILON);
     }
 
     @Test(expected = NullPointerException.class)
     public void checkIfFullCostOfApartmentIsZero() {
-        myMortgageCalculator.setFullCostOfApartment(0);
-
+        myMortgageCalculator.setFullCostOfApartment(ZERO_VALUE_FOR_TESTS);
     }
 
     @Test(expected = NullPointerException.class)
     public void checkIfFullCostOfApartmentIsNegative() {
-        myMortgageCalculator.setFullCostOfApartment(-300);
+        myMortgageCalculator.setFullCostOfApartment(NEGATIVE_VALUE_FOR_TESTS);
     }
 
     @Test
     public void checkInitialPaymentCorrectInitialized() {
-        myMortgageCalculator.setFullCostOfApartment(51000);
-        myMortgageCalculator.setInitialPayment(50000.50);
-
-        assertEquals(50000.50, myMortgageCalculator.getInitialPayment(), EPSILON);
+        myMortgageCalculator.setInitialPayment(INITIAL_PAYMENT_FOR_TESTS);
+        assertEquals(INITIAL_PAYMENT_FOR_TESTS, myMortgageCalculator.getInitialPayment(), EPSILON);
     }
 
     @Test
     public void checkThatInitialPaymentIsZero() {
-        myMortgageCalculator.setInitialPayment(0);
+        myMortgageCalculator.setInitialPayment(ZERO_VALUE_FOR_TESTS);
 
-        assertEquals(0, myMortgageCalculator.getInitialPayment(), EPSILON);
+        assertEquals(ZERO_VALUE_FOR_TESTS, myMortgageCalculator.getInitialPayment(), EPSILON);
     }
 
     @Test(expected = NullPointerException.class)
     public void checkInitialPaymentIsNegative() {
-        myMortgageCalculator.setInitialPayment(-10000);
+        myMortgageCalculator.setInitialPayment(NEGATIVE_VALUE_FOR_TESTS);
 
     }
 
     @Test(expected = NullPointerException.class)
     public void checkInitialPaymentIsMoreThenFullCost() {
-        myMortgageCalculator.setInitialPayment(100001);
-
+        myMortgageCalculator.setInitialPayment(FULL_COST_OF_APARTMENT_FOR_TESTS + 1);
     }
 
     @Test
     public void checkDateOfMortgageInMonths() {
-        myMortgageCalculator.setDateOfMortgage(10);
+        myMortgageCalculator.setDateOfMortgage(TERM_MORTGAGE_TEN_FOR_TESTS);
 
-        assertEquals(10, myMortgageCalculator.getDateOfMortgage());
+        assertEquals(TERM_MORTGAGE_TEN_FOR_TESTS, myMortgageCalculator.getDateOfMortgage());
     }
 
     @Test(expected = NullPointerException.class)
     public void checkDateOfMortgageInMonthsIsNegative() {
-        myMortgageCalculator.setDateOfMortgage(-2);
+        myMortgageCalculator.setDateOfMortgage(NEGATIVE_VALUE_FOR_TESTS);
 
     }
 
     @Test(expected = NullPointerException.class)
     public void checkDateOfMortgageInMonthsIsZero() {
-        myMortgageCalculator.setDateOfMortgage(0);
+        myMortgageCalculator.setDateOfMortgage(ZERO_VALUE_FOR_TESTS);
 
     }
 
     @Test
     public void checkInterestRate() {
-        myMortgageCalculator.setInterestRate(50.0);
+        myMortgageCalculator.setInterestRate(INTEREST_RATE_TEN_FOR_TESTS);
 
-        assertEquals(50.0, myMortgageCalculator.getInterestRate(), EPSILON);
+        assertEquals(INTEREST_RATE_TEN_FOR_TESTS, myMortgageCalculator.getInterestRate(), EPSILON);
     }
 
     @Test(expected = NullPointerException.class)
     public void checkInterestRateIsNegative() {
-        myMortgageCalculator.setInterestRate(-50.0);
+        myMortgageCalculator.setInterestRate(NEGATIVE_VALUE_FOR_TESTS);
     }
 
     @Test
     public void checkPrincipalDebtInOneMonth() {
-        this.myMortgageCalculator.setInitialPayment(0);
+        this.myMortgageCalculator.setInitialPayment(ZERO_VALUE_FOR_TESTS);
 
         assertEquals(83.3, myMortgageCalculator.getPrincipalDebt(), EPSILON);
     }
 
     @Test
     public void checkPrincipalDebtInOneMonthWithInitialPayment() {
-        myMortgageCalculator.setInitialPayment(100);
+        myMortgageCalculator.setInitialPayment(INITIAL_PAYMENT_FOR_TESTS);
 
         assertEquals(75, myMortgageCalculator.getPrincipalDebt(), EPSILON);
     }
@@ -128,27 +141,26 @@ public class MortgageCalculatorTests {
 
     @Test
     public void checkPrincipalDebtIsCorrect() {
-        myMortgageCalculator.setFullCostOfApartment(500.02);
-        myMortgageCalculator.setDateOfMortgage(myMortgageCalculator.getDateOfMortgage() - 6);
+        myMortgageCalculator.setFullCostOfApartment(FULL_COST_OF_APARTMENT_FIVE_HUNDRED_FOR_TESTS);
+        myMortgageCalculator.setDateOfMortgage(TERM_MORTGAGE_SIX_FOR_TESTS);
 
         assertEquals(83.33, myMortgageCalculator.getPrincipalDebt(), EPSILON);
     }
 
     @Test
     public void checkAccruedInterestIsCorrectInMiddleOfDate() {
-        myMortgageCalculator.setFullCostOfApartment(500.02);
-        myMortgageCalculator.setDateOfMortgage(myMortgageCalculator.getDateOfMortgage() - 6);
-
+        myMortgageCalculator.setFullCostOfApartment(FULL_COST_OF_APARTMENT_FIVE_HUNDRED_FOR_TESTS);
+        myMortgageCalculator.setDateOfMortgage(TERM_MORTGAGE_SIX_FOR_TESTS);
         assertEquals(8.33, myMortgageCalculator.
                 getAccruedInterest(myMortgageCalculator.getFullCostOfApartment()), EPSILON);
     }
 
     @Test
     public void checkAccruedInterestIsCorrectInLastMonth() {
-        myMortgageCalculator.setFullCostOfApartment(83.37);
-        myMortgageCalculator.setDateOfMortgage(myMortgageCalculator.getDateOfMortgage() - 11);
+        myMortgageCalculator.setFullCostOfApartment(FULL_COST_OF_APARTMENT_FIVE_HUNDRED_FOR_TESTS);
+        myMortgageCalculator.setDateOfMortgage(TERM_MORTGAGE_ONE_FOR_TESTS);
 
-        assertEquals(1.39, myMortgageCalculator.
+        assertEquals(8.33, myMortgageCalculator.
                 getAccruedInterest(myMortgageCalculator.getFullCostOfApartment()), EPSILON);
     }
 
