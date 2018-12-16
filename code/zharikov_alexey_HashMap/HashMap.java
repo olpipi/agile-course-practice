@@ -16,6 +16,7 @@ public class HashMap {
             this.array.add(new LinkedList<Element>());
         }
     }
+
     public boolean maybeContainsKey(String key){
         return sizearray(key) > 0;
     }
