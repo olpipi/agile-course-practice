@@ -4,13 +4,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class ViewModelTests {
     private ViewModel viewModel;
 
-    public void setViewModel(ViewModel viewModel) {
+    public void setViewModel(final ViewModel viewModel) {
         this.viewModel = viewModel;
     }
 
@@ -324,29 +323,32 @@ public class ViewModelTests {
 
     @Test
     public void correctAddingElementLog() {
-        String logMessage = "Add 11.0 element into stack";
-        viewModel.setAddingElem("11.0");
+        Double element = 11.0;
+        viewModel.setAddingElem(Double.toString(element));
         viewModel.addElement();
 
-        assertEquals(logMessage, viewModel.getLogList().get(0));
-    }
-
-    @Test
-    public void correctPoppingElementLog() {
-        String logMessage = "Pop 10.0 element from stack";
-        viewModel.setAddingElem("10.0");
-        viewModel.addElement();
-        viewModel.popElement();
-
-        assertEquals(logMessage, viewModel.getLogList().get(1));
+        String logMessage = viewModel.getLogList().get(0);
+        assertTrue(logMessage.matches("(.*)" + element + "(.*)"));
     }
 
     @Test
     public void correctAddingNonValidElementLog() {
-        String logMessage = "Adding element A has invalid format";
-        viewModel.setAddingElem("A");
+        String element = "A";
+        viewModel.setAddingElem(element);
         viewModel.addElement();
 
-        assertEquals(logMessage, viewModel.getLogList().get(0));
+        String logMessage = viewModel.getLogList().get(0);
+        assertTrue(logMessage.matches("(.*)" + element + "(.*)"));
+    }
+
+    @Test
+    public void correctPoppingElementLog() {
+        Double element = 10.0;
+        viewModel.setAddingElem(Double.toString(element));
+        viewModel.addElement();
+        viewModel.popElement();
+
+        String logMessage = viewModel.getLogList().get(1);
+        assertTrue(logMessage.matches("(.*)" + element + "(.*)"));
     }
 }
