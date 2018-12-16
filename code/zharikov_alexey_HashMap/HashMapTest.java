@@ -40,7 +40,7 @@ public class HashMapTest {
     @Test
     public void testAddMakesIsEmptyFalse(){
         map.add("LOL", 5);
-		
+        
         assertFalse(map.isEmpty());
     }
 
@@ -62,7 +62,7 @@ public class HashMapTest {
     public void testGetReturnsCorrectValue(){
         map.add("LOL", 5);
         map.add("KEK", 6);
-		
+        
         assertEquals(5, map.get("LOL"));
         assertEquals(6, map.get("KEK"));
     }
@@ -114,7 +114,7 @@ public class HashMapTest {
     @Test
     public void testContainsKeyForNonExistingKey(){
         map.add("LOL", 5);
-		
+        
         assertFalse(map.containsKey("KEK"));
     }
 
@@ -125,13 +125,13 @@ public class HashMapTest {
 
     @Test
     public void testCollisionResolution(){
-		map.add("LOL", 5);
-		map.add("LOL", 5);
-		map.add("LOL", 5);
-		map.add("LOL", 5);
-		
+        map.add("LOL", 5);
+        map.add("LOL", 5);
+        map.add("LOL", 5);
+        map.add("LOL", 5);
+        
         assertFalse(sizearray("LOL") == 4);
     } 
-	
-	
+    
+    
 };
