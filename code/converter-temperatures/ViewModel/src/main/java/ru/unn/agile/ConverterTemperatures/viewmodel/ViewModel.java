@@ -4,14 +4,16 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import ru.unn.agile.ConverterTemperatures.model.TemperaturesConverter;
-import ru.unn.agile.ConverterTemperatures.model.TemperaturesConverterExceptions;
-import ru.unn.agile.ConverterTemperatures.model.TemperaturesUnit;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import ru.unn.agile.ConverterTemperatures.model.*;
 
 public class ViewModel {
     private final StringProperty convertFrom = new SimpleStringProperty();
     private final StringProperty convertTo = new SimpleStringProperty();
 
+    private final ObjectProperty<ObservableList<TemperaturesUnit>> scales =
+        new SimpleObjectProperty<>(FXCollections.observableArrayList(TemperaturesUnit.values()));
     private final ObjectProperty<TemperaturesUnit> scale =
         new SimpleObjectProperty<TemperaturesUnit>();
 
@@ -27,8 +29,18 @@ public class ViewModel {
     public StringProperty convertFromProperty() {
         return convertFrom;
     }
+    public StringProperty convertToProperty() {
+        return convertTo;
+    }
     public final String getConvertTo() {
         return convertTo.get();
+    }
+
+    public ObjectProperty<ObservableList<TemperaturesUnit>> scalesProperty() {
+        return scales;
+    }
+    public final ObservableList<TemperaturesUnit> getScales() {
+        return scales.get();
     }
 
     public ObjectProperty<TemperaturesUnit> scaleProperty() {
@@ -75,7 +87,7 @@ enum Status {
     WAITING("Please provide input data"),
     READY("Press 'Convert' or Enter"),
     BAD_FORMAT("Bad format"),
-    ERROR("Converting error"),
+    ERROR("Converting error: input value out of range"),
     SUCCESS("Success");
 
     private final String name;
