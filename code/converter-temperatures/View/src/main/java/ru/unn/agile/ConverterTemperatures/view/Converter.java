@@ -27,7 +27,7 @@ public class Converter {
         viewModel.setLogger(new TxtLogger("./TemperatureConverter.log"));
         value.textProperty().bindBidirectional(viewModel.convertFromProperty());
 
-        cbScale.valueProperty().bindBidirectional(viewModel.scaleProperty());
+        cbScale.valueProperty().bindBidirectional(viewModel.unitProperty());
 
         btnConvert.setOnAction(new EventHandler<ActionEvent>() {
             @Override
