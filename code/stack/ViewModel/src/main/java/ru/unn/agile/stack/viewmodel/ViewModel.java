@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import ru.unn.agile.stack.model.Stack;
 
+import java.util.List;
+
 public class ViewModel {
     public static final String WAITING_FOR_INPUT = "Waiting for new element";
     public static final String READY_TO_ADD = "Ready to add new element";
@@ -114,6 +116,10 @@ public class ViewModel {
         addingElement.set(addElem);
     }
 
+    public List<String> getLogList() {
+        return logger.getLog();
+    }
+
     public void addElement() {
         try {
             String addingElement = getAddingElement();
@@ -123,6 +129,7 @@ public class ViewModel {
                 doubleStack.push(Double.parseDouble(addingElement));
                 statusMessage.set(READY_TO_ADD);
                 changeStackProperties();
+                logger.log("Add " + addingElement + " element into stack");
             }
         } catch (NumberFormatException e) {
             statusMessage.set(INVALID_FORMAT);

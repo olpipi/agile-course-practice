@@ -49,6 +49,11 @@ public class ViewModelTests {
     }
 
     @Test
+    public void canSetDefaultLogValue() {
+        assertEquals(0, viewModel.getLogList().size());
+    }
+
+    @Test
     public void isPopButtonNotVisibleWhenStart() {
         assertEquals(false, viewModel.isPopButtonVisible());
     }
@@ -311,5 +316,15 @@ public class ViewModelTests {
     @Test
     public void correctDefaultPopButtonVisible() {
         assertEquals(false, viewModel.popButtonVisibleProperty().get());
+    }
+
+    @Test
+    public void correctAddingElementLog() {
+        String logMessage = "Add 11 element into stack";
+        viewModel.setAddingElem("11");
+
+        viewModel.addElement();
+
+        assertEquals(logMessage, viewModel.getLogList().get(0));
     }
 }
