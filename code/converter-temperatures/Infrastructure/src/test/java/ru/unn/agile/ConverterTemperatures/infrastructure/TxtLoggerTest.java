@@ -13,6 +13,8 @@ import static org.junit.Assert.assertEquals;
 
 public class TxtLoggerTest {
     private static final String FILE_NAME = "./TxtLogger.log";
+    private static final String TEST_MESSAGE = "Value -300 is not corrected";
+    private static final String TEST_MESSAGE_2 = "Value -450 is not corrected";
     private TxtLogger txtLogger;
 
     @Before
@@ -39,18 +41,15 @@ public class TxtLoggerTest {
 
     @Test
     public void canWriteLogMessage() {
-        String message = "Value -300 is not corrected";
-
-        txtLogger.log(message);
+        txtLogger.log(TEST_MESSAGE);
 
         String logMessage = txtLogger.getLog().get(0);
-        assertTrue(logMessage.matches(message));
+        assertTrue(logMessage.matches(TEST_MESSAGE));
     }
 
     @Test
     public void canWriteTwoMessages() {
-        String[] messages = {"Value -300 is not corrected",
-                "Value -450 is not corrected"};
+        String[] messages = {TEST_MESSAGE, TEST_MESSAGE_2};
 
         for (String mes : messages) {
             txtLogger.log(mes);
@@ -65,7 +64,7 @@ public class TxtLoggerTest {
     @Test(expected = Test.None.class)
     public void canCreateLogWithEmptyFilename() {
         TxtLogger logger = new TxtLogger("");
-        logger.log("Value -300 is not corrected");
+        logger.log(TEST_MESSAGE);
         assertEquals(0, logger.getLog().size());
     }
 }

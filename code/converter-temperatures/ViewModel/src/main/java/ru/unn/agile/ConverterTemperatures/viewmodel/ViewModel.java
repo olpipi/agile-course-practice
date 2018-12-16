@@ -11,6 +11,8 @@ import ru.unn.agile.ConverterTemperatures.model.*;
 import java.util.List;
 
 public class ViewModel {
+    public static final String CELSIUS_SYMBOL = "°C";
+
     private static final String EMPTY_STRING = "";
     private final StringProperty convertFrom = new SimpleStringProperty();
     private final StringProperty convertTo = new SimpleStringProperty();
@@ -46,29 +48,12 @@ public class ViewModel {
         setLogger(logger);
         init();
     }
-
-    public final void setLogger(final ILogger logger) {
-        if (logger == null) {
-            throw new IllegalArgumentException("Logger can't be null");
-        }
-        this.logger = logger;
-    }
-
     private void init() {
         convertFrom.set("");
         convertTo.set("");
         unit.set(TemperaturesUnit.FAHRENHEIT);
         status.set(Status.READY.toString());
         log.set(EMPTY_STRING);
-    }
-
-    private void addLog(final String message) {
-        logger.log(message);
-        StringBuilder logMsg = new StringBuilder();
-        for (String line : logger.getLog()) {
-            logMsg.append(line).append("\n");
-        }
-        log.set(logMsg.toString());
     }
 
     public StringProperty convertFromProperty() {
@@ -137,7 +122,7 @@ public class ViewModel {
             double result = TemperaturesConverter.convert(valueToConvert, unit.get());
 
             addLog(String.format(LogMessage.CONVERT_WAS_PRESSED,
-                    valueToConvert, "°C", result, unit.get()));
+                    valueToConvert, CELSIUS_SYMBOL, result, unit.get()));
 
             convertTo.set(String.valueOf(result));
             status.set(Status.SUCCESS.toString());
@@ -145,6 +130,22 @@ public class ViewModel {
             addLog(String.format(LogMessage.VALUE_FROM_IS_NOT_CORRECT, convertFrom.get()));
             status.set(Status.ERROR.toString());
         }
+    }
+
+    public final void setLogger(final ILogger logger) {
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger can't be null");
+        }
+        this.logger = logger;
+    }
+
+    private void addLog(final String message) {
+        logger.log(message);
+        StringBuilder logMsg = new StringBuilder();
+        for (String line : logger.getLog()) {
+            logMsg.append(line).append("\n");
+        }
+        log.set(logMsg.toString());
     }
 }
 

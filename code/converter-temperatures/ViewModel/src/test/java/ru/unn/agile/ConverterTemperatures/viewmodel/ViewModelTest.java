@@ -89,7 +89,7 @@ public class ViewModelTest {
 
         String message = viewModel.getLogList().get(0);
         String expectedMessage = String.format(LogMessage.CONVERT_WAS_PRESSED,
-                viewModel.getConvertFrom(), "°C",
+                viewModel.getConvertFrom(), ViewModel.CELSIUS_SYMBOL,
                 viewModel.getConvertTo(), TemperaturesUnit.KELVIN);
         assertTrue(message.contains(expectedMessage));
     }
@@ -98,12 +98,10 @@ public class ViewModelTest {
     public void logMessageGetMultiStringsLog() {
         viewModel.convertFromProperty().set("-300.0");
         viewModel.unitProperty().setValue(TemperaturesUnit.KELVIN);
-
         viewModel.convert();
 
         viewModel.convertFromProperty().set("20.0");
         viewModel.unitProperty().setValue(TemperaturesUnit.FAHRENHEIT);
-
         viewModel.convert();
 
         String message = viewModel.getLogList().get(0);
@@ -112,7 +110,8 @@ public class ViewModelTest {
 
         String message2 = viewModel.getLogList().get(1);
         String expectedMessage2 = String.format(LogMessage.CONVERT_WAS_PRESSED,
-                "20.0", "°C", viewModel.getConvertTo(), TemperaturesUnit.FAHRENHEIT);
+                "20.0", ViewModel.CELSIUS_SYMBOL, viewModel.getConvertTo(),
+                TemperaturesUnit.FAHRENHEIT);
         assertTrue(message2.contains(expectedMessage2));
     }
 
