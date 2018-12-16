@@ -64,7 +64,7 @@ public class ViewModelTest {
     }
 
     @Test
-    public void logIsEmptyAfterInit() {
+    public void isLogEmptyAfterInit() {
         List<String> logList = viewModel.getLogList();
 
         assertEquals(0, logList.size());
@@ -163,7 +163,7 @@ public class ViewModelTest {
     }
 
     @Test
-    public void canCreateLogMessage() {
+    public void canCreateLogMessages() {
         ViewModel.LogMessages logMessages = new ViewModel.LogMessages();
 
         assertNotNull(logMessages);
@@ -202,7 +202,7 @@ public class ViewModelTest {
     }
 
     @Test
-    public void logContainsMessageRomanConverted() {
+    public void logContainsMessageWhenRomanConverted() {
         viewModel.setRomanValueStr("III");
         viewModel.convertRomanToArabic();
 
@@ -213,7 +213,7 @@ public class ViewModelTest {
     }
 
     @Test
-    public void logContainsMessageArabicConverted() {
+    public void logContainsMessageWhenArabicConverted() {
         viewModel.setArabicValueStr("3");
         viewModel.convertArabicToRoman();
 
