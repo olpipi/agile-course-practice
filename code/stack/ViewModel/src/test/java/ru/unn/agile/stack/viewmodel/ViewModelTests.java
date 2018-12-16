@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class ViewModelTests {
     private ViewModel viewModel;
@@ -17,6 +18,25 @@ public class ViewModelTests {
     @After
     public void tearDown() {
         viewModel = null;
+    }
+
+    @Test
+    public void canCreateViewModelWithoutLogger() {
+        ViewModel newViewModel = new ViewModel();
+
+        assertNotNull(newViewModel);
+    }
+
+    @Test
+    public void canCreateViewModelWithNotNullLogger() {
+        ViewModel newViewModel = new ViewModel(new FakeLogger());
+
+        assertNotNull(newViewModel);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void canNotCreateViewModelWithNullLogger() {
+        ViewModel newViewModel = new ViewModel(null);
     }
 
     @Test
