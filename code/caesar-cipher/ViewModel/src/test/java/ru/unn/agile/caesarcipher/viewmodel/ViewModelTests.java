@@ -71,7 +71,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void canDisplayErrorWithIncorrectData() {
+    public void canDisplayErrorWithIncorrectDatas() {
         ViewModel viewModel = new ViewModel();
 
         viewModel.setTextBoxs("ABC", "abc");
