@@ -13,6 +13,7 @@ import java.lang.reflect.Modifier;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ViewModelTest {
@@ -38,6 +39,14 @@ public class ViewModelTest {
                 = viewModel.unitsProperty();
 
         assertEquals(unitsProperty.get().get(0), TemperaturesUnit.FAHRENHEIT);
+    }
+
+
+    @Test
+    public void canInitViewModel() {
+        viewModel = new ViewModel();
+
+        assertNotEquals(viewModel, null);
     }
 
     @Test
