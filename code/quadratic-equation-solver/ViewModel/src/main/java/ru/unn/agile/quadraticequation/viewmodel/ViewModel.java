@@ -52,10 +52,6 @@ public class ViewModel {
 
     public ViewModel(final ILogger logger) {
         init();
-
-        if (logger == null) {
-            throw new IllegalArgumentException("Logger parameter can't be null");
-        }
         setLogger(logger);
     }
 
@@ -91,8 +87,7 @@ public class ViewModel {
         QuadraticEquation quadraticEquation;
         if (getA().isEmpty() || getB().isEmpty() || getC().isEmpty()) {
             roots.set(EMPTY_COEFFICIENTS_ERR);
-            StringBuilder message = new StringBuilder(EMPTY_COEFFICIENTS_ERR);
-            logger.log(message.toString());
+            logger.log(EMPTY_COEFFICIENTS_ERR);
             updateLogs();
             return;
         }
