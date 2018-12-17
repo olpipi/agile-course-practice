@@ -2,7 +2,6 @@ package ru.unn.agile.ConverterTemperatures.infrastructure;
 
 import java.io.*;
 import java.util.*;
-
 import ru.unn.agile.ConverterTemperatures.viewmodel.ILogger;
 
 public class TxtLogger implements ILogger {
@@ -13,7 +12,7 @@ public class TxtLogger implements ILogger {
         this.filename = filename;
         try {
             writer = new BufferedWriter(new FileWriter(filename));
-        } catch (Exception exc) {
+        } catch (IOException exc) {
             System.out.println(exc.getMessage());
         }
     }
@@ -21,10 +20,12 @@ public class TxtLogger implements ILogger {
     @Override
     public void log(final String message) {
         try {
-            writer.write(message);
-            writer.newLine();
-            writer.flush();
-        } catch (Exception exc) {
+            if (writer != null) {
+                writer.write(message);
+                writer.newLine();
+                writer.flush();
+            }
+        } catch (IOException exc) {
             System.out.println(exc.getMessage());
         }
     }
@@ -39,7 +40,7 @@ public class TxtLogger implements ILogger {
                 log.add(line);
                 line = bufferReader.readLine();
             }
-        } catch (Exception exc) {
+        } catch (IOException exc) {
             System.out.println(exc.getMessage());
         }
         return log;
