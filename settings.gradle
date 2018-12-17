@@ -278,6 +278,8 @@ include "code/quadratic-equation-solver/ViewModel"
 project(":code/quadratic-equation-solver/ViewModel").name = "quadratic-equation-solver-ViewModel"
 include "code/quadratic-equation-solver/View"
 project(":code/quadratic-equation-solver/View").name = "quadratic-equation-solver-View"
+include "code/quadratic-equation-solver/Infrastructure"
+project(":code/quadratic-equation-solver/Infrastructure").name = "quadratic-equation-solver-Infrastructure"
 
 // Podchishchaeva Mariya, RBTree
 include "code/podchishchaeva-rb-tree"
