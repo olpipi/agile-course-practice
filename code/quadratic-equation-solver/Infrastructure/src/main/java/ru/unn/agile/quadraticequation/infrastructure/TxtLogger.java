@@ -25,14 +25,14 @@ public class TxtLogger implements ILogger {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        buffWriter = logWriter;
+        this.buffWriter = logWriter;
     }
 
     public void log(final String s) {
         try {
-            buffWriter.write(now() + " > " + s);
-            buffWriter.newLine();
-            buffWriter.flush();
+            this.buffWriter.write(now() + " > " + s);
+            this.buffWriter.newLine();
+            this.buffWriter.flush();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -48,6 +48,12 @@ public class TxtLoggerTests {
         assertTrue(message.get(0).contains(TEST_MESSAGE_1));
     }
 
+    @Test(expected = Test.None.class)
+    public void canWriteIntoTxtLoggerWithEmptyFilename() {
+        TxtLogger testLogger = new TxtLogger("");
+        testLogger.log(TEST_MESSAGE_1);
+    }
+
     @Test
     public void canWriteFewLogMessageInLogFile() {
         txtLogger.log(TEST_MESSAGE_1);

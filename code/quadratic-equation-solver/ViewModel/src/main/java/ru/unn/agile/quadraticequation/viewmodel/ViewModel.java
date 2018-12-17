@@ -1,8 +1,5 @@
 package ru.unn.agile.quadraticequation.viewmodel;
 
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import ru.unn.agile.quadraticequation.model.QuadraticEquation;
 import ru.unn.agile.quadraticequation.model.QuadraticEquationSolverException;
 import javafx.beans.property.*;
@@ -21,20 +18,18 @@ public class ViewModel {
     private final StringProperty a = new SimpleStringProperty();
     private final StringProperty b = new SimpleStringProperty();
     private final StringProperty c = new SimpleStringProperty();
+    private final StringProperty logs = new SimpleStringProperty();
+    private final StringProperty roots = new SimpleStringProperty();
 
     private ILogger logger;
-
-    public String getLogs() {
-        return logs.get();
-    }
 
     public StringProperty logsProperty() {
         return logs;
     }
 
-    private final StringProperty logs = new SimpleStringProperty();
-
-    private final StringProperty roots = new SimpleStringProperty();
+    public String getLogs() {
+        return logs.get();
+    }
 
     public final void setLogger(final ILogger logger) {
         if (logger == null) {
@@ -52,18 +47,16 @@ public class ViewModel {
         b.set("0");
         c.set("0");
         roots.set("");
+        logs.set("");
     }
 
     public ViewModel(final ILogger logger) {
-        a.set("0");
-        b.set("0");
-        c.set("0");
-        roots.set("");
+        init();
 
         if (logger == null) {
             throw new IllegalArgumentException("Logger parameter can't be null");
         }
-        this.logger = logger;
+        setLogger(logger);
     }
 
     public String getA() {
@@ -96,7 +89,7 @@ public class ViewModel {
 
     public void solve() {
         QuadraticEquation quadraticEquation;
-        if (a.get().isEmpty() || b.get().isEmpty() || c.get().isEmpty()) {
+        if (getA().isEmpty() || getB().isEmpty() || getC().isEmpty()) {
             roots.set(EMPTY_COEFFICIENTS_ERR);
             StringBuilder message = new StringBuilder(EMPTY_COEFFICIENTS_ERR);
             logger.log(message.toString());
@@ -105,19 +98,17 @@ public class ViewModel {
         }
         try {
             quadraticEquation = new QuadraticEquation(
-                    Double.parseDouble(a.get()),
-                    Double.parseDouble(b.get()),
-                    Double.parseDouble(c.get()));
+                    Double.parseDouble(getA()),
+                    Double.parseDouble(getB()),
+                    Double.parseDouble(getC()));
         } catch (NumberFormatException e) {
             roots.set(NON_NUMERIC_COEFFICIENTS_ERR);
-            StringBuilder message = new StringBuilder(NON_NUMERIC_COEFFICIENTS_ERR);
-            logger.log(message.toString());
+            logger.log(NON_NUMERIC_COEFFICIENTS_ERR);
             updateLogs();
             return;
         } catch (IllegalArgumentException e) {
             roots.set(NO_QUADRATIC_COEFFICIENT_ERR);
-            StringBuilder message = new StringBuilder(NO_QUADRATIC_COEFFICIENT_ERR);
-            logger.log(message.toString());
+            logger.log(NO_QUADRATIC_COEFFICIENT_ERR);
             updateLogs();
             return;
         }
@@ -126,17 +117,16 @@ public class ViewModel {
             equationRoots = quadraticEquation.solve();
         } catch (QuadraticEquationSolverException e) {
             roots.set(NO_ROOTS_MESSAGE);
-            StringBuilder message = new StringBuilder(NO_ROOTS_MESSAGE);
-            logger.log(message.toString());
+            logger.log(NO_ROOTS_MESSAGE);
             updateLogs();
             return;
         }
         roots.set(Arrays.toString(equationRoots));
 
         StringBuilder message = new StringBuilder(SOLVE_WAS_PRESSED);
-        message.append("Arg: a = ").append(a.get())
-                .append("; b = ").append(b.get())
-                .append("; c = ").append(c.get())
+        message.append("Arg: a = ").append(getA())
+                .append("; b = ").append(getB())
+                .append("; c = ").append(getC())
                 .append("; roots = ").append(roots.get());
         logger.log(message.toString());
         updateLogs();
@@ -163,35 +153,11 @@ public class ViewModel {
     }
 
     private void updateLogs() {
-        List<String> fullLog = logger.getLog();
-        String record = new String("");
+        StringBuilder logMessages = new StringBuilder();
+        List<String> fullLog = getLog();
         for (String log : fullLog) {
-            record += log + "\n";
+            logMessages.append(log).append("\n");
         }
-        logs.set(record);
-    }
-
-
-    private class ValueCachingChangeListener implements ChangeListener<String> {
-        private String prevValue = new String("");
-        private String curValue = new String("");
-
-        @Override
-        public void changed(final ObservableValue<? extends String> observable,
-                            final String oldValue, final String newValue) {
-            if (oldValue.equals(newValue)) {
-                return;
-            }
-            //status.set(getInputStatus().toString());
-            curValue = newValue;
-        }
-
-        public boolean isChanged() {
-            return !prevValue.equals(curValue);
-        }
-
-        public void cache() {
-            prevValue = curValue;
-        }
+        logs.set(logMessages.toString());
     }
 }
