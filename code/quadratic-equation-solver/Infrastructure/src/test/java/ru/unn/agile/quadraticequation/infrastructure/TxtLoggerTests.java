@@ -16,7 +16,6 @@ public class TxtLoggerTests {
     private static final String TEST_MESSAGE_1 = "Test message";
     private static final String TEST_MESSAGE_2 = "Second test message";
     private static final String FILE_IS_NOT_FOUND = "is not found!";
-
     private static final String FILENAME = "./TxtLoggerTests-lab3.log";
     private TxtLogger txtLogger;
 
