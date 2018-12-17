@@ -13,8 +13,8 @@ import static org.junit.Assert.assertEquals;
 
 public class TxtLoggerTest {
     private static final String FILE_NAME = "./TxtLogger.log";
-    private static final String TEST_MESSAGE = "Value -300 is not corrected";
-    private static final String TEST_MESSAGE_2 = "Value -450 is not corrected";
+    private static final String TEST_MESSAGE = "Value -300 in incorrect";
+    private static final String TEST_MESSAGE_2 = "Value -450 in incorrect";
     private TxtLogger txtLogger;
 
     @Before
