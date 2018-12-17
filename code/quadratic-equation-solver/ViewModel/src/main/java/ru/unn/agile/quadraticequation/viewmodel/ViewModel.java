@@ -46,8 +46,8 @@ public class ViewModel {
         a.set("1");
         b.set("0");
         c.set("0");
-        roots.set("");
         logs.set("");
+        roots.set("");
     }
 
     public ViewModel(final ILogger logger) {
