@@ -20,7 +20,6 @@ public class ViewModelTest {
 
     @Before
     public void initViewModel() {
-        viewModel = new ViewModel();
         viewModel = new ViewModel(new FakeLogger());
     }
 
