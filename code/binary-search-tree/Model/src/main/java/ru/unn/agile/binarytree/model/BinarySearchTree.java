@@ -156,14 +156,22 @@ public class BinarySearchTree<K extends Comparable<K>, V extends Comparable<V>> 
 
     public enum Operation {
         ADD("Add") {
-            public boolean apply(BinarySearchTree tree, final BinaryNode node) {
-                tree.insert(node.getKey(), node.getCount());
+            public boolean apply(final BinarySearchTree<String, Double> tree,
+                                 final BinaryNode<String, Double> node) {
+                if (null  != tree.find(node.getKey())) {
+                    return false;
+                }
+                tree.insert(node.getKey(), node.getValue());
                 return true;
             }
         },
         DELETE("Del") {
-            public boolean apply(BinarySearchTree tree, final BinaryNode node) {
-                tree.remove(node, node.getKey());
+            public boolean apply(final BinarySearchTree<String, Double> tree,
+                                 final BinaryNode<String, Double> node) {
+                if (null  == tree.find(node.getKey())) {
+                    return false;
+                }
+                tree.remove(node.getKey());
                 return true;
             }
         };
@@ -178,6 +186,7 @@ public class BinarySearchTree<K extends Comparable<K>, V extends Comparable<V>> 
             return name;
         }
 
-        public abstract boolean apply(BinarySearchTree tree, final BinaryNode node);
+        public abstract boolean apply(BinarySearchTree<String, Double> tree,
+                                      BinaryNode<String, Double> node);
     }
 }

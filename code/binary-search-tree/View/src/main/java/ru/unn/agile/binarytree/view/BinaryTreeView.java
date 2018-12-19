@@ -7,39 +7,32 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import ru.unn.agile.binarytree.viewmodel.*;
+import ru.unn.agile.binarytree.model.BinarySearchTree.Operation;
 
 public class BinaryTreeView {
-    //@FXML
-    //private ViewModel viewModel;
     @FXML
-    private TextField txtZ1Re;
+    private ViewModel viewModel;
     @FXML
-    private TextField txtZ1Im;
+    private TextField txtKey;
     @FXML
-    private TextField txtZ2Re;
+    private TextField txtValue;
     @FXML
-    private TextField txtZ2Im;
-    //@FXML
-    //private ComboBox<Operation> cbOperation;
+    private ComboBox<Operation> cbOperation;
     @FXML
-    private Button btnCalc;
+    private Button btnExecute;
 
     @FXML
     void initialize() {
+        txtKey.textProperty().bindBidirectional(viewModel.keyProperty());
+        txtValue.textProperty().bindBidirectional(viewModel.valueProperty());
 
-        // Two-way binding hasn't supported by FXML yet, so place it in code-behind
-        //.textProperty().bindBidirectional(viewModel.re1Property());
-        //txtZ1Im.textProperty().bindBidirectional(viewModel.im1Property());
-        //txtZ2Re.textProperty().bindBidirectional(viewModel.re2Property());
-        //txtZ2Im.textProperty().bindBidirectional(viewModel.im2Property());
+        cbOperation.valueProperty().bindBidirectional(viewModel.operationProperty());
 
-        //cbOperation.valueProperty().bindBidirectional(viewModel.operationProperty());
-
-        //btnCalc.setOnAction(new EventHandler<ActionEvent>() {
-        //    @Override
-        //    public void handle(final ActionEvent event) {
-        //        viewModel.calculate();
-        //    }
-        //});
+        btnExecute.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                viewModel.execute();
+            }
+        });
     }
 }

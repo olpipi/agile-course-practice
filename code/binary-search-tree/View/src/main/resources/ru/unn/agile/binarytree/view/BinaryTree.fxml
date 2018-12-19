@@ -23,7 +23,7 @@
                             </opaqueInsets>
                         </Label>
                         <Separator prefWidth="40.0" visible="false" />
-                        <TextField fx:id="txtZ1Re" />
+                        <TextField fx:id="txtKey" />
                         <Separator prefWidth="50.0" visible="false" />
                         <ComboBox fx:id="cbOperation" items="${viewModel.operations}" prefHeight="39.0" prefWidth="267.0" />
                     </children>
@@ -32,9 +32,9 @@
                     <children>
                         <Label minWidth="-Infinity" text="Value" />
                         <Separator prefWidth="30.0" visible="false" />
-                        <TextField fx:id="txtZ2Re" />
+                        <TextField fx:id="txtValue" />
                         <Separator prefWidth="50.0" visible="false" />
-                        <Button fx:id="btnCalc" defaultButton="true" disable="${viewModel.calculationDisabled}" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Execute" />
+                        <Button fx:id="btnExecute" defaultButton="true" disable="${viewModel.executionDisabled}" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="216.0" text="Execute" />
                     </children>
                 </HBox>
                 <HBox>
