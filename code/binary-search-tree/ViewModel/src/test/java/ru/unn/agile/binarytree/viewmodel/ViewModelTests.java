@@ -28,6 +28,7 @@ public class ViewModelTests {
         assertEquals("", viewModel.keyProperty().get());
         assertEquals("", viewModel.valueProperty().get());
         assertEquals(Operation.ADD, viewModel.operationProperty().get());
+        assertEquals(Operation.ADD.toString(), viewModel.operationProperty().get().toString());
         assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
     }
 
@@ -39,11 +40,18 @@ public class ViewModelTests {
         list.add(Operation.DELETE);
 
         assertEquals(list, viewModel.operationsProperty().get());
+        assertEquals(list, viewModel.getOperations());
     }
 
     @Test
     public void executeButtonIsDisabledInitially() {
         assertTrue(viewModel.executionDisabledProperty().get());
+    }
+
+    @Test
+    public void executeButtonIsEnabledWithCorrectInput() {
+        setCorrectInputData();
+        assertFalse(viewModel.isExecutionDisabled());
     }
 
     @Test
@@ -65,21 +73,19 @@ public class ViewModelTests {
         viewModel.keyProperty().set("qwe");
         viewModel.valueProperty().set("qwe");
 
-        assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+        assertEquals(Status.BAD_FORMAT.toString(), viewModel.getStatus());
     }
 
     @Test
     public void statusIsReadyWhenParamsAreCorrect() {
-        viewModel.valueProperty().set("1.4");
-        viewModel.keyProperty().set("qwe");
+        setCorrectInputData();
 
         assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
     }
 
     @Test
     public void addCommandIsCorrect() {
-        viewModel.valueProperty().set("1.4");
-        viewModel.keyProperty().set("qwe");
+        setCorrectInputData();
         viewModel.operationProperty().set(Operation.ADD);
 
         viewModel.execute();
@@ -89,8 +95,7 @@ public class ViewModelTests {
 
     @Test
     public void doubleAddCommandIsIncorrect() {
-        viewModel.valueProperty().set("1.4");
-        viewModel.keyProperty().set("qwe");
+        setCorrectInputData();
         viewModel.operationProperty().set(Operation.ADD);
 
         viewModel.execute();
@@ -101,8 +106,7 @@ public class ViewModelTests {
 
     @Test
     public void delCommandIsCorrectAfterAdd() {
-        viewModel.valueProperty().set("1.4");
-        viewModel.keyProperty().set("qwe");
+        setCorrectInputData();
         viewModel.operationProperty().set(Operation.ADD);
         viewModel.execute();
 
@@ -112,10 +116,10 @@ public class ViewModelTests {
         assertEquals(Status.SUCCESS.toString(), viewModel.statusProperty().get());
     }
 
+
     @Test
     public void delCommandIsIncorrectWithoutAdd() {
-        viewModel.valueProperty().set("1.4");
-        viewModel.keyProperty().set("qwe");
+        setCorrectInputData();
 
         viewModel.operationProperty().set(Operation.DELETE);
         viewModel.execute();
@@ -123,5 +127,9 @@ public class ViewModelTests {
         assertEquals(Status.UNSUCCESS.toString(), viewModel.statusProperty().get());
     }
 
+    private void setCorrectInputData() {
+        viewModel.valueProperty().set("1.4");
+        viewModel.keyProperty().set("qwe");
+    }
 
 }

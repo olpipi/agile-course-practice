@@ -200,4 +200,23 @@ public class BinarySearchTreeTest {
 
         assertNull(tree.max());
     }
+
+    @Test
+    public void canSetValueToBinaryNode() {
+        BinaryNode<String, Integer> tree = new BinaryNode<String, Integer>("A", 4);
+        tree.setValue(5);
+
+        assertEquals(Integer.valueOf(5), tree.getValue());
+    }
+
+
+    @Test
+    public void canInsertWithTheSameKey() {
+        BinarySearchTree<String, Integer> tree = new BinarySearchTree<String, Integer>();
+
+        tree.insert("A", 5);
+        tree.insert("A", 3);
+
+        assertEquals(1, tree.size());
+    }
 }

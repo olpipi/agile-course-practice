@@ -24,7 +24,6 @@ public class ViewModel {
     private final ObjectProperty<Operation> operation = new SimpleObjectProperty<>();
     private final BooleanProperty executionDisabled = new SimpleBooleanProperty();
 
-    private final StringProperty result = new SimpleStringProperty();
     private final StringProperty status = new SimpleStringProperty();
 
     private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
@@ -65,7 +64,6 @@ public class ViewModel {
         };
         executionDisabled.bind(couldExecute.not());
 
-        // Add listeners to the input text fields
         final List<StringProperty> fields = new ArrayList<StringProperty>() { {
             add(key);
             add(value);
@@ -102,10 +100,10 @@ public class ViewModel {
     public ObjectProperty<ObservableList<Operation>> operationsProperty() {
         return operations;
     }
+
     public final ObservableList<Operation> getOperations() {
         return operations.get();
     }
-
 
     public StringProperty statusProperty() {
         return status;
@@ -123,17 +121,9 @@ public class ViewModel {
         return executionDisabled.get();
     }
 
-    public StringProperty resultProperty() {
-        return result;
-    }
-    public final String getResult() {
-        return result.get();
-    }
     public final String getStatus() {
         return status.get();
     }
-
-
 
     private class ValueChangeListener implements ChangeListener<String> {
         @Override

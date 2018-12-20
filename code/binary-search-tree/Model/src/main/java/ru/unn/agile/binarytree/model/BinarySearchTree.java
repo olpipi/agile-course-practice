@@ -136,45 +136,33 @@ public class BinarySearchTree<K extends Comparable<K>, V extends Comparable<V>> 
         return v;
     }
 
-    public void print() {
-        print(root, 0);
-    }
-
-    private void print(final BinaryNode<K, V> vertex, final int level) {
-        if (vertex != null) {
-            for (int i = 0; i < level; ++i) {
-                System.out.print(".");
-            }
-
-            System.out.printf("L%d: ", level);
-            System.out.println(vertex.toString());
-
-            print(vertex.getLeft(), level + 1);
-            print(vertex.getRight(), level + 1);
-        }
-    }
-
     public enum Operation {
         ADD("Add") {
             public boolean apply(final BinarySearchTree<String, Double> tree,
                                  final BinaryNode<String, Double> node) {
-                if (null  != tree.find(node.getKey())) {
+                if (isNodeInTree(tree, node)) {
                     return false;
                 }
                 tree.insert(node.getKey(), node.getValue());
                 return true;
             }
         },
+
         DELETE("Del") {
             public boolean apply(final BinarySearchTree<String, Double> tree,
                                  final BinaryNode<String, Double> node) {
-                if (null  == tree.find(node.getKey())) {
+                if (!isNodeInTree(tree, node)) {
                     return false;
                 }
                 tree.remove(node.getKey());
                 return true;
             }
         };
+
+        private static boolean isNodeInTree(final BinarySearchTree<String, Double> tree,
+                                     final BinaryNode<String, Double> node) {
+            return null == tree.find(node.getKey()) ? false : true;
+        }
 
         private final String name;
         Operation(final String name) {
