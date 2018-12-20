@@ -3,12 +3,8 @@ package ru.unn.agile.huffman.infrastructure;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import static junit.framework.TestCase.assertNotNull;
 
 public class TextFileLoggerTest {
@@ -33,16 +29,6 @@ public class TextFileLoggerTest {
         TextFileLogger logger = new TextFileLogger("");
 
         logger.log(TEST_LOG_MESSAGE);
-    }
-
-
-    @Test
-    public void canCreateLogFileOnDisk() {
-        try {
-            new BufferedReader(new FileReader(FILENAME));
-        } catch (Exception e) {
-            fail("Can't open file for logger");
-        }
     }
 
     @Test(expected = Test.None.class)
@@ -75,6 +61,18 @@ public class TextFileLoggerTest {
         String logString = txtLogger.getLog().get(0);
         assertTrue(logString.matches(REGEX_FORMAT_DT + " > " + logMessage));
     }
+
+    @Test (expected = IndexOutOfBoundsException.class)
+    public void cantReadUnexistingLogMessage() {
+        String logMessage = TEST_LOG_MESSAGE;
+
+        txtLogger.log(logMessage);
+
+        String logString = txtLogger.getLog().get(2);
+    }
+
+
+
 
     @Test
     public void checkCountStingMessagesInLog() {

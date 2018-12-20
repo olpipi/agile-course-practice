@@ -118,6 +118,19 @@ public class ViewModelTests {
         assertEquals(logger, viewModel.getLogger());
     }
 
+    @Test
+    public void canGetLog() {
+        ILogger logger = new DummyLoger();
+        viewModel.setLogger(logger);
+
+        viewModel.txtProperty().set("Text");
+        viewModel.encode();
+
+        assertEquals(logger.getLog().get(0) + "\n", viewModel.getLog());
+        assertEquals(logger.getLog().get(0) + "\n", viewModel.logProperty().get());
+
+    }
+
     protected void setViewModel(final ViewModel viewModel) {
         this.viewModel = viewModel;
     }
